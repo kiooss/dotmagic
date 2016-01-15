@@ -49,7 +49,16 @@ plugins=(systemadmin encode64 command-not-found svn git git-remote-branch symfon
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export DOTFILES=$HOME/.dotfiles
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# adding path directory for custom scripts
+export PATH=$DOTFILES/bin:$PATH
+
+# check for custom bin directory and add to path
+if [[ -d ~/bin ]]; then
+    export PATH=~/bin:$PATH
+fi
 
 export TZ="/usr/share/zoneinfo/Asia/Tokyo"
 export BUNDLER_EDITOR=vim

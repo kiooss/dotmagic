@@ -1,0 +1,2 @@
+#!/bin/bash
+ctags -R --exclude=".svn" --exclude=".git" --exclude=".rsync_cache" --exclude="cache" --exclude="composer.phar" --exclude="autocomplete.php" --languages=php .

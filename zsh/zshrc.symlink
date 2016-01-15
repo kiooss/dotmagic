@@ -53,13 +53,29 @@ source $HOME/.bash_aliases
 export DOTFILES=$HOME/.dotfiles
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+# define the code directory
+# This is where my code exists and where I want the `c` autocomplete to work from exclusively
+if [[ -d ~/workspace ]]; then
+    export CODE_DIR=~/workspace
+fi
+
+[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
+
 # adding path directory for custom scripts
 export PATH=$DOTFILES/bin:$PATH
+
+# display how long all tasks over 10 seconds take
+export REPORTTIME=10
+
+# source all .zsh files inside of the zsh/ directory
+for config ($DOTFILES/zsh/**/*.zsh) source $config
 
 # check for custom bin directory and add to path
 if [[ -d ~/bin ]]; then
     export PATH=~/bin:$PATH
 fi
+
+[ -z "$TMUX" ] && export TERM=xterm-256color
 
 #### Add android tools
 if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
@@ -116,5 +132,3 @@ export PATH=$HOME/php/bin:$PATH
 #[ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh
 
 #source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
-
-source "$HOME/.dotfiles/zsh/functions.zsh"

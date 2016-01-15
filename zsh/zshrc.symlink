@@ -67,6 +67,22 @@ if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
     export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 fi
 
+# enable color support of ls and also add handy aliases
+if [ -x /usr/local/bin/gdircolors ]; then
+    test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
+    alias ls='gls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    #alias grep='grep --color=auto'
+    #alias fgrep='fgrep --color=auto'
+    #alias egrep='egrep --color=auto'
+    # some more ls aliases
+    alias ll='ls -alhF'
+    alias la='ls -A'
+    alias l='ls -CF'
+fi
+
 export TZ="/usr/share/zoneinfo/Asia/Tokyo"
 export BUNDLER_EDITOR=vim
 export SVN_EDITOR=vim

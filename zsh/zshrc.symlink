@@ -94,9 +94,9 @@ if [ -x /usr/local/bin/gdircolors ]; then
     #alias fgrep='fgrep --color=auto'
     #alias egrep='egrep --color=auto'
     # some more ls aliases
-    alias ll='ls -alhF'
-    alias la='ls -A'
-    alias l='ls -CF'
+    #alias ll='ls -alhF'
+    #alias la='ls -A'
+    #alias l='ls -CF'
 fi
 
 export TZ="/usr/share/zoneinfo/Asia/Tokyo"

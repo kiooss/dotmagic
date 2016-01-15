@@ -26,4 +26,6 @@ if [ -d "$HOME/.rbenv" ]; then
 else
     echo "Installing rbenv"
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+    echo "Installing ruby-build"
+    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 fi

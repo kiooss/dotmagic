@@ -14,3 +14,12 @@ function restart-ssh-agent {
 function show_user_list {
     cat /etc/passwd | cut -d ":" -f1
 }
+
+function flush_dns() {
+    echo 'Flush dns'
+    if [ "$(uname)" == "Darwin" ]; then
+        sudo killall -HUP mDNSResponder
+    else
+        echo "Do nothing."
+    fi
+}

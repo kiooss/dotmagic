@@ -87,4 +87,4 @@ export PATH=$HOME/php/bin:$PATH
 
 #source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
-source "$HOME/.dotfiles/zsh/functions"
+source "$HOME/.dotfiles/zsh/functions.zsh"

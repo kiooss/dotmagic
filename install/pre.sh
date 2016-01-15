@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo -e "\nPre install"
+echo "=============================="
+
 # install dircolors-solarized
 if [ -d "$HOME/dircolors-solarized" ]; then
     echo "dircolors-solarized already exists... Skipping."

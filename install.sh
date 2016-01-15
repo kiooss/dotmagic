@@ -5,6 +5,7 @@ echo "Installing dotfiles"
 #echo "Initializing submodule(s)"
 #git submodule update --init --recursive
 
+source install/pre.sh
 source install/link.sh
 
 : '

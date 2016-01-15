@@ -47,6 +47,7 @@ alias zz="source ~/.zshrc"
 plugins=(systemadmin encode64 command-not-found svn git git-remote-branch symfony2 rails ruby capistrano colored-man rbenv meteor cp gitfast zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.bash_aliases
 
 # Customize to your needs...
 export DOTFILES=$HOME/.dotfiles
@@ -60,20 +61,33 @@ if [[ -d ~/bin ]]; then
     export PATH=~/bin:$PATH
 fi
 
+#### Add android tools
+if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
+    export ANDROID_HOME="/Applications/adt-bundle-mac-x86_64/sdk"
+    export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools}
+fi
+
 export TZ="/usr/share/zoneinfo/Asia/Tokyo"
 export BUNDLER_EDITOR=vim
 export SVN_EDITOR=vim
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+
+if hash rbenv 2>/dev/null; then
+    eval "$(rbenv init -)"
+fi
 
 # rake completion
-source $HOME/.rake_completion.zsh
+if [[ -f $HOME/.rake_completion ]]; then
+    source $HOME/.rake_completion.zsh
+fi
+
 
 # secret env values
-source $HOME/.secret_env
-source $HOME/.bash_aliases
+if [[ -f $HOME/.secret_env ]]; then
+    source $HOME/.secret_env
+fi
 
 #. ~/powerline/powerline/bindings/zsh/powerline.zsh
 # if need php5.5 console

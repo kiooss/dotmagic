@@ -32,9 +32,6 @@ fi
 echo "creating vim directories"
 mkdir -p ~/.vim-tmp
 
-#echo "Install oh-my-zsh"
-#git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-
 echo "Configuring zsh as default shell"
 chsh -s $(which zsh)
 

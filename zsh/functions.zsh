@@ -23,3 +23,15 @@ function flush_dns() {
         echo "Do nothing."
     fi
 }
+
+function update_dotfiles() {
+    echo "Updating dotfiles."
+    echo $DOTFILES
+    cd "$DOTFILES"
+    if git pull --rebase --stat origin master
+    then
+        echo "Dotfiles has been updated."
+    else
+        echo "Failed!"
+    fi
+}

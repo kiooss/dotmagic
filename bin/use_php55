@@ -1,0 +1,1 @@
+a2dismod php5 && a2enmod php55 && service apache2 restart

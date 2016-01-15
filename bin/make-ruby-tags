@@ -1,0 +1,4 @@
+#!/bin/bash
+#ctags -R --exclude=.git --exclude=log --languages=ruby * /var/lib/gems/1.9.1/gems/*
+ctags -R --exclude=.* --exclude=log --languages=ruby * `gem env gemdir`
+

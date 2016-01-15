@@ -16,7 +16,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sickill/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } "| Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/gtags.vim'
 Plug 'docteurklein/php-getter-setter.vim'

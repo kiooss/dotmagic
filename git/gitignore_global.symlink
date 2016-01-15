@@ -36,3 +36,8 @@ cscope.out
 cscope.in.out
 cscope.po.out
 
+# android studio
+*.iml
+gradle.properties
+local.properties
+.gradletasknamecache

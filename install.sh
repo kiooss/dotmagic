@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -o errexit
+set -o pipefail
+set -o nounset
+
 echo "Installing dotfiles"
 
 #echo "Initializing submodule(s)"

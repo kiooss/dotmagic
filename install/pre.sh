@@ -27,8 +27,8 @@ if [ -d "$HOME/dircolors-solarized" ]; then
     echo "dircolors-solarized already exists... Skipping."
 else
     echo "Installing dircolors-solarized"
-    git clone https://github.com/seebi/dircolors-solarized ~/dircolors-solarized
-    ln -s ~/dircolors-solarized/dircolors.256dark ~/.dircolors
+    git clone https://github.com/seebi/dircolors-solarized ~/.dircolors-solarized
+    ln -s ~/.dircolors-solarized/dircolors.256dark ~/.dircolors
 fi
 
 # install oh-my-zsh

@@ -3,6 +3,22 @@
 echo -e "\nPre install"
 echo "=============================="
 
+# install zsh
+if hash zsh 2>/dev/null; then
+    echo "Zsh already exists... Skipping."
+else
+    echo "Installing zsh."
+    sudo apt-get install zsh
+fi
+
+# install ctags
+if hash ctags 2>/dev/null; then
+    echo "ctags already exists... Skipping."
+else
+    echo "Installing ctags."
+    sudo apt-get install ctags
+fi
+
 # install dircolors-solarized
 if [ -d "$HOME/dircolors-solarized" ]; then
     echo "dircolors-solarized already exists... Skipping."

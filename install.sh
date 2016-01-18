@@ -33,8 +33,15 @@ fi
 echo "creating vim directories"
 mkdir -p ~/.vim-tmp
 
-echo "Configuring zsh as default shell"
-chsh -s $(which zsh)
+if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+    # assume Zsh
+    :
+else
+    # asume something else
+    echo "Configuring zsh as default shell"
+    chsh -s $(which zsh)
+fi
+
 
 # restart shell
 echo "restarting shell"

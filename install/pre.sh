@@ -3,23 +3,25 @@
 printf "\n${YELLOW}Pre install\n"
 printf "==============================${NORMAL}\n"
 
-# install some necessary packages
-sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev -y
+if hash apt-get 2>/dev/null; then
+    # install some necessary packages
+    sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev -y
 
-# install zsh
-if hash zsh 2>/dev/null; then
-    echo "Zsh already exists... Skipping."
-else
-    echo "Installing zsh."
-    sudo apt-get install zsh
-fi
+    # install zsh
+    if hash zsh 2>/dev/null; then
+        echo "Zsh already exists... Skipping."
+    else
+        echo "Installing zsh."
+        sudo apt-get install zsh -y
+    fi
 
-# install ctags
-if hash ctags 2>/dev/null; then
-    echo "ctags already exists... Skipping."
-else
-    echo "Installing ctags."
-    sudo apt-get install ctags
+    # install ctags
+    if hash ctags 2>/dev/null; then
+        echo "ctags already exists... Skipping."
+    else
+        echo "Installing ctags."
+        sudo apt-get install ctags -y
+    fi
 fi
 
 # install dircolors-solarized

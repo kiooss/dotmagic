@@ -231,10 +231,14 @@ function! AirlineInit()
 endfunction
 "autocmd VimEnter * call AirlineInit()
 
-"----------------------------------------------
+" toggle paste mode
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
+" toggle line number
+nnoremap <c-l> :set number!<cr>
+inoremap <c-l> <Esc>:set number!<cr>
 
 "----------------------------------------------
 inoremap {      {}<Left>

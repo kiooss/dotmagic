@@ -1,54 +1,78 @@
 #!/bin/bash
 
-set -o errexit
-set -o pipefail
-set -o nounset
+main() {
+    # Use colors, but only if connected to a terminal, and that terminal
+    # supports them.
+    if which tput >/dev/null 2>&1; then
+        ncolors=$(tput colors)
+    fi
+    if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+      RED="$(tput setaf 1)"
+      GREEN="$(tput setaf 2)"
+      YELLOW="$(tput setaf 3)"
+      BLUE="$(tput setaf 4)"
+      BOLD="$(tput bold)"
+      NORMAL="$(tput sgr0)"
+    else
+      RED=""
+      GREEN=""
+      YELLOW=""
+      BLUE=""
+      BOLD=""
+      NORMAL=""
+    fi
 
-echo "Installing dotfiles"
+    set -o errexit
+    set -o pipefail
+    set -o nounset
 
-#echo "Initializing submodule(s)"
-#git submodule update --init --recursive
+    printf "${BLUE}Installing dotfiles.${NORMAL}\n"
 
-source install/pre.sh
-source install/link.sh
+    #echo "Initializing submodule(s)"
+    #git submodule update --init --recursive
 
-: '
-if [ "$(uname)" == "Darwin" ]; then
-    echo "Running on OSX"
+    source install/pre.sh
+    source install/link.sh
 
-    echo "Brewing all the things"
-    source install/brew.sh
+    : '
+    if [ "$(uname)" == "Darwin" ]; then
+        echo "Running on OSX"
 
-    echo "Updating OSX settings"
-    source installosx.sh
+        echo "Brewing all the things"
+        source install/brew.sh
 
-    echo "Installing node (from nvm)"
-    source install/nvm.sh
+        echo "Updating OSX settings"
+        source installosx.sh
 
-    echo "Configuring nginx"
-    # create a backup of the original nginx.conf
-    mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
-    ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
-    # symlink the code.dev from dotfiles
-    ln -s ~/.dotfiles/nginx/code.dev /usr/local/etc/nginx/sites-enabled/code.dev
-fi
-'
+        echo "Installing node (from nvm)"
+        source install/nvm.sh
 
-echo "creating vim directories"
-mkdir -p ~/.vim-tmp
+        echo "Configuring nginx"
+        # create a backup of the original nginx.conf
+        mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
+        ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
+        # symlink the code.dev from dotfiles
+        ln -s ~/.dotfiles/nginx/code.dev /usr/local/etc/nginx/sites-enabled/code.dev
+    fi
+    '
 
-if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
-    # assume Zsh
-    :
-else
-    # asume something else
-    echo "Configuring zsh as default shell"
-    chsh -s $(which zsh)
-fi
+    echo "creating vim directories"
+    mkdir -p ~/.vim-tmp
 
+    if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+        # assume Zsh
+        :
+    else
+        # asume something else
+        printf "${YELLOW}Configuring zsh as default shell${NORMAL}\n"
+        chsh -s $(which zsh)
+    fi
 
-# restart shell
-echo "restarting shell"
-exec $SHELL -l
+    printf "${GREEN}Done.${NORMAL}\n"
 
-echo "Done."
+    # restart shell
+    printf "${YELLOW}restarting shell${NORMAL}\n"
+    exec $SHELL -l
+}
+
+main

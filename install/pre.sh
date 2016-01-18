@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo -e "\nPre install"
-echo "=============================="
+printf "\n${YELLOW}Pre install\n"
+printf "==============================${NORMAL}\n"
 
 # install some necessary packages
 sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev -y
@@ -23,7 +23,7 @@ else
 fi
 
 # install dircolors-solarized
-if [ -d "$HOME/dircolors-solarized" ]; then
+if [ -d "$HOME/.dircolors-solarized" ]; then
     echo "dircolors-solarized already exists... Skipping."
 else
     echo "Installing dircolors-solarized"

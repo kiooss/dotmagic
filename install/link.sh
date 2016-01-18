@@ -2,8 +2,8 @@
 
 DOTFILES=$HOME/.dotfiles
 
-echo -e "\nCreating symlinks"
-echo "=============================="
+printf "\n${YELLOW}Creating symlinks\n"
+printf "==============================${NORMAL}\n"
 linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
 for file in $linkables ; do
     target="$HOME/.$( basename $file ".symlink" )"

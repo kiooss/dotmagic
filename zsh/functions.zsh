@@ -34,6 +34,7 @@ function update_dotfiles() {
     else
         echo "Failed!"
     fi
+    cd -
 }
 
 # Generate an SSL key and a signing request or self-signed certificate

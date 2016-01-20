@@ -11,6 +11,8 @@ fi
 #alias vim="nvim"
 alias vi="vim"
 
+alias tf="tail -f"
+
 # Filesystem aliases
 alias ..='cd ..'
 alias ...='cd ../..'

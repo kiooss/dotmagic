@@ -15,14 +15,6 @@ function show_user_list {
     cat /etc/passwd | cut -d ":" -f1
 }
 
-function flush_dns() {
-    echo 'Flush dns'
-    if [ "$(uname)" == "Darwin" ]; then
-        sudo killall -HUP mDNSResponder
-    else
-        echo "Do nothing."
-    fi
-}
 
 function update_dotfiles() {
     echo "Updating dotfiles."
@@ -86,4 +78,9 @@ SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
 CustomLog logs/ssl_request_log \
    "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
 EOF
+}
+
+function scan_port() {
+    echo "sudo nmap -p $2 -sV $1"
+    sudo nmap -p $2 -sV $1
 }

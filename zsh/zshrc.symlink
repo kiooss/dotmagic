@@ -50,7 +50,6 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.bash_aliases
 
 # Customize to your needs...
-unsetopt no_match
 export DOTFILES=$HOME/.dotfiles
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 

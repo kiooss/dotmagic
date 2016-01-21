@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+DOTFILES=$HOME/.dotfiles
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -46,11 +47,13 @@ alias zz="source ~/.zshrc"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(history-substring-search adb systemadmin encode64 command-not-found svn git git-remote-branch symfony2 rails ruby capistrano colored-man rbenv meteor cp gitfast zsh_reload)
 
+# source all .zsh files inside of the zsh/ directory
+for config ($DOTFILES/zsh/**/*.zsh) source $config
+
 source $ZSH/oh-my-zsh.sh
 source $HOME/.bash_aliases
 
 # Customize to your needs...
-export DOTFILES=$HOME/.dotfiles
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 
 # define the code directory
@@ -66,9 +69,6 @@ export PATH=$DOTFILES/bin:$PATH
 
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
-
-# source all .zsh files inside of the zsh/ directory
-for config ($DOTFILES/zsh/**/*.zsh) source $config
 
 # check for custom bin directory and add to path
 if [[ -d ~/bin ]]; then

@@ -64,6 +64,7 @@ plugins=(
     gitfast
     zsh_reload
     gradle
+    rake-fast
 )
 
 # source all .zsh files inside of the zsh/ directory
@@ -128,12 +129,6 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"
 fi
-
-# rake completion
-if [[ -f $HOME/.rake_completion ]]; then
-    source $HOME/.rake_completion.zsh
-fi
-
 
 # secret env values
 if [[ -f $HOME/.secret_env ]]; then

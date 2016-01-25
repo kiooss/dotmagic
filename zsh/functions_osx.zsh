@@ -1,6 +1,6 @@
 function flush_dns() {
     echo 'Flush dns'
-    if [ "$(uname)" == "Darwin" ]; then
+    if [ "$(uname)" = "Darwin" ]; then
         sudo killall -HUP mDNSResponder
     else
         echo "Do nothing."

@@ -11,7 +11,7 @@
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     d = difftool
     st = status
-    br = branch -v
+    br = branch -vv
     co = checkout
     df = diff
     dc = diff --cached

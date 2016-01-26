@@ -83,3 +83,4 @@ alias canary="/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\
 # android development
 alias adbstart="adb shell am start -n"
 alias gradlew="./gradlew"
+alias adb_focus="adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"

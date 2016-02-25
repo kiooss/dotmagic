@@ -69,6 +69,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'bling/vim-airline'
+Plug 'Raimondi/delimitMate'
 
 call plug#end()
 filetype plugin indent on

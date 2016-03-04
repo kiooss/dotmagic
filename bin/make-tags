@@ -1,2 +1,13 @@
 #!/bin/bash
-ctags -R --exclude=".svn" --exclude=".git" --exclude=".rsync_cache" --exclude="cache" --exclude="composer.phar" --exclude="autocomplete.php" --languages=php .
+ctags -R \
+    --exclude=".svn" \
+    --exclude=".git" \
+    --exclude=".rsync_cache" \
+    --exclude="cache" \
+    --exclude="composer.phar" \
+    --exclude="autocomplete.php" \
+    --languages=php \
+    --PHP-kinds=+cf \
+    --regex-php='/^[ \t]*trait[ \t]+([a-z0_9_]+)/\1/t,traits/i' \
+    .
+

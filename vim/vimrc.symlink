@@ -189,7 +189,6 @@ endif
 "let g:SuperTabMappingForward="<tab>"
 "let g:SuperTabMappingBackward="<S-Tab>"
 "let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-"let g:SuperTabDefaultCompletionType = "context"
 
 let g:rubycomplete_rails = 1
 
@@ -435,3 +434,6 @@ let g:indent_guides_auto_colors=0
 
 let maplocalleader = ','
 "let g:ackprg = 'ag --nogroup --nocolor --column'
+
+set complete-=i
+

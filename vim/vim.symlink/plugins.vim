@@ -68,8 +68,10 @@ Plug 'mileszs/ack.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
+Plug 'StanAngeloff/php.vim'
 
 call plug#end()
 filetype plugin indent on

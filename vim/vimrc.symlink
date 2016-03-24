@@ -153,6 +153,8 @@ noremap <space> :set hlsearch! hlsearch?<cr>
 if has('autocmd') && !exists('autocommands_loaded')
     let autocommands_loaded = 1
 
+    autocmd FileType php set dictionary+=~/.vim/php.dict
+
     autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType crontab setlocal nobackup nowritebackup
 
@@ -436,4 +438,4 @@ let maplocalleader = ','
 "let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set complete-=i
-
+set complete+=k

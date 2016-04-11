@@ -156,6 +156,7 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd FileType php set dictionary+=~/.vim/php.dict
 
     autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType crontab setlocal nobackup nowritebackup
 
     "ruby
@@ -171,6 +172,7 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd BufWritePre * :%s/\s\+$//e
 
     autocmd BufRead,BufNewFile *_js.html.erb set filetype=javascript
+    autocmd BufRead,BufNewFile *_js.html.twig set filetype=javascript
     autocmd BufRead,BufNewFile *.xlsx.axlsx set filetype=ruby
     autocmd BufRead,BufNewFile *.ihtml set filetype=php
     autocmd BufRead,BufNewFile *.ejs set filetype=html
@@ -437,5 +439,6 @@ let g:indent_guides_auto_colors=0
 let maplocalleader = ','
 "let g:ackprg = 'ag --nogroup --nocolor --column'
 
+set foldmethod=manual " solve autocomplete slow problem
 set complete-=i
 set complete+=k

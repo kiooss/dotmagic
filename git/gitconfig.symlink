@@ -97,7 +97,7 @@
 
 [branch]
     # set up 'git pull' to rebase instead of merge
-    autosetuprebase = always
+    #autosetuprebase = always
 
 ;[branch "master"]
 ;  remote = origin

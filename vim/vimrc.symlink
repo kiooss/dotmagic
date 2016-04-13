@@ -269,6 +269,12 @@ inoremap {}     {}
 " save in readonly mode
 cnoreabbrev w!! w !sudo tee > /dev/null %
 
+" Navigating long lines
+map <DOWN> gj
+map <UP> gk
+imap <DOWN> <ESC>gji
+imap <UP> <ESC>gki
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""

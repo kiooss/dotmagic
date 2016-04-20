@@ -113,3 +113,16 @@ function indent-with-vim() {
 :wq
 EOF
 }
+
+function doctrine-schema-update() {
+    (
+        echo "SET AUTOCOMMIT=0;"
+        echo "SET UNIQUE_CHECKS=0;"
+        echo "SET FOREIGN_KEY_CHECKS=0;"
+        sf doctrine:schema:update --dump-sql
+        echo "SET FOREIGN_KEY_CHECKS=1;"
+        echo "SET UNIQUE_CHECKS=1;"
+        echo "SET AUTOCOMMIT=1;"
+        echo "COMMIT;"
+    ) | mysql -uroot "$1"
+}

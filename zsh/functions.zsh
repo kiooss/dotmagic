@@ -81,6 +81,27 @@ EOF
 }
 
 function scan_port() {
-    echo "sudo nmap -p $2 -sV $1"
+    set -ex
     sudo nmap -p $2 -sV $1
+}
+
+function chmod-r() {
+    if [[ $# -eq 0 ]] ; then
+        echo "Usage: $0 [dir] [type:f or d] [mod]";
+        echo "Example: $0 . d 755"
+        echo "Example: $0 . f 644"
+        return 1
+    fi
+    set -ex
+    find $1 -type $2 -exec chmod $3 {} +
+}
+
+function text-replace() {
+    if [[ $# -eq 0 ]] ; then
+        echo "Usage: $0 [from] [to] [dir]";
+        echo "Example: $0 foo bar /tmp"
+        return 1
+    fi
+    set -ex
+    grep -rl $1 $3 | xargs sed -i -e "s/$1/$2/g"
 }

@@ -105,3 +105,11 @@ function text-replace() {
     set -ex
     grep -rl $1 $3 | xargs sed -i -e "s/$1/$2/g"
 }
+
+function indent-with-vim() {
+    set -x
+    #vim -E -c "normal ggVG=" $1 <<'EOF'
+    vim -E -s -u $HOME/.vimrc -c "normal gg=G" $1 <<'EOF'
+:wq
+EOF
+}

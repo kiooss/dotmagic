@@ -81,7 +81,7 @@ EOF
 }
 
 function scan_port() {
-    set -ex
+    set -x
     sudo nmap -p $2 -sV $1
 }
 
@@ -92,7 +92,7 @@ function chmod-r() {
         echo "Example: $0 . f 644"
         return 1
     fi
-    set -ex
+    set -x
     find $1 -type $2 -exec chmod $3 {} +
 }
 
@@ -102,7 +102,7 @@ function text-replace() {
         echo "Example: $0 foo bar /tmp"
         return 1
     fi
-    set -ex
+    set -x
     grep -rl $1 $3 | xargs sed -i -e "s/$1/$2/g"
 }
 

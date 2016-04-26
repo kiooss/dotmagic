@@ -113,28 +113,3 @@ function indent-with-vim() {
 :wq
 EOF
 }
-
-function doctrine-schema-update() {
-    (
-        echo "SET AUTOCOMMIT=0;"
-        echo "SET UNIQUE_CHECKS=0;"
-        echo "SET FOREIGN_KEY_CHECKS=0;"
-        sf doctrine:schema:update --dump-sql
-        echo "SET FOREIGN_KEY_CHECKS=1;"
-        echo "SET UNIQUE_CHECKS=1;"
-        echo "SET AUTOCOMMIT=1;"
-        echo "COMMIT;"
-    ) | mysql -uroot "$1"
-}
-
-function add-mysql-user() {
-    if [[ $# -eq 0 ]] ; then
-        echo "Usage: $0 [username] [password]";
-        return 1
-    fi
-
-    (
-        echo "CREATE USER '$1'@'%' IDENTIFIED BY '$2';"
-        echo "GRANT ALL ON *.* TO '$1'@'%' WITH GRANT OPTION;"
-    ) | mysql -uroot
-}

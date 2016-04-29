@@ -113,3 +113,15 @@ function indent-with-vim() {
 :wq
 EOF
 }
+
+function installed-packages() {
+    dpkg --get-selections
+}
+
+function quick-download() {
+    if [[ $# -eq 0 ]] ; then
+        echo "Usage: $0 [url]";
+        return 1
+    fi
+    aria2c --file-allocation=none -c -x 10 -s 10 -d ~/Downloads $1
+}

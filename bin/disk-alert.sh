@@ -6,10 +6,10 @@
 # Set admin email so that you can get email.
 ADMIN="root"
 # set alert level 90% is default
-ALERT=95
+ALERT=98
 # Exclude list of unwanted monitoring, if several partions then use "|" to separate the partitions.
 # An example: EXCLUDE_LIST="/dev/hdd1|/dev/hdc5"
-EXCLUDE_LIST="/media|/dev|/net|/home|/Volumes"
+#EXCLUDE_LIST="/media|/net|/home|/Volumes"
 #
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 #
@@ -27,8 +27,10 @@ function main_prog() {
     done
 }
 
-if [ "$EXCLUDE_LIST" != "" ] ; then
-  df -H | grep -vE "^Filesystem|tmpfs|cdrom|${EXCLUDE_LIST}" | awk '{print $5 " " $6}' | main_prog
-else
-  df -H | grep -vE "^Filesystem|tmpfs|cdrom" | awk '{print $5 " " $6}' | main_prog
-fi
+#if [ "$EXCLUDE_LIST" != "" ] ; then
+#  df -H | grep -vE "^Filesystem|tmpfs|cdrom|${EXCLUDE_LIST}" | awk '{print $5 " " $6}' | main_prog
+#else
+#  df -H | grep -vE "^Filesystem|tmpfs|cdrom" | awk '{print $5 " " $6}' | main_prog
+#fi
+
+df -H | grep -E "/dev/disk1" | awk '{print $5 " " $1}' | main_prog

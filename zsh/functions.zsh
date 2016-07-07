@@ -125,3 +125,23 @@ function quick-download() {
     fi
     aria2c --file-allocation=none -c -x 10 -s 10 -d ~/Downloads $1
 }
+
+function git-pack-changed-files()
+{
+    if [[ $# -eq 0 ]] ; then
+        echo "Usage: $0 [filename] [commit]";
+        return 1
+    fi
+    set -x
+    git archive -o $1 HEAD $(git diff --name-only $2)
+}
+
+function git-pack-changed-files-encrypt()
+{
+    if [[ $# -eq 0 ]] ; then
+        echo "Usage: $0 [filename] [commit]";
+        return 1
+    fi
+    set -x
+    zip --encrypt $1 $(git diff --name-only $2)
+}

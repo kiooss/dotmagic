@@ -44,3 +44,5 @@ cscope.po.out
 gradle.properties
 local.properties
 .gradletasknamecache
+
+.php_cs.cache

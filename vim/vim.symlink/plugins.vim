@@ -72,6 +72,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'StanAngeloff/php.vim'
+Plug 'stephpy/vim-php-cs-fixer'
 
 call plug#end()
 filetype plugin indent on

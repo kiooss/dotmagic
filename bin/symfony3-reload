@@ -1,0 +1,5 @@
+sf doctrine:database:drop --force && \
+sf doctrine:database:create && \
+sf doctrine:schema:update --force --dump-sql && \
+sf doctrine:fixtures:load --no-interaction && \
+sf hautelook_alice:doctrine:fixtures:load --append --no-interaction

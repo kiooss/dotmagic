@@ -15,6 +15,7 @@ Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'sickill/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'

@@ -1,10 +1,17 @@
+#set -g default-command "login-shell"
+
+# tmux display things in 256 colors
+set -g default-terminal "xterm-256color"
+
+set -g history-limit 20000
+
 # remap prefix from 'C-b' to 'C-a'
-unbind C-b
-set-option -g prefix C-a
-bind-key C-a send-prefix
+#unbind C-b
+#set-option -g prefix C-a
+#bind-key C-a send-prefix
 
 # split panes using | and -
-bind | split-window -h
+bind \ split-window -h
 bind - split-window -v
 unbind '"'
 unbind %
@@ -28,4 +35,4 @@ bind -n M-Down select-pane -D
 set -g mouse on
 
 # don't rename windows automatically
-set-option -g allow-rename off
+# set-option -g allow-rename off

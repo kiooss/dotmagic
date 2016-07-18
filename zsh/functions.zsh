@@ -145,3 +145,9 @@ function git-pack-changed-files-encrypt()
     set -x
     zip --encrypt $1 $(git diff --name-only $2)
 }
+
+function reload-fixture()
+{
+    sf doctrine:fixtures:load --no-interaction && \
+    sf hautelook_alice:doctrine:fixtures:load --append --no-interaction
+}

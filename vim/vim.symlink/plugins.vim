@@ -27,7 +27,7 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'tomtom/tcomment_vim'
 Plug 'Shougo/neocomplete.vim'
 
-Plug 'benmills/vimux'
+" Plug 'benmills/vimux'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/gtags.vim'
 Plug 'chrisbra/csv.vim'

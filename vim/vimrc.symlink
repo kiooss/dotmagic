@@ -21,8 +21,8 @@ set autoread " detect when a file is changeed
 
 " set mouse behavior
 if has('mouse')
-"  set mouse=a
-"  set ttymouse=xterm2
+  " set mouse=a
+  " set ttymouse=xterm2
 endif
 
 set clipboard=unnamed
@@ -156,6 +156,10 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " => Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Swap ; and :
+noremap ; :
+noremap : ;
+
 " clear highlighted search
 noremap <space> :set hlsearch! hlsearch?<cr>
 
@@ -206,13 +210,14 @@ endif
 
 let g:rubycomplete_rails = 1
 
-" snipMate
+""" snipMate {{{
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
 
 imap <C-J> <Plug>snipMateNextOrTrigger
 smap <C-J> <Plug>snipMateNextOrTrigger
+""" }}}
 
 " vim-php-namespace
 function! IPhpInsertUse()
@@ -266,6 +271,13 @@ set showmode
 nnoremap <c-l> :set number!<cr>
 inoremap <c-l> <Esc>:set number!<cr>
 
+"Easily resize the splits"{{{
+" nnoremap <C-Right> :vertical resize +5<CR>
+" nnoremap <C-Left> :vertical resize -5<CR>
+" nnoremap <C-Up> :res +5<CR>
+" nnoremap <C-Down> :res -5<CR>
+"}}}
+
 "----------------------------------------------
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
@@ -293,7 +305,7 @@ nmap <silent> <leader>k :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
 
-" airline options
+" airline options {{{
 set ttimeoutlen=50
 let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
@@ -309,8 +321,9 @@ let g:airline#extensions#hunks#enabled = 0
 "let g:airline_extensions = ['ctrlp']
 
 autocmd VimEnter,BufWinEnter *.php :AirlineRefresh
+""" }}}
 
-" ctrlp options
+" ctrlp options {{{
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
@@ -323,8 +336,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|rsync_cache)$'
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+""" }}}
 
-" show multi byte space
+" show multi byte space {{{
 "highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 "match ZenkakuSpace /　/
 function! ZenkakuSpace()
@@ -339,6 +353,7 @@ if has('syntax')
     augroup END
     call ZenkakuSpace()
 endif
+""" }}}
 
 "highlight Cursor guifg=white guibg=black
 "highlight iCursor guifg=white guibg=steelblue
@@ -453,7 +468,7 @@ set foldmethod=manual " solve autocomplete slow problem
 set complete-=i
 set complete+=k
 
-" Vim-php-cs-fixer
+" Vim-php-cs-fixer {{{
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
 let g:php_cs_fixer_level = "symfony"              " which level ?
@@ -465,10 +480,10 @@ let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+""" }}}
 
 
-
-"""" Neocomplete
+"""" Neocomplete {{{
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -533,11 +548,46 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+" }}}
+
+" Prevent conflict with Neocomplete {{{
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
+" }}}
+
+""" UltiSnips {{{
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+""" }}}
+
+""" {{{
+" lfilho/cosco.vim mapping
+autocmd FileType javascript,css,php nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css,php inoremap <silent> <Leader>; <c-o>:call cosco#commaOrSemiColon()<CR>
+""" }}}

@@ -6,6 +6,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = "\<Space>"
+let maplocalleader = ","
 
 " load plugins
 source ~/.vim/plugins.vim
@@ -161,8 +163,13 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 noremap ; :
 noremap : ;
 
+" remap esc
+inoremap jk <esc>
+
+nnoremap <leader>w :w<cr>
+
 " clear highlighted search
-noremap <space> :set hlsearch! hlsearch?<cr>
+noremap <Leader>h :set hlsearch! hlsearch?<cr>
 
 " file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
@@ -220,7 +227,7 @@ imap <C-J> <Plug>snipMateNextOrTrigger
 smap <C-J> <Plug>snipMateNextOrTrigger
 """ }}}
 
-" vim-php-namespace
+" vim-php-namespace {{{
 function! IPhpInsertUse()
     call PhpInsertUse()
     call feedkeys('a',  'n')
@@ -237,6 +244,7 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
 autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
 autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+""" }}}
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
@@ -248,7 +256,7 @@ set listchars=tab:▸\ ,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 "set listchars=tab:▸\ ,eol:¬
 set showbreak=↪
-nmap <leader>l :set list!<cr>
+nnoremap <leader>l :set list!<cr>
 
 scriptencoding utf-8
 
@@ -302,9 +310,9 @@ let NERDTreeShowHidden=1
 " remove some files by extension
 let NERDTreeIgnore = ['\.js.map$']
 " Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeToggle<cr>
+nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
-nmap <silent> <leader>y :NERDTreeFind<cr>
+nnoremap <silent> <leader>y :NERDTreeFind<cr>
 
 " airline options {{{
 set ttimeoutlen=50
@@ -322,6 +330,8 @@ let g:airline#extensions#hunks#enabled = 0
 "let g:airline_extensions = ['ctrlp']
 
 autocmd VimEnter,BufWinEnter *.php :AirlineRefresh
+autocmd! BufWritePost .vimrc,_vimrc,vimrc
+        \ source $MYVIMRC | AirlineRefresh
 """ }}}
 
 " ctrlp options {{{

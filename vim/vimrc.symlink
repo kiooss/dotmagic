@@ -166,7 +166,9 @@ noremap : ;
 " remap esc
 inoremap jk <esc>
 
-nnoremap <leader>w :w<cr>
+nnoremap <Leader>w :w<cr>
+nnoremap <Leader>q :q<cr>
+nnoremap <Leader><Tab> <C-^>
 
 " clear highlighted search
 noremap <Leader>h :set hlsearch! hlsearch?<cr>
@@ -175,6 +177,7 @@ map q: :q
 
 " edit ~/.vimrc
 nnoremap <leader>ev :e! ~/.vimrc<cr>
+nnoremap <leader>ep :e! ~/.vim/plugins.vim<cr>
 
 
 " file type specific settings

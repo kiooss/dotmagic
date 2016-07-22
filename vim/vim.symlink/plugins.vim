@@ -33,7 +33,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/gtags.vim'
 Plug 'chrisbra/csv.vim'
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'gregsexton/MatchTag'
 Plug 'vim-scripts/taglist.vim'
 "Plug 'edkolev/promptline.vim'

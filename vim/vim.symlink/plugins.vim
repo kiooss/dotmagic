@@ -76,6 +76,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'lfilho/cosco.vim'
+Plug 'vim-scripts/gitignore'
 
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }

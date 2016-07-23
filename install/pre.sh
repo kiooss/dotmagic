@@ -5,7 +5,7 @@ printf "==============================${NORMAL}\n"
 
 if hash apt-get 2>/dev/null; then
     # install some necessary packages
-    sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev -y
+    sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev grc -y
 
     # install zsh
     if hash zsh 2>/dev/null; then

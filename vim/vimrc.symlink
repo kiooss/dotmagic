@@ -165,9 +165,12 @@ noremap : ;
 
 " remap esc
 inoremap jk <esc>
+inoremap <esc> <nop>
 
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
+nnoremap <Leader>r :e!<cr>
+nnoremap <Leader>s :wq<cr>
 nnoremap <Leader><Tab> <C-^>
 
 " clear highlighted search
@@ -281,7 +284,8 @@ endfunction
 "autocmd VimEnter * call AirlineInit()
 
 " toggle paste mode
-nnoremap <F2> :set invpaste paste?<CR>
+" nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <Leader>v :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 

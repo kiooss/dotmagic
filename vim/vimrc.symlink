@@ -165,7 +165,6 @@ noremap : ;
 
 " remap esc
 inoremap jk <esc>
-inoremap <esc> <nop>
 
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
@@ -176,12 +175,12 @@ nnoremap <Leader><Tab> <C-^>
 " clear highlighted search
 noremap <Leader>h :set hlsearch! hlsearch?<cr>
 
+" Disable recording
 map q: :q
 
 " edit ~/.vimrc
 nnoremap <leader>ev :e! ~/.vimrc<cr>
 nnoremap <leader>ep :e! ~/.vim/plugins.vim<cr>
-
 
 " file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
@@ -266,7 +265,7 @@ set invlist
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
-"set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬
 set showbreak=↪
 nnoremap <leader>l :set list!<cr>
 

@@ -167,7 +167,8 @@ noremap : ;
 inoremap jk <esc>
 
 nnoremap <Leader>w :w<cr>
-nnoremap <Leader>q :q<cr>
+nnoremap <Leader>q :qa<cr>
+nnoremap <Leader>Q :qa!<cr>
 nnoremap <Leader>r :e!<cr>
 nnoremap <Leader>s :wq<cr>
 nnoremap <Leader><Tab> <C-^>

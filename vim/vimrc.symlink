@@ -160,17 +160,17 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Swap ; and :
-noremap ; :
-noremap : ;
+" noremap ; :
+" noremap : ;
 
 " remap esc
 inoremap jk <esc>
 
-nnoremap <Leader>w :w<cr>
-nnoremap <Leader>q :qa<cr>
-nnoremap <Leader>Q :qa!<cr>
+nnoremap <Leader>w :update<cr>
+nnoremap <Leader>q :q<cr>
+nnoremap <Leader>z :qa!<cr>
 nnoremap <Leader>r :e!<cr>
-nnoremap <Leader>s :wq<cr>
+nnoremap <Leader>s :x<cr>
 nnoremap <Leader><Tab> <C-^>
 
 " clear highlighted search
@@ -244,17 +244,17 @@ function! IPhpInsertUse()
     call PhpInsertUse()
     call feedkeys('a',  'n')
 endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+" autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 function! IPhpExpandClass()
     call PhpExpandClass()
     call feedkeys('a', 'n')
 endfunction
-autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+" autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
-autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+" autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
 autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
 """ }}}
 
@@ -432,7 +432,7 @@ function! HtmlUnEscape()
   silent s/&amp;/\&/eg
 endfunction
 
-nnoremap <silent> <leader>us :call HtmlUnEscape()<cr>
+" nnoremap <silent> <leader>us :call HtmlUnEscape()<cr>
 
 function! HiInterestingWord(n)
     " Save our location.
@@ -608,10 +608,4 @@ let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-""" }}}
-
-""" {{{
-" lfilho/cosco.vim mapping
-autocmd FileType javascript,css,php nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
-autocmd FileType javascript,css,php inoremap <silent> <Leader>; <c-o>:call cosco#commaOrSemiColon()<CR>
 """ }}}

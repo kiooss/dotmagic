@@ -37,7 +37,7 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'gregsexton/MatchTag'
 Plug 'vim-scripts/taglist.vim'
 "Plug 'edkolev/promptline.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', { 'commit': '0e490ec' }
 Plug 'vim-scripts/sudo.vim'
 "Plug 'astashov/vim-ruby-debugger'
 Plug 'godlygeek/tabular'
@@ -75,7 +75,6 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
-Plug 'lfilho/cosco.vim'
 Plug 'vim-scripts/gitignore'
 
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }

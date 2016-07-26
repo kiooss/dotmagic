@@ -42,7 +42,6 @@ Plug 'vim-scripts/sudo.vim'
 "Plug 'astashov/vim-ruby-debugger'
 Plug 'godlygeek/tabular'
 Plug 'pangloss/vim-javascript'
-Plug 'timcharper/textile.vim'
 "Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -52,7 +51,6 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tsaleh/vim-shoulda'
 Plug 'vim-ruby/vim-ruby'
 "Plug 'vim-scripts/Gist.vim'
 Plug 'vim-scripts/IndexedSearch'
@@ -61,7 +59,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'jgdavey/vim-blockle'
 Plug 'sickill/vim-pasta'
-Plug 'ecomba/vim-ruby-refactoring'
 Plug 'tomtom/tlib_vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'garbas/vim-snipmate'
@@ -76,6 +73,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/gitignore'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
@@ -83,6 +81,8 @@ Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
 Plug 'qbbr/vim-symfony', { 'for': 'php' }
 Plug 'docteurklein/php-getter-setter.vim', { 'for': 'php' }
+Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
+Plug 'tsaleh/vim-shoulda', { 'for': 'ruby' }
 
 call plug#end()
 filetype plugin indent on

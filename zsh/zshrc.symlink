@@ -68,6 +68,8 @@ plugins=(
     tmux
     zsh_reload
     zsh-navigation-tools
+    zsh-syntax-highlighting
+    zsh-completions
 )
 
 

@@ -151,3 +151,20 @@ function reload-fixture()
     sf doctrine:fixtures:load --no-interaction && \
     sf hautelook_alice:doctrine:fixtures:load --append --no-interaction
 }
+
+function make-tags-php()
+{
+    exctags -R \
+        --exclude=".svn" \
+        --exclude=".git" \
+        --exclude=".rsync_cache" \
+        --exclude="cache" \
+        --exclude="*.phar" \
+        --exclude="autocomplete.php" \
+        --exclude="Tests" \
+        --exclude="tests" \
+        --exclude="Test" \
+        --exclude="test" \
+        --exclude="tmp" \
+        --fields=+aimlS --languages=php
+}

@@ -170,7 +170,7 @@ nnoremap <Leader>w :update<cr>
 nnoremap <Leader>q :q<cr>
 nnoremap <Leader>z :qa!<cr>
 nnoremap <Leader>r :e!<cr>
-nnoremap <Leader>s :x<cr>
+nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 
 " clear highlighted search

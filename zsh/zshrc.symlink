@@ -71,12 +71,13 @@ plugins=(
 )
 
 
-source $ZSH/oh-my-zsh.sh
-source $HOME/.bash_aliases
-
 # source all .zsh files inside of the zsh/ directory
 for config ($DOTFILES/zsh/**/*.zsh) source $config
 
+source $ZSH/oh-my-zsh.sh
+source $HOME/.bash_aliases
+
+source $DOTFILES/zsh/abbreviations.zsh
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH

@@ -183,6 +183,10 @@ map q: :q
 nnoremap <leader>ev :e! ~/.vimrc<cr>
 nnoremap <leader>ep :e! ~/.vim/plugins.vim<cr>
 
+" buffer move
+nnoremap gr :bprevious<CR>
+nnoremap gt   :bnext<CR>
+
 " file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
     let autocommands_loaded = 1
@@ -276,13 +280,6 @@ scriptencoding utf-8
 "set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
 "set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ \%{&ff}\ \%y\ %P
 
-"let g:airline#extensions#promptline#snapshot_file = "~/.shell_prompt.sh"
-
-function! AirlineInit()
-  "let g:airline_section_z = airline#section#create_right(['filetype'])
-endfunction
-"autocmd VimEnter * call AirlineInit()
-
 " toggle paste mode
 " nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <Leader>v :set invpaste paste?<CR>
@@ -329,16 +326,17 @@ nnoremap <silent> <leader>y :NERDTreeFind<cr>
 
 " airline options {{{
 set ttimeoutlen=50
+
 let g:airline_powerline_fonts=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
 "let g:airline_theme='luna'
 "let g:airline_theme='powerlineish'
 let g:airline_theme='base16'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled = 0
 "let g:airline_extensions = ['ctrlp']
 

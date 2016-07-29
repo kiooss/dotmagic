@@ -332,7 +332,7 @@ let g:airline_powerline_fonts=1
 " let g:airline_right_sep=''
 "let g:airline_theme='luna'
 "let g:airline_theme='powerlineish'
-let g:airline_theme='base16'
+let g:airline_theme='base16_google'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif

@@ -2,12 +2,14 @@ typeset -Ag abbreviations
 
 abbreviations=(
     "gti"    "git"
-    "gt"    "git"
+    "gt"     "git"
     "w"      "watch "
-    "tx"     "tar zxvf"
-    "tc"     "tar zcvf"
+    "tx"     "tar xzvf"
+    "tc"     "tar czvf"
+    "tf"     "tail -f"
     "gc"     "git commit"
     "gl"     "git ls-tree --name-only -r HEAD"
+    "my"     "mysql -u root"
 )
 
 magic-abbrev-expand() {

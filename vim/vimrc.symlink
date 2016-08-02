@@ -298,13 +298,13 @@ inoremap <c-l> <Esc>:set number!<cr>
 "}}}
 
 "----------------------------------------------
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
+" inoremap {      {}<Left>
+" inoremap {<CR>  {<CR>}<Esc>O
 "inoremap {{     {
-inoremap {{     {{}}<Left><Left>
+" inoremap {{     {{}}<Left><Left>
 inoremap {%     {%  %}<Left><Left><Left>
 inoremap <%     <%  %><Left><Left><Left>
-inoremap {}     {}
+" inoremap {}     {}
 "-----------------------------------------------
 
 " save in readonly mode
@@ -332,7 +332,7 @@ let g:airline_powerline_fonts=1
 " let g:airline_right_sep=''
 "let g:airline_theme='luna'
 "let g:airline_theme='powerlineish'
-let g:airline_theme='base16_google'
+let g:airline_theme='badwolf'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -385,44 +385,44 @@ endif
 "set guicursor+=i:blinkwait10
 
 " format array
-function! AlignPHPMap() range
-     let sep = '=>'
-     let firstline = a:firstline
-     let lastline = a:lastline
-     let lines = {}
-     for lineno in range(firstline, lastline)
-          let lines[lineno] = match(getline(lineno), '\s*' . sep)
-     endfor
-     let maxLen = max(lines) + 1
-     for lineno in range(firstline, lastline)
-          if lines[lineno] != -1
-               let spaces = repeat(' ', maxLen - lines[lineno])
-               call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
-          endif
-     endfor
-endfunction
-
-noremap <Leader>=> :call AlignPHPMap()<CR>
-
-" format =
-function! AlignPHPAssign() range
-     let sep = '='
-     let firstline = a:firstline
-     let lastline = a:lastline
-     let lines = {}
-     for lineno in range(firstline, lastline)
-          let lines[lineno] = match(getline(lineno), '\s*' . sep)
-     endfor
-     let maxLen = max(lines) + 1
-     for lineno in range(firstline, lastline)
-          if lines[lineno] != -1
-               let spaces = repeat(' ', maxLen - lines[lineno])
-               call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
-          endif
-     endfor
-endfunction
-
-noremap <Leader>== :call AlignPHPAssign()<CR>
+" function! AlignPHPMap() range
+"      let sep = '=>'
+"      let firstline = a:firstline
+"      let lastline = a:lastline
+"      let lines = {}
+"      for lineno in range(firstline, lastline)
+"           let lines[lineno] = match(getline(lineno), '\s*' . sep)
+"      endfor
+"      let maxLen = max(lines) + 1
+"      for lineno in range(firstline, lastline)
+"           if lines[lineno] != -1
+"                let spaces = repeat(' ', maxLen - lines[lineno])
+"                call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
+"           endif
+"      endfor
+" endfunction
+"
+" noremap <Leader>=> :call AlignPHPMap()<CR>
+"
+" " format =
+" function! AlignPHPAssign() range
+"      let sep = '='
+"      let firstline = a:firstline
+"      let lastline = a:lastline
+"      let lines = {}
+"      for lineno in range(firstline, lastline)
+"           let lines[lineno] = match(getline(lineno), '\s*' . sep)
+"      endfor
+"      let maxLen = max(lines) + 1
+"      for lineno in range(firstline, lastline)
+"           if lines[lineno] != -1
+"                let spaces = repeat(' ', maxLen - lines[lineno])
+"                call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
+"           endif
+"      endfor
+" endfunction
+"
+" noremap <Leader>== :call AlignPHPAssign()<CR>
 
 function! HtmlUnEscape()
   silent s/&lt;/</eg
@@ -613,4 +613,11 @@ set runtimepath+=~/.vim/my-snippets/
 " use different snippets dir
 " let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
 " let g:UltiSnipsSnippetDirectories=["my-snippets"]
+""" }}}
+
+""" godlygeek/tabular {{{
+nmap <Leader>= :Tabularize /=>\?<CR>
+vmap <Leader>= :Tabularize /=>\?<CR>
+nmap <Leader>: :Tabularize /:\zs<CR>
+vmap <Leader>: :Tabularize /:\zs<CR>
 """ }}}

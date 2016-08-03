@@ -166,5 +166,6 @@ function make-tags-php()
         --exclude="Test" \
         --exclude="test" \
         --exclude="tmp" \
-        --fields=+aimlS --languages=php
+        --fields=+aimlS \
+        --languages=php
 }

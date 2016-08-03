@@ -10,6 +10,7 @@ abbreviations=(
     "gc"     "git commit"
     "gl"     "git ls-tree --name-only -r HEAD"
     "my"     "mysql -u root"
+    "mtp"    "make-tags-php"
 )
 
 magic-abbrev-expand() {

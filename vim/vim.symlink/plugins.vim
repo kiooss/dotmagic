@@ -18,6 +18,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-vividchalk'
 Plug 'roosta/srcery'
+Plug 'flazz/vim-colorschemes'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -75,6 +76,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/gitignore'
 Plug 'jiangmiao/auto-pairs'
+Plug 'thinca/vim-quickrun'
+Plug 'luochen1990/rainbow'
 
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
@@ -84,6 +87,8 @@ Plug 'qbbr/vim-symfony', { 'for': 'php' }
 Plug 'docteurklein/php-getter-setter.vim', { 'for': 'php' }
 Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'tsaleh/vim-shoulda', { 'for': 'ruby' }
+
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 filetype plugin indent on

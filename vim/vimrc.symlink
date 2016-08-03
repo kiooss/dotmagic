@@ -65,6 +65,8 @@ set tags=./tags,tags;
 " remove the buffer limit when dong yank to copy and past in VIM
 set viminfo='100,h
 
+set cursorline
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -114,6 +116,8 @@ setglobal fenc=utf-8
 set fencs=utf-8,euc-jp,sjis
 set enc=utf-8
 set tenc=utf-8
+
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 
 "let base16colorspace=256  " Access colors present in 256 colorspace"
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
@@ -182,10 +186,6 @@ map q: :q
 " edit ~/.vimrc
 nnoremap <leader>ev :e! ~/.vimrc<cr>
 nnoremap <leader>ep :e! ~/.vim/plugins.vim<cr>
-
-" buffer move
-nnoremap gr :bprevious<CR>
-nnoremap gt   :bnext<CR>
 
 " file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
@@ -281,8 +281,6 @@ scriptencoding utf-8
 "set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ \%{&ff}\ \%y\ %P
 
 " toggle paste mode
-" nnoremap <F2> :set invpaste paste?<CR>
-nnoremap <Leader>v :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 
@@ -620,4 +618,8 @@ nmap <Leader>= :Tabularize /=>\?<CR>
 vmap <Leader>= :Tabularize /=>\?<CR>
 nmap <Leader>: :Tabularize /:\zs<CR>
 vmap <Leader>: :Tabularize /:\zs<CR>
+""" }}}
+
+""" luochen1990/rainbow {{{
+" let g:rainbow_active = 1
 """ }}}

@@ -178,7 +178,7 @@ nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 
 " clear highlighted search
-noremap <Leader>h :set hlsearch! hlsearch?<cr>
+noremap <F3> :set hlsearch! hlsearch?<cr>
 
 " Disable recording
 map q: :q

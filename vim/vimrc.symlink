@@ -187,6 +187,22 @@ map q: :q
 nnoremap <leader>ev :e! ~/.vimrc<cr>
 nnoremap <leader>ep :e! ~/.vim/plugins.vim<cr>
 
+" Window moving
+map <C-J> <C-W>j<C-W>_
+map <C-k> <C-W>k<C-W>_
+map <C-h> <C-W>h<C-W>_
+map <C-l> <C-W>l<C-W>_
+
+" map for command mode
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" stile select when indent in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
 " file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
     let autocommands_loaded = 1
@@ -285,8 +301,9 @@ set pastetoggle=<F2>
 set showmode
 
 " toggle line number
-nnoremap <c-l> :set number!<cr>
-inoremap <c-l> <Esc>:set number!<cr>
+" nnoremap <c-l> :set number!<cr>
+" inoremap <c-l> <Esc>:set number!<cr>
+" Use con instead.
 
 "Easily resize the splits"{{{
 " nnoremap <C-Right> :vertical resize +5<CR>

@@ -89,6 +89,8 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'tsaleh/vim-shoulda', { 'for': 'ruby' }
 
 Plug 'ryanoasis/vim-devicons'
+Plug 'ap/vim-css-color'
+Plug 'kshenoy/vim-signature'
 
 call plug#end()
 filetype plugin indent on

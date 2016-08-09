@@ -136,8 +136,11 @@ if &term =~ '256color'
   set t_ut=
 endif
 
+set foldmethod=manual " solve autocomplete slow problem
+set complete-=i
+set complete+=k
 
-"""""""""
+""""""""
 "set columns=100
 "set lines=70
 """"""""""""""""""""""""""""
@@ -498,12 +501,8 @@ let g:indent_guides_auto_colors=0
 
 "set path+=**
 
-let maplocalleader = ','
 "let g:ackprg = 'ag --nogroup --nocolor --column'
 
-set foldmethod=manual " solve autocomplete slow problem
-set complete-=i
-set complete+=k
 
 " Vim-php-cs-fixer {{{
 " If php-cs-fixer is in $PATH, you don't need to define line below

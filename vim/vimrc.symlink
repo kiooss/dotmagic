@@ -196,9 +196,13 @@ map <C-k> <C-W>k<C-W>_
 map <C-h> <C-W>h<C-W>_
 map <C-l> <C-W>l<C-W>_
 
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
 " map for command mode
-cnoremap <C-j> <t_kd>
-cnoremap <C-k> <t_ku>
+" cnoremap <C-j> <t_kd>
+" cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 

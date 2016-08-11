@@ -179,6 +179,7 @@ nnoremap <Leader>z :qa!<cr>
 nnoremap <Leader>r :e!<cr>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
+nnoremap <Leader>p :pu<CR>
 
 " clear highlighted search
 noremap <F3> :set hlsearch! hlsearch?<cr>

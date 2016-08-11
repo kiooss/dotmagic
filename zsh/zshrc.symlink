@@ -48,12 +48,15 @@ alias zz="source ~/.zshrc"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
     adb
+    branch
     cp
     command-not-found
     capistrano
     colored-man
+    composer
     encode64
     git
+    gem
     gradle
     gitfast
     git-remote-branch
@@ -67,6 +70,7 @@ plugins=(
     rake-fast
     rbenv
     tmux
+    themes
     zsh_reload
     zsh-navigation-tools
     zsh-syntax-highlighting

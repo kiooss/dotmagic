@@ -10,6 +10,7 @@ DOTFILES=$HOME/.dotfiles
 # ZSH_THEME="random"
 ZSH_THEME="dpoggi"
 # ZSH_THEME="agnoster"
+# ZSH_THEME="re5et"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"

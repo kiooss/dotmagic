@@ -11,9 +11,9 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 " colorschemes
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'sickill/vim-monokai'
+" Plug 'sickill/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-vividchalk'
@@ -34,7 +34,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/gtags.vim'
 Plug 'chrisbra/csv.vim'
-Plug 'mattn/emmet-vim', { 'for': 'html' }
+" Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'gregsexton/MatchTag'
 Plug 'vim-scripts/taglist.vim'
 "Plug 'edkolev/promptline.vim'
@@ -53,7 +53,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 "Plug 'vim-scripts/Gist.vim'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-scripts/jQuery'
@@ -67,9 +67,10 @@ Plug 'garbas/vim-snipmate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'algotech/ultisnips-php'
+
 Plug 'evidens/vim-twig'
 Plug 'ervandew/supertab'
-Plug 'mileszs/ack.vim'
+" Plug 'mileszs/ack.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -89,8 +90,8 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'tsaleh/vim-shoulda', { 'for': 'ruby' }
 
 Plug 'ryanoasis/vim-devicons'
-Plug 'ap/vim-css-color'
-Plug 'kshenoy/vim-signature'
+" Plug 'ap/vim-css-color'
+" Plug 'kshenoy/vim-signature'
 
 call plug#end()
 filetype plugin indent on

@@ -180,12 +180,10 @@ nnoremap <Leader>r :e!<cr>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
+nnoremap <Leader>t :TlistToggle<CR>
 
 " clear highlighted search
 noremap <F3> :set hlsearch! hlsearch?<cr>
-
-" Disable recording
-map q: :q
 
 " edit ~/.vimrc
 nnoremap <leader>ev :e! ~/.vimrc<cr>
@@ -254,7 +252,9 @@ endif
 " supertab
 "let g:SuperTabMappingForward="<tab>"
 "let g:SuperTabMappingBackward="<S-Tab>"
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 let g:rubycomplete_rails = 1
 

@@ -632,10 +632,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsEditSplit="vertical"
 
 " make vim recognizing snippets dir
-set runtimepath+=~/.vim/my-snippets/
 " use different snippets dir
 " let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
-" let g:UltiSnipsSnippetDirectories=["my-snippets"]
+" let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 """ }}}
 
 """ godlygeek/tabular {{{

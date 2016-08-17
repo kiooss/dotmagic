@@ -63,6 +63,7 @@ plugins=(
     gitfast
     git-remote-branch
     history-substring-search
+    nmap
     meteor
     svn
     sudo

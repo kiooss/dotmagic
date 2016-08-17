@@ -27,7 +27,11 @@ if has('mouse')
   " set ttymouse=xterm2
 endif
 
-set clipboard=unnamed
+if has('nvim')
+    " set clipboard=unnamedplus
+else
+    set clipboard=unnamed
+endif
 
 " faster redrawing
 set ttyfast
@@ -622,6 +626,10 @@ function! Multiple_cursors_after()
 endfunction
 " }}}
 
+""" Shougo/deoplete.nvim {{{
+let g:deoplete#enable_at_startup = 1
+""" }}}
+
 """ UltiSnips {{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -647,3 +655,4 @@ vmap <Leader>: :Tabularize /:\zs<CR>
 """ luochen1990/rainbow {{{
 " let g:rainbow_active = 1
 """ }}}
+

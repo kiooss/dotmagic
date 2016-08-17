@@ -146,3 +146,8 @@ export PATH="$HOME/php/bin:$PATH"
 #[ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh
 
 # source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

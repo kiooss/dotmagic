@@ -10,6 +10,18 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
+" completion for neovim
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+else
+    Plug 'Shougo/neocomplete.vim'
+end
+
+
 " colorschemes
 " Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
@@ -27,7 +39,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'tomtom/tcomment_vim'
-Plug 'Shougo/neocomplete.vim'
 
 " Plug 'benmills/vimux'
 Plug 'ctrlpvim/ctrlp.vim'

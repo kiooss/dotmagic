@@ -9,7 +9,7 @@ else # OS X `ls`
 fi
 
 #alias vim="nvim"
-alias vi="vim"
+# alias vi="vim"
 
 alias tf="tail -f"
 

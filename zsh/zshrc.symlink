@@ -65,6 +65,7 @@ plugins=(
     history-substring-search
     meteor
     svn
+    sudo
     symfony2
     systemadmin
     rails

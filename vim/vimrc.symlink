@@ -18,7 +18,7 @@ abbr teh the
 abbr tempalte template
 abbr fitler filter
 
-" set nocompatible " not compatible with vi
+set nocompatible " not compatible with vi
 set autoread " detect when a file is changeed
 
 " set mouse behavior
@@ -29,13 +29,12 @@ endif
 
 if has('nvim')
     " set clipboard=unnamedplus
-    set mouse=
 else
     set clipboard=unnamed
 endif
 
 " faster redrawing
-" set ttyfast
+set ttyfast
 
 set notimeout          " don't timeout on mappings
 set ttimeout           " do timeout on terminal key codes
@@ -116,14 +115,11 @@ set number " show the current line number"
 set autoindent " automatically set indent of new line
 set smartindent
 
-" As nvim sets the encoding by default to utf-8
-if !has('nvim')
-    setglobal fenc=utf-8
-    "set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-    set fencs=utf-8,euc-jp,sjis
-    set enc=utf-8
-    set tenc=utf-8
-endif
+setglobal fenc=utf-8
+"set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fencs=utf-8,euc-jp,sjis
+set enc=utf-8
+set tenc=utf-8
 
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 

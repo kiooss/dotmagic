@@ -11,6 +11,7 @@ abbreviations=(
     "gc"     "git commit"
     "gl"     "git ls-tree --name-only -r HEAD"
     "my"     "mysql -u root"
+    "mt"     "make-tags"
     "mtp"    "make-tags-php"
 )
 

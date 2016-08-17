@@ -152,6 +152,19 @@ function reload-fixture()
     sf hautelook_alice:doctrine:fixtures:load --append --no-interaction
 }
 
+function make-tags()
+{
+    if [[ -f $(find . -maxdepth 2 -mindepth 1 -name 'console' -type f) ]]; then
+        echo 'make php tags'
+        make-tags-php
+    elif [[ -f $(find . -maxdepth 2 -mindepth 1 -name 'application.rb' -type f) ]]; then
+        echo 'make ruby tags'
+        make-ruby-tags
+    else
+        echo 'Not a Symfony nor Rails project.'
+    fi
+}
+
 function make-tags-php()
 {
     exctags -R \

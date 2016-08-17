@@ -50,3 +50,11 @@ else
     echo "Installing ruby-build"
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 fi
+
+# install pyenv
+if [ -d "$HOME/.pyenv" ]; then
+    echo "pyenv already exists... Skipping."
+else
+    echo "Installing pyenv"
+    curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+fi

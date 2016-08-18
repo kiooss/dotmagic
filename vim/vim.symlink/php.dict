@@ -5,6 +5,35 @@ display_disabled_function
 
 # var/home/rasmus/php51/Zend/zend_builtin_functions.c
 # static zend_function_entry builtin_functions[] = {
+
+public
+private
+protected
+function
+return
+if
+else
+elseif
+namespace
+use
+true
+false
+extends
+abstract
+class
+throw
+implements
+instanceof
+__construct
+__DIR__
+__FILE__
+__LINE__
+__CLASS__
+__FUNCTION__
+__METHOD__
+__NAMESPACE__
+__TRAIT__
+
 class_exists
 crash
 create_function

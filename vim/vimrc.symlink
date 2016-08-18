@@ -203,6 +203,19 @@ map <C-k> <C-W>k<C-W>_
 map <C-h> <C-W>h<C-W>_
 map <C-l> <C-W>l<C-W>_
 
+" simplify resizing splits
+if has('unix')
+    nnoremap j <C-w>-
+    nnoremap k <C-w>+
+    nnoremap h <C-w><
+    nnoremap l <C-w>>
+else
+    nnoremap <M-j> <C-w>-
+    nnoremap <M-k> <C-w>+
+    nnoremap <M-h> <C-w><
+    nnoremap <M-l> <C-w>>
+endif
+
 " scroll the viewport faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
@@ -651,10 +664,10 @@ let g:UltiSnipsEditSplit="vertical"
 """ }}}
 
 """ godlygeek/tabular {{{
-nmap <Leader>= :Tabularize /=>\?<CR>
-vmap <Leader>= :Tabularize /=>\?<CR>
-nmap <Leader>: :Tabularize /:\zs<CR>
-vmap <Leader>: :Tabularize /:\zs<CR>
+nnoremap <Leader>= :Tabularize /=>\?<CR>
+vnoremap <Leader>= :Tabularize /=>\?<CR>
+nnoremap <Leader>: :Tabularize /:\zs<CR>
+vnoremap <Leader>: :Tabularize /:\zs<CR>
 """ }}}
 
 """ luochen1990/rainbow {{{

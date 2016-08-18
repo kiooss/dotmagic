@@ -183,7 +183,7 @@ inoremap jk <esc>
 
 nnoremap <Leader>w :update<cr>
 nnoremap <Leader>q :q<cr>
-nnoremap <Leader>z :qa!<cr>
+nnoremap <Leader>0 :qa!<cr>
 nnoremap <Leader>r :e!<cr>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
@@ -202,6 +202,10 @@ map <C-J> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
 map <C-h> <C-W>h<C-W>_
 map <C-l> <C-W>l<C-W>_
+
+" scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " move to beginning/end of line
 nnoremap B ^
@@ -549,6 +553,7 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'php' : $HOME.'/.vim/php.dict',
     \ 'scheme' : $HOME.'/.gosh_completions'
         \ }
 

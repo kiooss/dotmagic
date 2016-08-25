@@ -15,6 +15,27 @@ function show_user_list {
     cat /etc/passwd | cut -d ":" -f1
 }
 
+function find_large_dirs {
+    if [[ $# -eq 0 ]] ; then
+        echo "Usage: $0 [dir]";
+        return 1
+    fi
+    set -x
+    find $1 -type d -print0 | xargs -0 du | sort -n | tail -20 | cut -f2 | xargs -I{} du -sh {}
+}
+
+function git-change-user-email {
+    git filter-branch --commit-filter '
+      if [ "$GIT_AUTHOR_EMAIL" = "wrong_email@wrong_host.local" ];
+      then
+              GIT_AUTHOR_NAME="Your Name Here (In Lights)";
+              GIT_AUTHOR_EMAIL="correct_email@correct_host.com";
+              git commit-tree "$@";
+      else
+              git commit-tree "$@";
+      fi' HEAD
+}
+
 
 function update_dotfiles() {
     echo "Updating dotfiles."

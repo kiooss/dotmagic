@@ -180,6 +180,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " remap esc
 inoremap jk <esc>
+inoremap <C-e> <C-o>A
 
 nnoremap <Leader>w :update<cr>
 nnoremap <Leader>q :q<cr>

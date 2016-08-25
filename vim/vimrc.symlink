@@ -132,7 +132,12 @@ if has('termguicolors')
     set termguicolors
 endif
 
+let g:gruvbox_contrast_dark="hard"
+" let g:gruvbox_contrast_dark="medium"
+" let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_light="hard"
 colorscheme gruvbox
+
 "colorscheme solarized
 "colorscheme molokai
 
@@ -190,6 +195,9 @@ nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
 nnoremap <Leader>t :TlistToggle<CR>
+
+nnoremap j gj
+nnoremap k gk
 
 " clear highlighted search
 noremap <F3> :set hlsearch! hlsearch?<cr>
@@ -381,7 +389,8 @@ let g:airline_powerline_fonts=1
 " let g:airline_right_sep=''
 "let g:airline_theme='luna'
 "let g:airline_theme='powerlineish'
-let g:airline_theme='badwolf'
+" let g:airline_theme='badwolf'
+let g:airline_theme='gruvbox'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif

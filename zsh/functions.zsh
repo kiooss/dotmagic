@@ -11,11 +11,11 @@ function restart-ssh-agent {
     killall ssh-agent; eval `ssh-agent`
 }
 
-function show_user_list {
+function show-user-list {
     cat /etc/passwd | cut -d ":" -f1
 }
 
-function find_large_dirs {
+function find-large-dirs {
     if [[ $# -eq 0 ]] ; then
         echo "Usage: $0 [dir]";
         return 1

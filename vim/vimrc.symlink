@@ -123,7 +123,7 @@ set tenc=utf-8
 
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 
-"let base16colorspace=256  " Access colors present in 256 colorspace"
+let base16colorspace=256  " Access colors present in 256 colorspace"
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
 " set background=light
 set background=dark
@@ -132,14 +132,14 @@ if has('termguicolors')
     set termguicolors
 endif
 
+" hard|medium|soft
 let g:gruvbox_contrast_dark="hard"
-" let g:gruvbox_contrast_dark="medium"
-" let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
 colorscheme gruvbox
 
-"colorscheme solarized
-"colorscheme molokai
+" colorscheme srcery
+" colorscheme solarized
+" colorscheme molokai
 
 " https://sunaku.github.io/vim-256color-bce.html
 if &term =~ '256color'

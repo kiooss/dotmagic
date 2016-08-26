@@ -27,11 +27,13 @@ end
 Plug 'morhetz/gruvbox'
 " Plug 'sickill/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'romainl/flattened'
 Plug 'lifepillar/vim-solarized8'
 " Plug 'tpope/vim-vividchalk'
 Plug 'roosta/srcery'
 Plug 'dracula/vim'
 " Plug 'flazz/vim-colorschemes'
+Plug 'chriskempson/base16-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -100,6 +102,9 @@ Plug 'qbbr/vim-symfony', { 'for': 'php' }
 Plug 'docteurklein/php-getter-setter.vim', { 'for': 'php' }
 Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'tsaleh/vim-shoulda', { 'for': 'ruby' }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 
 Plug 'ryanoasis/vim-devicons'
 " Plug 'ap/vim-css-color'

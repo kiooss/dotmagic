@@ -72,6 +72,7 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-scripts/jQuery'
 Plug 'kana/vim-textobj-user'
+Plug 'rhysd/vim-textobj-anyblock'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'jgdavey/vim-blockle'
 Plug 'sickill/vim-pasta'
@@ -93,6 +94,7 @@ Plug 'vim-scripts/gitignore'
 Plug 'jiangmiao/auto-pairs'
 Plug 'thinca/vim-quickrun'
 Plug 'luochen1990/rainbow'
+Plug 'gcmt/wildfire.vim'
 
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }

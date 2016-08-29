@@ -185,10 +185,12 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " remap esc
 inoremap jk <esc>
+vnoremap jk <esc>
 inoremap <C-e> <C-o>A
 
 nnoremap <Leader>w :update<cr>
 nnoremap <Leader>q :q<cr>
+nnoremap <silent> <Leader>b :bd<cr>
 nnoremap <Leader>0 :qa!<cr>
 nnoremap <Leader>r :e!<cr>
 nnoremap <Leader>x :x<cr>
@@ -260,7 +262,6 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
     autocmd FileType .xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
-    autocmd FileType crontab setlocal nobackup nowritebackup
 
     " remove spaces at the end of line
     autocmd BufWritePre * :%s/\s\+$//e

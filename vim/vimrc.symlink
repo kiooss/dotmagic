@@ -196,7 +196,7 @@ nnoremap <Leader>r :e!<cr>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
-nnoremap <Leader>t :TlistToggle<CR>
+nnoremap <Leader>t :TlistToggle<CR><C-W><C-W>
 
 nnoremap j gj
 nnoremap k gk

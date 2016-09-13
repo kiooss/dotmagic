@@ -96,8 +96,8 @@ Plug 'thinca/vim-quickrun'
 Plug 'luochen1990/rainbow'
 Plug 'gcmt/wildfire.vim'
 
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
 Plug 'qbbr/vim-symfony', { 'for': 'php' }
@@ -109,8 +109,18 @@ Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 
 Plug 'ryanoasis/vim-devicons'
+Plug 'easymotion/vim-easymotion'
 " Plug 'ap/vim-css-color'
 " Plug 'kshenoy/vim-signature'
+
+Plug 'Shougo/vimproc', { 'do': 'make' }
+" Plug 'Shougo/unite.vim'
+" Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
+" Plug 'm2mdas/phpcomplete-extended-symfony', { 'for': 'php' }
+
+
+" Plug 'mkusher/padawan.vim'
+
 
 call plug#end()
 filetype plugin indent on

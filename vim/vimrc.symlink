@@ -191,7 +191,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 inoremap jk <esc>
 inoremap <C-e> <C-o>A
 
-nnoremap <Leader>w :update<cr>
+nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
 nnoremap <silent> <Leader>b :bd<cr>
 nnoremap <Leader>0 :qa!<cr>
@@ -252,7 +252,9 @@ vnoremap > >gv
 if has('autocmd') && !exists('autocommands_loaded')
     let autocommands_loaded = 1
 
+    " php
     autocmd FileType php set dictionary+=~/.vim/php.dict
+    " autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
     autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
@@ -631,6 +633,8 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 " let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+
+
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
@@ -687,4 +691,7 @@ vnoremap <Leader>: :Tabularize /:\zs<CR>
 """ luochen1990/rainbow {{{
 " let g:rainbow_active = 1
 """ }}}
+
+" let g:phpcomplete_index_composer_command="composer"
+let g:padawan#composer_command = "composer"
 

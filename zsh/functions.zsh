@@ -204,3 +204,8 @@ function make-tags-php()
         --languages=php \
         --php-kinds=-a
 }
+
+function find-f()
+{
+    find . -type f -name "*$1*"
+}

@@ -52,7 +52,8 @@ Plug 'chrisbra/csv.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'vim-scripts/taglist.vim'
 "Plug 'edkolev/promptline.vim'
-Plug 'airblade/vim-gitgutter', { 'commit': '0e490ec' }
+" Plug 'airblade/vim-gitgutter', { 'commit': '0e490ec' }
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/sudo.vim'
 "Plug 'astashov/vim-ruby-debugger'
 Plug 'godlygeek/tabular'
@@ -119,7 +120,7 @@ Plug 'Shougo/vimproc', { 'do': 'make' }
 " Plug 'm2mdas/phpcomplete-extended-symfony', { 'for': 'php' }
 
 
-" Plug 'mkusher/padawan.vim'
+Plug 'mkusher/padawan.vim'
 
 
 call plug#end()

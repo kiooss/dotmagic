@@ -12,6 +12,7 @@
 # ignore directories
 --ignore-dir=node_modules
 --ignore-dir=.rsync_cache
+--ignore-dir=Tests
 
 
 # added file types

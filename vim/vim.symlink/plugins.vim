@@ -34,6 +34,7 @@ Plug 'roosta/srcery'
 Plug 'dracula/vim'
 " Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
+Plug 'NLKNguyen/papercolor-theme', { 'commit': '867b051d3ad76953d422836445e9f6ce2e95d76c' }
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

@@ -121,7 +121,7 @@ Plug 'Shougo/vimproc', { 'do': 'make' }
 " Plug 'm2mdas/phpcomplete-extended-symfony', { 'for': 'php' }
 
 
-Plug 'mkusher/padawan.vim'
+" Plug 'mkusher/padawan.vim'
 
 
 call plug#end()

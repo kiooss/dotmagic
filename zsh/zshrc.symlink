@@ -85,44 +85,79 @@ plugins=(
 ############################################
 # zplug start
 ############################################
-source ~/.zplug/init.zsh
-zplug "zplug/zplug"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-syntax-highlighting"
-
-
-# zplug "mollifier/cd-gitroot"
-
-zplug "plugins/git", from:oh-my-zsh, if:"which git"
-zplug "plugins/git-extras", from:oh-my-zsh, if:"which git"
-zplug "plugins/symfony2", from:oh-my-zsh
-
-# Themes
-zplug "themes/dpoggi", from:oh-my-zsh
-# zplug "arialdomartini/oh-my-git", use:"*.sh"
-# zplug "arialdomartini/oh-my-git-themes", use:"oppa-lana-style.zsh-theme"
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
-
+# source ~/.zplug/init.zsh
+# zplug "zplug/zplug"
+# zplug "zsh-users/zsh-history-substring-search"
+# zplug "zsh-users/zsh-syntax-highlighting", nice:10
+#
+# # zplug "mollifier/cd-gitroot"
+#
+# # Use the package as a command
+# # And accept glob patterns (e.g., brace, wildcard, ...)
+# zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
+#
+# # Grab binaries from GitHub Releases
+# # and rename with the "rename-to:" tag
+# # zplug "junegunn/fzf-bin", \
+# #     from:gh-r, \
+# #     as:command, \
+# #     rename-to:fzf, \
+# #     use:"*darwin*amd64*"
+#
+# # Group dependencies
+# # Load "emoji-cli" if "jq" is installed in this example
+# # zplug "stedolan/jq", \
+# #     as:command, \
+# #     rename-to:jq
+# # zplug "b4b4r07/emoji-cli", \
+# #     on:"stedolan/jq"
+#
+# zplug "lib/completion", from:oh-my-zsh
+#
+# zplug "plugins/brew", from:oh-my-zsh, if:"which brew"
+# zplug "plugins/capistrano", from:oh-my-zsh
+# zplug "plugins/encode64", from:oh-my-zsh
+# zplug "plugins/fancy-ctrl-z", from:oh-my-zsh
+# zplug "plugins/gem", from:oh-my-zsh, if:"which gem"
+# zplug "plugins/git", from:oh-my-zsh, if:"which git"
+# zplug "plugins/git-extras", from:oh-my-zsh, if:"which git"
+# zplug "plugins/rails", from:oh-my-zsh
+# zplug "plugins/rbenv", from:oh-my-zsh
+# zplug "plugins/rake-fast", from:oh-my-zsh
+# zplug "plugins/ruby", from:oh-my-zsh
+# zplug "plugins/symfony2", from:oh-my-zsh
+#
+# # Themes
+# zplug "themes/dpoggi", from:oh-my-zsh
+# # zplug "arialdomartini/oh-my-git", use:"*.sh"
+# # zplug "arialdomartini/oh-my-git-themes", use:"oppa-lana-style.zsh-theme"
+#
+# # Install plugins if there are plugins that have not been installed
+# if ! zplug check --verbose; then
+#     printf "Install? [y/N]: "
+#     if read -q; then
+#         echo; zplug install
+#     fi
+# fi
+#
+# # Then, source plugins and add commands to $PATH
+# zplug load --verbose
+#
 ############################################
 # zplug end
 ############################################
 
+# define the code directory
+# This is where my code exists and where I want the `c` autocomplete to work from exclusively
+if [[ -d ~/workspace ]]; then
+    export CODE_DIR=~/workspace
+fi
 
 # source all .zsh files inside of the zsh/ directory
 for config ($DOTFILES/zsh/**/*.zsh) source $config
 
 # if want to use oh-my-zsh, then uncomment the below line
-# source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 source $HOME/.bash_aliases
 
 source $DOTFILES/zsh/abbreviations.zsh
@@ -131,11 +166,6 @@ source $DOTFILES/zsh/zle.zsh
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 
-# define the code directory
-# This is where my code exists and where I want the `c` autocomplete to work from exclusively
-if [[ -d ~/workspace ]]; then
-    export CODE_DIR=~/workspace
-fi
 
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
@@ -192,3 +222,4 @@ if hash pyenv 2>/dev/null; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

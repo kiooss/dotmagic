@@ -82,11 +82,47 @@ plugins=(
     z
 )
 
+############################################
+# zplug start
+############################################
+source ~/.zplug/init.zsh
+zplug "zplug/zplug"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting"
+
+
+# zplug "mollifier/cd-gitroot"
+
+zplug "plugins/git", from:oh-my-zsh, if:"which git"
+zplug "plugins/git-extras", from:oh-my-zsh, if:"which git"
+zplug "plugins/symfony2", from:oh-my-zsh
+
+# Themes
+zplug "themes/dpoggi", from:oh-my-zsh
+# zplug "arialdomartini/oh-my-git", use:"*.sh"
+# zplug "arialdomartini/oh-my-git-themes", use:"oppa-lana-style.zsh-theme"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+############################################
+# zplug end
+############################################
+
 
 # source all .zsh files inside of the zsh/ directory
 for config ($DOTFILES/zsh/**/*.zsh) source $config
 
-source $ZSH/oh-my-zsh.sh
+# if want to use oh-my-zsh, then uncomment the below line
+# source $ZSH/oh-my-zsh.sh
 source $HOME/.bash_aliases
 
 source $DOTFILES/zsh/abbreviations.zsh

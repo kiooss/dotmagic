@@ -13,7 +13,6 @@ ZSH_THEME="dpoggi"
 # ZSH_THEME="re5et"
 
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
 alias zshconfig="vi ~/.zshrc"
 alias zz="source ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -158,14 +157,13 @@ for config ($DOTFILES/zsh/**/*.zsh) source $config
 
 # if want to use oh-my-zsh, then uncomment the below line
 source $ZSH/oh-my-zsh.sh
+
 source $HOME/.bash_aliases
 
-source $DOTFILES/zsh/abbreviations.zsh
-source $DOTFILES/zsh/zle.zsh
+for plugin ($DOTFILES/zsh/plugins/*.zsh) source $plugin
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
-
 
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 

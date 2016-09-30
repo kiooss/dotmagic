@@ -17,3 +17,11 @@ function pman() { ps=`mktemp -t manpageXXXX`.ps ; man -t $@ > "$ps" ; open "$ps"
 function find-printer-ip() {
     ping 192.168.1.255 && arp -a | grep '0:15:99:db:85:84'
 }
+
+function show-listen-ports() {
+    sudo lsof -iTCP -sTCP:LISTEN -n -P
+}
+
+function show-established-tcp-connections() {
+    sudo lsof -iTCP -sTCP:ESTABLISHED -n -P
+}

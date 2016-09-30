@@ -7,10 +7,10 @@ if [[ -d ~/workspace ]]; then
     export CODE_DIR=~/workspace
 fi
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 # adding path directory for custom scripts
 export PATH=$DOTFILES/bin:$PATH
 

@@ -52,7 +52,7 @@ plugins=(
     cp
     command-not-found
     capistrano
-    colored-man
+    colored-man-pages
     composer
     encode64
     fancy-ctrl-z
@@ -63,8 +63,8 @@ plugins=(
     git-remote-branch
     history-substring-search
     nmap
-    meteor
-    svn
+    # meteor
+    # svn
     sudo
     symfony2
     systemadmin
@@ -72,7 +72,7 @@ plugins=(
     ruby
     rake-fast
     rbenv
-    tmux
+    # tmux
     themes
     zsh_reload
     zsh-navigation-tools

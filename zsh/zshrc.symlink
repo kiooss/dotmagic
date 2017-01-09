@@ -172,6 +172,7 @@ if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
 fi
 
 export TZ="/usr/share/zoneinfo/Asia/Tokyo"
+export EDITOR=vim
 export BUNDLER_EDITOR=vim
 export SVN_EDITOR=vim
 

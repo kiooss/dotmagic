@@ -255,6 +255,9 @@ cnoremap <C-e> <End>
 vnoremap < <gv
 vnoremap > >gv
 
+" Open the definition in a vertical split
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 " file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
     let autocommands_loaded = 1
@@ -553,7 +556,7 @@ let g:indent_guides_auto_colors=0
 " emmet
 " let g:user_emmet_expandabbr_key = '<Tab>'
 
-"set path+=**
+set path+=**
 
 "let g:ackprg = 'ag --nogroup --nocolor --column'
 

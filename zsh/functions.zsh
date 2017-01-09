@@ -202,7 +202,7 @@ function make-tags-php()
         --exclude="tmp" \
         --fields=+aimlS \
         --languages=php \
-        --php-kinds=-a
+        --php-kinds=-av
 }
 
 function find-f()

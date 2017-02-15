@@ -5,5 +5,5 @@ ctags -R \
     --exclude=.* \
     --exclude=log \
     --exclude=tmp \
-    --languages=ruby * $(bundle list --paths)
-
+    --languages=ruby * $(bundle list --paths) \
+    --regex-ruby='/^[ \t ]*scope[ \t ]*:([a-zA-Z0-9_]+)/\1/'

@@ -205,6 +205,18 @@ function make-tags-php()
         --php-kinds=-av
 }
 
+function make-tags-ruby()
+{
+    exctags -R \
+        --exclude=".svn" \
+        --exclude=".git" \
+        --exclude=".rsync_cache" \
+        --exclude="log" \
+        --exclude="tmp" \
+        --regex-ruby='/^[ \t ]*scope[ \t ]*:([a-zA-Z0-9_]+)/\1/' \
+        --languages=ruby * $(bundle list --paths)
+}
+
 function find-f()
 {
     find . -type f -name "*$1*"

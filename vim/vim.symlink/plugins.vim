@@ -52,7 +52,8 @@ Plug 'chrisbra/csv.vim'
 " Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'gregsexton/MatchTag'
 if executable('ctags')
-    Plug 'vim-scripts/taglist.vim'
+    " Plug 'vim-scripts/taglist.vim'
+    Plug 'majutsushi/tagbar'
 end
 "Plug 'edkolev/promptline.vim'
 " Plug 'airblade/vim-gitgutter', { 'commit': '0e490ec' }

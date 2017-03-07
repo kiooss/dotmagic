@@ -59,6 +59,7 @@ end
 " Plug 'airblade/vim-gitgutter', { 'commit': '0e490ec' }
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/sudo.vim'
+Plug 'vim-scripts/CmdlineComplete'
 "Plug 'astashov/vim-ruby-debugger'
 Plug 'godlygeek/tabular'
 Plug 'pangloss/vim-javascript'

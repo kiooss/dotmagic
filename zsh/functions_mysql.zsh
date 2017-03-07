@@ -58,3 +58,10 @@ cat <<- EOF | mysql -u root
     LINES TERMINATED BY '\n';
 EOF
 }
+
+function reset-table() {
+    echo "SET FOREIGN_KEY_CHECKS=0;"
+    echo "DELETE FROM $1;"
+    echo "SET FOREIGN_KEY_CHECKS=1;"
+    echo "ALTER TABLE $1 AUTO_INCREMENT = 1;"
+}

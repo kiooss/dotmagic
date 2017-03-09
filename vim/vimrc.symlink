@@ -131,6 +131,7 @@ endif
 
 let base16colorspace=256  " Access colors present in 256 colorspace"
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
+
 " set background=light
 set background=dark
 
@@ -277,6 +278,8 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
     autocmd FileType .xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+
+    autocmd FileType gitcommit setlocal spell
 
     " remove spaces at the end of line
     autocmd BufWritePre * :%s/\s\+$//e

@@ -89,15 +89,15 @@
     remote = green
 [color "sh"]
     branch = yellow
-;[color "diff"]
-;  meta = yellow bold
-;  frag = magenta bold
-;  old = red bold
-;  new = green bold
-;[color "status"]
-;  added = yellow
-;  changed = green
-;  untracked = cyan
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
 
 [branch]
     # set up 'git pull' to rebase instead of merge
@@ -115,11 +115,9 @@
 [grep]
     extendRegexp = true
     linenumber = true
-
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
-
 [rerere]
     enabled = true
 [credential]

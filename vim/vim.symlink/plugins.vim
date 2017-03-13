@@ -26,15 +26,15 @@ end
 " Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 " Plug 'sickill/vim-monokai'
-Plug 'altercation/vim-colors-solarized'
-Plug 'romainl/flattened'
-Plug 'lifepillar/vim-solarized8'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'romainl/flattened'
+" Plug 'lifepillar/vim-solarized8'
 " Plug 'tpope/vim-vividchalk'
-Plug 'roosta/srcery'
-Plug 'dracula/vim'
+" Plug 'roosta/srcery'
+" Plug 'dracula/vim'
 " Plug 'flazz/vim-colorschemes'
-Plug 'chriskempson/base16-vim'
-Plug 'NLKNguyen/papercolor-theme', { 'commit': '867b051d3ad76953d422836445e9f6ce2e95d76c' }
+" Plug 'chriskempson/base16-vim'
+" Plug 'NLKNguyen/papercolor-theme', { 'commit': '867b051d3ad76953d422836445e9f6ce2e95d76c' }
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

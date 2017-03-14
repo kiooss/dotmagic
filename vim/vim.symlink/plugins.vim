@@ -44,7 +44,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'tomtom/tcomment_vim'
 
-" Plug 'benmills/vimux'
+Plug 'benmills/vimux'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/gtags.vim'

@@ -7,6 +7,9 @@
 
 ; customizations
 [alias]
+    # list all aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+
     unstage = reset HEAD
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     d = difftool
@@ -15,11 +18,14 @@
     co = checkout
     df = diff
     dc = diff --cached
-    lg = log -p
+    ls = ls-files
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    ls = ls-files
     lm = log --pretty=format:'%s%n   by %C(yellow)%an%Creset (%ad)%n %n%b' --date=local
+
+    noffmerge = merge --no-ff --log --verbose
 
     # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
@@ -29,8 +35,6 @@
     out = "!git fetch; git cherry origin/HEAD -v"
     #dp = diff --stat origin/master HEAD
     dp = "!DIFF_PREVIEW1=$(git diff --stat origin/master HEAD);"
-    # list all aliases
-    la = "!git config -l | grep alias | cut -c 7-"
     delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
     diff-ignore-space = diff --ignore-space-at-eol -b -w --ignore-blank-lines
 
@@ -66,6 +70,8 @@
 
     change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD'  ]]; then export $VAR='$NEW'; fi\" $@;  }; f "
 
+    # git branch --merged | egrep -v "(^\*|master|dev|devlopment|staging)" | xargs git branch -d
+
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global
@@ -77,6 +83,9 @@
     mnemonicprefix = true
 [difftool]
     prompt = false
+
+# git colors: normal, black, red, green, yellow, blue, magenta, cyan, or white.
+# git formats: bold, dim, ul (underline), blink, and reverse (swap foreground and background).
 [color]
     diff = auto
     status = auto
@@ -90,7 +99,7 @@
 [color "sh"]
     branch = yellow
 [color "diff"]
-    meta = yellow bold
+    meta = cyan bold
     frag = magenta bold
     old = red bold
     new = green bold

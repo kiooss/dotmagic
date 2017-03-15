@@ -1,10 +1,10 @@
 #set -g default-command "login-shell"
 
 # tmux display things in 256 colors
-set-option -g default-terminal screen-256color
-set -g terminal-overrides 'xterm:colors=256'
-
+# set-option -g default-terminal screen-256color
+# set -g terminal-overrides 'xterm:colors=256'
 set -g default-terminal "xterm-256color"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
 
 set -g history-limit 20000
 # set -g status-utf8 on
@@ -22,7 +22,8 @@ unbind '"'
 unbind %
 
 # reload config file (change file location to your the tmux.conf you want to use)
-bind r source-file ~/.tmux.conf
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
 
 # switch panes using Alt-arrow without prefix
 bind -n M-Left select-pane -L
@@ -30,18 +31,26 @@ bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
 
-# Enable mouse control (clickable windows, panes, resizable panes)
-#set -g mouse-select-window on
-#set -g mouse-select-pane on
-#set -g mouse-resize-pane on
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
 
+# moving between windows with vim movement keys
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
+
+# Resize pane shortcuts
+bind -r H resize-pane -L 10
+bind -r J resize-pane -D 10
+bind -r K resize-pane -U 10
+bind -r L resize-pane -R 10
 
 # Enable mouse mode (tmux 2.1 and above)
 set -g mouse on
 
 # don't rename windows automatically
 # set-option -g allow-rename off
-
 
 # for nested tmux sessions
 bind-key a send-prefix
@@ -51,8 +60,15 @@ setw -g monitor-activity off
 set -g visual-activity off
 
 
-# Resize pane shortcuts
-bind -r H resize-pane -L 10
-bind -r J resize-pane -D 10
-bind -r K resize-pane -U 10
-bind -r L resize-pane -R 10
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

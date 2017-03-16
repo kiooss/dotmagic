@@ -72,7 +72,7 @@ plugins=(
     ruby
     rake-fast
     rbenv
-    # tmux
+    tmux
     themes
     zsh_reload
     zsh-navigation-tools

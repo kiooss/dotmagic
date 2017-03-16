@@ -9,11 +9,16 @@ set-option -ga terminal-overrides ",xterm-256color:Tc"
 set -g history-limit 20000
 # set -g status-utf8 on
 
+# peneの開始番号
+set-option -g base-index 1
+
+# ウィンドウのインデックスを1から始める
+set -g base-index 1
 
 # remap prefix from 'C-b' to 'C-a'
 unbind C-b
-set-option -g prefix C-a
-bind-key C-a send-prefix
+set-option -g prefix C-f
+bind-key C-f send-prefix
 
 # split panes using | and -
 bind \ split-window -h
@@ -22,15 +27,10 @@ unbind '"'
 unbind %
 
 # reload config file (change file location to your the tmux.conf you want to use)
-bind r source-file ~/.tmux.conf \; display "Reloaded!"
+bind r source-file ~/.tmux.conf \; display "Reloaded!";
 
 
-# switch panes using Alt-arrow without prefix
-bind -n M-Left select-pane -L
-bind -n M-Right select-pane -R
-bind -n M-Up select-pane -U
-bind -n M-Down select-pane -D
-
+# switch panes using vi convension
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
@@ -40,14 +40,14 @@ bind l select-pane -R
 bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+
 
-# Resize pane shortcuts
-bind -r H resize-pane -L 10
-bind -r J resize-pane -D 10
-bind -r K resize-pane -U 10
-bind -r L resize-pane -R 10
+# Resize pane shortcuts using arrow keys without prefix
+bind -n M-Left resize-pane -L 10
+bind -n M-Right resize-pane -R 10
+bind -n M-Up resize-pane -U 10
+bind -n M-Down resize-pane -D 10
 
 # Enable mouse mode (tmux 2.1 and above)
-set -g mouse on
+# set -g mouse on
 
 # don't rename windows automatically
 # set-option -g allow-rename off
@@ -59,11 +59,12 @@ bind-key a send-prefix
 setw -g monitor-activity off
 set -g visual-activity off
 
-
+set -g @themepack 'block/cyan'
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'jimeh/tmux-themepack'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'

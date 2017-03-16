@@ -8,8 +8,8 @@ DOTFILES=$HOME/.dotfiles
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
 # ZSH_THEME="random"
-ZSH_THEME="dpoggi"
-# ZSH_THEME="agnoster"
+# ZSH_THEME="dpoggi"
+ZSH_THEME="agnoster"
 # ZSH_THEME="re5et"
 
 # Example aliases
@@ -73,6 +73,7 @@ plugins=(
     rake-fast
     rbenv
     tmux
+    tmuxinator
     themes
     zsh_reload
     zsh-navigation-tools

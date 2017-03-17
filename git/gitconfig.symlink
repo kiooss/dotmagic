@@ -131,3 +131,8 @@
     enabled = true
 [credential]
     helper = cache --timeout=3600
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false

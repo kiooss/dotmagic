@@ -65,6 +65,7 @@ plugins=(
     nmap
     # meteor
     # svn
+    # ssh-agent
     sudo
     symfony2
     systemadmin

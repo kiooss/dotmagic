@@ -1,2 +1,4 @@
 [mysql]
 pager  = grcat ~/.grcat
+[client]
+pager  = grcat ~/.grcat

@@ -41,10 +41,10 @@ bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+
 
 # Resize pane shortcuts using arrow keys without prefix
-bind -n M-Left resize-pane -L 10
-bind -n M-Right resize-pane -R 10
-bind -n M-Up resize-pane -U 10
-bind -n M-Down resize-pane -D 10
+bind -n M-Left resize-pane -L 5
+bind -n M-Right resize-pane -R 5
+bind -n M-Up resize-pane -U 5
+bind -n M-Down resize-pane -D 5
 
 # Enable mouse mode (tmux 2.1 and above)
 # set -g mouse on

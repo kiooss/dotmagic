@@ -20,6 +20,7 @@ unbind C-b
 set-option -g prefix C-f
 bind-key C-f send-prefix
 
+
 # split panes using | and -
 bind \ split-window -h
 bind - split-window -v
@@ -55,6 +56,13 @@ bind -n M-Down resize-pane -D 5
 # for nested tmux sessions
 bind-key a send-prefix
 
+setw -g mode-keys vi
+
+unbind p
+bind p paste-buffer
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-selection
+
 # Activity Monitoring
 # setw -g monitor-activity off
 # set -g visual-activity off
@@ -67,6 +75,7 @@ set -g @themepack 'block/cyan'
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'jimeh/tmux-themepack'
+# set -g @plugin 'christoomey/vim-tmux-navigator'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'

@@ -217,6 +217,7 @@ noremap <F3> :set hlsearch! hlsearch?<cr>
 
 " edit ~/.vimrc
 nnoremap <leader>ev :e! ~/.vimrc<cr>
+nnoremap <leader>et :e! ~/.tmux.conf<cr>
 nnoremap <leader>ep :e! ~/.vim/plugins.vim<cr>
 
 " Window moving

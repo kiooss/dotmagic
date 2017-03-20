@@ -25,3 +25,7 @@ function show-listen-ports() {
 function show-established-tcp-connections() {
     sudo lsof -iTCP -sTCP:ESTABLISHED -n -P
 }
+
+function network-restart() {
+    sudo ifconfig en0 down && sudo ifconfig en0 up
+}

@@ -226,3 +226,8 @@ function show-256-colors()
 {
     for i in {0..255}; do echo -e "\e[38;05;${i}m${i}"; done | column -c 280 -s ' '; echo -e "\e[m"
 }
+
+function get-my-ip()
+{
+    dig +short myip.opendns.com @208.67.222.222
+}

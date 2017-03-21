@@ -65,7 +65,7 @@ plugins=(
     nmap
     # meteor
     # svn
-    # ssh-agent
+    ssh-agent
     sudo
     symfony2
     systemadmin
@@ -227,3 +227,6 @@ if type zprof > /dev/null 2>&1; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities id_sec_key_svn

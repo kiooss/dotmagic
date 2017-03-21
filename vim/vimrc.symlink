@@ -292,6 +292,7 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd BufRead,BufNewFile *.ejs set filetype=html
     autocmd BufRead,BufNewFile *.ino set filetype=c
     autocmd BufRead,BufNewFile *.svg set filetype=xml
+    autocmd BufRead,BufNewFile *.tmuxtheme set filetype=tmux
 
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 

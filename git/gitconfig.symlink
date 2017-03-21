@@ -106,7 +106,7 @@
 [color "status"]
     added = yellow
     changed = green
-    untracked = cyan
+    untracked = red bold
 
 [branch]
     # set up 'git pull' to rebase instead of merge

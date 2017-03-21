@@ -63,6 +63,7 @@ plugins=(
     git-remote-branch
     history-substring-search
     nmap
+    pass
     # meteor
     # svn
     ssh-agent

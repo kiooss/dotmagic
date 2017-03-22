@@ -5,6 +5,7 @@
 # set -g terminal-overrides 'xterm:colors=256'
 set -g default-terminal "xterm-256color"
 set-option -ga terminal-overrides ",xterm-256color:Tc"
+# set-option -ga terminal-overrides ',xterm*:smcup@:rmcup@'
 
 set -g history-limit 20000
 # set -g status-utf8 on
@@ -78,9 +79,9 @@ set -g @themepack 'block/cyan'
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'soyuka/tmux-current-pane-hostname'
 set -g @plugin 'jimeh/tmux-themepack'
 # set -g @plugin 'christoomey/vim-tmux-navigator'
-set -g @plugin 'soyuka/tmux-current-pane-hostname'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'

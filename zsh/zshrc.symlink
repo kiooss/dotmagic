@@ -66,7 +66,7 @@ plugins=(
     pass
     # meteor
     # svn
-    ssh-agent
+    # ssh-agent
     sudo
     symfony2
     systemadmin

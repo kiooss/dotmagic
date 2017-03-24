@@ -21,7 +21,6 @@ unbind C-b
 set-option -g prefix C-f
 bind-key C-f send-prefix
 
-
 # split panes using | and -
 bind \ split-window -h
 bind - split-window -v
@@ -29,8 +28,7 @@ unbind '"'
 unbind %
 
 # reload config file (change file location to your the tmux.conf you want to use)
-bind r source-file ~/.tmux.conf \; display "Reloaded!";
-
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
 # switch panes using vi convension
 bind h select-pane -L
@@ -79,7 +77,7 @@ set -g @themepack 'block/cyan'
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'soyuka/tmux-current-pane-hostname'
+# set -g @plugin 'soyuka/tmux-current-pane-hostname'
 set -g @plugin 'jimeh/tmux-themepack'
 # set -g @plugin 'christoomey/vim-tmux-navigator'
 

@@ -235,9 +235,11 @@ function get-my-ip()
 function ssh() {
     if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux: server" ]; then
         # tmux rename-window "$(echo $* | rev | cut -d ' ' -f1 | rev | cut -d . -f 1)"
+        local window_name=$(tmux display -p '#{window_name}')
         tmux rename-window "💻 $(echo $*)"
         command ssh "$@"
-        tmux set-window-option automatic-rename "on" 1>/dev/null
+        tmux rename-window $window_name
+        # tmux set-window-option automatic-rename "on" 1>/dev/null
     else
         command ssh "$@"
     fi

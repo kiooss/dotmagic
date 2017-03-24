@@ -1,4 +1,5 @@
-#set -g default-command "login-shell"
+# set -g default-command "login-shell"
+# set -g default-shell $SHELL
 
 # tmux display things in 256 colors
 # set-option -g default-terminal screen-256color
@@ -8,7 +9,6 @@ set-option -ga terminal-overrides ",xterm-256color:Tc"
 # set-option -ga terminal-overrides ',xterm*:smcup@:rmcup@'
 
 set -g history-limit 20000
-# set -g status-utf8 on
 
 set-option -g base-index 1
 set-window-option -g pane-base-index 1

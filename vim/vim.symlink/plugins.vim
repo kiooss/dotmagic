@@ -25,6 +25,7 @@ end
 " colorschemes
 " Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+Plug 'atelierbram/vim-colors_atelier-schemes'
 " Plug 'sickill/vim-monokai'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'romainl/flattened'
@@ -104,7 +105,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'jiangmiao/auto-pairs'
 Plug 'thinca/vim-quickrun'
 Plug 'luochen1990/rainbow'
-Plug 'gcmt/wildfire.vim'
+" Plug 'gcmt/wildfire.vim'
 
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }

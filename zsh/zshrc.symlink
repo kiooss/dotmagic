@@ -54,6 +54,7 @@ plugins=(
     capistrano
     colored-man-pages
     composer
+    emoji
     encode64
     fancy-ctrl-z
     git

@@ -231,3 +231,6 @@ fi
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent identities id_sec_key_svn
+
+# freshshell/fresh
+[ -f ~/.fresh/build/shell.sh ] && source ~/.fresh/build/shell.sh

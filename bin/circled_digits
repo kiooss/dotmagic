@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+#circled_digits=$(printf %s \${$'\xEA',\`,{a..s}} | iconv -f UTF-16BE)
+circled_digits='⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳'
+
+tmux_winidx_circled() {
+    local winidx=$(tmux display-message -p '#I')
+    if (( winidx > 20 )); then
+        echo "($winidx)"
+    else
+        echo "${circled_digits:$winidx:1}"
+    fi
+}
+tmux_winidx_circled

@@ -43,10 +43,10 @@ bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+
 
 # Resize pane shortcuts using arrow keys without prefix
-bind -n M-Left resize-pane -L 5
-bind -n M-Right resize-pane -R 5
-bind -n M-Up resize-pane -U 5
-bind -n M-Down resize-pane -D 5
+bind -n M-Left resize-pane -L 2
+bind -n M-Right resize-pane -R 2
+bind -n M-Up resize-pane -U 2
+bind -n M-Down resize-pane -D 2
 
 # Enable mouse mode (tmux 2.1 and above)
 # set -g mouse on
@@ -79,9 +79,10 @@ set -g @themepack 'block/cyan'
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-# set -g @plugin 'soyuka/tmux-current-pane-hostname'
+set -g @plugin 'soyuka/tmux-current-pane-hostname'
 set -g @plugin 'jimeh/tmux-themepack'
 # set -g @plugin 'christoomey/vim-tmux-navigator'
+# set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'

@@ -1,0 +1,15 @@
+#### my tmux theme
+
+# separators
+# tm_separator_left=""
+# tm_separator_right=""
+tm_separator_left=""
+tm_separator_right=""
+
+set -g status-left "#[fg=colour232,bg=colour39,bold] 😁  #S #[fg=colour39,bg=colour240,nobold]$tm_separator_left#[fg=colour233,bg=colour240] #(whoami) ❤️  #[fg=colour240,bg=colour235]$tm_separator_left#[fg=colour240,bg=colour235] #I:#P 💠 #[fg=colour235,bg=colour233,nobold]$tm_separator_left"
+
+set -g status-right "#[fg=colour235,bg=colour233]$tm_separator_right#[fg=colour240,bg=colour235] ⌚ %H:%M:%S #[fg=colour240,bg=colour235]$tm_separator_right#[fg=colour233,bg=colour240] 🗓  %Y/%m/%d %a #(tmux-weather) #[fg=colour245,bg=colour240]$tm_separator_right#[fg=colour232,bg=colour245,bold] #H 💾  #(disk-usage 2>&1) 🌏  #(dig +short myip.opendns.com @208.67.222.222) "
+
+set -g window-status-current-format " ⭐️  #I:#W#F "
+
+set -g window-status-current-bg colour30

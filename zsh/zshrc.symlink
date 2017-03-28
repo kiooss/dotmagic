@@ -197,6 +197,8 @@ source $ZSH/oh-my-zsh.sh
 
 source $HOME/.bash_aliases
 
+unalias c
+
 for plugin ($DOTFILES/zsh/plugins/*.zsh) source $plugin
 
 # Customize to your needs...
@@ -224,9 +226,9 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-if type zprof > /dev/null 2>&1; then
-  zprof | less
-fi
+# if type zprof > /dev/null 2>&1; then
+#   zprof | less
+# fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

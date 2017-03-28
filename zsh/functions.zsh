@@ -21,7 +21,7 @@ function find-large-dirs {
         return 1
     fi
     set -x
-    find $1 -type d -print0 | xargs -0 du | sort -n | tail -20 | cut -f2 | xargs -I{} du -sh {}
+    find $1 -maxdepth 2 -type d -print0 | xargs -0 du | sort -n | tail -20 | cut -f2 | xargs -I{} du -sh {}
 }
 
 function git-change-user-email {

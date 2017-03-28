@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function tmux-rb-version() {
+    cd $(pwd) && rbenv version | cut -d ' ' -f1
+}
+
+tmux-rb-version

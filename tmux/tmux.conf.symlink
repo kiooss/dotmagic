@@ -68,10 +68,10 @@ bind-key -t vi-copy 'y' copy-selection
 
 
 # Activity Monitoring
-# setw -g monitor-activity off
-# set -g visual-activity off
-setw -g monitor-activity on
-set -g visual-activity on
+setw -g monitor-activity off
+set -g visual-activity off
+# setw -g monitor-activity on
+# set -g visual-activity on
 
 
 set -g @themepack 'block/cyan'

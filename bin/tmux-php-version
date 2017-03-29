@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function tmux-php-version() {
+    echo "🐘  #[fg=blue]$(php -v | head -n 1 | cut -d ' ' -f2)"
+}
+
+tmux-php-version

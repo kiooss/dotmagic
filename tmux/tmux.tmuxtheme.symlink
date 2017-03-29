@@ -16,8 +16,8 @@ set -g status-bg colour233
 # Left side of status bar
 set -g status-left-bg colour233
 set -g status-left-fg colour243
-set -g status-left-length 60
-set -g status-left "#[fg=colour232,bg=colour39,bold] 😁  #S #[fg=colour39,bg=colour240,nobold]$tm_separator_left#[fg=colour233,bg=colour240] #(whoami) ❤️  #[fg=colour240,bg=colour235]$tm_separator_left#[fg=colour240,bg=colour235] #I:#P 💠  #[fg=red]#(tmux-rb-version) #[fg=colour235,bg=colour233,nobold]$tm_separator_left"
+set -g status-left-length 100
+set -g status-left "#[fg=colour232,bg=colour39,bold] 😁  #S #[fg=colour39,bg=colour240,nobold]$tm_separator_left#[fg=colour233,bg=colour240] #(whoami) ❤️  #[fg=colour240,bg=colour235]$tm_separator_left#[fg=colour240,bg=colour235] #I:#P #(tmux-rb-version) #(tmux-php-version) #[fg=colour235,bg=colour233,nobold]$tm_separator_left"
 
 # Right side of status bar
 set -g status-right-bg colour233

@@ -99,14 +99,14 @@
 [color "sh"]
     branch = yellow
 [color "diff"]
-    # meta = cyan bold
-    # frag = magenta bold
-    # old = red bold
-    # new = green bold
+    meta = cyan bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 [color "status"]
-    # added = yellow
-    # changed = green
-    # untracked = red bold
+    added = yellow bold
+    changed = green bold
+    untracked = red bold
 
 [branch]
     # set up 'git pull' to rebase instead of merge

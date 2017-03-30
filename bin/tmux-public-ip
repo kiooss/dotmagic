@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+function tmux-public-ip() {
+    local ip=$(dig +short myip.opendns.com @208.67.222.222)
+    if [[ $ip = '219.106.249.17' ]]; then
+        echo "#[fg=colour235,bg=colour034] 🌏  $ip (WI-VPN connected)"
+    else
+        echo "#[fg=colour233,bg=colour012] 🌏  $ip"
+    fi
+}
+
+tmux-public-ip

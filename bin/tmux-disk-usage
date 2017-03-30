@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+function tmux-disk-usage() {
+    local percent=$(df -h /dev/sda1 | awk '{ print $5 }' | tail -n 1 | sed 's/%//g')
+    if [[ $percent -ge 95 ]]; then
+        echo "#[fg=colour235,bg=colour9] 💾  $percent％"
+    else
+        echo "#[fg=colour233,bg=colour72] 💾  $percent％"
+    fi
+}
+
+tmux-disk-usage

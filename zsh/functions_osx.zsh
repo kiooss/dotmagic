@@ -29,3 +29,13 @@ function show-established-tcp-connections() {
 function network-restart() {
     sudo ifconfig en0 down && sudo ifconfig en0 up
 }
+
+function change-screencapture-location() {
+    defaults write com.apple.screencapture location $1
+    killall SystemUIServer
+}
+
+function change-screencapture-name() {
+    defaults write com.apple.screencapture name $1
+    killall SystemUIServer
+}

@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+function tmux-status-right() {
+    local width=$(tmux display -p "#{client_width}")
+    local medium=180
+
+    if [ $width -ge $medium ]; then
+        # long version
+    else
+        # short version
+    fi
+    echo $width
+}
+
+tmux-status-right

@@ -16,12 +16,53 @@ function show-user-list {
 }
 
 function find-large-dirs {
+    local -A opthash
+    zparseopts -D -A opthash -- -maxdepth: -tailsize:
+    local maxdepth=1
+    local tailsize=20
+
+    if [[ -n "${opthash[(i)--maxdepth]}" ]]; then
+        local maxdepth=${opthash[--maxdepth]}
+    fi
+
+    if [[ -n "${opthash[(i)--tailsize]}" ]]; then
+        local tailsize=${opthash[--tailsize]}
+    fi
+
     if [[ $# -eq 0 ]] ; then
         echo "Usage: $0 [dir]";
         return 1
     fi
+
     set -x
-    find $1 -maxdepth 2 -type d -print0 | xargs -0 du | sort -n | tail -20 | cut -f2 | xargs -I{} du -sh {}
+    find $1 -maxdepth $maxdepth -type d -print0 | xargs -0 du | sort -n | tail -n $tailsize | cut -f2 | xargs -I{} du -sh {}
+}
+
+function dummy-function-with-option() {
+    local -A opthash
+    zparseopts -D -A opthash -- -help -version v S:
+
+    if [[ -n "${opthash[(i)--help]}" ]]; then
+        # --helpが指定された場合
+        echo "--help option"
+    fi
+
+    if [[ -n "${opthash[(i)--version]}" ]]; then
+        # --versionが指定された場合
+        echo "--version option"
+    fi
+
+    if [[ -n "${opthash[(i)-v]}" ]]; then
+        # -vが指定された場合
+        echo "-v option"
+    fi
+
+    if [[ -n "${opthash[(i)-S]}" ]]; then
+        # -Sが指定された場合
+        echo "-s option : ${opthash[-S]}"
+    fi
+
+    echo "normal arguments : $@"
 }
 
 function git-change-user-email {

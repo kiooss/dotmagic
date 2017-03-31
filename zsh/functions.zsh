@@ -22,11 +22,11 @@ function find-large-dirs {
     local tailsize=20
 
     if [[ -n "${opthash[(i)--maxdepth]}" ]]; then
-        local maxdepth=${opthash[--maxdepth]}
+        maxdepth=${opthash[--maxdepth]}
     fi
 
     if [[ -n "${opthash[(i)--tailsize]}" ]]; then
-        local tailsize=${opthash[--tailsize]}
+        tailsize=${opthash[--tailsize]}
     fi
 
     if [[ $# -eq 0 ]] ; then

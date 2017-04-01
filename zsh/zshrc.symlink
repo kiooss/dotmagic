@@ -185,8 +185,7 @@ if [[ -f $HOME/.secret_env ]]; then
     source $HOME/.secret_env
 fi
 
-# if need php5.5 console
-export PATH="/usr/local/php55/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/php/bin:$PATH"
 
 # source all .zsh files inside of the zsh/ directory

@@ -195,6 +195,9 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " noremap ; :
 " noremap : ;
 
+" enter in normal mode do nothing
+nnoremap <CR> <NOP>
+
 " remap esc
 inoremap jk <esc>
 inoremap <C-e> <C-o>A

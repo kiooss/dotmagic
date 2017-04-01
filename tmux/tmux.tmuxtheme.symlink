@@ -17,7 +17,7 @@ set -g status-bg colour233
 set -g status-left-bg colour233
 set -g status-left-fg colour243
 set -g status-left-length 100
-set -g status-left "#[fg=colour232,bg=colour39,bold] 🌈  #S #[fg=colour39,bg=colour80,nobold]$tm_separator_left#[fg=colour233,bg=colour80] ❤️  #(whoami) #[fg=colour80,bg=colour197]$tm_separator_left#[fg=colour15,bg=colour197] #(tmux-rb-version) #[fg=colour197,bg=colour104]$tm_separator_left#[fg=colour16,bg=colour104] #(tmux-php-version) #[fg=colour104,bg=colour66]$tm_separator_left#[fg=green,bg=colour66] 💻 #($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 2 --interval 2)#[default]"
+set -g status-left "#[fg=colour232,bg=colour39] 🌈  #S #[fg=colour39,bg=colour80,nobold]$tm_separator_left#[fg=colour233,bg=colour80] ❤️  #(whoami) #[fg=colour80,bg=colour197]$tm_separator_left#[fg=colour15,bg=colour197] #(tmux-rb-version) #[fg=colour197,bg=colour104]$tm_separator_left#[fg=colour16,bg=colour104] #(tmux-php-version) #[fg=colour104,bg=colour66]$tm_separator_left#[fg=green,bg=colour66] 💻 #($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 2 --interval 2)#[default]"
 
 # Right side of status bar
 set -g status-right-bg colour233
@@ -30,7 +30,7 @@ set -g window-status-format " #I:#W#F "
 set -g window-status-current-format "⭐️ #I:#W#F "
 
 # Current window status
-set -g window-status-current-bg colour39
+set -g window-status-current-bg colour198
 set -g window-status-current-fg colour232
 
 # Window with activity status

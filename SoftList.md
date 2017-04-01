@@ -8,3 +8,5 @@ https://github.com/vim/vim
 https://github.com/dbcli/mycli
 # zsh
 https://github.com/zsh-users/zsh
+# Nerd Fonts
+https://github.com/ryanoasis/nerd-fonts

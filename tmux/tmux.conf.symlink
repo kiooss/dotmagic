@@ -52,6 +52,7 @@ bind -n M-Down resize-pane -D 2
 
 # don't rename windows automatically
 # set-option -g allow-rename off
+set-option -g allow-rename on
 
 # for nested tmux sessions
 bind-key a send-prefix

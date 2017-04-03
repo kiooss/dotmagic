@@ -28,11 +28,11 @@ set -g status-right-length 100
 set -g status-right "#[fg=colour212,bg=colour233]$tm_separator_right#[fg=colour198,bg=colour212]#(emoji-clock)  #(tmux-time)#[fg=colour38,bg=colour212]$tm_separator_right#[fg=colour233,bg=colour38]🗓  %Y/%-m/%-d %a#[fg=colour162,bg=colour38]$tm_separator_right#[fg=colour232,bg=colour162,bold]#(tmux-weather)#[fg=colour72,bg=colour162,nobold]$tm_separator_right#[fg=colour233,bg=colour72]#(tmux-disk-usage)#[fg=colour12,bg=colour72]$tm_separator_right#[fg=colour233,bg=colour012]#(tmux-public-ip) "
 
 # Window status
-set -g window-status-format " #I:#W#F"
-set -g window-status-current-format "⭐️ #I:#W#F"
+set -g window-status-format " #I:#W"
+set -g window-status-current-format " #I:#W "
 
 # Current window status
-set -g window-status-current-bg colour198
+set -g window-status-current-bg colour155
 set -g window-status-current-fg colour232
 
 # Window with activity status

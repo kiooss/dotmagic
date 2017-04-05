@@ -83,8 +83,15 @@ set -g visual-activity off
 # setw -g monitor-activity on
 # set -g visual-activity on
 
+# theme config.
+source ~/.tmux.tmuxtheme
 
 set -g @themepack 'block/cyan'
+
+set -g @prefix_highlight_fg 'colour233' # default is 'colour231'
+set -g @prefix_highlight_bg 'colour155'  # default is 'colour04'
+set -g @prefix_highlight_show_copy_mode 'on'
+
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
@@ -95,7 +102,7 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 # set -g @plugin 'thewtex/tmux-mem-cpu-load'
 
 # set -g @plugin 'christoomey/vim-tmux-navigator'
-# set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'
@@ -105,6 +112,3 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
-
-# theme config.
-source ~/.tmux.tmuxtheme

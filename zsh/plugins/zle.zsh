@@ -14,4 +14,4 @@ bindkey -s '\ec' '^Ugit add -A && git commit^M'
 bindkey -s '\eu' '^Ugit up^M'
 
 bindkey -s '\el' '^Ull^M'
-bindkey -s '\em' '^Umysql -u root^M'
+bindkey -s '\em' '^Umycli -u root^M'

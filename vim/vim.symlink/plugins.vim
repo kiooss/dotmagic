@@ -109,6 +109,7 @@ Plug 'luochen1990/rainbow'
 
 Plug 'tobyS/vmustache'
 Plug 'tobyS/pdv'
+Plug 'vim-syntastic/syntastic'
 
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }

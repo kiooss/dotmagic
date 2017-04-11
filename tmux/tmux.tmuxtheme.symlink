@@ -29,7 +29,7 @@ set -g status-right "#[fg=colour212,bg=colour233]$tm_separator_right#[fg=colour1
 
 # Window status
 set -g window-status-format " #I:#W"
-set -g window-status-current-format " #I:#W "
+set -g window-status-current-format " #I:#W "
 
 # Current window status
 set -g window-status-current-bg colour155

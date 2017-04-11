@@ -107,6 +107,9 @@ Plug 'thinca/vim-quickrun'
 Plug 'luochen1990/rainbow'
 " Plug 'gcmt/wildfire.vim'
 
+Plug 'tobyS/vmustache'
+Plug 'tobyS/pdv'
+
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }

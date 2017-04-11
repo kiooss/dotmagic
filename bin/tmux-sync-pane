@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+function tmux-sync-pane() {
+    local mode="$(tmux show-option -w synchronize-panes | cut -d ' ' -f2)"
+
+    if [[ $mode = 'on' ]]; then
+        echo "‼️  sync-panes: $mode"
+    fi
+}
+
+tmux-sync-pane

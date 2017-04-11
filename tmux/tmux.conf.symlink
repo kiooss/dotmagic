@@ -37,6 +37,8 @@ bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 
+bind e set-window-option synchronize-panes
+
 # moving between windows with vim movement keys
 bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+

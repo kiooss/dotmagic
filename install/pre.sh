@@ -60,3 +60,11 @@ else
     echo "Installing pyenv"
     curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 fi
+
+# install tpm
+if [ -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "tpm already exists... Skipping."
+else
+    echo "Installing tmp"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi

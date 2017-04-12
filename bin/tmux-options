@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+function tmux-options() {
+    local sync_mode="$(tmux show-option -w synchronize-panes | cut -d ' ' -f2)"
+    local sync_mode_icon=""
+
+    if [[ $sync_mode = 'on' ]]; then
+        sync_mode_icon="🔃"
+    fi
+
+    local mouse_mode="$(tmux show-option mouse | cut -d ' ' -f2)"
+    local mouse_mode_icon=""
+
+    if [[ $mouse_mode = 'on' ]]; then
+        mouse_mode_icon="🖱 "
+    fi
+
+    echo "$sync_mode_icon $mouse_mode_icon"
+}
+
+tmux-options

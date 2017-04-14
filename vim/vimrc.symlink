@@ -143,7 +143,6 @@ endif
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_contrast_light="hard"
 colorscheme gruvbox
-
 " colorscheme srcery
 " colorscheme solarized
 " colorscheme molokai
@@ -738,7 +737,7 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 
 """ tobyS/pdv {{{
 let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
-nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
 """}}}
 
 """ vim-syntastic/syntastic {{{

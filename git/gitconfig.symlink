@@ -72,6 +72,8 @@
 
     # git branch --merged | egrep -v "(^\*|master|dev|devlopment|staging)" | xargs git branch -d
 
+    delete-both-branch = "!f() { VAR=$1; git branch -d \"$VAR\" && git push origin \":$VAR\"; }; f"
+
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global

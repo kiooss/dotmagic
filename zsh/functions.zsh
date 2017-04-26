@@ -285,3 +285,7 @@ function ssh() {
         command ssh "$@"
     fi
 }
+
+function get-php-download-url() {
+    echo "https://github.com/php/php-src/archive/php-$1.tar.gz"
+}

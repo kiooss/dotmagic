@@ -60,7 +60,7 @@ plugins=(
     encode64
     fancy-ctrl-z
     git
-    git-prompt
+    # git-prompt
     gem
     gradle
     gitfast

@@ -123,6 +123,14 @@ set fencs=utf-8,euc-jp,sjis
 set enc=utf-8
 set tenc=utf-8
 
+" https://sunaku.github.io/vim-256color-bce.html
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
+
 " set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 
 if has("gui_macvim")
@@ -132,29 +140,26 @@ endif
 let base16colorspace=256  " Access colors present in 256 colorspace"
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
 
-" set background=light
-set background=dark
-
 if has('termguicolors')
     set termguicolors
 endif
+
+" set background=light
+set background=dark
 
 " hard|medium|soft
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_contrast_light="hard"
 colorscheme gruvbox
+
 " colorscheme srcery
-" colorscheme solarized
+" let g:solarized_visibility="low"
+" let g:solarized_termtrans=1
+" colorscheme solarized8_dark_high
+" colorscheme solarized8_dark
+
 " colorscheme molokai
 " colorscheme PaperColor
-
-" https://sunaku.github.io/vim-256color-bce.html
-if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
-endif
 
 set foldmethod=manual " solve autocomplete slow problem
 set complete-=i

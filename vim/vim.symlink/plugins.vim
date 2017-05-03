@@ -103,7 +103,7 @@ Plug 'ervandew/supertab'
 Plug 'kchmck/vim-coffee-script'
 Plug 'ntpeters/vim-better-whitespace'
 " Plug 'nathanaelkane/vim-indent-guides' " use indentLine instead.
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 " Plug 'Raimondi/delimitMate'
 " Plug 'vim-scripts/gitignore'
 Plug 'jiangmiao/auto-pairs'

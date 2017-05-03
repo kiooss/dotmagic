@@ -1,6 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => My vim config
 " => Yang Yang
+" vim: set fdm=marker:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,11 +58,11 @@ set shiftround " round indent to a multiple of 'shiftwidth'
 "set completeopt+=longest
 
 " code folding settings
-set foldmethod=syntax " fold based on indent
-set foldnestmax=10 " deepest fold is 10 levels
-set nofoldenable " don't fold by default
-set foldlevel=1
-set foldlevelstart=99
+" set foldmethod=syntax " fold based on indent
+" set foldnestmax=10 " deepest fold is 10 levels
+" set nofoldenable " don't fold by default
+" set foldlevel=1
+" set foldlevelstart=99
 
 " set tags place
 set tags=./tags,tags;
@@ -70,6 +71,8 @@ set tags=./tags,tags;
 set viminfo='100,h
 
 set cursorline
+
+set path+=**
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
@@ -311,12 +314,13 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd FocusLost * silent! wa
 endif
 
-" supertab
+""" supertab {{{
 "let g:SuperTabMappingForward="<tab>"
 "let g:SuperTabMappingBackward="<S-Tab>"
 " let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabClosePreviewOnPopupClose = 1
+""" }}}
 
 let g:rubycomplete_rails = 1
 
@@ -561,13 +565,8 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 "set showtabline=2 " Always display the tabline, even if there is only one tab
 "set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-" emmet
-" let g:user_emmet_expandabbr_key = '<Tab>'
-
-set path+=**
 
 "let g:ackprg = 'ag --nogroup --nocolor --column'
-
 
 " Vim-php-cs-fixer {{{
 " If php-cs-fixer is in $PATH, you don't need to define line below
@@ -583,7 +582,6 @@ let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by defaul
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 """ }}}
-
 
 """" Neocomplete {{{
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -713,10 +711,6 @@ vnoremap <Leader>: :Tabularize /:\zs<CR>
 " let g:rainbow_active = 1
 """ }}}
 
-" let g:phpcomplete_index_composer_command="composer"
-" let g:padawan#composer_command = "composer"
-
-
 """ benmills/vimux {{{
 " Run the current file with rspec
 map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
@@ -758,6 +752,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_php_checkers = ['php']
 """}}}
 
-"""{{{
+""" indentLine {{{
 let g:indentLine_enabled = 0
 """}}}

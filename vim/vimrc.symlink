@@ -461,7 +461,7 @@ let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run op
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 """ }}}
 
-"""" Neocomplete {{{
+" Neocomplete {{{
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -531,7 +531,6 @@ endif
 " let g:neocomplete#force_omni_input_patterns = {}
 " let g:neocomplete#force_omni_input_patterns.php = '\h\w*\|[^- \t]->\w*'
 
-
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
@@ -559,11 +558,11 @@ function! Multiple_cursors_after()
 endfunction
 " }}}
 
-""" Shougo/deoplete.nvim {{{
+" Shougo/deoplete.nvim {{{
 " let g:deoplete#enable_at_startup = 1
-""" }}}
+" }}}
 
-""" UltiSnips {{{
+" UltiSnips {{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
@@ -576,20 +575,20 @@ let g:UltiSnipsEditSplit="vertical"
 " use different snippets dir
 " let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
 " let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-""" }}}
+" }}}
 
-""" godlygeek/tabular {{{
+" godlygeek/tabular {{{
 nnoremap <Leader>= :Tabularize /=>\?<CR>
 vnoremap <Leader>= :Tabularize /=>\?<CR>
 nnoremap <Leader>: :Tabularize /:\zs<CR>
 vnoremap <Leader>: :Tabularize /:\zs<CR>
-""" }}}
+" }}}
 
-""" luochen1990/rainbow {{{
+" luochen1990/rainbow {{{
 " let g:rainbow_active = 1
-""" }}}
+" }}}
 
-""" benmills/vimux {{{
+" benmills/vimux {{{
 " Run the current file with rspec
 map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
 
@@ -610,14 +609,14 @@ map <Leader>vx :VimuxInterruptRunner<CR>
 
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
 map <Leader>vz :call VimuxZoomRunner()<CR>
-""" }}}
+" }}}
 
-""" tobyS/pdv {{{
+" tobyS/pdv {{{
 let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
 nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
-"""}}}
+"}}}
 
-""" vim-syntastic/syntastic {{{
+" vim-syntastic/syntastic {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -628,11 +627,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_php_checkers = ['php']
-"""}}}
+"}}}
 
-""" indentLine {{{
+" indentLine {{{
 let g:indentLine_enabled = 0
-"""}}}
+"}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Customize
@@ -652,7 +651,7 @@ if has('syntax')
     augroup END
     call ZenkakuSpace()
 endif
-""" }}}
+" }}}
 
 " HiInterestingWord {{{
 function! HiInterestingWord(n)

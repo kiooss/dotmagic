@@ -7,6 +7,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
@@ -74,9 +75,23 @@ set cursorline
 
 set path+=**
 
+" toggle paste mode
+set pastetoggle=<F2>
+set showmode
+
+set laststatus=2
+
+" save in readonly mode
+cnoreabbrev w!! w !sudo tee > /dev/null %
+
+let g:rubycomplete_rails = 1
+"}}}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
+
 " switch syntax highlighting on
 syntax on
 
@@ -126,6 +141,19 @@ set fencs=utf-8,euc-jp,sjis
 set enc=utf-8
 set tenc=utf-8
 
+"improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
+
+" toggle invisible characters
+set invlist
+set list
+set listchars=tab:▸\ ,extends:❯,precedes:❮
+highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
+set listchars=tab:▸\ ,eol:¬
+set showbreak=↪
+
+scriptencoding utf-8
+
 " https://sunaku.github.io/vim-256color-bce.html
 if &term =~ '256color'
   " disable Background Color Erase (BCE) so that color schemes
@@ -171,32 +199,28 @@ set complete+=k
 " no preview window
 set completeopt-=preview
 
-
-""""""""
 "set columns=100
 "set lines=70
-""""""""""""""""""""""""""""
 
 " highlight conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => StatusLine
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2
+"}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 "set nobackup
 "set nowritebackup
 "set noswapfile
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+"}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 
 " Swap ; and :
 " noremap ; :
@@ -218,6 +242,7 @@ nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
+nnoremap <Leader>l :set list!<CR>
 
 nnoremap j gj
 nnoremap k gk
@@ -270,6 +295,14 @@ vnoremap > >gv
 " Open the definition in a vertical split
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+inoremap {%     {%  %}<Left><Left><Left>
+inoremap <%     <%  %><Left><Left><Left>
+"}}}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => autocmd
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{
 " file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
     let autocommands_loaded = 1
@@ -313,16 +346,19 @@ if has('autocmd') && !exists('autocommands_loaded')
     " save all files on focus lost, ignoring warnings about untitled buffers
     autocmd FocusLost * silent! wa
 endif
+" }}}
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ supertab {{{
+
 "let g:SuperTabMappingForward="<tab>"
 "let g:SuperTabMappingBackward="<S-Tab>"
 " let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabClosePreviewOnPopupClose = 1
 """ }}}
-
-let g:rubycomplete_rails = 1
 
 """ snipMate {{{
 " let g:snipMate = {}
@@ -352,33 +388,6 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
 """ }}}
 
-"improve autocomplete menu color
-highlight Pmenu ctermbg=238 gui=bold
-
-" toggle invisible characters
-set invlist
-set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮
-highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
-set listchars=tab:▸\ ,eol:¬
-set showbreak=↪
-nnoremap <leader>l :set list!<cr>
-
-scriptencoding utf-8
-
-" show status line
-"set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
-"set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ \%{&ff}\ \%y\ %P
-
-" toggle paste mode
-set pastetoggle=<F2>
-set showmode
-
-" toggle line number
-" nnoremap <c-l> :set number!<cr>
-" inoremap <c-l> <Esc>:set number!<cr>
-" Use con instead.
-
 "Easily resize the splits"{{{
 " nnoremap <C-Right> :vertical resize +5<CR>
 " nnoremap <C-Left> :vertical resize -5<CR>
@@ -386,22 +395,7 @@ set showmode
 " nnoremap <C-Down> :res -5<CR>
 "}}}
 
-"----------------------------------------------
-" inoremap {      {}<Left>
-" inoremap {<CR>  {<CR>}<Esc>O
-"inoremap {{     {
-" inoremap {{     {{}}<Left><Left>
-inoremap {%     {%  %}<Left><Left><Left>
-inoremap <%     <%  %><Left><Left><Left>
-" inoremap {}     {}
-"-----------------------------------------------
-
-" save in readonly mode
-cnoreabbrev w!! w !sudo tee > /dev/null %
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree {{{
 " close NERDTree after a file is opened
 let g:NERDTreeQuitOnOpen=0
 " show hidden files in NERDTree
@@ -412,6 +406,7 @@ let NERDTreeIgnore = ['\.js.map$']
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
 nnoremap <silent> <leader>y :NERDTreeFind<cr>
+"}}}
 
 " airline options {{{
 set ttimeoutlen=50
@@ -450,123 +445,6 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|rsync_cache)$'
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 """ }}}
-
-" show multi byte space {{{
-"highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
-"match ZenkakuSpace /　/
-function! ZenkakuSpace()
-    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
-endfunction
-
-if has('syntax')
-    augroup ZenkakuSpace
-        autocmd!
-        autocmd ColorScheme       * call ZenkakuSpace()
-        autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-    augroup END
-    call ZenkakuSpace()
-endif
-""" }}}
-
-"highlight Cursor guifg=white guibg=black
-"highlight iCursor guifg=white guibg=steelblue
-"set guicursor=n-v-c:block-Cursor
-"set guicursor+=i:ver100-iCursor
-"set guicursor+=n-v-c:blinkon0
-"set guicursor+=i:blinkwait10
-
-" format array
-" function! AlignPHPMap() range
-"      let sep = '=>'
-"      let firstline = a:firstline
-"      let lastline = a:lastline
-"      let lines = {}
-"      for lineno in range(firstline, lastline)
-"           let lines[lineno] = match(getline(lineno), '\s*' . sep)
-"      endfor
-"      let maxLen = max(lines) + 1
-"      for lineno in range(firstline, lastline)
-"           if lines[lineno] != -1
-"                let spaces = repeat(' ', maxLen - lines[lineno])
-"                call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
-"           endif
-"      endfor
-" endfunction
-"
-" noremap <Leader>=> :call AlignPHPMap()<CR>
-"
-" " format =
-" function! AlignPHPAssign() range
-"      let sep = '='
-"      let firstline = a:firstline
-"      let lastline = a:lastline
-"      let lines = {}
-"      for lineno in range(firstline, lastline)
-"           let lines[lineno] = match(getline(lineno), '\s*' . sep)
-"      endfor
-"      let maxLen = max(lines) + 1
-"      for lineno in range(firstline, lastline)
-"           if lines[lineno] != -1
-"                let spaces = repeat(' ', maxLen - lines[lineno])
-"                call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
-"           endif
-"      endfor
-" endfunction
-"
-" noremap <Leader>== :call AlignPHPAssign()<CR>
-
-function! HtmlUnEscape()
-  silent s/&lt;/</eg
-  silent s/&gt;/>/eg
-  silent s/&amp;/\&/eg
-endfunction
-
-" nnoremap <silent> <leader>us :call HtmlUnEscape()<cr>
-
-function! HiInterestingWord(n)
-    " Save our location.
-    normal! mz
-
-    " Yank the current word into the z register.
-    normal! "zyiw
-
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-
-    " Move back to our original location.
-    normal! `z
-endfunction
-
-nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
-
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
-
-"----------------------------------------------------------------------------
-"set laststatus=2 " Always display the statusline in all windows
-"set showtabline=2 " Always display the tabline, even if there is only one tab
-"set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-
-
-"let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Vim-php-cs-fixer {{{
 " If php-cs-fixer is in $PATH, you don't need to define line below
@@ -755,3 +633,114 @@ let g:syntastic_php_checkers = ['php']
 """ indentLine {{{
 let g:indentLine_enabled = 0
 """}}}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Customize
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" show multi byte space {{{
+"highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+"match ZenkakuSpace /　/
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme       * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+    augroup END
+    call ZenkakuSpace()
+endif
+""" }}}
+
+" HiInterestingWord {{{
+function! HiInterestingWord(n)
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction
+
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+"}}}
+
+" HtmlUnEscape {{{
+function! HtmlUnEscape()
+  silent s/&lt;/</eg
+  silent s/&gt;/>/eg
+  silent s/&amp;/\&/eg
+endfunction
+
+" nnoremap <silent> <leader>us :call HtmlUnEscape()<cr>
+"}}}
+
+" AlignPHPMap {{{
+" format array
+" function! AlignPHPMap() range
+"      let sep = '=>'
+"      let firstline = a:firstline
+"      let lastline = a:lastline
+"      let lines = {}
+"      for lineno in range(firstline, lastline)
+"           let lines[lineno] = match(getline(lineno), '\s*' . sep)
+"      endfor
+"      let maxLen = max(lines) + 1
+"      for lineno in range(firstline, lastline)
+"           if lines[lineno] != -1
+"                let spaces = repeat(' ', maxLen - lines[lineno])
+"                call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
+"           endif
+"      endfor
+" endfunction
+"
+" noremap <Leader>=> :call AlignPHPMap()<CR>
+"
+" " format =
+" function! AlignPHPAssign() range
+"      let sep = '='
+"      let firstline = a:firstline
+"      let lastline = a:lastline
+"      let lines = {}
+"      for lineno in range(firstline, lastline)
+"           let lines[lineno] = match(getline(lineno), '\s*' . sep)
+"      endfor
+"      let maxLen = max(lines) + 1
+"      for lineno in range(firstline, lastline)
+"           if lines[lineno] != -1
+"                let spaces = repeat(' ', maxLen - lines[lineno])
+"                call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
+"           endif
+"      endfor
+" endfunction
+"
+" noremap <Leader>== :call AlignPHPAssign()<CR>
+"}}}

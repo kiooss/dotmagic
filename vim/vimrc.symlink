@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => My vim config
 " => Yang Yang
-" vim: set fdm=marker:
+" vim: set fdm=marker fdc=1:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -148,7 +148,8 @@ highlight Pmenu ctermbg=238 gui=bold
 set invlist
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
-highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
+" make the highlighting of tabs less annoying
+highlight SpecialKey ctermbg=none
 set listchars=tab:▸\ ,eol:¬
 set showbreak=↪
 
@@ -161,8 +162,6 @@ if &term =~ '256color'
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
-
-" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 
 if has("gui_macvim")
     set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
@@ -218,7 +217,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Mappings
+" => Mapping settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 
@@ -300,7 +299,7 @@ inoremap <%     <%  %><Left><Left><Left>
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => autocmd
+" => Autocmd settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " {{{
 " file type specific settings

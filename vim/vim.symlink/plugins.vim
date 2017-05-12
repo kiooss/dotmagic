@@ -62,6 +62,7 @@ Plug 'gregsexton/MatchTag'
 if executable('ctags')
     " Plug 'vim-scripts/taglist.vim'
     Plug 'majutsushi/tagbar'
+    Plug 'ludovicchabant/vim-gutentags'
 end
 "Plug 'edkolev/promptline.vim'
 " Plug 'airblade/vim-gitgutter', { 'commit': '0e490ec' }
@@ -113,7 +114,13 @@ Plug 'luochen1990/rainbow'
 
 Plug 'tobyS/vmustache'
 Plug 'tobyS/pdv'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
+
+" asynchonously (requires Vim 8).
+if has('nvim') || has('timers') && exists('*job_start') && exists('*ch_close_in')
+    Plug 'w0rp/ale'
+    com! ALECheckNow call ale#Queue(0)
+endif
 
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }

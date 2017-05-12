@@ -255,8 +255,8 @@ nnoremap <leader>et :e! ~/.tmux.conf<cr>
 nnoremap <leader>ep :e! ~/.vim/plugins.vim<cr>
 
 " Window moving
-map <C-J> <C-W>j<C-W>_
-map <C-k> <C-W>k<C-W>_
+" map <C-J> <C-W>j<C-W>_
+" map <C-k> <C-W>k<C-W>_
 map <C-h> <C-W>h<C-W>_
 map <C-l> <C-W>l<C-W>_
 
@@ -350,23 +350,23 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" supertab {{{
+" supertab {{{
 
 "let g:SuperTabMappingForward="<tab>"
 "let g:SuperTabMappingBackward="<S-Tab>"
 " let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabClosePreviewOnPopupClose = 1
-""" }}}
+" }}}
 
-""" snipMate {{{
+" snipMate {{{
 " let g:snipMate = {}
 " let g:snipMate.scope_aliases = {}
 " let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
 "
 " imap <C-J> <Plug>snipMateNextOrTrigger
 " smap <C-J> <Plug>snipMateNextOrTrigger
-""" }}}
+" }}}
 
 " vim-php-namespace {{{
 function! IPhpInsertUse()
@@ -387,13 +387,6 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
 """ }}}
 
-"Easily resize the splits"{{{
-" nnoremap <C-Right> :vertical resize +5<CR>
-" nnoremap <C-Left> :vertical resize -5<CR>
-" nnoremap <C-Up> :res +5<CR>
-" nnoremap <C-Down> :res -5<CR>
-"}}}
-
 " NERDTree {{{
 " close NERDTree after a file is opened
 let g:NERDTreeQuitOnOpen=0
@@ -407,7 +400,7 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 nnoremap <silent> <leader>y :NERDTreeFind<cr>
 "}}}
 
-" airline options {{{
+" airline {{{
 set ttimeoutlen=50
 
 let g:airline_powerline_fonts=1
@@ -425,12 +418,18 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled = 0
 "let g:airline_extensions = ['ctrlp']
 
+call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+call airline#parts#define_function('gutentags','gutentags#statusline')
+call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline")')
+let g:airline_section_error = airline#section#create_right(['ALE', 'gutentags'])
+
 " autocmd VimEnter,BufWinEnter *.php :AirlineRefresh
 autocmd! BufWritePost .vimrc,_vimrc,vimrc
         \ source $MYVIMRC | AirlineRefresh
 """ }}}
 
-" ctrlp options {{{
+" ctrlp {{{
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
@@ -439,7 +438,7 @@ if exists("g:ctrl_user_command")
 endif
 
 let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache,.svn,.git,cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|rsync_cache)$'
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -616,21 +615,54 @@ nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
 "}}}
 
 " vim-syntastic/syntastic {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_php_checkers = ['php']
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+"
+" let g:syntastic_php_checkers = ['php']
 "}}}
+
+" w0rp/ale {{{
+
+let g:ale_set_quickfix = 1
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_linters = {
+\   'php': ['php'],
+\   'javascript': [],
+\   'ruby': ['ruby'],
+\}
+" let g:ale_open_list = 1
+" let g:ale_keep_list_window_open = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+
+" set statusline+=%{ALEGetStatusLine()}
+" set statusline+=%*
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" }}}
 
 " indentLine {{{
 let g:indentLine_enabled = 0
 "}}}
+
+" ludovicchabant/vim-gutentags {{{
+set statusline+=%{gutentags#statusline('[Generating...]')}
+let g:gutentags_ctags_executable='exctags'
+" As suggested in https://github.com/ludovicchabant/vim-gutentags/issues/113,
+" to only update existing tags files and never create new ones:
+let g:gutentags_project_root = ['tags']
+let g:gutentags_add_default_project_roots = 0
+let g:gutentags_define_advanced_commands = 1
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Customize

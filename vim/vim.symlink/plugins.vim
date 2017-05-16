@@ -15,12 +15,17 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
+Plug 'Shougo/vimproc', { 'do': 'make' }
+
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+    Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 else
     Plug 'Shougo/neocomplete.vim'
+    Plug 'Shougo/denite.nvim'
 end
 
+Plug 'nixprime/cpsm'
 
 " colorschemes
 " Plug 'tomasr/molokai'
@@ -53,7 +58,7 @@ Plug 'benmills/vimux'
 Plug 'wellle/tmux-complete.vim'
 " Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/gtags.vim'
 Plug 'chrisbra/csv.vim'
@@ -139,8 +144,6 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'ap/vim-css-color'
 " Plug 'kshenoy/vim-signature'
 
-Plug 'Shougo/vimproc', { 'do': 'make' }
-" Plug 'Shougo/unite.vim'
 " Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
 " Plug 'm2mdas/phpcomplete-extended-symfony', { 'for': 'php' }
 

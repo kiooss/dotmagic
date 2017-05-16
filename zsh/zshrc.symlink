@@ -243,3 +243,6 @@ zstyle :omz:plugins:ssh-agent identities id_sec_key_svn
 # . $HOME/.asdf/asdf.sh
 
 # . $HOME/.asdf/completions/asdf.bash
+
+autoload -Uz zmv
+alias zmv='noglob zmv -W'

@@ -81,6 +81,8 @@ set showmode
 
 set laststatus=2
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache,.svn,.git,cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
+
 " save in readonly mode
 cnoreabbrev w!! w !sudo tee > /dev/null %
 
@@ -415,7 +417,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#hunks#enabled = 1
 "let g:airline_extensions = ['ctrlp']
 
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
@@ -438,7 +440,6 @@ if exists("g:ctrl_user_command")
 endif
 
 let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache,.svn,.git,cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|rsync_cache)$'
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -662,6 +663,102 @@ let g:gutentags_ctags_executable='exctags'
 let g:gutentags_project_root = ['tags']
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_define_advanced_commands = 1
+" }}}
+
+" Shougo/denite.nvim {{{
+
+" Change file_rec command.
+call denite#custom#var('file_rec', 'command',
+\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+" Change mappings.
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-j>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-k>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
+
+" Change matchers.
+call denite#custom#source(
+\ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+call denite#custom#source(
+\ 'file_rec', 'matchers', ['matcher_cpsm'])
+
+" Change sorters.
+call denite#custom#source(
+\ 'file_rec', 'sorters', ['sorter_sublime'])
+
+" Add custom menus
+let s:menus = {}
+
+let s:menus.zsh = {
+    \ 'description': 'Edit your import zsh configuration'
+    \ }
+let s:menus.zsh.file_candidates = [
+    \ ['zshrc', '~/.zshrc'],
+    \ ['zshenv', '~/.zshenv'],
+    \ ]
+
+let s:menus.my_commands = {
+    \ 'description': 'Example commands'
+    \ }
+let s:menus.my_commands.command_candidates = [
+    \ ['Split the window', 'vnew'],
+    \ ['Open zsh menu', 'Denite menu:zsh'],
+    \ ]
+
+call denite#custom#var('menu', 'menus', s:menus)
+
+" Ag command on grep source
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts',
+        \ ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+call denite#custom#source('file_mru', 'converters',
+      \ ['converter_relative_word'])
+
+" Define alias
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command',
+      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+" Change default prompt
+" call denite#custom#option('default', 'prompt', '>')
+call denite#custom#option('default', {
+      \ 'prompt': '>',
+      \ 'short_source_names': v:true
+      \ })
+
+" Change ignore_globs
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+      \ [ '.git/', '.ropeproject/', '__pycache__/', 'tmp/', 'var/',
+      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+
+nnoremap [denite] <Nop>
+nmap <C-u> [denite]
+
+" -buffer-name=
+nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
+nnoremap <silent> [denite]g  :<C-u>Denite grep -buffer-name=search-buffer-denite<CR>
+
+" Denite grep検索結果を再表示する
+nnoremap <silent> [denite]r :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
+" resumeした検索結果の次の行の結果へ飛ぶ
+nnoremap <silent> [denite]n :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
+" resumeした検索結果の前の行の結果へ飛ぶ
+nnoremap <silent> [denite]p :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
+
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""

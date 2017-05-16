@@ -27,6 +27,9 @@ end
 
 Plug 'nixprime/cpsm'
 
+Plug 'ryanoasis/vim-devicons'
+Plug 'easymotion/vim-easymotion'
+
 " colorschemes
 " Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
@@ -82,11 +85,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 "Plug 'vim-scripts/Gist.vim'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-scripts/jQuery'
@@ -116,39 +117,36 @@ Plug 'thinca/vim-quickrun'
 Plug 'luochen1990/rainbow'
 " Plug 'gcmt/wildfire.vim'
 
-Plug 'tobyS/vmustache'
-Plug 'tobyS/pdv'
-" Plug 'vim-syntastic/syntastic'
-
 " asynchonously (requires Vim 8).
 if has('nvim') || has('timers') && exists('*job_start') && exists('*ch_close_in')
     Plug 'w0rp/ale'
     com! ALECheckNow call ale#Queue(0)
+else
+    Plug 'vim-syntastic/syntastic'
 endif
 
+" Plugins for php
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
 Plug 'qbbr/vim-symfony', { 'for': 'php' }
 Plug 'docteurklein/php-getter-setter.vim', { 'for': 'php' }
-Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
-Plug 'tsaleh/vim-shoulda', { 'for': 'ruby' }
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-
-Plug 'ryanoasis/vim-devicons'
-Plug 'easymotion/vim-easymotion'
-" Plug 'ap/vim-css-color'
-" Plug 'kshenoy/vim-signature'
-
+Plug 'tobyS/vmustache', { 'for': 'php' }
+Plug 'tobyS/pdv', { 'for': 'php' }
 " Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
 " Plug 'm2mdas/phpcomplete-extended-symfony', { 'for': 'php' }
 
+" Plugins for ruby/rails
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
+Plug 'tsaleh/vim-shoulda', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
-" Plug 'mkusher/padawan.vim'
-
+" Plugins for css
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'groenewege/vim-less', { 'for': 'less' }
 
 call plug#end()
 filetype plugin indent on

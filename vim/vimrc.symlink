@@ -298,6 +298,47 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 inoremap {%     {%  %}<Left><Left><Left>
 inoremap <%     <%  %><Left><Left><Left>
+
+"===============================================================================
+" Normal Mode Key Mappings
+"===============================================================================
+" q: record macros
+" w: Move word forward
+" e: Move to end of word
+" r: Replace single character
+" t: Find till
+" y: Yank. Last yank is always stored in register 0. So paste with "0p if you did a delete after the yank
+" u: Undo
+" i: Insert before cursor
+" o: Insert line below cursor
+" p: Paste
+
+
+"===============================================================================
+" Normal Mode Shift Key Mappings
+"===============================================================================
+" +/-: Increment number
+nnoremap + <c-a>
+nnoremap - <c-x>
+
+"===============================================================================
+" Insert Mode Ctrl Key Mappings
+"===============================================================================
+" Ctrl-a: Go to begin of line
+inoremap <c-a> <esc>I
+
+" Ctrl-e: Go to end of line
+inoremap <c-e> <esc>A
+
+" Ctrl-f: Move cursor left
+inoremap <c-f> <Left>
+
+" Ctrl-u: Delete til beginning of line, create undo point
+inoremap <c-u> <c-g>u<c-u>
+
+
+
+
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -761,6 +802,11 @@ nnoremap <silent> [denite]n :<C-u>Denite -resume -buffer-name=search-buffer-deni
 " resumeした検索結果の前の行の結果へ飛ぶ
 nnoremap <silent> [denite]p :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
 
+" }}}
+
+" m2mdas/phpcomplete-extended {{{
+" autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
+" let g:phpcomplete_index_composer_command="composer"
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""

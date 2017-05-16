@@ -70,7 +70,6 @@ if executable('ctags')
     Plug 'ludovicchabant/vim-gutentags'
 end
 "Plug 'edkolev/promptline.vim'
-" Plug 'airblade/vim-gitgutter', { 'commit': '0e490ec' }
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/sudo.vim'
 Plug 'vim-scripts/CmdlineComplete'

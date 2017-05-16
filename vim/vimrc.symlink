@@ -526,7 +526,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
-" let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 " let g:neocomplete#force_omni_input_patterns = {}
 " let g:neocomplete#force_omni_input_patterns.php = '\h\w*\|[^- \t]->\w*'
 
@@ -541,7 +541,8 @@ let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 " }}}
 
-" Prevent conflict with Neocomplete {{{
+" terryma/vim-multiple-cursors {{{
+" Prevent conflict with Neocomplete
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
   if exists(':NeoCompleteLock')==2
@@ -662,7 +663,8 @@ let g:gutentags_ctags_executable='exctags'
 " to only update existing tags files and never create new ones:
 let g:gutentags_project_root = ['tags']
 let g:gutentags_add_default_project_roots = 0
-let g:gutentags_define_advanced_commands = 1
+" only need for debug.
+" let g:gutentags_define_advanced_commands = 1
 " }}}
 
 " Shougo/denite.nvim {{{

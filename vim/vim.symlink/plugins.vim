@@ -134,8 +134,6 @@ Plug 'qbbr/vim-symfony', { 'for': 'php' }
 Plug 'docteurklein/php-getter-setter.vim', { 'for': 'php' }
 Plug 'tobyS/vmustache', { 'for': 'php' }
 Plug 'tobyS/pdv', { 'for': 'php' }
-" Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
-" Plug 'm2mdas/phpcomplete-extended-symfony', { 'for': 'php' }
 
 " Plugins for ruby/rails
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }

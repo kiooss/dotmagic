@@ -567,7 +567,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 " let g:neocomplete#force_omni_input_patterns = {}
 " let g:neocomplete#force_omni_input_patterns.php = '\h\w*\|[^- \t]->\w*'
 
@@ -802,11 +802,6 @@ nnoremap <silent> [denite]n :<C-u>Denite -resume -buffer-name=search-buffer-deni
 " resumeした検索結果の前の行の結果へ飛ぶ
 nnoremap <silent> [denite]p :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
 
-" }}}
-
-" m2mdas/phpcomplete-extended {{{
-" autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
-" let g:phpcomplete_index_composer_command="composer"
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""

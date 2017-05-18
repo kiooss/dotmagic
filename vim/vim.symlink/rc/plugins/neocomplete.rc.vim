@@ -14,7 +14,7 @@ let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 
-" let g:neocomplete#disable_auto_complete = 0
+let g:neocomplete#disable_auto_complete = 0
 
 let g:neocomplete#enable_smart_case = 1
 " let g:neocomplete#enable_camel_case = 1
@@ -22,7 +22,7 @@ let g:neocomplete#enable_smart_case = 1
 
 let g:neocomplete#enable_fuzzy_completion = 1
 
-let g:neocomplete#auto_completion_start_length = 2
+" let g:neocomplete#auto_completion_start_length = 2
 let g:neocomplete#manual_completion_start_length = 0
 let g:neocomplete#min_keyword_length = 3
 
@@ -31,11 +31,11 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_disable_auto_complete = 1
 
-let g:neocomplete#enable_auto_select = 1
+" let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#max_list = 100
 
-let g:marching_enable_neocomplete = 1
+" let g:marching_enable_neocomplete = 1
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -43,7 +43,15 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'php' : $HOME.'/.vim/php.dict',
     \ }
 
+" Define keyword pattern.
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#keyword_patterns._ = '\h\k*(\?'
 
+" Define omni input pattern.
+" DaysHome_RealEstateBrokerage
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
@@ -51,20 +59,14 @@ endif
 let g:neocomplete#sources#omni#input_patterns.python = '[^. *\t]\.\w*\|\h\w*'
 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 " let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" let g:neocomplete#keyword_patterns.rst =
+"       \ '\$\$\?\w*\|[[:alpha:]_.\\/~-][[:alnum:]_.\\/~-]*\|\d\+\%(\.\d\+\)\+'
 
-" Define keyword pattern.
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-let g:neocomplete#keyword_patterns._ = '\h\k*(\?'
-let g:neocomplete#keyword_patterns.rst =
-      \ '\$\$\?\w*\|[[:alpha:]_.\\/~-][[:alnum:]_.\\/~-]*\|\d\+\%(\.\d\+\)\+'
 
-call neocomplete#custom#source('look', 'min_pattern_length', 4)
-call neocomplete#custom#source('_', 'converters',
-      \ ['converter_add_paren', 'converter_remove_overlap',
-      \  'converter_delimiter', 'converter_abbr'])
+" call neocomplete#custom#source('look', 'min_pattern_length', 4)
+" call neocomplete#custom#source('_', 'converters',
+"       \ ['converter_add_paren', 'converter_remove_overlap',
+"       \  'converter_delimiter', 'converter_abbr'])
 
 " mappings."{{{
 " <C-f>, <C-b>: page move.
@@ -86,14 +88,15 @@ function! s:my_cr_function() abort
 endfunction
 
 " <TAB>: completion.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ neocomplete#start_manual_complete()
-function! s:check_back_space() abort "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ neocomplete#start_manual_complete()
+" function! s:check_back_space() abort "{{{
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
 " <S-TAB>: completion back.
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 "}}}

@@ -40,8 +40,11 @@ call denite#custom#var('file_rec/git', 'command',
 
 " call denite#custom#option('default', 'prompt', '>')
 " call denite#custom#option('default', 'short_source_names', v:true)
-call denite#custom#option('default', {
-      \ 'prompt': '>', 'short_source_names': v:true
+" call denite#custom#option('default', {
+"       \ 'prompt': '>', 'short_source_names': v:true
+"       \ })
+call denite#custom#option('_', {
+      \ 'prompt': '', 'short_source_names': v:true
       \ })
 
 let s:menus = {}

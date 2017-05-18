@@ -9,14 +9,15 @@ on_cmd = 'Denite'
 hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
 hook_add = '''
   nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
+  nnoremap <silent> <leader>ol  :<C-u>Denite outline -highlight-mode-insert=Search<CR>
   nnoremap <silent> ;r
         \ :<C-u>Denite -buffer-name=register
         \ register neoyank<CR>
   xnoremap <silent> ;r
         \ :<C-u>Denite -default-action=replace -buffer-name=register
         \ register neoyank<CR>
-  nnoremap <silent> [Window]<Space>
-        \ :<C-u>Denite file_rec:~/.vim/rc<CR>
+  nnoremap <silent> <leader>ev
+        \ :<C-u>Denite file_rec:~/.vim/rc -highlight-mode-insert=Search<CR>
   nnoremap <silent> / :<C-u>Denite -buffer-name=search -highlight-mode-insert=Search
         \ line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
@@ -29,7 +30,6 @@ hook_add = '''
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
   nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
-  nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
   nnoremap <silent> ;g :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
@@ -43,19 +43,23 @@ hook_add = '''
         \ :<C-u>Denite command command_history<CR>
 '''
 
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
+# [[plugins]]
+# repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
-depends = 'context_filetype.vim'
+# depends = 'context_filetype.vim'
 if = "has('lua')"
-on_event = 'InsertEnter'
+# on_event = 'InsertEnter'
 hook_source = '''
   let g:neocomplete#enable_at_startup = 1
   source ~/.vim/rc/plugins/neocomplete.rc.vim
 '''
 
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+on_cmd = 'IndentLinesToggle'
 
 [[plugins]]
 repo = 'chrisbra/csv.vim'

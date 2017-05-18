@@ -107,8 +107,8 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'tpope/vim-unimpaired'
 
-[[plugins]]
-repo = 'vim-scripts/IndexedSearch'
+# [[plugins]]
+# repo = 'vim-scripts/IndexedSearch'
 
 [[plugins]]
 repo = 'vim-scripts/jQuery'
@@ -141,7 +141,7 @@ repo = 'honza/vim-snippets'
 repo = 'algotech/ultisnips-php'
 
 [[plugins]]
-repo = 'evidens/vim-twig'
+repo = 'lumiliet/vim-twig'
 
 [[plugins]]
 repo = 'ervandew/supertab'
@@ -151,9 +151,6 @@ repo = 'kchmck/vim-coffee-script'
 
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
-
-[[plugins]]
-repo = 'Yggdroot/indentLine'
 
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'

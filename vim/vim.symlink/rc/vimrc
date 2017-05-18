@@ -37,12 +37,12 @@ endfunction "}}}
 
 " TODO:
 " Set augroup.
-augroup MyAutoCmd
-  autocmd!
-  autocmd FileType,Syntax,BufNewFile,BufNew,BufRead *?
-        \ call vimrc#on_filetype()
-  autocmd CursorHold *.toml syntax sync minlines=300
-augroup END
+" augroup MyAutoCmd
+"   autocmd!
+"   autocmd FileType,Syntax,BufNewFile,BufNew,BufRead *?
+"         \ call vimrc#on_filetype()
+"   " autocmd CursorHold *.toml syntax sync minlines=300
+" augroup END
 
 if has('vim_starting')
   call s:source_rc('init.rc.vim')
@@ -51,18 +51,18 @@ endif
 call s:source_rc('dein.rc.vim')
 
 " TODO:
-if has('vim_starting') && !empty(argv())
-  call vimrc#on_filetype()
-endif
+" if has('vim_starting') && !empty(argv())
+  " call vimrc#on_filetype()
+" endif
 
 " TODO:
-if !has('vim_starting')
-  call dein#call_hook('source')
-  call dein#call_hook('post_source')
-
-  syntax enable
-  filetype plugin indent on
-endif
+" if !has('vim_starting')
+"   call dein#call_hook('source')
+"   call dein#call_hook('post_source')
+"
+"   syntax enable
+"   filetype plugin indent on
+" endif
 "---------------------------------------------------------------------------
 
 call s:source_rc('options.rc.vim')

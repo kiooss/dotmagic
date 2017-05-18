@@ -31,11 +31,6 @@ nnoremap k gk
 " clear highlighted search
 noremap <F3> :set hlsearch! hlsearch?<cr>
 
-" edit ~/.vimrc
-nnoremap <leader>ev :e! ~/.vimrc<cr>
-nnoremap <leader>et :e! ~/.tmux.conf<cr>
-nnoremap <leader>ep :e! ~/.vim/plugins.vim<cr>
-
 " Window moving
 nnoremap <Up> <C-W>j<C-W>_
 nnoremap <Down> <C-W>k<C-W>_

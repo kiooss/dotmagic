@@ -22,7 +22,7 @@ let g:neocomplete#enable_smart_case = 1
 
 let g:neocomplete#enable_fuzzy_completion = 1
 
-" let g:neocomplete#auto_completion_start_length = 2
+let g:neocomplete#auto_completion_start_length = 2
 let g:neocomplete#manual_completion_start_length = 0
 let g:neocomplete#min_keyword_length = 3
 
@@ -35,7 +35,7 @@ let g:neocomplcache_disable_auto_complete = 1
 let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#max_list = 100
 
-" let g:marching_enable_neocomplete = 1
+let g:marching_enable_neocomplete = 1
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {

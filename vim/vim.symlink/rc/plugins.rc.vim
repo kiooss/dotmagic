@@ -76,7 +76,7 @@ call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline"
 let g:airline_section_error = airline#section#create_right(['ALE', 'gutentags'])
 
 " autocmd VimEnter,BufWinEnter *.php :AirlineRefresh
-autocmd MyAutoCmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | AirlineRefresh
+autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | AirlineRefresh
 " autocmd! BufWritePost .vimrc,_vimrc,vimrc
 "         \ source $MYVIMRC | AirlineRefresh
 """ }}}

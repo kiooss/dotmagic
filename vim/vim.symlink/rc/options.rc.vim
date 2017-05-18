@@ -183,6 +183,11 @@ set completeopt-=preview
 "set columns=100
 "set lines=70
 
+" Splitting a window will put the new window below the current one.
+set splitbelow
+" Splitting a window will put the new window right the current one.
+set splitright
+
 " highlight conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 "}}}

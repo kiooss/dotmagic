@@ -42,6 +42,7 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd VimResized * exe 'normal! \<c-w>='
     " autocmd BufWritePost .vimrc source %
     " autocmd BufWritePost .vimrc.local source %
+    autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | AirlineRefresh
     " save all files on focus lost, ignoring warnings about untitled buffers
     autocmd FocusLost * silent! wa
 endif

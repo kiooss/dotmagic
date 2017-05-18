@@ -1,0 +1,330 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin settings
+" vim: set fdm=marker fdc=1:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" supertab {{{
+
+"let g:SuperTabMappingForward="<tab>"
+"let g:SuperTabMappingBackward="<S-Tab>"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabClosePreviewOnPopupClose = 1
+" }}}
+
+" snipMate {{{
+" let g:snipMate = {}
+" let g:snipMate.scope_aliases = {}
+" let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
+"
+" imap <C-J> <Plug>snipMateNextOrTrigger
+" smap <C-J> <Plug>snipMateNextOrTrigger
+" }}}
+
+" vim-php-namespace {{{
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+" autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
+endfunction
+" autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+
+" autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+""" }}}
+
+" NERDTree {{{
+" close NERDTree after a file is opened
+let g:NERDTreeQuitOnOpen=0
+" show hidden files in NERDTree
+let NERDTreeShowHidden=1
+" remove some files by extension
+let NERDTreeIgnore = ['\.js.map$']
+" Toggle NERDTree
+nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+" expand to the path of the file in the current buffer
+nnoremap <silent> <leader>y :NERDTreeFind<cr>
+"}}}
+
+" airline {{{
+set ttimeoutlen=50
+
+let g:airline_powerline_fonts=1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+" let g:airline_theme='luna'
+"let g:airline_theme='powerlineish'
+" let g:airline_theme='badwolf'
+let g:airline_theme='gruvbox'
+" let g:airline_theme='papercolor'
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+
+call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+call airline#parts#define_function('gutentags','gutentags#statusline')
+call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline")')
+let g:airline_section_error = airline#section#create_right(['ALE', 'gutentags'])
+
+" autocmd VimEnter,BufWinEnter *.php :AirlineRefresh
+autocmd MyAutoCmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | AirlineRefresh
+" autocmd! BufWritePost .vimrc,_vimrc,vimrc
+"         \ source $MYVIMRC | AirlineRefresh
+""" }}}
+
+" Vim-php-cs-fixer {{{
+" If php-cs-fixer is in $PATH, you don't need to define line below
+" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+" let g:php_cs_fixer_level = "symfony"              " which level ?
+let g:php_cs_fixer_level = "all"              " which level ?
+" let g:php_cs_fixer_config = "default"             " configuration
+"let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
+" let g:php_cs_fixer_php_path = "php"               " Path to PHP
+" If you want to define specific fixers:
+"let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+""" }}}
+
+" terryma/vim-multiple-cursors {{{
+" Prevent conflict with Neocomplete
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
+" }}}
+
+" UltiSnips {{{
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" make vim recognizing snippets dir
+" use different snippets dir
+" let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
+" let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+" }}}
+
+" godlygeek/tabular {{{
+nnoremap <Leader>= :Tabularize /=>\?<CR>
+vnoremap <Leader>= :Tabularize /=>\?<CR>
+nnoremap <Leader>: :Tabularize /:\zs<CR>
+vnoremap <Leader>: :Tabularize /:\zs<CR>
+" }}}
+
+" luochen1990/rainbow {{{
+" let g:rainbow_active = 1
+" }}}
+
+" benmills/vimux {{{
+" Run the current file with rspec
+map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+
+" Interrupt any command running in the runner pane
+map <Leader>vx :VimuxInterruptRunner<CR>
+
+" Zoom the runner pane (use <bind-key> z to restore runner pane)
+map <Leader>vz :call VimuxZoomRunner()<CR>
+" }}}
+
+" tobyS/pdv {{{
+let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
+nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
+"}}}
+
+" vim-syntastic/syntastic {{{
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+"
+" let g:syntastic_php_checkers = ['php']
+"}}}
+
+" w0rp/ale {{{
+
+let g:ale_set_quickfix = 1
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_linters = {
+\   'php': ['php'],
+\   'javascript': [],
+\   'ruby': ['ruby'],
+\}
+" let g:ale_open_list = 1
+" let g:ale_keep_list_window_open = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+
+" set statusline+=%{ALEGetStatusLine()}
+" set statusline+=%*
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" }}}
+
+" indentLine {{{
+let g:indentLine_enabled = 0
+"}}}
+
+" ludovicchabant/vim-gutentags {{{
+set statusline+=%{gutentags#statusline('[Generating...]')}
+let g:gutentags_ctags_executable='exctags'
+" As suggested in https://github.com/ludovicchabant/vim-gutentags/issues/113,
+" to only update existing tags files and never create new ones:
+let g:gutentags_project_root = ['tags']
+let g:gutentags_add_default_project_roots = 0
+" only need for debug.
+" let g:gutentags_define_advanced_commands = 1
+" }}}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Customize
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" show multi byte space {{{
+"highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+"match ZenkakuSpace /　/
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme       * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+    augroup END
+    call ZenkakuSpace()
+endif
+" }}}
+
+" HiInterestingWord {{{
+function! HiInterestingWord(n)
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction
+
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+"}}}
+
+" HtmlUnEscape {{{
+function! HtmlUnEscape()
+  silent s/&lt;/</eg
+  silent s/&gt;/>/eg
+  silent s/&amp;/\&/eg
+endfunction
+
+" nnoremap <silent> <leader>us :call HtmlUnEscape()<cr>
+"}}}
+
+" AlignPHPMap {{{
+" format array
+" function! AlignPHPMap() range
+"      let sep = '=>'
+"      let firstline = a:firstline
+"      let lastline = a:lastline
+"      let lines = {}
+"      for lineno in range(firstline, lastline)
+"           let lines[lineno] = match(getline(lineno), '\s*' . sep)
+"      endfor
+"      let maxLen = max(lines) + 1
+"      for lineno in range(firstline, lastline)
+"           if lines[lineno] != -1
+"                let spaces = repeat(' ', maxLen - lines[lineno])
+"                call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
+"           endif
+"      endfor
+" endfunction
+"
+" noremap <Leader>=> :call AlignPHPMap()<CR>
+"
+" " format =
+" function! AlignPHPAssign() range
+"      let sep = '='
+"      let firstline = a:firstline
+"      let lastline = a:lastline
+"      let lines = {}
+"      for lineno in range(firstline, lastline)
+"           let lines[lineno] = match(getline(lineno), '\s*' . sep)
+"      endfor
+"      let maxLen = max(lines) + 1
+"      for lineno in range(firstline, lastline)
+"           if lines[lineno] != -1
+"                let spaces = repeat(' ', maxLen - lines[lineno])
+"                call setline(lineno, substitute(getline(lineno), '\s*' . sep . '\s*', spaces . sep . ' ', ''))
+"           endif
+"      endfor
+" endfunction
+"
+" noremap <Leader>== :call AlignPHPAssign()<CR>
+"}}}

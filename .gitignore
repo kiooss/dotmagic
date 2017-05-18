@@ -8,3 +8,4 @@ config/nvim/shada
 config/nvim/plugged
 vim/vim.symlink/spell/
 vim/vim.symlink/plugged/
+vim/vim.symlink/bundles/

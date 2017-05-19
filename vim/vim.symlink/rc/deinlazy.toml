@@ -16,7 +16,7 @@ hook_add = '''
   xnoremap <silent> ;r
         \ :<C-u>Denite -default-action=replace -buffer-name=register
         \ register neoyank<CR>
-  nnoremap <silent> <leader>ev
+  nnoremap <silent> <leader>rc
         \ :<C-u>Denite file_rec:~/.vim/rc -highlight-mode-insert=Search<CR>
   nnoremap <silent> / :<C-u>Denite -buffer-name=search -highlight-mode-insert=Search
         \ line<CR>
@@ -43,27 +43,11 @@ hook_add = '''
         \ :<C-u>Denite command command_history<CR>
 '''
 
-# [[plugins]]
-# repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'Shougo/neocomplete.vim'
-# depends = 'context_filetype.vim'
-if = "has('lua')"
-# on_event = 'InsertEnter'
-hook_source = '''
-  let g:neocomplete#enable_at_startup = 1
-  source ~/.vim/rc/plugins/neocomplete.rc.vim
-'''
-
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 on_cmd = 'IndentLinesToggle'
 
-[[plugins]]
-repo = 'chrisbra/csv.vim'
-on_ft = 'csv'
 
 [[plugins]]
 repo = 'StanAngeloff/php.vim'
@@ -125,3 +109,6 @@ on_ft = 'scss'
 repo = 'groenewege/vim-less'
 on_ft = 'less'
 
+[[plugins]]
+repo = 'chrisbra/csv.vim'
+on_ft = 'csv'

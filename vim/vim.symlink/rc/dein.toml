@@ -7,6 +7,22 @@ repo = 'nixprime/cpsm'
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
+# [[plugins]]
+# repo = 'ervandew/supertab'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+# depends = 'context_filetype.vim'
+# if = "has('lua')"
+# on_event = 'InsertEnter'
+# hook_source = '''
+#   let g:neocomplete#enable_at_startup = 1
+#   source ~/.vim/rc/plugins/neocomplete.rc.vim
+# '''
+
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 
@@ -143,8 +159,6 @@ repo = 'algotech/ultisnips-php'
 [[plugins]]
 repo = 'lumiliet/vim-twig'
 
-[[plugins]]
-repo = 'ervandew/supertab'
 
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
@@ -166,3 +180,4 @@ repo = 'w0rp/ale'
 
 [[plugins]]
 repo = 'cespare/vim-toml'
+

@@ -13,6 +13,12 @@ if &compatible
 endif
 
 function! s:source_rc(path, ...) abort "{{{
+  let abspath = resolve(expand('~/.vim/rc/' . a:path))
+  execute 'source' fnameescape(abspath)
+endfunction "}}}
+
+" TODO:
+function! s:source_rc_2(path, ...) abort "{{{
   let use_global = get(a:000, 0, !has('vim_starting'))
   let abspath = resolve(expand('~/.vim/rc/' . a:path))
   if !use_global
@@ -50,6 +56,9 @@ endif
 
 call s:source_rc('dein.rc.vim')
 
+" syntax enable
+" filetype plugin indent on
+
 " TODO:
 " if has('vim_starting') && !empty(argv())
   " call vimrc#on_filetype()
@@ -76,6 +85,8 @@ call s:source_rc('autocmds.rc.vim')
 call s:source_rc('plugins.rc.vim')
 
 "---------------------------------------------------------------------------
-set secure
+" set secure
+" syntax enable
+" filetype plugin indent on
 
 " vim: foldmethod=marker

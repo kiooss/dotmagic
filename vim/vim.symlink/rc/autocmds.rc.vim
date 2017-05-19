@@ -8,9 +8,10 @@ if has('autocmd') && !exists('autocommands_loaded')
 
     " php
     autocmd FileType php set dictionary+=~/.vim/php.dict
-    " autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
+    autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType crontab setlocal nobackup nowritebackup
 

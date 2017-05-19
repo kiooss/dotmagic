@@ -127,7 +127,7 @@ endif
 
 " Plugins for php
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+" Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
 Plug 'qbbr/vim-symfony', { 'for': 'php' }

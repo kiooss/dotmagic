@@ -84,7 +84,7 @@ call s:source_rc('autocmds.rc.vim')
 call s:source_rc('plugins.rc.vim')
 
 " source plugin's config
-for s:path in split(glob('~/.vim/plugins.rc.d/*.vim'), "\n")
+for s:path in split(glob('~/.vim/rc/plugins.rc.d/*.vim'), "\n")
   exe 'source ' . s:path
 endfor
 

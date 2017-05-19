@@ -94,9 +94,6 @@ repo = 'vim-scripts/sudo.vim'
 repo = 'vim-scripts/CmdlineComplete'
 
 [[plugins]]
-repo = 'godlygeek/tabular'
-
-[[plugins]]
 repo = 'pangloss/vim-javascript'
 
 [[plugins]]
@@ -158,7 +155,6 @@ repo = 'algotech/ultisnips-php'
 
 [[plugins]]
 repo = 'lumiliet/vim-twig'
-
 
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'

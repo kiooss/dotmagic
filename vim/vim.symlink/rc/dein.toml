@@ -2,6 +2,9 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'mhinz/vim-startify'
+
+[[plugins]]
 repo = 'nixprime/cpsm'
 
 [[plugins]]

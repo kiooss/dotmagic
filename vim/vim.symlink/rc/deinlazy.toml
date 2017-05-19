@@ -43,7 +43,6 @@ hook_add = '''
         \ :<C-u>Denite command command_history<CR>
 '''
 
-
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 on_cmd = 'IndentLinesToggle'

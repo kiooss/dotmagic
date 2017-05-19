@@ -27,9 +27,6 @@ repo = 'Shougo/neocomplete.vim'
 # '''
 
 [[plugins]]
-repo = 'easymotion/vim-easymotion'
-
-[[plugins]]
 repo = 'morhetz/gruvbox'
 
 [[plugins]]
@@ -89,12 +86,6 @@ repo = 'vim-scripts/CmdlineComplete'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
-
-[[plugins]]
-repo = 'vim-scripts/sudo.vim'
-
-[[plugins]]
-repo = 'vim-scripts/CmdlineComplete'
 
 [[plugins]]
 repo = 'pangloss/vim-javascript'
@@ -157,12 +148,6 @@ repo = 'honza/vim-snippets'
 repo = 'algotech/ultisnips-php'
 
 [[plugins]]
-repo = 'lumiliet/vim-twig'
-
-[[plugins]]
-repo = 'kchmck/vim-coffee-script'
-
-[[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
 
 [[plugins]]
@@ -176,9 +161,6 @@ repo = 'luochen1990/rainbow'
 
 [[plugins]]
 repo = 'w0rp/ale'
-
-[[plugins]]
-repo = 'cespare/vim-toml'
 
 # [[plugins]]
 # repo = 'tweekmonster/startuptime.vim'

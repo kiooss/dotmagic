@@ -61,6 +61,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'easymotion/vim-easymotion'
+on_map = {n = '<Plug>'}
+
+[[plugins]]
 repo = 'osyo-manga/vim-precious'
 on_ft = 'toml'
 
@@ -127,3 +131,15 @@ on_ft = 'less'
 [[plugins]]
 repo = 'chrisbra/csv.vim'
 on_ft = 'csv'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'lumiliet/vim-twig'
+on_ft = 'html.twig'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_ft = 'coffee'

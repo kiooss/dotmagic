@@ -22,9 +22,6 @@ set notimeout          " don't timeout on mappings
 set ttimeout           " do timeout on terminal key codes
 set timeoutlen=100     " timeout after 100 msec
 
-"filetype plugin on
-"filetype indent on
-
 " make backspace behave in a sane manner
 set backspace=start,indent,eol
 

@@ -92,7 +92,7 @@ set packpath=
 
 " Disable menu.vim
 if has('gui_running')
-   set guioptions=Mc
+  set guioptions=Mc
 endif
 
 " TODO:

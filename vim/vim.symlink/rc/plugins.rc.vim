@@ -52,35 +52,6 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 nnoremap <silent> <leader>y :NERDTreeFind<cr>
 "}}}
 
-" airline {{{
-set ttimeoutlen=50
-
-let g:airline_powerline_fonts=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-" let g:airline_theme='luna'
-"let g:airline_theme='powerlineish'
-" let g:airline_theme='badwolf'
-let g:airline_theme='gruvbox'
-" let g:airline_theme='papercolor'
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#enabled = 1
-
-call airline#parts#define_function('ALE', 'ALEGetStatusLine')
-call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
-call airline#parts#define_function('gutentags','gutentags#statusline')
-call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline")')
-let g:airline_section_error = airline#section#create_right(['ALE', 'gutentags'])
-
-" autocmd VimEnter,BufWinEnter *.php :AirlineRefresh
-autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | AirlineRefresh
-" autocmd! BufWritePost .vimrc,_vimrc,vimrc
-"         \ source $MYVIMRC | AirlineRefresh
-""" }}}
-
 " Vim-php-cs-fixer {{{
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
@@ -180,28 +151,6 @@ nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
 " let g:syntastic_php_checkers = ['php']
 "}}}
 
-" w0rp/ale {{{
-
-let g:ale_set_quickfix = 1
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-let g:ale_linters = {
-\   'php': ['php'],
-\   'javascript': [],
-\   'ruby': ['ruby'],
-\}
-" let g:ale_open_list = 1
-" let g:ale_keep_list_window_open = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-
-" set statusline+=%{ALEGetStatusLine()}
-" set statusline+=%*
-
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-" }}}
 
 " indentLine {{{
 let g:indentLine_enabled = 0

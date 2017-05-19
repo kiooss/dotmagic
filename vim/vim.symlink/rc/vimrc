@@ -12,13 +12,12 @@ if &compatible
   set nocompatible
 endif
 
-function! s:source_rc(path, ...) abort "{{{
+function! s:source_rc_simple(path, ...) abort "{{{
   let abspath = resolve(expand('~/.vim/rc/' . a:path))
   execute 'source' fnameescape(abspath)
 endfunction "}}}
 
-" TODO:
-function! s:source_rc_2(path, ...) abort "{{{
+function! s:source_rc(path, ...) abort "{{{
   let use_global = get(a:000, 0, !has('vim_starting'))
   let abspath = resolve(expand('~/.vim/rc/' . a:path))
   if !use_global
@@ -84,7 +83,10 @@ call s:source_rc('autocmds.rc.vim')
 
 call s:source_rc('plugins.rc.vim')
 
-call s:source_rc('plugins/neocomplete.rc.vim')
+" source plugin's config
+for s:path in split(glob('~/.vim/plugins.rc.d/*.vim'), "\n")
+  exe 'source ' . s:path
+endfor
 
 "---------------------------------------------------------------------------
 " set secure

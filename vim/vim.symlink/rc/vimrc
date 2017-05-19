@@ -84,6 +84,8 @@ call s:source_rc('autocmds.rc.vim')
 
 call s:source_rc('plugins.rc.vim')
 
+call s:source_rc('plugins/neocomplete.rc.vim')
+
 "---------------------------------------------------------------------------
 " set secure
 " syntax enable

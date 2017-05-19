@@ -52,6 +52,16 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'godlygeek/tabular'
+on_cmd = 'Tabularize'
+hook_add = '''
+  nnoremap <Leader>= :Tabularize /=>\?<CR>
+  vnoremap <Leader>= :Tabularize /=>\?<CR>
+  nnoremap <Leader>: :Tabularize /:\zs<CR>
+  vnoremap <Leader>: :Tabularize /:\zs<CR>
+'''
+
+[[plugins]]
 repo = 'osyo-manga/vim-precious'
 on_ft = 'toml'
 

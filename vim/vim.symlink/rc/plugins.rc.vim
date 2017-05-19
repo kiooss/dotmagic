@@ -99,13 +99,6 @@ let g:UltiSnipsEditSplit="vertical"
 " let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " }}}
 
-" godlygeek/tabular {{{
-nnoremap <Leader>= :Tabularize /=>\?<CR>
-vnoremap <Leader>= :Tabularize /=>\?<CR>
-nnoremap <Leader>: :Tabularize /:\zs<CR>
-vnoremap <Leader>: :Tabularize /:\zs<CR>
-" }}}
-
 " luochen1990/rainbow {{{
 " let g:rainbow_active = 1
 " }}}

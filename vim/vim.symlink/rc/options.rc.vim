@@ -107,9 +107,8 @@ set visualbell
 set t_vb=
 set tm=500
 
-" set number " show line numbers
+set number " show line numbers
 " set relativenumber " show relative line numbers
-set number " show the current line number"
 
 set autoindent " automatically set indent of new line
 set smartindent

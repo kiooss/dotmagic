@@ -181,3 +181,5 @@ repo = 'w0rp/ale'
 [[plugins]]
 repo = 'cespare/vim-toml'
 
+# [[plugins]]
+# repo = 'tweekmonster/startuptime.vim'

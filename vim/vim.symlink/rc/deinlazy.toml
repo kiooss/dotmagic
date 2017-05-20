@@ -137,9 +137,5 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
-repo = 'lumiliet/vim-twig'
-on_ft = 'html.twig'
-
-[[plugins]]
 repo = 'kchmck/vim-coffee-script'
 on_ft = 'coffee'

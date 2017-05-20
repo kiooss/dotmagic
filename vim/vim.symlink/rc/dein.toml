@@ -162,5 +162,8 @@ repo = 'luochen1990/rainbow'
 [[plugins]]
 repo = 'w0rp/ale'
 
+[[plugins]]
+repo = 'lumiliet/vim-twig'
+
 # [[plugins]]
 # repo = 'tweekmonster/startuptime.vim'

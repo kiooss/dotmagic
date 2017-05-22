@@ -18,8 +18,8 @@ repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
-# depends = 'context_filetype.vim'
-# if = "has('lua')"
+depends = 'context_filetype.vim'
+if = "has('lua')"
 # on_event = 'InsertEnter'
 # hook_source = '''
 #   let g:neocomplete#enable_at_startup = 1

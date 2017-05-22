@@ -38,6 +38,11 @@ call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
       \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
+call denite#custom#alias('source', 'grep/git', 'grep')
+call denite#custom#var('grep/git', 'command',
+      \ ['git', 'grep'])
+call denite#custom#var('grep/git', 'recursive_opts', [])
+
 " call denite#custom#option('default', 'prompt', '>')
 " call denite#custom#option('default', 'short_source_names', v:true)
 " call denite#custom#option('default', {

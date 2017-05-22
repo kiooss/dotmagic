@@ -10,20 +10,20 @@ hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
 hook_add = '''
   nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ol  :<C-u>Denite outline -highlight-mode-insert=Search<CR>
-  nnoremap <silent> ;r
-        \ :<C-u>Denite -buffer-name=register
-        \ register neoyank<CR>
-  xnoremap <silent> ;r
-        \ :<C-u>Denite -default-action=replace -buffer-name=register
-        \ register neoyank<CR>
+  " nnoremap <silent> ;r
+  "       \ :<C-u>Denite -buffer-name=register
+  "       \ register neoyank<CR>
+  " xnoremap <silent> ;r
+  "       \ :<C-u>Denite -default-action=replace -buffer-name=register
+  "       \ register neoyank<CR>
   nnoremap <silent> <leader>rc
         \ :<C-u>Denite file_rec:~/.vim/rc -highlight-mode-insert=Search<CR>
   nnoremap <silent> / :<C-u>Denite -buffer-name=search -highlight-mode-insert=Search
         \ line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
-        \ -mode=normal line<C>
-  nnoremap <silent> [Window]s :<C-u>Denite file_point file_old
-        \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+        \ -mode=normal line<CR>
+  " nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
+  "       \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
   nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
         \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
         \  tag:include\<CR>"
@@ -38,7 +38,7 @@ hook_add = '''
   " nnoremap <silent> <C-t> :<C-u>Denite
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-  nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
+  " nnoremap <silent> <leader>gs :<C-u>Denite gitstatus<CR>
   nnoremap <silent> ;;
         \ :<C-u>Denite command command_history<CR>
 '''

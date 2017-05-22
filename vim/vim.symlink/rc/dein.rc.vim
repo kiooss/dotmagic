@@ -6,21 +6,21 @@
 
 let s:path = expand('$CACHE/dein')
 if dein#load_state(s:path)
-    " Note: It executes ":filetype off" automatically.
-    call dein#begin(s:path, expand('<sfile>'))
+  " Note: It executes ":filetype off" automatically.
+  call dein#begin(s:path, expand('<sfile>'))
 
-    call dein#load_toml('~/.vim/rc/dein.toml', {'lazy': 0})
-    call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy' : 1})
-    if has('nvim')
-        call dein#load_toml('~/.vim/rc/deineo.toml', {})
-    endif
+  call dein#load_toml('~/.vim/rc/dein.toml', {'lazy': 0})
+  call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy' : 1})
+  if has('nvim')
+    call dein#load_toml('~/.vim/rc/deineo.toml', {})
+  endif
 
-    if dein#tap('deoplete.nvim') && has('nvim')
+  if dein#tap('deoplete.nvim') && has('nvim')
     call dein#disable('neocomplete.vim')
-    endif
+  endif
 
-    call dein#end()
-    call dein#save_state()
+  call dein#end()
+  call dein#save_state()
 endif
 
 " Required:

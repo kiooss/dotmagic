@@ -27,11 +27,13 @@ hook_add = '''
   nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
         \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
         \  tag:include\<CR>"
+  " nnoremap <silent><expr> ;t :<C-u>DeniteCursorWord --buffer-name=tag
+  "       \ tag:include<CR>
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
-  nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+  " nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
   nnoremap <silent> ;g :<C-u>Denite -buffer-name=search
-        \ -no-empty -mode=normal grep<CR>
+        \ -no-empty -mode=normal grep/git<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
         \ -resume -mode=normal -refresh<CR>
   nnoremap <silent> ft :<C-u>Denite filetype<CR>
@@ -39,8 +41,8 @@ hook_add = '''
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
   " nnoremap <silent> <leader>gs :<C-u>Denite gitstatus<CR>
-  nnoremap <silent> ;;
-        \ :<C-u>Denite command command_history<CR>
+  " nnoremap <silent> ;;
+  "       \ :<C-u>Denite command command_history<CR>
 '''
 
 [[plugins]]

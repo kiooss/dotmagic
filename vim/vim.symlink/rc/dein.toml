@@ -167,3 +167,10 @@ repo = 'lumiliet/vim-twig'
 
 # [[plugins]]
 # repo = 'tweekmonster/startuptime.vim'
+
+# [[plugins]]
+# repo = 'chemzqm/vim-easygit'
+#
+# [[plugins]]
+# repo = 'chemzqm/denite-git'
+

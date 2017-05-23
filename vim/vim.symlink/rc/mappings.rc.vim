@@ -28,6 +28,9 @@ nnoremap <Leader>l :set list!<CR>
 nnoremap j gj
 nnoremap k gk
 
+nnoremap g; g;zz
+nnoremap g, g,zz
+
 " clear highlighted search
 noremap <F3> :set hlsearch! hlsearch?<cr>
 
@@ -36,6 +39,9 @@ nnoremap <Up> <C-W>j<C-W>_
 nnoremap <Down> <C-W>k<C-W>_
 nnoremap <Left> <C-W>h<C-W>_
 nnoremap <Right> <C-W>l<C-W>_
+
+" Redraw.
+nnoremap <silent> <C-l>    :<C-u>redraw!<CR>
 
 " simplify resizing splits
 if has('unix')
@@ -58,11 +64,22 @@ nnoremap <C-y> 3<C-y>
 nnoremap B ^
 nnoremap E $
 
-" map for command mode
-" cnoremap <C-j> <t_kd>
-" cnoremap <C-k> <t_ku>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+" Command-line mode keymappings:"{{{
+" <C-a>, A: move to head.
+cnoremap <C-a>          <Home>
+" <C-b>: previous char.
+cnoremap <C-b>          <Left>
+" <C-d>: delete char.
+cnoremap <C-d>          <Del>
+" <C-e>, E: move to end.
+cnoremap <C-e>          <End>
+" <C-f>: next char.
+cnoremap <C-f>          <Right>
+" <C-y>: paste.
+cnoremap <C-y>          <C-r>*
+" <C-g>: Exit.
+cnoremap <C-g>          <C-c>
+"}}}
 
 " stile select when indent in visual mode
 vnoremap < <gv

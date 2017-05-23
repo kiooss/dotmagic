@@ -39,19 +39,6 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
 """ }}}
 
-" NERDTree {{{
-" close NERDTree after a file is opened
-let g:NERDTreeQuitOnOpen=0
-" show hidden files in NERDTree
-let NERDTreeShowHidden=1
-" remove some files by extension
-let NERDTreeIgnore = ['\.js.map$']
-" Toggle NERDTree
-nnoremap <silent> <leader>k :NERDTreeToggle<cr>
-" expand to the path of the file in the current buffer
-nnoremap <silent> <leader>y :NERDTreeFind<cr>
-"}}}
-
 " Vim-php-cs-fixer {{{
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
@@ -82,21 +69,6 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
   endif
 endfunction
-" }}}
-
-" UltiSnips {{{
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" make vim recognizing snippets dir
-" use different snippets dir
-" let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
-" let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " }}}
 
 " benmills/vimux {{{
@@ -134,22 +106,6 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 "
 " let g:syntastic_php_checkers = ['php']
 "}}}
-
-
-" indentLine {{{
-let g:indentLine_enabled = 0
-"}}}
-
-" ludovicchabant/vim-gutentags {{{
-set statusline+=%{gutentags#statusline('[Generating...]')}
-let g:gutentags_ctags_executable='exctags'
-" As suggested in https://github.com/ludovicchabant/vim-gutentags/issues/113,
-" to only update existing tags files and never create new ones:
-let g:gutentags_project_root = ['tags']
-let g:gutentags_add_default_project_roots = 0
-" only need for debug.
-" let g:gutentags_define_advanced_commands = 1
-" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Customize

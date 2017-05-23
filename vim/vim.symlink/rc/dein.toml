@@ -49,6 +49,18 @@ repo = 'wellle/targets.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+hook_add = '''
+  " close NERDTree after a file is opened
+  let g:NERDTreeQuitOnOpen=0
+  " show hidden files in NERDTree
+  let NERDTreeShowHidden=1
+  " remove some files by extension
+  let NERDTreeIgnore = ['\.js.map$']
+  " Toggle NERDTree
+  nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+  " expand to the path of the file in the current buffer
+  nnoremap <silent> <leader>y :NERDTreeFind<cr>
+'''
 
 [[plugins]]
 repo = 'benmills/vimux'
@@ -73,6 +85,15 @@ repo = 'majutsushi/tagbar'
 
 [[plugins]]
 repo = 'ludovicchabant/vim-gutentags'
+hook_add = '''
+  let g:gutentags_ctags_executable='exctags'
+  " As suggested in https://github.com/ludovicchabant/vim-gutentags/issues/113,
+  " to only update existing tags files and never create new ones:
+  let g:gutentags_project_root = ['tags']
+  let g:gutentags_add_default_project_roots = 0
+  " only need for debug.
+  " let g:gutentags_define_advanced_commands = 1
+'''
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -140,6 +161,18 @@ repo = 'MarcWeber/vim-addon-mw-utils'
 
 [[plugins]]
 repo = 'SirVer/ultisnips'
+hook_add = '''
+  let g:UltiSnipsExpandTrigger="<c-k>"
+  let g:UltiSnipsJumpForwardTrigger="<c-k>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+  " If you want :UltiSnipsEdit to split your window.
+  let g:UltiSnipsEditSplit="vertical"
+
+  " make vim recognizing snippets dir
+  " use different snippets dir
+  " let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
+  " let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+'''
 
 [[plugins]]
 repo = 'honza/vim-snippets'

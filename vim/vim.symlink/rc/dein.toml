@@ -157,9 +157,6 @@ repo = 'jiangmiao/auto-pairs'
 repo = 'thinca/vim-quickrun'
 
 [[plugins]]
-repo = 'luochen1990/rainbow'
-
-[[plugins]]
 repo = 'w0rp/ale'
 
 [[plugins]]

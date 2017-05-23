@@ -99,10 +99,6 @@ let g:UltiSnipsEditSplit="vertical"
 " let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " }}}
 
-" luochen1990/rainbow {{{
-" let g:rainbow_active = 1
-" }}}
-
 " benmills/vimux {{{
 " Run the current file with rspec
 map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
@@ -125,11 +121,6 @@ map <Leader>vx :VimuxInterruptRunner<CR>
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
 map <Leader>vz :call VimuxZoomRunner()<CR>
 " }}}
-
-" tobyS/pdv {{{
-let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
-nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
-"}}}
 
 " vim-syntastic/syntastic {{{
 " set statusline+=%#warningmsg#

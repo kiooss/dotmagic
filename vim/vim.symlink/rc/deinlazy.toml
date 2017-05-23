@@ -101,6 +101,10 @@ on_ft = 'php'
 [[plugins]]
 repo = 'tobyS/pdv'
 on_ft = 'php'
+hook_add = '''
+  let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
+  nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
+'''
 
 [[plugins]]
 repo = 'vim-ruby/vim-ruby'

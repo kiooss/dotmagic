@@ -104,10 +104,6 @@ repo = 'vim-scripts/sudo.vim'
 [[plugins]]
 repo = 'vim-scripts/CmdlineComplete'
 
-
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-
 [[plugins]]
 repo = 'pangloss/vim-javascript'
 

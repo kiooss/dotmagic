@@ -25,8 +25,8 @@ nnoremap <Leader>p :pu<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>l :set list!<CR>
 
-" nnoremap j gj
-" nnoremap k gk
+nnoremap j gj
+nnoremap k gk
 
 nnoremap g; g;zz
 nnoremap g, g,zz

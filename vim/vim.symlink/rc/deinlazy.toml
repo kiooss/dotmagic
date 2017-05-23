@@ -32,7 +32,7 @@ hook_add = '''
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
   " nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
-  nnoremap <silent> ;g :<C-u>Denite -buffer-name=search
+  nnoremap <silent> <leader>g :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep/git<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
         \ -resume -mode=normal -refresh<CR>
@@ -88,6 +88,25 @@ on_ft = 'php'
 [[plugins]]
 repo = 'arnaud-lb/vim-php-namespace'
 on_ft = 'php'
+hook_add = '''
+  let g:php_namespace_sort_after_insert = 1
+  function! IPhpInsertUse()
+      call PhpInsertUse()
+      call feedkeys('a',  'n')
+  endfunction
+  " autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+  autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+  function! IPhpExpandClass()
+      call PhpExpandClass()
+      call feedkeys('a', 'n')
+  endfunction
+  " autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+  autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+
+  " autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+  autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+'''
 
 [[plugins]]
 repo = 'qbbr/vim-symfony'

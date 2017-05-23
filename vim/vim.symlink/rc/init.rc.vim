@@ -51,7 +51,6 @@ let maplocalleader = ","
 
 " Release keymappings for plug-in.
 nnoremap ;  <Nop>
-nnoremap m  <Nop>
 nnoremap ,  <Nop>
 
 if IsWindows()

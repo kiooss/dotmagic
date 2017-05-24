@@ -49,7 +49,7 @@ hook_add = '''
 repo = 'Yggdroot/indentLine'
 on_cmd = 'IndentLinesToggle'
 hook_add = '''
-  nnoremap <silent> <leader>il  :<C-u>IndentLinesToggle<CR>
+  nnoremap <silent> <leader>\ :<C-u>IndentLinesToggle<CR>
 '''
 
 [[plugins]]

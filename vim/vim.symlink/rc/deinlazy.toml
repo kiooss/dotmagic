@@ -36,7 +36,7 @@ hook_add = '''
         \ -no-empty -mode=normal grep/git<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
         \ -resume -mode=normal -refresh<CR>
-  nnoremap <silent> ft :<C-u>Denite filetype<CR>
+  nnoremap <silent> ft :<C-u>Denite -highlight-mode-insert=Search filetype<CR>
   " nnoremap <silent> <C-t> :<C-u>Denite
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>

@@ -81,7 +81,7 @@ call s:source_rc('abbreviations.rc.vim')
 
 call s:source_rc('autocmds.rc.vim')
 
-call s:source_rc('plugins.rc.vim')
+call s:source_rc('mix.rc.vim')
 
 " source plugin's config
 for s:path in split(glob('~/.vim/rc/plugins.rc.d/*.vim'), "\n")

@@ -10,9 +10,6 @@
 " enter in normal mode do nothing
 nnoremap <CR> <NOP>
 
-" remap esc
-inoremap jk <esc>
-inoremap <C-e> <C-o>A
 
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
@@ -69,12 +66,12 @@ nnoremap E $
 cnoremap <C-a>          <Home>
 " <C-b>: previous char.
 cnoremap <C-b>          <Left>
+" <C-f>: next char.
+cnoremap <C-f>          <Right>
 " <C-d>: delete char.
 cnoremap <C-d>          <Del>
 " <C-e>, E: move to end.
 cnoremap <C-e>          <End>
-" <C-f>: next char.
-cnoremap <C-f>          <Right>
 " <C-y>: paste.
 cnoremap <C-y>          <C-r>*
 " <C-g>: Exit.
@@ -116,19 +113,21 @@ nnoremap - <c-x>
 "===============================================================================
 " Insert Mode Ctrl Key Mappings
 "===============================================================================
+" remap esc
+inoremap jk <esc>
+inoremap jj <esc>
+
+" <C-b>: previous char.
+inoremap <C-b>          <Left>
+" <C-f>: next char.
+inoremap <C-f>          <Right>
+
 " Ctrl-a: Go to begin of line
-inoremap <c-a> <esc>I
+inoremap <C-a> <C-o>I
 
 " Ctrl-e: Go to end of line
-inoremap <c-e> <esc>A
-
-" Ctrl-f: Move cursor left
-inoremap <c-f> <Left>
+inoremap <C-e> <C-o>A
 
 " Ctrl-u: Delete til beginning of line, create undo point
-inoremap <c-u> <c-g>u<c-u>
-
-
-
-
-"}}}
+inoremap <C-u> <C-g>u<C-u>
+" }}}

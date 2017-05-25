@@ -109,3 +109,19 @@ endfunction
 "
 " noremap <Leader>== :call AlignPHPAssign()<CR>
 "}}}
+
+function! CountListedBuffers() abort " {{{
+  let cnt = 0
+  for nr in range(1,bufnr("$"))
+    if buflisted(nr) && ! empty(bufname(nr))
+      let cnt += 1
+    endif
+  endfor
+  return cnt
+endfunction " }}}
+
+function! QuitIfLastBuffer() abort " {{{
+  if CountListedBuffers() == 1
+    :q
+  endif
+endfunction " }}}

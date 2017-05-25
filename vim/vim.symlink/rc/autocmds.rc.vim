@@ -49,6 +49,6 @@ if has('autocmd') && !exists('autocommands_loaded')
     " close help only with
     autocmd FileType help noremap <buffer> q :q<cr>
 
-    autocmd BufDelete * :call QuitIfLastBuffer()
+    " autocmd BufDelete * :call QuitIfLastBuffer()
 endif
 " }}}

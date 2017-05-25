@@ -8,7 +8,7 @@ let g:airline_right_sep=''
 "let g:airline_theme='powerlineish'
 " let g:airline_theme='badwolf'
 " let g:airline_theme='papercolor'
-let g:airline_theme='gruvbox'
+" let g:airline_theme='gruvbox'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}

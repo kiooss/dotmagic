@@ -75,10 +75,6 @@ cnoreabbrev w!! w !sudo tee > /dev/null %
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-
-" switch syntax highlighting on
-syntax on
-
 set so=7 " set 7 lines to the cursors - when moving vertical
 set hidden " current buffer can be put into background
 set showcmd " show incomplete commands
@@ -156,28 +152,6 @@ set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
 if has('termguicolors')
     set termguicolors
 endif
-
-" set background=light
-set background=dark
-
-" hard|medium|soft
-let g:gruvbox_contrast_dark="hard"
-let g:gruvbox_contrast_light="hard"
-colorscheme gruvbox
-
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme ayu
-
-" colorscheme srcery
-" let g:solarized_visibility="low"
-" let g:solarized_termtrans=1
-" colorscheme solarized8_dark_high
-" colorscheme solarized8_dark
-
-" colorscheme molokai
-" colorscheme PaperColor
 
 set foldmethod=manual " solve autocomplete slow problem
 

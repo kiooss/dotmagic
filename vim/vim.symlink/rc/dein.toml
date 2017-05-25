@@ -29,8 +29,8 @@ if = "has('lua')"
 [[plugins]]
 repo = 'morhetz/gruvbox'
 
-# [[plugins]]
-# repo = 'ayu-theme/ayu-vim'
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'

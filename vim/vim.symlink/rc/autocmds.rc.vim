@@ -46,5 +46,9 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | AirlineRefresh
     " save all files on focus lost, ignoring warnings about untitled buffers
     autocmd FocusLost * silent! wa
+    " close help only with
+    autocmd FileType help noremap <buffer> q :q<cr>
+
+    autocmd BufDelete * :call QuitIfLastBuffer()
 endif
 " }}}

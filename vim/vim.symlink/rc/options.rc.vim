@@ -9,10 +9,13 @@ if has('mouse')
   " set ttymouse=xterm2
 endif
 
-if has('nvim')
-    " set clipboard=unnamedplus
-else
-    set clipboard=unnamed
+" Use clipboard register.
+if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+  if has('unnamedplus')
+     set clipboard& clipboard+=unnamedplus
+  else
+     set clipboard& clipboard+=unnamed
+  endif
 endif
 
 " faster redrawing

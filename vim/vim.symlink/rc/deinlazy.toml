@@ -39,7 +39,7 @@ hook_add = '''
   nnoremap <silent> ft :<C-u>Denite -highlight-mode-insert=Search filetype<CR>
   " nnoremap <silent> <C-t> :<C-u>Denite
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
-  nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
+  " nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
   " nnoremap <silent> <leader>gs :<C-u>Denite gitstatus<CR>
   " nnoremap <silent> ;;
   "       \ :<C-u>Denite command command_history<CR>

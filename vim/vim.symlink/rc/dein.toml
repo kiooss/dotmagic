@@ -33,6 +33,9 @@ repo = 'morhetz/gruvbox'
 repo = 'ayu-theme/ayu-vim'
 
 [[plugins]]
+repo = 'lu-ren/SerialExperimentsLain'
+
+[[plugins]]
 repo = 'vim-airline/vim-airline'
 
 [[plugins]]

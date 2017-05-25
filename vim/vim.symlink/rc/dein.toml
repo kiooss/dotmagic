@@ -36,6 +36,9 @@ repo = 'ayu-theme/ayu-vim'
 repo = 'lu-ren/SerialExperimentsLain'
 
 [[plugins]]
+repo = 'kristijanhusak/vim-hybrid-material'
+
+[[plugins]]
 repo = 'vim-airline/vim-airline'
 
 [[plugins]]

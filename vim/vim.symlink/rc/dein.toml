@@ -3,6 +3,9 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'mhinz/vim-startify'
+hook_add = '''
+  let g:startify_change_to_dir = 0
+'''
 
 [[plugins]]
 repo = 'nixprime/cpsm'
@@ -52,6 +55,9 @@ repo = 'pbrisbin/vim-mkdir'
 
 [[plugins]]
 repo = 'tomtom/tcomment_vim'
+
+# [[plugins]]
+# repo = 'tpope/vim-commentary'
 
 [[plugins]]
 repo = 'wellle/targets.vim'

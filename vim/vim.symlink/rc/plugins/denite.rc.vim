@@ -49,8 +49,16 @@ call denite#custom#var('grep/git', 'recursive_opts', [])
 "       \ 'prompt': '>', 'short_source_names': v:true
 "       \ })
 call denite#custom#option('_', {
-      \ 'prompt': '', 'short_source_names': v:true
+      \ 'prompt': '»',
+      \ 'short_source_names': v:true
       \ })
+" call denite#custom#option('default', {
+"       \ 'prompt': '»',
+"       \ 'cursor_wrap': v:true,
+"       \ 'auto_resize': v:true,
+"       \ 'short_source_names': v:true,
+"       \ 'highlight_mode_insert': 'WildMenu'
+"       \ })
 
 let s:menus = {}
 let s:menus.vim = {

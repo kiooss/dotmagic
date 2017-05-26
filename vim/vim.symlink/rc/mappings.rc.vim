@@ -1,15 +1,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mapping settings
+" vim: foldmethod=marker
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-
 " Swap ; and :
 " noremap ; :
 " noremap : ;
 
 " enter in normal mode do nothing
 nnoremap <CR> <NOP>
-
 
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
@@ -54,29 +53,12 @@ else
 endif
 
 " scroll the viewport faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
+nnoremap <C-e> 3<C-e>M
+nnoremap <C-y> 3<C-y>M
 
 " move to beginning/end of line
 nnoremap B ^
 nnoremap E $
-
-" Command-line mode keymappings:"{{{
-" <C-a>, A: move to head.
-cnoremap <C-a>          <Home>
-" <C-b>: previous char.
-cnoremap <C-b>          <Left>
-" <C-f>: next char.
-cnoremap <C-f>          <Right>
-" <C-d>: delete char.
-cnoremap <C-d>          <Del>
-" <C-e>, E: move to end.
-cnoremap <C-e>          <End>
-" <C-y>: paste.
-cnoremap <C-y>          <C-r>*
-" <C-g>: Exit.
-cnoremap <C-g>          <C-c>
-"}}}
 
 " stile select when indent in visual mode
 vnoremap < <gv
@@ -131,3 +113,23 @@ inoremap <C-e> <C-o>A
 " Ctrl-u: Delete til beginning of line, create undo point
 inoremap <C-u> <C-g>u<C-u>
 " }}}
+
+"===============================================================================
+" Command Mode Key Mappings
+"===============================================================================
+" Command-line mode keymappings:"{{{
+" <C-a>, A: move to head.
+cnoremap <C-a>          <Home>
+" <C-b>: previous char.
+cnoremap <C-b>          <Left>
+" <C-f>: next char.
+cnoremap <C-f>          <Right>
+" <C-d>: delete char.
+cnoremap <C-d>          <Del>
+" <C-e>, E: move to end.
+cnoremap <C-e>          <End>
+" <C-y>: paste.
+cnoremap <C-y>          <C-r>*
+" <C-g>: Exit.
+cnoremap <C-g>          <C-c>
+"}}}

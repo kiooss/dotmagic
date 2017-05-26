@@ -8,8 +8,8 @@ set background=dark
 
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme
-let ayucolor="dark"   " for dark version of theme
-colorscheme ayu
+" let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
 
 " colorscheme srcery
 " let g:solarized_visibility="low"
@@ -20,9 +20,12 @@ colorscheme ayu
 " colorscheme molokai
 " colorscheme PaperColor
 
+colorscheme hybrid_material
+
 " Airline Theme
 " let g:airline_theme='luna'
 " let g:airline_theme='powerlineish'
-let g:airline_theme='badwolf'
+" let g:airline_theme='badwolf'
+let g:airline_theme='hybrid'
 " let g:airline_theme='papercolor'
 " let g:airline_theme='gruvbox'

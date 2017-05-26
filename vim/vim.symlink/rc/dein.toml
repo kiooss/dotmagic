@@ -161,6 +161,12 @@ repo = 'tpope/vim-unimpaired'
 repo = 'vim-scripts/jQuery'
 
 [[plugins]]
+repo = 'junegunn/vim-after-object'
+hook_add = '''
+  autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+'''
+
+[[plugins]]
 repo = 'kana/vim-textobj-user'
 
 [[plugins]]

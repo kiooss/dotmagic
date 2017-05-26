@@ -2,7 +2,6 @@
 " => Mapping settings
 " vim: foldmethod=marker
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"{{{
 " Swap ; and :
 " noremap ; :
 " noremap : ;
@@ -10,7 +9,7 @@
 " enter in normal mode do nothing
 nnoremap <CR> <NOP>
 
-nnoremap <Leader>w :w<cr>
+nnoremap <silent> <Leader>w :update<cr>
 nnoremap <Leader>q :q<cr>
 nnoremap <silent> <Leader>b :bd<cr>
 nnoremap <Leader>0 :qa!<cr>
@@ -52,6 +51,12 @@ else
     nnoremap <M-l> <C-w>>
 endif
 
+" ----------------------------------------------------------------------------
+" <tab> / <s-tab> | Circular windows navigation
+" ----------------------------------------------------------------------------
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
+
 " scroll the viewport faster
 nnoremap <C-e> 3<C-e>M
 nnoremap <C-y> 3<C-y>M
@@ -66,6 +71,10 @@ vnoremap > >gv
 
 " Open the definition in a vertical split
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Tags
+nnoremap g] g<C-]>
+nnoremap g[ :pop<cr>
 
 inoremap {%     {%  %}<Left><Left><Left>
 inoremap <%     <%  %><Left><Left><Left>
@@ -95,9 +104,11 @@ nnoremap - <c-x>
 "===============================================================================
 " Insert Mode Ctrl Key Mappings
 "===============================================================================
+" {{{
 " remap esc
 inoremap jk <esc>
 inoremap jj <esc>
+xnoremap jk <Esc>
 
 " <C-b>: previous char.
 inoremap <C-b>          <Left>
@@ -118,6 +129,8 @@ inoremap <C-u> <C-g>u<C-u>
 " Command Mode Key Mappings
 "===============================================================================
 " Command-line mode keymappings:"{{{
+" jk | Escaping!
+cnoremap jk <C-c>
 " <C-a>, A: move to head.
 cnoremap <C-a>          <Home>
 " <C-b>: previous char.
@@ -132,4 +145,21 @@ cnoremap <C-e>          <End>
 cnoremap <C-y>          <C-r>*
 " <C-g>: Exit.
 cnoremap <C-g>          <C-c>
+"}}}
+
+"===============================================================================
+" Overview of which map command works in which mode.
+"===============================================================================
+"{{{
+"      COMMANDS                    MODES ~
+" :map   :noremap  :unmap     Normal, Visual, Select, Operator-pending
+" :nmap  :nnoremap :nunmap    Normal
+" :vmap  :vnoremap :vunmap    Visual and Select
+" :smap  :snoremap :sunmap    Select
+" :xmap  :xnoremap :xunmap    Visual
+" :omap  :onoremap :ounmap    Operator-pending
+" :map!  :noremap! :unmap!    Insert and Command-line
+" :imap  :inoremap :iunmap    Insert
+" :lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
+" :cmap  :cnoremap :cunmap    Command-line
 "}}}

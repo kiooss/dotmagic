@@ -60,6 +60,31 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'scrooloose/nerdtree'
+on_cmd = ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind']
+hook_add = '''
+  " close NERDTree after a file is opened
+  let g:NERDTreeQuitOnOpen=0
+  " show hidden files in NERDTree
+  let NERDTreeShowHidden=1
+  " remove some files by extension
+  let NERDTreeIgnore = ['\.js.map$']
+  " Toggle NERDTree
+  nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+  " expand to the path of the file in the current buffer
+  nnoremap <silent> <leader>y :NERDTreeFind<cr>
+  augroup nerd_loader
+    autocmd!
+    autocmd VimEnter * silent! autocmd! FileExplorer
+    autocmd BufEnter,BufNew *
+          \  if isdirectory(expand('<amatch>'))
+          \|   :NERDTree
+          \|   execute 'autocmd! nerd_loader'
+          \| endif
+  augroup END
+'''
+
+[[plugins]]
 repo = 'godlygeek/tabular'
 on_cmd = 'Tabularize'
 hook_add = '''

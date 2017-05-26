@@ -21,6 +21,7 @@ set background=dark
 " colorscheme PaperColor
 
 colorscheme hybrid_material
+" colorscheme monrovia
 
 " Airline Theme
 " let g:airline_theme='luna'

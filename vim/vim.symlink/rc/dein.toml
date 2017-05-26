@@ -29,6 +29,9 @@ if = "has('lua')"
 #   source ~/.vim/rc/plugins/neocomplete.rc.vim
 # '''
 
+#################################################
+# Colors
+#################################################
 [[plugins]]
 repo = 'morhetz/gruvbox'
 
@@ -40,6 +43,10 @@ repo = 'lu-ren/SerialExperimentsLain'
 
 [[plugins]]
 repo = 'kristijanhusak/vim-hybrid-material'
+
+[[plugins]]
+repo = 'AlessandroYorba/Monrovia'
+#################################################
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
@@ -61,21 +68,6 @@ repo = 'tomtom/tcomment_vim'
 
 [[plugins]]
 repo = 'wellle/targets.vim'
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-  " close NERDTree after a file is opened
-  let g:NERDTreeQuitOnOpen=0
-  " show hidden files in NERDTree
-  let NERDTreeShowHidden=1
-  " remove some files by extension
-  let NERDTreeIgnore = ['\.js.map$']
-  " Toggle NERDTree
-  nnoremap <silent> <leader>k :NERDTreeToggle<cr>
-  " expand to the path of the file in the current buffer
-  nnoremap <silent> <leader>y :NERDTreeFind<cr>
-'''
 
 [[plugins]]
 repo = 'benmills/vimux'

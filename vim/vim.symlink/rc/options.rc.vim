@@ -39,7 +39,7 @@ set shiftround " round indent to a multiple of 'shiftwidth'
 
 set complete-=i
 set complete+=k
-"set completeopt+=longest
+set completeopt+=longest
 
 " code folding settings
 " set foldmethod=syntax " fold based on indent
@@ -66,6 +66,9 @@ set laststatus=2
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache,.svn,.git,cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
 
+" Set keyword help.
+set keywordprg=:help
+
 " save in readonly mode
 cnoreabbrev w!! w !sudo tee > /dev/null %
 
@@ -81,10 +84,19 @@ set showcmd " show incomplete commands
 set noshowmode " don't show which mode disabled for PowerLine
 set wildmenu " enhanced command line completion
 "set wildmode=list:longest " complete files like a shell
-set wildmode=longest:list,full
+" set wildmode=longest:list,full
+set wildmode=list:longest,full
 set scrolloff=3 " lines of text around cursor
 set shell=$SHELL
 set cmdheight=1 " command bar height
+
+" Display all the information of the tag by the supplement of the Insert mode.
+set showfulltag
+" Can supplement a tag in a command-line.
+set wildoptions=tagfile
+
+" Report changes.
+set report=0
 
 set title " set terminal title
 
@@ -146,7 +158,6 @@ if has("gui_macvim")
     set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
 endif
 
-let base16colorspace=256  " Access colors present in 256 colorspace"
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
 
 if has('termguicolors')
@@ -158,8 +169,8 @@ set foldmethod=manual " solve autocomplete slow problem
 " no preview window
 set completeopt-=preview
 
-"set columns=100
-"set lines=70
+" set columns=100
+" set lines=70
 
 " Splitting a window will put the new window below the current one.
 set splitbelow

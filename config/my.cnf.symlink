@@ -1,4 +1,4 @@
+# set mysql pager
+
 [mysql]
-pager  = grcat ~/.grcat
-[client]
 pager  = grcat ~/.grcat

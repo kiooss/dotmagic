@@ -107,8 +107,6 @@ nnoremap - <c-x>
 " {{{
 " remap esc
 inoremap jk <esc>
-inoremap jj <esc>
-xnoremap jk <Esc>
 
 " <C-b>: previous char.
 inoremap <C-b>          <Left>

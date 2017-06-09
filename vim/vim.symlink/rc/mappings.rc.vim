@@ -94,6 +94,9 @@ inoremap <%     <%  %><Left><Left><Left>
 " p: Paste
 nnoremap p gp
 
+" disable EX mode, use Q to playback q record.
+nnoremap Q @q
+
 "===============================================================================
 " Normal Mode Shift Key Mappings
 "===============================================================================

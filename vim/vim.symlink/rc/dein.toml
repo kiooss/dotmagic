@@ -55,6 +55,21 @@ repo = 'vim-airline/vim-airline'
 repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+  " close NERDTree after a file is opened
+  let g:NERDTreeQuitOnOpen=0
+  " show hidden files in NERDTree
+  let NERDTreeShowHidden=1
+  " remove some files by extension
+  let NERDTreeIgnore = ['\.js.map$', '\~$']
+  " Toggle NERDTree
+  nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+  " expand to the path of the file in the current buffer
+  nnoremap <silent> <leader>y :NERDTreeFind<cr>
+'''
+
+[[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
@@ -238,7 +253,8 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'lumiliet/vim-twig'
+# repo = 'lumiliet/vim-twig'
+repo = 'nelsyeung/twig.vim'
 
 # [[plugins]]
 # repo = 'tweekmonster/startuptime.vim'

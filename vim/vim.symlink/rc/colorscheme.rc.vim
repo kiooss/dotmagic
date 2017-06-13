@@ -4,7 +4,7 @@ set background=dark
 " hard|medium|soft
 " let g:gruvbox_contrast_dark="hard"
 " let g:gruvbox_contrast_light="hard"
-" colorscheme gruvbox
+colorscheme gruvbox
 
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme
@@ -20,7 +20,7 @@ set background=dark
 " colorscheme molokai
 " colorscheme PaperColor
 
-colorscheme hybrid_material
+" colorscheme hybrid_material
 " colorscheme monrovia
 
 " Airline Theme

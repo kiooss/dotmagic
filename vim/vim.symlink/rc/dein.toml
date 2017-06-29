@@ -277,3 +277,6 @@ repo = 'nelsyeung/twig.vim'
 #
 # [[plugins]]
 # repo = 'chemzqm/denite-git'
+
+[[plugins]]
+repo = 'vim-scripts/StringComplete'

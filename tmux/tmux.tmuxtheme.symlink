@@ -1,10 +1,10 @@
 #### my tmux theme
 
 # separators
-# tm_separator_left=""
-# tm_separator_right=""
-tm_separator_left=""
-tm_separator_right=""
+tm_separator_left=""
+tm_separator_right=""
+# tm_separator_left=""
+# tm_separator_right=""
 # tm_separator_left=""
 # tm_separator_right=""
 

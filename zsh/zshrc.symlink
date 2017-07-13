@@ -208,6 +208,10 @@ for plugin ($DOTFILES/zsh/plugins/*.zsh) source $plugin
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+# fix tmux path
+export PATH="$N_PREFIX/bin:$PATH"
+
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 
@@ -246,3 +250,4 @@ zstyle :omz:plugins:ssh-agent identities id_sec_key_svn
 
 autoload -Uz zmv
 alias zmv='noglob zmv -W'
+

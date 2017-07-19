@@ -1,7 +1,8 @@
 function flush_dns() {
     echo 'Flush dns'
     if [ "$(uname)" = "Darwin" ]; then
-        sudo killall -HUP mDNSResponder
+        sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache;
+        echo "MacOS DNS cache has been cleared."
     else
         echo "Do nothing."
     fi

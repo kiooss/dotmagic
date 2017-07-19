@@ -159,6 +159,12 @@ repo = 'vim-scripts/CmdlineComplete'
 repo = 'pangloss/vim-javascript'
 
 [[plugins]]
+repo = 'mxw/vim-jsx'
+hook_add = '''
+let g:jsx_ext_required = 0
+'''
+
+[[plugins]]
 repo = 'tpope/vim-endwise'
 
 [[plugins]]

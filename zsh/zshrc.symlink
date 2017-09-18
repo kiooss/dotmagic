@@ -71,7 +71,7 @@ plugins=(
     # meteor
     # svn
     # ssh-agent
-    sudo
+    # sudo
     symfony2
     systemadmin
     rails

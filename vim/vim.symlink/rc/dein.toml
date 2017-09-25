@@ -286,3 +286,6 @@ repo = 'nelsyeung/twig.vim'
 
 [[plugins]]
 repo = 'vim-scripts/StringComplete'
+
+[[plugins]]
+repo = 'AndrewRadev/switch.vim'

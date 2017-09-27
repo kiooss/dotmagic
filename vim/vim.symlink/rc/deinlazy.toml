@@ -161,6 +161,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'adoy/vim-php-refactoring-toolbox'
+on_ft = 'php'
+
+[[plugins]]
 repo = 'vim-ruby/vim-ruby'
 on_ft = 'ruby'
 

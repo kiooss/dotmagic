@@ -56,9 +56,6 @@ repo = 'lu-ren/SerialExperimentsLain'
 
 [[plugins]]
 repo = 'kristijanhusak/vim-hybrid-material'
-
-[[plugins]]
-repo = 'AlessandroYorba/Monrovia'
 #################################################
 
 [[plugins]]

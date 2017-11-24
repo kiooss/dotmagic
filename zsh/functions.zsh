@@ -289,3 +289,12 @@ function ssh() {
 function get-php-download-url() {
     echo "https://github.com/php/php-src/archive/php-$1.tar.gz"
 }
+
+function initeditorconfig() {
+    if [ -e '.editorconfig' ]; then
+        echo "[ERROR] .editorconfig already exists!"
+    else
+        cat $DOTFILES/config_samples/editorconfig > .editorconfig
+        echo "[OK] .editorconfig created!"
+    fi
+}

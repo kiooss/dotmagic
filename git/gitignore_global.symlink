@@ -51,3 +51,4 @@ local.properties
 
 .gutctags
 .notags
+.tern-project

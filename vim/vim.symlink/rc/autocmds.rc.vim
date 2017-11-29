@@ -28,6 +28,7 @@ if has('autocmd') && !exists('autocommands_loaded')
     " remove spaces at the end of line
     autocmd BufWritePre * :%s/\s\+$//e
 
+    autocmd BufRead,BufNewFile *.js set filetype=javascript.jsx
     autocmd BufRead,BufNewFile *_js.html.erb set filetype=javascript
     autocmd BufRead,BufNewFile *_js.html.twig set filetype=javascript
     autocmd BufRead,BufNewFile *.xlsx.axlsx set filetype=ruby

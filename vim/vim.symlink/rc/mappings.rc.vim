@@ -124,6 +124,8 @@ inoremap <C-e> <C-o>A
 
 " Ctrl-u: Delete til beginning of line, create undo point
 inoremap <C-u> <C-g>u<C-u>
+
+inoremap <C-t> <></><Esc>5hdiwp3lpT>i
 " }}}
 
 "===============================================================================

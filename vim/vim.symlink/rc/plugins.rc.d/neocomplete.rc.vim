@@ -1,5 +1,6 @@
 "---------------------------------------------------------------------------
 " neocomplete.vim
+finish
 
 let g:acp_enableAtStartup = 0
 " Use neocomplete.

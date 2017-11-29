@@ -33,9 +33,19 @@ let g:context_filetype#same_filetypes._ = '_'
 '''
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
-if = "has('lua')"
+
+# [[plugins]]
+# repo = 'Shougo/neocomplete.vim'
+# depends = 'context_filetype.vim'
+# if = "has('lua')"
 # on_event = 'InsertEnter'
 # hook_source = '''
 #   let g:neocomplete#enable_at_startup = 1
@@ -96,9 +106,6 @@ repo = 'wellle/targets.vim'
 
 [[plugins]]
 repo = 'benmills/vimux'
-
-[[plugins]]
-repo = 'wellle/tmux-complete.vim'
 
 [[plugins]]
 repo = 'tmux-plugins/vim-tmux'
@@ -262,9 +269,10 @@ repo = 'w0rp/ale'
 hook_add = '''
   let g:ale_set_quickfix = 1
   let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+  let g:ale_linter_aliases = {'javascript.jsx': 'javascript', 'jsx': 'javascript'}
   let g:ale_linters = {
   \   'php': ['php'],
-  \   'javascript': [],
+  \   'javascript': ['eslint'],
   \   'ruby': ['ruby'],
   \}
   " let g:ale_open_list = 1
@@ -281,7 +289,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-# repo = 'lumiliet/vim-twig'
 repo = 'nelsyeung/twig.vim'
 
 # [[plugins]]

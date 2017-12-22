@@ -110,8 +110,13 @@ repo = 'StanAngeloff/php.vim'
 on_ft = 'php'
 
 [[plugins]]
-repo = 'shawncplus/phpcomplete.vim'
+repo = 'lvht/phpcd.vim'
 on_ft = 'php'
+build = 'composer install'
+
+# [[plugins]]
+# repo = 'shawncplus/phpcomplete.vim'
+# on_ft = 'php'
 
 [[plugins]]
 repo = 'stephpy/vim-php-cs-fixer'

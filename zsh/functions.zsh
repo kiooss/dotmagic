@@ -8,7 +8,13 @@ function make-writeable {
 }
 
 function restart-ssh-agent {
-    killall ssh-agent; eval `ssh-agent`
+    set -x
+    killall ssh-agent
+    eval `ssh-agent`
+    SSHIDFILE="$HOME/.ssh/id_sec_key_svn"
+    if [[ -f "$SSHIDFILE" ]]; then
+        ssh-add "$SSHIDFILE"
+    fi
 }
 
 function show-user-list {

@@ -71,7 +71,7 @@ plugins=(
     pass
     # meteor
     # svn
-    # ssh-agent
+    ssh-agent
     # sudo
     symfony2
     systemadmin
@@ -237,10 +237,12 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #   zprof | less
 # fi
 
+# add vendor bin to path
+export PATH="./vendor/bin:$PATH"
+
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent identities id_sec_key_svn
 
 # freshshell/fresh
 [ -f ~/.fresh/build/shell.sh ] && source ~/.fresh/build/shell.sh

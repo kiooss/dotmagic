@@ -94,6 +94,7 @@ repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
 repo = 'pbrisbin/vim-mkdir'
+# repo = 'travisjeffery/vim-auto-mkdir'
 
 [[plugins]]
 repo = 'tomtom/tcomment_vim'

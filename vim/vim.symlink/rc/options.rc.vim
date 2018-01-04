@@ -142,7 +142,11 @@ set listchars=tab:▸\ ,extends:❯,precedes:❮
 " make the highlighting of tabs less annoying
 highlight SpecialKey ctermbg=none
 set listchars=tab:▸\ ,eol:¬
-set showbreak=↪
+
+if has('linebreak')
+  let &showbreak='↳ ' " DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
+endif
+" set showbreak=↪
 
 scriptencoding utf-8
 

@@ -166,3 +166,6 @@ cnoremap <C-g>          <C-c>
 " :lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
 " :cmap  :cnoremap :cunmap    Command-line
 "}}}
+
+xmap J ]egv=gv
+xmap K [egv=gv

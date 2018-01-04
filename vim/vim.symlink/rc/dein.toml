@@ -205,6 +205,9 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'tpope/vim-unimpaired'
 
+[[plugins]]
+repo = 'tpope/vim-eunuch'
+
 # [[plugins]]
 # repo = 'vim-scripts/IndexedSearch'
 

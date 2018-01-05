@@ -1,13 +1,8 @@
 hook_add = '''
-" let g:php_folding = 1
+  let g:php_folding = 0
 '''
 
 [ftplugin]
-# why not working ?
-_ = '''
-  setlocal foldmethod=indent
-'''
-
 python = 'setlocal foldmethod=indent'
 
 toml = 'syntax sync minlines=500'

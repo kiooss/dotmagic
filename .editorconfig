@@ -4,7 +4,7 @@ root = true
 indent_style = space
 indent_size = 4
 
-[{*.rb,*.tmol,Rakefile}]
+[{*.rb,*.vim,*.tmol,Rakefile}]
 indent_style = space
 indent_size = 2
 

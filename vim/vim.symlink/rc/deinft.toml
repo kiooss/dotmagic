@@ -1,18 +1,11 @@
 hook_add = '''
-let g:php_folding = 1
+" let g:php_folding = 1
 '''
 
 [ftplugin]
-
+# why not working ?
 _ = '''
-  if !&l:modifiable
-    setlocal nofoldenable
-    setlocal foldcolumn=0
-
-    if v:version >= 703
-      setlocal colorcolumn=
-    endif
-  endif
+  setlocal foldmethod=indent
 '''
 
 python = 'setlocal foldmethod=indent'

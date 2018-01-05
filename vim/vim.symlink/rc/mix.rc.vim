@@ -130,7 +130,7 @@ endfunction " }}}
 " ----------------------------------------------------------------------------
 " :Root | Change directory to the root of the Git repository
 " ----------------------------------------------------------------------------
-function! s:root()
+function! s:root() "{{{
   let root = systemlist('git rev-parse --show-toplevel')[0]
   if v:shell_error
     echo 'Not in git repo'
@@ -139,12 +139,12 @@ function! s:root()
     echo 'Changed directory to: '.root
   endif
 endfunction
-command! Root call s:root()
+command! Root call s:root() "}}}
 
 " ----------------------------------------------------------------------------
 " Profile
 " ----------------------------------------------------------------------------
-function! s:profile(bang)
+function! s:profile(bang) "{{{
   if a:bang
     profile pause
     noautocmd qall
@@ -154,4 +154,4 @@ function! s:profile(bang)
     profile file *
   endif
 endfunction
-command! -bang Profile call s:profile(<bang>0)
+command! -bang Profile call s:profile(<bang>0) "}}}

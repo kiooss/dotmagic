@@ -15,6 +15,8 @@ if dein#load_state(s:path)
   if has('nvim')
     call dein#load_toml('~/.vim/rc/deineo.toml', {})
   endif
+  " TODO
+  call dein#load_toml('~/.vim/rc/deinft.toml')
 
   if dein#tap('deoplete.nvim') && has('nvim')
     call dein#disable('neocomplete.vim')

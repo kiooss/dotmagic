@@ -46,13 +46,15 @@ set completeopt+=longest
 " set foldnestmax=10 " deepest fold is 10 levels
 " set nofoldenable " don't fold by default
 " set foldlevel=1
-" set foldlevelstart=99
 if has('folding')
   if has('windows')
     set fillchars=vert:┃              " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
     set fillchars+=fold:·             " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
   endif
+  " show folding level
+  set foldcolumn=1
   " set foldmethod=indent               " not as cool as syntax, but faster
+  " set foldlevel=1
   " set foldlevelstart=99               " start unfolded
   set foldtext=vimrc#foldtext()
 endif
@@ -76,7 +78,8 @@ set laststatus=2
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache,.svn,.git,cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
 
-" Set keyword help.
+" set keyword help.
+" use K to run a program to lookup the keyword under the cursor
 set keywordprg=:help
 
 " save in readonly mode
@@ -141,6 +144,9 @@ setglobal fenc=utf-8
 set fencs=utf-8,euc-jp,sjis
 set enc=utf-8
 set tenc=utf-8
+
+" Highlight <>.
+set matchpairs+=<:>
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold

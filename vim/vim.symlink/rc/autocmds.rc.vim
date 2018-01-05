@@ -1,8 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Autocmd settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" {{{
-" file type specific settings
+" {{{ file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
     let autocommands_loaded = 1
 

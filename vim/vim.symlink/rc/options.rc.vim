@@ -54,6 +54,7 @@ if has('folding')
   " show folding level
   set foldcolumn=1
   " set foldmethod=indent               " not as cool as syntax, but faster
+  set foldmethod=marker
   " set foldlevel=1
   " set foldlevelstart=99               " start unfolded
   set foldtext=vimrc#foldtext()
@@ -160,6 +161,10 @@ highlight SpecialKey ctermbg=none
 set listchars=tab:▸\ ,eol:¬
 
 if has('linebreak')
+  set breakindent
+  if exists('&breakindentopt')
+    set breakindentopt=shift:2
+  endif
   let &showbreak='↳ ' " DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
 endif
 " set showbreak=↪
@@ -184,7 +189,7 @@ if has('termguicolors')
     set termguicolors
 endif
 
-set foldmethod=manual " solve autocomplete slow problem
+" set foldmethod=manual " solve autocomplete slow problem
 
 " no preview window
 set completeopt-=preview
@@ -205,9 +210,16 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " => Files, backups, and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-"set nobackup
-"set nowritebackup
-"set noswapfile
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+if exists('$SUDO_USER')
+  set nobackup                        " don't create root-owned files
+  set nowritebackup                   " don't create root-owned files
+else
+  set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+endif
+
+if exists('$SUDO_USER')
+  set noswapfile                      " don't create root-owned files
+else
+  set directory=~/.vim-tmp//,~/.tmp//,~/tmp//,/var/tmp//,/tmp//
+endif
 "}}}

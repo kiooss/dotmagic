@@ -82,6 +82,7 @@ inoremap <%     <%  %><Left><Left><Left>
 "===============================================================================
 " Normal Mode Key Mappings
 "===============================================================================
+" defauts
 " q: record macros
 " w: Move word forward
 " e: Move to end of word
@@ -167,5 +168,10 @@ cnoremap <C-g>          <C-c>
 " :cmap  :cnoremap :cunmap    Command-line
 "}}}
 
+" use J,K to move sleceted lines.
 xmap J ]egv=gv
 xmap K [egv=gv
+
+" Toggle folds
+nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+" vnoremap <Leader><Space> zf

@@ -1,0 +1,30 @@
+hook_add = '''
+let g:php_folding = 1
+'''
+
+[ftplugin]
+
+_ = '''
+  if !&l:modifiable
+    setlocal nofoldenable
+    setlocal foldcolumn=0
+
+    if v:version >= 703
+      setlocal colorcolumn=
+    endif
+  endif
+'''
+
+python = 'setlocal foldmethod=indent'
+
+toml = 'syntax sync minlines=500'
+
+help = '''
+setlocal iskeyword+=:
+setlocal iskeyword+=#
+setlocal iskeyword+=-
+'''
+
+vim = '''
+setlocal foldmethod=marker
+'''

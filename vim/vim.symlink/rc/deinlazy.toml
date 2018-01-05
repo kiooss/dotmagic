@@ -8,7 +8,7 @@ repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
 hook_add = '''
-  nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
+  nnoremap <Leader>c :<C-u>Denite colorscheme -auto-preview<CR>
   nnoremap suh :<C-u>Denite help<CR>
   nnoremap sur :<C-u>Denite register<CR>
   nnoremap suR :<C-u>Denite -resume<CR>

@@ -55,7 +55,6 @@ endif
 " make backspace behave in a sane manner
 set backspace=start,indent,eol
 
-" TODO:
 " Highlight <>.
 set matchpairs+=<:>
 

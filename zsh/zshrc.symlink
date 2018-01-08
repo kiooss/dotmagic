@@ -73,6 +73,7 @@ plugins=(
     # svn
     ssh-agent
     # sudo
+    symfony
     symfony2
     systemadmin
     rails

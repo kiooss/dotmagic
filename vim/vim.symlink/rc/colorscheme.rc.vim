@@ -1,10 +1,19 @@
 " set background=light
-set background=dark
+" set background=dark
 
 " hard|medium|soft
 " let g:gruvbox_contrast_dark="hard"
 " let g:gruvbox_contrast_light="hard"
-colorscheme gruvbox
+" colorscheme gruvbox
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+else
+  set background=dark
+  colorscheme gruvbox
+endif
+
 
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme

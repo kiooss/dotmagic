@@ -135,7 +135,7 @@ set t_vb=
 set tm=500
 
 set number " show line numbers
-" set relativenumber " show relative line numbers
+set relativenumber " show relative line numbers
 
 set autoindent " automatically set indent of new line
 set smartindent
@@ -155,10 +155,9 @@ highlight Pmenu ctermbg=238 gui=bold
 " toggle invisible characters
 set invlist
 set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮
 " make the highlighting of tabs less annoying
 highlight SpecialKey ctermbg=none
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸
 
 if has('linebreak')
   set breakindent
@@ -168,7 +167,6 @@ if has('linebreak')
   " let &showbreak='↳ ' " DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
   let &showbreak='↪ '
 endif
-" set showbreak=↪
 
 scriptencoding utf-8
 

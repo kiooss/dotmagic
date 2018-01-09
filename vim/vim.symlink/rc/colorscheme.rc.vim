@@ -9,9 +9,11 @@
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
+  let g:airline_theme='base16'
 else
   set background=dark
   colorscheme gruvbox
+  let g:airline_theme='hybrid'
 endif
 
 
@@ -36,6 +38,5 @@ endif
 " let g:airline_theme='luna'
 " let g:airline_theme='powerlineish'
 " let g:airline_theme='badwolf'
-let g:airline_theme='hybrid'
 " let g:airline_theme='papercolor'
 " let g:airline_theme='gruvbox'

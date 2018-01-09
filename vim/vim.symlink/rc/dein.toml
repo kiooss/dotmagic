@@ -66,6 +66,9 @@ repo = 'lu-ren/SerialExperimentsLain'
 
 [[plugins]]
 repo = 'kristijanhusak/vim-hybrid-material'
+
+[[plugins]]
+repo = 'chriskempson/base16-vim'
 #################################################
 
 [[plugins]]

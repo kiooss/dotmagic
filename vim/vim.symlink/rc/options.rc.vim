@@ -165,7 +165,8 @@ if has('linebreak')
   if exists('&breakindentopt')
     set breakindentopt=shift:2
   endif
-  let &showbreak='↳ ' " DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
+  " let &showbreak='↳ ' " DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
+  let &showbreak='↪ '
 endif
 " set showbreak=↪
 

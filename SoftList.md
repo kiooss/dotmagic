@@ -10,3 +10,7 @@ https://github.com/dbcli/mycli
 https://github.com/zsh-users/zsh
 # Nerd Fonts
 https://github.com/ryanoasis/nerd-fonts
+# base16-shell
+https://github.com/chriskempson/base16-shell
+# base16-vim
+https://github.com/chriskempson/base16-vim

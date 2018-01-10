@@ -2,8 +2,9 @@
 " => Autocmd settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " {{{ file type specific settings
-if has('autocmd') && !exists('autocommands_loaded')
-    let autocommands_loaded = 1
+if has('autocmd')
+  augroup KioossAutocmds
+    autocmd!
 
     " php
     autocmd FileType php set dictionary+=~/.vim/php.dict
@@ -41,14 +42,25 @@ if has('autocmd') && !exists('autocommands_loaded')
 
     " automatically resize panes on resize
     autocmd VimResized * exe 'normal! \<c-w>='
-    " autocmd BufWritePost .vimrc source %
-    " autocmd BufWritePost .vimrc.local source %
     autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | AirlineRefresh
     " save all files on focus lost, ignoring warnings about untitled buffers
     autocmd FocusLost * silent! wa
-    " close help only with
+    " close help only with q
     autocmd FileType help noremap <buffer> q :q<cr>
 
     " autocmd BufDelete * :call QuitIfLastBuffer()
+
+    " Make current window more obvious by turning off/adjusting some features in non-current
+    " windows.
+    if exists('+winhighlight')
+      autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | set winhighlight= | endif
+      autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn() | set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn | endif
+      if exists('+colorcolumn')
+        autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn='+' . join(range(0, 254), ',+') | endif
+      endif
+    elseif exists('+colorcolumn')
+      autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn='+' . join(range(0, 254), ',+') | endif
+      autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
+    endif
 endif
 " }}}

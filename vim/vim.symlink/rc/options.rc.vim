@@ -52,7 +52,7 @@ if has('folding')
     set fillchars+=fold:·             " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
   endif
   " show folding level
-  set foldcolumn=1
+  " set foldcolumn=1
   " set foldmethod=indent               " not as cool as syntax, but faster
   set foldmethod=marker
   " set foldlevel=1
@@ -77,7 +77,8 @@ set showmode
 
 set laststatus=2
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache,.svn,.git,cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache,.svn,.git
+set wildignore+=cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
 
 " set keyword help.
 " use K to run a program to lookup the keyword under the cursor
@@ -86,6 +87,20 @@ set keywordprg=:help
 " save in readonly mode
 cnoreabbrev w!! w !sudo tee > /dev/null %
 
+if exists('&swapsync')
+  set swapsync=                       " let OS sync swapfiles lazily
+endif
+
+if has('syntax')
+  set synmaxcol=200                   " don't bother syntax highlighting long lines
+endif
+
+set updatecount=80                    " update swapfiles every 80 typed chars
+set updatetime=2000                   " CursorHold interval
+
+if v:version > 703 || v:version == 703 && has('patch541')
+  set formatoptions+=j                " remove comment leader when joining comment lines
+endif
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -100,6 +115,7 @@ set wildmenu " enhanced command line completion
 "set wildmode=list:longest " complete files like a shell
 " set wildmode=longest:list,full
 set wildmode=list:longest,full
+" set wildmode=longest:full,full        " shell-like autocomplete to unambiguous portion
 set scrolloff=3 " lines of text around cursor
 set shell=$SHELL
 set cmdheight=1 " command bar height
@@ -187,6 +203,8 @@ set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
 if has('termguicolors')
     set termguicolors
 endif
+
+set textwidth=80
 
 " set foldmethod=manual " solve autocomplete slow problem
 

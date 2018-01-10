@@ -134,9 +134,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'vim-scripts/gtags.vim'
-
-[[plugins]]
 repo = 'gregsexton/MatchTag'
 
 [[plugins]]

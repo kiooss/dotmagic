@@ -61,31 +61,6 @@ hook_add = '''
   nnoremap <silent> <leader>\ :<C-u>IndentLinesToggle<CR>
 '''
 
-# [[plugins]]
-# repo = 'scrooloose/nerdtree'
-# on_cmd = ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind']
-# hook_add = '''
-#   " close NERDTree after a file is opened
-#   let g:NERDTreeQuitOnOpen=0
-#   " show hidden files in NERDTree
-#   let NERDTreeShowHidden=1
-#   " remove some files by extension
-#   let NERDTreeIgnore = ['\.js.map$', '\~$']
-#   " Toggle NERDTree
-#   nnoremap <silent> <leader>k :NERDTreeToggle<cr>
-#   " expand to the path of the file in the current buffer
-#   nnoremap <silent> <leader>y :NERDTreeFind<cr>
-#   augroup nerd_loader
-#     autocmd!
-#     autocmd VimEnter * silent! autocmd! FileExplorer
-#     autocmd BufEnter,BufNew *
-#           \  if isdirectory(expand('<amatch>'))
-#           \|   :NERDTree
-#           \|   execute 'autocmd! nerd_loader'
-#           \| endif
-#   augroup END
-# '''
-
 [[plugins]]
 repo = 'godlygeek/tabular'
 on_cmd = 'Tabularize'
@@ -95,17 +70,6 @@ hook_add = '''
   nnoremap <Leader>: :Tabularize /:\zs<CR>
   vnoremap <Leader>: :Tabularize /:\zs<CR>
 '''
-
-[[plugins]]
-repo = 'easymotion/vim-easymotion'
-on_map = {n = '<Plug>'}
-hook_add = '''
-  " nnoremap <Leader><Leader> <Plug>(easymotion-prefix)
-'''
-
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
-on_ft = 'toml'
 
 [[plugins]]
 repo = 'StanAngeloff/php.vim'
@@ -209,6 +173,10 @@ on_ft = 'csv'
 
 [[plugins]]
 repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
 on_ft = 'toml'
 
 [[plugins]]

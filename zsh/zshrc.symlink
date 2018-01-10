@@ -204,6 +204,10 @@ unalias c
 
 for plugin ($DOTFILES/zsh/plugins/*.zsh) source $plugin
 
+if [ "$(uname)" = "Darwin" ]; then
+    for plugin ($DOTFILES/zsh/plugins/osx/*.zsh) source $plugin
+fi
+
 # Customize to your needs...
 
 # display how long all tasks over 10 seconds take

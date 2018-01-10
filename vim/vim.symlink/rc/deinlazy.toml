@@ -8,8 +8,9 @@ repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
 hook_add = '''
-  nnoremap ,c :<C-u>Denite colorscheme -auto-preview<CR>
-  nnoremap ,ft :<C-u>Denite filetype -auto-preview<CR>
+  nnoremap <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
+  nnoremap <LocalLeader>ft :<C-u>Denite filetype -auto-preview<CR>
+  nnoremap <LocalLeader>r :<C-u>Denite -resume<CR>
   nnoremap suh :<C-u>Denite help<CR>
   nnoremap sur :<C-u>Denite register<CR>
   nnoremap suR :<C-u>Denite -resume<CR>
@@ -22,7 +23,7 @@ hook_add = '''
   " xnoremap <silent> ;r
   "       \ :<C-u>Denite -default-action=replace -buffer-name=register
   "       \ register neoyank<CR>
-  nnoremap <silent> ,rc
+  nnoremap <silent> <LocalLeader>v
         \ :<C-u>Denite file_rec:~/.vim/rc -highlight-mode-insert=Search<CR>
   nnoremap <silent> / :<C-u>Denite -buffer-name=search -highlight-mode-insert=Search
         \ line<CR>

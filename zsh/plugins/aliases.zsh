@@ -8,8 +8,6 @@ if [ -x /usr/local/bin/gdircolors ]; then
     test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
     # alias ls='gls'
 fi
-# reload zsh config
-alias reload!='source ~/.zshrc'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -21,7 +19,8 @@ fi
 alias vi="vim"
 # alias view="vim -R"
 
-alias tf="tail -f"
+alias zshconfig="vi ~/.zshrc"
+alias zz="source ~/.zshrc"
 
 # Filesystem aliases
 alias ..='cd ..'
@@ -35,6 +34,7 @@ alias ll="ls -lahF ${colorflag}"
 alias lld="ls -l | grep ^d"
 
 alias rmf="rm -rf"
+alias tf="tail -f"
 
 # Helpers
 alias grep='grep --color=auto'

@@ -14,11 +14,6 @@ ZSH_THEME="agnoster"
 # ZSH_THEME="cloud"
 # ZSH_THEME="tjkirch"
 
-# Example aliases
-alias zshconfig="vi ~/.zshrc"
-alias zz="source ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 

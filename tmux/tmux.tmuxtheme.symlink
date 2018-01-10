@@ -22,7 +22,7 @@ set -g status-bg $tm_status_bg
 set -g status-left-bg $tm_status_bg
 set -g status-left-fg colour243
 set -g status-left-length 100
-set -g status-left "#{prefix_highlight}#[fg=colour232,bg=colour39]🌈  #S #[bold]#(tmux-options)#[fg=colour39,bg=colour80,nobold]$tm_separator_left#[fg=colour233,bg=colour80]❤️  #(whoami) #[fg=colour80,bg=colour197]$tm_separator_left#[fg=colour15,bg=colour197]#(tmux-rb-version)#[fg=colour197,bg=colour104]$tm_separator_left#[fg=colour16,bg=colour104]#(tmux-php-version)#[fg=colour104,bg=colour72]$tm_separator_left#[fg=green,bg=colour72]💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)#[default]"
+set -g status-left "#{prefix_highlight}#[fg=colour232,bg=colour39]🌈  #S #[bold]#(tmux-options)#[fg=colour39,bg=colour80,nobold]$tm_separator_left#[fg=colour233,bg=colour80]❤️  #(whoami) #[fg=colour80,bg=colour197]$tm_separator_left#[fg=colour15,bg=colour197]#(tmux-rb-version)#[fg=colour197,bg=colour104]$tm_separator_left#[fg=colour15,bg=colour104]#(tmux-php-version)#[fg=colour104,bg=colour72]$tm_separator_left#[fg=green,bg=colour72]💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)#[default]"
 
 # Right side of status bar
 set -g status-right-bg $tm_status_bg

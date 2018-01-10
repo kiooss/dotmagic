@@ -76,7 +76,6 @@ plugins=(
     symfony2
     systemadmin
     rails
-    ruby
     rake-fast
     rbenv
     tmux
@@ -85,8 +84,8 @@ plugins=(
     zsh_reload
     zsh-navigation-tools
     zsh-syntax-highlighting
-    zsh-completions
     z
+    zsh-completions
 )
 
 if [ "$(uname)" = "Darwin" ]; then

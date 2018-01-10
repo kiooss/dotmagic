@@ -50,7 +50,6 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
-    branch
     cp
     command-not-found
     capistrano
@@ -67,13 +66,10 @@ plugins=(
     history-substring-search
     nmap
     npm
-    pass
     # meteor
     # svn
     ssh-agent
     # sudo
-    symfony
-    symfony2
     systemadmin
     rails
     rake-fast
@@ -88,19 +84,24 @@ plugins=(
     zsh-completions
 )
 
-if [ "$(uname)" = "Darwin" ]; then
-    plugins=($plugins adb gradle)
-fi
-
 # my own zsh plugins
 my_plugins=(
     abbreviations
     add-http-proxy
+    aliases
     auto-ls-after-cd
     fix-ssh-agent
     mysql
     util-functions
 )
+
+if [[ "$OSTYPE" = darwin* ]]; then
+    plugins=($plugins adb gradle pass)
+    my_plugins=($my_plugins util-functions-osx)
+else
+    plugins=($plugins symfony symfony2)
+    my_plugins=($my_plugins aliases-osx util-functions-osx)
+fi
 
 for plugin ($my_plugins); do
     fpath=($DOTFILES/zsh/plugins/$plugin $fpath)
@@ -153,13 +154,6 @@ for plugin ($DOTFILES/zsh/lib/*.zsh); do
     source $plugin
 done
 unset plugin
-
-if [ "$(uname)" = "Darwin" ]; then
-    for plugin ($DOTFILES/zsh/lib/osx/*.zsh); do
-        source $plugin
-    done
-    unset plugin
-fi
 
 # Customize to your needs...
 

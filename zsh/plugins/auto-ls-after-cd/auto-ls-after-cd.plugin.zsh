@@ -1,6 +1,3 @@
-#
-# Hooks
-#
 autoload -U add-zsh-hook
 
 function auto-ls-after-cd() {

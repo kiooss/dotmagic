@@ -8,7 +8,6 @@ else # OS X `ls`
     colorflag="-G"
 fi
 
-#alias vim="nvim"
 alias vi="vim"
 
 alias tf="tail -f"
@@ -87,3 +86,34 @@ alias adb_focus="adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocu
 
 # tmuxinator
 alias mux="tmuxinator"
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls -hF --color=auto'
+fi
+
+# enable color support of ls and also add handy aliases (OSX)
+if [ -x /usr/local/bin/gdircolors ]; then
+    test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
+    alias ls='gls -hF --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias stop_meteor="kill -9 `ps ax | grep node | grep meteor | awk '{print $1}'`"
+alias eucssh='cocot -t UTF-8 -p EUC-JP ssh'
+
+alias svndiff='svn diff | vi -'
+alias grep='grep --color=auto --exclude-dir=".svn"'
+alias syncdir="rsync -av --exclude '*.svn' . "
+alias b="bundle exec"
+alias bb="bundle open"
+alias sqlplus="rlwrap sqlplus"
+alias use_php4="sudo a2dismod php5 && sudo service apache2 restart"
+alias use_php5="sudo a2enmod php5 && sudo service apache2 restart"
+
+alias view="vim -R"

@@ -194,12 +194,11 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/php/bin:$PATH"
 
 # source all .zsh files inside of the zsh/ directory
-for config ($DOTFILES/zsh/**/*.zsh) source $config
+# for config ($DOTFILES/zsh/**/*.zsh) source $config
+for config ($DOTFILES/zsh/*.zsh) source $config
 
 # if want to use oh-my-zsh, then uncomment the below line
 source $ZSH/oh-my-zsh.sh
-
-source $HOME/.bash_aliases
 
 unalias c
 

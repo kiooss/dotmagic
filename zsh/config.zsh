@@ -9,7 +9,8 @@ setopt PROMPT_SUBST
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-#In the line editor, the number of filenames to list without asking first. If set to zero, the shell asks only if the listing would scroll off the screen.
+#In the line editor, the number of filenames to list without asking first.
+#If set to zero, the shell asks only if the listing would scroll off the screen.
 LISTMAX=0
 
 # history

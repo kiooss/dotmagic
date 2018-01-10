@@ -28,6 +28,7 @@ alias rmf="rm -rf"
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
+alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
 
 # Applications
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'

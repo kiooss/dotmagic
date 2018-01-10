@@ -44,7 +44,6 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
-    adb
     branch
     cp
     command-not-found
@@ -57,7 +56,6 @@ plugins=(
     git
     # git-prompt
     gem
-    gradle
     gitfast
     git-remote-branch
     history-substring-search
@@ -84,6 +82,10 @@ plugins=(
     zsh-completions
     z
 )
+
+if [ "$(uname)" = "Darwin" ]; then
+    plugins=($plugins adb gradle)
+fi
 
 # my own zsh plugins
 my_plugins=(

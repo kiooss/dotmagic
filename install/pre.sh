@@ -35,6 +35,14 @@ else
     ln -s ~/.dircolors-solarized/dircolors.256dark ~/.dircolors
 fi
 
+# install base16-shell
+if [ -d "$HOME/.config/base16-shell" ]; then
+    echo "base16-shell already exists... Skipping."
+else
+    echo "Installing base16-shell"
+    git clone https://github.com/chriskempson/base16-shell ~/.config/base16-shell
+fi
+
 # install oh-my-zsh
 if [ -d "$HOME/.oh-my-zsh" ]; then
     echo "oh-my-zsh already exists... Skipping."

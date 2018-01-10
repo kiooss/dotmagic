@@ -38,7 +38,7 @@ alias zz="source ~/.zshrc"
 # DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
@@ -195,17 +195,26 @@ export PATH="$HOME/php/bin:$PATH"
 
 # source all .zsh files inside of the zsh/ directory
 # for config ($DOTFILES/zsh/**/*.zsh) source $config
-for config ($DOTFILES/zsh/*.zsh) source $config
+for config ($DOTFILES/zsh/*.zsh); do
+    source $config
+done
+unset config
 
 # if want to use oh-my-zsh, then uncomment the below line
 source $ZSH/oh-my-zsh.sh
 
 unalias c
 
-for plugin ($DOTFILES/zsh/plugins/*.zsh) source $plugin
+for plugin ($DOTFILES/zsh/plugins/*.zsh); do
+    source $plugin
+done
+unset plugin
 
 if [ "$(uname)" = "Darwin" ]; then
-    for plugin ($DOTFILES/zsh/plugins/osx/*.zsh) source $plugin
+    for plugin ($DOTFILES/zsh/plugins/osx/*.zsh); do
+        source $plugin
+    done
+    unset plugin
 fi
 
 # Customize to your needs...

@@ -89,10 +89,11 @@ fi
 
 # my own zsh plugins
 my_plugins=(
-  auto-ls-after-cd
-  add-http-proxy
-  fix-ssh-agent
-  abbreviations
+    abbreviations
+    add-http-proxy
+    auto-ls-after-cd
+    fix-ssh-agent
+    mysql
 )
 
 for plugin ($my_plugins); do

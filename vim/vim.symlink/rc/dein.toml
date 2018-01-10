@@ -310,3 +310,6 @@ repo = 'vim-scripts/StringComplete'
 
 [[plugins]]
 repo = 'AndrewRadev/switch.vim'
+
+[[plugins]]
+repo = 'chrisbra/vim-zsh'

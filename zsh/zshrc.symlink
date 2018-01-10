@@ -144,20 +144,19 @@ source $DOTFILES/zsh/config.zsh
 # if want to use oh-my-zsh, then uncomment the below line
 source $ZSH/oh-my-zsh.sh
 
-
 unalias c
 
 for plugin ($my_plugins); do
     source $DOTFILES/zsh/plugins/$plugin/$plugin.plugin.zsh
 done
 
-for plugin ($DOTFILES/zsh/plugins2/*.zsh); do
+for plugin ($DOTFILES/zsh/lib/*.zsh); do
     source $plugin
 done
 unset plugin
 
 if [ "$(uname)" = "Darwin" ]; then
-    for plugin ($DOTFILES/zsh/plugins2/osx/*.zsh); do
+    for plugin ($DOTFILES/zsh/lib/osx/*.zsh); do
         source $plugin
     done
     unset plugin
@@ -179,9 +178,6 @@ if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"
 fi
 
-#[ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh
-# source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
-
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
@@ -202,9 +198,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # add vendor bin to path
 export PATH="./vendor/bin:$PATH"
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 # freshshell/fresh
 [ -f ~/.fresh/build/shell.sh ] && source ~/.fresh/build/shell.sh
@@ -215,4 +209,3 @@ export PATH="./vendor/bin:$PATH"
 
 autoload -Uz zmv
 alias zmv='noglob zmv -W'
-

@@ -85,6 +85,18 @@ plugins=(
     z
 )
 
+# my own zsh plugins
+my_plugins=(
+  auto-ls-after-cd
+  add-http-proxy
+  fix-ssh-agent
+  abbreviations
+)
+
+for plugin ($my_plugins); do
+    fpath=($DOTFILES/zsh/plugins/$plugin $fpath)
+done
+
 ############################################
 # zplug start
 ############################################
@@ -200,13 +212,17 @@ source $ZSH/oh-my-zsh.sh
 
 unalias c
 
-for plugin ($DOTFILES/zsh/plugins/*.zsh); do
+for plugin ($my_plugins); do
+    source $DOTFILES/zsh/plugins/$plugin/$plugin.plugin.zsh
+done
+
+for plugin ($DOTFILES/zsh/plugins2/*.zsh); do
     source $plugin
 done
 unset plugin
 
 if [ "$(uname)" = "Darwin" ]; then
-    for plugin ($DOTFILES/zsh/plugins/osx/*.zsh); do
+    for plugin ($DOTFILES/zsh/plugins2/osx/*.zsh); do
         source $plugin
     done
     unset plugin

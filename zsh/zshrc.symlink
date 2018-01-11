@@ -63,7 +63,6 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
     cp
-    command-not-found
     capistrano
     colored-man-pages
     emoji
@@ -83,7 +82,6 @@ plugins=(
     systemadmin
     rails
     rake-fast
-    rbenv
     tmux
     tmuxinator
     themes
@@ -121,7 +119,9 @@ else
     # plugin used in my dev machine.
     plugins=(
         $plugins
+        command-not-found
         composer
+        rbenv
         ssh-agent
         symfony
         symfony2

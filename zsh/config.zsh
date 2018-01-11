@@ -25,6 +25,8 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY
 setopt APPEND_HISTORY
 
 setopt COMPLETE_ALIASES
+#GLOBDOTS lets files beginning with a . be matched without explicitly specifying the dot.
+setopt GLOBDOTS
 
 # make terminal command navigation sane again
 bindkey '^[^[[D' backward-word

@@ -163,7 +163,7 @@ source $DOTFILES/zsh/config.zsh
 # if want to use oh-my-zsh, then uncomment the below line
 source $ZSH/oh-my-zsh.sh
 
-unalias c
+unalias c 2>/dev/null
 
 for plugin ($my_plugins); do
     source $DOTFILES/zsh/plugins/$plugin/$plugin.plugin.zsh

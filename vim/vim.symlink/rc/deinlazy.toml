@@ -25,6 +25,8 @@ hook_add = '''
   "       \ register neoyank<CR>
   nnoremap <silent> <LocalLeader>v
         \ :<C-u>Denite file_rec:~/.vim/rc -highlight-mode-insert=Search<CR>
+  nnoremap <silent> <LocalLeader>d
+        \ :<C-u>Denite file_rec:~/.dotfiles -highlight-mode-insert=Search<CR>
   nnoremap <silent> / :<C-u>Denite -buffer-name=search -highlight-mode-insert=Search
         \ line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search

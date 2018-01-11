@@ -1,2 +1,15 @@
-# zmodload zsh/zprof
+# zsh startup orders {{{
+# /etc/zshenv
+# ~/.zshenv
+# /etc/zprofile
+# ~/.zprofile
+# /etc/zshrc
+# ~/.zshrc
+# /etc/zlogin
+# ~/.zlogin
+# }}}
 
+export TZ="/usr/share/zoneinfo/Asia/Tokyo"
+export EDITOR=vim
+export BUNDLER_EDITOR=vim
+export SVN_EDITOR=vim

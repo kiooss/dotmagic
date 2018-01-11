@@ -1,22 +1,3 @@
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
-# enable color support of ls and also add handy aliases (OSX)
-if [ -x /usr/local/bin/gdircolors ]; then
-    test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
-    # alias ls='gls'
-fi
-
-# Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-    colorflag="--color"
-else # OS X `ls`
-    colorflag="-G"
-fi
-
 alias vi="vim"
 # alias view="vim -R"
 
@@ -29,9 +10,9 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias l="ls -CF ${colorflag}"
-alias la="ls -AF ${colorflag}"
-alias ll="ls -lahF ${colorflag}"
+alias l="ls -CF"
+alias la="ls -AF"
+alias ll="ls -lahF"
 alias lld="ls -l | grep ^d"
 
 alias rmf="rm -rf"

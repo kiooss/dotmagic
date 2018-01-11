@@ -1,3 +1,4 @@
+
 # example
 # Bind \eg to `git status`
 # function _git-status {

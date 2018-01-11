@@ -1,3 +1,4 @@
+
 # Complete words from tmux pane(s) {{{1
 # Source: http://blog.plenz.com/2012-01/zsh-complete-words-from-tmux-pane.html
 # Gist: https://gist.github.com/blueyed/6856354

@@ -117,7 +117,9 @@ else
     my_plugins=(
         $my_plugins
         aliases-osx
+        tmux-pane-words
         util-functions-osx
+        zle
     )
 fi
 
@@ -167,10 +169,6 @@ unalias c 2>/dev/null
 
 for plugin ($my_plugins); do
     source $DOTFILES/zsh/plugins/$plugin/$plugin.plugin.zsh
-done
-
-for plugin ($DOTFILES/zsh/lib/*.zsh); do
-    source $plugin
 done
 unset plugin
 

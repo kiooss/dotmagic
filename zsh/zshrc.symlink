@@ -122,7 +122,6 @@ else
         $plugins
         command-not-found
         composer
-        rbenv
         ssh-agent
         symfony
         symfony2
@@ -182,22 +181,29 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 # fix tmux path
 export PATH="$N_PREFIX/bin:$PATH"
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-
-if hash rbenv 2>/dev/null; then
-    eval "$(rbenv init -)"
-fi
-
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
+# lazy load rbenv
+if [ -d "$HOME/.rbenv/" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  rbenv() {
+    unset rbenv
+    eval "$(command rbenv init -)"
+    rbenv "$@"
+  }
+fi
 
-if hash pyenv 2>/dev/null; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+
+# lazy load pyenv
+if [ -d "$HOME/.pyenv/" ]; then
+  export PATH="$HOME/.pyenv/bin:$PATH"
+  pyenv() {
+    unset pyenv
+    eval "$(command pyenv init -)"
+    eval "$(command pyenv virtualenv-init -)"
+    pyenv "$@"
+  }
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

@@ -54,7 +54,6 @@ plugins=(
     command-not-found
     capistrano
     colored-man-pages
-    composer
     emoji
     encode64
     fancy-ctrl-z
@@ -68,7 +67,6 @@ plugins=(
     npm
     # meteor
     # svn
-    ssh-agent
     # sudo
     systemadmin
     rails
@@ -96,13 +94,34 @@ my_plugins=(
 )
 
 if [[ "$OSTYPE" = darwin* ]]; then
-    plugins=($plugins adb gradle pass)
-    my_plugins=($my_plugins util-functions-osx)
+    # plugin used in my mac.
+    plugins=(
+        $plugins
+        adb
+        gradle
+        pass
+    )
+    my_plugins=(
+        $my_plugins
+        util-functions-osx
+    )
 else
-    plugins=($plugins symfony symfony2)
-    my_plugins=($my_plugins aliases-osx util-functions-osx)
+    # plugin used in my dev machine.
+    plugins=(
+        $plugins
+        composer
+        ssh-agent
+        symfony
+        symfony2
+    )
+    my_plugins=(
+        $my_plugins
+        aliases-osx
+        util-functions-osx
+    )
 fi
 
+# add all my own plugin dir to fpath.
 for plugin ($my_plugins); do
     fpath=($DOTFILES/zsh/plugins/$plugin $fpath)
 done

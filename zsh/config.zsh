@@ -12,6 +12,8 @@ SAVEHIST=10000
 #In the line editor, the number of filenames to list without asking first.
 #If set to zero, the shell asks only if the listing would scroll off the screen.
 LISTMAX=0
+# display how long all tasks over 10 seconds take
+REPORTTIME=10
 
 # history
 setopt HIST_VERIFY

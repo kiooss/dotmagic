@@ -21,6 +21,29 @@ DOTFILES=$HOME/.dotfiles
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
 [[ -d ~/workspace ]] && export CODE_DIR=~/workspace
 
+# PATH config {{{
+# adding path directory for custom scripts
+export PATH="$DOTFILES/bin:$PATH"
+# check for custom bin directory and add to path
+[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/php/bin" ]] && export PATH="$HOME/php/bin:$PATH"
+# add vendor bin to path
+export PATH="./vendor/bin:$PATH"
+# Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+# Add android tools
+if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
+    export ANDROID_HOME="/Applications/adt-bundle-mac-x86_64/sdk"
+    export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+fi
+# }}}
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -140,22 +163,6 @@ done
 [ -z "$TMUX" ] && export TERM=xterm-256color
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
-# adding path directory for custom scripts
-export PATH="$DOTFILES/bin:$PATH"
-
-# check for custom bin directory and add to path
-[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
-[[ -d "$HOME/php/bin" ]] && export PATH="$HOME/php/bin:$PATH"
-# add vendor bin to path
-export PATH="./vendor/bin:$PATH"
-
-# Add android tools
-if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
-    export ANDROID_HOME="/Applications/adt-bundle-mac-x86_64/sdk"
-    export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-fi
-
 # secret env values
 [[ -s $HOME/.secret_env ]] & source $HOME/.secret_env
 
@@ -170,27 +177,17 @@ for plugin ($my_plugins); do
 done
 unset plugin
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-# fix tmux path
-export PATH="$N_PREFIX/bin:$PATH"
-
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-
 if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"
 fi
-
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-# pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
 
 if hash pyenv 2>/dev/null; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
+
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 

@@ -239,4 +239,20 @@ if exists('$SUDO_USER')
 else
   set directory=~/.vim-tmp//,~/.tmp//,~/tmp//,/var/tmp//,/tmp//
 endif
+
+if has('viminfo')
+  if exists('$SUDO_USER')
+    set viminfo=                      " don't create root-owned files
+  else
+    if isdirectory(expand('~/.vim-tmp'))
+      set viminfo+=n~/.vim-tmp/viminfo
+    endif
+
+    if !empty(glob('~/.vim-tmp/viminfo'))
+      if !filereadable(expand('~/.vim-tmp/viminfo'))
+        echoerr 'warning: ~/.vim-tmp/viminfo exists but is not readable'
+      endif
+    endif
+  endif
+endif
 "}}}

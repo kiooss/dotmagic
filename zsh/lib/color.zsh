@@ -16,4 +16,6 @@
 #     colorflag="-G"
 # fi
 
-(( $+commands[dircolors] )) && [[ -s "$HOME/.dircolors" ]] && eval "$(dircolors -b $HOME/.dircolors)"
+if [[ -n $DIRCOLORS  ]]; then
+  (( $+commands[dircolors] )) && [[ -s $DIRCOLORS ]] && eval "$(dircolors -b $DIRCOLORS)"
+fi

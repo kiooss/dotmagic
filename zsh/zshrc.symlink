@@ -17,6 +17,7 @@ fi
 ZSH=$HOME/.oh-my-zsh
 DOTFILES=$HOME/.dotfiles
 MYZSH=$DOTFILES/zsh
+DIRCOLORS=$HOME/.dircolors
 
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively

@@ -15,3 +15,5 @@
 # else # OS X `ls`
 #     colorflag="-G"
 # fi
+
+(( $+commands[dircolors] )) && [[ -s "$HOME/.dircolors" ]] && eval "$(dircolors -b $HOME/.dircolors)"

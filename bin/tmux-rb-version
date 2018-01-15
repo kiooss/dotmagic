@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function tmux-rb-version() {
     cd $(tmux display-message -p "#{pane_current_path}")

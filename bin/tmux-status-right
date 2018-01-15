@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function tmux-status-right() {
     local width=$(tmux display -p "#{client_width}")

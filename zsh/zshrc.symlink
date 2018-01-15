@@ -121,6 +121,7 @@ my_plugins=(
     aliases
     auto-ls-after-cd
     fix-ssh-agent
+    insert-datestamp
     mysql
     util-functions
 )

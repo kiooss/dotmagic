@@ -58,3 +58,5 @@ alias bb="bundle open"
 alias sqlplus="rlwrap sqlplus"
 alias use_php4="sudo a2dismod php5 && sudo service apache2 restart"
 alias use_php5="sudo a2enmod php5 && sudo service apache2 restart"
+
+alias top10="print -l -- \${(o)history%% *} | uniq -c | sort -nr | head -n 10"

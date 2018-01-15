@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function tmux-php-version() {
     echo "🐘  $(php -v | head -n 1 | cut -d ' ' -f2)"

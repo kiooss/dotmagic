@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 function tmux-public-ip() {
     local ip=$(dig +short myip.opendns.com @resolver1.opendns.com)

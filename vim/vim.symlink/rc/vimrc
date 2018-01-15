@@ -40,8 +40,6 @@ function! s:source_rc(path, ...) abort "{{{
   endtry
 endfunction "}}}
 
-" TODO:
-" Set augroup.
 augroup MyAutoCmd
   autocmd!
   autocmd FileType,Syntax,BufNewFile,BufNew,BufRead *?

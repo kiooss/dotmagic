@@ -58,6 +58,11 @@ if IsWindows()
    set shellslash
 endif
 
+let $VIMTMPDIR = expand('~/.vim-tmp')
+if !isdirectory(expand($VIMTMPDIR))
+  call mkdir(expand($VIMTMPDIR), 'p')
+endif
+
 let $CACHE = expand('~/.cache')
 
 if !isdirectory(expand($CACHE))

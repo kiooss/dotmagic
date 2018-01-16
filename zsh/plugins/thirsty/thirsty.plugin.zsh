@@ -38,4 +38,4 @@ next_drink() {
   echo "Next drink at $next_date"
 }
 
-RPROMPT="$(RPROMPT)$(drink_water)"
+RPROMPT='$(drink_water)'

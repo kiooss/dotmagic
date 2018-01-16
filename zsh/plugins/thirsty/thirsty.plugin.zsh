@@ -19,7 +19,7 @@ drink_water() {
 
 not_thirsty() {
   date +%s > $DRINK_WATER_CONF
-  echo "😀 Water is essential"
+  echo "😀  Water is essential"
 }
 
 next_drink() {
@@ -38,5 +38,4 @@ next_drink() {
   echo "Next drink at $next_date"
 }
 
-
-PROMPT="$PROMPT$(drink_water)"
+RPROMPT="$(RPROMPT)$(drink_water)"

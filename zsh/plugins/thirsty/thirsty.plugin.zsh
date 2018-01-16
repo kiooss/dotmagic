@@ -38,4 +38,5 @@ next_drink() {
   echo "Next drink at $next_date"
 }
 
+alias nott=not_thirsty
 RPROMPT='$(drink_water)'

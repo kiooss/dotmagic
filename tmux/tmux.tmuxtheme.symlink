@@ -29,7 +29,7 @@ set -g status-left "#{prefix_highlight}#[fg=colour232,bg=colour39]#(random-food)
 set -g status-right-bg $tm_status_bg
 set -g status-right-fg colour243
 set -g status-right-length 100
-set -g status-right "#[fg=colour212,bg=$tm_status_bg]$tm_separator_right#[fg=colour198,bg=colour212]#(emoji-clock)  #(tmux-time)#[fg=colour38,bg=colour212]$tm_separator_right#[fg=colour233,bg=colour38]🗓  %Y/%-m/%-d %a#[fg=colour158,bg=colour38]$tm_separator_right#[fg=colour232,bg=colour158,bold]#(tmux-weather)#[fg=colour222,bg=colour158,nobold]$tm_separator_right#[fg=colour233,bg=colour222]#(tmux-disk-usage)#[fg=colour35,bg=colour222]$tm_separator_right#[fg=colour233,bg=colour35,nobold]#(tmux-public-ip) "
+set -g status-right "#[fg=colour212,bg=$tm_status_bg]$tm_separator_right#[fg=colour198,bg=colour212]#(emoji-clock)  #(tmux-time)#[fg=colour38,bg=colour212]$tm_separator_right#[fg=colour233,bg=colour38]🗓  %-m/%-d #(tmux-date)#[fg=colour158,bg=colour38]$tm_separator_right#[fg=colour232,bg=colour158,bold]#(tmux-weather)#[fg=colour222,bg=colour158,nobold]$tm_separator_right#[fg=colour233,bg=colour222]#(tmux-disk-usage)#[fg=colour35,bg=colour222]$tm_separator_right#[fg=colour233,bg=colour35,nobold]#(tmux-public-ip) "
 
 # Window status
 set -g window-status-format "[#I:#P]#W"

@@ -123,6 +123,7 @@ my_plugins=(
     fix-ssh-agent
     insert-datestamp
     mysql
+    thirsty
     util-functions
 )
 

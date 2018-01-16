@@ -4,7 +4,6 @@ abbreviations=(
     "gti"    "git"
     "gt"     "git"
     "gi"     "git"
-    "w"      "watch "
     "tx"     "tar xzvf"
     "tc"     "tar czvf"
     "tf"     "tail -f"

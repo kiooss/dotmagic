@@ -250,7 +250,7 @@ hook_add = '''
 
   " make vim recognizing snippets dir
   " use different snippets dir
-  " let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
+  let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips/'
   " let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 '''
 

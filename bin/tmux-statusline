@@ -48,18 +48,18 @@ right_segment() {
 }
 
 build_left_status() {
-    left_segment 'colour12' 'colour18' '#(random-food)  #S #(tmux-options)'
-    left_segment 'colour2' 'colour18' '#(tmux-arrow) #(whoami)'
-    left_segment 'colour197' 'colour15' '#(tmux-rb-version)'
-    left_segment 'colour104' 'colour15' '#(tmux-php-version)'
-    left_segment 'colour72' 'green' '💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
+    left_segment 'colour12' 'colour233' '#(random-food)  #S #(tmux-options)'
+    left_segment 'colour6' 'colour233' '#(tmux-arrow) #(whoami) '
+    left_segment 'colour9' 'colour15' '#(tmux-rb-version) '
+    left_segment 'colour5' 'colour15' '#(tmux-php-version) '
+    left_segment 'colour2' 'green' '💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
 }
 
 build_right_status() {
-    right_segment 'colour212' 'colour198' '#(emoji-clock)  #(tmux-time) '
-    right_segment 'colour14' 'colour233' '#(tmux-date)'
-    right_segment 'colour18' 'colour232' '#(tmux-weather)'
-    right_segment 'colour222' 'colour233' '#(tmux-disk-usage)'
+    right_segment 'colour6' 'colour198' '#(emoji-clock)  #(tmux-time) '
+    right_segment 'colour4' 'colour233' '#(tmux-date) '
+    right_segment 'colour19' 'colour232' '#(tmux-weather) '
+    right_segment 'colour3' 'colour233' '#(tmux-disk-usage)'
     right_segment 'colour2' 'colour233' '#(tmux-public-ip) '
 }
 

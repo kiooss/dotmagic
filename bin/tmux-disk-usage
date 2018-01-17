@@ -2,8 +2,8 @@
 
 function tmux-disk-usage() {
     local percent=$(df -h /dev/sda1 | awk '{ print $5 }' | tail -n 1 | sed 's/%//g')
-    if [[ $percent -ge 95 ]]; then
-        echo "💾  #[fg=colour160,bold]$percent％"
+    if [[ $percent -ge 90 ]]; then
+        echo "‼️  #[fg=red,bold]$percent％#[nobold]"
     else
         echo "💾  $percent％"
     fi

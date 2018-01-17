@@ -33,10 +33,10 @@ set -g status-right "#(tmux-statusline right)"
 
 # Window status
 set -g window-status-format "[#I:#P]#W"
-set -g window-status-current-format "#[fg=colour155,bg=colour233]$tm_separator_right#[default]#[fg=red,bold]#[default][#I:#P]#[fg=red,bold]#W #[fg=colour155,bg=colour233]$tm_separator_left"
+set -g window-status-current-format "#[fg=colour12,bg=colour233]$tm_separator_right#[default]#[fg=red,bold]#[default][#I:#P]#[fg=red,bold]#W #[fg=colour12,bg=colour233]$tm_separator_left"
 
 # Current window status
-set -g window-status-current-bg colour155
+set -g window-status-current-bg colour12
 set -g window-status-current-fg colour232
 
 # Window with activity status
@@ -44,7 +44,7 @@ set -g window-status-activity-bg colour75 # fg and bg are flipped here due to
 set -g window-status-activity-fg colour233 # a bug in tmux
 
 # Window separator
-set -g window-status-separator "#[fg=red,bold]"
+set -g window-status-separator ""
 
 # Window status alignment
 set -g status-justify centre
@@ -62,7 +62,7 @@ set -g display-panes-colour colour233
 set -g display-panes-active-colour colour245
 
 # Clock mode
-set -g clock-mode-colour colour39
+set -g clock-mode-colour colour12
 set -g clock-mode-style 24
 
 # Message

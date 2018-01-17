@@ -23,13 +23,15 @@ set -g status-bg $tm_status_bg
 set -g status-left-bg $tm_status_bg
 set -g status-left-fg colour243
 set -g status-left-length 100
-set -g status-left "#{prefix_highlight}#[fg=colour232,bg=colour39]#(random-food)  #S#[bold]#(tmux-options)#[fg=colour39,bg=colour80,nobold]$tm_separator_left#[fg=colour233,bg=colour80]#(tmux-arrow) #(whoami) #[fg=colour80,bg=colour197]$tm_separator_left#[fg=colour15,bg=colour197]#(tmux-rb-version)#[fg=colour197,bg=colour104]$tm_separator_left#[fg=colour15,bg=colour104]#(tmux-php-version)#[fg=colour104,bg=colour72]$tm_separator_left#[fg=green,bg=colour72]💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)#[default]"
+set -g status-left "#{prefix_highlight}#(tmux-statusline left)"
+# set -g status-left "#{prefix_highlight}#[fg=colour232,bg=colour39]#(random-food)  #S#[bold]#(tmux-options)#[fg=colour39,bg=colour80,nobold]$tm_separator_left#[fg=colour233,bg=colour80]#(tmux-arrow) #(whoami) #[fg=colour80,bg=colour197]$tm_separator_left#[fg=colour15,bg=colour197]#(tmux-rb-version)#[fg=colour197,bg=colour104]$tm_separator_left#[fg=colour15,bg=colour104]#(tmux-php-version)#[fg=colour104,bg=colour72]$tm_separator_left#[fg=green,bg=colour72]💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)#[default]"
 
 # Right side of status bar
 set -g status-right-bg $tm_status_bg
 set -g status-right-fg colour243
 set -g status-right-length 100
-set -g status-right "#[fg=colour212,bg=$tm_status_bg]$tm_separator_right#[fg=colour198,bg=colour212]#(emoji-clock)  #(tmux-time)#[fg=colour38,bg=colour212]$tm_separator_right#[fg=colour233,bg=colour38]🗓  %-m/%-d #(tmux-date)#[fg=colour158,bg=colour38]$tm_separator_right#[fg=colour232,bg=colour158,bold]#(tmux-weather)#[fg=colour222,bg=colour158,nobold]$tm_separator_right#[fg=colour233,bg=colour222]#(tmux-disk-usage)#[fg=colour35,bg=colour222]$tm_separator_right#[fg=colour233,bg=colour35,nobold]#(tmux-public-ip) "
+set -g status-right "#(tmux-statusline right)"
+# set -g status-right "#[fg=colour212,bg=$tm_status_bg]$tm_separator_right#[fg=colour198,bg=colour212]#(emoji-clock)  #(tmux-time)#[fg=colour38,bg=colour212]$tm_separator_right#[fg=colour233,bg=colour38]🗓  %-m/%-d #(tmux-date)#[fg=colour18,bg=colour38]$tm_separator_right#[fg=colour232,bg=colour18,bold]#(tmux-weather)#[fg=colour222,bg=colour18,nobold]$tm_separator_right#[fg=colour233,bg=colour222]#(tmux-disk-usage)#[fg=colour35,bg=colour222]$tm_separator_right#[fg=colour233,bg=colour35,nobold]#(tmux-public-ip) "
 
 # Window status
 set -g window-status-format "[#I:#P]#W"

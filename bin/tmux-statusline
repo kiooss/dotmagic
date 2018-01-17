@@ -1,0 +1,72 @@
+#!/usr/bin/env zsh
+
+SIDE=$1
+L_CURRENT_BG='NONE'
+R_CURRENT_BG='NONE'
+
+# separators
+L_SEP=""
+R_SEP=""
+# tm_separator_left=""
+# tm_separator_right=""
+# tm_separator_left=""
+# tm_separator_right=""
+
+# Args: bg fg content
+left_segment() {
+    local bg fg
+    [[ -n $1 ]] && bg=$1
+    [[ -n $2 ]] && fg=$2
+    if [[ $L_CURRENT_BG != 'NONE' && $1 != $L_CURRENT_BG ]]; then
+        echo -n "#[fg=$L_CURRENT_BG,bg=$bg]$L_SEP#[fg=$fg,bg=$bg]"
+    else
+        echo -n "#[fg=$fg,bg=$bg]"
+    fi
+    L_CURRENT_BG=$1
+    [[ -n $3 ]] && echo -n $3
+}
+
+left_segment_end() {
+    if [[ -n $L_CURRENT_BG ]]; then
+      echo -n "#[fg=$L_CURRENT_BG,bg=default]$L_SEP"
+    fi
+    L_CURRENT_BG=''
+}
+
+# Args: bg fg content
+right_segment() {
+    local bg fg
+    [[ -n $1 ]] && bg=$1
+    [[ -n $2 ]] && fg=$2
+    if [[ $R_CURRENT_BG != 'NONE' && $1 != $R_CURRENT_BG ]]; then
+        echo -n "#[fg=$bg,bg=$R_CURRENT_BG]$R_SEP#[fg=$fg,bg=$bg]"
+    else
+        echo -n "#[fg=$bg,bg=default]$R_SEP#[fg=$fg,bg=$bg]"
+    fi
+    R_CURRENT_BG=$1
+    [[ -n $3 ]] && echo -n $3
+}
+
+build_left_status() {
+    left_segment 'colour39' 'colour232' '#(random-food)  #S #(tmux-options)'
+    left_segment 'colour80' 'colour233' '#(tmux-arrow) #(whoami)'
+    left_segment 'colour197' 'colour15' '#(tmux-rb-version)'
+    left_segment 'colour104' 'colour15' '#(tmux-php-version)'
+    left_segment 'colour72' 'green' '💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
+}
+
+build_right_status() {
+    right_segment 'colour212' 'colour198' '#(emoji-clock)  #(tmux-time) '
+    right_segment 'colour38' 'colour233' '#(tmux-date)'
+    right_segment 'colour18' 'colour232' '#(tmux-weather)'
+    right_segment 'colour222' 'colour233' '#(tmux-disk-usage)'
+    right_segment 'colour35' 'colour233' '#(tmux-public-ip)'
+}
+
+if [[ $SIDE = 'right' ]]; then
+    build_right_status
+elif [[ $SIDE = 'left' ]]; then
+    build_left_status
+else
+    echo -n "First paramter should only be left or right"
+fi

@@ -13,5 +13,3 @@ export TZ="/usr/share/zoneinfo/Asia/Tokyo"
 export EDITOR=vim
 export BUNDLER_EDITOR=vim
 export SVN_EDITOR=vim
-
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH

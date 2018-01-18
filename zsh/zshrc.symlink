@@ -22,6 +22,7 @@ MYZSH=$DOTFILES/zsh
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
 [[ -d ~/workspace ]] && export CODE_DIR=~/workspace
+[[ -d ~/.cache ]] && export CACHE_DIR=~/.cache
 
 # PATH config {{{
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH

@@ -21,7 +21,7 @@ rprompt_segment() {
 build_rprompt() {
   RETVAL=$?
   rprompt_segment blue black "$(drink_water)"
-  rprompt_segment red black 'abcdedf'
+  rprompt_segment red black '  Happy Coding!'
 }
 
 RPROMPT='%{%f%b%k%}$(build_rprompt)'

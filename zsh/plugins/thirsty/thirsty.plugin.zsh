@@ -13,7 +13,8 @@ drink_water() {
   next_time=$(($(tail -1 $DRINK_WATER_CONF) + $WATER_TIME))
 
   if [ $next_time -lt $(date +%s) ]; then
-    echo -n "\ue61b You're thirsty!"
+    echo -n "\ue61b"
+    echo -n " You're thirsty!"
   fi
 }
 

@@ -187,6 +187,11 @@ for plugin ($my_plugins); do
 done
 unset plugin
 
+for theme_file ($MYZSH/themes/*.zsh); do
+  source $theme_file
+done
+unset theme_file
+
 if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"
 fi

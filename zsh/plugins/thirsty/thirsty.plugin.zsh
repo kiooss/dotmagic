@@ -39,4 +39,4 @@ next_drink() {
 }
 
 alias nott=not_thirsty
-RPROMPT='$(drink_water)'
+RPROMPT='$(drink_water) '

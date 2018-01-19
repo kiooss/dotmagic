@@ -1,7 +1,3 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
-function tmux-php-version() {
-    echo "🐘  $(php -v | head -n 1 | cut -d ' ' -f2)"
-}
-
-tmux-php-version
+echo "🐘  $(php -v | head -n 1 | cut -d ' ' -f2)"

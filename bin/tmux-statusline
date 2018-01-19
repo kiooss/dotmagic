@@ -65,9 +65,9 @@ build_left_status() {
 
 build_right_status() {
     if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
-        right_segment 'colour6' 'colour198' '#(emoji-clock)  #(tmux-time) '
+        right_segment 'colour3' 'colour198' '#(emoji-clock)  #(tmux-time) '
     else
-        right_segment 'colour6' 'colour198' '#(emoji-clock)  '
+        right_segment 'colour3' 'colour198' '#(emoji-clock)  '
     fi
     right_segment 'colour4' 'colour233' '#(tmux-date) '
     right_segment 'colour19' 'colour232' '#(tmux-weather) '

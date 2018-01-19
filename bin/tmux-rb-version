@@ -1,8 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
-function tmux-rb-version() {
-    cd $(tmux display-message -p "#{pane_current_path}")
-    echo "💎  $(rbenv version | cut -d ' ' -f1)"
-}
-
-tmux-rb-version
+cd "$(tmux display-message -p '#{pane_current_path}')"
+echo "💎  $(rbenv version | cut -d ' ' -f1)"

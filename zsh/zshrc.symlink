@@ -55,10 +55,40 @@ fi
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="random"
 # ZSH_THEME="dpoggi"
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 # ZSH_THEME="re5et"
 # ZSH_THEME="cloud"
 # ZSH_THEME="tjkirch"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# {{{ POWERLEVEL9K config
+POWERLEVEL9K_MODE="awesome-fontconfig"
+
+POWERLEVEL9K_FOLDER_ICON=""
+POWERLEVEL9K_HOME_SUB_ICON="$(print_icon "HOME_ICON")"
+POWERLEVEL9K_DIR_PATH_SEPARATOR=" $(print_icon "LEFT_SUBSEGMENT_SEPARATOR") "
+
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
+
+POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=true
+
+POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='black'
+POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='178'
+POWERLEVEL9K_NVM_BACKGROUND="238"
+POWERLEVEL9K_NVM_FOREGROUND="green"
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="blue"
+POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="015"
+
+POWERLEVEL9K_TIME_BACKGROUND='255'
+#POWERLEVEL9K_COMMAND_TIME_FOREGROUND='gray'
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='245'
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='black'
+
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
+POWERLEVEL9K_SHOW_CHANGESET=true
+# }}}
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -188,10 +218,10 @@ for plugin ($my_plugins); do
 done
 unset plugin
 
-for theme_file ($MYZSH/themes/*.zsh); do
-  source $theme_file
-done
-unset theme_file
+# for theme_file ($MYZSH/themes/*.zsh); do
+#   source $theme_file
+# done
+# unset theme_file
 
 if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"

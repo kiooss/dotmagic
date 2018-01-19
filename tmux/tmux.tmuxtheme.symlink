@@ -1,5 +1,5 @@
 #### my tmux theme
-# vim: set tw=0:
+# vim:ft=tmux
 
 # separators
 tm_separator_left=""

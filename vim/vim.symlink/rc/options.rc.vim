@@ -28,6 +28,8 @@ set timeoutlen=100     " timeout after 100 msec
 " make backspace behave in a sane manner
 set backspace=start,indent,eol
 
+set modeline
+
 " Tab control
 " set noexpandtab " insert tabs rather than spaces for <Tab>
 set expandtab

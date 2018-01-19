@@ -14,3 +14,5 @@ https://github.com/ryanoasis/nerd-fonts
 https://github.com/chriskempson/base16-shell
 # base16-vim
 https://github.com/chriskempson/base16-vim
+# powerlevel9k
+https://github.com/bhilburn/powerlevel9k

@@ -23,13 +23,13 @@ set -g status-bg $tm_status_bg
 set -g status-left-bg $tm_status_bg
 set -g status-left-fg colour243
 set -g status-left-length 100
-set -g status-left "#{prefix_highlight}#(tmux-statusline left)"
+set -g status-left "#{prefix_highlight}#(tmux-statusline left `tmux display -p '#{client_width}'`)"
 
 # Right side of status bar
 set -g status-right-bg $tm_status_bg
 set -g status-right-fg colour243
 set -g status-right-length 100
-set -g status-right "#(tmux-statusline right)"
+set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`)"
 
 # Window status
 set -g window-status-format "[#I:#P]#W"

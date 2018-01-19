@@ -47,6 +47,7 @@ if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
     export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 fi
 # }}}
+export DEFAULT_USER="$USER"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -62,7 +63,8 @@ fi
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # {{{ POWERLEVEL9K config
-POWERLEVEL9K_MODE="awesome-fontconfig"
+# POWERLEVEL9K_MODE="awesome-fontconfig"
+POWERLEVEL9K_MODE='nerdfont-complete'
 
 # POWERLEVEL9K_FOLDER_ICON=""
 # POWERLEVEL9K_HOME_SUB_ICON="$(print_icon "HOME_ICON")"
@@ -85,10 +87,15 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='245'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='black'
 
 POWERLEVEL9K_CUSTOM_DRINK_WATER="drink_water"
+POWERLEVEL9K_CUSTOM_DRINK_WATER_FOREGROUND='black'
+POWERLEVEL9K_CUSTOM_DRINK_WATER_BACKGROUND='red'
 
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time os_icon custom_drink_water)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
+POWERLEVEL9K_OS_ICON_FOREGROUND="black"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time custom_drink_water)
 POWERLEVEL9K_SHOW_CHANGESET=true
 # }}}
 

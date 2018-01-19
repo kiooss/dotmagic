@@ -1,8 +1,12 @@
 #!/usr/bin/env zsh
 
 SIDE=$1
+WIDTH=$2
 L_CURRENT_BG='NONE'
 R_CURRENT_BG='NONE'
+
+MEDIUM=160
+LARGE=180
 
 # separators
 L_SEP=""
@@ -52,11 +56,19 @@ build_left_status() {
     left_segment 'colour6' 'colour233' '#(tmux-arrow) #(whoami) '
     left_segment 'colour9' 'colour15' '#(tmux-rb-version) '
     left_segment 'colour5' 'colour15' '#(tmux-php-version) '
-    left_segment 'colour2' 'green' '💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
+    if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
+        left_segment 'colour2' 'green' '💻 #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
+    else
+        left_segment_end
+    fi
 }
 
 build_right_status() {
-    right_segment 'colour6' 'colour198' '#(emoji-clock)  #(tmux-time) '
+    if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
+        right_segment 'colour6' 'colour198' '#(emoji-clock)  #(tmux-time) '
+    else
+        right_segment 'colour6' 'colour198' '#(emoji-clock)  '
+    fi
     right_segment 'colour4' 'colour233' '#(tmux-date) '
     right_segment 'colour19' 'colour232' '#(tmux-weather) '
     right_segment 'colour3' 'colour233' '#(tmux-disk-usage)'

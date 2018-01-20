@@ -89,7 +89,7 @@ POWERLEVEL9K_CUSTOM_DRINK_WATER_FOREGROUND='black'
 POWERLEVEL9K_CUSTOM_DRINK_WATER_BACKGROUND='red'
 
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
@@ -103,6 +103,10 @@ POWERLEVEL9K_SHOW_CHANGESET=true
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
 # Comment this out to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
@@ -114,6 +118,9 @@ POWERLEVEL9K_SHOW_CHANGESET=true
 
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
 
 # Uncomment following line if you want to disable command autocorrection
 # DISABLE_CORRECTION="true"

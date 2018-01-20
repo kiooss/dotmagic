@@ -10,3 +10,6 @@
 [submodule "zsh/omz_custom/plugins/zsh-syntax-highlighting"]
 	path = zsh/omz_custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/base16-shell"]
+	path = zsh/base16-shell
+	url = https://github.com/chriskempson/base16-shell

@@ -26,23 +26,6 @@ if hash apt-get 2>/dev/null; then
     fi
 fi
 
-# install dircolors-solarized
-if [ -d "$HOME/.dircolors-solarized" ]; then
-    echo "dircolors-solarized already exists... Skipping."
-else
-    echo "Installing dircolors-solarized"
-    git clone https://github.com/seebi/dircolors-solarized ~/.dircolors-solarized
-    ln -s ~/.dircolors-solarized/dircolors.256dark ~/.dircolors
-fi
-
-# install base16-shell
-if [ -d "$HOME/.config/base16-shell" ]; then
-    echo "base16-shell already exists... Skipping."
-else
-    echo "Installing base16-shell"
-    git clone https://github.com/chriskempson/base16-shell ~/.config/base16-shell
-fi
-
 # install oh-my-zsh
 if [ -d "$HOME/.oh-my-zsh" ]; then
     echo "oh-my-zsh already exists... Skipping."

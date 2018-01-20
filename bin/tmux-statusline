@@ -11,10 +11,8 @@ LARGE=180
 # separators
 L_SEP=""
 R_SEP=""
-# tm_separator_left=""
-# tm_separator_right=""
-# tm_separator_left=""
-# tm_separator_right=""
+# L_SEP=""
+# R_SEP=""
 
 # Args: bg fg content
 left_segment() {
@@ -65,14 +63,14 @@ build_left_status() {
 
 build_right_status() {
     if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
-        right_segment 'colour3' 'colour198' '#(emoji-clock)  #(tmux-time) '
+        right_segment 'colour017' 'colour198' '#(emoji-clock)  #(tmux-time) '
     else
-        right_segment 'colour3' 'colour198' '#(emoji-clock)  '
+        right_segment 'colour017' 'colour198' '#(emoji-clock)  '
     fi
-    right_segment 'colour4' 'colour233' '#(tmux-date) '
-    right_segment 'colour19' 'colour232' '#(tmux-weather) '
-    right_segment 'colour3' 'colour233' '#(tmux-disk-usage)'
-    right_segment 'colour2' 'colour233' '#(tmux-public-ip) '
+    right_segment 'colour016' 'colour233' '#(tmux-date)'
+    right_segment 'colour018' 'colour232' '#(tmux-weather)'
+    right_segment 'colour006' 'colour233' '#(tmux-disk-usage)'
+    right_segment 'colour004' 'colour233' '#(tmux-public-ip) '
 }
 
 if [[ $SIDE = 'right' ]]; then

@@ -54,3 +54,6 @@ goto-gitroot() {
 }
 zle -N goto-gitroot
 bindkey '^g' goto-gitroot
+
+# the composer plugin create the c alias but I do not need it.
+unalias c 2>/dev/null

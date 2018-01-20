@@ -1,7 +1,7 @@
 # zsh-autosuggestions{{{
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 bindkey '^ ' autosuggest-accept
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=196'
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'
 # }}}
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)

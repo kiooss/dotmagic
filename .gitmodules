@@ -1,0 +1,12 @@
+[submodule "zsh/omz_custom/plugins/zsh-autosuggestions"]
+	path = zsh/omz_custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/omz_custom/themes/powerlevel9k"]
+	path = zsh/omz_custom/themes/powerlevel9k
+	url = https://github.com/bhilburn/powerlevel9k.git
+[submodule "zsh/omz_custom/plugins/zsh-completions"]
+	path = zsh/omz_custom/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "zsh/omz_custom/plugins/zsh-syntax-highlighting"]
+	path = zsh/omz_custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting

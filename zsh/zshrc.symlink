@@ -17,6 +17,7 @@ fi
 ZSH=$HOME/.oh-my-zsh
 DOTFILES=$HOME/.dotfiles
 MYZSH=$DOTFILES/zsh
+ZSH_CUSTOM=$MYZSH/omz_custom
 # DIRCOLORS=$HOME/.dircolors
 
 # define the code directory

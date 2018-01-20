@@ -79,6 +79,8 @@
     # find email in source
     grepemail = grep -E '\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\\b'
 
+    submodule-update = submodule update --init --recursive
+
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global

@@ -89,8 +89,7 @@ function update_dotfiles() {
     echo "Updating dotfiles."
     echo $DOTFILES
     cd "$DOTFILES"
-    if git pull --rebase --stat origin master
-    then
+    if git stash && git pull --rebase --stat origin master && git stash pop && git submodule update --init --recursive; then
         echo "Dotfiles has been updated."
     else
         echo "Failed!"

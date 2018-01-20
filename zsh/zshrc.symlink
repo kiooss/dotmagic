@@ -214,6 +214,8 @@ done
 
 source $MYZSH/config.zsh
 # if want to use oh-my-zsh, then uncomment the below line
+
+typeset -U path cdpath fpath manpath # Remove duplicates in the following arrays.
 source $ZSH/oh-my-zsh.sh
 
 unalias c 2>/dev/null

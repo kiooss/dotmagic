@@ -88,8 +88,8 @@ POWERLEVEL9K_CUSTOM_DRINK_WATER="drink_water"
 POWERLEVEL9K_CUSTOM_DRINK_WATER_FOREGROUND='black'
 POWERLEVEL9K_CUSTOM_DRINK_WATER_BACKGROUND='red'
 
-# POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
@@ -217,8 +217,6 @@ source $MYZSH/config.zsh
 
 typeset -U path cdpath fpath manpath # Remove duplicates in the following arrays.
 source $ZSH/oh-my-zsh.sh
-
-unalias c 2>/dev/null
 
 for config_file ($MYZSH/lib/*.zsh); do
   source $config_file

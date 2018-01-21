@@ -84,19 +84,6 @@ function git-change-user-email {
       fi' HEAD
 }
 
-
-function update_dotfiles() {
-    echo "Updating dotfiles."
-    echo $DOTFILES
-    cd "$DOTFILES"
-    if git pull --rebase --stat --autostash origin master && git submodule update --init --recursive; then
-        echo "Dotfiles has been updated."
-    else
-        echo "Failed!"
-    fi
-    cd -
-}
-
 # Generate an SSL key and a signing request or self-signed certificate
 function sslcert() {
     cn=$1

@@ -75,8 +75,10 @@ function! vimrc#on_filetype() abort "{{{
 endfunction "}}}
 
 
-let s:middot='·'
-let s:raquo='»'
+" let s:middot='·'
+let s:middot="\ue77f"
+" let s:raquo='»'
+let s:raquo="\uf115+"
 let s:small_l='ℓ'
 
 " Override default `foldtext()`, which produces something like:

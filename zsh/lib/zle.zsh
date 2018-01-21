@@ -45,3 +45,11 @@ goto-gitroot() {
 }
 zle -N goto-gitroot
 bindkey '^g' goto-gitroot
+
+autosuggest-accept-line() {
+  zle autosuggest-accept
+  zle accept-line
+
+}
+zle -N autosuggest-accept-line
+bindkey '^j' autosuggest-accept-line

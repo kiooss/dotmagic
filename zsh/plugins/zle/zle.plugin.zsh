@@ -11,7 +11,7 @@
 
 
 bindkey -s '\eg' '^Ugit status^M'
-bindkey -s '\ec' '^Ugit add -A && git commit^M'
+# bindkey -s '\ec' '^Ugit add -A && git commit^M'
 bindkey -s '\eu' '^Ugit up^M'
 
 bindkey -s '\el' '^Ull^M'

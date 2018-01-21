@@ -27,4 +27,3 @@ if git pull --rebase --stat --autostash origin master && git submodule update --
 else
   printf "${RED}%s${NORMAL}\n" 'There was an error updating. Try again later?'
 fi
-cd -

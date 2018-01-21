@@ -11,9 +11,9 @@ nnoremap <CR> <NOP>
 
 nnoremap <silent> <Leader>w :update<cr>
 nnoremap <silent> <Leader>hc :pc<cr>
-nnoremap <Leader>q :q<cr>
+nnoremap <silent> <Leader>q :q<cr>
+nnoremap <silent> <Leader>z :qa!<cr>
 nnoremap <silent> <Leader>b :bd<cr>
-nnoremap <silent> <Leader>0 :qa!<cr>
 nnoremap <Leader>r :e!<cr>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>

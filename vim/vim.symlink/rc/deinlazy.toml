@@ -4,8 +4,12 @@ build = 'make'
 on_source = ['unite.vim', 'vimshell.vim']
 
 [[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
+depends = 'neomru.vim'
 hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
 hook_add = '''
   nnoremap <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
@@ -17,6 +21,7 @@ hook_add = '''
   nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ol :<C-u>Denite outline -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ls :<C-u>Denite buffer<CR>
+  nnoremap <silent> <leader>m :<C-u>Denite file_mru -highlight-mode-insert=Search<CR>
   " nnoremap <silent> ;r
   "       \ :<C-u>Denite -buffer-name=register
   "       \ register neoyank<CR>

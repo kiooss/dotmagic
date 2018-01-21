@@ -1,4 +1,4 @@
-# zsh-autosuggestions{{{
+# zsh-autosuggestions {{{
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # bindkey '^ ' autosuggest-accept
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'

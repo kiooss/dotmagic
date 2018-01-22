@@ -61,7 +61,7 @@ alias use_php5="sudo a2enmod php5 && sudo service apache2 restart"
 
 alias top10="print -l -- \${(o)history%% *} | uniq -c | sort -nr | head -n 10"
 
-alias all_key_bindings="for m ($keymaps) bindkey -LM $m"
+alias all_key_bindings="for m (\$keymaps) bindkey -LM \$m"
 alias all_zle_user_widgets="zle -lL"
 alias all_zstyle="zstyle -L"
 alias all_zmodload="zmodload -L"

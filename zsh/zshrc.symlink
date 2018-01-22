@@ -162,7 +162,6 @@ plugins=(
     systemadmin
     rails
     rake-fast
-    tmux
     tmuxinator
     themes
     z

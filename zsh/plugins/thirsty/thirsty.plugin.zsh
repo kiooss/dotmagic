@@ -15,6 +15,7 @@ drink_water() {
   if [ $next_time -lt $(date +%s) ]; then
     echo -n "\ue204"
     # echo -n " You're thirsty!"
+    echo -n " 水を飲んでください"
   fi
 }
 

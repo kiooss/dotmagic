@@ -81,12 +81,6 @@ setw -g mode-keys vi
 
 unbind p
 bind p paste-buffer
-# old tmux version.
-# bind-key -t vi-copy 'v' begin-selection
-# bind-key -t vi-copy 'y' copy-selection
-# tmux version >= 2.4.
-# bind-key -Tcopy-mode-vi 'v' send -X begin-selection
-# bind-key -Tcopy-mode-vi 'y' send -X copy-selection
 
 if-shell -b '[ "$(echo "$TMUX_VERSION < 2.4" | bc)" = 1 ]' \
     "bind-key -t vi-copy 'v' begin-selection; bind-key -t vi-copy 'y' copy-selection"

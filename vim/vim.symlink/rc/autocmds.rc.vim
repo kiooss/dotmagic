@@ -48,6 +48,10 @@ if has('autocmd')
     autocmd FocusLost * silent! wa
     " close help only with q
     autocmd FileType help noremap <buffer> q :q<cr>
+    " make quickfix windows take all the lower section of the screen
+    " when there are multiple windows open
+    autocmd FileType qf wincmd J
+    autocmd FileType qf noremap <buffer> q :q<cr>
 
     " autocmd BufDelete * :call QuitIfLastBuffer()
 

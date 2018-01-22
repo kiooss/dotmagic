@@ -55,7 +55,7 @@ build_left_status() {
     left_segment 'colour009' 'colour015' '#(tmux-rb-version) '
     left_segment 'colour005' 'colour015' '#(tmux-php-version) '
     if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
-        left_segment 'colour014' 'colour000' '💻  #(tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
+        left_segment 'colour014' 'colour000' '💻  #($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
     else
         left_segment_end
     fi

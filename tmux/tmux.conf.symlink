@@ -102,9 +102,9 @@ set -g @themepack 'block/cyan'
 set -g @prefix_highlight_fg 'colour233' # default is 'colour231'
 set -g @prefix_highlight_bg 'colour155'  # default is 'colour04'
 set -g @prefix_highlight_show_copy_mode 'on'
-set -g @download_speed_format "%10s"
-set -g @upload_speed_format "%10s"
-set -g @net_speed_format "%10s\\uf433 %10s\\uf431"
+# set -g @download_speed_format "%10s"
+# set -g @upload_speed_format "%10s"
+# set -g @net_speed_format "%10s\\uf433 %10s\\uf431"
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
@@ -116,7 +116,7 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 
 # set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
-set -g @plugin 'tmux-plugins/tmux-net-speed'
+# set -g @plugin 'tmux-plugins/tmux-net-speed'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'

@@ -47,7 +47,6 @@ done
 # tmuxinator
 alias mux="tmuxinator"
 
-alias stop_meteor="kill -9 `ps ax | grep node | grep meteor | awk '{print $1}'`"
 alias eucssh='cocot -t UTF-8 -p EUC-JP ssh'
 
 alias svndiff='svn diff | vi -'

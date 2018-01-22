@@ -26,7 +26,7 @@ main() {
     set -o pipefail
     set -o nounset
 
-    printf "${BLUE}Installing dotfiles.${NORMAL}\n"
+    printf "${BLUE}%s${NORMAL}\n" "Installing dotfiles."
 
     echo "Initializing submodule(s)"
     git submodule update --init --recursive
@@ -64,15 +64,15 @@ main() {
         :
     else
         # asume something else
-        printf "${YELLOW}Configuring zsh as default shell${NORMAL}\n"
-        chsh -s $(which zsh)
+        printf "${YELLOW}%s${NORMAL}\n" "Configuring zsh as default shell"
+        chsh -s "$(which zsh)"
     fi
 
-    printf "${GREEN}Done.${NORMAL}\n"
+    printf "${GREEN}%s{NORMAL}\n" "Done."
 
     # restart shell
-    printf "${YELLOW}restarting shell${NORMAL}\n"
-    exec $SHELL -l
+    printf "${YELLOW}%s${NORMAL}\n" "restarting shell"
+    exec "$SHELL" -l
 }
 
 main

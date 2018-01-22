@@ -150,7 +150,7 @@ plugins=(
     cp
     capistrano
     colored-man-pages
-    emoji
+    # emoji
     encode64
     fancy-ctrl-z
     git

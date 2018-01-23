@@ -1,75 +1,114 @@
-#!/bin/bash
+if which tput >/dev/null 2>&1; then
+  ncolors=$(tput colors)
+fi
+
+if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+  BLACK="$(tput setaf 0)"
+  RED="$(tput setaf 1)"
+  GREEN="$(tput setaf 2)"
+  YELLOW="$(tput setaf 3)"
+  BLUE="$(tput setaf 4)"
+  MAGENTA="$(tput setaf 5)"
+  CYAN="$(tput setaf 6)"
+  WHITE="$(tput setaf 7)"
+  BOLD="$(tput bold)"
+  NORMAL="$(tput sgr0)"
+else
+  BLACK=""
+  RED=""
+  GREEN=""
+  YELLOW=""
+  BLUE=""
+  MAGENTA=""
+  CYAN=""
+  WHITE=""
+  BOLD=""
+  NORMAL=""
+fi
+
+e_section() {
+  printf "\n${BLUE}$@\n"
+  printf "=================================================================${NORMAL}\n"
+}
+
+e_success() {
+  printf "${GREEN}✔${NORMAL} $@\n"
+}
+
+e_error() {
+  printf "${RED}✖${NORMAL} $@\n"
+}
+
+e_info() {
+  printf "${YELLOW}➜${NORMAL} $@\n"
+}
+
+big_title() {
+  printf "%s" "$GREEN"
+  printf '%s\n' ' _    _                           _       _    __ _ _'
+  printf '%s\n' '| | _(_) ___   ___  ___ ___    __| | ___ | |_ / _(_) | ___  ___'
+  printf '%s\n' '| |/ / |/ _ \ / _ \/ __/ __|  / _` |/ _ \| __| |_| | |/ _ \/ __|'
+  printf '%s\n' '|   <| | (_) | (_) \__ \__ \ | (_| | (_) | |_|  _| | |  __/\__ \'
+  printf '%s\n' '|_|\_\_|\___/ \___/|___/___/  \__,_|\___/ \__|_| |_|_|\___||___/'
+  printf "%s" "$NORMAL"
+}
 
 main() {
-    # Use colors, but only if connected to a terminal, and that terminal
-    # supports them.
-    if which tput >/dev/null 2>&1; then
-        ncolors=$(tput colors)
-    fi
-    if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
-      RED="$(tput setaf 1)"
-      GREEN="$(tput setaf 2)"
-      YELLOW="$(tput setaf 3)"
-      BLUE="$(tput setaf 4)"
-      BOLD="$(tput bold)"
-      NORMAL="$(tput sgr0)"
-    else
-      RED=""
-      GREEN=""
-      YELLOW=""
-      BLUE=""
-      BOLD=""
-      NORMAL=""
-    fi
 
-    set -o errexit
-    set -o pipefail
-    set -o nounset
+  set -o errexit
+  # set -o pipefail
+  # set -o nounset
 
-    printf "${BLUE}%s${NORMAL}\n" "Installing dotfiles."
+  big_title
+  e_section "Installing kiooss dotfiles."
 
-    echo "Initializing submodule(s)"
-    git submodule update --init --recursive
+  if [ ! -n "$DOTFILES" ]; then
+    DOTFILES=~/.dotfiles
+  fi
 
-    source install/pre.sh
-    source install/link.sh
+  if [ -d "$DOTFILES" ]; then
+    e_error "You already have a .dotfiles in your home."
+    e_error "You'll need to remove $DOTFILES if you want to re-install."
+    exit
+  fi
 
-    : '
-    if [ "$(uname)" == "Darwin" ]; then
-        echo "Running on OSX"
+  # Prevent the cloned repository from having insecure permissions. Failing to do
+  # so causes compinit() calls to fail with "command not found: compdef" errors
+  # for users with insecure umasks (e.g., "002", allowing group writability). Note
+  # that this will be ignored under Cygwin by default, as Windows ACLs take
+  # precedence over umasks except for filesystems mounted with option "noacl".
+  umask g-w,o-w
 
-        echo "Brewing all the things"
-        source install/brew.sh
+  hash git >/dev/null 2>&1 || {
+    e_error "Error: git is not installed"
+    exit 1
+  }
 
-        echo "Updating OSX settings"
-        source installosx.sh
+  e_info "Cloning kiooss dotfiles"
+  git clone https://github.com/kiooss/dotmagic $DOTFILES
 
-        echo "Installing node (from nvm)"
-        source install/nvm.sh
+  e_info "Initializing submodule(s)"
+  git submodule update --init --recursive
 
-        echo "Configuring nginx"
-        # create a backup of the original nginx.conf
-        mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
-        ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
-        # symlink the code.dev from dotfiles
-        ln -s ~/.dotfiles/nginx/code.dev /usr/local/etc/nginx/sites-enabled/code.dev
-    fi
-    '
+  cd $DOTFILES
 
-    if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
-        # assume Zsh
-        :
-    else
-        # asume something else
-        printf "${YELLOW}%s${NORMAL}\n" "Configuring zsh as default shell"
-        chsh -s "$(which zsh)"
-    fi
+  . install/pre.sh
+  . install/link.sh
 
-    printf "${GREEN}%s{NORMAL}\n" "Done."
+  if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+    # assume Zsh
+    :
+  else
+    # asume something else
+    printf "${YELLOW}%s${NORMAL}\n" "Configuring zsh as default shell"
+    chsh -s "$(which zsh)"
+  fi
 
-    # restart shell
-    printf "${YELLOW}%s${NORMAL}\n" "restarting shell"
-    exec "$SHELL" -l
+  e_info "All Done."
+
+  # restart shell
+  printf "${YELLOW}%s${NORMAL}\n" "restarting shell"
+  # exec "$SHELL" -l
 }
 
 main

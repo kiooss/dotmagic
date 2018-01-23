@@ -32,3 +32,6 @@ Vim plugins are managed with the ⚡️ Dark powered Vim/Neovim plugin manager [
 ## Screenshot
 ![My Screen](screenshot/ScreenCapture.jpg)
 
+## License
+
+[MIT](license)

@@ -34,16 +34,6 @@ else
     git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 
-# install rbenv
-if [ -d "$HOME/.rbenv" ]; then
-    echo "rbenv already exists... Skipping."
-else
-    echo "Installing rbenv"
-    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    echo "Installing ruby-build"
-    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-fi
-
 # install pyenv
 if [ -d "$HOME/.pyenv" ]; then
     echo "pyenv already exists... Skipping."

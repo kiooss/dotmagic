@@ -1,11 +1,11 @@
-# Dotfiles
+# DOTMAGIC
 
 > Manage my dotfiles.
 
 Basicly tested on OSX / Ubuntu, but some configuration like
 (*vim*/*zsh*/*tmux*) should be able to migrate to other os distribution easily.
 
-## The purpose
+## The Purpose
 
 *Automate All The Things!*
 When I am in a new machine, I'd like to build my enviroment from zero over just

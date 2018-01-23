@@ -66,11 +66,6 @@ main() {
     DOTFILES=~/.dotfiles
   fi
 
-  if [ -d "$DOTFILES" ]; then
-    e_error "You already have a .dotfiles in your home."
-    e_error "You'll need to remove $DOTFILES if you want to re-install."
-    exit
-  fi
 
   # Prevent the cloned repository from having insecure permissions. Failing to do
   # so causes compinit() calls to fail with "command not found: compdef" errors
@@ -84,8 +79,10 @@ main() {
     exit 1
   }
 
-  e_info "Cloning kiooss dotfiles"
-  git clone https://github.com/kiooss/dotmagic $DOTFILES
+  if [ ! -d "$DOTFILES" ]; then
+    e_info "Cloning kiooss dotfiles"
+    git clone https://github.com/kiooss/dotmagic $DOTFILES
+  fi
 
   e_info "Initializing submodule(s)"
   git submodule update --init --recursive
@@ -107,8 +104,8 @@ main() {
   e_info "All Done."
 
   # restart shell
-  printf "${YELLOW}%s${NORMAL}\n" "restarting shell"
-  # exec "$SHELL" -l
+  e_info "Restarting shell"
+  exec "$SHELL" -l
 }
 
 main

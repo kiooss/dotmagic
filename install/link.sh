@@ -2,6 +2,10 @@
 
 DOTFILES=$HOME/.dotfiles
 
+if [ -z "$YELLOW" ]; then
+    source "$DOTFILES/install/color.sh"
+fi
+
 force="$1"
 
 printf "\n${YELLOW}Creating symlinks\n"
@@ -11,32 +15,14 @@ for file in $linkables ; do
     target="$HOME/.$( basename $file ".symlink" )"
     if [ -e "$target" ]; then
         if [ "$force" = "force" ]; then
-            echo "~${target#$HOME} already exists... Creating it forcelly."
-            ln -sf "$file" "$target"
+            printf "%s~%s%s already exists... %sCreating it forcelly!%s\n" "$GREEN" "${target#$HOME}" "$NORMAL" "$RED" "$NORMAL"
+            rm "$target" && ln -s "$file" "$target"
         else
-            echo "~${target#$HOME} already exists... Skipping."
+            printf "%s~%s%s already exists... %sSkipping%s\n" "$GREEN" "${target#$HOME}" "$NORMAL" "$BLUE" "$NORMAL"
         fi
     else
-        echo "Creating symlink for $file"
+        printf "Creating symlink for %s%s%s\n" "$GREEN" "$file" "$NORMAL"
         ln -sf "$file" "$target"
     fi
 done
-
-: '
-echo -e "\n\ninstalling to ~/.config"
-echo "=============================="
-if [ ! -d $HOME/.config ]; then
-    echo "Creating ~/.config"
-    mkdir -p $HOME/.config
-fi
-# configs=$( find -path "$DOTFILES/config.symlink" -maxdepth 1 )
-for config in $DOTFILES/config/*; do
-    target=$HOME/.config/$( basename $config )
-    if [ -e $target ]; then
-        echo "~${target#$HOME} already exists... Skipping."
-    else
-        echo "Creating symlink for $config"
-        ln -s $config $target
-    fi
-done
-'
+printf "${YELLOW}Symlinks created success${NORMAL}\n"

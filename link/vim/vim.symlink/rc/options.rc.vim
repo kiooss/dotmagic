@@ -100,6 +100,7 @@ endif
 set updatecount=80                    " update swapfiles every 80 typed chars
 set updatetime=2000                   " CursorHold interval
 
+set formatoptions-=t                  " turn off auto-wrapping.
 if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j                " remove comment leader when joining comment lines
 endif

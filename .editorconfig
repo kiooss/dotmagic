@@ -2,10 +2,6 @@ root = true
 
 [*]
 indent_style = space
-indent_size = 4
-
-[{*.rb,*.vim,*.tmol,Rakefile,*.zsh}]
-indent_style = space
 indent_size = 2
 
 [*.snippets]

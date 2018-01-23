@@ -287,7 +287,7 @@ function initeditorconfig() {
     if [ -e '.editorconfig' ]; then
         echo "[ERROR] .editorconfig already exists!"
     else
-        cat $DOTFILES/config_samples/editorconfig > .editorconfig
+        cat $DOTFILES/templates/editorconfig > .editorconfig
         echo "[OK] .editorconfig created!"
     fi
 }

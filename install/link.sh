@@ -3,7 +3,7 @@
 DOTFILES=$HOME/.dotfiles
 
 if [ -z "$YELLOW" ]; then
-    source "$DOTFILES/install/color.sh"
+    . "$DOTFILES/install/color.sh"
 fi
 
 force="$1"

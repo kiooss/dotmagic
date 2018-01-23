@@ -3,9 +3,13 @@ npm-debug.log
 
 plug.vim.old
 
-config/nvim/spell
-config/nvim/shada
-config/nvim/plugged
-vim/vim.symlink/spell/
-vim/vim.symlink/plugged/
-vim/vim.symlink/bundles/
+# rbenv
+/link/rbenv.symlink/shims
+/link/rbenv.symlink/version
+/link/rbenv.symlink/versions
+/link/rbenv.symlink/sources
+/link/rbenv.symlink/cache
+/link/rbenv.symlink/libexec/*.dylib
+/link/rbenv.symlink/src/Makefile
+/link/rbenv.symlink/src/*.o
+/link/rbenv.symlink/gems

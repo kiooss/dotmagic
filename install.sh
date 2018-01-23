@@ -56,9 +56,6 @@ main() {
     fi
     '
 
-    echo "creating vim directories"
-    mkdir -p ~/.vim-tmp
-
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         # assume Zsh
         :

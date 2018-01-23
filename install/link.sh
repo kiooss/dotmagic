@@ -1,28 +1,35 @@
 #!/bin/bash
 
 DOTFILES=$HOME/.dotfiles
+BACKUP_DIR=$HOME/.backup
 
-if [ -z "$YELLOW" ]; then
-    . "$DOTFILES/install/color.sh"
-fi
+[ ! -d "$BACKUP_DIR" ] && mkdir -p "$BACKUP_DIR"
+
+. "$DOTFILES/install/color.sh"
 
 force="$1"
 
-printf "\n${YELLOW}Creating symlinks\n"
-printf "===========================================================${NORMAL}\n"
+e_section "Linking files into home directory."
+[ "$force" = "force" ] && e_info "Run in force mode, be careful."
+
 linkables=$( find -H "$DOTFILES/link" -maxdepth 3 -name '*.symlink' )
+
 for file in $linkables ; do
-    target="$HOME/.$( basename $file ".symlink" )"
-    if [ -e "$target" ]; then
-        if [ "$force" = "force" ]; then
-            printf "%s~%s%s already exists... %sCreating it forcelly!%s\n" "$GREEN" "${target#$HOME}" "$NORMAL" "$RED" "$NORMAL"
-            rm "$target" && ln -s "$file" "$target"
-        else
-            printf "%s~%s%s already exists... %sSkipping%s\n" "$GREEN" "${target#$HOME}" "$NORMAL" "$BLUE" "$NORMAL"
-        fi
+  target="$HOME/.$( basename $file ".symlink" )"
+  e_info "Target: ${target}"
+  if [ -e "$target" ]; then
+    if [ "$force" = "force" ]; then
+      e_error "${target} already exists, backup it and do link staff."
+      mv "$target" "$BACKUP_DIR/"
+      e_success "Linking $file to $target"
+      ln -sf "$file" "$target"
     else
-        printf "Creating symlink for %s%s%s\n" "$GREEN" "$file" "$NORMAL"
-        ln -sf "$file" "$target"
+      e_error "${target} already exists, skip."
     fi
+  else
+    e_success "Linking $file to $target"
+    ln -sf "$file" "$target"
+  fi
 done
-printf "${YELLOW}Symlinks created success${NORMAL}\n"
+
+e_success "Linking Done."

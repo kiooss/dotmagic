@@ -13,7 +13,7 @@ if has('autocmd')
     autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType zsh setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType zsh,bash,sh setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType crontab setlocal nobackup nowritebackup
 
     "ruby

@@ -18,3 +18,20 @@ else
   BOLD=""
   NORMAL=""
 fi
+
+e_section() {
+    printf "\n${BLUE}$@\n"
+    printf "=============================================================${NORMAL}\n"
+}
+
+e_success() {
+    printf "${GREEN}✔${NORMAL} $@\n"
+}
+
+e_error() {
+    printf "${RED}✖${NORMAL} $@\n"
+}
+
+e_info() {
+    printf "${YELLOW}➜${NORMAL} $@\n"
+}

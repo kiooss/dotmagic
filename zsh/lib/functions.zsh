@@ -1,7 +1,7 @@
 function upgrade_dotfiles() {
-  env DOTFILES=$DOTFILES sh $DOTFILES/install/upgrade.sh
+  env DOTFILES=$DOTFILES bash $DOTFILES/install/upgrade.sh
 }
 
 function link_dotfiles() {
-  env DOTFILES=$DOTFILES sh $DOTFILES/install/link.sh $@
+  env DOTFILES=$DOTFILES bash $DOTFILES/install/link.sh $@
 }

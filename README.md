@@ -30,5 +30,5 @@ Vim plugins are managed with the ⚡️ Dark powered Vim/Neovim plugin manager [
 ## Tmux
 
 ## Screenshot
-![My Screen](screenshot/ScreenCapture.png)
+![My Screen](screenshot/ScreenCapture.jpg)
 

@@ -5,6 +5,8 @@
 Basicly tested on OSX / Ubuntu, but some configuration like
 (*vim*/*zsh*/*tmux*) should be able to migrate to other os distribution easily.
 
+I use vim as my editor, zsh as my shell, and tmux as my terminal multiplexer.
+
 ## The Purpose
 
 *Automate All The Things!*
@@ -15,9 +17,15 @@ copy from existed enviroment (which may cause a lot of wired problems).
 
 Install is quite easy, just follow the steps below.
 
+Via git
 ```sh
 git clone https://github.com/kiooss/dotmagic.git ~/.dotfiles
-cd ~/.dotfiles && ./install.sh
+cd ~/.dotfiles && ./install/install.sh
+```
+
+Via curl
+```
+curl -fsSL https://raw.github.com/kiooss/dotmagic/master/install/install.sh | bash
 ```
 
 ## Vim

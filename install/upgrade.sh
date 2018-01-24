@@ -14,8 +14,8 @@ prev_head="$(git rev-parse HEAD)"
 git pull --rebase --stat --autostash origin master
 git submodule update --init --recursive
 
-if [[ "$(git rev-parse HEAD)" != "$prev_head" ]]; then
-  e_info "Changes detected, please reload shell."
+if [[ "$(git rev-parse head)" != "$prev_head" ]]; then
+  e_info "changes detected, please reload shell."
 fi
 
 e_success "Hooray! Dotfiles has been updated and/or is at the current version."

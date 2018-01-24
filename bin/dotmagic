@@ -28,11 +28,15 @@ main() {
   fi
 
   cd $DOTFILES
+  prev_head="$(git rev-parse HEAD)"
   . install/util.sh
 
   if [[ "$FIRST_TIME_INSTALL" != true ]]; then
     e_header "Dotfiles already exists, updating it."
     git pull --rebase --stat --autostash origin master
+    if [[ "$(git rev-parse head)" != "$prev_head" ]]; then
+      CHANGE_DETECTED=true
+    fi
     e_success "done."
   fi
 
@@ -55,8 +59,17 @@ main() {
   e_header "Welcome to the kiooss dotfiles world!"
   big_title
   printf "\n"
-  e_success "The kiooss dotfiles is now installed."
-  e_info "Last step: Please exit and restart all your shells."
+
+  if [[ "$FIRST_TIME_INSTALL" = true ]]; then
+    e_success "The kiooss dotfiles has been installed."
+    e_info "Last step: Please exit and restart all your shells."
+  else
+    e_success "Hooray!  Dotfiles has been updated and/or is at the current version."
+    if [[ "$CHANGE_DETECTED" = true ]]; then
+      e_info "Changes detected, please reload shell."
+    fi
+  fi
+
   printf "\n"
 }
 

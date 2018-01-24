@@ -45,24 +45,12 @@ main() {
 
   . install/link.sh
 
-  # if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
-  #   # assume Zsh
-  #   :
-  # else
-  #   # asume something else
-  #   e_info "Configuring zsh as default shell"
-  #   chsh -s "$(which zsh)"
-  # fi
-
   e_header "Welcome to the kiooss dotfiles world!"
   big_title
   printf "\n"
   e_success "The kiooss dotfiles is now installed."
+  e_arrow "Last step: Please exit and restart all your shells."
   printf "\n"
-
-  # restart shell
-  # e_info "Restarting shell"
-  # exec "$SHELL" -l
 }
 
 main

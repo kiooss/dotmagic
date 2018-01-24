@@ -33,7 +33,7 @@ e_section() {
 }
 
 e_header() {
-  printf "\n${BLUE}-----> ${NORMAL} {$CYAN}$@${NORMAL}\n"
+  printf "\n${BLUE}★★★★★${NORMAL} ${CYAN}$@${NORMAL}\n"
 }
 
 e_success() {

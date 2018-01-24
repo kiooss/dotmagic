@@ -9,7 +9,7 @@ BACKUP_DIR=$HOME/.backup
 
 force="$1"
 
-e_section "Linking files into home directory."
+e_header "Linking files into home directory."
 [ "$force" = "force" ] && e_info "Run in force mode, be careful."
 
 linkables=$( find -H "$DOTFILES/link" -maxdepth 3 -name '*.symlink' )

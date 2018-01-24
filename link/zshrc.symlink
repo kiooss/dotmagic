@@ -166,7 +166,6 @@ plugins=(
     tmuxinator
     themes
     z
-    zsh_reload
     zsh-autosuggestions
     zsh-navigation-tools
     zsh-syntax-highlighting

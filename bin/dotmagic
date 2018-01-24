@@ -21,6 +21,8 @@ main() {
     exit 1
   }
 
+  GIT_VERSION=$(git --version | cut -d ' ' -f 3)
+
   if [ ! -d "$DOTFILES" ]; then
     echo "Cloning kiooss dotfiles"
     git clone https://github.com/kiooss/dotmagic $DOTFILES
@@ -33,7 +35,13 @@ main() {
 
   if [[ "$FIRST_TIME_INSTALL" != true ]]; then
     e_header "Dotfiles already exists, updating it."
-    git pull --rebase --stat --autostash origin master
+    if version_gt $GIT_VERSION "2.9.0"; then
+      git pull --rebase --stat --autostash origin master
+    else
+      git stash
+      git pull --rebase --stat origin master
+      git stash pop
+    fi
     if [[ "$(git rev-parse HEAD)" != "$prev_head" ]]; then
       CHANGE_DETECTED=true
     fi

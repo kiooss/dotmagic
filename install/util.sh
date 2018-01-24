@@ -87,7 +87,9 @@ function setdiff() {
     [[ "$skip" ]] || setdiff_out=("${setdiff_out[@]}" "$a")
   done
   [[ "$debug" ]] && for a in setdiff_new setdiff_cur setdiff_out; do
-  echo "$a ($(eval echo "\${#$a[*]}")) $(eval echo "\${$a[*]}")" 1>&2
-done
-[[ "$1" ]] && echo "${setdiff_out[@]}"
+    echo "$a ($(eval echo "\${#$a[*]}")) $(eval echo "\${$a[*]}")" 1>&2
+  done
+  [[ "$1" ]] && echo "${setdiff_out[@]}"
 }
+
+function version_gt() { test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"; }

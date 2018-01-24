@@ -31,7 +31,7 @@ main() {
 
   cd $DOTFILES
   prev_head="$(git rev-parse HEAD)"
-  . install/util.sh
+  source install/util.sh
 
   if [[ "$FIRST_TIME_INSTALL" != true ]]; then
     e_header "Dotfiles already exists, updating it."
@@ -55,14 +55,17 @@ main() {
   e_header "Install necessary lib and apps."
   if is_osx; then
     e_info "System is osx."
-    . install/init/osx.sh
+    source install/init/osx.sh
   elif is_ubuntu; then
     e_info "System is ubuntu."
-    . install/init/ubuntu.sh
+    source install/init/ubuntu.sh
   fi
+
+  source install/init/common.sh
+
   e_success "done."
 
-  . install/link.sh
+  source install/link.sh
 
   e_header "Welcome to the kiooss dotfiles world!"
   big_title

@@ -50,7 +50,6 @@ alias mux="tmuxinator"
 alias eucssh='cocot -t UTF-8 -p EUC-JP ssh'
 
 alias svndiff='svn diff | vi -'
-alias grep='grep --color=auto --exclude-dir=".svn"'
 alias syncdir="rsync -av --exclude '*.svn' . "
 alias b="bundle exec"
 alias bb="bundle open"

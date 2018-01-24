@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 main() {
   set -o errexit
   # set -o pipefail
@@ -30,7 +32,12 @@ main() {
   e_info "Initializing submodule(s)"
   git submodule update --init --recursive
 
-  . install/pre.sh
+  if is_osx; then
+    . install/init/osx.sh
+  elif is_ubuntu; then
+    . install/init/ubuntu.sh
+  fi
+
   . install/link.sh
 
   if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then

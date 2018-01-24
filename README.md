@@ -3,13 +3,14 @@
 > Manage my dotfiles.
 
 Basicly tested on OSX / Ubuntu, but some configuration like
-(*vim*/*zsh*/*tmux*) should be able to migrate to other os distribution easily.
+(**vim**/**zsh**/**tmux**) should be able to migrate to other os distribution easily.
 
 I use vim as my editor, zsh as my shell, and tmux as my terminal multiplexer.
 
 ## The Purpose
 
-*Automate All The Things!*
+**Automate All The Things!**
+
 When I am in a new machine, I'd like to build my enviroment from zero over just
 copy from existed enviroment (which may cause a lot of wired problems).
 
@@ -20,12 +21,19 @@ Install is quite easy, just follow the steps below.
 Via git
 ```sh
 git clone https://github.com/kiooss/dotmagic.git ~/.dotfiles
-cd ~/.dotfiles && ./install/install.sh
+bash ~/.dotfiles/bin/dotmagic
 ```
 
 Via curl
+```sh
+curl -fsSL https://raw.github.com/kiooss/dotmagic/master/bin/dotmagic | bash
 ```
-curl -fsSL https://raw.github.com/kiooss/dotmagic/master/install/install.sh | bash
+
+## Upgrade
+
+You just need to run:
+```sh
+dotmagic
 ```
 
 ## Vim

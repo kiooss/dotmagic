@@ -1,5 +1,6 @@
 set -g default-shell $SHELL
 run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6-)"
+run-shell "tmux setenv -g TMUX_PLUGIN_MANAGER_PATH $DOTFILES/vendor/tmux_plugins/"
 
 # set -g default-command "reattach-to-user-namespace -l zsh"
 if 'command -v reattach-to-user-namespace >/dev/null' \
@@ -14,16 +15,32 @@ set-option -ga terminal-overrides ",xterm-256color:Tc"
 
 set -g history-limit 20000
 
+# address vim mode switching delay (http://superuser.com/a/252717/65504)
+set-option -s escape-time 0
+
+# tmux messages are displayed for 4 seconds
+set-option -g display-time 4000
+
+# emacs key bindings in tmux command prompt (prefix + :)
+set-option -g status-keys emacs
+
+# focus events enabled for terminals that support them
+set-option -g focus-events on
+
 set-option -g base-index 1
 set-window-option -g pane-base-index 1
 
 # ウィンドウのインデックスを1から始める
 set -g base-index 1
 
-# remap prefix from 'C-b' to 'C-a'
+# remap prefix from 'C-b' to 'C-f'
 unbind C-b
 set-option -g prefix C-f
 bind-key C-f send-prefix
+
+# c-n/c-p to switch between next/prev window
+bind C-p previous-window
+bind C-n next-window
 
 # split panes using | and -
 bind \ split-window -h -c "#{pane_current_path}"
@@ -40,6 +57,8 @@ bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 
+# -n (alias for -T root, The root table is used for keys pressed without the
+# prefix key)
 bind -n M-h select-pane -L
 bind -n M-j select-pane -D
 bind -n M-k select-pane -U
@@ -49,6 +68,7 @@ bind e set-window-option synchronize-panes
 bind m set-option mouse
 
 # moving between windows with vim movement keys
+# The -r flag indicates this key may repeat, see the repeat-time option.
 bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+
 
@@ -97,32 +117,14 @@ set -g visual-activity off
 # theme config.
 source ~/.tmux.tmuxtheme
 
-set -g @themepack 'block/cyan'
-
+# tpm config.
 set -g @prefix_highlight_fg 'colour233' # default is 'colour231'
 set -g @prefix_highlight_bg 'colour155'  # default is 'colour04'
 set -g @prefix_highlight_show_copy_mode 'on'
-# set -g @download_speed_format "%10s"
-# set -g @upload_speed_format "%10s"
-# set -g @net_speed_format "%10s\\uf433 %10s\\uf431"
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-# set -g @plugin 'soyuka/tmux-current-pane-hostname'
-# set -g @plugin 'jimeh/tmux-themepack'
-# set -g @plugin 'marceloboeira/tmux-ruby-version'
-# set -g @plugin 'thewtex/tmux-mem-cpu-load'
-
-# set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
-# set -g @plugin 'tmux-plugins/tmux-net-speed'
-
-# Other examples:
-# set -g @plugin 'github_username/plugin_name'
-# set -g @plugin 'git@github.com/user/plugin'
-# set -g @plugin 'git@bitbucket.com/user/plugin'
-
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
+run "${DOTFILES}/vendor/tmux_plugins/tpm/tpm"

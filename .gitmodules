@@ -22,3 +22,12 @@
 [submodule "link/rbenv.symlink/plugins/bundler"]
 	path = link/rbenv.symlink/plugins/bundler
 	url = https://github.com/carsomyr/rbenv-bundler.git
+[submodule "vendor/tmux_plugins/tmux-prefix-highlight"]
+	path = vendor/tmux_plugins/tmux-prefix-highlight
+	url = https://github.com/tmux-plugins/tmux-prefix-highlight
+[submodule "vendor/tmux_plugins/tpm"]
+	path = vendor/tmux_plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "vendor/tmux_plugins/tmux-mem-cpu-load"]
+	path = vendor/tmux_plugins/tmux-mem-cpu-load
+	url = https://github.com/thewtex/tmux-mem-cpu-load

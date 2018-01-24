@@ -24,7 +24,7 @@ main() {
   GIT_VERSION=$(git --version | cut -d ' ' -f 3)
 
   if [ ! -d "$DOTFILES" ]; then
-    echo "Cloning kiooss dotfiles"
+    echo "Cloning kiooss dotfiles."
     git clone https://github.com/kiooss/dotmagic $DOTFILES
     FIRST_TIME_INSTALL=true
   fi
@@ -48,7 +48,7 @@ main() {
     e_success "done."
   fi
 
-  e_header "Initializing submodule(s)"
+  e_header "Initializing / updating submodule(s)."
   git submodule update --init --recursive
   e_success "done."
 

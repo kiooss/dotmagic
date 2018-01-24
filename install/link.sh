@@ -32,4 +32,4 @@ for file in $linkables ; do
   fi
 done
 
-e_success "Linking Done."
+e_success "done."

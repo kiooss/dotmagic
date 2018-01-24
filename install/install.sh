@@ -24,10 +24,17 @@ main() {
   if [ ! -d "$DOTFILES" ]; then
     echo "Cloning kiooss dotfiles"
     git clone https://github.com/kiooss/dotmagic $DOTFILES
+    FIRST_TIME_INSTALL=true
   fi
 
   cd $DOTFILES
   . install/util.sh
+
+  if [[ "$FIRST_TIME_INSTALL" != true ]]; then
+    e_header "Dotfiles already exists, updating it."
+    git pull --rebase --stat --autostash origin master
+    e_success "done."
+  fi
 
   e_header "Initializing submodule(s)"
   git submodule update --init --recursive

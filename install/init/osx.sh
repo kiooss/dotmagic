@@ -10,8 +10,10 @@ fi
 # Exit if, for some reason, Homebrew is not installed.
 [[ ! "$(type -P brew)" ]] && e_error "Homebrew failed to install." && return 1
 
-e_header "Updating Homebrew"
+e_header "Running Homebrew doctor"
 brew doctor
+
+e_header "Updating Homebrew"
 brew update
 
 # Functions used in subsequent init scripts.

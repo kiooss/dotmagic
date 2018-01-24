@@ -20,7 +20,6 @@ apt_packages+=(
   cowsay
   curl
   gettext
-  git-core
   grc
   htop
   imagemagick
@@ -54,10 +53,10 @@ apt_packages+=(
 
 # Update APT.
 e_info "Updating APT"
-sudo apt-get -qq update
+sudo apt-get update
 
 e_info "Upgrading APT"
-sudo apt-get -qy upgrade
+sudo apt-get upgrade
 
 # Install APT packages.
 installed_apt_packages="$(dpkg --get-selections | grep -v deinstall | awk 'BEGIN{FS="[\t:]"}{print $1}' | uniq)"

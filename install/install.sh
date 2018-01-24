@@ -25,7 +25,7 @@ main() {
   fi
 
   cd $DOTFILES
-  . install/color.sh
+  . install/util.sh
 
   e_info "Initializing submodule(s)"
   git submodule update --init --recursive

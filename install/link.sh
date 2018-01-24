@@ -5,7 +5,7 @@ BACKUP_DIR=$HOME/.backup
 
 [ ! -d "$BACKUP_DIR" ] && mkdir -p "$BACKUP_DIR"
 
-. "$DOTFILES/install/color.sh"
+. "$DOTFILES/install/util.sh"
 
 force="$1"
 

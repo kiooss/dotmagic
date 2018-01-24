@@ -2,7 +2,7 @@
 
 DOTFILES=$HOME/.dotfiles
 
-. "$DOTFILES/install/color.sh"
+. "$DOTFILES/install/util.sh"
 
 big_title
 e_section "Updating Dotfiles."

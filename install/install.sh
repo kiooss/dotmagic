@@ -49,7 +49,7 @@ main() {
   big_title
   printf "\n"
   e_success "The kiooss dotfiles is now installed."
-  e_arrow "Last step: Please exit and restart all your shells."
+  e_info "Last step: Please exit and restart all your shells."
   printf "\n"
 }
 

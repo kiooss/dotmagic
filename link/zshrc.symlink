@@ -228,7 +228,7 @@ done
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
 # secret env values
-[[ -s $HOME/.secret_env ]] & source $HOME/.secret_env
+[[ -s $HOME/.secret_env ]] && source $HOME/.secret_env
 
 source $MYZSH/config.zsh
 # if want to use oh-my-zsh, then uncomment the below line

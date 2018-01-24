@@ -9,7 +9,6 @@ BACKUP_DIR=$HOME/.backup
 
 force="$1"
 
-big_title
 e_section "Linking files into home directory."
 [ "$force" = "force" ] && e_info "Run in force mode, be careful."
 

@@ -71,3 +71,9 @@ if (( ${#apt_packages[@]} > 0 )); then
     [[ "$(type -t postinstall_$package)" == function ]] && postinstall_$package
   done
 fi
+
+e_info "Run APT autoclean"
+sudo apt-get autoclean
+
+e_info "Run APT autoremove"
+sudo apt-get autoremove

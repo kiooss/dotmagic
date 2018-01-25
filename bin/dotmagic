@@ -17,7 +17,7 @@ main() {
   umask g-w,o-w
 
   hash git >/dev/null 2>&1 || {
-    echo "Error: git is not installed"
+    echo "Error: git is not installed."
     exit 1
   }
 
@@ -52,18 +52,27 @@ main() {
   git submodule update --init --recursive
   e_success "done."
 
-  e_header "Install necessary lib and apps."
-  if is_osx; then
-    e_info "System is osx."
-    source install/init/osx.sh
-  elif is_ubuntu; then
-    e_info "System is ubuntu."
-    source install/init/ubuntu.sh
-  fi
 
-  source install/init/common.sh
-
-  e_success "done."
+  e_question "Do you wish to install lib and apps?"
+  select yn in "Yes" "No"; do
+    case $yn in
+      Yes )
+        e_header "Install necessary lib and apps."
+        if is_osx; then
+          e_info "System is osx."
+          source install/init/osx.sh
+        elif is_ubuntu; then
+          e_info "System is ubuntu."
+          source install/init/ubuntu.sh
+        fi
+        source install/init/common.sh
+        e_success "done."
+        break;;
+      No )
+        e_info "Skip lib and app install."
+        break;;
+    esac
+  done
 
   source install/link.sh
 

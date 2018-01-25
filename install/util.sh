@@ -32,6 +32,10 @@ e_section() {
   printf "=================================================================${NORMAL}\n"
 }
 
+e_question() {
+  printf "\n${BLUE}♻${NORMAL} ${CYAN}$@${NORMAL}\n"
+}
+
 e_header() {
   printf "\n${BLUE}★★★★★${NORMAL} ${CYAN}$@${NORMAL} ${BLUE}★★★★★${NORMAL}\n"
 }

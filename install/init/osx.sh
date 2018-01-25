@@ -144,6 +144,7 @@ recipes=(
   lesspipe
   pass
   pkg-config
+  neovim
   terminal-notifier
   the_silver_searcher
   tmux

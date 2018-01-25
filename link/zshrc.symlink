@@ -161,8 +161,6 @@ plugins=(
   nmap
   npm
   systemadmin
-  rails
-  rake-fast
   tmuxinator
   themes
   z
@@ -196,6 +194,7 @@ if [[ "$OSTYPE" = darwin* ]]; then
 
   my_plugins=(
     $my_plugins
+    aliases-osx
     util-functions-osx
   )
 else
@@ -209,14 +208,12 @@ else
     symfony2
   )
 
-  # don't use ssh-agent when run as root
-  [[ $(print -P "%#") == '#' ]] || plugins=($plugins ssh-agent)
+  # don't use some plugin when run as root
+  [[ $(print -P "%#") == '#' ]] || plugins=($plugins ssh-agent rails rake-fast)
 
   my_plugins=(
     $my_plugins
-    aliases-osx
     tmux-pane-words
-    util-functions-osx
     zle
   )
 fi

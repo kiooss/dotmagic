@@ -14,9 +14,10 @@ fi
 # }}}
 
 # Path to your oh-my-zsh configuration.
-ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 # export is important if you want to use DOTFILES env in sub shell.
 export DOTFILES="$HOME/.dotfiles"
+
 MYZSH="$DOTFILES/zsh"
 ZSH_CUSTOM="$MYZSH/omz_custom"
 # DIRCOLORS=$HOME/.dircolors

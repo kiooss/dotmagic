@@ -4,12 +4,12 @@
 # PROFILE_STARTUP {{{
 PROFILE_STARTUP=false
 if [[ "$PROFILE_STARTUP" == true ]]; then
-    zmodload zsh/zprof # Output load-time statistics
-    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-    PS4=$'%D{%M%S%.} %N:%i> '
-    # exec 3>&2 2>"${XDG_CACHE_HOME:-$HOME/tmp}/zsh_statup.$$"
-    exec 3>&2 2>"/tmp/zsh_statup.$$"
-    setopt xtrace prompt_subst
+  zmodload zsh/zprof # Output load-time statistics
+  # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+  PS4=$'%D{%M%S%.} %N:%i> '
+  # exec 3>&2 2>"${XDG_CACHE_HOME:-$HOME/tmp}/zsh_statup.$$"
+  exec 3>&2 2>"/tmp/zsh_statup.$$"
+  setopt xtrace prompt_subst
 fi
 # }}}
 
@@ -45,8 +45,8 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 
 # Add android tools
 if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
-    export ANDROID_HOME="/Applications/adt-bundle-mac-x86_64/sdk"
-    export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+  export ANDROID_HOME="/Applications/adt-bundle-mac-x86_64/sdk"
+  export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 fi
 # }}}
 
@@ -148,79 +148,79 @@ COMPLETION_WAITING_DOTS="true"
 
 # {{{ plugins config
 plugins=(
-    cp
-    capistrano
-    colored-man-pages
-    # emoji
-    encode64
-    fancy-ctrl-z
-    git
-    gem
-    gitfast
-    history-substring-search
-    nmap
-    npm
-    systemadmin
-    rails
-    rake-fast
-    tmuxinator
-    themes
-    z
-    zsh-autosuggestions
-    zsh-navigation-tools
-    zsh-syntax-highlighting
-    zsh-completions
+cp
+capistrano
+colored-man-pages
+# emoji
+encode64
+fancy-ctrl-z
+git
+gem
+gitfast
+history-substring-search
+nmap
+npm
+systemadmin
+rails
+rake-fast
+tmuxinator
+themes
+z
+zsh-autosuggestions
+zsh-navigation-tools
+zsh-syntax-highlighting
+zsh-completions
 )
 
 # my own zsh plugins
 my_plugins=(
-    abbreviations
-    add-http-proxy
-    aliases
-    auto-ls-after-cd
-    fix-ssh-agent
-    insert-datestamp
-    mysql
-    thirsty
-    util-functions
+abbreviations
+add-http-proxy
+aliases
+auto-ls-after-cd
+fix-ssh-agent
+insert-datestamp
+mysql
+thirsty
+util-functions
 )
 
 if [[ "$OSTYPE" = darwin* ]]; then
-    # plugin used in my mac.
-    plugins=(
-        $plugins
-        adb
-        gradle
-        pass
-    )
-    my_plugins=(
-        $my_plugins
-        util-functions-osx
-    )
+  # plugin used in my mac.
+  plugins=(
+  $plugins
+  adb
+  gradle
+  pass
+  )
+  my_plugins=(
+  $my_plugins
+  util-functions-osx
+  )
 else
-    # plugin used in my dev machine.
-    plugins=(
-        $plugins
-        command-not-found
-        composer
-        rbenv
-        ssh-agent
-        symfony
-        symfony2
-    )
-    my_plugins=(
-        $my_plugins
-        aliases-osx
-        tmux-pane-words
-        util-functions-osx
-        zle
-    )
+  # plugin used in my dev machine.
+  plugins=(
+  $plugins
+  command-not-found
+  composer
+  rbenv
+  ssh-agent
+  symfony
+  symfony2
+  )
+  my_plugins=(
+  $my_plugins
+  aliases-osx
+  tmux-pane-words
+  util-functions-osx
+  zle
+  )
 fi
 # }}}
 
 # add all my own plugin dir to fpath.
 for plugin ($my_plugins); do
-    fpath=($MYZSH/plugins/$plugin $fpath)
+  fpath=($MYZSH/plugins/$plugin $fpath)
 done
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
@@ -241,7 +241,7 @@ done
 unset config_file
 
 for plugin ($my_plugins); do
-    source $MYZSH/plugins/$plugin/$plugin.plugin.zsh
+  source $MYZSH/plugins/$plugin/$plugin.plugin.zsh
 done
 unset plugin
 
@@ -251,7 +251,7 @@ unset plugin
 # unset theme_file
 
 if hash rbenv 2>/dev/null; then
-    eval "$(rbenv init -)"
+  eval "$(rbenv init -)"
 fi
 
 #if hash pyenv 2>/dev/null; then
@@ -274,8 +274,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 ###############################################################################
 # PROFILE_STARTUP_END {{{
 if [[ "$PROFILE_STARTUP" == true ]]; then
-    zprof
-    unsetopt xtrace
-    exec 2>&3 3>&-
+  zprof
+  unsetopt xtrace
+  exec 2>&3 3>&-
 fi
 # }}}

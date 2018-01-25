@@ -148,72 +148,76 @@ COMPLETION_WAITING_DOTS="true"
 
 # {{{ plugins config
 plugins=(
-cp
-capistrano
-colored-man-pages
-# emoji
-encode64
-fancy-ctrl-z
-git
-gem
-gitfast
-history-substring-search
-nmap
-npm
-systemadmin
-rails
-rake-fast
-tmuxinator
-themes
-z
-zsh-autosuggestions
-zsh-navigation-tools
-zsh-syntax-highlighting
-zsh-completions
+  cp
+  capistrano
+  colored-man-pages
+  # emoji
+  encode64
+  fancy-ctrl-z
+  git
+  gem
+  gitfast
+  history-substring-search
+  nmap
+  npm
+  systemadmin
+  rails
+  rake-fast
+  tmuxinator
+  themes
+  z
+  zsh-autosuggestions
+  zsh-navigation-tools
+  zsh-syntax-highlighting
+  zsh-completions
 )
 
 # my own zsh plugins
 my_plugins=(
-abbreviations
-add-http-proxy
-aliases
-auto-ls-after-cd
-fix-ssh-agent
-insert-datestamp
-mysql
-thirsty
-util-functions
+  abbreviations
+  add-http-proxy
+  aliases
+  auto-ls-after-cd
+  fix-ssh-agent
+  insert-datestamp
+  mysql
+  thirsty
+  util-functions
 )
 
 if [[ "$OSTYPE" = darwin* ]]; then
   # plugin used in my mac.
   plugins=(
-  $plugins
-  adb
-  gradle
-  pass
+    $plugins
+    adb
+    gradle
+    pass
   )
+
   my_plugins=(
-  $my_plugins
-  util-functions-osx
+    $my_plugins
+    util-functions-osx
   )
 else
   # plugin used in my dev machine.
   plugins=(
-  $plugins
-  command-not-found
-  composer
-  rbenv
-  ssh-agent
-  symfony
-  symfony2
+    $plugins
+    command-not-found
+    composer
+    rbenv
+    symfony
+    symfony2
   )
+
+  # don't use ssh-agent when run as root
+  [[ $(print -P "%#") == '#' ]] || plugins=($plugins ssh-agent)
+
   my_plugins=(
-  $my_plugins
-  aliases-osx
-  tmux-pane-words
-  util-functions-osx
-  zle
+    $my_plugins
+    aliases-osx
+    tmux-pane-words
+    util-functions-osx
+    zle
   )
 fi
 # }}}

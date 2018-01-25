@@ -67,5 +67,9 @@ if has('autocmd')
       autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn='+' . join(range(0, 254), ',+') | endif
       autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
     endif
+
+    " Show absolute numbers in insert mode, otherwise relative line numbers.
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
 endif
 " }}}

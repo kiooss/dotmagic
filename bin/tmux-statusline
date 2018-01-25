@@ -68,7 +68,7 @@ build_right_status() {
         right_segment 'colour020' 'colour198' '#(emoji-clock)  '
     fi
     right_segment 'colour007' 'colour233' '#(tmux-date)'
-    right_segment 'colour018' 'colour232' '#(tmux-weather)'
+    right_segment 'colour005' 'colour232' '#(tmux-weather)'
     right_segment 'colour006' 'colour233' '#(tmux-disk-usage)'
     right_segment 'colour004' 'colour233' '#(tmux-public-ip) '
 }

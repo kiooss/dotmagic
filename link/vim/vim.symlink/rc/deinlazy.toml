@@ -91,9 +91,9 @@ build = 'composer install'
 # repo = 'shawncplus/phpcomplete.vim'
 # on_ft = 'php'
 
-[[plugins]]
-repo = 'stephpy/vim-php-cs-fixer'
-on_ft = 'php'
+# [[plugins]]
+# repo = 'stephpy/vim-php-cs-fixer'
+# on_ft = 'php'
 
 # [[plugins]]
 # repo = 'swekaj/php-foldexpr.vim'
@@ -122,29 +122,30 @@ hook_add = '''
   autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
 '''
 
-[[plugins]]
-repo = 'qbbr/vim-symfony'
-on_ft = 'php'
+# [[plugins]]
+# repo = 'qbbr/vim-symfony'
+# on_ft = 'php'
 
 [[plugins]]
 repo = 'docteurklein/php-getter-setter.vim'
 on_ft = 'php'
 
-[[plugins]]
-repo = 'tobyS/vmustache'
-on_ft = 'php'
+# [[plugins]]
+# repo = 'tobyS/vmustache'
+# on_ft = 'php'
+#
+# [[plugins]]
+# repo = 'tobyS/pdv'
+# on_ft = 'php'
+# depends = 'tobyS/vmustache'
+# hook_add = '''
+#   let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
+#   nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
+# '''
 
-[[plugins]]
-repo = 'tobyS/pdv'
-on_ft = 'php'
-hook_add = '''
-  let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
-  nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
-'''
-
-[[plugins]]
-repo = 'adoy/vim-php-refactoring-toolbox'
-on_ft = 'php'
+# [[plugins]]
+# repo = 'adoy/vim-php-refactoring-toolbox'
+# on_ft = 'php'
 
 [[plugins]]
 repo = 'vim-ruby/vim-ruby'

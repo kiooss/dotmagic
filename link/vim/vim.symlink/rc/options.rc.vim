@@ -30,6 +30,9 @@ set backspace=start,indent,eol
 
 set modeline
 
+" Exclude = from isfilename.
+set isfname-==
+
 " Tab control
 " set noexpandtab " insert tabs rather than spaces for <Tab>
 set expandtab

@@ -20,6 +20,7 @@ apt_packages+=(
   build-essential
   cowsay
   curl
+  figlet
   gettext
   grc
   htop

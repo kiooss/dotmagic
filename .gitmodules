@@ -31,3 +31,6 @@
 [submodule "vendor/tmux_plugins/tmux-mem-cpu-load"]
 	path = vendor/tmux_plugins/tmux-mem-cpu-load
 	url = https://github.com/thewtex/tmux-mem-cpu-load
+[submodule "link/rbenv.symlink/plugins/rbenv-default-gems"]
+	path = link/rbenv.symlink/plugins/rbenv-default-gems
+	url = https://github.com/rbenv/rbenv-default-gems.git

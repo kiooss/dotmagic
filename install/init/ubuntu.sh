@@ -16,6 +16,7 @@ function add_ppa() {
 
 # Misc.
 apt_packages+=(
+  acpi # to get the battery info.
   build-essential
   cowsay
   curl

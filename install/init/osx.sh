@@ -13,6 +13,9 @@ fi
 e_info "Running Homebrew doctor"
 brew doctor
 
+e_info "Running Homebrew prune to remove broken symlinks."
+brew prune
+
 e_info "Updating Homebrew"
 brew update
 

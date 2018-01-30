@@ -28,6 +28,10 @@ setopt COMPLETE_ALIASES
 #GLOBDOTS lets files beginning with a . be matched without explicitly specifying the dot.
 setopt GLOBDOTS
 
+# only crerect commands but not parameters.
+setopt CORRECT
+unsetopt CORRECT_ALL
+
 # make terminal command navigation sane again
 # bindkey '^[^[[D' backward-word
 # bindkey '^[^[[C' forward-word

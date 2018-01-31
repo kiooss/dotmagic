@@ -19,6 +19,7 @@ nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>l :set list!<CR>
+nnoremap <silent> <Leader>y :call system('nc localhost 8377', @")<CR>
 
 nnoremap j gj
 nnoremap k gk

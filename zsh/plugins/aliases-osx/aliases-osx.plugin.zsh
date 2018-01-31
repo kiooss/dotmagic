@@ -34,3 +34,5 @@ alias trimcopy="tr -d '\n' | pbcopy"
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 10'"
+
+alias clipper-tunnel="ssh -f -N -R 8377:localhost:8377 dev"

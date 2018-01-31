@@ -63,3 +63,6 @@ alias all_key_bindings="for m (\$keymaps) bindkey -LM \$m"
 alias all_zle_user_widgets="zle -lL"
 alias all_zstyle="zstyle -L"
 alias all_zmodload="zmodload -L"
+
+# https://github.com/wincent/clipper
+alias clip="nc localhost 8377"

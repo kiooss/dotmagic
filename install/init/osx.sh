@@ -141,6 +141,7 @@ brew_install_casks
 # Homebrew recipes
 recipes=(
   aria2
+  clipper
   cmake
   coreutils
   jq

@@ -88,9 +88,9 @@ hook_add = '''
   " remove some files by extension
   let NERDTreeIgnore = ['\.js.map$', '\~$']
   " Toggle NERDTree
-  nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+  nnoremap <silent> <leader>nt :NERDTreeToggle<cr>
   " expand to the path of the file in the current buffer
-  nnoremap <silent> <leader>y :NERDTreeFind<cr>
+  nnoremap <silent> <leader>nf :NERDTreeFind<cr>
 '''
 
 [[plugins]]

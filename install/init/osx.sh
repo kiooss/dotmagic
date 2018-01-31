@@ -150,6 +150,7 @@ recipes=(
   neovim
   terminal-notifier
   the_silver_searcher
+  todo-txt
   tmux
   tree
   utf8proc

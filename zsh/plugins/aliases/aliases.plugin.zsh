@@ -63,3 +63,5 @@ alias all_key_bindings="for m (\$keymaps) bindkey -LM \$m"
 alias all_zle_user_widgets="zle -lL"
 alias all_zstyle="zstyle -L"
 alias all_zmodload="zmodload -L"
+
+alias t="todo.sh"

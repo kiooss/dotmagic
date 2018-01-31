@@ -184,6 +184,7 @@ my_plugins=(
   insert-datestamp
   mysql
   thirsty
+  todotxt
   util-functions
 )
 

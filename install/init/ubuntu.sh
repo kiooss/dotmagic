@@ -42,6 +42,7 @@ apt_packages+=(
   pkg-config
   python-pip
   silversearcher-ag
+  todotxt-cli
   tree
 )
 

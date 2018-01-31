@@ -1,7 +1,24 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"==============================================================================
 " => Mapping settings
 " vim: foldmethod=marker
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"==============================================================================
+
+"==============================================================================
+" Normal Mode Key Mappings
+"==============================================================================
+" {{{
+" defauts
+" q: record macros
+" w: Move word forward
+" e: Move to end of word
+" r: Replace single character
+" t: Find till
+" y: Yank. Last yank is always stored in register 0. So paste with "0p if you did a delete after the yank
+" u: Undo
+" i: Insert before cursor
+" o: Insert line below cursor
+" p: Paste
+
 " Swap ; and :
 " noremap ; :
 " noremap : ;
@@ -26,6 +43,9 @@ nnoremap k gk
 
 nnoremap g; g;zz
 nnoremap g, g,zz
+
+nnoremap > >>
+nnoremap < <<
 
 " clear highlighted search
 noremap <F3> :set hlsearch! hlsearch?<cr>
@@ -52,15 +72,7 @@ else
     nnoremap <M-l> <C-w>>
 endif
 
-" Visual mode keymappings: {{{
-if (!has('nvim') || $DISPLAY != '') && has('clipboard')
-  xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
-endif
-"}}}
-
-" ----------------------------------------------------------------------------
 " <tab> / <s-tab> | Circular windows navigation
-" ----------------------------------------------------------------------------
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
 
@@ -72,10 +84,6 @@ nnoremap <C-y> 3<C-y>M
 nnoremap B ^
 nnoremap E $
 
-" stile select when indent in visual mode
-vnoremap < <gv
-vnoremap > >gv
-
 " Open the definition in a vertical split
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -83,46 +91,31 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap g] g<C-]>
 nnoremap g[ :pop<cr>
 
-inoremap {%     {%  %}<Left><Left><Left>
-inoremap <%     <%  %><Left><Left><Left>
-
-"===============================================================================
-" Normal Mode Key Mappings
-"===============================================================================
-" defauts
-" q: record macros
-" w: Move word forward
-" e: Move to end of word
-" r: Replace single character
-" t: Find till
-" y: Yank. Last yank is always stored in register 0. So paste with "0p if you did a delete after the yank
-" u: Undo
-" i: Insert before cursor
-" o: Insert line below cursor
-" p: Paste
 nnoremap p gp
 
 " disable EX mode, use Q to playback q record.
 nnoremap Q @q
 
-"===============================================================================
-" Normal Mode Shift Key Mappings
-"===============================================================================
+" Toggle folds
+nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
 " +/-: Increment number
 nnoremap + <c-a>
 nnoremap - <c-x>
 
-"===============================================================================
+"}}}
+
+"==============================================================================
 " Insert Mode Ctrl Key Mappings
-"===============================================================================
+"==============================================================================
 " {{{
 " remap esc
 inoremap jk <esc>
 
 " <C-b>: previous char.
-inoremap <C-b>          <Left>
+inoremap <C-b> <Left>
 " <C-f>: next char.
-inoremap <C-f>          <Right>
+inoremap <C-f> <Right>
 
 " Ctrl-a: Go to begin of line
 inoremap <C-a> <C-o>I
@@ -134,14 +127,17 @@ inoremap <C-e> <C-o>A
 inoremap <C-u> <C-g>u<C-u>
 
 inoremap <C-t> <></><Esc>5hdiwp3lpT>i
+
+inoremap {%     {%  %}<Left><Left><Left>
+inoremap <%     <%  %><Left><Left><Left>
 " }}}
 
-"===============================================================================
+"==============================================================================
 " Command Mode Key Mappings
-"===============================================================================
-" Command-line mode keymappings:"{{{
+"==============================================================================
+" {{{
 " jk | Escaping!
-cnoremap jk <C-c>
+cnoremap jk             <C-c>
 " <C-a>, A: move to head.
 cnoremap <C-a>          <Home>
 " <C-b>: previous char.
@@ -154,13 +150,36 @@ cnoremap <C-d>          <Del>
 cnoremap <C-e>          <End>
 " <C-y>: paste.
 cnoremap <C-y>          <C-r>*
+" <C-v>: paste.
+cnoremap <C-v>          <C-r>*
 " <C-g>: Exit.
 cnoremap <C-g>          <C-c>
+" <C-k>: delete to end.
+cnoremap <C-k>          <C-\>estrpart(getcmdline(),0,getcmdpos()-1)<CR>
 "}}}
 
-"===============================================================================
+"=============================================================================
+" Visual Mode Key Mappings
+"=============================================================================
+" {{{
+if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+  xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
+endif
+
+" use J,K to move sleceted lines.
+xmap J ]egv=gv
+xmap K [egv=gv
+
+" stile select when indent in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" vnoremap <Leader><Space> zf
+"}}}
+
+"==============================================================================
 " Overview of which map command works in which mode.
-"===============================================================================
+"==============================================================================
 "{{{
 "      COMMANDS                    MODES ~
 " :map   :noremap  :unmap     Normal, Visual, Select, Operator-pending
@@ -174,11 +193,3 @@ cnoremap <C-g>          <C-c>
 " :lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
 " :cmap  :cnoremap :cunmap    Command-line
 "}}}
-
-" use J,K to move sleceted lines.
-xmap J ]egv=gv
-xmap K [egv=gv
-
-" Toggle folds
-nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-" vnoremap <Leader><Space> zf

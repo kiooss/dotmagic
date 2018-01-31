@@ -14,7 +14,6 @@ nnoremap <silent> <Leader>hc :pc<cr>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
 nnoremap <silent> <Leader>b :bd<cr>
-nnoremap <Leader>r :e!<cr>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
@@ -51,6 +50,12 @@ else
     nnoremap <M-h> <C-w><
     nnoremap <M-l> <C-w>>
 endif
+
+" Visual mode keymappings: {{{
+if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+  xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
+endif
+"}}}
 
 " ----------------------------------------------------------------------------
 " <tab> / <s-tab> | Circular windows navigation

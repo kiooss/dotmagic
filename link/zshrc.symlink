@@ -231,8 +231,8 @@ for plugin ($my_plugins); do
   fpath=($MYZSH/plugins/$plugin $fpath)
 done
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
-[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
+# [ -z "$TMUX" ] && export TERM=xterm-256color
+# [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
 # secret env values
 [[ -s $HOME/.secret_env ]] && source $HOME/.secret_env

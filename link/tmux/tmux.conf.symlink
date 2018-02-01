@@ -102,11 +102,17 @@ setw -g mode-keys vi
 unbind p
 bind p paste-buffer
 
-if-shell -b '[ "$(echo "$TMUX_VERSION < 2.4" | bc)" = 1 ]' \
-    "bind-key -t vi-copy 'v' begin-selection; bind-key -t vi-copy 'y' copy-selection"
+if-shell -b '[ "$(echo "$TMUX_VERSION < 2.4" | bc)" = 1 ]' " \
+    bind-key -t vi-copy 'v' begin-selection; \
+    bind-key -t vi-copy 'y' copy-selection; \
+    bind-key -t vi-copy Enter copy-pipe 'nc localhost 8377' \
+    "
 
-if-shell -b '[ "$(echo "$TMUX_VERSION >= 2.4" | bc)" = 1 ]' \
-    "bind-key -Tcopy-mode-vi 'v' send -X begin-selection; bind-key -Tcopy-mode-vi 'y' send -X copy-selection"
+if-shell -b '[ "$(echo "$TMUX_VERSION >= 2.4" | bc)" = 1 ]' " \
+    bind-key -Tcopy-mode-vi 'v' send -X begin-selection; \
+    bind-key -Tcopy-mode-vi 'y' send -X copy-selection; \
+    bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'nc localhost 8377' \
+    "
 
 # Activity Monitoring
 setw -g monitor-activity off

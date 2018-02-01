@@ -16,3 +16,5 @@ https://github.com/chriskempson/base16-shell
 https://github.com/chriskempson/base16-vim
 # powerlevel9k
 https://github.com/bhilburn/powerlevel9k
+# clipper
+https://github.com/wincent/clipper

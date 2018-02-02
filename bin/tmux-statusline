@@ -51,7 +51,7 @@ right_segment() {
 
 build_left_status() {
     left_segment 'colour012' 'colour000' '#(random-food)  #S #(tmux-options)'
-    left_segment 'colour003' 'colour000' '#(tmux-arrow) #P '
+    # left_segment 'colour003' 'colour000' '#(tmux-arrow) #P '
     left_segment 'colour009' 'colour015' '#(tmux-rb-version) '
     left_segment 'colour005' 'colour015' '#(tmux-php-version) '
     if [[ "$WIDTH" -gt "$MEDIUM" ]]; then

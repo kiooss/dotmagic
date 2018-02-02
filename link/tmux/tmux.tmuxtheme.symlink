@@ -32,8 +32,8 @@ set -g status-right-length 100
 set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`)"
 
 # Window status
-set -g window-status-format "[#I:#P]#W"
-set -g window-status-current-format "#[fg=colour12,bg=colour233]$tm_separator_right#[default]#[fg=red,bold]#[default][#I:#P]#[fg=red,bold]#W #[fg=colour12,bg=colour233]$tm_separator_left"
+set -g window-status-format " (#I:#W)"
+set -g window-status-current-format " #[fg=red,bold]#[default][#I:#P]#[fg=red,bold]#W "
 
 # Current window status
 set -g window-status-current-bg colour12

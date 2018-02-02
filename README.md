@@ -57,9 +57,6 @@ Vim plugins are managed with the ⚡️ Dark powered Vim/Neovim plugin manager [
 My own config plus [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh).
 Oh-my-zsh is optional, but it does a lot things for me and worked well, so I add it to my config.
 
-<!-- Zsh plugins are managed with [zplug](https://github.com/zplug/zplug). -->
-<!-- Install zplug with `curl -sL zplug.sh/installer | zsh` -->
-
 ## Tmux
 Tmux is awesome, it saves me a lot of time since I decided to use it.
 

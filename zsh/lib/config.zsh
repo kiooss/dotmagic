@@ -32,19 +32,6 @@ setopt GLOBDOTS
 setopt CORRECT
 unsetopt CORRECT_ALL
 
-# make terminal command navigation sane again
-# bindkey '^[^[[D' backward-word
-# bindkey '^[^[[C' forward-word
-bindkey '^[[D' backward-word
-bindkey '^[[C' forward-word
-# bindkey '^[[5D' beginning-of-line
-# bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-# bindkey '^?' backward-delete-char
-
-fpath=($DOTFILES/zsh/functions $fpath)
-autoload -U $DOTFILES/zsh/functions/*(:t)
-
 autoload -Uz zmv
 alias zmv='noglob zmv -W'
 

@@ -10,6 +10,7 @@ tm_separator_right=""
 # tm_separator_right=""
 
 tm_status_bg="default"
+cw_bg="colour12"
 
 # Status update interval
 set -g status-interval 5
@@ -32,11 +33,11 @@ set -g status-right-length 100
 set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`)"
 
 # Window status
-set -g window-status-format " (#I:#W)"
-set -g window-status-current-format " #[fg=red,bold]#[default][#I:#P]#[fg=red,bold]#W "
+set -g window-status-format "(#I:#W)"
+set -g window-status-current-format "#[fg=$cw_bg]#[bg=$cw_bg,fg=red]#[fg=colour233][#I:#P]#[fg=red]#W#[fg=$cw_bg,bg=default]"
 
 # Current window status
-set -g window-status-current-bg colour12
+set -g window-status-current-bg $tm_status_bg
 set -g window-status-current-fg colour232
 
 # Window with activity status
@@ -55,18 +56,18 @@ set -g pane-border-fg colour238
 
 # Active pane border
 set -g pane-active-border-bg default
-set -g pane-active-border-fg colour39
+set -g pane-active-border-fg colour12
 
 # Pane number indicator
 set -g display-panes-colour colour233
-set -g display-panes-active-colour colour245
+set -g display-panes-active-colour colour12
 
 # Clock mode
 set -g clock-mode-colour colour12
 set -g clock-mode-style 24
 
 # Message
-set -g message-bg colour39
+set -g message-bg colour12
 set -g message-fg black
 
 # Command message

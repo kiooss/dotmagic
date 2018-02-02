@@ -15,9 +15,7 @@ hook_add = '''
   nnoremap <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
   nnoremap <LocalLeader>ft :<C-u>Denite filetype -auto-preview<CR>
   nnoremap <LocalLeader>r :<C-u>Denite -resume<CR>
-  nnoremap suh :<C-u>Denite help<CR>
-  nnoremap sur :<C-u>Denite register<CR>
-  nnoremap suR :<C-u>Denite -resume<CR>
+  nnoremap <LocalLeader>h :<C-u>Denite help<CR>
   nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>r  :<C-u>Denite register -mode=normal -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ol :<C-u>Denite outline -highlight-mode-insert=Search<CR>

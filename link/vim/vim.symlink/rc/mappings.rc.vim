@@ -23,6 +23,10 @@
 " noremap ; :
 " noremap : ;
 
+" Smart space mapping
+nmap  <Space>   [Space]
+nnoremap  [Space]   <Nop>
+
 " enter in normal mode do nothing
 nnoremap <CR> <NOP>
 

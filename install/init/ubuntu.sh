@@ -48,11 +48,34 @@ apt_packages+=(
 
 # apt_packages+=(vim)
 
+# https://github.com/neovim/neovim/wiki/Installing-Neovim
+add_ppa ppa:neovim-ppa/stable
+apt_packages+=(neovim)
+
 # https://github.com/rbenv/ruby-build/wiki
 apt_packages+=(
   autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
   libncurses5-dev libffi-dev libgdbm3 libgdbm-dev zlib1g-dev
 )
+
+# Add APT sources.
+function __temp() { [[ ! -e /etc/apt/sources.list.d/$1.list ]]; }
+source_i=($(array_filter_i apt_source_files __temp))
+
+if (( ${#source_i[@]} > 0 )); then
+  e_header "Adding APT sources (${#source_i[@]})"
+  for i in "${source_i[@]}"; do
+    source_file=${apt_source_files[i]}
+    source_text=${apt_source_texts[i]}
+    if [[ "$source_text" =~ ppa: ]]; then
+      e_info "$source_text"
+      sudo add-apt-repository -y $source_text
+    else
+      e_info "$source_file"
+      sudo sh -c "echo '$source_text' > /etc/apt/sources.list.d/$source_file.list"
+    fi
+  done
+fi
 
 # Update APT.
 e_info "Updating APT"

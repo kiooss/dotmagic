@@ -49,7 +49,7 @@ main() {
   fi
 
   e_header "Initializing / updating submodule(s)."
-  git submodule update --init --recursive
+  git submodule update --init
   e_success "done."
 
 

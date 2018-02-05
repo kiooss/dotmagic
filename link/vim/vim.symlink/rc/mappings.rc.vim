@@ -107,6 +107,9 @@ nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap + <c-a>
 nnoremap - <c-x>
 
+" dein update
+nnoremap <Leader>U :<C-u>call dein#update()<CR>
+
 "}}}
 
 "==============================================================================

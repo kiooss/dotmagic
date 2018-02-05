@@ -25,6 +25,11 @@ endif
 call denite#custom#source('file_old', 'converters',
       \ ['converter_relative_word'])
 
+call denite#custom#map('insert', '<C-a>', '<Home>')
+call denite#custom#map('insert', '<C-e>', '<End>')
+call denite#custom#map('insert', '<C-f>', '<Right>')
+call denite#custom#map('insert', '<C-b>', '<Left>')
+
 call denite#custom#map('insert', '<C-j>',
       \ '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>',
@@ -33,6 +38,8 @@ call denite#custom#map('insert', "'",
       \ '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('normal', 'r',
       \ '<denite:do_action:quickfix>', 'noremap')
+call denite#custom#map('insert', '<C-u>',
+      \ '<denite:delete_entire_text>', 'noremap')
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
@@ -49,7 +56,7 @@ call denite#custom#var('grep/git', 'recursive_opts', [])
 "       \ 'prompt': '>', 'short_source_names': v:true
 "       \ })
 call denite#custom#option('_', {
-      \ 'prompt': '»',
+      \ 'prompt': '➤➤',
       \ 'short_source_names': v:true
       \ })
 " call denite#custom#option('default', {

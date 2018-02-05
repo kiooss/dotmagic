@@ -6,3 +6,10 @@ sudo apt install vim
 
 #### uninstall
 sudo apt install ppa-purge && sudo ppa-purge ppa:jonathonf/vim
+
+#### vim runtime log to file
+running vim with the -V[N] option will do a pretty hefty runtime log, here N is the debug level.
+
+`
+vim -V9myVim.log
+`

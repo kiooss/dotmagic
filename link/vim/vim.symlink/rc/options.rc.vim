@@ -86,9 +86,6 @@ set wildignore+=cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
 " use K to run a program to lookup the keyword under the cursor
 set keywordprg=:help
 
-" save in readonly mode
-cnoreabbrev w!! w !sudo tee > /dev/null %
-
 if exists('&swapsync')
   set swapsync=                       " let OS sync swapfiles lazily
 endif

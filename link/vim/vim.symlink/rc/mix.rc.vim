@@ -2,6 +2,13 @@
 " => Customize
 " vim: set fdm=marker fdc=1:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" save in readonly mode
+cnoreabbrev w!! w !sudo tee > /dev/null %
+
+" open help in vertical split window
+cnoreabbrev vh vert h
+
 " show multi byte space {{{
 "highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 "match ZenkakuSpace /　/
@@ -125,7 +132,6 @@ function! QuitIfLastBuffer() abort " {{{
     :q
   endif
 endfunction " }}}
-
 
 " ----------------------------------------------------------------------------
 " :Root | Change directory to the root of the Git repository

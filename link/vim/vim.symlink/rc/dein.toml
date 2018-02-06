@@ -34,6 +34,7 @@ let g:context_filetype#same_filetypes._ = '_'
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
+on_if = '!has("nvim")'
 
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'

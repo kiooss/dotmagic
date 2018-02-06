@@ -46,11 +46,7 @@ set complete-=i
 set complete+=k
 set completeopt+=longest
 
-" code folding settings
-" set foldmethod=syntax " fold based on indent
-" set foldnestmax=10 " deepest fold is 10 levels
-" set nofoldenable " don't fold by default
-" set foldlevel=1
+" Folding settings
 if has('folding')
   if has('windows')
     set fillchars=vert:┃              " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
@@ -62,6 +58,7 @@ if has('folding')
   set foldmethod=marker
   " set foldlevel=1
   " set foldlevelstart=99               " start unfolded
+  set foldnestmax=10 " deepest fold is 10 levels
   set foldtext=vimrc#foldtext()
 endif
 

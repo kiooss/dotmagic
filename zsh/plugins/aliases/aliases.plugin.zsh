@@ -1,8 +1,8 @@
 alias vi="$EDITOR"
-# alias view="vim -R"
+alias vim="$EDITOR"
 
-alias zshconfig="vi ~/.zshrc"
-alias zz="source ~/.zshrc"
+alias zshconfig="$EDITOR ~/.zshrc"
+alias zz="source ~/.zshenv && source ~/.zshrc"
 
 # Filesystem aliases
 alias ..='cd ..'

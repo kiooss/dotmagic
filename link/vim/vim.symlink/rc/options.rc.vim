@@ -12,9 +12,9 @@ endif
 " Use clipboard register.
 if (!has('nvim') || $DISPLAY != '') && has('clipboard')
   if has('unnamedplus')
-     set clipboard& clipboard+=unnamedplus
+    set clipboard& clipboard+=unnamedplus
   else
-     set clipboard& clipboard+=unnamed
+    set clipboard& clipboard+=unnamed
   endif
 endif
 
@@ -197,13 +197,13 @@ if &term =~ '256color'
 endif
 
 if has("gui_macvim")
-    set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
 endif
 
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
 
 if has('termguicolors')
-    set termguicolors
+  set termguicolors
 endif
 
 set textwidth=80

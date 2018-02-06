@@ -29,7 +29,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 typeset -U path cdpath fpath manpath
 
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
-[[ -z "$TMUX" ]] && export TERM=xterm-256color-italic
+[[ -z "$TMUX" ]] && export TERM=xterm-256color
 
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively

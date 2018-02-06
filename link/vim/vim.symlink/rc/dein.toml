@@ -5,6 +5,9 @@ repo = 'Shougo/dein.vim'
 repo = 'mhinz/vim-startify'
 hook_add = '''
   let g:startify_change_to_dir = 0
+  let g:startify_fortune_use_unicode = 1
+  let g:startify_custom_header =
+        \ map(split(system('fortune | cowsay -f dragon-and-cow'), '\n'), '"   ". v:val')
 '''
 
 [[plugins]]

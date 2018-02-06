@@ -84,7 +84,6 @@
     personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@gmail.com'"
 
 [core]
-    editor = vim
     excludesfile = ~/.gitignore_global
     ;pager = less -x4
     pager = less -FXRS -x2

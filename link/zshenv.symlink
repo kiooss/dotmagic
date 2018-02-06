@@ -10,6 +10,7 @@
 # }}}
 
 export TZ="/usr/share/zoneinfo/Asia/Tokyo"
-export EDITOR=vim
-export BUNDLER_EDITOR=vim
-export SVN_EDITOR=vim
+export EDITOR=nvim
+export BUNDLER_EDITOR="$EDITOR"
+export SVN_EDITOR="$EDITOR"
+export GIT_EDITOR="$EDITOR"

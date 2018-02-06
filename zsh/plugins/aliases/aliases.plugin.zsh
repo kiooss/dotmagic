@@ -1,4 +1,4 @@
-alias vi="vim"
+alias vi="$EDITOR"
 # alias view="vim -R"
 
 alias zshconfig="vi ~/.zshrc"

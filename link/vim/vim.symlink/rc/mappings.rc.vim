@@ -60,8 +60,13 @@ nnoremap <Down> <C-W>k<C-W>_
 nnoremap <Left> <C-W>h<C-W>_
 nnoremap <Right> <C-W>l<C-W>_
 
+nnoremap <C-j> <C-W>j<C-W>_
+nnoremap <C-k> <C-W>k<C-W>_
+nnoremap <C-h> <C-W>h<C-W>_
+nnoremap <C-l> <C-W>l<C-W>_
+
 " Redraw.
-nnoremap <silent> <C-l>    :<C-u>redraw!<CR>
+" nnoremap <silent> <C-l>    :<C-u>redraw!<CR>
 
 " simplify resizing splits
 if has('unix')

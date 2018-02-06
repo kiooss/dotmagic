@@ -108,8 +108,7 @@ nnoremap + <c-a>
 nnoremap - <c-x>
 
 " dein update
-nnoremap <Leader>U :<C-u>call dein#update()<CR>
-
+nnoremap <Leader>U :<C-u>call dein#update() <bar> call VimuxRunCommand("tail -f ~/dein.log")<CR>
 "}}}
 
 "==============================================================================

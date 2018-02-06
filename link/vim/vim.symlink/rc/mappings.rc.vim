@@ -55,11 +55,6 @@ nnoremap < <<
 noremap <F3> :set hlsearch! hlsearch?<cr>
 
 " Window moving
-nnoremap <Up> <C-W>j<C-W>_
-nnoremap <Down> <C-W>k<C-W>_
-nnoremap <Left> <C-W>h<C-W>_
-nnoremap <Right> <C-W>l<C-W>_
-
 nnoremap <C-j> <C-W>j<C-W>_
 nnoremap <C-k> <C-W>k<C-W>_
 nnoremap <C-h> <C-W>h<C-W>_
@@ -69,17 +64,10 @@ nnoremap <C-l> <C-W>l<C-W>_
 " nnoremap <silent> <C-l>    :<C-u>redraw!<CR>
 
 " simplify resizing splits
-if has('unix')
-    nnoremap j <C-w>-
-    nnoremap k <C-w>+
-    nnoremap h <C-w><
-    nnoremap l <C-w>>
-else
-    nnoremap <M-j> <C-w>-
-    nnoremap <M-k> <C-w>+
-    nnoremap <M-h> <C-w><
-    nnoremap <M-l> <C-w>>
-endif
+nnoremap <Down> <C-w>-
+nnoremap <Up> <C-w>+
+nnoremap <Left> <C-w><
+nnoremap <Right> <C-w>>
 
 " <tab> / <s-tab> | Circular windows navigation
 nnoremap <tab>   <c-w>w

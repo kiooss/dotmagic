@@ -1,3 +1,5 @@
+# vim: set ft=tmux:
+
 set -g default-shell $SHELL
 run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6-)"
 run-shell "tmux setenv -g TMUX_PLUGIN_MANAGER_PATH $DOTFILES/vendor/tmux_plugins/"
@@ -6,11 +8,19 @@ run-shell "tmux setenv -g TMUX_PLUGIN_MANAGER_PATH $DOTFILES/vendor/tmux_plugins
 if 'command -v reattach-to-user-namespace >/dev/null' \
     'set -g default-command "reattach-to-user-namespace -l $SHELL"'
 
+
+# tmux display things in 256 colors
+set -g default-terminal "tmux-256color-italic"
+
+#  enable terminal compability
+set-option -ga terminal-overrides ",tmux-256color-italic:Tc"
+
+
 # tmux display things in 256 colors
 # set-option -g default-terminal screen-256color
 # set -g terminal-overrides 'xterm:colors=256'
-set -g default-terminal "xterm-256color"
-set-option -ga terminal-overrides ",xterm-256color:Tc"
+# set -g default-terminal "xterm-256color"
+# set-option -ga terminal-overrides ",xterm-256color:Tc"
 # set-option -ga terminal-overrides ',xterm*:smcup@:rmcup@'
 
 set -g history-limit 20000

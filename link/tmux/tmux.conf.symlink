@@ -10,24 +10,12 @@ if 'command -v reattach-to-user-namespace >/dev/null' \
 
 
 # tmux display things in 256 colors
-# set -g default-terminal "tmux-256color"
-set -g default-terminal "xterm-256color"
-# set -g default-terminal "screen-256color-bce"
+set-option -g default-terminal "tmux-256color"
 
 #  enable terminal compability
- set-option -ga terminal-overrides ",tmux-256color:Tc"
 set-option -ga terminal-overrides ",xterm-256color:Tc"
-# set-option -ga terminal-overrides ",screen-256color-bce:Tc"
 
-
-# tmux display things in 256 colors
-# set-option -g default-terminal screen-256color
-# set -g terminal-overrides 'xterm:colors=256'
-# set -g default-terminal "xterm-256color"
-# set-option -ga terminal-overrides ",xterm-256color:Tc"
-# set-option -ga terminal-overrides ',xterm*:smcup@:rmcup@'
-
-set -g history-limit 20000
+set-option -g history-limit 20000
 
 # address vim mode switching delay (http://superuser.com/a/252717/65504)
 set-option -s escape-time 0
@@ -45,7 +33,7 @@ set-option -g base-index 1
 set-window-option -g pane-base-index 1
 
 # ウィンドウのインデックスを1から始める
-set -g base-index 1
+set-option -g base-index 1
 
 # remap prefix from 'C-b' to 'C-f'
 unbind C-b

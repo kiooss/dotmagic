@@ -8,12 +8,15 @@ hook_add = '''
   let g:startify_change_to_dir       = 1
   let g:startify_update_oldfiles     = 1
   let g:startify_fortune_use_unicode = 1
-  let g:startify_custom_header =
-        \ map(split(system('fortune | cowsay -f dragon-and-cow'), '\n'), '"   ". v:val')
+  " let g:startify_custom_header =
+  "       \ map(split(system('fortune | cowsay -f dragon-and-cow'), '\n'), '"   ". v:val')
 
   let g:startify_bookmarks = [
           \ { 'd': '~/.dotfiles/' },
           \ { 't': '~/.tmux.conf' },
+          \ { 'm': '~/.tmux.tmuxtheme' },
+          \ { 'v': '~/.config/nvim/' },
+          \ { 'z': '~/.zshrc' },
           \ ]
 '''
 

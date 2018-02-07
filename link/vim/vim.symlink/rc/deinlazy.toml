@@ -203,3 +203,7 @@ build = 'npm install'
 repo = 'tmux-plugins/vim-tmux'
 on_ft = 'tmux'
 
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = 'vim'
+

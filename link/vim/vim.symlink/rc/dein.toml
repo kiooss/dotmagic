@@ -54,6 +54,9 @@ on_if = '!has("nvim")'
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
 
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+
 # [[plugins]]
 # repo = 'Shougo/neocomplete.vim'
 # depends = 'context_filetype.vim'

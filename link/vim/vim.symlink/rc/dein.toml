@@ -142,9 +142,6 @@ hook_add ='''
 '''
 
 [[plugins]]
-repo = 'tmux-plugins/vim-tmux'
-
-[[plugins]]
 repo = 'terryma/vim-multiple-cursors'
 hook_add = '''
   " Prevent conflict with Neocomplete

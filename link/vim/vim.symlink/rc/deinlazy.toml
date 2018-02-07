@@ -198,3 +198,8 @@ on_ft = 'html'
 repo = 'ternjs/tern_for_vim'
 on_ft = 'javascript'
 build = 'npm install'
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux'
+on_ft = 'tmux'
+

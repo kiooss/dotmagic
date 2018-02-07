@@ -8,9 +8,6 @@ endif
 augroup KioossAutocmds
   autocmd!
   " {{{ file type specific settings
-  " php
-  autocmd FileType php set dictionary+=~/.vim/php.dict
-
   autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab

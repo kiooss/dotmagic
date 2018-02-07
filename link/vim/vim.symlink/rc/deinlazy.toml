@@ -28,7 +28,7 @@ hook_add = '''
         \ :<C-u>Denite -default-action=replace -buffer-name=register
         \ -highlight-mode-insert=Search register<CR>
   nnoremap <silent> <LocalLeader>v
-        \ :<C-u>Denite file_rec:~/.vim/rc -highlight-mode-insert=Search<CR>
+        \ :<C-u>Denite file_rec:~/.vim -highlight-mode-insert=Search<CR>
   nnoremap <silent> <LocalLeader>d
         \ :<C-u>Denite file_rec:~/.dotfiles -highlight-mode-insert=Search<CR>
   nnoremap <silent> / :<C-u>Denite -buffer-name=search -highlight-mode-insert=Search

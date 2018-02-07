@@ -54,10 +54,6 @@ repo = 'roxma/vim-hug-neovim-rpc'
 on_if = '!has("nvim")'
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-depends = 'context_filetype.vim'
-
-[[plugins]]
 repo = 'Shougo/neco-syntax'
 
 # [[plugins]]

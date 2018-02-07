@@ -20,7 +20,7 @@
 " p: Paste
 
 " Swap ; and :
-" noremap ; :
+noremap ; :
 " noremap : ;
 
 " Smart space mapping

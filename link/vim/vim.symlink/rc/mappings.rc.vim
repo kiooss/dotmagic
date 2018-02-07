@@ -165,9 +165,9 @@ if (!has('nvim') || $DISPLAY != '') && has('clipboard')
   xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
 endif
 
-" use J,K to move sleceted lines.
-xmap J ]egv=gv
-xmap K [egv=gv
+" use Ctrl+J,K to move sleceted lines.
+xmap <C-j> ]egv=gv
+xmap <C-k> [egv=gv
 
 " stile select when indent in visual mode
 vnoremap < <gv

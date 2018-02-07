@@ -55,24 +55,24 @@ call denite#custom#var('grep/git', 'recursive_opts', [])
 " call denite#custom#option('default', {
 "       \ 'prompt': '>', 'short_source_names': v:true
 "       \ })
+" call denite#custom#option('_', {
+"       \ 'prompt': '➤➤',
+"       \ 'short_source_names': v:true
+"       \ })
 call denite#custom#option('_', {
       \ 'prompt': '➤➤',
-      \ 'short_source_names': v:true
+      \ 'cursor_wrap': v:true,
+      \ 'auto_resize': v:true,
+      \ 'short_source_names': v:true,
+      \ 'highlight_mode_insert': 'WildMenu'
       \ })
-" call denite#custom#option('default', {
-"       \ 'prompt': '»',
-"       \ 'cursor_wrap': v:true,
-"       \ 'auto_resize': v:true,
-"       \ 'short_source_names': v:true,
-"       \ 'highlight_mode_insert': 'WildMenu'
-"       \ })
 
 let s:menus = {}
 let s:menus.vim = {
     \ 'description': 'Vim',
     \ }
 let s:menus.vim.file_candidates = [
-    \ ['    > Edit configuation file (init.vim)', '~/.config/nvim/init.vim']
+    \ ['    > Edit configuation file (init.vim)', '~/.config/nvim/']
     \ ]
 call denite#custom#var('menu', 'menus', s:menus)
 

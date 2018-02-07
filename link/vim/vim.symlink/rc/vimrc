@@ -79,9 +79,9 @@ call s:source_rc('mix.rc.vim')
 call s:source_rc('colorscheme.rc.vim')
 
 " source plugin's config
-for s:path in split(glob('~/.vim/rc/plugins.rc.d/*.vim'), "\n")
-  exe 'source ' . s:path
-endfor
+" for s:path in split(glob('~/.vim/rc/plugins.rc.d/*.vim'), "\n")
+"   exe 'source ' . s:path
+" endfor
 
 "---------------------------------------------------------------------------
 set secure

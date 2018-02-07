@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Customize
-" vim: set fdm=marker fdc=1:
+" vim: set fdm=marker:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " save in readonly mode
@@ -9,22 +9,23 @@ cnoreabbrev w!! w !sudo tee > /dev/null %
 " open help in vertical split window
 cnoreabbrev vh vert h
 
-function! s:base16_customize() abort
-  call Base16hi("Comment", g:base16_gui03, "", g:base16_cterm03, "", "bold,italic", "")
-  call Base16hi("Folded", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01, "bold,italic", "")
-endfunction
-
-if has('syntax')
-  augroup on_change_colorschema
-    autocmd!
-    autocmd ColorScheme * call s:base16_customize()
-  augroup END
-endif
+" function! s:base16_customize() abort
+"   call Base16hi("Comment", g:base16_gui03, "", g:base16_cterm03, "", "bold,italic", "")
+"   call Base16hi("Folded", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01, "bold,italic", "")
+"   call Base16hi("StartifyPath", g:base16_gui03, "", g:base16_cterm03, "", "bold,italic", "")
+" endfunction
+"
+" if has('syntax')
+"   augroup on_change_colorschema
+"     autocmd!
+"     autocmd ColorScheme * call s:base16_customize()
+"   augroup END
+" endif
 
 " show multi byte space {{{
 "highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 "match ZenkakuSpace /　/
-function! ZenkakuSpace()
+function! ZenkakuSpace() abort
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
 endfunction
 

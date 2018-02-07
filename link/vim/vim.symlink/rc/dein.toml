@@ -4,10 +4,17 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'mhinz/vim-startify'
 hook_add = '''
-  let g:startify_change_to_dir = 0
+  autocmd User Startified call kiooss#autocmds#base16_customize()
+  let g:startify_change_to_dir       = 1
+  let g:startify_update_oldfiles     = 1
   let g:startify_fortune_use_unicode = 1
   let g:startify_custom_header =
         \ map(split(system('fortune | cowsay -f dragon-and-cow'), '\n'), '"   ". v:val')
+
+  let g:startify_bookmarks = [
+          \ { 'd': '~/.dotfiles/' },
+          \ { 't': '~/.tmux.conf' },
+          \ ]
 '''
 
 [[plugins]]

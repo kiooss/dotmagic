@@ -38,8 +38,9 @@ call denite#custom#var('grep/git', 'recursive_opts', [])
 call denite#custom#option('_', {
       \ 'prompt': '➤➤',
       \ 'cursor_wrap': v:true,
-      \ 'auto_resize': v:false,
       \ 'short_source_names': v:true,
+      \ 'highlight_matched_char' : 'MoreMsg',
+      \ 'highlight_matched_range' : 'MoreMsg',
       \ 'highlight_mode_insert': 'WildMenu'
       \ })
 

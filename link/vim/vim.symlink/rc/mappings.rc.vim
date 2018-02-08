@@ -73,9 +73,9 @@ nnoremap <Right> <C-w>>
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
 
-" scroll the viewport faster
-nnoremap <C-e> 3<C-e>M
-nnoremap <C-y> 3<C-y>M
+" better scroll
+noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>M")
+noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>M")
 
 " move to beginning/end of line
 nnoremap B ^

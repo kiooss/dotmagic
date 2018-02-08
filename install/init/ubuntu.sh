@@ -26,6 +26,7 @@ apt_packages+=(
   htop
   imagemagick
   jq
+  libboost-program-options-dev
   libcurl4-openssl-dev
   libedit-dev
   libicu-dev

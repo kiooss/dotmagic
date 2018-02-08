@@ -22,6 +22,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'nixprime/cpsm'
+build = 'sh -c "PY3=ON ./install.sh"'
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'

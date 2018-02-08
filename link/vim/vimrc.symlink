@@ -1,8 +1,9 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => My vim config
+"=============================================================================
+" .vimrc --- Config Entry file for Vim(8)
 " => Yang Yang
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" source ~/.vim/rc/vimrc
-if 1
-  execute 'source' fnamemodify(expand('<sfile>'), ':h').'/.vim/rc/vimrc'
-endif
+"=============================================================================
+
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/.vim/rc/vimrc'

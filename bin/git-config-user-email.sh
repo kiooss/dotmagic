@@ -15,5 +15,5 @@ if [[ $remote == 'git' ]]; then
 fi
 
 echo "Configuring user.name as $name & user.email as $email"
-git config user.name "$user"
+git config user.name "$name"
 git config user.email "$email"

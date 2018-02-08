@@ -34,13 +34,13 @@ nnoremap <silent> <Leader>w :update<cr>
 nnoremap <silent> <Leader>hc :pc<cr>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
-nnoremap <silent> <Leader>b :bd<cr>
+nnoremap <silent> <Leader>b :<C-u>call kiooss#util#BufferDelete()<CR>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>l :set list!<CR>
-nnoremap <silent> <Leader>y :call system('nc localhost 8377', @")<CR>
+nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
 
 nnoremap j gj
 nnoremap k gk

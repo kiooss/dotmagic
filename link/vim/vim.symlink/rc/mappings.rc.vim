@@ -101,7 +101,12 @@ nnoremap + <c-a>
 nnoremap - <c-x>
 
 " dein update
-nnoremap <Leader>U :<C-u>call dein#update() <bar> call VimuxRunCommand("tail -f " . g:dein#install_log_filename)<CR>
+nnoremap <Leader>U :<C-u>call dein#update() <bar>
+  \ call VimuxRunCommand("tail -f " . g:dein#install_log_filename)<CR>
+
+" zz cyclically
+nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
+      \ 'zt' : (winline() == &scrolloff + 1) ? 'zb' : 'zz'
 "}}}
 
 "==============================================================================

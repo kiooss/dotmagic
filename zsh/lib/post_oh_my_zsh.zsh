@@ -17,3 +17,4 @@ ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=green,bold'
 
 # the composer plugin create the c alias but I do not need it.
 unalias c 2>/dev/null
+unalias g 2>/dev/null

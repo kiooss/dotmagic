@@ -25,22 +25,6 @@ endif
 call denite#custom#source('file_old', 'converters',
       \ ['converter_relative_word'])
 
-call denite#custom#map('insert', '<C-a>', '<Home>')
-call denite#custom#map('insert', '<C-e>', '<End>')
-call denite#custom#map('insert', '<C-f>', '<Right>')
-call denite#custom#map('insert', '<C-b>', '<Left>')
-
-call denite#custom#map('insert', '<C-j>',
-      \ '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>',
-      \ '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', "'",
-      \ '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('normal', 'r',
-      \ '<denite:do_action:quickfix>', 'noremap')
-call denite#custom#map('insert', '<C-u>',
-      \ '<denite:delete_entire_text>', 'noremap')
-
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
       \ ['git', 'ls-files', '-co', '--exclude-standard'])
@@ -50,15 +34,7 @@ call denite#custom#var('grep/git', 'command',
       \ ['git', 'grep'])
 call denite#custom#var('grep/git', 'recursive_opts', [])
 
-" call denite#custom#option('default', 'prompt', '>')
-" call denite#custom#option('default', 'short_source_names', v:true)
-" call denite#custom#option('default', {
-"       \ 'prompt': '>', 'short_source_names': v:true
-"       \ })
-" call denite#custom#option('_', {
-"       \ 'prompt': '➤➤',
-"       \ 'short_source_names': v:true
-"       \ })
+" denite option
 call denite#custom#option('_', {
       \ 'prompt': '➤➤',
       \ 'cursor_wrap': v:true,
@@ -66,6 +42,11 @@ call denite#custom#option('_', {
       \ 'short_source_names': v:true,
       \ 'highlight_mode_insert': 'WildMenu'
       \ })
+
+" buffer source
+call denite#custom#var(
+      \ 'buffer',
+      \ 'date_format', '%Y-%m-%d %H:%M:%S')
 
 let s:menus = {}
 let s:menus.vim = {
@@ -80,4 +61,42 @@ call denite#custom#var('menu', 'menus', s:menus)
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
       \ [ '.git/', '.ropeproject/', '__pycache__/', 'tmp/', 'var/',
       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+
+" \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
+" \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
+" \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
+" \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
+" KEY MAPPINGS
+let s:insert_mode_mappings = [
+      \  ['<C-a>', '<Home>', 'noremap'],
+      \  ['<C-e>', '<End>', 'noremap'],
+      \  ['<C-f>', '<Right>', 'noremap'],
+      \  ['<C-b>', '<Left>', 'noremap'],
+      \  ['jk', '<denite:enter_mode:normal>', 'noremap'],
+      \  ['<C-j>', '<denite:move_to_next_line>', 'noremap'],
+      \  ['<C-k>', '<denite:move_to_previous_line>', 'noremap'],
+      \  ['<C-u>', '<denite:delete_entire_text>', 'noremap'],
+      \  ['<C-Y>', '<denite:redraw>', 'noremap'],
+      \ ]
+
+let s:normal_mode_mappings = [
+      \   ["'", '<denite:toggle_select_down>', 'noremap'],
+      \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
+      \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
+      \   ['gg', '<denite:move_to_first_line>', 'noremap'],
+      \   ['st', '<denite:do_action:tabopen>', 'noremap'],
+      \   ['sv', '<denite:do_action:vsplit>', 'noremap'],
+      \   ['sh', '<denite:do_action:split>', 'noremap'],
+      \   ['q', '<denite:quit>', 'noremap'],
+      \   ['r', '<denite:redraw>', 'noremap'],
+      \ ]
+
+for s:m in s:insert_mode_mappings
+  call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
+endfor
+for s:m in s:normal_mode_mappings
+  call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
+endfor
+
+unlet s:m s:insert_mode_mappings s:normal_mode_mappings
 

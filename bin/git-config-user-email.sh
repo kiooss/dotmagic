@@ -2,7 +2,7 @@
 
 remote=`git remote -v | awk '/\(push\)$/ {print $2}' | cut -d ':' -f 1`
 # default user and email
-user="Yang Yang"
+name="Yang Yang"
 email=kiooss@gmail.com
 
 # work email
@@ -14,6 +14,6 @@ if [[ $remote == 'git' ]]; then
   email=$WORK_EMAIL
 fi
 
-echo "Configuring user.user as $user user.email as $email"
-git config user.user "$user"
+echo "Configuring user.name as $name & user.email as $email"
+git config user.name "$user"
 git config user.email "$email"

@@ -64,19 +64,14 @@ if !has('vim_starting')
   syntax enable
   filetype plugin indent on
 endif
+
 "---------------------------------------------------------------------------
-
 call s:source_rc('options.rc.vim')
-
-call s:source_rc('mappings.rc.vim')
-
-call s:source_rc('abbreviations.rc.vim')
-
-call s:source_rc('autocmds.rc.vim')
-
-call s:source_rc('mix.rc.vim')
-
 call s:source_rc('colorscheme.rc.vim')
+call s:source_rc('mappings.rc.vim')
+call s:source_rc('abbreviations.rc.vim')
+call s:source_rc('autocmds.rc.vim')
+call s:source_rc('mix.rc.vim')
 
 if has('nvim')
   call s:source_rc('neovim.rc.vim')

@@ -1,9 +1,9 @@
-"---------------------------------------------------------------------------
-" YangYang's .vimrc
-"---------------------------------------------------------------------------
+"=============================================================================
+" vimrc--- The real vimrc
+" => Yang Yang
+"=============================================================================
 
 "---------------------------------------------------------------------------
-
 " profile start profile.txt
 " profile file ~/.vim/rc/*
 " profile func dein#*
@@ -78,6 +78,10 @@ call s:source_rc('mix.rc.vim')
 
 call s:source_rc('colorscheme.rc.vim')
 
+if has('nvim')
+  call s:source_rc('neovim.rc.vim')
+endif
+
 " source plugin's config
 " for s:path in split(glob('~/.vim/rc/plugins.rc.d/*.vim'), "\n")
 "   exe 'source ' . s:path
@@ -85,7 +89,5 @@ call s:source_rc('colorscheme.rc.vim')
 
 "---------------------------------------------------------------------------
 set secure
-" syntax enable
-" filetype plugin indent on
 
 " vim: foldmethod=marker

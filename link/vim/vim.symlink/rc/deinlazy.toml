@@ -13,7 +13,7 @@ depends = 'neomru.vim'
 hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
 hook_add = '''
   nnoremap <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
-  nnoremap <LocalLeader>ft :<C-u>Denite filetype -auto-preview<CR>
+  nnoremap <LocalLeader>ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
   nnoremap <LocalLeader>r :<C-u>Denite -resume<CR>
   nnoremap <LocalLeader>h :<C-u>Denite help<CR>
   nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
@@ -31,10 +31,12 @@ hook_add = '''
         \ :<C-u>Denite file_rec:~/.vim -highlight-mode-insert=Search<CR>
   nnoremap <silent> <LocalLeader>d
         \ :<C-u>Denite file_rec:~/.dotfiles -highlight-mode-insert=Search<CR>
-  nnoremap <silent> / :<C-u>Denite -buffer-name=search -highlight-mode-insert=Search
-        \ line<CR>
+  nnoremap <silent> / :<C-u>Denite -buffer-name=search
+        \ -highlight-mode-insert=Search line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
         \ -mode=normal line<CR>
+  nnoremap <silent> # :<C-u>DeniteCursorWord -buffer-name=search
+        \ -no-empty -mode=normal grep/git<CR>
   nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
         \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
   nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
@@ -51,7 +53,6 @@ hook_add = '''
         \ -no-empty -mode=normal grep/git<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
         \ -resume -mode=normal -refresh<CR>
-  nnoremap <silent> ft :<C-u>Denite -highlight-mode-insert=Search filetype<CR>
   " nnoremap <silent> <C-t> :<C-u>Denite
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   " nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>

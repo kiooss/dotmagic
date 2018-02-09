@@ -87,10 +87,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'StanAngeloff/php.vim'
-on_ft = 'php'
-
-[[plugins]]
 repo = 'lvht/phpcd.vim'
 on_ft = 'php'
 build = 'composer install'
@@ -134,10 +130,6 @@ hook_add = '''
 # repo = 'qbbr/vim-symfony'
 # on_ft = 'php'
 
-[[plugins]]
-repo = 'docteurklein/php-getter-setter.vim'
-on_ft = 'php'
-
 # [[plugins]]
 # repo = 'tobyS/vmustache'
 # on_ft = 'php'
@@ -156,10 +148,6 @@ on_ft = 'php'
 # on_ft = 'php'
 
 [[plugins]]
-repo = 'vim-ruby/vim-ruby'
-on_ft = 'ruby'
-
-[[plugins]]
 repo = 'ecomba/vim-ruby-refactoring'
 on_ft = 'ruby'
 
@@ -172,47 +160,13 @@ repo = 'tpope/vim-rails'
 on_ft = 'ruby'
 
 [[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-on_ft = 'css'
-
-[[plugins]]
-repo = 'cakebaker/scss-syntax.vim'
-on_ft = 'scss'
-
-[[plugins]]
-repo = 'groenewege/vim-less'
-on_ft = 'less'
-
-[[plugins]]
 repo = 'chrisbra/csv.vim'
 on_ft = 'csv'
-
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
 on_ft = 'toml'
 
 [[plugins]]
-repo = 'kchmck/vim-coffee-script'
-on_ft = 'coffee'
-
-[[plugins]]
-repo = 'othree/html5.vim'
-on_ft = 'html'
-
-[[plugins]]
-repo = 'ternjs/tern_for_vim'
-on_ft = 'javascript'
-build = 'npm install'
-
-[[plugins]]
-repo = 'tmux-plugins/vim-tmux'
-on_ft = 'tmux'
-
-[[plugins]]
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
-

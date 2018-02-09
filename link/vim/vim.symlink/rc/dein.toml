@@ -391,3 +391,39 @@ repo = 'chrisbra/vim-zsh'
 
 [[plugins]]
 repo = 'ujihisa/neco-look'
+
+# the plugins below do not need dein lazy load mechanism.
+# they don't have plugin directroy.
+[[plugins]]
+repo = 'StanAngeloff/php.vim'
+
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+
+[[plugins]]
+repo = 'othree/html5.vim'
+
+[[plugins]]
+repo = 'docteurklein/php-getter-setter.vim'
+
+[[plugins]]
+repo = 'groenewege/vim-less'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = 'cakebaker/scss-syntax.vim'
+
+[[plugins]]
+repo = 'ternjs/tern_for_vim'
+build = 'npm install'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux'
+
+[[plugins]]
+repo = 'vim-ruby/vim-ruby'

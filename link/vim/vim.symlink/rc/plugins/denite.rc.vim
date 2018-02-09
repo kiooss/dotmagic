@@ -25,6 +25,13 @@ endif
 call denite#custom#source('file_old', 'converters',
       \ ['converter_relative_word'])
 
+" enable devicons
+" necessary only if denite is lazy load.
+if g:webdevicons_enable_denite
+  call denite#custom#source('file_rec,file_old,buffer,directory_rec',
+        \ 'converters', ['devicons_denite_converter'])
+endif
+
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
       \ ['git', 'ls-files', '-co', '--exclude-standard'])

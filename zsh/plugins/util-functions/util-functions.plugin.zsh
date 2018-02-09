@@ -271,7 +271,7 @@ function ssh() {
         # tmux rename-window "$(echo $* | rev | cut -d ' ' -f1 | rev | cut -d . -f 1)"
         local window_name=$(tmux display -p '#{window_name}')
         tmux rename-window "💻 $(echo $*)"
-        command ssh "$@"
+        TERM=xterm-256color command ssh "$@"
         tmux rename-window $window_name
         # tmux set-window-option automatic-rename "on" 1>/dev/null
     else

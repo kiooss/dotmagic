@@ -133,7 +133,8 @@ hook_add = '''
   " Toggle NERDTree
   nnoremap <silent> <leader>nt :NERDTreeToggle<cr>
   " expand to the path of the file in the current buffer
-  nnoremap <silent> <leader>nf :NERDTreeFind<cr>
+  nnoremap <expr><silent> <leader>nf g:NERDTree.IsOpen() ?
+        \ ":NERDTreeClose<CR>" : ":NERDTreeFind<CR>"
 '''
 
 # [[plugins]]

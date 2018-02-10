@@ -27,4 +27,3 @@ function! kiooss#util#BufferDelete() abort
     endif
   endif
 endfunction
-

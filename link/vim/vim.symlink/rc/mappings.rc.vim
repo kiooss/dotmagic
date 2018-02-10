@@ -31,6 +31,7 @@ nnoremap  [Space]   <Nop>
 nnoremap <CR> <NOP>
 
 nnoremap <silent> <Leader>w :update<cr>
+" close the preview window
 nnoremap <silent> <Leader>hc :pc<cr>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
@@ -43,7 +44,9 @@ nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>l :set list!<CR>
-nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
+" nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
+nnoremap <silent> yy "*yy:let [@+,@"]=[@*,@*] <bar>
+      \ call system('nc localhost 8377', @")<CR>
 
 nnoremap j gj
 nnoremap k gk
@@ -172,6 +175,9 @@ cnoremap <C-k>          <C-\>estrpart(getcmdline(),0,getcmdpos()-1)<CR>
 if (!has('nvim') || $DISPLAY != '') && has('clipboard')
   xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
 endif
+
+xnoremap <silent> y "*y:let [@+,@"]=[@*,@*] <bar>
+      \ call system('nc localhost 8377', @")<CR>
 
 " use Ctrl+J,K to move sleceted lines.
 xmap <C-j> ]egv=gv

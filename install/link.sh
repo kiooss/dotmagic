@@ -36,8 +36,8 @@ done
 if [ -e "$HOME/.config/nvim" ]; then
   e_error "$HOME/.config/nvim already exists, skip."
 else
-  e_success "Linking $DOTFILES/link/vim/vim.symlink to $HOME/.config/nvim"
-  ln -sf "$DOTFILES/link/vim/vim.symlink" "$HOME/.config/nvim"
+  e_success "Linking $DOTFILES/link/vim.symlink to $HOME/.config/nvim"
+  ln -sf "$DOTFILES/link/vim.symlink" "$HOME/.config/nvim"
 fi
 
 e_success "done."

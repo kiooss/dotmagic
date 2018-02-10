@@ -46,7 +46,7 @@ augroup KioossAutocmds
 
   " automatically resize panes on resize
   autocmd VimResized * exe 'normal! \<c-w>='
-  autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | AirlineRefresh
+  autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml call kiooss#autocmds#vim_refresh()
   " save all files on focus lost, ignoring warnings about untitled buffers
   autocmd FocusLost * silent! wa
 

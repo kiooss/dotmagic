@@ -171,3 +171,7 @@ on_ft = 'toml'
 [[plugins]]
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
+
+[[plugins]]
+repo = 'vim-scripts/BufOnly.vim'
+on_cmd = ['Bonly', 'BufOnly']

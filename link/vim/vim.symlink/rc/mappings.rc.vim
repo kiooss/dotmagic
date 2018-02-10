@@ -34,7 +34,10 @@ nnoremap <silent> <Leader>w :update<cr>
 nnoremap <silent> <Leader>hc :pc<cr>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
+" delete current buffer
 nnoremap <silent> <Leader>b :<C-u>call kiooss#util#BufferDelete()<CR>
+" delete other buffers except current one
+nnoremap <silent> <Leader>B :<C-u>Bonly<CR>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>

@@ -35,7 +35,3 @@ unsetopt CORRECT_ALL
 autoload -Uz zmv
 alias zmv='noglob zmv -W'
 
-# zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent identities id_sec_key_svn
-# zstyle :omz:plugins:ssh-agent lifetime 4h
-

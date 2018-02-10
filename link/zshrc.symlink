@@ -160,6 +160,11 @@ COMPLETION_WAITING_DOTS="true"
 # VCS as dirty. This makes repository status check for large repositories much,
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities id_sec_key_svn
+# zstyle :omz:plugins:ssh-agent lifetime 4h
+
 # }}}
 
 # plugins config {{{

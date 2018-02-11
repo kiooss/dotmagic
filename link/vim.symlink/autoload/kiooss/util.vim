@@ -43,8 +43,8 @@ endfunction
 
 function! kiooss#util#GrepSource() abort range
   let l:str = s:get_visual_selection()
-  let l:str = escape(l:str, '\\/.*$^~[]')
+  let l:str = escape(l:str, '\\/.*$^''~[]')
   let l:str = substitute(l:str, "\n$", "", "")
 
-  execute 'Denite grep/git -buffer-name=git-grep -no-empty -mode=normal -input='.l:str
+  execute 'Denite grep/git -buffer-name=search -no-empty -mode=normal -input='.l:str
 endfunction

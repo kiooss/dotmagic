@@ -113,6 +113,9 @@ nnoremap <Leader>U :<C-u>call dein#update() <bar>
 " zz cyclically
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
       \ 'zt' : (winline() == &scrolloff + 1) ? 'zb' : 'zz'
+
+" git commit
+nnoremap gca :Gcommit -a -v<CR>
 "}}}
 
 "==============================================================================

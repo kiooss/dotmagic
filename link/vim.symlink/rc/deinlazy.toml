@@ -177,3 +177,11 @@ on_ft = 'vim'
 [[plugins]]
 repo = 'vim-scripts/BufOnly.vim'
 on_cmd = ['Bonly', 'BufOnly']
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+on_cmd = ['Deol', 'DeolEdit', 'DeolCd']
+
+[[plugins]]
+repo = 'junegunn/gv.vim'
+on_cmd = ['GV']

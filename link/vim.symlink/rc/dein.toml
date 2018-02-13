@@ -264,9 +264,6 @@ repo = 'tpope/vim-endwise'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
-hook_add = '''
-nnoremap <Leader>gb :<C-u>Gblame<CR>
-'''
 
 [[plugins]]
 repo = 'tpope/vim-git'

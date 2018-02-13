@@ -115,7 +115,8 @@ nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
       \ 'zt' : (winline() == &scrolloff + 1) ? 'zb' : 'zz'
 
 " git commit
-nnoremap gca :Gcommit -a -v<CR>
+nnoremap gca :<C-u>Gcommit -a -v<CR>
+nnoremap <Leader>gb :<C-u>Gblame<CR>
 "}}}
 
 "==============================================================================

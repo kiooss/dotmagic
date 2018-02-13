@@ -7,7 +7,7 @@ endfunction
 function! kiooss#autocmds#base16_customize() abort
   call Base16hi("Comment", g:base16_gui03, "", g:base16_cterm03, "", "bold,italic", "")
   call Base16hi("Folded", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01, "bold,italic", "")
-  call Base16hi("StartifyFile", g:base16_gui07, "", g:base16_cterm07, "", "bold,italic", "")
+  call Base16hi("StartifyFile", g:base16_gui09, "", g:base16_cterm09, "", "bold,italic", "")
 endfunction
 
 function! kiooss#autocmds#vim_refresh() abort

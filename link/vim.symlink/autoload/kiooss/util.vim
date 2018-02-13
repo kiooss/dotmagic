@@ -9,7 +9,8 @@ endfunction
 
 " delete buffer smartly
 function! kiooss#util#BufferDelete() abort
-  if &modified
+  let l:current = bufnr('%')
+  if getbufvar(l:current, '&modified')
     echohl ErrorMsg
     echomsg "No write since last change. Not closing buffer."
     echohl NONE
@@ -23,7 +24,7 @@ function! kiooss#util#BufferDelete() abort
       bdelete
     else
       bprevious
-      bdelete #
+      silent! execute 'bdelete '.l:current
     endif
   endif
 endfunction

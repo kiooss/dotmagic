@@ -58,3 +58,5 @@ function! s:profile(bang) "{{{
   endif
 endfunction
 command! -bang Profile call s:profile(<bang>0) "}}}
+
+command! GetChar call kiooss#debug#getchar()

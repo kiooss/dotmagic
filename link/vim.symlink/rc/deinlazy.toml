@@ -201,5 +201,4 @@ hook_add = '''
   nnoremap <Leader>gp :<C-u>Gina push<CR>
   nnoremap <Leader>gd :<C-u>Gina diff<CR>
   nnoremap <Leader>gA :<C-u>Gina add -A<CR>
-  nnoremap <Leader>gb :<C-u>Gina blame<CR>
 '''

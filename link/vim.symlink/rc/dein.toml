@@ -4,7 +4,8 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'mhinz/vim-startify'
 hook_add = '''
-  autocmd User Startified call kiooss#autocmds#base16_customize() | AirlineRefresh
+  " autocmd User Startified call kiooss#autocmds#base16_customize() | AirlineRefresh
+  autocmd User Startified doautocmd ColorScheme
   let g:startify_change_to_dir       = 1
   let g:startify_update_oldfiles     = 1
   let g:startify_fortune_use_unicode = 1
@@ -263,6 +264,9 @@ repo = 'tpope/vim-endwise'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+hook_add = '''
+nnoremap <Leader>gb :<C-u>Gblame<CR>
+'''
 
 [[plugins]]
 repo = 'tpope/vim-git'

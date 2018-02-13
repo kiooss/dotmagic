@@ -182,7 +182,7 @@ endif
 xnoremap <silent> y "*y:let [@+,@"]=[@*,@*] <bar>
       \ call system('nc localhost 8377', @")<CR>
 
-xnoremap <silent> <Leader>g :<C-u>call kiooss#util#GrepSource()<CR>
+xnoremap <silent> <Leader>gg :<C-u>call kiooss#util#GrepSource()<CR>
 
 " use Ctrl+J,K to move sleceted lines.
 xmap <C-j> ]egv=gv

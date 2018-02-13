@@ -50,6 +50,10 @@ hook_add = '''
         \ -no-empty -mode=normal grep<CR>
   nnoremap <silent> <leader>g :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep/git<CR>
+  nnoremap <silent> <leader>log :<C-u>Denite -buffer-name=search
+        \ -no-empty -mode=normal gitlog<CR>
+  nnoremap <silent> <leader>st :<C-u>Denite -buffer-name=search
+        \ -no-empty -mode=normal gitstatus<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
         \ -resume -mode=normal -refresh<CR>
   " nnoremap <silent> <C-t> :<C-u>Denite

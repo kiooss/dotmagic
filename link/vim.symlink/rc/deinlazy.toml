@@ -50,8 +50,6 @@ hook_add = '''
         \ -no-empty -mode=normal grep<CR>
   nnoremap <silent> <leader>gg :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep/git<CR>
-  nnoremap <silent> <leader>log :<C-u>Denite -buffer-name=search
-        \ -no-empty -mode=normal gitlog<CR>
   nnoremap <silent> <leader>st :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal gitstatus<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
@@ -59,7 +57,10 @@ hook_add = '''
   " nnoremap <silent> <C-t> :<C-u>Denite
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   " nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-  nnoremap <silent> <leader>gs :<C-u>Denite -mode=normal gitstatus<CR>
+  nnoremap <silent> <leader>gl :<C-u>Denite -buffer-name=search
+        \ -no-empty -mode=normal gitlog<CR>
+  nnoremap <silent> <leader>gs :<C-u>Denite -mode=normal
+        \ -no-empty gitstatus<CR>
   " nnoremap <silent> ;;
   "       \ :<C-u>Denite command command_history<CR>
 '''

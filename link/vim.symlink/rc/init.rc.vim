@@ -41,17 +41,14 @@ endif
 " Use English interface.
 language message C
 
-" Use ',' instead of '\'.
 " Use <Leader> in global plugin.
-" let g:mapleader = ','
+let g:mapleader = "\<Space>"
 " Use <LocalLeader> in filetype plugin.
-" let g:maplocalleader = 'm'
-let mapleader = "\<Space>"
-let maplocalleader = ","
+let g:maplocalleader = ','
 
 " Release keymappings for plug-in.
-nnoremap ;  <Nop>
-nnoremap ,  <Nop>
+" nnoremap ;  <Nop>
+" nnoremap ,  <Nop>
 
 if IsWindows()
   " Exchange path separator.

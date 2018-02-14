@@ -6,7 +6,8 @@ repo = 'mhinz/vim-startify'
 hook_add = '''
   " autocmd User Startified call kiooss#autocmds#base16_customize() | AirlineRefresh
   autocmd User Startified doautocmd ColorScheme
-  let g:startify_change_to_dir       = 1
+  " let g:startify_change_to_dir       = 1
+  let g:startify_change_to_vcs_root  = 1
   let g:startify_update_oldfiles     = 1
   let g:startify_fortune_use_unicode = 1
   " let g:startify_custom_header =
@@ -15,7 +16,6 @@ hook_add = '''
   let g:startify_bookmarks = [
           \ { 'd': '~/.dotfiles/' },
           \ { 't': '~/.tmux.conf' },
-          \ { 'm': '~/.tmux.tmuxtheme' },
           \ { 'v': '~/.config/nvim/' },
           \ { 'z': '~/.zshrc' },
           \ ]

@@ -131,6 +131,12 @@ nnoremap <Leader>U :<C-u>call dein#update() <bar>
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
       \ 'zt' : (winline() == &scrolloff + 1) ? 'zb' : 'zz'
 
+" If press l on fold, fold open.
+nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
+" If press l on fold, range fold open.
+xnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
+
+
 " git commit
 nnoremap <Leader>gb :<C-u>Gblame<CR>
 nnoremap gst :<C-u>Gina status --opener=10split<CR>
@@ -217,6 +223,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 " vnoremap <Leader><Space> zf
+
+" Substitute.
+xnoremap s :s//g<Left><Left>
+
 "}}}
 
 "==============================================================================

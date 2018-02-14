@@ -20,7 +20,7 @@ call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy' : 1})
 if has('nvim')
   call dein#load_toml('~/.vim/rc/deineo.toml', {})
 endif
-" call dein#load_toml('~/.vim/rc/deinft.toml')
+call dein#load_toml('~/.vim/rc/deinft.toml')
 
 if dein#tap('deoplete.nvim') && has('nvim')
   call dein#disable('neocomplete.vim')

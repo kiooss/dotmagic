@@ -35,10 +35,10 @@ set-window-option -g pane-base-index 1
 # ウィンドウのインデックスを1から始める
 set-option -g base-index 1
 
-# remap prefix from 'C-b' to 'C-f'
+# remap prefix from 'C-b' to 'C-Space'
 unbind C-b
-set-option -g prefix C-f
-bind-key C-f send-prefix
+set-option -g prefix C-Space
+bind-key C-Space send-prefix
 
 # c-n/c-p to switch between next/prev window
 bind C-p previous-window

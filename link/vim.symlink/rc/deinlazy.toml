@@ -21,10 +21,10 @@ hook_add = '''
   nnoremap <silent> <leader>ls :<C-u>Denite buffer<CR>
   nnoremap <silent> <leader>m :<C-u>Denite file_mru -highlight-mode-insert=Search<CR>
   nnoremap <silent> <Leader>r
-        \ :<C-u>Denite -buffer-name=register
+        \ :<C-u>Denite -mode=normal -buffer-name=register
         \ -highlight-mode-insert=Search register<CR>
   xnoremap <silent> <Leader>r
-        \ :<C-u>Denite -default-action=replace -buffer-name=register
+        \ :<C-u>Denite -mode=normal -default-action=replace -buffer-name=register
         \ -highlight-mode-insert=Search register<CR>
   nnoremap <silent> <LocalLeader>v
         \ :<C-u>Denite file_rec:~/.vim -highlight-mode-insert=Search<CR>
@@ -59,7 +59,7 @@ hook_add = '''
   " nnoremap <silent> <C-t> :<C-u>Denite
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   " nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-  " nnoremap <silent> <leader>gs :<C-u>Denite gitstatus<CR>
+  nnoremap <silent> <leader>gs :<C-u>Denite gitstatus<CR>
   " nnoremap <silent> ;;
   "       \ :<C-u>Denite command command_history<CR>
 '''

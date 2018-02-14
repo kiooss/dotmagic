@@ -115,15 +115,14 @@ nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
       \ 'zt' : (winline() == &scrolloff + 1) ? 'zb' : 'zz'
 
 " git commit
-nnoremap gca :<C-u>Gcommit -a -v<CR>
 nnoremap <Leader>gb :<C-u>Gblame<CR>
-nnoremap <Leader>gs :<C-u>Gina status --opener=10split<CR>
-nnoremap <Leader>ga :<C-u>Gina add .<CR>
-nnoremap <Leader>gU :<C-u>Gina reset -q %<CR>
-nnoremap <Leader>gc :<C-u>Gina commit -a -v<CR>
-nnoremap <Leader>gp :<C-u>Gina push<CR>
-nnoremap <Leader>gd :<C-u>Gina diff<CR>
-nnoremap <Leader>gA :<C-u>Gina add -A<CR>
+nnoremap gst :<C-u>Gina status --opener=10split<CR>
+" nnoremap <Leader>ga :<C-u>Gina add .<CR>
+" nnoremap <Leader>gU :<C-u>Gina reset -q %<CR>
+nnoremap gca :<C-u>Gina commit -a -v<CR>
+nnoremap gpu :<C-u>Gina push<CR>
+nnoremap gdf :<C-u>Gina diff<CR>
+nnoremap gaa :<C-u>Gina add -A<CR>
 "}}}
 
 "==============================================================================

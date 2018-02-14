@@ -9,7 +9,7 @@ repo = 'Shougo/neomru.vim'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
-depends = ['neomru.vim', 'denite-git']
+depends = ['neomru.vim']
 hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
 hook_add = '''
   nnoremap <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
@@ -59,13 +59,10 @@ hook_add = '''
   " nnoremap <silent> <C-t> :<C-u>Denite
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   " nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-  nnoremap <silent> <leader>gs :<C-u>Denite gitstatus<CR>
+  nnoremap <silent> <leader>gs :<C-u>Denite -mode=normal gitstatus<CR>
   " nnoremap <silent> ;;
   "       \ :<C-u>Denite command command_history<CR>
 '''
-
-[[plugins]]
-repo = 'neoclide/vim-easygit'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'

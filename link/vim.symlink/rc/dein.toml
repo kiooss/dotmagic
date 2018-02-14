@@ -438,4 +438,7 @@ repo = 'tmux-plugins/vim-tmux'
 repo = 'vim-ruby/vim-ruby'
 
 [[plugins]]
+repo = 'neoclide/vim-easygit'
+
+[[plugins]]
 repo = 'neoclide/denite-git'

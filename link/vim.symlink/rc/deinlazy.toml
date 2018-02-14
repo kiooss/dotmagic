@@ -59,8 +59,7 @@ hook_add = '''
   " nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
   nnoremap <silent> <leader>gl :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal gitlog<CR>
-  nnoremap <silent> <leader>gs :<C-u>Denite -mode=normal
-        \ -no-empty gitstatus<CR>
+  nnoremap <silent> <leader>gs :<C-u>Denite -mode=normal gitstatus<CR>
   " nnoremap <silent> ;;
   "       \ :<C-u>Denite command command_history<CR>
 '''

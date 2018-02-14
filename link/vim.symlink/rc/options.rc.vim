@@ -75,7 +75,6 @@ set path+=**
 
 " toggle paste mode
 set pastetoggle=<F2>
-set showmode
 
 set laststatus=2
 

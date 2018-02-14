@@ -18,7 +18,7 @@ function! kiooss#util#BufferDelete() abort
     let s:total_nr_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
 
     if s:total_nr_buffers == 0
-      " there is no buffer, just quit
+      " there is no listed buffer, just quit
       quit
     elseif s:total_nr_buffers == 1
       bdelete

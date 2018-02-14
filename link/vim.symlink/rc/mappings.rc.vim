@@ -20,7 +20,7 @@
 " p: Paste
 
 " Swap ; and :
-noremap ; :
+" noremap ; :
 " noremap : ;
 
 " Smart space mapping
@@ -29,6 +29,16 @@ nnoremap  [Space]   <Nop>
 
 " enter in normal mode do nothing
 nnoremap <CR> <NOP>
+
+" s: Windows and buffers(High priority) "{{{
+" The prefix key.
+nnoremap [Window]   <Nop>
+nmap     s [Window]
+nnoremap <silent> [Window]p  :<C-u>vsplit<CR>:wincmd w<CR>
+nnoremap <silent> [Window]o  :<C-u>only<CR>
+nnoremap <silent> <Tab>      :wincmd w<CR>
+nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
+"}}}
 
 nnoremap <silent> <Leader>w :update<cr>
 " close the preview window
@@ -76,8 +86,8 @@ nnoremap <Left> <C-w><
 nnoremap <Right> <C-w>>
 
 " <tab> / <s-tab> | Circular windows navigation
-nnoremap <tab>   <c-w>w
-nnoremap <S-tab> <c-w>W
+" nnoremap <tab>   <c-w>w
+" nnoremap <S-tab> <c-w>W
 
 " better scroll
 noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>M")

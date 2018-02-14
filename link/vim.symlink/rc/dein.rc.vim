@@ -15,12 +15,12 @@ endif
 " Note: It executes ":filetype off" automatically.
 call dein#begin(s:path, expand('<sfile>'))
 
-call dein#load_toml('~/.vim/rc/dein.toml', {'lazy': 0})
-call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy' : 1})
+call dein#load_toml(g:kiooss_rc_home . '/dein.toml', {'lazy': 0})
+call dein#load_toml(g:kiooss_rc_home . '/deinlazy.toml', {'lazy' : 1})
 if has('nvim')
-  call dein#load_toml('~/.vim/rc/deineo.toml', {})
+  call dein#load_toml(g:kiooss_rc_home . '/deineo.toml', {})
 endif
-call dein#load_toml('~/.vim/rc/deinft.toml')
+call dein#load_toml(g:kiooss_rc_home . '/deinft.toml')
 
 if dein#tap('deoplete.nvim') && has('nvim')
   call dein#disable('neocomplete.vim')

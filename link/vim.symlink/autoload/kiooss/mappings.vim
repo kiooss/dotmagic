@@ -1,8 +1,5 @@
 " denite key mappings
 function! kiooss#mappings#denite() abort
-  nnoremap <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
-  nnoremap <LocalLeader>ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
-  nnoremap <LocalLeader>h :<C-u>Denite help<CR>
   nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
   " nnoremap <silent> <leader>r  :<C-u>Denite register -mode=normal -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ol :<C-u>Denite outline -highlight-mode-insert=Search<CR>
@@ -33,7 +30,12 @@ function! kiooss#mappings#denite() abort
   "       \ tag:include<CR>
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
-  " nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+
+  nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+  nnoremap <silent> [Window]c :<C-u>Denite colorscheme -auto-preview<CR>
+  nnoremap <silent> [Window]ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
+  nnoremap <silent> [Window]h :<C-u>Denite help<CR>
+
   nnoremap <silent> <leader>ag :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep<CR>
   nnoremap <silent> <leader>gg :<C-u>Denite -buffer-name=search

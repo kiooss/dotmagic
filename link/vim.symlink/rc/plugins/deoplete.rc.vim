@@ -39,8 +39,9 @@ endfunction "}}}
 
 inoremap <expr> '  pumvisible() ? deoplete#close_popup() : "'"
 
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+" conflict with UltiSnips mapping.
+" inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+" inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])

@@ -3,8 +3,9 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! zvim#util#source_rc(file) abort
-  if filereadable(g:Config_Main_Home. '/' . a:file)
-    execute 'source ' . g:Config_Main_Home  . '/' . a:file
+  let abspath = resolve(expand(g:Config_Main_Home. '/' . a:file))
+  if filereadable(abspath)
+    execute 'source' fnameescape(abspath)
   endif
 endf
 

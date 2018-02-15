@@ -64,6 +64,9 @@ nnoremap k gk
 nnoremap g; g;zz
 nnoremap g, g,zz
 
+" format whole buffer
+nnoremap <silent> g= :<C-u>call zvim#format()<CR>
+
 nnoremap > >>
 nnoremap < <<
 
@@ -125,7 +128,7 @@ nnoremap - <c-x>
 
 " dein update
 nnoremap <Leader>U :<C-u>call dein#update() <bar>
-  \ call VimuxRunCommand("tail -f " . g:dein#install_log_filename)<CR>
+      \ call VimuxRunCommand("tail -f " . g:dein#install_log_filename)<CR>
 
 " zz cyclically
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?

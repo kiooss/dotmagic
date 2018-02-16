@@ -44,7 +44,7 @@ nnoremap <silent> <Tab>      :wincmd w<CR>
 nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
 "}}}
 
-nnoremap <silent> <Leader>w :update<cr>
+nnoremap <silent> <Leader>w :update <bar> GitGutter<CR>
 " close the preview window
 nnoremap <silent> <Leader>hc :pc<cr>
 nnoremap <silent> <Leader>q :q<cr>

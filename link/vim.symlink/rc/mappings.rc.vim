@@ -36,6 +36,10 @@ nnoremap [Window]   <Nop>
 nmap     s [Window]
 nnoremap <silent> [Window]p  :<C-u>vsplit<CR>:wincmd w<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
+nnoremap <silent> [Window]h  :wincmd H<CR>
+nnoremap <silent> [Window]j  :wincmd J<CR>
+nnoremap <silent> [Window]k  :wincmd K<CR>
+nnoremap <silent> [Window]l  :wincmd L<CR>
 nnoremap <silent> <Tab>      :wincmd w<CR>
 nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
 "}}}
@@ -53,7 +57,6 @@ nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
-nnoremap <Leader>l :set list!<CR>
 " nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
 nnoremap <silent> yy "*yy:let [@+,@"]=[@*,@*] <bar>
       \ call system('nc localhost 8377', @")<CR>

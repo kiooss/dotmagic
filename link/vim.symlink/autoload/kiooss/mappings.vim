@@ -1,9 +1,8 @@
 " denite key mappings
 function! kiooss#mappings#denite() abort
   nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
-  " nnoremap <silent> <leader>r  :<C-u>Denite register -mode=normal -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ol :<C-u>Denite outline -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <leader>ls :<C-u>Denite buffer<CR>
+  nnoremap <silent> <leader>ls :<C-u>Denite buffer -mode=normal<CR>
   nnoremap <silent> <leader>m :<C-u>Denite file_mru -highlight-mode-insert=Search<CR>
   nnoremap <silent> <Leader>r
         \ :<C-u>Denite -mode=normal -buffer-name=register
@@ -23,9 +22,9 @@ function! kiooss#mappings#denite() abort
         \ -no-empty -mode=normal grep/git<CR>
   nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
         \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-  nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
-        \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
-        \  tag:include\<CR>"
+  " nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
+  "       \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
+  "       \  tag:include\<CR>"
   " nnoremap <silent><expr> ;t :<C-u>DeniteCursorWord --buffer-name=tag
   "       \ tag:include<CR>
   nnoremap <silent><expr> tp  &filetype == 'help' ?

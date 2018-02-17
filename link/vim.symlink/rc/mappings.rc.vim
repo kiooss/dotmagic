@@ -40,13 +40,13 @@ nnoremap <silent> [Window]h  :wincmd H<CR>
 nnoremap <silent> [Window]j  :wincmd J<CR>
 nnoremap <silent> [Window]k  :wincmd K<CR>
 nnoremap <silent> [Window]l  :wincmd L<CR>
+" close the preview window
+nnoremap <silent> [Window]z  :wincmd z<CR>
 nnoremap <silent> <Tab>      :wincmd w<CR>
 nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
 "}}}
 
 nnoremap <silent> <Leader>w :update <bar> GitGutter<CR>
-" close the preview window
-nnoremap <silent> <Leader>hc :pc<cr>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
 " delete current buffer
@@ -60,6 +60,8 @@ nnoremap <Leader>t :TagbarToggle<CR>
 " nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
 nnoremap <silent> yy "*yy:let [@+,@"]=[@*,@*] <bar>
       \ call system('nc localhost 8377', @")<CR>
+
+nnoremap <silent> <Leader>hp :call zvim#previewHunkToggle()<CR>
 
 nnoremap j gj
 nnoremap k gk

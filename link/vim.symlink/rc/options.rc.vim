@@ -2,9 +2,9 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoread " detect when a file is changeed
-if exists("+autochdir")
-  set autochdir
-endif
+" if exists("+autochdir")
+"   set autochdir
+" endif
 
 " set mouse behavior
 if has('mouse')

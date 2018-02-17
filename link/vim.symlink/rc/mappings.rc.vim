@@ -220,9 +220,9 @@ xnoremap <silent> y "*y:let [@+,@"]=[@*,@*] <bar>
 
 xnoremap <silent> <Leader>gg :<C-u>call kiooss#util#GrepSource()<CR>
 
-" use Ctrl+J,K to move sleceted lines.
-xmap <C-j> ]egv=gv
-xmap <C-k> [egv=gv
+" use up and down to move sleceted lines.
+xmap <Up> ]egv=gv
+xmap <Down> [egv=gv
 
 " stile select when indent in visual mode
 vnoremap < <gv

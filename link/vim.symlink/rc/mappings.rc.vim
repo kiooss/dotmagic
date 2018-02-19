@@ -163,6 +163,8 @@ nnoremap gaa :<C-u>Gina add -A<CR>
 " remap esc
 inoremap jk <esc>
 
+inoremap <C-c> <Esc>`^
+
 " <C-b>: previous char.
 inoremap <C-b> <Left>
 " <C-f>: next char.

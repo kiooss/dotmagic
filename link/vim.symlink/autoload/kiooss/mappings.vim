@@ -30,7 +30,7 @@ function! kiooss#mappings#denite() abort
         \ :<C-u>Denite file_rec:~/.vim -highlight-mode-insert=Search<CR>
   nnoremap <silent> <LocalLeader>d
         \ :<C-u>Denite file_rec:~/.dotfiles -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <LocalLeader>n :<C-u>Denite dein<CR>
+  nnoremap <silent> <LocalLeader>n :<C-u>Denite dein -default-action=open<CR>
   nnoremap <silent> <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
   nnoremap <silent> <LocalLeader>ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
   nnoremap <silent> <LocalLeader>h :<C-u>Denite help<CR>

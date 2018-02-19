@@ -72,8 +72,8 @@ nnoremap g, g,zz
 " format whole buffer
 nnoremap <silent> g= :<C-u>call zvim#format()<CR>
 
-nnoremap > >>
-nnoremap < <<
+" nnoremap > >>
+" nnoremap < <<
 
 " clear highlighted search
 noremap <F3> :set hlsearch! hlsearch?<cr>

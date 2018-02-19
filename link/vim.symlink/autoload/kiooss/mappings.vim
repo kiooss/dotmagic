@@ -10,10 +10,6 @@ function! kiooss#mappings#denite() abort
   xnoremap <silent> <Leader>r
         \ :<C-u>Denite -mode=normal -default-action=replace -buffer-name=register
         \ -highlight-mode-insert=Search register<CR>
-  nnoremap <silent> <LocalLeader>v
-        \ :<C-u>Denite file_rec:~/.vim -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <LocalLeader>d
-        \ :<C-u>Denite file_rec:~/.dotfiles -highlight-mode-insert=Search<CR>
   nnoremap <silent> / :<C-u>Denite -buffer-name=search
         \ -highlight-mode-insert=Search line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
@@ -30,16 +26,20 @@ function! kiooss#mappings#denite() abort
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
 
-  nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
-  nnoremap <silent> [Window]c :<C-u>Denite colorscheme -auto-preview<CR>
-  nnoremap <silent> [Window]ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
-  nnoremap <silent> [Window]h :<C-u>Denite help<CR>
+  nnoremap <silent> <LocalLeader>v
+        \ :<C-u>Denite file_rec:~/.vim -highlight-mode-insert=Search<CR>
+  nnoremap <silent> <LocalLeader>d
+        \ :<C-u>Denite file_rec:~/.dotfiles -highlight-mode-insert=Search<CR>
+  nnoremap <silent> <LocalLeader>n :<C-u>Denite dein<CR>
+  nnoremap <silent> <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
+  nnoremap <silent> <LocalLeader>ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
+  nnoremap <silent> <LocalLeader>h :<C-u>Denite help<CR>
 
-  nnoremap <silent> <leader>ag :<C-u>Denite -buffer-name=search
+  nnoremap <silent> <Leader>ag :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep<CR>
-  nnoremap <silent> <leader>gg :<C-u>Denite -buffer-name=search
+  nnoremap <silent> <Leader>gg :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep/git<CR>
-  nnoremap <silent> <leader>st :<C-u>Denite -buffer-name=search
+  nnoremap <silent> <Leader>st :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal gitstatus<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
         \ -resume -mode=normal -refresh<CR>

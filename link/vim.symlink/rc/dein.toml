@@ -407,6 +407,9 @@ repo = 'chrisbra/vim-zsh'
 [[plugins]]
 repo = 'ujihisa/neco-look'
 
+[[plugins]]
+repo = 'airblade/vim-rooter'
+
 # the plugins below do not need dein lazy load mechanism.
 # they don't have plugin directroy.
 [[plugins]]

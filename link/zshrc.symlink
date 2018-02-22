@@ -191,6 +191,13 @@ plugins=(
   zsh-completions
 )
 
+if (( $+commands[composer] )); then
+  plugins=(
+    $plugins
+    composer
+  )
+fi
+
 # my own zsh plugins
 my_plugins=(
   abbreviations
@@ -224,8 +231,6 @@ else
   plugins=(
     $plugins
     command-not-found
-    composer
-    rbenv
     symfony
     symfony2
   )

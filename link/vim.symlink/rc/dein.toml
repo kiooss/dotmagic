@@ -454,3 +454,6 @@ repo = 'neoclide/vim-easygit'
 
 [[plugins]]
 repo = 'neoclide/denite-git'
+
+[[plugins]]
+repo = '5t111111/denite-rails'

@@ -51,4 +51,15 @@ function! kiooss#mappings#denite() abort
   nnoremap <silent> <Leader>gs :<C-u>Denite -mode=normal gitstatus<CR>
   " nnoremap <silent> ;;
   "       \ :<C-u>Denite command command_history<CR>
+
+  " denite-rails
+  nnoremap [rails] <Nop>
+  nmap     [Window]r [rails]
+  nnoremap <silent> [rails]r :<C-u>Denite<Space>rails:dwim<Return>
+  nnoremap <silent> [rails]m :<C-u>Denite<Space>rails:model<Return>
+  nnoremap <silent> [rails]c :<C-u>Denite<Space>rails:controller<Return>
+  nnoremap <silent> [rails]v :<C-u>Denite<Space>rails:view<Return>
+  nnoremap <silent> [rails]h :<C-u>Denite<Space>rails:helper<Return>
+  nnoremap <silent> [rails]t :<C-u>Denite<Space>rails:test<Return>
+  nnoremap <silent> [rails]s :<C-u>Denite<Space>rails:spec<Return>
 endfunction

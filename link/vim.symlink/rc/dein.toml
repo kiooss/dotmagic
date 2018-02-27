@@ -344,6 +344,9 @@ repo = 'algotech/ultisnips-php'
 
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
+hook_add = '''
+  let g:better_whitespace_operator='_s'
+'''
 
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
@@ -455,5 +458,5 @@ repo = 'neoclide/vim-easygit'
 [[plugins]]
 repo = 'neoclide/denite-git'
 
-[[plugins]]
-repo = '5t111111/denite-rails'
+# [[plugins]]
+# repo = '5t111111/denite-rails'

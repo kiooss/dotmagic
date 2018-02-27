@@ -43,7 +43,7 @@ call denite#custom#var('grep/git', 'recursive_opts', [])
 
 " denite option
 call denite#custom#option('_', {
-      \ 'prompt': '➤➤',
+      \ 'prompt': '➤',
       \ 'cursor_wrap': v:true,
       \ 'short_source_names': v:true,
       \ 'highlight_matched_char' : 'MoreMsg',
@@ -76,13 +76,14 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
 " \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
 " KEY MAPPINGS
 let s:insert_mode_mappings = [
-      \  ['<C-a>', '<Home>', 'noremap'],
-      \  ['<C-e>', '<End>', 'noremap'],
-      \  ['<C-f>', '<Right>', 'noremap'],
-      \  ['<C-b>', '<Left>', 'noremap'],
+      \  ['<C-a>', '<denite:move_caret_to_head>', 'noremap'],
+      \  ['<C-e>', '<denite:move_caret_to_tail>', 'noremap'],
+      \  ['<C-f>', '<denite:move_caret_to_right>', 'noremap'],
+      \  ['<C-b>', '<denite:move_caret_to_left>', 'noremap'],
       \  ['jk', '<denite:enter_mode:normal>', 'noremap'],
       \  ['<C-j>', '<denite:move_to_next_line>', 'noremap'],
       \  ['<C-k>', '<denite:move_to_previous_line>', 'noremap'],
+      \  ['<C-v>', '<denite:do_action:vsplit>', 'noremap'],
       \  ['<C-u>', '<denite:delete_entire_text>', 'noremap'],
       \  ['<C-Y>', '<denite:redraw>', 'noremap'],
       \ ]

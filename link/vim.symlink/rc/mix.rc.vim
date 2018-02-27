@@ -60,3 +60,5 @@ endfunction
 command! -bang Profile call s:profile(<bang>0) "}}}
 
 command! GetChar call kiooss#debug#getchar()
+
+command! CleanPlugins call map(dein#check_clean(), "delete(v:val, 'rf')")

@@ -37,7 +37,7 @@ function! s:my_cr_function() abort "{{{
   return deoplete#close_popup() . "\<CR>"
 endfunction "}}}
 
-inoremap <expr> '  pumvisible() ? deoplete#close_popup() : "'"
+" inoremap <expr> '  pumvisible() ? deoplete#close_popup() : "'"
 
 " conflict with UltiSnips mapping.
 " inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"

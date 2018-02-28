@@ -69,14 +69,14 @@ nnoremap k gk
 nnoremap g; g;zz
 nnoremap g, g,zz
 
+" Better x with black hole register "_
+nnoremap x "_x
+
 " format whole buffer
 nnoremap <silent> g= :<C-u>call zvim#format()<CR>
 
 " nnoremap > >>
 " nnoremap < <<
-
-" clear highlighted search
-noremap <F3> :set hlsearch! hlsearch?<cr>
 
 " Window moving
 " nnoremap <C-j> <C-W>j<C-W>_
@@ -119,10 +119,10 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap g] g<C-]>
 nnoremap g[ :pop<cr>
 
-nnoremap p gp
+" nnoremap p gp
 
-" disable EX mode, use Q to playback q record.
-nnoremap Q @q
+" disable EX mode
+nnoremap Q q
 
 " Toggle folds
 nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -146,7 +146,7 @@ xnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 
 
 " git commit
-nnoremap <Leader>gb :<C-u>Gblame<CR>
+nnoremap gbl :<C-u>Gblame<CR>
 nnoremap gst :<C-u>Gina status --opener=10split<CR>
 " nnoremap <Leader>ga :<C-u>Gina add .<CR>
 " nnoremap <Leader>gU :<C-u>Gina reset -q %<CR>

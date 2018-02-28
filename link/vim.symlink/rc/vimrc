@@ -18,11 +18,6 @@ let g:Config_Main_Home = fnamemodify(expand('<sfile>'),
 
 let g:kiooss_rc_home = g:Config_Main_Home
 
-function! s:source_rc_simple(path, ...) abort "{{{
-  let abspath = resolve(expand('~/.vim/rc/' . a:path))
-  execute 'source' fnameescape(abspath)
-endfunction "}}}
-
 function! s:source_rc(path, ...) abort "{{{
   let use_global = get(a:000, 0, !has('vim_starting'))
   let abspath = resolve(expand(g:kiooss_rc_home . '/' . a:path))

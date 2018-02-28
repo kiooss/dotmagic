@@ -88,8 +88,6 @@ repo = 'chriskempson/base16-vim'
 [[plugins]]
 repo = 'vim-airline/vim-airline'
 hook_add = '''
-  set ttimeoutlen=50
-
   let g:airline_skip_empty_sections = 1
   let g:airline_powerline_fonts=1
   let g:airline_left_sep=''

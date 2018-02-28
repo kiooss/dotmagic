@@ -26,7 +26,7 @@ set ttyfast
 
 set notimeout          " don't timeout on mappings
 set ttimeout           " do timeout on terminal key codes
-set timeoutlen=100     " timeout after 100 msec
+set ttimeoutlen=50
 
 " make backspace behave in a sane manner
 set backspace=start,indent,eol
@@ -236,18 +236,23 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " => Files, backups, and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-if exists('$SUDO_USER')
-  set nobackup                        " don't create root-owned files
-  set nowritebackup                   " don't create root-owned files
-else
-  set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-endif
 
-if exists('$SUDO_USER')
-  set noswapfile                      " don't create root-owned files
-else
-  set directory=~/.vim-tmp//,~/.tmp//,~/tmp//,/var/tmp//,/tmp//
-endif
+set nobackup
+set nowritebackup
+set noswapfile
+
+" if exists('$SUDO_USER')
+"   set nobackup                        " don't create root-owned files
+"   set nowritebackup                   " don't create root-owned files
+" else
+"   set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" endif
+
+" if exists('$SUDO_USER')
+"   set noswapfile                      " don't create root-owned files
+" else
+"   set directory=~/.vim-tmp//,~/.tmp//,~/tmp//,/var/tmp//,/tmp//
+" endif
 
 if has('viminfo')
   if exists('$SUDO_USER')

@@ -465,3 +465,10 @@ hook_add = '''
 let g:ClipperAddress='~/.clipper.sock'
 let g:ClipperPort=0
 '''
+
+[[plugins]]
+repo = 'justinmk/vim-sneak'
+hook_add = '''
+  map f <Plug>Sneak_s
+  map F <Plug>Sneak_S
+'''

@@ -49,3 +49,7 @@ function! kiooss#util#GrepSource() abort range
 
   execute 'Denite grep/git -buffer-name=search -no-empty -mode=normal -input='.l:str
 endfunction
+
+function! kiooss#util#SetFtByContext() abort
+  execute "set ft=".context_filetype#get_filetype()
+endfunction

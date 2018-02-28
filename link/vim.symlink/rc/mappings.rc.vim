@@ -42,7 +42,8 @@ nnoremap <silent> [Window]k  :wincmd K<CR>
 nnoremap <silent> [Window]l  :wincmd L<CR>
 " close the preview window
 nnoremap <silent> [Window]z  :wincmd z<CR>
-nnoremap <silent> <Tab>      :wincmd w<CR>
+nmap     <expr> <Tab> sneak#is_sneaking() ? '<Plug>SneakNext' : ':wincmd w<CR>'
+" nnoremap <silent> <Tab>      :wincmd w<CR>
 nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
 "}}}
 
@@ -53,6 +54,7 @@ nnoremap <silent> <Leader>z :qa!<cr>
 nnoremap <silent> <Leader>b :<C-u>call kiooss#util#BufferDelete()<CR>
 " delete other buffers except current one
 nnoremap <silent> <Leader>B :<C-u>Bonly<CR>
+nnoremap <silent> <Leader>cft :<C-u>call kiooss#util#SetFtByContext()<CR>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>

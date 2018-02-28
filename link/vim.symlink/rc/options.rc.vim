@@ -47,7 +47,12 @@ set shiftround " round indent to a multiple of 'shiftwidth'
 
 set complete-=i
 set complete+=k
-set completeopt+=longest
+" Completion setting.
+set completeopt=menuone
+if has('patch-7.4.775')
+  set completeopt+=noinsert
+endif
+" set completeopt+=longest
 
 " Folding settings
 if has('folding')
@@ -69,8 +74,11 @@ endif
 " set tags place
 set tags=./tags,tags;
 
-" remove the buffer limit when dong yank to copy and past in VIM
-set viminfo='100,h
+if has('nvim')
+  set shada=!,'300,<50,s10,h
+else
+  set viminfo=!,'300,<50,s10,h
+endif
 
 set cursorline
 

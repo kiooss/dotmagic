@@ -58,8 +58,8 @@ nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 " nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
-nnoremap <silent> yy "*yy:let [@+,@"]=[@*,@*] <bar>
-      \ call system('nc localhost 8377', @")<CR>
+" nnoremap <silent> yy "*yy:let [@+,@"]=[@*,@*] <bar>
+"       \ call system('nc localhost 8377', @")<CR>
 
 nnoremap <silent> <Leader>hp :call zvim#previewHunkToggle()<CR>
 
@@ -219,8 +219,8 @@ if (!has('nvim') || $DISPLAY != '') && has('clipboard')
   xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
 endif
 
-xnoremap <silent> y "*y:let [@+,@"]=[@*,@*] <bar>
-      \ call system('nc localhost 8377', @")<CR>
+" xnoremap <silent> y "*y:let [@+,@"]=[@*,@*] <bar>
+"       \ call system('nc localhost 8377', @")<CR>
 
 xnoremap <silent> <Leader>gg :<C-u>call kiooss#util#GrepSource()<CR>
 

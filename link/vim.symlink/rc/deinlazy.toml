@@ -121,9 +121,9 @@ on_ft = 'ruby'
 repo = 'chrisbra/csv.vim'
 on_ft = 'csv'
 
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
-on_ft = 'toml'
+# [[plugins]]
+# repo = 'osyo-manga/vim-precious'
+# on_ft = 'toml'
 
 [[plugins]]
 repo = 'Shougo/neco-vim'

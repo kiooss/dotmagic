@@ -461,3 +461,10 @@ repo = 'neoclide/denite-git'
 
 # [[plugins]]
 # repo = '5t111111/denite-rails'
+
+[[plugins]]
+repo = 'wincent/vim-clipper'
+hook_add = '''
+let g:ClipperAddress='~/.clipper.sock'
+let g:ClipperPort=0
+'''

@@ -65,4 +65,5 @@ alias all_zstyle="zstyle -L"
 alias all_zmodload="zmodload -L"
 
 # https://github.com/wincent/clipper
-alias clip="nc localhost 8377"
+# alias clip="nc localhost 8377"
+alias clip="nc -U ~/.clipper.sock"

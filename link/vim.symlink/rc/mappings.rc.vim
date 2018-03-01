@@ -130,8 +130,8 @@ nnoremap Q q
 nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 " +/-: Increment number
-nnoremap + <c-a>
-nnoremap - <c-x>
+" nnoremap + <c-a>
+" nnoremap - <c-x>
 
 " dein update
 nnoremap <Leader>U :<C-u>call dein#update() <bar>

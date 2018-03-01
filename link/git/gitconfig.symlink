@@ -82,7 +82,6 @@
     submodule-update = submodule update --init --recursive
 
     personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@gmail.com'"
-    config-user-email = "!git-config-user-email.sh"
 
 [core]
     excludesfile = ~/.gitignore_global

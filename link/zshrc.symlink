@@ -123,7 +123,7 @@ POWERLEVEL9K_OS_ICON_FOREGROUND="black"
 POWERLEVEL9K_TODO_BACKGROUND="16"
 POWERLEVEL9K_TODO_FOREGROUND="black"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time todo custom_base16_theme custom_drink_water disk_usage battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time todo custom_drink_water custom_base16_theme disk_usage battery)
 POWERLEVEL9K_SHOW_CHANGESET=true
 # }}}
 

@@ -1,3 +1,5 @@
+# NOTE: the plugins bdon't have plugin directroy do not need dein lazy load mechanism.
+
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'

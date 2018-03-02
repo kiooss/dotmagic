@@ -414,8 +414,6 @@ hook_add = '''
   let g:rooter_silent_chdir = 1
 '''
 
-# the plugins below do not need dein lazy load mechanism.
-# they don't have plugin directroy.
 [[plugins]]
 repo = 'StanAngeloff/php.vim'
 
@@ -475,3 +473,13 @@ hook_add = '''
 
 [[plugins]]
 repo = 'justinmk/vim-dirvish'
+
+[[plugins]]
+repo = 'sunaku/vim-dasht'
+hook_add = '''
+  nnoremap <silent> gK :call Dasht([expand('<cword>'), expand('<cWORD>')])<CR>
+  vnoremap <silent> gK y:<C-U>call Dasht(getreg(0))<Return>
+  let g:dasht_filetype_docsets = {}
+  let g:dasht_filetype_docsets['ruby'] = ['Ruby_on_Rails*']
+  let g:dasht_filetype_docsets['php'] = ['Symfony']
+'''

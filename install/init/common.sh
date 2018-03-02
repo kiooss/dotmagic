@@ -28,3 +28,11 @@ lolcat
 git-up
 EOT
 fi
+
+# install dasht
+if [ -d "$HOME/.dasht" ]; then
+    e_error "dasht already exists... Skipping."
+else
+    e_info "Installing dasht"
+    git clone https://github.com/sunaku/dasht ~/.dasht
+fi

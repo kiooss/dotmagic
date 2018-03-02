@@ -420,6 +420,17 @@ repo = 'ujihisa/neco-look'
 repo = 'airblade/vim-rooter'
 hook_add = '''
   let g:rooter_silent_chdir = 1
+  let g:rooter_patterns = [
+    \ 'Rakefile',
+    \ 'Gemfile',
+    \ 'composer.json',
+    \ '.git',
+    \ '.git/',
+    \ '_darcs/',
+    \ '.hg/',
+    \ '.bzr/',
+    \ '.svn/'
+    \ ]
 '''
 
 [[plugins]]

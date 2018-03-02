@@ -33,7 +33,7 @@ function! kiooss#mappings#denite() abort
   nnoremap <silent> <LocalLeader>n :<C-u>Denite dein -default-action=open<CR>
   nnoremap <silent> <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
   nnoremap <silent> <LocalLeader>ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <LocalLeader>h :<C-u>Denite help<CR>
+  nnoremap <silent> <LocalLeader>h :<C-u>Denite -buffer-name=search help<CR>
 
   nnoremap <silent> <Leader>ag :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep<CR>

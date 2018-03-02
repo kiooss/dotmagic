@@ -165,9 +165,11 @@ COMPLETION_WAITING_DOTS="true"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent identities id_sec_key_svn
-# zstyle :omz:plugins:ssh-agent lifetime 4h
+if [[ -n $SSHIDFILE ]]; then
+  # zstyle :omz:plugins:ssh-agent agent-forwarding on
+  zstyle :omz:plugins:ssh-agent identities $SSHIDFILE
+  # zstyle :omz:plugins:ssh-agent lifetime 4h
+fi
 
 # }}}
 

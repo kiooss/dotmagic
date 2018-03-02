@@ -42,7 +42,7 @@ nnoremap <silent> [Window]k  :wincmd K<CR>
 nnoremap <silent> [Window]l  :wincmd L<CR>
 " close the preview window
 nnoremap <silent> [Window]z  :wincmd z<CR>
-nmap     <expr> <Tab> sneak#is_sneaking() ? '<Plug>SneakNext' : ':wincmd w<CR>'
+nmap     <expr><silent> <Tab> sneak#is_sneaking() ? '<Plug>SneakNext' : ':wincmd w<CR>'
 " nnoremap <silent> <Tab>      :wincmd w<CR>
 nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
 "}}}

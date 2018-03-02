@@ -239,6 +239,8 @@ vnoremap > >gv
 " Substitute.
 xnoremap s :s//g<Left><Left>
 
+xnoremap <Leader>s :<C-u>call kiooss#util#ReplaceDelimiter()<CR>
+
 "}}}
 
 "==============================================================================

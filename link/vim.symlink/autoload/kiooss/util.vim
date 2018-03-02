@@ -53,3 +53,9 @@ endfunction
 function! kiooss#util#SetFtByContext() abort
   execute "set ft=".context_filetype#get_filetype()
 endfunction
+
+function! kiooss#util#ReplaceDelimiter() abort
+  let delimiter = input('Delimiter: ')
+  silent! execute "s/".delimiter."/\r/g"
+  redraw!
+endfunction

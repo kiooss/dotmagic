@@ -498,6 +498,7 @@ repo = 'justinmk/vim-dirvish'
 
 [[plugins]]
 repo = 'sunaku/vim-dasht'
+on_if = 'executable("dasht")'
 hook_add = '''
   nnoremap <silent> gK :call Dasht([expand('<cword>'), expand('<cWORD>')])<CR>
   vnoremap <silent> gK y:<C-U>call Dasht(getreg(0))<Return>

@@ -507,3 +507,6 @@ hook_add = '''
   let g:dasht_filetype_docsets['ruby'] = ['Ruby_on_Rails*']
   let g:dasht_filetype_docsets['php'] = ['Symfony']
 '''
+
+# [[plugins]]
+# repo = 'uplus/deoplete-solargraph'

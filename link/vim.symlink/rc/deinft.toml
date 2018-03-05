@@ -16,3 +16,8 @@ setlocal iskeyword+=-
 vim = '''
 setlocal foldmethod=marker
 '''
+
+ruby = '''
+setlocal iskeyword+=!
+setlocal iskeyword+=?
+'''

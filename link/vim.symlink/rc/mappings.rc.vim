@@ -74,6 +74,8 @@ nnoremap g, g,zz
 " Better x with black hole register "_
 nnoremap x "_x
 
+nnoremap Y y$
+
 " format whole buffer
 nnoremap <silent> g= :<C-u>call zvim#format()<CR>
 

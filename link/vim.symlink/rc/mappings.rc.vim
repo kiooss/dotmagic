@@ -58,7 +58,6 @@ nnoremap <silent> <Leader>cft :<C-u>call kiooss#util#SetFtByContext()<CR>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
-nnoremap <Leader>t :TagbarToggle<CR>
 " nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
 " nnoremap <silent> yy "*yy:let [@+,@"]=[@*,@*] <bar>
 "       \ call system('nc localhost 8377', @")<CR>

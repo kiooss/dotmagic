@@ -224,9 +224,6 @@ hook_add = '''
 repo = 'gregsexton/MatchTag'
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
-
-[[plugins]]
 repo = 'ludovicchabant/vim-gutentags'
 hook_add = '''
   let g:gutentags_ctags_executable='exctags'

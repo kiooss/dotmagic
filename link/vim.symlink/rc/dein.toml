@@ -249,8 +249,8 @@ hook_add = '''
   let g:gitgutter_sign_modified_removed = ''
 '''
 
-[[plugins]]
-repo = 'vim-scripts/sudo.vim'
+# [[plugins]]
+# repo = 'vim-scripts/sudo.vim'
 
 [[plugins]]
 repo = 'vim-scripts/CmdlineComplete'

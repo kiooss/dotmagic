@@ -148,7 +148,7 @@ on_cmd = ['Deol', 'DeolEdit', 'DeolCd']
 
 [[plugins]]
 repo = 'junegunn/gv.vim'
-on_cmd = ['GV']
+on_cmd = ['GV', 'GV!']
 
 [[plugins]]
 repo = 'lambdalisue/gina.vim'

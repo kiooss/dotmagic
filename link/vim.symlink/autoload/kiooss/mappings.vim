@@ -27,7 +27,7 @@ function! kiooss#mappings#denite() abort
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
 
   nnoremap <silent> <LocalLeader>v
-        \ :<C-u>Denite file_rec:~/.vim -highlight-mode-insert=Search<CR>
+        \ :<C-u>Denite file_rec:~/.dotfiles/link/vim.symlink/ -highlight-mode-insert=Search<CR>
   nnoremap <silent> <LocalLeader>d
         \ :<C-u>Denite file_rec:~/.dotfiles -highlight-mode-insert=Search<CR>
   nnoremap <silent> <LocalLeader>n :<C-u>Denite dein -default-action=open<CR>

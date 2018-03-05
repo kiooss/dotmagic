@@ -162,6 +162,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
+hook_add = '''
+  " let g:EditorConfig_verbose = 1
+'''
 
 [[plugins]]
 repo = 'pbrisbin/vim-mkdir'
@@ -240,7 +243,8 @@ hook_add = '''
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
   let g:gitgutter_sign_added = ''
-  let g:gitgutter_sign_modified = ''
+  " let g:gitgutter_sign_modified = ''
+  let g:gitgutter_sign_modified = ''
   let g:gitgutter_sign_removed = ''
   let g:gitgutter_sign_modified_removed = ''
 '''

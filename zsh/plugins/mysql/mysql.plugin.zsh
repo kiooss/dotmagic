@@ -65,3 +65,12 @@ function reset-table() {
     echo "SET FOREIGN_KEY_CHECKS=1;"
     echo "ALTER TABLE $1 AUTO_INCREMENT = 1;"
 }
+
+function mysql-dump-command() {
+  DBNAME=$1
+  echo "mysqldump -u [user] -h [host] -p --single-transaction --quick ${DBNAME} [table] | gzip > ${DBNAME}_$(date +%Y%m%d%H%M%S).sql.gz"
+}
+
+function mysql-import-command() {
+  echo "gunzip < outputfile.sql.gz | mysql < mysql options>"
+}

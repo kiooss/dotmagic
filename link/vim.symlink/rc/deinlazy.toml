@@ -114,9 +114,9 @@ hook_add = '''
 # repo = 'adoy/vim-php-refactoring-toolbox'
 # on_ft = 'php'
 
-[[plugins]]
-repo = 'ecomba/vim-ruby-refactoring'
-on_ft = 'ruby'
+# [[plugins]]
+# repo = 'ecomba/vim-ruby-refactoring'
+# on_ft = 'ruby'
 
 # [[plugins]]
 # repo = 'tsaleh/vim-shoulda'

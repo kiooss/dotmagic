@@ -23,6 +23,7 @@ augroup KioossAutocmds
   autocmd FileType gitcommit setlocal spell
   " close help only with q
   autocmd FileType help noremap <buffer> q :q<cr>
+  autocmd FileType help wincmd L
   " make quickfix windows take all the lower section of the screen
   " when there are multiple windows open
   autocmd FileType qf wincmd J

@@ -40,9 +40,9 @@ set isfname-==
 " set noexpandtab " insert tabs rather than spaces for <Tab>
 set expandtab
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set tabstop=4 " the visible width of tabs
-set softtabstop=4 " edit as if the tabs are 4 characters wide
-set shiftwidth=4 " number of spaces to use for indent and unindent
+set tabstop=2 " the visible width of tabs
+set softtabstop=2 " edit as if the tabs are 2 characters wide
+set shiftwidth=2 " number of spaces to use for indent and unindent
 set shiftround " round indent to a multiple of 'shiftwidth'
 
 set complete-=i
@@ -117,7 +117,6 @@ endif
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-set so=7 " set 7 lines to the cursors - when moving vertical
 set hidden " current buffer can be put into background
 set showcmd " show incomplete commands
 set noshowmode " don't show which mode disabled for PowerLine
@@ -166,11 +165,11 @@ set relativenumber " show relative line numbers
 set autoindent " automatically set indent of new line
 set smartindent
 
-setglobal fenc=utf-8
-"set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-set fencs=utf-8,euc-jp,sjis
-set enc=utf-8
-set tenc=utf-8
+" setglobal fenc=utf-8
+" "set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+" set fencs=utf-8,euc-jp,sjis
+" set enc=utf-8
+" set tenc=utf-8
 
 " Highlight <>.
 set matchpairs+=<:>

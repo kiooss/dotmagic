@@ -16,11 +16,9 @@ let g:Config_Main_Home = fnamemodify(expand('<sfile>'),
       \ ':p:h:gs?\\?'.((has('win16') || has('win32')
       \ || has('win64'))?'\':'/') . '?')
 
-let g:kiooss_rc_home = g:Config_Main_Home
-
 function! s:source_rc(path, ...) abort "{{{
   let use_global = get(a:000, 0, !has('vim_starting'))
-  let abspath = resolve(expand(g:kiooss_rc_home . '/' . a:path))
+  let abspath = resolve(expand(g:Config_Main_Home . '/' . a:path))
   if !use_global
     execute 'source' fnameescape(abspath)
     return
@@ -70,6 +68,7 @@ if !has('vim_starting')
 endif
 
 "---------------------------------------------------------------------------
+call s:source_rc('encoding.rc.vim')
 call s:source_rc('options.rc.vim')
 call s:source_rc('colorscheme.rc.vim')
 call s:source_rc('mappings.rc.vim')

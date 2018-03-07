@@ -15,7 +15,7 @@ e_header "Linking files into home directory."
 linkables=$( find -H "$DOTFILES/link" -maxdepth 3 -name '*.symlink' )
 
 for file in $linkables ; do
-  target="$HOME/.$( basename $file ".symlink" )"
+  target="$HOME/.$(basename $file '.symlink')"
   e_info "Target: ${target}"
   if [ -e "$target" ]; then
     if [ "$force" = "force" ]; then

@@ -66,7 +66,7 @@ if has('folding')
   " set foldmethod=indent               " not as cool as syntax, but faster
   set foldmethod=marker
   " set foldlevel=1
-  " set foldlevelstart=99               " start unfolded
+  set foldlevelstart=99               " start unfolded
   set foldnestmax=10 " deepest fold is 10 levels
   set foldtext=vimrc#foldtext()
 endif

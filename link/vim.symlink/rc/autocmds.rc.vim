@@ -57,6 +57,11 @@ augroup KioossAutocmds
         \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
         \ if &l:diff | diffupdate | endif
 
+  " Automatic rename of tmux window
+  if exists('$TMUX') && !exists('$NORENAME')
+    autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+    autocmd VimLeave * call system('tmux set-window automatic-rename on')
+  endif
 
   " window hlight {{{
   " Make current window more obvious by turning off/adjusting some features

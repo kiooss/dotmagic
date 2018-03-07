@@ -168,6 +168,7 @@ nnoremap [Git]aa :<C-u>Gina add -A<CR>
 " {{{
 " remap esc
 inoremap jk <esc>
+inoremap kj <esc>
 
 inoremap <C-c> <Esc>`^
 
@@ -197,6 +198,7 @@ inoremap <%     <%  %><Left><Left><Left>
 " {{{
 " jk | Escaping!
 cnoremap jk             <C-c>
+cnoremap kj             <C-c>
 " <C-a>, A: move to head.
 cnoremap <C-a>          <Home>
 " <C-b>: previous char.
@@ -221,9 +223,9 @@ cnoremap <C-k>          <C-\>estrpart(getcmdline(),0,getcmdpos()-1)<CR>
 " Visual Mode Key Mappings
 "=============================================================================
 " {{{
-if (!has('nvim') || $DISPLAY != '') && has('clipboard')
-  xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
-endif
+" if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+"   xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
+" endif
 
 " xnoremap <silent> y "*y:let [@+,@"]=[@*,@*] <bar>
 "       \ call system('nc localhost 8377', @")<CR>

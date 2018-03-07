@@ -291,3 +291,9 @@ function initeditorconfig() {
         echo "[OK] .editorconfig created!"
     fi
 }
+
+function replace-ssh-key() {
+   KEY="$1"
+   SERVER="$2"
+   echo "cat $KEY | ssh $SERVER \"cat >> ~/.ssh/authorized_keys\""
+}

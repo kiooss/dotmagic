@@ -13,7 +13,7 @@ repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 depends = ['neomru.vim']
 hook_source = "call zvim#util#source_rc('plugins/denite.rc.vim')"
-hook_add = 'call kiooss#mappings#denite()'
+hook_add = 'call kiooss#mappings#denite#init()'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'

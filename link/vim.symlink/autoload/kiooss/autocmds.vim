@@ -21,3 +21,10 @@ function! kiooss#autocmds#vim_refresh() abort
   endif
   call kiooss#autocmds#base16_customize()
 endfunction
+
+function! kiooss#autocmds#check_clipper() abort
+  let output = system('nc -z -U ~/.clipper.sock')
+  if output =~ 'connect failed'
+    echo output
+  endif
+endfunction

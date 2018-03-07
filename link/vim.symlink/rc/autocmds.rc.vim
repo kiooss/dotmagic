@@ -78,3 +78,10 @@ if has('syntax')
     autocmd ColorScheme * call kiooss#autocmds#base16_customize()
   augroup END
 endif
+
+if exists('##TextYankPost')
+  augroup check_clipper
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call kiooss#autocmds#check_clipper() | endif
+  augroup END
+endif

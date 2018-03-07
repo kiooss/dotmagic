@@ -9,16 +9,11 @@ augroup KioossAutocmds
   autocmd!
   " {{{ file type specific settings
   autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
-  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType zsh,bash,sh setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType crontab setlocal nobackup nowritebackup
-  "ruby
-  " autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-  " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-  " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-  " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
   autocmd FileType .xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
   autocmd FileType gitcommit setlocal spell
   " close help only with q

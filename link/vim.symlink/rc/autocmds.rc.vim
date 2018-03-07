@@ -57,6 +57,7 @@ augroup KioossAutocmds
         \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
         \ if &l:diff | diffupdate | endif
 
+
   " window hlight {{{
   " Make current window more obvious by turning off/adjusting some features
   " in non-current windows.

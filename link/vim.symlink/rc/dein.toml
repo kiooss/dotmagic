@@ -322,6 +322,12 @@ hook_add = '''
 repo = 'kana/vim-textobj-user'
 
 [[plugins]]
+repo = 'kana/vim-textobj-function'
+
+[[plugins]]
+repo = 'thalesmello/vim-textobj-methodcall'
+
+[[plugins]]
 repo = 'rhysd/vim-textobj-anyblock'
 
 [[plugins]]

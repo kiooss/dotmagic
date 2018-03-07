@@ -23,8 +23,8 @@ function! kiooss#autocmds#vim_refresh() abort
 endfunction
 
 function! kiooss#autocmds#check_clipper() abort
-  let output = system('nc -z -U ~/.clipper.sock')
-  if output =~ 'connect failed'
+  let output = system('netstat -lx | grep .clipper.sock')
+  if output !~# 'LISTENING'
     echo output
   endif
 endfunction

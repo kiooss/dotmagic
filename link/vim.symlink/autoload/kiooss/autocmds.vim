@@ -25,6 +25,6 @@ endfunction
 function! kiooss#autocmds#check_clipper() abort
   let output = system('netstat -lx | grep .clipper.sock')
   if output !~# 'LISTENING'
-    echo output
+    echom  '.clipper.sock is not active!'
   endif
 endfunction

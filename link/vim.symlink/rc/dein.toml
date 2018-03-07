@@ -524,3 +524,6 @@ hook_add = '''
 
 # [[plugins]]
 # repo = 'uplus/deoplete-solargraph'
+
+[[plugins]]
+repo = 'AndrewRadev/splitjoin.vim'

@@ -148,16 +148,18 @@ nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
 xnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 
 
-" git commit
-nnoremap <silent> gbl :<C-u>Gblame<CR>
-nnoremap <silent> gst :<C-u>Gstatus<CR>
-nnoremap <silent> gcm :<C-u>Gcommit -v<CR>
-" nnoremap <Leader>ga :<C-u>Gina add .<CR>
-" nnoremap <Leader>gU :<C-u>Gina reset -q %<CR>
-nnoremap gca :<C-u>Gina commit -a -v<CR>
-nnoremap gpu :<C-u>Gina push<CR>
-nnoremap gdf :<C-u>Gina diff<CR>
-nnoremap gaa :<C-u>Gina add -A<CR>
+" git mappings
+nnoremap [Git]   <Nop>
+nmap     <Localleader>g [Git]
+nnoremap <silent> [Git]bl :<C-u>Gblame<CR>
+nnoremap <silent> [Git]st :<C-u>Gstatus<CR>
+nnoremap <silent> [Git]cm :<C-u>Gcommit -v<CR>
+" nnoremap [Git]ga :<C-u>Gina add .<CR>
+" nnoremap [Git]gU :<C-u>Gina reset -q %<CR>
+nnoremap [Git]ca :<C-u>Gina commit -a -v<CR>
+nnoremap [Git]pu :<C-u>Gina push<CR>
+nnoremap [Git]df :<C-u>Gina diff<CR>
+nnoremap [Git]aa :<C-u>Gina add -A<CR>
 "}}}
 
 "==============================================================================

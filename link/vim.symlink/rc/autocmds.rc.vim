@@ -79,7 +79,7 @@ if has('syntax')
   augroup END
 endif
 
-if exists('##TextYankPost')
+if exists('##TextYankPost') && get(g:, 'check_clipper', 0)
   augroup check_clipper
     autocmd!
     autocmd TextYankPost * if v:event.operator ==# 'y' | call kiooss#autocmds#check_clipper() | endif

@@ -153,3 +153,10 @@ on_cmd = ['GV', 'GV!']
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
 on_cmd = ['Gina']
+
+[[plugins]]
+repo = 'mbbill/undotree'
+on_cmd = ['UndotreeToggle']
+hook_add = '''
+nnoremap U :UndotreeToggle<CR>
+'''

@@ -151,7 +151,7 @@ xnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 " git commit
 nnoremap <silent> gbl :<C-u>Gblame<CR>
 nnoremap <silent> gst :<C-u>Gstatus<CR>
-nnoremap <silent> gcm :<C-u>Gcommit<CR>
+nnoremap <silent> gcm :<C-u>Gcommit -v<CR>
 " nnoremap <Leader>ga :<C-u>Gina add .<CR>
 " nnoremap <Leader>gU :<C-u>Gina reset -q %<CR>
 nnoremap gca :<C-u>Gina commit -a -v<CR>

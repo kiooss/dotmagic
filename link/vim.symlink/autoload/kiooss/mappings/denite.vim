@@ -47,7 +47,7 @@ function! kiooss#mappings#denite#init() abort
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   nnoremap <silent> <Leader>j :<C-u>Denite -mode=normal change jump<CR>
   nnoremap <silent> <Leader>gl :<C-u>Denite -buffer-name=search
-        \ -no-empty -mode=normal -auto-preview gitlog<CR>
+        \ -no-empty -mode=normal gitlog<CR>
   nnoremap <silent> <Leader>gs :<C-u>Denite -mode=normal gitstatus<CR>
   " nnoremap <silent> ;;
   "       \ :<C-u>Denite command command_history<CR>

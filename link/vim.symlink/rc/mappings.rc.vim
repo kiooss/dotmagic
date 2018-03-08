@@ -247,6 +247,17 @@ xnoremap s :s//g<Left><Left>
 
 xnoremap <Leader>s :<C-u>call kiooss#util#ReplaceDelimiter()<CR>
 
+" C-r: Easier search and replace
+xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
+
+" Returns visually selected text
+function! s:get_selection(cmdtype) "{{{
+  let temp = @s
+  normal! gv"sy
+  let @/ = substitute(escape(@s, '\'.a:cmdtype), '\n', '\\n', 'g')
+  let @s = temp
+endfunction "}}}
+
 "}}}
 
 "==============================================================================

@@ -36,17 +36,23 @@ nnoremap [Window]   <Nop>
 nmap     s [Window]
 nnoremap <silent> [Window]p  :<C-u>vsplit<CR>:wincmd w<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
+nnoremap <silent> [Window]b  :b#<CR>
+nnoremap <silent> [Window]t  :tabnew<CR>
+nnoremap <silent> [Window]c  :close<CR>
 nnoremap <silent> [Window]h  :wincmd H<CR>
 nnoremap <silent> [Window]j  :wincmd J<CR>
 nnoremap <silent> [Window]k  :wincmd K<CR>
 nnoremap <silent> [Window]l  :wincmd L<CR>
+" Split current buffer, go to previous window and previous buffer
+nnoremap <silent> [Window]sv :split<CR>:wincmd p<CR>:e#<CR>
+nnoremap <silent> [Window]sp :vsplit<CR>:wincmd p<CR>:e#<CR>
 " close the preview window
 nnoremap <silent> [Window]z  :wincmd z<CR>
-" nmap     <expr><silent> <Tab> sneak#is_sneaking() ? '<Plug>SneakNext' : ':wincmd w<CR>'
 nnoremap <silent> <Tab>      :wincmd w<CR>
 nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
 "}}}
 
+nnoremap <silent> [Window]w :update <bar> GitGutter<CR>
 nnoremap <silent> <Leader>w :update <bar> GitGutter<CR>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
@@ -152,6 +158,7 @@ nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
 " If press l on fold, range fold open.
 xnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 
+nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 " git mappings
 nnoremap [Git]   <Nop>
@@ -165,6 +172,24 @@ nnoremap [Git]ca :<C-u>Gina commit -a -v<CR>
 nnoremap [Git]pu :<C-u>Gina push<CR>
 nnoremap [Git]df :<C-u>Gina diff<CR>
 nnoremap [Git]aa :<C-u>Gina add -A<CR>
+
+if has('mac')
+  " Open the macOS dictionary on current word
+  nmap <Leader>? :!open dict://<cword><CR><CR>
+endif
+
+" Append modeline to EOF {{{
+nnoremap <silent> <Leader>ml :call <SID>append_modeline()<CR>
+
+" Append modeline after last line in buffer
+" See: http://vim.wikia.com/wiki/Modeline_magic
+function! s:append_modeline() "{{{
+  let l:modeline = printf(' vim: set ts=%d sw=%d tw=%d %set :',
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, '%s', l:modeline, '')
+  call append(line('$'), l:modeline)
+endfunction "}}}
+" }}}
 "}}}
 
 "==============================================================================
@@ -281,3 +306,4 @@ endfunction "}}}
 " :lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
 " :cmap  :cnoremap :cunmap    Command-line
 "}}}
+"

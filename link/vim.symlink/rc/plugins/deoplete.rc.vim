@@ -52,6 +52,7 @@ endfunction "}}}
 
 " Change the source rank
 call deoplete#custom#source('buffer', 'rank', 101)
+call deoplete#custom#source('phpcd', 'rank', 200)
 
 call deoplete#custom#source('omni',    'mark',  '⌾')
 call deoplete#custom#source('buffer',  'mark',  'ℬ')
@@ -74,7 +75,7 @@ call deoplete#custom#source('_', 'converters', [
 " call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
 " call deoplete#custom#source('clang', 'max_pattern_length', -1)
 
-call deoplete#custom#source('look', 'min_pattern_length', 3)
+call deoplete#custom#source('look', 'min_pattern_length', 4)
 
 let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
 let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'

@@ -150,7 +150,7 @@ xnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 
 " git mappings
 nnoremap [Git]   <Nop>
-nmap     <Localleader>g [Git]
+nmap     [Window]g [Git]
 nnoremap <silent> [Git]bl :<C-u>Gblame<CR>
 nnoremap <silent> [Git]st :<C-u>Gstatus<CR>
 nnoremap <silent> [Git]cm :<C-u>Gcommit -v<CR>

@@ -5,6 +5,11 @@ if !has('autocmd')
   finish
 endif
 
+" Reload vim config automatically {{{
+execute 'autocmd MyAutoCmd BufWritePost '.g:Config_Main_Home.'/*,vimrc nested'
+  \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
+" }}}
+
 augroup KioossAutocmds
   autocmd!
   " {{{ file type specific settings
@@ -16,6 +21,7 @@ augroup KioossAutocmds
 
   autocmd FileType .xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
   autocmd FileType gitcommit setlocal spell
+  autocmd FileType gitcommit,qfreplace setlocal nofoldenable
   " close help only with q
   autocmd FileType help noremap <buffer> q :q<cr>
   autocmd FileType help wincmd L
@@ -28,9 +34,26 @@ augroup KioossAutocmds
   autocmd BufWritePre * :%s/\s\+$//e
   " automatically resize panes on resize
   autocmd VimResized * exe 'normal! \<c-w>='
-  autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml call kiooss#autocmds#vim_refresh()
   " save all files on focus lost, ignoring warnings about untitled buffers
   autocmd FocusLost * silent! wa
+  " Check if file changed when its window is focus, more eager than 'autoread'
+  autocmd WinEnter,FocusGained * checktime
+
+  autocmd Syntax * if 5000 < line('$') | syntax sync minlines=200 | endif
+
+  " Update filetype on save if empty
+  autocmd BufWritePost * nested
+    \ if &l:filetype ==# '' || exists('b:ftdetect')
+    \ |   unlet! b:ftdetect
+    \ |   filetype detect
+    \ | endif
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  autocmd BufReadPost *
+    \ if &ft !~ '^git\c' && ! &diff && line("'\"") > 0 && line("'\"") <= line("$")
+    \|   execute 'normal! g`"zvzz'
+    \| endif
 
   " autocmd BufDelete * :call QuitIfLastBuffer()
 

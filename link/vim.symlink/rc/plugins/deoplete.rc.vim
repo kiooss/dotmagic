@@ -52,7 +52,11 @@ endfunction "}}}
 
 " Change the source rank
 call deoplete#custom#source('buffer', 'rank', 101)
-call deoplete#custom#source('omni', 'mark', '[omni]')
+
+call deoplete#custom#source('omni'   , 'mark' , '⌾')
+call deoplete#custom#source('buffer' , 'mark' , 'ℬ')
+call deoplete#custom#source('tag'    , 'mark' , '⌦')
+call deoplete#custom#source('around' , 'mark' , '↻')
 
 " converters
 call deoplete#custom#source('_', 'converters', [
@@ -69,16 +73,15 @@ call deoplete#custom#source('_', 'converters', [
 
 call deoplete#custom#source('look', 'max_pattern_length', 4)
 
-let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
 let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
-" let g:deoplete#keyword_patterns.tex = '\\?[a-zA-Z_]\w*'
 let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
 
-let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns', {})
 let g:deoplete#omni#input_patterns.python = ''
 let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
 
-let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions = get(g:, 'deoplete#omni#functions', {})
 let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
 
 " inoremap <silent><expr> <C-t> deoplete#manual_complete('file')

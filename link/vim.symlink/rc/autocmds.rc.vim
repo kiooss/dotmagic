@@ -24,22 +24,8 @@ augroup KioossAutocmds
   autocmd FileType qf wincmd J
   autocmd FileType qf noremap <buffer> q :q<cr>
   " }}}
-
   " remove spaces at the end of line
   autocmd BufWritePre * :%s/\s\+$//e
-
-  autocmd BufRead,BufNewFile *.js set filetype=javascript.jsx
-  autocmd BufRead,BufNewFile *_js.html.erb set filetype=javascript
-  autocmd BufRead,BufNewFile *_js.html.twig set filetype=javascript
-  autocmd BufRead,BufNewFile *.xlsx.axlsx set filetype=ruby
-  autocmd BufRead,BufNewFile *.ihtml set filetype=php
-  autocmd BufRead,BufNewFile *.ejs set filetype=html
-  autocmd BufRead,BufNewFile *.ino set filetype=c
-  autocmd BufRead,BufNewFile *.svg set filetype=xml
-  autocmd BufRead,BufNewFile *.tmuxtheme set filetype=tmux
-
-  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
   " automatically resize panes on resize
   autocmd VimResized * exe 'normal! \<c-w>='
   autocmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml call kiooss#autocmds#vim_refresh()

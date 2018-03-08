@@ -53,10 +53,12 @@ endfunction "}}}
 " Change the source rank
 call deoplete#custom#source('buffer', 'rank', 101)
 
-call deoplete#custom#source('omni',   'mark', '⌾')
-call deoplete#custom#source('buffer', 'mark', 'ℬ')
-call deoplete#custom#source('tag',    'mark', '⌦')
-call deoplete#custom#source('around', 'mark', '↻')
+call deoplete#custom#source('omni',    'mark',  '⌾')
+call deoplete#custom#source('buffer',  'mark',  'ℬ')
+call deoplete#custom#source('tag',     'mark',  '⌦')
+call deoplete#custom#source('around',  'mark',  '↻')
+call deoplete#custom#source('vim',     'mark',  '')
+call deoplete#custom#source('phpcd',   'mark',  '')
 
 " converters
 call deoplete#custom#source('_', 'converters', [

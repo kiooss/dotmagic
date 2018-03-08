@@ -63,6 +63,7 @@ nnoremap <silent> <Leader>B :<C-u>Bonly<CR>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
+nnoremap <Leader>/ /
 
 " ----------------------------------------------------------------------------
 " <Leader>c Close quickfix/location/preview window

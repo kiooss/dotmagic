@@ -66,6 +66,11 @@ if !isdirectory(expand($CACHE))
   call mkdir(expand($CACHE), 'p')
 endif
 
+" Ensure cache directory "{{{
+if ! isdirectory(expand($VARPATH))
+  call mkdir(expand($VARPATH), 'p')
+endif
+
 if filereadable(expand('~/.secret_vimrc'))
   execute 'source' expand('~/.secret_vimrc')
 endif
@@ -115,9 +120,9 @@ let g:loaded_vimballPlugin     = 1
 let g:loaded_zipPlugin         = 1
 
 
-let g:loaded_python_provider = 1
-let g:python_host_skip_check = 1
-let g:python3_host_skip_check = 1
-let g:python3_host_prog = '/usr/bin/python3'
+" let g:loaded_python_provider = 1
+" let g:python_host_skip_check = 1
+" let g:python3_host_skip_check = 1
+" let g:python3_host_prog = '/usr/bin/python3'
 
-let g:ruby_host_prog = '~/.rbenv/versions/2.2.4/bin/neovim-ruby-host'
+" let g:ruby_host_prog = '~/.rbenv/versions/2.2.4/bin/neovim-ruby-host'

@@ -113,12 +113,12 @@ hook_add = '''
   let g:airline#extensions#fugitiveline#enabled = 1
 
   let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline#extensions#tabline#buffer_idx_format = {}
-  for s:i in range(9)
-    call extend(g:airline#extensions#tabline#buffer_idx_format,
-          \ {s:i : kiooss#api#import('messletters').bubble_num(s:i, 1). ' '})
-  endfor
-  unlet s:i
+  " let g:airline#extensions#tabline#buffer_idx_format = {}
+  " for s:i in range(9)
+  "   call extend(g:airline#extensions#tabline#buffer_idx_format,
+  "         \ {s:i : kiooss#api#import('messletters').bubble_num(s:i, 1). ' '})
+  " endfor
+  " unlet s:i
   nmap <leader>1 <Plug>AirlineSelectTab1
   nmap <leader>2 <Plug>AirlineSelectTab2
   nmap <leader>3 <Plug>AirlineSelectTab3

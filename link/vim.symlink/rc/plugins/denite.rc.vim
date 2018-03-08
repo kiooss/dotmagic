@@ -1,36 +1,84 @@
 "---------------------------------------------------------------------------
 " denite.nvim
 "
-
-if executable('rg')
-  call denite#custom#var('file_rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
-  " call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
-  " call denite#custom#var('grep', 'recursive_opts', [])
-  " call denite#custom#var('grep', 'final_opts', [])
-  " call denite#custom#var('grep', 'separator', ['--'])
-  " call denite#custom#var('grep', 'default_opts',
-  "       \ ['--vimgrep', '--no-heading'])
-else
-  call denite#custom#var('file_rec', 'command',
-        \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-endif
-
-call denite#custom#source('file_old', 'matchers',
-      \ ['matcher_fuzzy', 'matcher_project_files'])
-if has('nvim')
-  call denite#custom#source('file_rec,grep', 'matchers',
-        \ ['matcher_cpsm'])
-endif
-call denite#custom#source('file_old', 'converters',
-      \ ['converter_relative_word'])
+" INTERFACE
+call denite#custom#option('_', {
+      \ 'prompt': '➤',
+      \ 'cursor_wrap': v:true,
+      \ 'short_source_names': v:true,
+      \ 'vertical_preview': 1,
+      \ 'auto-accel': 1,
+      \ 'auto-resume': 1,
+      \ 'highlight_matched_char' : 'MoreMsg',
+      \ 'highlight_matched_range' : 'MoreMsg',
+      \ 'highlight_mode_insert': 'WildMenu'
+      \ })
 
 " enable devicons
 " necessary only if denite is lazy load.
-if g:webdevicons_enable_denite
-  call denite#custom#source('file_rec,file_old,buffer,directory_rec',
-        \ 'converters', ['devicons_denite_converter'])
+" if get(g:, 'webdevicons_enable_denite', 0)
+  " call denite#custom#source('file_rec,file_old,buffer,directory_rec',
+  "       \ 'converters', ['devicons_denite_converter'])
+" endif
+
+" MATCHERS
+" Default is 'matcher_fuzzy'
+call denite#custom#source('tag', 'matchers', ['matcher_substring'])
+if has('nvim') && &runtimepath =~# '\/cpsm'
+  call denite#custom#source(
+    \ 'buffer,file_mru,file_old,file_rec,grep,mpc,line',
+    \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy'])
 endif
+" call denite#custom#source('file_old', 'matchers',
+"       \ ['matcher_fuzzy', 'matcher_project_files'])
+" if has('nvim')
+"   call denite#custom#source('file_rec,grep', 'matchers',
+"         \ ['matcher_cpsm'])
+" endif
+" call denite#custom#source('file_old', 'converters',
+"       \ ['converter_relative_word'])
+
+" CONVERTERS
+" Default is none
+if get(g:, 'webdevicons_enable_denite', 0)
+  call denite#custom#source(
+        \ 'file_rec,file_rec/git,file_old,buffer,file_mru,directory_rec',
+        \ 'converters', ['devicons_denite_converter', 'converter_relative_word'])
+else
+  call denite#custom#source(
+        \ 'file_rec,file_old,buffer,file_mru,directory_rec',
+        \ 'converters', ['converter_relative_word'])
+endif
+
+" FIND and GREP COMMANDS
+if executable('ag')
+  " The Silver Searcher
+  call denite#custom#var('file_rec', 'command',
+    \ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+  " Setup ignore patterns in your .agignore file!
+  " https://github.com/ggreer/the_silver_searcher/wiki/Advanced-Usage
+
+  call denite#custom#var('grep', 'command', ['ag'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', [])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
+  call denite#custom#var('grep', 'default_opts',
+    \ [ '--skip-vcs-ignores', '--vimgrep', '--smart-case', '--hidden' ])
+
+elseif executable('ack')
+  " Ack command
+  call denite#custom#var('grep', 'command', ['ack'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', ['--match'])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
+  call denite#custom#var('grep', 'default_opts',
+      \ ['--ackrc', $HOME.'/.config/ackrc', '-H',
+      \ '--nopager', '--nocolor', '--nogroup', '--column'])
+endif
+
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
@@ -40,16 +88,6 @@ call denite#custom#alias('source', 'grep/git', 'grep')
 call denite#custom#var('grep/git', 'command',
       \ ['git', 'grep'])
 call denite#custom#var('grep/git', 'recursive_opts', [])
-
-" denite option
-call denite#custom#option('_', {
-      \ 'prompt': '➤',
-      \ 'cursor_wrap': v:true,
-      \ 'short_source_names': v:true,
-      \ 'highlight_matched_char' : 'MoreMsg',
-      \ 'highlight_matched_range' : 'MoreMsg',
-      \ 'highlight_mode_insert': 'WildMenu'
-      \ })
 
 " buffer source
 call denite#custom#var(
@@ -67,7 +105,7 @@ call denite#custom#var('menu', 'menus', s:menus)
 
 " Change ignore_globs
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-      \ [ '.git/', '.ropeproject/', '__pycache__/', 'tmp/', 'var/',
+      \ [ '.git/', '.ropeproject/', '__pycache__/', 'tmp/', 'var/', '.deprecated/',
       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
 " \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],

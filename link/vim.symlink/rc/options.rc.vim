@@ -90,8 +90,17 @@ set pastetoggle=<F2>
 
 set laststatus=2
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.rsync_cache,.svn,.git
-set wildignore+=cache,*.phar,autocomplete.php,Tests,tests,Test,test,tmp
+if has('wildmenu')
+  set wildmenu " enhanced command line completion
+  set wildmode=list:longest,full
+  set wildignorecase " case-insensitive filename completion
+  set wildignore+=*.so,*.swp,.rsync_cache,cache,*.phar,autocomplete.php
+  set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
+  set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store
+  set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
+  set wildignore+=application/vendor/**,**/vendor/ckeditor/**,media/vendor/**
+  set wildignore+=__pycache__,*.egg-info
+endif
 
 " set keyword help.
 " use K to run a program to lookup the keyword under the cursor
@@ -121,10 +130,6 @@ endif
 set hidden " current buffer can be put into background
 set showcmd " show incomplete commands
 set noshowmode " don't show which mode disabled for PowerLine
-set wildmenu " enhanced command line completion
-"set wildmode=list:longest " complete files like a shell
-" set wildmode=longest:list,full
-set wildmode=list:longest,full
 " set wildmode=longest:full,full        " shell-like autocomplete to unambiguous portion
 set scrolloff=3 " lines of text around cursor
 set shell=$SHELL
@@ -149,7 +154,6 @@ set nolazyredraw " don't redraw while executing macros
 
 set magic " Set magic on, for regex
 
-set wildignorecase " case-insensitive filename completion
 
 set showmatch " show matching braces
 set mat=2 " how many tenths of a second to blink

@@ -1,11 +1,10 @@
 " dein configurations.
 
-" let g:dein#install_progress_type = 'title'
-let g:dein#install_progress_type = 'tabline'
+let g:dein#install_progress_type = 'echo'
 " let g:dein#enable_notification = 1
 " let g:dein#notification_icon = '~/.vim/signs/warn.png'
-let g:dein#install_log_filename = '~/dein.log'
 let g:dein#install_max_processes = 32
+let g:dein#install_log_filename = $VARPATH.'/dein.log'
 let s:path = expand('$CACHE/dein')
 
 if !dein#load_state(s:path)

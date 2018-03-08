@@ -54,10 +54,15 @@ nnoremap <silent> <Leader>z :qa!<cr>
 nnoremap <silent> <Leader>b :<C-u>call kiooss#util#BufferDelete()<CR>
 " delete other buffers except current one
 nnoremap <silent> <Leader>B :<C-u>Bonly<CR>
-nnoremap <silent> <Leader>cft :<C-u>call kiooss#util#SetFtByContext()<CR>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p :pu<CR>
+
+" ----------------------------------------------------------------------------
+" <Leader>c Close quickfix/location/preview window
+" ----------------------------------------------------------------------------
+nnoremap <leader>c :cclose<bar>lclose<bar>pclose<cr>
+
 " nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
 " nnoremap <silent> yy "*yy:let [@+,@"]=[@*,@*] <bar>
 "       \ call system('nc localhost 8377', @")<CR>

@@ -9,6 +9,12 @@ on_source = ['unite.vim', 'vimshell.vim']
 repo = 'Shougo/neomru.vim'
 
 [[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_if = 1
+on_event = 'TextYankPost'
+on_source = ['denite.nvim']
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 depends = ['neomru.vim']

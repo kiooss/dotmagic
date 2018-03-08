@@ -48,6 +48,7 @@ augroup MyAutoCmd
   autocmd CursorHold *.toml syntax sync minlines=300
 augroup END
 
+" Initialize base requirements
 if has('vim_starting')
   call s:source_rc('init.rc.vim')
 endif

@@ -118,11 +118,17 @@ let g:loaded_tarPlugin         = 1
 " let g:loaded_tutor_mode_plugin = 1
 let g:loaded_vimballPlugin     = 1
 let g:loaded_zipPlugin         = 1
-
-
 " let g:loaded_python_provider = 1
-" let g:python_host_skip_check = 1
-" let g:python3_host_skip_check = 1
-" let g:python3_host_prog = '/usr/bin/python3'
 
-" let g:ruby_host_prog = '~/.rbenv/versions/2.2.4/bin/neovim-ruby-host'
+if has('nvim')
+  let g:python_host_skip_check = 1
+  let g:python3_host_skip_check = 1
+  " Search and use environments specifically made for Neovim.
+  if isdirectory($VARPATH.'/venv/neovim2')
+    let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
+  endif
+  if isdirectory($VARPATH.'/venv/neovim3')
+    let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
+  endif
+  let g:ruby_host_prog = '~/.rbenv/versions/2.2.4/bin/neovim-ruby-host'
+endif

@@ -59,6 +59,7 @@ call deoplete#custom#source('tag',     'mark',  '⌦')
 call deoplete#custom#source('around',  'mark',  '↻')
 call deoplete#custom#source('vim',     'mark',  '')
 call deoplete#custom#source('phpcd',   'mark',  '')
+call deoplete#custom#source('look',    'mark',  'ℒ𝒪𝒪𝒦')
 
 " converters
 call deoplete#custom#source('_', 'converters', [
@@ -73,7 +74,7 @@ call deoplete#custom#source('_', 'converters', [
 " call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
 " call deoplete#custom#source('clang', 'max_pattern_length', -1)
 
-call deoplete#custom#source('look', 'max_pattern_length', 4)
+call deoplete#custom#source('look', 'min_pattern_length', 3)
 
 let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
 let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'

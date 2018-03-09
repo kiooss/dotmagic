@@ -161,6 +161,10 @@ xnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 
 nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
+nnoremap <silent> g0 :<C-u>tabfirst<CR>
+nnoremap <silent> g$ :<C-u>tablast<CR>
+nnoremap <silent> gr :<C-u>tabprevious<CR>
+
 " git mappings
 nnoremap [Git]   <Nop>
 nmap     [Window]g [Git]

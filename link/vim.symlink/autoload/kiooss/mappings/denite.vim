@@ -16,8 +16,6 @@ function! kiooss#mappings#denite#init() abort
         \ -mode=normal line<CR>
   nnoremap <silent> # :<C-u>DeniteCursorWord -buffer-name=search
         \ -no-empty -mode=normal grep/git<CR>
-  nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
-        \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
   " nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
   "       \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
   "       \  tag:include\<CR>"

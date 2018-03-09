@@ -100,6 +100,7 @@ if has('wildmenu')
   set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
   set wildignore+=application/vendor/**,**/vendor/ckeditor/**,media/vendor/**
   set wildignore+=__pycache__,*.egg-info
+  set wildignore+=tmp,var,test,tests,Test,Tests
 endif
 
 " set keyword help.

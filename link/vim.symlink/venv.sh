@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # virtual environments for neovim.
+# pip2 install --user virtualenv
 
 # Declare a base path for both virtual environments
 venv="${XDG_CACHE_HOME:-$HOME/.cache}/vim/venv"

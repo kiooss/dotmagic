@@ -53,14 +53,16 @@ endfunction "}}}
 " Change the source rank
 call deoplete#custom#source('buffer', 'rank', 101)
 call deoplete#custom#source('phpcd', 'rank', 200)
+call deoplete#custom#source('ultisnips', 'rank', 201)
 
-call deoplete#custom#source('omni',    'mark',  '⌾')
-call deoplete#custom#source('buffer',  'mark',  'ℬ')
-call deoplete#custom#source('tag',     'mark',  '⌦')
-call deoplete#custom#source('around',  'mark',  '↻')
-call deoplete#custom#source('vim',     'mark',  '')
-call deoplete#custom#source('phpcd',   'mark',  '')
-call deoplete#custom#source('look',    'mark',  'ℒ𝒪𝒪𝒦')
+call deoplete#custom#source('omni',       'mark',  '⌾')
+call deoplete#custom#source('buffer',     'mark',  'ℬ')
+call deoplete#custom#source('tag',        'mark',  '⌦')
+call deoplete#custom#source('around',     'mark',  '↻')
+call deoplete#custom#source('vim',        'mark',  '')
+call deoplete#custom#source('phpcd',      'mark',  '')
+call deoplete#custom#source('look',       'mark',  'ℒ𝒪𝒪𝒦')
+call deoplete#custom#source('ultisnips',  'mark',  '⌘')
 
 " converters
 call deoplete#custom#source('_', 'converters', [

@@ -398,11 +398,11 @@ repo = 'nelsyeung/twig.vim'
 # [[plugins]]
 # repo = 'chemzqm/denite-git'
 
-[[plugins]]
-repo = 'vim-scripts/StringComplete'
-hook_add = '''
-  inoremap <C-J> <C-O>:set completefunc=StringComplete#GetList<CR><C-X><C-U>
-'''
+# [[plugins]]
+# repo = 'vim-scripts/StringComplete'
+# hook_add = '''
+#   inoremap <C-J> <C-O>:set completefunc=StringComplete#GetList<CR><C-X><C-U>
+# '''
 
 [[plugins]]
 repo = 'AndrewRadev/switch.vim'

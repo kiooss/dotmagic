@@ -22,9 +22,6 @@ augroup KioossAutocmds
   autocmd FileType .xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
   autocmd FileType gitcommit setlocal spell
   autocmd FileType gitcommit,qfreplace setlocal nofoldenable
-  " close help only with q
-  autocmd FileType help noremap <buffer> q :q<cr>
-  autocmd FileType help wincmd L
   " make quickfix windows take all the lower section of the screen
   " when there are multiple windows open
   autocmd FileType qf wincmd J

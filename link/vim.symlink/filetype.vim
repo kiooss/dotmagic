@@ -13,15 +13,14 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead .eslintrc     setfiletype json
   autocmd BufNewFile,BufRead .jscsrc       setfiletype json
 
-  autocmd BufRead,BufNewFile *.js setfiletype javascript.jsx
-  autocmd BufRead,BufNewFile *_js.html.erb setfiletype javascript
-  autocmd BufRead,BufNewFile *_js.html.twig setfiletype javascript
-  autocmd BufRead,BufNewFile *.xlsx.axlsx setfiletype ruby
-  autocmd BufRead,BufNewFile *.ihtml setfiletype php
-  autocmd BufRead,BufNewFile *.ejs setfiletype html
-  autocmd BufRead,BufNewFile *.ino setfiletype c
-  autocmd BufRead,BufNewFile *.svg setfiletype xml
-  autocmd BufRead,BufNewFile *.tmuxtheme setfiletype tmux
-  autocmd BufNewFile,BufReadPost *.md setfiletype markdown
+  autocmd BufNewFile,BufRead *.js setfiletype javascript.jsx
+  autocmd BufNewFile,BufRead *_js.html.erb setfiletype javascript
+  autocmd BufNewFile,BufRead *_js.html.twig setfiletype javascript
+  autocmd BufNewFile,BufRead *.xlsx.axlsx setfiletype ruby
+  autocmd BufNewFile,BufRead *.ihtml setfiletype php
+  autocmd BufNewFile,BufRead *.ejs setfiletype html
+  autocmd BufNewFile,BufRead *.ino setfiletype c
+  autocmd BufNewFile,BufRead *.svg setfiletype xml
+  autocmd BufNewFile,BufRead *.tmuxtheme setfiletype tmux
 
 augroup END

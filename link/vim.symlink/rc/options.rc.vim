@@ -171,12 +171,6 @@ set relativenumber " show relative line numbers
 set autoindent " automatically set indent of new line
 set smartindent
 
-" setglobal fenc=utf-8
-" "set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-" set fencs=utf-8,euc-jp,sjis
-" set enc=utf-8
-" set tenc=utf-8
-
 " Highlight <>.
 set matchpairs+=<:>
 

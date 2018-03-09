@@ -104,13 +104,16 @@ hook_add = '''
   let g:airline_left_sep=''
   let g:airline_right_sep=''
 
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#hunks#enabled = 1
   let g:airline#extensions#ale#enabled = 1
   let g:airline#extensions#fugitiveline#enabled = 1
+
+  let g:airline#extensions#tabline#show_tab_nr = 1
+  let g:airline#extensions#tabline#tab_nr_type= 2
+  let g:airline#extensions#tabline#show_tab_type = 1
+  let g:airline#extensions#tabline#buffers_label = '𝓑𝓤𝓕𝓕𝓔𝓡𝓢'
+  let g:airline#extensions#tabline#tabs_label = '𝓣𝓐𝓑𝓢'
 
   let g:airline#extensions#tabline#buffer_idx_mode = 1
   " let g:airline#extensions#tabline#buffer_idx_format = {}

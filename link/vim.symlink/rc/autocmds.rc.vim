@@ -7,7 +7,7 @@ endif
 
 " Reload vim config automatically {{{
 execute 'autocmd MyAutoCmd BufWritePost '.g:Config_Main_Home.'/*,vimrc nested'
-  \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
+      \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
 " }}}
 
 augroup KioossAutocmds
@@ -40,17 +40,17 @@ augroup KioossAutocmds
 
   " Update filetype on save if empty
   autocmd BufWritePost * nested
-    \ if &l:filetype ==# '' || exists('b:ftdetect')
-    \ |   unlet! b:ftdetect
-    \ |   filetype detect
-    \ | endif
+        \ if &l:filetype ==# '' || exists('b:ftdetect')
+        \ |   unlet! b:ftdetect
+        \ |   filetype detect
+        \ | endif
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   autocmd BufReadPost *
-    \ if &ft !~ '^git\c' && ! &diff && line("'\"") > 0 && line("'\"") <= line("$")
-    \|   execute 'normal! g`"zvzz'
-    \| endif
+        \ if &ft !~ '^git\c' && ! &diff && line("'\"") > 0 && line("'\"") <= line("$")
+        \ |   execute 'normal! g`"zvzz'
+        \ | endif
 
   " autocmd BufDelete * :call QuitIfLastBuffer()
 
@@ -60,8 +60,8 @@ augroup KioossAutocmds
 
   " Disable paste.
   autocmd InsertLeave *
-        \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
-        \ if &l:diff | diffupdate | endif
+      \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
+      \ if &l:diff | diffupdate | endif
 
   " Automatic rename of tmux window
   if exists('$TMUX') && !exists('$NORENAME')
@@ -89,6 +89,17 @@ if has('syntax')
     autocmd!
     autocmd ColorScheme * call kiooss#autocmds#base16_customize()
   augroup END
+
+  function! ZenkakuSpace() abort
+    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+  endfunction
+
+  augroup ZenkakuSpace
+    autocmd!
+    autocmd ColorScheme       * call ZenkakuSpace()
+    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+  augroup END
+  call ZenkakuSpace()
 endif
 
 if exists('##TextYankPost') && get(g:, 'check_clipper', 0)

@@ -1,3 +1,28 @@
+"
+" ColorScheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has("gui_macvim")
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
+endif
+
+" Explicitly tell vim that the terminal supports 256 colors
+set t_Co=256
+
+" Enable true color
+if has('termguicolors')
+  set termguicolors
+endif
+
+if has('gui_running')
+  set background=dark
+  set columns=150
+  set lines=70
+endif
+
+" highlight conflicts
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 " set background=light
 " set background=dark
 

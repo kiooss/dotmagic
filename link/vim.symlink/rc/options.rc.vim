@@ -155,7 +155,6 @@ set nolazyredraw " don't redraw while executing macros
 
 set magic " Set magic on, for regex
 
-
 set showmatch " show matching braces
 set mat=2 " how many tenths of a second to blink
 
@@ -203,28 +202,12 @@ if &term =~ '256color'
   set t_ut=
 endif
 
-if has("gui_macvim")
-  set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
-endif
-
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
-
-if has('termguicolors')
-  set termguicolors
-endif
-
 set textwidth=80
-
-" set columns=100
-" set lines=70
 
 " Splitting a window will put the new window below the current one.
 set splitbelow
 " Splitting a window will put the new window right the current one.
 set splitright
-
-" highlight conflicts
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""

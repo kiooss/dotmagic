@@ -66,16 +66,10 @@ endif
 " }}}
 " Timing {{{
 " ------
-set timeout ttimeout
-set timeoutlen=750  " Time out on mappings
+set notimeout       " don't timeout on mappings
+set ttimeout        " do timeout on terminal key codes
+set ttimeoutlen=50  " Time out on key codes
 set updatetime=1000 " Idle time to write swap and trigger CursorHold
-
-" Time out on key codes
-set ttimeoutlen=10
-
-" set notimeout          " don't timeout on mappings
-" set ttimeout           " do timeout on terminal key codes
-" set ttimeoutlen=50
 " }}}
 " Tabs and Indents {{{
 " ----------------
@@ -164,8 +158,8 @@ autocmd MyAutoCmd BufWritePost *
     set foldmethod=marker
     set foldlevelstart=99               " start unfolded
     set foldnestmax=10 " deepest fold is 10 levels
-    " set foldtext=vimrc#foldtext()
-    set foldtext=FoldText()
+    set foldtext=vimrc#foldtext()
+    " set foldtext=FoldText()
   endif
 
 " if has('folding')
@@ -201,24 +195,58 @@ endfunction
 " }}}
 " Editor UI Appearance {{{
 " --------------------
-set noshowmode          " Don't show mode in cmd window
-set shortmess=aoOTI     " Shorten messages and don't show intro
-set scrolloff=2         " Keep at least 2 lines above/below
-set sidescrolloff=5     " Keep at least 5 lines left/right
-set number " show line numbers
-set relativenumber " show relative line numbers
+set noshowmode      " Don't show mode in cmd window
+set shortmess=aoOTI " Shorten messages and don't show intro
+set scrolloff=2     " Keep at least 2 lines above/below
+set sidescrolloff=5 " Keep at least 5 lines left/right
+set number          " show line numbers
+set relativenumber  " show relative line numbers
 set cursorline
 
-set showcmd " show incomplete commands
-set cmdheight=2         " Height of the command line
-set cmdwinheight=5      " Command-line lines
-set laststatus=2        " Always show a status line
+set showcmd         " show incomplete commands
+set cmdheight=1     " Height of the command line
+set cmdwinheight=5  " Command-line lines
+set laststatus=2    " Always show a status line
 
-set invlist " toggle invisible characters
-set list                " Show hidden characters
+set invlist         " toggle invisible characters
+set list            " Show hidden characters
 " make the highlighting of tabs less annoying
 highlight SpecialKey ctermbg=none
 set listchars=tab:▸\ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸
+" }}}
+
+" Vim Directories {{{
+" ---------------
+set nobackup
+set nowritebackup
+set noswapfile
+
+" History saving
+set history=2000
+if has('nvim')
+  set shada=!,'300,<50,s10,h
+else
+  set viminfo=!,'300,<50,s10,h,n$VARPATH/viminfo
+endif
+
+if exists('$SUDO_USER')
+  if has('nvim')
+    set shada=
+  else
+    set viminfo=                      " don't create root-owned files
+  endif
+else
+endif
+
+if has("persistent_undo")
+  if exists('$SUDO_USER')
+    set noundofile
+  else
+    set undofile
+    set undodir=$VARPATH/undo//
+  endif
+endif
+
 " }}}
 
 if !has('nvim')
@@ -231,11 +259,6 @@ set isfname-==
 " set tags place
 set tags=./tags,tags;
 
-if has('nvim')
-  set shada=!,'300,<50,s10,h
-else
-  set viminfo=!,'300,<50,s10,h
-endif
 
 " toggle paste mode
 set pastetoggle=<F2>
@@ -245,15 +268,11 @@ if exists('&swapsync')
   set swapsync=                       " let OS sync swapfiles lazily
 endif
 
-set updatecount=80                    " update swapfiles every 80 typed chars
-set updatetime=2000                   " CursorHold interval
-
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"{{{
 set title " set terminal title
 
 set nolazyredraw " don't redraw while executing macros
@@ -274,53 +293,3 @@ if &term =~ '256color'
   set t_ut=
 endif
 
-"}}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups, and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"{{{
-
-set nobackup
-set nowritebackup
-set noswapfile
-
-" if exists('$SUDO_USER')
-"   set nobackup                        " don't create root-owned files
-"   set nowritebackup                   " don't create root-owned files
-" else
-"   set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-" endif
-
-" if exists('$SUDO_USER')
-"   set noswapfile                      " don't create root-owned files
-" else
-"   set directory=~/.vim-tmp//,~/.tmp//,~/tmp//,/var/tmp//,/tmp//
-" endif
-
-if has('viminfo')
-  if exists('$SUDO_USER')
-    set viminfo=                      " don't create root-owned files
-  else
-    if isdirectory(expand('~/.vim-tmp'))
-      set viminfo+=n~/.vim-tmp/viminfo
-    endif
-
-    if !empty(glob('~/.vim-tmp/viminfo'))
-      if !filereadable(expand('~/.vim-tmp/viminfo'))
-        echoerr 'warning: ~/.vim-tmp/viminfo exists but is not readable'
-      endif
-    endif
-  endif
-endif
-
-if has("persistent_undo")
-  if exists('$SUDO_USER')
-    set noundofile
-  else
-    set undofile
-    set undodir=$VARPATH/undo//
-  endif
-endif
-
-"}}}

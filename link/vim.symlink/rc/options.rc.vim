@@ -111,9 +111,9 @@ if exists('&swapsync')
   set swapsync=                       " let OS sync swapfiles lazily
 endif
 
-if has('syntax')
-  set synmaxcol=200                   " don't bother syntax highlighting long lines
-endif
+" if has('syntax')
+"   set synmaxcol=200                   " don't bother syntax highlighting long lines
+" endif
 
 set updatecount=80                    " update swapfiles every 80 typed chars
 set updatetime=2000                   " CursorHold interval
@@ -269,4 +269,14 @@ if has('viminfo')
     endif
   endif
 endif
+
+if has("persistent_undo")
+  if exists('$SUDO_USER')
+    set noundofile
+  else
+    set undofile
+    set undodir=$VARPATH/undo//
+  endif
+endif
+
 "}}}

@@ -54,9 +54,11 @@ augroup KioossAutocmds
 
   " autocmd BufDelete * :call QuitIfLastBuffer()
 
-  " Show absolute numbers in insert mode, otherwise relative line numbers.
-  autocmd InsertEnter * :set norelativenumber
-  autocmd InsertLeave * :set relativenumber
+  if &relativenumber
+    " Show absolute numbers in insert mode, otherwise relative line numbers.
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
+  endif
 
   " Disable paste.
   autocmd InsertLeave *

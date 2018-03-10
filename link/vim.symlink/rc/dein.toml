@@ -117,7 +117,7 @@ hook_add = '''
 
   let g:airline#extensions#tabline#buffer_idx_mode = 1
   let g:airline#extensions#tabline#buffer_idx_format = {}
-  for s:i in range(10)
+  for s:i in range(9)
     call extend(g:airline#extensions#tabline#buffer_idx_format,
           \ {s:i : kiooss#api#import('messletters').bubble_num(s:i, 1). ' '})
   endfor

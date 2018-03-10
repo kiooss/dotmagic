@@ -50,10 +50,10 @@ set complete-=i
 set complete+=k
 " Completion setting.
 set completeopt=menuone
+set completeopt+=noselect
 if has('patch-7.4.775')
   set completeopt+=noinsert
 endif
-" set completeopt+=longest
 
 " Folding settings
 if has('folding')
@@ -214,11 +214,6 @@ if has('termguicolors')
 endif
 
 set textwidth=80
-
-" set foldmethod=manual " solve autocomplete slow problem
-
-" no preview window
-set completeopt-=preview
 
 " set columns=100
 " set lines=70

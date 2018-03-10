@@ -303,6 +303,9 @@ repo = 'kana/vim-textobj-user'
 repo = 'kana/vim-textobj-function'
 
 [[plugins]]
+repo = 'kana/vim-textobj-entire'
+
+[[plugins]]
 repo = 'thalesmello/vim-textobj-methodcall'
 
 [[plugins]]

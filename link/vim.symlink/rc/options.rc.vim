@@ -13,7 +13,9 @@ endif
 set shell=$SHELL
 " use K to run a program to lookup the keyword under the cursor
 set keywordprg=:help
-set autoread                 " detect when a file is changeed
+set isfname-==               " Exclude = from isfilename.
+set tags=./tags,tags;        " Set tags place
+set autoread                 " Detect when a file is changeed
 set mouse=nv                 " Disable mouse in command-line mode
 set modeline                 " automatically setting options from modelines
 set report=0                 " Don't report on line changes
@@ -165,38 +167,9 @@ autocmd MyAutoCmd BufWritePost *
     set foldmethod=marker
     set foldlevelstart=99               " start unfolded
     set foldnestmax=10 " deepest fold is 10 levels
-    set foldtext=vimrc#foldtext()
-    " set foldtext=FoldText()
+    " set foldtext=vimrc#foldtext()
+    set foldtext=vimrc#MyFoldText()
   endif
-
-" if has('folding')
-"   set foldmethod=syntax
-"   set foldlevelstart=99
-"   set foldtext=FoldText()
-" endif
-
-" Improved Vim fold-text
-" See: http://www.gregsexton.org/2011/03/improving-the-text-displayed-in-a-fold/
-function! FoldText()
-  " Get first non-blank line
-  let fs = v:foldstart
-  while getline(fs) =~? '^\s*$' | let fs = nextnonblank(fs + 1)
-  endwhile
-  if fs > v:foldend
-    let line = getline(v:foldstart)
-  else
-    let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-  endif
-
-  let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-  let foldSize = 1 + v:foldend - v:foldstart
-  let foldSizeStr = ' ' . foldSize . ' lines '
-  let foldLevelStr = repeat('+--', v:foldlevel)
-  let lineCount = line('$')
-  let foldPercentage = printf('[%.1f', (foldSize*1.0)/lineCount*100) . '%] '
-  let expansionString = repeat('.', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-  return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
-endfunction
 
 " }}}
 " Editor UI Appearance {{{
@@ -219,8 +192,25 @@ set list            " Show hidden characters
 " make the highlighting of tabs less annoying
 highlight SpecialKey ctermbg=none
 set listchars=tab:▸\ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸
-" }}}
 
+set nolazyredraw " don't redraw while executing macros
+set mat=2        " how many tenths of a second to blink
+set title        " set terminal title
+
+set t_vb=
+set tm=500
+
+"improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
+
+" https://sunaku.github.io/vim-256color-bce.html
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
+" }}}
 " Vim Directories {{{
 " ---------------
 set nobackup
@@ -259,43 +249,6 @@ if !has('nvim')
   set ttyfast " faster redrawing
 endif
 
-" Exclude = from isfilename.
-set isfname-==
-
-" set tags place
-set tags=./tags,tags;
-
-
-" toggle paste mode
-set pastetoggle=<F2>
-
-
 if exists('&swapsync')
   set swapsync=                       " let OS sync swapfiles lazily
 endif
-
-"}}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => User Interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set title " set terminal title
-
-set nolazyredraw " don't redraw while executing macros
-
-set mat=2 " how many tenths of a second to blink
-
-set t_vb=
-set tm=500
-
-"improve autocomplete menu color
-highlight Pmenu ctermbg=238 gui=bold
-
-" https://sunaku.github.io/vim-256color-bce.html
-if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
-endif
-

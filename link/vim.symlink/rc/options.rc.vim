@@ -3,6 +3,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " General {{{
+" Explicitly tell vim that the terminal supports 256 colors
+set t_Co=256
+
+" Enable true color
+if has('termguicolors')
+  set termguicolors
+endif
 set shell=$SHELL
 " use K to run a program to lookup the keyword under the cursor
 set keywordprg=:help
@@ -154,7 +161,7 @@ autocmd MyAutoCmd BufWritePost *
       set fillchars=vert:┃              " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
       set fillchars+=fold:·             " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
     endif
-    " show folding level
+    set foldenable
     set foldmethod=marker
     set foldlevelstart=99               " start unfolded
     set foldnestmax=10 " deepest fold is 10 levels
@@ -163,7 +170,6 @@ autocmd MyAutoCmd BufWritePost *
   endif
 
 " if has('folding')
-"   set foldenable
 "   set foldmethod=syntax
 "   set foldlevelstart=99
 "   set foldtext=FoldText()

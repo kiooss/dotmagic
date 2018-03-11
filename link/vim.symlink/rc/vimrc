@@ -50,10 +50,10 @@ augroup END
 
 " Initialize base requirements
 if has('vim_starting')
-  call s:source_rc('init.rc.vim')
+  call s:source_rc('init.vim')
 endif
 
-call s:source_rc('dein.rc.vim')
+call s:source_rc('dein.vim')
 
 syntax enable
 filetype plugin indent on
@@ -71,17 +71,16 @@ if !has('vim_starting')
 endif
 
 "---------------------------------------------------------------------------
-call s:source_rc('encoding.rc.vim')
-call s:source_rc('options.rc.vim')
-call s:source_rc('mappings.rc.vim')
-call s:source_rc('abbreviations.rc.vim')
-call s:source_rc('autocmds.rc.vim')
-call s:source_rc('mix.rc.vim')
-call s:source_rc('colorscheme.rc.vim')
-
+call s:source_rc('encoding.vim')
+call s:source_rc('options.vim')
+call s:source_rc('mappings.vim')
+call s:source_rc('abbreviations.vim')
+call s:source_rc('autocmds.vim')
+call s:source_rc('mix.vim')
 if has('nvim')
-  call s:source_rc('neovim.rc.vim')
+  call s:source_rc('neovim.vim')
 endif
+call s:source_rc('theme.vim')
 
 " source plugin's config
 " for s:path in split(glob('~/.vim/rc/plugins.rc.d/*.vim'), "\n")

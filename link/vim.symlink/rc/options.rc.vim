@@ -112,7 +112,7 @@ set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
 " set nowrap                      " No wrap by default
 " set linebreak                   " Break long lines at 'breakat'
 " set breakat=\ \	;:,!?           " Long lines break chars
-" set nostartofline               " Cursor in same column for few commands
+set nostartofline               " Cursor in same column for few commands
 " set whichwrap+=h,l,<,>,[,],~    " Move to following line on certain keys
 set splitbelow splitright       " Splits open bottom right
 set switchbuf=useopen,usetab    " Jump to the first open window in any tab

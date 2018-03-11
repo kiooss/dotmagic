@@ -16,7 +16,7 @@ set keywordprg=:help
 set isfname-==               " Exclude = from isfilename.
 set tags=./tags,tags;        " Set tags place
 set autoread                 " Detect when a file is changeed
-set mouse=nv                 " Disable mouse in command-line mode
+" set mouse=nv                 " Disable mouse in command-line mode
 set modeline                 " automatically setting options from modelines
 set report=0                 " Don't report on line changes
 set errorbells               " Trigger bell on error
@@ -25,7 +25,7 @@ set hidden                   " hide buffers when abandoned instead of unload
 set fileformats=unix,dos,mac " Use Unix as the standard file type
 set magic                    " For regular expressions turn magic on
 set path=.,**                " Directories to search when using gf
-set virtualedit=block        " Position cursor anywhere in visual block
+" set virtualedit=block        " Position cursor anywhere in visual block
 set synmaxcol=1000           " Don't syntax highlight long lines
 set formatoptions+=1         " Don't break lines after a one-letter word
 set formatoptions-=t         " Don't auto-wrap text

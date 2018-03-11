@@ -91,17 +91,6 @@ if has('syntax')
     autocmd!
     autocmd ColorScheme * call kiooss#autocmds#base16_customize()
   augroup END
-
-  function! ZenkakuSpace() abort
-    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
-  endfunction
-
-  augroup ZenkakuSpace
-    autocmd!
-    autocmd ColorScheme       * call ZenkakuSpace()
-    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-  augroup END
-  call ZenkakuSpace()
 endif
 
 if exists('##TextYankPost') && get(g:, 'check_clipper', 0)

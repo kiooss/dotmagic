@@ -14,39 +14,32 @@ call denite#custom#option('_', {
       \ 'highlight_mode_insert': 'WildMenu'
       \ })
 
-" enable devicons
-" necessary only if denite is lazy load.
-" if get(g:, 'webdevicons_enable_denite', 0)
-  " call denite#custom#source('file_rec,file_old,buffer,directory_rec',
-  "       \ 'converters', ['devicons_denite_converter'])
-" endif
-
 " MATCHERS
 " Default is 'matcher_fuzzy'
 call denite#custom#source('tag,line', 'matchers', ['matcher_substring'])
 if has('nvim') && &runtimepath =~# '\/cpsm'
   call denite#custom#source(
-    \ 'buffer,file_mru,file_old,file_rec,grep,file_rec/git,grep/git',
-    \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy'])
+    \ 'buffer,file_mru,file/old,file_rec,grep,file_rec/git,grep/git',
+    \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy', 'matcher_ignore_globs'])
 endif
-" call denite#custom#source('file_old', 'matchers',
+" call denite#custom#source('file/old', 'matchers',
 "       \ ['matcher_fuzzy', 'matcher_project_files'])
 " if has('nvim')
 "   call denite#custom#source('file_rec,grep', 'matchers',
 "         \ ['matcher_cpsm'])
 " endif
-" call denite#custom#source('file_old', 'converters',
+" call denite#custom#source('file/old', 'converters',
 "       \ ['converter_relative_word'])
 
 " CONVERTERS
 " Default is none
 if get(g:, 'webdevicons_enable_denite', 0)
   call denite#custom#source(
-        \ 'file_rec,file_rec/git,file_old,buffer,file_mru,directory_rec',
+        \ 'file_rec,file_rec/git,file/old,buffer,file_mru,directory_rec',
         \ 'converters', ['devicons_denite_converter', 'converter_relative_word'])
 else
   call denite#custom#source(
-        \ 'file_rec,file_old,buffer,file_mru,directory_rec',
+        \ 'file_rec,file/old,buffer,file_mru,directory_rec',
         \ 'converters', ['converter_relative_word'])
 endif
 
@@ -146,4 +139,3 @@ for s:m in s:normal_mode_mappings
 endfor
 
 unlet s:m s:insert_mode_mappings s:normal_mode_mappings
-

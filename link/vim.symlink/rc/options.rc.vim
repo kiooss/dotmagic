@@ -243,8 +243,6 @@ if has("persistent_undo")
   endif
 endif
 
-" }}}
-
 if !has('nvim')
   set ttyfast " faster redrawing
 endif
@@ -252,3 +250,6 @@ endif
 if exists('&swapsync')
   set swapsync=                       " let OS sync swapfiles lazily
 endif
+" }}}
+
+" vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

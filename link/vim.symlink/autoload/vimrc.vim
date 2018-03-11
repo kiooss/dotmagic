@@ -111,10 +111,10 @@ function! vimrc#MyFoldText()
 
   let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
   let foldSize = 1 + v:foldend - v:foldstart
-  let foldSizeStr = ' ' . foldSize . ' lines '
+  let foldSizeStr = ' ' . foldSize . ' 𝓛𝓘𝓝𝓔𝓢 '
   let foldLevelStr = repeat('+--', v:foldlevel)
   let lineCount = line('$')
   let foldPercentage = printf('[%.1f', (foldSize*1.0)/lineCount*100) . '%] '
-  let expansionString = repeat('.', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-  return s:raquo . line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+  let expansionString = repeat('·', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+  return '+++' . line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endfunction

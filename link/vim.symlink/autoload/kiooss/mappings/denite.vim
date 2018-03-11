@@ -1,6 +1,7 @@
 " denite key mappings
 function! kiooss#mappings#denite#init() abort
-  nnoremap <silent> <leader>f  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
+  nnoremap <silent> <leader>fg  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
+  nnoremap <silent> <leader>fo  :<C-u>Denite file/old -mode=normal -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ol :<C-u>Denite outline -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ls :<C-u>Denite buffer -mode=normal<CR>
   nnoremap <silent> <leader>m :<C-u>Denite file_mru -highlight-mode-insert=Search<CR>

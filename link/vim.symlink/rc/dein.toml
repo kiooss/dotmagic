@@ -8,7 +8,7 @@ command! DeinCleanUp call map(dein#check_clean(), "delete(v:val, 'rf')")
 [[plugins]]
 repo = 'mhinz/vim-startify'
 hook_add = '''
-  autocmd User Startified doautocmd ColorScheme
+  " autocmd User Startified doautocmd ColorScheme
   autocmd User Startified for key in ['b','s','t','v'] | exe 'nunmap <buffer>' key | endfor
   " let g:startify_change_to_dir       = 1
   let g:startify_change_to_vcs_root  = 1
@@ -94,6 +94,12 @@ repo = 'lu-ren/SerialExperimentsLain'
 
 [[plugins]]
 repo = 'chriskempson/base16-vim'
+
+[[plugins]]
+repo = 'nightsense/vimspectr'
+
+[[plugins]]
+repo = 'rafi/awesome-vim-colorschemes'
 #################################################
 
 [[plugins]]

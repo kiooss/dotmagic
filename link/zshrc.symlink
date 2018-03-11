@@ -313,3 +313,4 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
   exec 2>&3 3>&-
 fi
 # }}}
+#  vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

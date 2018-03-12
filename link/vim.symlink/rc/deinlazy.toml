@@ -191,3 +191,11 @@ on_cmd = ['UndotreeToggle']
 hook_add = '''
 nnoremap U :UndotreeToggle<CR>
 '''
+
+[[plugins]]
+repo = 'rafi/vim-sidemenu'
+on_map = {nv = '<Plug>'}
+hook_add = '''
+  nmap <Leader>M <Plug>(sidemenu)
+  xmap <Leader>M <Plug>(sidemenu-visual)
+'''

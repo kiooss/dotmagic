@@ -2,6 +2,7 @@
 npm-debug.log
 
 plug.vim.old
+/link/vim.symlink/plugged
 
 # rbenv
 /link/rbenv.symlink/shims

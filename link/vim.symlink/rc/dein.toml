@@ -523,3 +523,17 @@ hook_add = '''
 
 [[plugins]]
 repo = 'AndrewRadev/splitjoin.vim'
+
+# [[plugins]]
+# repo = 'itchyny/vim-parenmatch'
+
+# [[plugins]]
+# repo = 'itchyny/vim-cursorword'
+# hook_add = '''
+#   autocmd MyAutoCmd FileType denite,qf,nerdtree let b:cursorword=0
+#   autocmd MyAutoCmd InsertEnter * let b:cursorword=0
+#   autocmd MyAutoCmd InsertLeave * let b:cursorword=1
+# '''
+
+[[plugins]]
+repo = 'junegunn/vim-peekaboo'

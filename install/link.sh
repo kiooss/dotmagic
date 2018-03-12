@@ -18,13 +18,17 @@ for file in $linkables ; do
   target="$HOME/.$(basename $file '.symlink')"
   e_info "Target: ${target}"
   if [ -e "$target" ]; then
-    if [ "$force" = "force" ]; then
-      e_error "${target} already exists, backup it and do link staff."
-      mv "$target" "$BACKUP_DIR/"
-      e_success "Linking $file to $target"
-      ln -sf "$file" "$target"
+    if ! [ "$target" -ef "$file" ]; then
+      if [ "$force" = "force" ]; then
+        e_error "${target} already exists, backup it and do link staff."
+        mv "$target" "$BACKUP_DIR/"
+        e_success "Linking $file to $target"
+        ln -sf "$file" "$target"
+      else
+        e_error "${target} already exists, skip."
+      fi
     else
-      e_error "${target} already exists, skip."
+      echo 'Already linked.'
     fi
   else
     e_success "Linking $file to $target"
@@ -33,8 +37,13 @@ for file in $linkables ; do
 done
 
 # for neovim
+e_info "Target: $HOME/.config/nvim"
 if [ -e "$HOME/.config/nvim" ]; then
-  e_error "$HOME/.config/nvim already exists, skip."
+  if ! [ "$DOTFILES/link/vim.symlink" -ef "$HOME/.config/nvim" ]; then
+    e_error "$HOME/.config/nvim already exists, skip."
+  else
+    echo 'Already linked.'
+  fi
 else
   e_success "Linking $DOTFILES/link/vim.symlink to $HOME/.config/nvim"
   ln -sf "$DOTFILES/link/vim.symlink" "$HOME/.config/nvim"

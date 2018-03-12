@@ -9,6 +9,7 @@
 [alias]
     # list all aliases
     la = "!git config -l | grep alias | cut -c 7-"
+    cm = commit -a -v
 
     unstage = reset HEAD
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short

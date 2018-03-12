@@ -62,7 +62,7 @@ nnoremap <silent> <Leader>b :<C-u>call kiooss#util#BufferDelete()<CR>
 nnoremap <silent> <Leader>B :<C-u>Bonly<CR>
 nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
-nnoremap <Leader>p :pu<CR>
+nnoremap <Leader>p "0p
 nnoremap <Leader>/ /
 
 " ----------------------------------------------------------------------------

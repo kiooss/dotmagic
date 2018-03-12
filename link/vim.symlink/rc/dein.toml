@@ -357,6 +357,9 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'kiooss/vim-zenkaku-space'
+
+[[plugins]]
 repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]

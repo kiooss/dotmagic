@@ -16,10 +16,6 @@ elseif g:cursor_shape == 2
   set guicursor=n-v-c:block-blinkon10,i-ci-ve:ver25-blinkon10,r-cr:hor20,o:hor50
 endif
 
-if exists('&inccommand')
-  set inccommand=nosplit
-endif
-
 " Share the histories
 autocmd MyAutoCmd CursorHold *
       \if exists(':rshada') | rshada | wshada | endif

@@ -287,8 +287,8 @@ repo = 'tpope/vim-unimpaired'
 [[plugins]]
 repo = 'tpope/vim-eunuch'
 
-[[plugins]]
-repo = 'tpope/vim-sleuth'
+# [[plugins]]
+# repo = 'tpope/vim-sleuth'
 
 # [[plugins]]
 # repo = 'vim-scripts/IndexedSearch'

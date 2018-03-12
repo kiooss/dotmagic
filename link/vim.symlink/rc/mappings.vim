@@ -76,8 +76,8 @@ nnoremap <leader>c :cclose<bar>lclose<bar>pclose<cr>
 
 nnoremap <silent> <Leader>hp :call zvim#previewHunkToggle()<CR>
 
-nnoremap j gj
-nnoremap k gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 
 nnoremap g; g;zz
 nnoremap g, g,zz
@@ -148,7 +148,7 @@ nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 " dein update
 nnoremap <Leader>U :<C-u>call dein#update() <bar>
-      \ call VimuxRunCommand("tail -f " . g:dein#install_log_filename)<CR>
+      \ call termopen("tail -f " . g:dein#install_log_filename)<CR>
 
 " zz cyclically
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
@@ -312,3 +312,4 @@ endfunction "}}}
 " :cmap  :cnoremap :cunmap    Command-line
 "}}}
 "
+" vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

@@ -505,6 +505,9 @@ hook_add = '''
 repo = 'justinmk/vim-dirvish'
 
 [[plugins]]
+repo = 'justinmk/vim-gtfo'
+
+[[plugins]]
 repo = 'sunaku/vim-dasht'
 on_if = 'executable("dasht")'
 hook_add = '''

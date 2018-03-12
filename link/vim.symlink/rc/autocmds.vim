@@ -54,6 +54,12 @@ augroup KioossAutocmds
         \ |   execute 'normal! g`"zvzz'
         \ | endif
 
+  autocmd FileType *
+        \ if &ft ==# 'dirvish'
+        \ |   GitGutterDisable
+        \ | else
+        \ |   GitGutterEnable
+        \ | endif
   " autocmd BufDelete * :call QuitIfLastBuffer()
 
   if &relativenumber

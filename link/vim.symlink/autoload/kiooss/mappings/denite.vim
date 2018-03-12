@@ -4,7 +4,6 @@ function! kiooss#mappings#denite#init() abort
   nnoremap <silent> <leader>fo  :<C-u>Denite file/old -mode=normal -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ol :<C-u>Denite outline -highlight-mode-insert=Search<CR>
   nnoremap <silent> <leader>ls :<C-u>Denite buffer -mode=normal<CR>
-  nnoremap <silent> <leader>m :<C-u>Denite file_mru -highlight-mode-insert=Search<CR>
   nnoremap <silent> <Leader>r
         \ :<C-u>Denite -mode=normal -buffer-name=register
         \ -highlight-mode-insert=Search register neoyank<CR>
@@ -27,8 +26,6 @@ function! kiooss#mappings#denite#init() abort
 
   nnoremap <silent> <LocalLeader>v
         \ :<C-u>Denite file_rec:~/.dotfiles/link/vim.symlink/ -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <LocalLeader>d
-        \ :<C-u>Denite file_rec:~/.dotfiles -highlight-mode-insert=Search<CR>
   nnoremap <silent> <LocalLeader>n :<C-u>Denite dein -default-action=open<CR>
   nnoremap <silent> <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
   nnoremap <silent> <LocalLeader>ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>

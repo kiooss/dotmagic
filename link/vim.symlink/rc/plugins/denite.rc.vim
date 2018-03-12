@@ -99,7 +99,7 @@ call denite#custom#var('menu', 'menus', s:menus)
 " Change ignore_globs
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
       \ [ '.git/', '.ropeproject/', '__pycache__/', 'tmp/', 'var/', '.deprecated/',
-      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', 'tags'])
+      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', 'tags', '*.png', '*.bmp'])
 
 " \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
 " \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],

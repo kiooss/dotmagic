@@ -1,6 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Autocmd settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"==============================================================================
+" autocmds.vim---Autocmds settings.
+" => Yang Yang
+"==============================================================================
+
 if !has('autocmd')
   finish
 endif
@@ -9,7 +11,7 @@ endif
 execute 'autocmd MyAutoCmd BufWritePost '.g:Config_Main_Home.'/*,vimrc nested'
       \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
 " }}}
-
+" My Autocmds {{{
 augroup KioossAutocmds
   autocmd!
   " {{{ file type specific settings
@@ -84,18 +86,23 @@ augroup KioossAutocmds
     autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn='+' . join(range(0, 254), ',+') | endif
     autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
   endif "}}}
-augroup END
 
+augroup END"}}}
+" Base16 customize {{{
 if has('syntax')
   augroup on_change_colorschema
     autocmd!
     autocmd ColorScheme * call kiooss#autocmds#base16_customize()
   augroup END
 endif
-
+"}}}
+" Check clpper process {{{
 if exists('##TextYankPost') && get(g:, 'check_clipper', 0)
   augroup check_clipper
     autocmd!
     autocmd TextYankPost * if v:event.operator ==# 'y' | call kiooss#autocmds#check_clipper() | endif
   augroup END
 endif
+"}}}
+
+" vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

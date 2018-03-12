@@ -1,7 +1,7 @@
-"---------------------------------------------------------------------------
-" Encoding:
-"
-" The automatic recognition of the character code.
+"=============================================================================
+" encoding.vim---The automatic recognition of the character code.
+" => Yang Yang
+"=============================================================================
 
 " When do not include Japanese, use encoding for fileencoding.
 function! s:ReCheck_FENC() abort

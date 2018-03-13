@@ -3,11 +3,33 @@
 "
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#buffer#require_same_filetype = 0
-
+let g:deoplete#enable_refresh_always = 0
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#skip_chars = ['(', ')']
 " use phpcd
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni']
 
+let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
+let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
+let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
+" Omni input_patterns and functions {{{
+let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns', {})
+let g:deoplete#omni#input_patterns.python = ''
+let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+let g:deoplete#omni#input_patterns.xml = '<[^>]*'
+let g:deoplete#omni#input_patterns.md = '<[^>]*'
+let g:deoplete#omni#input_patterns.css  = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni#input_patterns.scss = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni#input_patterns.sass = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni#input_patterns.javascript = ''
+
+let g:deoplete#omni#functions = get(g:, 'deoplete#omni#functions', {})
+let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
+let g:deoplete#omni#functions.css = 'csscomplete#CompleteCSS'
+let g:deoplete#omni#functions.html = 'htmlcomplete#CompleteTags'
+let g:deoplete#omni#functions.markdown = 'htmlcomplete#CompleteTags'
+"}}}
 " Key-mappings and Events " {{{
 " ---
 " <TAB>: completion.
@@ -45,7 +67,7 @@ endfunction "}}}
 " inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 " inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " }}}
-
+" Source config {{{
 " call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " call deoplete#custom#source('ghc', 'sorters', ['sorter_word'])
@@ -81,34 +103,10 @@ call deoplete#custom#source('_', 'converters', [
 " call deoplete#custom#source('clang', 'max_pattern_length', -1)
 
 call deoplete#custom#source('look', 'min_pattern_length', 4)
-
-let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
-let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
-let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
-
-let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns', {})
-let g:deoplete#omni#input_patterns.python = ''
-let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
-let g:deoplete#omni#input_patterns.xml = '<[^>]*'
-let g:deoplete#omni#input_patterns.md = '<[^>]*'
-let g:deoplete#omni#input_patterns.css  = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.scss = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.sass = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.javascript = ''
-
-
-let g:deoplete#omni#functions = get(g:, 'deoplete#omni#functions', {})
-let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
-let g:deoplete#omni#functions.css = 'csscomplete#CompleteCSS'
-let g:deoplete#omni#functions.html = 'htmlcomplete#CompleteTags'
-let g:deoplete#omni#functions.markdown = 'htmlcomplete#CompleteTags'
-" inoremap <silent><expr> <C-t> deoplete#manual_complete('file')
-
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#skip_chars = ['(', ')']
-
+"}}}
+" Debug config {{{
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', 'deoplete.log')
 " call deoplete#custom#source('clang', 'debug_enabled', 1)
+"}}}
 " vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

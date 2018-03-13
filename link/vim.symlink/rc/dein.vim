@@ -5,7 +5,7 @@ let g:dein#install_progress_type = 'echo'
 " let g:dein#notification_icon = '~/.vim/signs/warn.png'
 let g:dein#install_max_processes = 32
 let g:dein#install_log_filename = $VARPATH.'/dein.log'
-let s:path = expand('$CACHE/dein')
+let s:path = expand('$VARPATH/dein')
 
 if !dein#load_state(s:path)
   finish

@@ -56,17 +56,6 @@ if IsWindows()
    set shellslash
 endif
 
-let $VIMTMPDIR = expand('~/.vim-tmp')
-if !isdirectory(expand($VIMTMPDIR))
-  call mkdir(expand($VIMTMPDIR), 'p')
-endif
-
-let $CACHE = expand('~/.cache')
-
-if !isdirectory(expand($CACHE))
-  call mkdir(expand($CACHE), 'p')
-endif
-
 " Ensure cache directory "{{{
 if ! isdirectory(expand($VARPATH))
   call mkdir(expand($VARPATH), 'p')
@@ -80,7 +69,7 @@ endif
 let s:dein_dir = finddir('dein.vim', '.;')
 if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
   if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
-    let s:dein_dir = expand('$CACHE/dein')
+    let s:dein_dir = expand('$VARPATH/dein')
           \. '/repos/github.com/Shougo/dein.vim'
     if !isdirectory(s:dein_dir)
       execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir

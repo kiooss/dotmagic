@@ -182,6 +182,19 @@ repo = 'junegunn/gv.vim'
 on_cmd = ['GV', 'GV!']
 
 [[plugins]]
+repo = 'junegunn/goyo.vim'
+depends = 'limelight.vim'
+on_cmd = ['Goyo']
+hook_source = "source $VIMPATH/rc/plugins/goyo.vim"
+hook_add = '''
+  nnoremap <Leader>G :Goyo<CR>
+'''
+
+[[plugins]]
+repo = 'junegunn/limelight.vim'
+on_cmd = 'Limelight'
+
+[[plugins]]
 repo = 'lambdalisue/gina.vim'
 on_cmd = ['Gina']
 

@@ -16,6 +16,9 @@ let g:Config_Main_Home = fnamemodify(expand('<sfile>'),
       \ ':p:h:gs?\\?'.((has('win16') || has('win32')
       \ || has('win64'))?'\':'/') . '?')
 
+" Main config directory
+let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
+" Cache directory
 let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
 
 function! s:source_rc(path, ...) abort "{{{

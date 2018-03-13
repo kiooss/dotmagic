@@ -8,11 +8,11 @@ on_source = ['unite.vim', 'vimshell.vim']
 [[plugins]]
 repo = 'Shougo/neomru.vim'
 
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-on_if = 1
-on_event = 'TextYankPost'
-on_source = ['denite.nvim']
+# [[plugins]]
+# repo = 'Shougo/neoyank.vim'
+# on_if = 1
+# on_event = 'TextYankPost'
+# on_source = ['denite.nvim']
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'

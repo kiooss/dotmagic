@@ -27,8 +27,16 @@
 nnoremap  [Space]   <Nop>
 nmap  <Space>   [Space]
 
-" enter in normal mode do nothing
-nnoremap <CR> <NOP>
+" Focus the current fold by closing all others
+nnoremap <CR> zMza
+
+" Change current word in a repeatable manner
+nnoremap cn *``cgn
+nnoremap cN *``cgN
+
+" Change selected word in a repeatable manner
+vnoremap <expr> cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
+vnoremap <expr> cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
 " s: Windows and buffers(High priority) "{{{
 " The prefix key.

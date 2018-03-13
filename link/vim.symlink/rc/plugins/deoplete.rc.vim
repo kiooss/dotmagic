@@ -8,6 +8,8 @@ let g:deoplete#buffer#require_same_filetype = 0
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni']
 
+" Key-mappings and Events " {{{
+" ---
 " <TAB>: completion.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -26,10 +28,10 @@ inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
 " inoremap <expr><C-g> deoplete#undo_completion()
-" <C-l>: redraw candidates
-inoremap <silent><expr><C-l>       deoplete#refresh()
-" inoremap <expr><C-g>       deoplete#refresh()
-" inoremap <silent><expr><C-l>       deoplete#complete_common_string()
+
+" Redraw candidates
+inoremap <expr><C-g> deoplete#refresh()
+inoremap <expr><C-l> deoplete#complete_common_string()
 
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -42,6 +44,7 @@ endfunction "}}}
 " conflict with UltiSnips mapping.
 " inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 " inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+" }}}
 
 " call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
@@ -51,9 +54,9 @@ endfunction "}}}
 " call deoplete#custom#source('buffer', 'mark', '*')
 
 " Change the source rank
-call deoplete#custom#source('buffer', 'rank', 101)
+call deoplete#custom#source('ultisnips', 'rank', 210)
 call deoplete#custom#source('phpcd', 'rank', 200)
-call deoplete#custom#source('ultisnips', 'rank', 201)
+call deoplete#custom#source('buffer', 'rank', 110)
 
 call deoplete#custom#source('omni',       'mark',  '⌾')
 call deoplete#custom#source('buffer',     'mark',  'ℬ')
@@ -86,10 +89,19 @@ let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
 let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns', {})
 let g:deoplete#omni#input_patterns.python = ''
 let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+let g:deoplete#omni#input_patterns.xml = '<[^>]*'
+let g:deoplete#omni#input_patterns.md = '<[^>]*'
+let g:deoplete#omni#input_patterns.css  = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni#input_patterns.scss = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni#input_patterns.sass = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni#input_patterns.javascript = ''
+
 
 let g:deoplete#omni#functions = get(g:, 'deoplete#omni#functions', {})
 let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
-
+let g:deoplete#omni#functions.css = 'csscomplete#CompleteCSS'
+let g:deoplete#omni#functions.html = 'htmlcomplete#CompleteTags'
+let g:deoplete#omni#functions.markdown = 'htmlcomplete#CompleteTags'
 " inoremap <silent><expr> <C-t> deoplete#manual_complete('file')
 
 let g:deoplete#enable_refresh_always = 0
@@ -99,3 +111,4 @@ let g:deoplete#skip_chars = ['(', ')']
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', 'deoplete.log')
 " call deoplete#custom#source('clang', 'debug_enabled', 1)
+" vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

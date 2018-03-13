@@ -6,10 +6,10 @@ function! kiooss#mappings#denite#init() abort
   nnoremap <silent> <leader>ls :<C-u>Denite buffer -mode=normal<CR>
   nnoremap <silent> <Leader>r
         \ :<C-u>Denite -mode=normal -buffer-name=register
-        \ -highlight-mode-insert=Search register neoyank<CR>
+        \ -highlight-mode-insert=Search register<CR>
   xnoremap <silent> <Leader>r
         \ :<C-u>Denite -mode=normal -default-action=replace -buffer-name=register
-        \ -highlight-mode-insert=Search register neoyank<CR>
+        \ -highlight-mode-insert=Search register<CR>
   nnoremap <silent> / :<C-u>Denite -buffer-name=search
         \ -highlight-mode-insert=Search line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search

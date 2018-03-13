@@ -30,6 +30,8 @@ nmap  <Space>   [Space]
 " Focus the current fold by closing all others
 nnoremap <CR> zMza
 
+nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<CR>
+
 " Change current word in a repeatable manner
 nnoremap cn *``cgn
 nnoremap cN *``cgN

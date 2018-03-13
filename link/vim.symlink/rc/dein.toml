@@ -18,10 +18,7 @@ hook_add = '''
   "       \ map(split(system('fortune | cowsay -f dragon-and-cow'), '\n'), '"   ". v:val')
 
   let g:startify_bookmarks = [
-          \ { 'd': '~/.dotfiles/' },
           \ { 't': '~/.tmux.conf' },
-          \ { 'v': '~/.config/nvim/' },
-          \ { 'z': '~/.zshrc' },
           \ ]
   let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',

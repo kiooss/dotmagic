@@ -197,12 +197,16 @@ plugins=(
   zsh-completions
 )
 
-if (( $+commands[composer] )); then
-  plugins=(
-    $plugins
-    composer
-  )
-fi
+plugins_on_need=(
+  composer
+  docker
+)
+
+for plugin ($plugins_on_need); do
+  if (( $+commands[$plugin] )); then
+    plugins=($plugins $plugin)
+  fi
+done
 
 # my own zsh plugins
 my_plugins=(

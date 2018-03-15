@@ -59,7 +59,8 @@ nnoremap <silent> [Window]sp :vsplit<CR>:wincmd p<CR>:e#<CR>
 " close the preview window
 nnoremap <silent> [Window]z  :wincmd z<CR>
 nnoremap <silent> <Tab>      :wincmd w<CR>
-nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
+" nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
+nnoremap <silent> q :call kiooss#util#SmartQuit()<CR>
 "}}}
 
 nnoremap <silent> [Window]w :update <bar> GitGutter<CR>

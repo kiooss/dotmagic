@@ -15,6 +15,9 @@ ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[precommand]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=green,bold'
 
+# https://github.com/zsh-users/zsh-autosuggestions/issues/142
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
 # the composer plugin create the c alias but I do not need it.
 unalias c 2>/dev/null
 unalias g 2>/dev/null

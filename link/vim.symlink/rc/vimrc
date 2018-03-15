@@ -12,10 +12,6 @@ if &compatible
   set nocompatible
 endif
 
-let g:Config_Main_Home = fnamemodify(expand('<sfile>'),
-      \ ':p:h:gs?\\?'.((has('win16') || has('win32')
-      \ || has('win64'))?'\':'/') . '?')
-
 " Main config directory
 let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 " Cache directory
@@ -23,7 +19,7 @@ let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
 
 function! s:source_rc(path, ...) abort "{{{
   let use_global = get(a:000, 0, !has('vim_starting'))
-  let abspath = resolve(expand(g:Config_Main_Home . '/' . a:path))
+  let abspath = resolve(expand($VIMPATH . '/rc/' . a:path))
   if !use_global
     execute 'source' fnameescape(abspath)
     return
@@ -46,8 +42,6 @@ endfunction "}}}
 
 augroup MyAutoCmd
   autocmd!
-  " autocmd FileType,Syntax,BufNewFile,BufNew,BufRead *?
-  "       \ call vimrc#on_filetype()
   autocmd CursorHold *.toml syntax sync minlines=300
 augroup END
 
@@ -61,19 +55,13 @@ call s:source_rc('dein.vim')
 syntax enable
 filetype plugin indent on
 
-" if has('vim_starting') && !empty(argv())
-"   call vimrc#on_filetype()
-" endif
-
 if !has('vim_starting')
   call dein#call_hook('source')
   call dein#call_hook('post_source')
-
-  " syntax enable
-  " filetype plugin indent on
 endif
 
 "---------------------------------------------------------------------------
+" Loading configuration modules
 call s:source_rc('encoding.vim')
 call s:source_rc('options.vim')
 call s:source_rc('mappings.vim')
@@ -85,12 +73,7 @@ if has('nvim')
 endif
 call s:source_rc('theme.vim')
 
-" source plugin's config
-" for s:path in split(glob('~/.vim/rc/plugins.rc.d/*.vim'), "\n")
-"   exe 'source ' . s:path
-" endfor
-
 "---------------------------------------------------------------------------
 set secure
 
-" vim: foldmethod=marker
+" vim: set ts=2 sw=2 tw=80 et :

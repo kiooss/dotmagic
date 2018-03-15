@@ -3,12 +3,8 @@
 " => Yang Yang
 "==============================================================================
 
-if !has('autocmd')
-  finish
-endif
-
 " Reload vim config automatically {{{
-execute 'autocmd MyAutoCmd BufWritePost '.g:Config_Main_Home.'/*,vimrc nested'
+execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
       \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
 " }}}
 " My Autocmds {{{

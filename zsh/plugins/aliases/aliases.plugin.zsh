@@ -67,3 +67,5 @@ alias all_zmodload="zmodload -L"
 # https://github.com/wincent/clipper
 # alias clip="nc localhost 8377"
 alias clip="nc -U ~/.clipper.sock"
+
+alias fix-time="sudo systemctl restart ntp.service && ntpq -p"

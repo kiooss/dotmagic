@@ -4,7 +4,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " save in readonly mode
-cnoreabbrev w!! w !sudo tee > /dev/null %
+" cnoreabbrev w!! w !sudo tee > /dev/null %
 
 call airline#parts#define_function('gutentags','gutentags#statusline')
 call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline")')

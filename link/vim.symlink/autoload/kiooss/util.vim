@@ -12,7 +12,7 @@ function! kiooss#util#BufferDelete() abort
   let l:current = bufnr('%')
   if getbufvar(l:current, '&modified')
     echohl ErrorMsg
-    echomsg "No write since last change. Not closing buffer."
+    echomsg 'No write since last change. Not closing buffer.'
     echohl NONE
   else
     let s:total_nr_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
@@ -31,18 +31,19 @@ endfunction
 
 " quit window or delete buffer smartly
 function! kiooss#util#SmartQuit() abort
-  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+  let l:number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
 
   " never bdelete a nerd tree
-  if matchstr(expand("%"), 'NERD') == 'NERD'
+  if matchstr(expand('%'), 'NERD') ==# 'NERD'
     wincmd c
     return
   endif
 
-  if number_of_windows_to_this_buffer > 1
+  if l:number_of_windows_to_this_buffer > 1
     wincmd c
   else
-    bdelete
+    " bdelete
+    call kiooss#util#BufferDelete()
   endif
 endfunction
 
@@ -62,17 +63,17 @@ endfunction
 function! kiooss#util#GrepSource() abort range
   let l:str = s:get_visual_selection()
   let l:str = escape(l:str, '\\/.*$^''~[]')
-  let l:str = substitute(l:str, "\n$", "", "")
+  let l:str = substitute(l:str, "\n$", '', '')
 
   execute 'Denite grep/git -buffer-name=search -no-empty -mode=normal -input='.l:str
 endfunction
 
 function! kiooss#util#SetFtByContext() abort
-  execute "set ft=".context_filetype#get_filetype()
+  execute 'set ft='.context_filetype#get_filetype()
 endfunction
 
 function! kiooss#util#ReplaceDelimiter() abort
-  let delimiter = input('Delimiter: ')
-  silent! execute "s/".delimiter."/\r/g"
+  let l:delimiter = input('Delimiter: ')
+  silent! execute 's/'.l:delimiter.'/\r/g'
   redraw!
 endfunction

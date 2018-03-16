@@ -103,7 +103,6 @@ let g:loaded_netrwFileHandlers  = 1
 let g:loaded_netrwPlugin        = 1
 let g:loaded_netrwSettings      = 1
 let g:loaded_rrhelper           = 1
-let g:loaded_ruby_provider      = 1
 let g:loaded_shada_plugin       = 1
 let g:loaded_tar                = 1
 let g:loaded_tarPlugin          = 1

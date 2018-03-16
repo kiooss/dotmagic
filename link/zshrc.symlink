@@ -251,7 +251,6 @@ else
   my_plugins=(
     $my_plugins
     tmux-pane-words
-    zle
   )
 fi
 # }}}

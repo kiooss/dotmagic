@@ -41,7 +41,6 @@ if (( $+commands[ranger] )); then
   bindkey '^o' ranger-cd
 fi
 
-bindkey -s '\em' '^Umycli -u root^M'
 if (( $+commands[mycli] )); then
   bindkey -s '\em' '^Umycli -u root^M'
 fi

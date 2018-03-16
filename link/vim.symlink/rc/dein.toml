@@ -539,4 +539,5 @@ repo = 'junegunn/vim-peekaboo'
 repo = 'lambdalisue/suda.vim'
 hook_add = '''
   cnoreabbrev w!! w suda://%
+  cmap W!! w suda://%
 '''

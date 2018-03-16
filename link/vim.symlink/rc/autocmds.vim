@@ -86,7 +86,8 @@ augroup KioossAutocmds
   " in non-current windows.
   if exists('+winhighlight')
     autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | set winhighlight= | endif
-    autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn() | set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn | endif
+    autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn()
+          \ | set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn | endif
     if exists('+colorcolumn')
       autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn='+' . join(range(0, 254), ',+') | endif
     endif

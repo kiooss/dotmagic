@@ -109,7 +109,7 @@ function! vimrc#MyFoldText()
     let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
   endif
 
-  let prefix = '+++'
+  let prefix = ''.repeat('+--', v:foldlevel)
   let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
   let foldSize = 1 + v:foldend - v:foldstart
   let foldSizeStr = ' ' . foldSize . ' 𝓛𝓘𝓝𝓔𝓢 '

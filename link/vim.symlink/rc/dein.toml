@@ -534,10 +534,3 @@ repo = 'AndrewRadev/splitjoin.vim'
 
 [[plugins]]
 repo = 'junegunn/vim-peekaboo'
-
-[[plugins]]
-repo = 'lambdalisue/suda.vim'
-hook_add = '''
-  cnoreabbrev w!! w suda://%
-  cmap W!! w suda://%
-'''

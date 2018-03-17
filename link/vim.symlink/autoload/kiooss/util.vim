@@ -21,7 +21,8 @@ function! kiooss#util#BufferDelete() abort
       " there is no listed buffer, just quit
       quit
     elseif s:total_nr_buffers == 1
-      bdelete
+      " bdelete
+      quit
     else
       bprevious
       silent! execute 'bdelete '.l:current
@@ -36,6 +37,12 @@ function! kiooss#util#SmartQuit() abort
   " never bdelete a nerd tree
   if matchstr(expand('%'), 'NERD') ==# 'NERD'
     wincmd c
+    return
+  endif
+
+  if exists('#goyo')
+    " if in goyo mode
+    quit
     return
   endif
 

@@ -14,6 +14,8 @@ setlocal shiftwidth=2 softtabstop=2
 
 setlocal iskeyword+=:,#
 
+vnoremap <buffer> <Leader>e "xy<C-u>:exe 'echo '.@x<CR>
+
 " For gf.
 let &l:path = join(map(split(&runtimepath, ','), 'v:val."/autoload"'), ',')
 setlocal suffixesadd=.vim

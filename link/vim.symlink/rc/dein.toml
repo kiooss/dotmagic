@@ -16,10 +16,24 @@ hook_add = '''
   let g:startify_fortune_use_unicode = 1
   " let g:startify_custom_header =
   "       \ map(split(system('fortune | cowsay -f dragon-and-cow'), '\n'), '"   ". v:val')
-
-  let g:startify_bookmarks = [
-          \ { 't': '~/.tmux.conf' },
+  let g:startify_list_order = [
+          \ ['   𝓜𝓡𝓤 ' . getcwd() ],
+          \ 'dir',
+          \ ['   𝓜𝓡𝓤'],
+          \ 'files',
+          \ ['   𝓑𝓞𝓞𝓚𝓜𝓐𝓡𝓚𝓢'],
+          \ 'bookmarks',
+          \ ['   𝓒𝓞𝓜𝓜𝓐𝓝𝓓𝓢'],
+          \ 'commands',
           \ ]
+  let g:startify_bookmarks = [
+          \ { 'tc': '~/.tmux.conf' },
+          \ ]
+  let g:startify_commands = [
+      \ ['Vim Reference', 'h ref'],
+      \ ['Dein recache rtp', 'call dein#recache_runtimepath()'],
+      \ ['Update plugins', 'call dein#update()'],
+      \ ]
   let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',
       \ 'runtime/doc/.*\.txt',
@@ -28,6 +42,10 @@ hook_add = '''
       \ 'dein/doc/.*\.txt',
       \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc/.*\.txt',
       \ ]
+
+  function! StartifyEntryFormat()
+      return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+  endfunction
 '''
 
 [[plugins]]

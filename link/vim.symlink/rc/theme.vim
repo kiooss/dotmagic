@@ -3,10 +3,9 @@
 " => Yang Yang
 "=============================================================================
 
-if has("gui_macvim")
+if has('gui_macvim')
   set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
 endif
-
 
 if has('gui_running')
   set background=dark
@@ -25,14 +24,14 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " let g:gruvbox_contrast_light="hard"
 " colorscheme gruvbox
 
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
+if filereadable(expand('~/.vimrc_background'))
   let g:airline_theme='base16_flat'
+  let g:base16colorspace=256
+  source ~/.vimrc_background
 else
   set background=dark
-  colorscheme gruvbox
   let g:airline_theme='hybrid'
+  colorscheme gruvbox
 endif
 
 " let ayucolor="light"  " for light version of theme
@@ -58,3 +57,9 @@ endif
 " let g:airline_theme='badwolf'
 " let g:airline_theme='papercolor'
 " let g:airline_theme='gruvbox'
+
+if dein#tap('vim-airline') && dein#tap('vim-gutentags')
+  call airline#parts#define_function('gutentags','gutentags#statusline')
+  call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline")')
+  let g:airline_section_gutter = airline#section#create(['%=', 'gutentags'])
+endif

@@ -1,14 +1,7 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Customize
-" vim: set fdm=marker:
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" save in readonly mode
-" cnoreabbrev w!! w !sudo tee > /dev/null %
-
-call airline#parts#define_function('gutentags','gutentags#statusline')
-call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline")')
-let g:airline_section_gutter = airline#section#create(['%=', 'gutentags'])
+"==============================================================================
+" commands.vim---define commands.
+" => Yang Yang
+"==============================================================================
 
 " ----------------------------------------------------------------------------
 " :Root | Change directory to the root of the Git repository
@@ -40,5 +33,4 @@ endfunction
 command! -bang Profile call s:profile(<bang>0) "}}}
 
 command! GetChar call kiooss#debug#getchar()
-
 command! CleanPlugins call map(dein#check_clean(), "delete(v:val, 'rf')")

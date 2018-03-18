@@ -121,7 +121,7 @@ set switchbuf+=vsplit           " Switch buffer behavior to vsplit
 set backspace=indent,eol,start  " Intuitive backspacing in insert mode
 set diffopt=filler,iwhite       " Diff mode: show fillers, ignore white
 set showfulltag                 " Show tag and tidy search in completion
-" set complete=.                  " No wins, buffs, tags, include scanning
+set complete=.                  " No wins, buffs, tags, include scanning
 set completeopt=menuone         " Show menu even for one item
 set completeopt+=noselect       " Do not select a match in the menu
 if has('patch-7.4.775')

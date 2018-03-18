@@ -31,6 +31,7 @@ hook_add = '''
           \ ]
   let g:startify_commands = [
       \ ['Vim Reference', 'h ref'],
+      \ ['Vim CheckHealth', 'CheckHealth'],
       \ ['Dein recache rtp', 'call dein#recache_runtimepath()'],
       \ ['Update plugins', 'call dein#update()'],
       \ ]
@@ -46,6 +47,8 @@ hook_add = '''
   function! StartifyEntryFormat()
       return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
   endfunction
+
+  nnoremap <silent> <Leader>S :Startify<CR>
 '''
 
 [[plugins]]

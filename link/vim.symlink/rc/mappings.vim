@@ -90,8 +90,8 @@ nnoremap <silent> <Leader>hp :call zvim#previewHunkToggle()<CR>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
-nnoremap g; g;zz
-nnoremap g, g,zz
+nnoremap <silent> g; g;zazz
+nnoremap <silent> g, g,zazz
 
 " Better x with black hole register "_
 nnoremap x "_x

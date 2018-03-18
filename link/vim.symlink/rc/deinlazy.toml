@@ -236,5 +236,5 @@ repo = 'lambdalisue/suda.vim'
 on_path = 'suda://'
 hook_add = '''
   cnoreabbrev w!! w suda://%
-  cmap W!! w suda://%
+  cnoremap W!! w suda://%
 '''

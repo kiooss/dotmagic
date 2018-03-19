@@ -24,12 +24,12 @@ function! kiooss#mappings#denite#init() abort
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
 
-  nnoremap <silent> <LocalLeader>v
+  nnoremap <silent> <Leader>vv
         \ :<C-u>Denite file_rec:~/.dotfiles/link/vim.symlink/ -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <LocalLeader>n :<C-u>Denite dein -default-action=open<CR>
-  nnoremap <silent> <LocalLeader>c :<C-u>Denite colorscheme -auto-preview<CR>
-  nnoremap <silent> <LocalLeader>ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <LocalLeader>h :<C-u>Denite -buffer-name=search help<CR>
+  nnoremap <silent> <Leader>vn :<C-u>Denite dein -default-action=open<CR>
+  nnoremap <silent> <Leader>vc :<C-u>Denite colorscheme -auto-preview<CR>
+  nnoremap <silent> <Leader>vf :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
+  nnoremap <silent> <Leader>vh :<C-u>Denite -buffer-name=search help<CR>
 
   nnoremap <silent> <Leader>ag :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep<CR>

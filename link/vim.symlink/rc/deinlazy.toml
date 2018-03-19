@@ -158,6 +158,10 @@ repo = 'tpope/vim-rails'
 on_ft = 'ruby'
 
 [[plugins]]
+repo = 'tpope/vim-bundler'
+on_ft = 'ruby'
+
+[[plugins]]
 repo = 'chrisbra/csv.vim'
 on_ft = 'csv'
 

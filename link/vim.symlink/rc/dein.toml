@@ -555,3 +555,10 @@ repo = 'AndrewRadev/splitjoin.vim'
 
 [[plugins]]
 repo = 'junegunn/vim-peekaboo'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'

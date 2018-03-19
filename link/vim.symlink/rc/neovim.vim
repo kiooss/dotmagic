@@ -36,9 +36,10 @@ endfor
 unlet! s:num
 unlet! s:color
 
+" comment out due to side effors when using fzf.
 " Modifiable terminal
-autocmd MyAutoCmd TermOpen * setlocal modifiable
-autocmd MyAutoCmd TermClose * buffer #
+"autocmd MyAutoCmd TermOpen * setlocal modifiable
+"autocmd MyAutoCmd TermClose * buffer #
 
 let g:terminal_scrollback_buffer_size = 3000
 

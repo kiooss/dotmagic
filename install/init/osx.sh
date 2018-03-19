@@ -60,6 +60,7 @@ kegs=(
   caskroom/cask
   caskroom/drivers
   caskroom/fonts
+  waltarix/homebrew-customs
 )
 
 e_info "brew_tap_kegs"
@@ -153,7 +154,8 @@ recipes=(
   terminal-notifier
   the_silver_searcher
   todo-txt
-  tmux
+  # tmux
+  waltarix/homebrew-customs/tmux
   tree
   utf8proc
   vim

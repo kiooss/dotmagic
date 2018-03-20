@@ -51,6 +51,7 @@ if has('vim_starting')
 endif
 
 call s:source_rc('dein.vim')
+call s:source_rc('plugins/mix.vim')
 
 syntax enable
 filetype plugin indent on

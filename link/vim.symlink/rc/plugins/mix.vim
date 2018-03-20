@@ -14,9 +14,9 @@ if s:has_plug('fzf.vim')
   endif
 
   " Hide statusline of terminal buffer
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  " autocmd! FileType fzf
+  " autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  "   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
   let g:fzf_colors =
   \ { 'fg':      ['fg', 'Normal'],

@@ -308,9 +308,9 @@ endfunction "}}}
 "}}}
 
 if exists(':tnoremap')
-  tnoremap   <ESC>      <C-\><C-n>
-  tnoremap   jk         <C-\><C-n>
-  tnoremap   j<Space>   j
+  " tnoremap   <ESC>      <C-\><C-n>
+  " tnoremap   jk         <C-\><C-n>
+  " tnoremap   j<Space>   j
 endif
 "==============================================================================
 " Overview of which map command works in which mode.

@@ -5,7 +5,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#buffer#require_same_filetype = 0
 let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_camel_case = 1
-let g:deoplete#skip_chars = ['(', ')']
+let g:deoplete#skip_chars = ['(', ')', '<', '>']
+let g:deoplete#file#enable_buffer_path = 1
 " use phpcd
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni']
@@ -76,9 +77,15 @@ endfunction "}}}
 " call deoplete#custom#source('buffer', 'mark', '*')
 
 " Change the source rank
-call deoplete#custom#source('ultisnips', 'rank', 210)
-call deoplete#custom#source('phpcd', 'rank', 200)
-call deoplete#custom#source('buffer', 'rank', 110)
+call deoplete#custom#source('ultisnips',   'rank',  510)
+call deoplete#custom#source('phpcd',       'rank',  500)
+call deoplete#custom#source('omni',        'rank',  420)
+call deoplete#custom#source('file',        'rank',  410)
+call deoplete#custom#source('around',      'rank',  330)
+call deoplete#custom#source('buffer',      'rank',  320)
+call deoplete#custom#source('dictionary',  'rank',  310)
+call deoplete#custom#source('syntax',      'rank',  200)
+call deoplete#custom#source('look',        'rank',  100)
 
 call deoplete#custom#source('omni',       'mark',  '⌾')
 call deoplete#custom#source('buffer',     'mark',  'ℬ')

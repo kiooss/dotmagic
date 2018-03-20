@@ -40,5 +40,7 @@ if s:has_plug('fzf.vim')
     \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
 
   nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
+
+  inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
 endif
 "}}}

@@ -388,6 +388,7 @@ repo = 'thinca/vim-quickrun'
 repo = 'w0rp/ale'
 hook_add = '''
   let g:ale_set_quickfix = 1
+  let g:ale_lint_delay = 1000
   let g:ale_statusline_format = ['✖ %d', '⚠ %d', '⬥ ok']
   let g:ale_linter_aliases = {
         \'javascript.jsx': 'javascript',

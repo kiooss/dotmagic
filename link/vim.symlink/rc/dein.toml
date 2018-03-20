@@ -564,3 +564,6 @@ build = './install --all'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'chr4/nginx.vim'

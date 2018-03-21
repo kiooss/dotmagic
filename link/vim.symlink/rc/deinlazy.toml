@@ -254,3 +254,10 @@ hook_add = '''
   nmap cgc <Plug>ChangeCommentary
   nmap gcu <Plug>Commentary<Plug>Commentary
 '''
+
+[[plugins]]
+repo = 'mhinz/vim-sayonara'
+on_cmd = 'Sayonara'
+hook_add = '''
+  nnoremap <silent> q :Sayonara<cr>
+'''

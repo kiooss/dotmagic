@@ -168,12 +168,6 @@ hook_add = '''
 [[plugins]]
 repo = 'pbrisbin/vim-mkdir'
 
-# [[plugins]]
-# repo = 'tomtom/tcomment_vim'
-
-# [[plugins]]
-# repo = 'tpope/vim-commentary'
-
 [[plugins]]
 repo = 'wellle/targets.vim'
 
@@ -203,24 +197,6 @@ hook_add ='''
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
-hook_add = '''
-  " Prevent conflict with Neocomplete
-  " Called once right before you start selecting multiple cursors
-  " function! Multiple_cursors_before()
-  "   call deoplete#init#_disable()
-  "   if exists(':NeoCompleteLock')==2
-  "     exe 'NeoCompleteLock'
-  "   endif
-  " endfunction
-
-  " Called once only when the multiple selection is canceled (default <Esc>)
-  " function! Multiple_cursors_after()
-  "   call deoplete#init#_enable()
-  "   if exists(':NeoCompleteUnlock')==2
-  "     exe 'NeoCompleteUnlock'
-  "   endif
-  " endfunction
-'''
 
 [[plugins]]
 repo = 'gregsexton/MatchTag'
@@ -247,9 +223,6 @@ hook_add = '''
   let g:gitgutter_sign_removed = ''
   let g:gitgutter_sign_modified_removed = ''
 '''
-
-# [[plugins]]
-# repo = 'vim-scripts/sudo.vim'
 
 [[plugins]]
 repo = 'vim-scripts/CmdlineComplete'
@@ -304,9 +277,6 @@ repo = 'tpope/vim-eunuch'
 
 # [[plugins]]
 # repo = 'tpope/vim-sleuth'
-
-# [[plugins]]
-# repo = 'vim-scripts/IndexedSearch'
 
 [[plugins]]
 repo = 'vim-scripts/jQuery'
@@ -424,12 +394,6 @@ repo = 'nelsyeung/twig.vim'
 #
 # [[plugins]]
 # repo = 'chemzqm/denite-git'
-
-# [[plugins]]
-# repo = 'vim-scripts/StringComplete'
-# hook_add = '''
-#   inoremap <C-J> <C-O>:set completefunc=StringComplete#GetList<CR><C-X><C-U>
-# '''
 
 [[plugins]]
 repo = 'AndrewRadev/switch.vim'

@@ -210,20 +210,20 @@ repo = 'terryma/vim-multiple-cursors'
 hook_add = '''
   " Prevent conflict with Neocomplete
   " Called once right before you start selecting multiple cursors
-  function! Multiple_cursors_before()
-    call deoplete#init#_disable()
-    if exists(':NeoCompleteLock')==2
-      exe 'NeoCompleteLock'
-    endif
-  endfunction
+  " function! Multiple_cursors_before()
+  "   call deoplete#init#_disable()
+  "   if exists(':NeoCompleteLock')==2
+  "     exe 'NeoCompleteLock'
+  "   endif
+  " endfunction
 
   " Called once only when the multiple selection is canceled (default <Esc>)
-  function! Multiple_cursors_after()
-    call deoplete#init#_enable()
-    if exists(':NeoCompleteUnlock')==2
-      exe 'NeoCompleteUnlock'
-    endif
-  endfunction
+  " function! Multiple_cursors_after()
+  "   call deoplete#init#_enable()
+  "   if exists(':NeoCompleteUnlock')==2
+  "     exe 'NeoCompleteUnlock'
+  "   endif
+  " endfunction
 '''
 
 [[plugins]]

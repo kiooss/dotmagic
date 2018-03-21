@@ -297,3 +297,11 @@ function replace-ssh-key() {
    SERVER="$2"
    echo "cat $KEY | ssh $SERVER \"cat >> ~/.ssh/authorized_keys\""
 }
+
+# The first column is the most important as it shows the elapsed absolute time.
+# If there is a big jump in time between two lines, the second line is either
+# a very big file or a file with faulty VimL code that is worth investigating.
+function profile-vim() {
+  FILE="$1"
+  vi --startuptime /tmp/vim_startup.log +q $FILE && vi /tmp/vim_startup.log
+}

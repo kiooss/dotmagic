@@ -120,6 +120,7 @@ repo = 'rafi/awesome-vim-colorschemes'
 repo = 'vim-airline/vim-airline'
 hook_add = '''
   let g:airline_skip_empty_sections = 1
+
   let g:airline_powerline_fonts=1
   let g:airline_left_sep=''
   let g:airline_right_sep=''
@@ -363,7 +364,7 @@ hook_add = '''
   let g:ale_linters = {
   \   'php': ['php'],
   \   'javascript': ['eslint'],
-  \   'ruby': ['ruby'],
+  \   'ruby': ['ruby', 'rails_best_practices'],
   \}
   " let g:ale_open_list = 1
   " let g:ale_keep_list_window_open = 1

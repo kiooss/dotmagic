@@ -168,8 +168,8 @@ hook_add = '''
 [[plugins]]
 repo = 'pbrisbin/vim-mkdir'
 
-[[plugins]]
-repo = 'tomtom/tcomment_vim'
+# [[plugins]]
+# repo = 'tomtom/tcomment_vim'
 
 # [[plugins]]
 # repo = 'tpope/vim-commentary'

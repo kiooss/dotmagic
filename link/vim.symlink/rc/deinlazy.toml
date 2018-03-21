@@ -242,3 +242,15 @@ hook_add = '''
   cnoreabbrev w!! w suda://%
   cnoremap W!! w suda://%
 '''
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+on_map = '<Plug>Commentary'
+hook_add = '''
+  xmap gc  <Plug>Commentary
+  nmap gc  <Plug>Commentary
+  omap gc  <Plug>Commentary
+  nmap gcc <Plug>CommentaryLine
+  nmap cgc <Plug>ChangeCommentary
+  nmap gcu <Plug>Commentary<Plug>Commentary
+'''

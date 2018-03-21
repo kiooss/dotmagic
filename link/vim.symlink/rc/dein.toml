@@ -16,16 +16,12 @@ hook_add = '''
   let g:startify_fortune_use_unicode = 1
   " let g:startify_custom_header =
   "       \ map(split(system('fortune | cowsay -f dragon-and-cow'), '\n'), '"   ". v:val')
-  let g:startify_list_order = [
-          \ ['   𝓜𝓡𝓤 ' . getcwd() ],
-          \ 'dir',
-          \ ['   𝓜𝓡𝓤'],
-          \ 'files',
-          \ ['   𝓑𝓞𝓞𝓚𝓜𝓐𝓡𝓚𝓢'],
-          \ 'bookmarks',
-          \ ['   𝓒𝓞𝓜𝓜𝓐𝓝𝓓𝓢'],
-          \ 'commands',
-          \ ]
+  let g:startify_lists = [
+        \ { 'type': 'dir',       'header': ['   𝓜𝓡𝓤 '. getcwd()] },
+        \ { 'type': 'files',     'header': ['   𝓜𝓡𝓤']            },
+        \ { 'type': 'bookmarks', 'header': ['   𝓑𝓞𝓞𝓚𝓜𝓐𝓡𝓚𝓢']      },
+        \ { 'type': 'commands',  'header': ['   𝓒𝓞𝓜𝓜𝓐𝓝𝓓𝓢']       },
+        \ ]
   let g:startify_bookmarks = [
           \ { 'tc': '~/.tmux.conf' },
           \ ]

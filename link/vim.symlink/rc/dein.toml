@@ -541,3 +541,5 @@ repo = 'junegunn/fzf.vim'
 
 [[plugins]]
 repo = 'chr4/nginx.vim'
+
+#  vim: set ts=2 sw=2 tw=80 et :

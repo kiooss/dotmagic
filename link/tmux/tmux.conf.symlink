@@ -51,6 +51,9 @@ bind - split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
 
+# close other panes except current one
+bind X kill-pane -a
+
 # reload config file (change file location to your the tmux.conf you want to use)
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 

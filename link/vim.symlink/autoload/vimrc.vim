@@ -2,42 +2,6 @@
 " vimrc functions:
 "
 
-function! vimrc#sticky_func() abort
-  let sticky_table = {
-        \',' : '<', '.' : '>', '/' : '?',
-        \'1' : '!', '2' : '@', '3' : '#', '4' : '$', '5' : '%',
-        \'6' : '^', '7' : '&', '8' : '*', '9' : '(', '0' : ')',
-        \ '-' : '_', '=' : '+',
-        \';' : ':', '[' : '{', ']' : '}', '`' : '~', "'" : "\"", '\' : '|',
-        \}
-  let special_table = {
-        \"\<ESC>" : "\<ESC>", "\<Space>" : ';', "\<CR>" : ";\<CR>"
-        \}
-
-  if mode() !~# '^c'
-    echo 'Input sticky key: '
-  endif
-  let char = ''
-
-  while 1
-    let char = nr2char(getchar())
-
-    if char =~ '\l'
-      let char = toupper(char)
-      break
-    elseif has_key(sticky_table, char)
-      let char = sticky_table[char]
-      break
-    elseif has_key(special_table, char)
-      let char = special_table[char]
-      break
-    endif
-  endwhile
-
-  redraw | echo
-  return char
-endfunction
-
 function! vimrc#add_numbers(num) abort
   let prev_line = getline('.')[: col('.')-1]
   let next_line = getline('.')[col('.') :]
@@ -74,28 +38,6 @@ function! vimrc#on_filetype() abort "{{{
   endif
 endfunction "}}}
 
-
-" let s:middot='·'
-let s:middot="\ue77f"
-" let s:raquo='»'
-let s:raquo="\uf115+"
-let s:small_l='ℓ'
-
-" Override default `foldtext()`, which produces something like:
-"
-"   +---  2 lines: source $HOME/.vim/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim--------------------------------
-"
-" Instead returning:
-"
-"   »··[2ℓ]··: source $HOME/.vim/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim···································
-"
-function! vimrc#foldtext() abort
-  let l:lines='[' . (v:foldend - v:foldstart + 1) . s:small_l . ']'
-  let l:first=substitute(getline(v:foldstart), '\v *', '', '')
-  let l:dashes=substitute(v:folddashes, '-', s:middot, 'g')
-  return s:raquo . s:middot . s:middot . l:lines . l:dashes . ': ' . l:first
-endfunction
-
 " Improved Vim fold-text
 " See: http://www.gregsexton.org/2011/03/improving-the-text-displayed-in-a-fold/
 function! vimrc#MyFoldText()
@@ -109,7 +51,13 @@ function! vimrc#MyFoldText()
     let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
   endif
 
-  let prefix = ''.repeat('+--', v:foldlevel)
+  if get(g:, 'enable_patched_font', 0)
+    let startStr = ''
+  else
+    let startStr = ''
+  endif
+
+  let prefix = startStr.repeat('+--', v:foldlevel)
   let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
   let foldSize = 1 + v:foldend - v:foldstart
   let foldSizeStr = ' ' . foldSize . ' 𝓛𝓘𝓝𝓔𝓢 '

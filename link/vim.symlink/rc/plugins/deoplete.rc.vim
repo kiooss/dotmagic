@@ -72,9 +72,15 @@ endfunction "}}}
 " call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " call deoplete#custom#source('ghc', 'sorters', ['sorter_word'])
-" call deoplete#custom#source('buffer', 'mark', '')
 " call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
-" call deoplete#custom#source('buffer', 'mark', '*')
+
+" Default matchers and sorters
+" call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
+" call deoplete#custom#source('_', 'sorters', ['sorter_rank'])
+
+
+" matcher_length removes candidates shorter than or equal to the user input.
+call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy', 'matcher_length'])
 
 " Change the source rank
 call deoplete#custom#source('ultisnips',   'rank',  510)

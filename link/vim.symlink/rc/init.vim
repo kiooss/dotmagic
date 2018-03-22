@@ -82,13 +82,16 @@ endif
 " Disable packpath
 set packpath=
 
-
-"---------------------------------------------------------------------------
-" Disable default plugins
-
-" Disable menu.vim
 if has('gui_running')
+  " Disable menu.vim
   set guioptions=Mc
+else
+  " Explicitly tell vim that the terminal supports 256 colors
+  set t_Co=256
+  " Enable true color
+  if has('termguicolors')
+    set termguicolors
+  endif
 endif
 
 " Disable pre-bundled plugins

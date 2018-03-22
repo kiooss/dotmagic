@@ -4,13 +4,6 @@
 "=============================================================================
 
 " General {{{
-" Explicitly tell vim that the terminal supports 256 colors
-set t_Co=256
-
-" Enable true color
-if has('termguicolors')
-  set termguicolors
-endif
 set shell=$SHELL
 " use K to run a program to lookup the keyword under the cursor
 set keywordprg=:help
@@ -206,12 +199,12 @@ set tm=500
 highlight Pmenu ctermbg=238 gui=bold
 
 " https://sunaku.github.io/vim-256color-bce.html
-if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
-endif
+" if &term =~ '256color'
+"   " disable Background Color Erase (BCE) so that color schemes
+"   " render properly when inside 256-color tmux and GNU screen.
+"   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+"   set t_ut=
+" endif
 " }}}
 " Vim Directories {{{
 " ---------------
@@ -236,7 +229,7 @@ if exists('$SUDO_USER')
 else
 endif
 
-if has("persistent_undo")
+if has('persistent_undo')
   if exists('$SUDO_USER')
     set noundofile
   else

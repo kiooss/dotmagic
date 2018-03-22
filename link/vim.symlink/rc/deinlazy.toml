@@ -82,6 +82,8 @@ hook_add = '''
   vnoremap <Leader>= :Tabularize /=>\?<CR>
   nnoremap <Leader>: :Tabularize /:\zs<CR>
   vnoremap <Leader>: :Tabularize /:\zs<CR>
+  nnoremap <Leader>al :Tabularize /
+  vnoremap <Leader>al :Tabularize /
 '''
 
 [[plugins]]

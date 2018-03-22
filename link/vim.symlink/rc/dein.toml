@@ -119,17 +119,19 @@ repo = 'nightsense/vimspectr'
 repo = 'rafi/awesome-vim-colorschemes'
 #################################################
 
+# [[plugins]]
+# repo = 'itchyny/lightline.vim'
+
 [[plugins]]
 repo = 'vim-airline/vim-airline'
 hook_add = '''
-  let g:airline_skip_empty_sections = 1
-
   if get(g:, 'enable_patched_font', 0)
     let g:airline_powerline_fonts=1
-    let g:airline_left_sep=''
-    let g:airline_right_sep=''
+    " let g:airline_left_sep=''
+    " let g:airline_right_sep=''
   endif
 
+  let g:airline_skip_empty_sections = 1
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#hunks#enabled = 1
   let g:airline#extensions#ale#enabled = 1

@@ -19,6 +19,8 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 # export is important if you want to use DOTFILES env in sub shell.
 export DOTFILES="$HOME/.dotfiles"
+# whether use patched font (for shell, tmux, and vim)
+export ENABLE_PATCHED_FONT=false
 
 MYZSH="$DOTFILES/zsh"
 ZSH_CUSTOM="$MYZSH/omz_custom"
@@ -71,11 +73,13 @@ export MANPATH=$HOME/.dasht/man:$MANPATH
 
 # POWERLEVEL9K config {{{
 export DEFAULT_USER="$USER"
-POWERLEVEL9K_MODE="awesome-fontconfig"
-# POWERLEVEL9K_MODE='nerdfont-complete'
 
-POWERLEVEL9K_USER_ICON=$'\uF263'
-POWERLEVEL9K_ROOT_ICON=" ROOT "
+if [[ $ENABLE_PATCHED_FONT == true ]]; then
+  POWERLEVEL9K_MODE="awesome-fontconfig"
+  # POWERLEVEL9K_MODE='nerdfont-complete'
+  POWERLEVEL9K_USER_ICON=$'\uF263'
+  POWERLEVEL9K_ROOT_ICON=" ROOT "
+fi
 
 # POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0B1'
 # POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0B3'

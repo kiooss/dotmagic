@@ -40,9 +40,11 @@ hook_add = '''
       \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc/.*\.txt',
       \ ]
 
-  function! StartifyEntryFormat()
+  if get(g:, 'enable_patched_font', 0)
+    function! StartifyEntryFormat()
       return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
-  endfunction
+    endfunction
+  endif
 
   nnoremap <silent> <Leader>S :Startify<CR>
 '''
@@ -52,6 +54,7 @@ repo = 'nixprime/cpsm'
 build = 'sh -c "PY3=ON ./install.sh"'
 
 [[plugins]]
+on_if = "get(g:, 'enable_patched_font', 0)"
 repo = 'ryanoasis/vim-devicons'
 
 # [[plugins]]
@@ -121,9 +124,11 @@ repo = 'vim-airline/vim-airline'
 hook_add = '''
   let g:airline_skip_empty_sections = 1
 
-  let g:airline_powerline_fonts=1
-  let g:airline_left_sep=''
-  let g:airline_right_sep=''
+  if get(g:, 'enable_patched_font', 0)
+    let g:airline_powerline_fonts=1
+    let g:airline_left_sep=''
+    let g:airline_right_sep=''
+  endif
 
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#hunks#enabled = 1
@@ -219,10 +224,12 @@ hook_add = '''
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
-  let g:gitgutter_sign_added = ''
-  let g:gitgutter_sign_modified = ''
-  let g:gitgutter_sign_removed = ''
-  let g:gitgutter_sign_modified_removed = ''
+  if get(g:, 'enable_patched_font', 0)
+    let g:gitgutter_sign_added = ''
+    let g:gitgutter_sign_modified = ''
+    let g:gitgutter_sign_removed = ''
+    let g:gitgutter_sign_modified_removed = ''
+  endif
 '''
 
 [[plugins]]
@@ -356,7 +363,6 @@ repo = 'w0rp/ale'
 hook_add = '''
   let g:ale_set_quickfix = 1
   let g:ale_lint_delay = 1000
-  let g:ale_statusline_format = ['✖ %d', '⚠ %d', '⬥ ok']
   let g:ale_linter_aliases = {
         \'javascript.jsx': 'javascript',
         \'jsx': 'javascript'
@@ -368,8 +374,6 @@ hook_add = '''
   " \   'ruby': ['ruby', 'rails_best_practices'],
   " let g:ale_open_list = 1
   " let g:ale_keep_list_window_open = 1
-  let g:ale_echo_msg_error_str = '𝓔'
-  let g:ale_echo_msg_warning_str = '𝓦'
   let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
   " let g:ale_sign_error = '>>'
@@ -377,8 +381,13 @@ hook_add = '''
   " let g:ale_sign_style_error = '>>'
   " let g:ale_sign_style_warning = '--'
   " let g:ale_sign_warning = '--'
-  let g:ale_sign_error = ''
-  let g:ale_sign_warning = '➤'
+  if get(g:, 'enable_patched_font', 0)
+    let g:ale_echo_msg_error_str = '𝓔'
+    let g:ale_echo_msg_warning_str = '𝓦'
+    let g:ale_statusline_format = ['✖ %d', '⚠ %d', '⬥ ok']
+    let g:ale_sign_error = ''
+    let g:ale_sign_warning = '➤'
+  endif
 
   let g:ale_vim_vint_show_style_issues = 0
 

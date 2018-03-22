@@ -41,6 +41,11 @@ if s:has_plug('fzf.vim')
 
   nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
 
+  nnoremap <leader>fzag :Ag<CR>
+  nnoremap <leader>fzbc :BCommits<CR>
+  nnoremap <leader>fzc :Commits<CR>
+  nnoremap <leader>fzm :Maps<CR>
+
   inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
 endif
 "}}}

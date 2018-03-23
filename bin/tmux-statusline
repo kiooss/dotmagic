@@ -9,10 +9,10 @@ MEDIUM=160
 LARGE=180
 
 # separators
-# L_SEP=""
-# R_SEP=""
-L_SEP=""
-R_SEP=""
+L_SEP=""
+R_SEP=""
+# L_SEP=""
+# R_SEP=""
 # L_SEP=""
 # R_SEP=""
 

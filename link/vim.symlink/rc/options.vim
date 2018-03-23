@@ -8,7 +8,7 @@ set shell=$SHELL
 " use K to run a program to lookup the keyword under the cursor
 set keywordprg=:help
 set isfname-==               " Exclude = from isfilename.
-set tags=./tags,tags;        " Set tags place
+set tags=./tags;/            " Set tags place
 set autoread                 " Detect when a file is changeed
 " set mouse=nv                 " Disable mouse in command-line mode
 set modeline                 " automatically setting options from modelines
@@ -115,7 +115,8 @@ set switchbuf+=vsplit           " Switch buffer behavior to vsplit
 set backspace=indent,eol,start  " Intuitive backspacing in insert mode
 set diffopt=filler,iwhite       " Diff mode: show fillers, ignore white
 set showfulltag                 " Show tag and tidy search in completion
-set complete=.                  " No wins, buffs, tags, include scanning
+" set complete=.                  " No wins, buffs, tags, include scanning
+set complete=.,w,b,u
 set completeopt=menuone         " Show menu even for one item
 set completeopt+=noselect       " Do not select a match in the menu
 if has('patch-7.4.775')

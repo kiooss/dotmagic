@@ -4,9 +4,8 @@
 "==============================================================================
 
 "==============================================================================
-" Normal Mode Key Mappings
+" Normal Mode Key Mappings {{{
 "==============================================================================
-" {{{
 " defauts
 " q: record macros
 " w: Move word forward
@@ -93,8 +92,8 @@ nnoremap <silent> <Leader>hp :call zvim#previewHunkToggle()<CR>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
-nnoremap <silent> g; g;zazz
-nnoremap <silent> g, g,zazz
+nnoremap <silent> g; g;zvzz
+nnoremap <silent> g, g,zvzz
 
 " Better x with black hole register "_
 nnoremap x "_x
@@ -210,12 +209,10 @@ function! s:append_modeline() "{{{
 endfunction "}}}
 " }}}
 "}}}
-
 "==============================================================================
-" Insert Mode Ctrl Key Mappings
+" Insert Mode Key Mappings {{{
 "==============================================================================
-" {{{
-" remap esc
+" escaping
 inoremap jk <esc>
 inoremap j<Space>     j
 
@@ -252,13 +249,10 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
-
 " }}}
-
 "==============================================================================
-" Command Mode Key Mappings
+" Command Mode Key Mappings {{{
 "==============================================================================
-" {{{
 " jk | Escaping!
 cnoremap jk             <C-c>
 cnoremap <expr> j
@@ -282,11 +276,9 @@ cnoremap <C-g>          <C-c>
 " <C-k>: delete to end.
 cnoremap <C-k>          <C-\>estrpart(getcmdline(),0,getcmdpos()-1)<CR>
 "}}}
-
 "=============================================================================
-" Visual Mode Key Mappings
+" Visual Mode Key Mappings {{{
 "=============================================================================
-" {{{
 " if (!has('nvim') || $DISPLAY != '') && has('clipboard')
 "   xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
 " endif
@@ -321,29 +313,7 @@ function! s:get_selection(cmdtype) "{{{
   let @/ = substitute(escape(@s, '\'.a:cmdtype), '\n', '\\n', 'g')
   let @s = temp
 endfunction "}}}
-
 "}}}
+"==============================================================================
 
-if exists(':tnoremap')
-  " tnoremap   <ESC>      <C-\><C-n>
-  " tnoremap   jk         <C-\><C-n>
-  " tnoremap   j<Space>   j
-endif
-"==============================================================================
-" Overview of which map command works in which mode.
-"==============================================================================
-"{{{
-"      COMMANDS                    MODES ~
-" :map   :noremap  :unmap     Normal, Visual, Select, Operator-pending
-" :nmap  :nnoremap :nunmap    Normal
-" :vmap  :vnoremap :vunmap    Visual and Select
-" :smap  :snoremap :sunmap    Select
-" :xmap  :xnoremap :xunmap    Visual
-" :omap  :onoremap :ounmap    Operator-pending
-" :map!  :noremap! :unmap!    Insert and Command-line
-" :imap  :inoremap :iunmap    Insert
-" :lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
-" :cmap  :cnoremap :cunmap    Command-line
-"}}}
-"
 " vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

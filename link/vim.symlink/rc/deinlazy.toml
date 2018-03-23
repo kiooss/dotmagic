@@ -282,5 +282,5 @@ hook_source = '''
 repo = 'kristijanhusak/vim-carbon-now-sh'
 on_cmd = ['CarbonNowSh']
 hook_source = '''
-  let g:carbon_now_sh_browser = 'echo'
+  let g:carbon_now_sh_browser = 'save_to_clipper'
 '''

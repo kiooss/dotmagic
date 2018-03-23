@@ -49,3 +49,11 @@ if s:has_plug('fzf.vim')
   inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
 endif
 "}}}
+
+" show gutentags status in status line {{{
+if s:has_plug('vim-airline') && s:has_plug('vim-gutentags')
+  call airline#parts#define_function('gutentags','gutentags#statusline')
+  call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline")')
+  let g:airline_section_gutter = airline#section#create(['%=', 'gutentags'])
+endif
+"}}}

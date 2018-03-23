@@ -19,11 +19,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " set background=light
 " set background=dark
 
-" hard|medium|soft
-" let g:gruvbox_contrast_dark="hard"
-" let g:gruvbox_contrast_light="hard"
-" colorscheme gruvbox
-
 if filereadable(expand('~/.vimrc_background'))
   let g:airline_theme='base16_flat'
   let g:base16colorspace=256
@@ -44,22 +39,3 @@ endif
 " let g:solarized_termtrans=1
 " colorscheme solarized8_dark_high
 " colorscheme solarized8_dark
-
-" colorscheme molokai
-" colorscheme PaperColor
-
-" colorscheme hybrid_material
-" colorscheme monrovia
-
-" Airline Theme
-" let g:airline_theme='luna'
-" let g:airline_theme='powerlineish'
-" let g:airline_theme='badwolf'
-" let g:airline_theme='papercolor'
-" let g:airline_theme='gruvbox'
-
-if dein#tap('vim-airline') && dein#tap('vim-gutentags')
-  call airline#parts#define_function('gutentags','gutentags#statusline')
-  call airline#parts#define_condition('gutentags', 'exists("*gutentags#statusline")')
-  let g:airline_section_gutter = airline#section#create(['%=', 'gutentags'])
-endif

@@ -263,3 +263,24 @@ on_cmd = 'Sayonara'
 hook_add = '''
   nnoremap <silent> q :Sayonara<cr>
 '''
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+on_cmd = ['TableModeToggle']
+hook_add = '''
+  nnoremap <leader>T :TableModeToggle<cr>
+'''
+hook_source = '''
+  " Markdown-compatible tables
+  " let g:table_mode_corner='|'
+  " ReST-compatible tables use
+  let g:table_mode_corner_corner='+'
+  let g:table_mode_header_fillchar='='
+'''
+
+[[plugins]]
+repo = 'kristijanhusak/vim-carbon-now-sh'
+on_cmd = ['CarbonNowSh']
+hook_source = '''
+  let g:carbon_now_sh_browser = 'echo'
+'''

@@ -178,6 +178,8 @@ nnoremap <silent> g0 :<C-u>tabfirst<CR>
 nnoremap <silent> g$ :<C-u>tablast<CR>
 nnoremap <silent> gr :<C-u>tabprevious<CR>
 
+nnoremap <c-o>  <c-o>zvzz
+
 " git mappings
 nnoremap [Git]   <Nop>
 nmap     [Window]g [Git]

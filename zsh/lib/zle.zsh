@@ -67,3 +67,23 @@ git-publish() {
 }
 zle -N git-publish
 bindkey '^x^g' git-publish
+
+fancy-dot() {
+    local -a split
+    split=( ${=LBUFFER} )
+    local dir=$split[-1]
+    if [[ $LBUFFER =~ '(^| )(\.\./)+$' ]]; then
+        zle self-insert
+        zle self-insert
+        LBUFFER+=/
+        [ -e $dir ] && zle -M $dir(:a:h)
+    elif [[ $LBUFFER =~ '(^| )\.$' ]]; then
+        zle self-insert
+        LBUFFER+=/
+        [ -e $dir ] && zle -M $dir(:a:h)
+    else
+        zle self-insert
+    fi
+}
+zle -N fancy-dot
+bindkey '.' fancy-dot

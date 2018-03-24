@@ -305,3 +305,12 @@ function profile-vim() {
   FILE="$1"
   vi --startuptime /tmp/vim_startup.log +q $FILE && vi /tmp/vim_startup.log
 }
+
+fix-perm() {
+  [[ $1 = -h ]] && {
+    echo 'usage: fix-perm [dirs:700] [files:600]'
+    return 1
+  } 1>&2
+  find . -type d -exec chmod ${1-700} {} +
+  find . -type f -exec chmod ${2-600} {} +
+}

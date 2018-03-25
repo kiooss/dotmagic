@@ -239,6 +239,8 @@ inoremap <C-t> <></><Esc>5hdiwp3lpT>i
 inoremap {%     {%  %}<Left><Left><Left>
 inoremap <%     <%  %><Left><Left><Left>
 
+imap <a-o> <c-o>o
+
 " https://gist.github.com/tpope/287147
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 function! s:align()

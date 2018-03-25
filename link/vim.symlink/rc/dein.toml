@@ -289,6 +289,9 @@ repo = 'tpope/vim-eunuch'
 # repo = 'tpope/vim-sleuth'
 
 [[plugins]]
+repo = 'tpope/vim-dispatch'
+
+[[plugins]]
 repo = 'vim-scripts/jQuery'
 
 [[plugins]]

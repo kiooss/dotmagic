@@ -18,3 +18,5 @@ https://github.com/chriskempson/base16-vim
 https://github.com/bhilburn/powerlevel9k
 # clipper
 https://github.com/wincent/clipper
+# diff-so-fancy
+https://github.com/so-fancy/diff-so-fancy

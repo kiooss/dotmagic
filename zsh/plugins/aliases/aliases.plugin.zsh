@@ -10,10 +10,18 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias l="ls -CF"
-alias la="ls -AF"
-alias ll="ls -lahF"
-alias lld="ls -l | grep ^d"
+# exa is a better ls tool
+if which exa >/dev/null 2>&1; then
+  alias ls='exa'
+  alias l='exa -la --git'
+  alias la='exa -laa --git'
+  alias ll='exa -l --git'
+else
+  alias l="ls -CF"
+  alias la="ls -AF"
+  alias ll="ls -lahF"
+  alias lld="ls -l | grep ^d"
+fi
 
 alias rmf="rm -rf"
 alias tf="tail -f"
@@ -41,7 +49,7 @@ alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-    alias "$method"="lwp-request -m '$method'"
+  alias "$method"="lwp-request -m '$method'"
 done
 
 # tmuxinator

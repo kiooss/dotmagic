@@ -76,8 +76,7 @@ export MANPATH=$HOME/.dasht/man:$MANPATH
 export DEFAULT_USER="$USER"
 
 if [[ $ENABLE_PATCHED_FONT == true ]]; then
-  POWERLEVEL9K_MODE="awesome-fontconfig"
-  # POWERLEVEL9K_MODE='nerdfont-complete'
+  POWERLEVEL9K_MODE='nerdfont-complete'
   POWERLEVEL9K_USER_ICON=$'\uF263'
   POWERLEVEL9K_ROOT_ICON=" ROOT "
 fi

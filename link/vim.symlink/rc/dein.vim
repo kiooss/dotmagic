@@ -6,25 +6,32 @@ let g:dein#install_progress_type = 'echo'
 let g:dein#install_max_processes = 32
 let g:dein#install_log_filename = $VARPATH.'/dein.log'
 let s:path = expand('$VARPATH/dein')
-let s:config_path = $VIMPATH . '/rc/'
+let s:config_path = expand('$VIMPATH/rc')
 
 if !dein#load_state(s:path)
   finish
 endif
 
+let s:plugins_path = s:config_path . '/dein.toml'
+let s:lazy_plugins_path = s:config_path . '/deinlazy.toml'
+let s:neo_plugins_path = s:config_path . '/deineo.toml'
+let s:ft_path = s:config_path . '/deinft.toml'
+
 " Note: It executes ":filetype off" automatically.
-call dein#begin(s:path, expand('<sfile>'))
+call dein#begin(s:path, [
+      \ expand('<sfile>'),
+      \ s:plugins_path,
+      \ s:lazy_plugins_path,
+      \ s:neo_plugins_path,
+      \ s:ft_path
+      \])
 
-call dein#load_toml(s:config_path . '/dein.toml', {'lazy': 0})
-call dein#load_toml(s:config_path . '/deinlazy.toml', {'lazy' : 1})
+call dein#load_toml(s:plugins_path, {'lazy': 0})
+call dein#load_toml(s:lazy_plugins_path, {'lazy' : 1})
 if has('nvim')
-  call dein#load_toml(s:config_path . '/deineo.toml', {})
+  call dein#load_toml(s:neo_plugins_path)
 endif
-call dein#load_toml(s:config_path . '/deinft.toml')
-
-if dein#tap('deoplete.nvim') && has('nvim')
-  call dein#disable('neocomplete.vim')
-endif
+call dein#load_toml(s:ft_path)
 
 call dein#end()
 call dein#save_state()

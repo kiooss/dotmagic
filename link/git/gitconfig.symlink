@@ -87,7 +87,7 @@
 [core]
     excludesfile = ~/.gitignore_global
     ;pager = less -x4
-    pager = less -FXRS -x2
+	pager = diff-so-fancy | less --tabs=4 -RFX
     quotepath = false
     attributesfile = ~/.gitattributes
 [diff]
@@ -103,7 +103,7 @@
     status = auto
     branch = auto
     interactive = auto
-    ui = auto
+	ui = true
 [color "branch"]
     current = yellow reverse
     local = yellow
@@ -111,10 +111,12 @@
 [color "sh"]
     branch = yellow
 [color "diff"]
-    meta = cyan bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+	meta = yellow
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
 [color "status"]
     added = yellow bold
     changed = green bold
@@ -158,3 +160,8 @@
         exit 1 if b.include?(%(<)*%L)'"
 
 #  vim: set ts=4 sw=4 tw=80 et ft=gitconfig:
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22

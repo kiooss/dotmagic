@@ -284,3 +284,7 @@ on_cmd = ['CarbonNowSh']
 hook_source = '''
   let g:carbon_now_sh_browser = 'save_to_clipper'
 '''
+
+[[plugins]]
+repo = 'tweekmonster/startuptime.vim'
+on_cmd = ['StartupTime']

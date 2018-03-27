@@ -1,3 +1,6 @@
+# Non lazy load plugins
+
+# general plugins {{{
 [[plugins]]
 repo = 'Shougo/dein.vim'
 hook_add = '''
@@ -57,71 +60,6 @@ build = 'sh -c "PY3=ON ./install.sh"'
 on_if = "get(g:, 'enable_patched_font', 0)"
 repo = 'ryanoasis/vim-devicons'
 
-# [[plugins]]
-# repo = 'ervandew/supertab'
-
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
-hook_add = '''
-if !exists('g:context_filetype#same_filetypes')
-  let g:context_filetype#same_filetypes = {}
-endif
-" In c buffers, completes from cpp and d buffers.
-let g:context_filetype#same_filetypes.c = 'cpp,d'
-" In cpp buffers, completes from c buffers.
-let g:context_filetype#same_filetypes.cpp = 'c'
-" In gitconfig buffers, completes from all buffers.
-let g:context_filetype#same_filetypes.gitconfig = '_'
-" In default, completes from all buffers.
-let g:context_filetype#same_filetypes._ = '_'
-'''
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-on_if = '!has("nvim")'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-on_if = '!has("nvim")'
-
-[[plugins]]
-repo = 'Shougo/neco-syntax'
-
-# [[plugins]]
-# repo = 'Shougo/neocomplete.vim'
-# depends = 'context_filetype.vim'
-# if = "has('lua')"
-# on_event = 'InsertEnter'
-# hook_source = '''
-#   let g:neocomplete#enable_at_startup = 1
-#   source ~/.vim/rc/plugins/neocomplete.rc.vim
-# '''
-
-#################################################
-# Colors
-#################################################
-[[plugins]]
-repo = 'morhetz/gruvbox'
-
-[[plugins]]
-repo = 'ayu-theme/ayu-vim'
-
-[[plugins]]
-repo = 'lu-ren/SerialExperimentsLain'
-
-[[plugins]]
-repo = 'chriskempson/base16-vim'
-
-[[plugins]]
-repo = 'nightsense/vimspectr'
-
-[[plugins]]
-repo = 'rafi/awesome-vim-colorschemes'
-#################################################
-
-# [[plugins]]
-# repo = 'itchyny/lightline.vim'
-
 [[plugins]]
 repo = 'vim-airline/vim-airline'
 hook_add = '''
@@ -164,9 +102,6 @@ hook_add = '''
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
-# [[plugins]]
-# repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
-
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 hook_add = '''
@@ -177,7 +112,55 @@ hook_add = '''
 repo = 'pbrisbin/vim-mkdir'
 
 [[plugins]]
-repo = 'wellle/targets.vim'
+repo = 'terryma/vim-multiple-cursors'
+
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+hook_add = '''
+if !exists('g:context_filetype#same_filetypes')
+  let g:context_filetype#same_filetypes = {}
+endif
+" In c buffers, completes from cpp and d buffers.
+let g:context_filetype#same_filetypes.c = 'cpp,d'
+" In cpp buffers, completes from c buffers.
+let g:context_filetype#same_filetypes.cpp = 'c'
+" In gitconfig buffers, completes from all buffers.
+let g:context_filetype#same_filetypes.gitconfig = '_'
+" In default, completes from all buffers.
+let g:context_filetype#same_filetypes._ = '_'
+'''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+on_if = '!has("nvim")'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+on_if = '!has("nvim")'
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+# }}}
+# colors {{{
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
+
+[[plugins]]
+repo = 'lu-ren/SerialExperimentsLain'
+
+[[plugins]]
+repo = 'chriskempson/base16-vim'
+
+[[plugins]]
+repo = 'nightsense/vimspectr'
+
+[[plugins]]
+repo = 'rafi/awesome-vim-colorschemes'
+# }}}
 
 [[plugins]]
 repo = 'benmills/vimux'
@@ -202,9 +185,6 @@ hook_add ='''
   " Zoom the runner pane (use <bind-key> z to restore runner pane)
   map <Leader>vz :call VimuxZoomRunner()<CR>
 '''
-
-[[plugins]]
-repo = 'terryma/vim-multiple-cursors'
 
 [[plugins]]
 repo = 'gregsexton/MatchTag'
@@ -234,11 +214,14 @@ hook_add = '''
   endif
 '''
 
-[[plugins]]
-repo = 'vim-scripts/CmdlineComplete'
+# [[plugins]]
+# repo = 'vim-scripts/CmdlineComplete'
 
 [[plugins]]
 repo = 'chemzqm/vim-jsx-improve'
+
+[[plugins]]
+repo = 'vim-scripts/jQuery'
 
 # [[plugins]]
 # repo = 'pangloss/vim-javascript'
@@ -285,14 +268,12 @@ repo = 'tpope/vim-unimpaired'
 [[plugins]]
 repo = 'tpope/vim-eunuch'
 
-# [[plugins]]
-# repo = 'tpope/vim-sleuth'
-
 [[plugins]]
 repo = 'tpope/vim-dispatch'
 
+# text object plugins {{{
 [[plugins]]
-repo = 'vim-scripts/jQuery'
+repo = 'wellle/targets.vim'
 
 [[plugins]]
 repo = 'junegunn/vim-after-object'
@@ -317,16 +298,12 @@ repo = 'rhysd/vim-textobj-anyblock'
 
 [[plugins]]
 repo = 'nelstrom/vim-textobj-rubyblock'
+# }}}
 
 [[plugins]]
 repo = 'sickill/vim-pasta'
 
-[[plugins]]
-repo = 'tomtom/tlib_vim'
-
-[[plugins]]
-repo = 'MarcWeber/vim-addon-mw-utils'
-
+# snippets {{{
 [[plugins]]
 repo = 'SirVer/ultisnips'
 hook_add = '''
@@ -347,6 +324,7 @@ repo = 'honza/vim-snippets'
 
 [[plugins]]
 repo = 'algotech/ultisnips-php'
+# }}}
 
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
@@ -403,15 +381,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'nelsyeung/twig.vim'
-
-# [[plugins]]
-# repo = 'tweekmonster/startuptime.vim'
-
-# [[plugins]]
-# repo = 'chemzqm/vim-easygit'
-#
-# [[plugins]]
-# repo = 'chemzqm/denite-git'
 
 [[plugins]]
 repo = 'AndrewRadev/switch.vim'

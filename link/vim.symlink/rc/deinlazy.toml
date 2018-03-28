@@ -288,3 +288,10 @@ hook_source = '''
 [[plugins]]
 repo = 'tweekmonster/startuptime.vim'
 on_cmd = ['StartupTime']
+
+[[plugins]]
+repo = 'shmay/vim_html_to_haml'
+on_cmd = ['Html2Haml']
+hook_add = '''
+  vnoremap <leader>H :Html2Haml<cr>
+'''

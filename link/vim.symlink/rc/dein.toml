@@ -482,6 +482,7 @@ hook_add = '''
   vnoremap <silent> gK y:<C-U>call Dasht(getreg(0))<Return>
   let g:dasht_filetype_docsets = {}
   let g:dasht_filetype_docsets['ruby'] = ['Ruby_on_Rails*']
+  let g:dasht_filetype_docsets['haml'] = ['Ruby_on_Rails*']
   let g:dasht_filetype_docsets['php'] = ['Symfony']
 '''
 

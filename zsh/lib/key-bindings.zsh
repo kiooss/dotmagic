@@ -6,6 +6,10 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 bindkey ^Y accept-search
 
+# history-substring-search bind P and N for EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
 # make terminal command navigation sane again
 # bindkey '^[^[[D' backward-word
 # bindkey '^[^[[C' forward-word

@@ -14,6 +14,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead .jscsrc       setfiletype json
 
   autocmd BufNewFile,BufRead *.js setfiletype javascript.jsx
+  autocmd BufNewFile,BufRead *.cjsx setfiletype javascript.jsx
   autocmd BufNewFile,BufRead *_js.html.erb setfiletype javascript
   autocmd BufNewFile,BufRead *_js.html.twig setfiletype javascript
   autocmd BufNewFile,BufRead *.xlsx.axlsx setfiletype ruby

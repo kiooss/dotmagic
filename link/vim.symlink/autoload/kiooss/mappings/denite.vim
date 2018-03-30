@@ -31,7 +31,7 @@ function! kiooss#mappings#denite#init() abort
   nnoremap <silent> <Leader>vf :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
   nnoremap <silent> <Leader>vh :<C-u>Denite -buffer-name=search help<CR>
 
-  nnoremap <silent> <Leader>ag :<C-u>Denite -buffer-name=search
+  nnoremap <silent> <Leader>ga :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep<CR>
   nnoremap <silent> <Leader>gg :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep/git<CR>

@@ -17,7 +17,7 @@ let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
 " Omni input_patterns and functions {{{
 let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns', {})
 let g:deoplete#omni#input_patterns.python = ''
-let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+" let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
 let g:deoplete#omni#input_patterns.xml = '<[^>]*'
 let g:deoplete#omni#input_patterns.md = '<[^>]*'
 let g:deoplete#omni#input_patterns.css  = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
@@ -26,7 +26,7 @@ let g:deoplete#omni#input_patterns.sass = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
 let g:deoplete#omni#input_patterns.javascript = ''
 
 let g:deoplete#omni#functions = get(g:, 'deoplete#omni#functions', {})
-let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
+" let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
 let g:deoplete#omni#functions.css = 'csscomplete#CompleteCSS'
 let g:deoplete#omni#functions.html = 'htmlcomplete#CompleteTags'
 let g:deoplete#omni#functions.markdown = 'htmlcomplete#CompleteTags'

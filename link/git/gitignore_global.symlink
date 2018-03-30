@@ -29,6 +29,7 @@ TAGS
 !TAGS/
 tags
 .tags
+tags.temp
 !tags/
 gtags.files
 GTAGS

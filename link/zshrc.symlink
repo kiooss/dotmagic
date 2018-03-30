@@ -73,6 +73,19 @@ export PATH=$PATH:$HOME/.dasht/bin
 export MANPATH=$HOME/.dasht/man:$MANPATH
 # }}}
 
+# EDITOR ENV {{{
+if (( $+commands[nvim] )); then
+  export EDITOR=nvim
+elif (( $+commands[vim] )); then
+  export EDITOR=vim
+else
+  export EDITOR=vi
+fi
+export BUNDLER_EDITOR="$EDITOR"
+export SVN_EDITOR="$EDITOR"
+export GIT_EDITOR="$EDITOR"
+# }}}
+
 # POWERLEVEL9K config {{{
 export DEFAULT_USER="$USER"
 

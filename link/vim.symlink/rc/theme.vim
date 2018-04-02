@@ -13,10 +13,21 @@ if has('gui_running')
   set lines=70
 endif
 
+let s:use_base16_theme = get(g:, 'use_base16_theme', 1)
+if has('syntax')
+  if s:use_base16_theme
+    autocmd MyAutoCmd ColorScheme * call kiooss#autocmds#base16_customize()
+  else
+    autocmd MyAutoCmd ColorScheme *
+      \ highlight Comment gui=bold,italic
+      \ | highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold guifg=red guibg=NONE
+  endif
+endif
+
 " highlight conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-if get(g:, 'use_base16_theme', 1) && filereadable(expand('~/.vimrc_background'))
+if s:use_base16_theme && filereadable(expand('~/.vimrc_background'))
   let g:airline_theme='base16_flat'
   let g:base16colorspace=256
   source ~/.vimrc_background

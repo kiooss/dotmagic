@@ -7,9 +7,8 @@
 execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
       \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
 " }}}
-" My Autocmds {{{
-augroup KioossAutocmds
-  autocmd!
+
+augroup MyAutoCmd
   " {{{ file type specific settings
   autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
@@ -45,9 +44,9 @@ augroup KioossAutocmds
 
   " Reload Vim script automatically if setlocal autoread
   autocmd BufWritePost,FileWritePost *.vim nested
-    \ if &l:autoread > 0 | source <afile> |
-    \   echo 'source '.bufname('%') |
-    \ endif
+        \ if &l:autoread > 0 | source <afile> |
+        \   echo 'source '.bufname('%') |
+        \ endif
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -60,10 +59,8 @@ augroup KioossAutocmds
         \ if &ft ==# 'dirvish'
         \ |   GitGutterDisable
         \ | else
-        \ |   GitGutterEnable
-        \ | endif
-  " autocmd BufDelete * :call QuitIfLastBuffer()
-
+          \ |   GitGutterEnable
+          \ | endif
   " Show absolute numbers in insert mode, otherwise relative line numbers.
   autocmd InsertEnter *
         \ if &relativenumber | setlocal norelativenumber | endif |
@@ -72,14 +69,8 @@ augroup KioossAutocmds
 
   " Disable paste.
   autocmd InsertLeave *
-      \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
+        \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
       \ if &l:diff | diffupdate | endif
-
-  " Automatic rename of tmux window
-  if exists('$TMUX') && !exists('$NORENAME')
-    autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
-    autocmd VimLeave * call system('tmux set-window automatic-rename on')
-  endif
 
   " window hlight {{{
   " Make current window more obvious by turning off/adjusting some features
@@ -96,22 +87,11 @@ augroup KioossAutocmds
     autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
   endif "}}}
 
-augroup END"}}}
-" Base16 customize {{{
-if has('syntax') && get(g:, 'use_base16_theme', 1)
-  augroup on_change_colorschema
-    autocmd!
-    autocmd ColorScheme * call kiooss#autocmds#base16_customize()
-  augroup END
-endif
-"}}}
-" Check clpper process {{{
-if exists('##TextYankPost') && get(g:, 'check_clipper', 0)
-  augroup check_clipper
-    autocmd!
-    autocmd TextYankPost * if v:event.operator ==# 'y' | call kiooss#autocmds#check_clipper() | endif
-  augroup END
-endif
-"}}}
+  " Automatic rename of tmux window
+  if exists('$TMUX') && !exists('$NORENAME')
+    autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+    autocmd VimLeave * call system('tmux set-window automatic-rename on')
+  endif
+augroup END
 
 " vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

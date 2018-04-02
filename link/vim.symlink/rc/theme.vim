@@ -19,8 +19,9 @@ if has('syntax')
     autocmd MyAutoCmd ColorScheme * call kiooss#autocmds#base16_customize()
   else
     autocmd MyAutoCmd ColorScheme *
-      \ highlight Comment gui=bold,italic
-      \ | highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold guifg=red guibg=NONE
+          \ highlight Comment gui=bold,italic
+          \ | highlight Folded gui=bold,italic
+          \ | highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold guifg=red guibg=NONE
   endif
 endif
 

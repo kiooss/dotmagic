@@ -16,17 +16,15 @@ endif
 " highlight conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" set background=light
-" set background=dark
-
-if filereadable(expand('~/.vimrc_background'))
+if get(g:, 'use_base16_theme', 1) && filereadable(expand('~/.vimrc_background'))
   let g:airline_theme='base16_flat'
   let g:base16colorspace=256
   source ~/.vimrc_background
 else
-  set background=dark
-  let g:airline_theme='hybrid'
-  colorscheme gruvbox
+  " set background=dark
+  let g:airline_theme='ayu'
+  let ayucolor="mirage" " for mirage version of theme
+  colorscheme ayu
 endif
 
 " let ayucolor="light"  " for light version of theme

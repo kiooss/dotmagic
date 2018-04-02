@@ -98,7 +98,7 @@ augroup KioossAutocmds
 
 augroup END"}}}
 " Base16 customize {{{
-if has('syntax')
+if has('syntax') && get(g:, 'use_base16_theme', 1)
   augroup on_change_colorschema
     autocmd!
     autocmd ColorScheme * call kiooss#autocmds#base16_customize()

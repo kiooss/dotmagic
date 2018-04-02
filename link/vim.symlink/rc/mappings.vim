@@ -92,6 +92,9 @@ nnoremap <silent> <Leader>hp :call zvim#previewHunkToggle()<CR>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
+nnoremap <silent> gj j
+nnoremap <silent> gk k
+
 nnoremap <silent> g; g;zvzz
 nnoremap <silent> g, g,zvzz
 

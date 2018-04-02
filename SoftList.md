@@ -20,3 +20,5 @@ https://github.com/bhilburn/powerlevel9k
 https://github.com/wincent/clipper
 # diff-so-fancy
 https://github.com/so-fancy/diff-so-fancy
+# exa
+https://github.com/ogham/exa

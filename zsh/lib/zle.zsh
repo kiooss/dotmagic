@@ -6,24 +6,6 @@ zle -N slash-backward-kill-word
 # <alt+backspace>
 bindkey '\e^?' slash-backward-kill-word
 
-rule () {
-  print -Pn '%F{blue}'
-  local columns=$(tput cols)
-  for ((i=1; i<=columns; i++)); do
-    printf "\u2588"
-  done
-  print -P '%f'
-}
-
-function _my_clear() {
-  echo
-  rule
-  zle clear-screen
-}
-zle -N _my_clear
-bindkey '^l' _my_clear
-
-
 if (( $+commands[ranger] )); then
   # Ctrl-O opens zsh at the current location, and on exit, cd into ranger's last location.
   ranger-cd() {

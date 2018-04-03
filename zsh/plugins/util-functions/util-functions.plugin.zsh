@@ -314,3 +314,17 @@ fix-perm() {
   find . -type d -exec chmod ${1-700} {} +
   find . -type f -exec chmod ${2-600} {} +
 }
+
+aws-get-ips() {
+  aws ec2 describe-instances --profile "$1" | jq '.Reservations | .[]' | jq '.Instances | .[]' | jq '.Tags[].Value + ":" + .PublicIpAddress'
+}
+
+aws-ip-to-ssh-config() {
+  profile="$1"
+  aws ec2 describe-instances --profile "$profile" \
+    --query "Reservations[].Instances[].[PublicIpAddress,Tags[?Key=='Name'].Value]" \
+    --output=text \
+    | sed 'N;s/\n/ /' \
+    | grep -v None \
+    | awk '{print "Host alan-"$2"\n  Hostname "$1"\n"}'
+}

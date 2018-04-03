@@ -1,15 +1,5 @@
 # NOTE: the plugins bdon't have plugin directroy do not need dein lazy load mechanism.
 
-# [[plugins]]
-# repo = 'Shougo/neomru.vim'
-# on_source = ['denite.nvim']
-
-# [[plugins]]
-# repo = 'Shougo/neoyank.vim'
-# on_if = 1
-# on_event = 'TextYankPost'
-# on_source = ['denite.nvim']
-
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
@@ -236,8 +226,7 @@ hook_source = 'let g:committia_min_window_width = 70'
 repo = 'lambdalisue/suda.vim'
 on_path = 'suda://'
 hook_add = '''
-  cnoreabbrev w!! w suda://%
-  cnoremap W!! w suda://%
+  command! SudaWrite w suda://%
 '''
 
 [[plugins]]

@@ -1,12 +1,8 @@
 # NOTE: the plugins bdon't have plugin directroy do not need dein lazy load mechanism.
 
-[[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-on_source = ['unite.vim', 'vimshell.vim']
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
+# [[plugins]]
+# repo = 'Shougo/neomru.vim'
+# on_source = ['denite.nvim']
 
 # [[plugins]]
 # repo = 'Shougo/neoyank.vim'
@@ -17,7 +13,6 @@ repo = 'Shougo/neomru.vim'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
-depends = ['neomru.vim']
 hook_source = "source $VIMPATH/rc/plugins/denite.vim"
 hook_add = 'call kiooss#mappings#denite#init()'
 

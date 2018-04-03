@@ -45,11 +45,15 @@ language message C
 " Use <Leader> in global plugin.
 let g:mapleader = "\<Space>"
 " Use <LocalLeader> in filetype plugin.
-let g:maplocalleader = ','
+let g:maplocalleader = ';'
 
 " Release keymappings for plug-in.
-" nnoremap ;  <Nop>
-" nnoremap ,  <Nop>
+nnoremap <Space>  <Nop>
+xnoremap <Space>  <Nop>
+nnoremap ,        <Nop>
+xnoremap ,        <Nop>
+nnoremap ;        <Nop>
+xnoremap ;        <Nop>
 
 if IsWindows()
   " Exchange path separator.

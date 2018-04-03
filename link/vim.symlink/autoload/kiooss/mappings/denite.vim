@@ -1,9 +1,10 @@
 " denite key mappings
 function! kiooss#mappings#denite#init() abort
-  nnoremap <silent> <leader>fg  :<C-u>Denite file_rec/git -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <leader>fo  :<C-u>Denite file/old -mode=normal -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <leader>ol :<C-u>Denite outline -highlight-mode-insert=Search<CR>
-  nnoremap <silent> <leader>ls :<C-u>Denite buffer -mode=normal<CR>
+  nnoremap <silent><LocalLeader>b :<C-u>Denite buffer file_old -default-action=switch<CR>
+  nnoremap <silent><LocalLeader>f :<C-u>Denite file_rec/git<CR>
+  nnoremap <silent><LocalLeader>o :<C-u>Denite outline<CR>
+  nnoremap <silent><LocalLeader>v :<C-u>Denite file_rec/git:~/.dotfiles/link/vim.symlink/<CR>
+  nnoremap <silent><LocalLeader>; :<C-u>Denite command command_history<CR>
   nnoremap <silent> <Leader>r
         \ :<C-u>Denite -mode=normal -buffer-name=register
         \ -highlight-mode-insert=Search register<CR>
@@ -24,8 +25,6 @@ function! kiooss#mappings#denite#init() abort
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
 
-  nnoremap <silent> <Leader>vv
-        \ :<C-u>Denite file_rec/git:~/.dotfiles/link/vim.symlink/ -highlight-mode-insert=Search<CR>
   nnoremap <silent> <Leader>vn :<C-u>Denite dein -default-action=open<CR>
   nnoremap <silent> <Leader>vc :<C-u>Denite colorscheme -auto-preview<CR>
   nnoremap <silent> <Leader>vf :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
@@ -45,8 +44,6 @@ function! kiooss#mappings#denite#init() abort
   nnoremap <silent> <Leader>gl :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal gitlog<CR>
   nnoremap <silent> <Leader>gs :<C-u>Denite -mode=normal gitstatus<CR>
-  " nnoremap <silent> ;;
-  "       \ :<C-u>Denite command command_history<CR>
 
   " denite-rails
   nnoremap [rails] <Nop>

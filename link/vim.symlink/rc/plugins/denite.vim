@@ -3,7 +3,7 @@
 "
 " INTERFACE
 call denite#custom#option('_', {
-      \ 'prompt': '➤',
+      \ 'prompt': 'λ:',
       \ 'cursor_wrap': v:true,
       \ 'short_source_names': v:true,
       \ 'vertical_preview': 1,

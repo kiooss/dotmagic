@@ -4,7 +4,11 @@
 "==============================================================================
 
 function! s:has_plug(name) abort
-  return dein#tap(a:name)
+  if exists("*dein#tap")
+    return dein#tap(a:name)
+  else
+    return 0
+  endif
 endfunction
 
 " FZF {{{

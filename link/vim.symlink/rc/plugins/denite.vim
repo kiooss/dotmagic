@@ -19,7 +19,7 @@ call denite#custom#option('_', {
 call denite#custom#source('tag,line', 'matchers', ['matcher_substring'])
 if has('nvim') && &runtimepath =~# '\/cpsm'
   call denite#custom#source(
-    \ 'buffer,file_mru,file/old,file_rec,grep,file_rec/git,grep/git',
+    \ 'buffer,file_old,file_rec,grep,file_rec/git,grep/git',
     \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy', 'matcher_ignore_globs'])
 endif
 " call denite#custom#source('file/old', 'matchers',

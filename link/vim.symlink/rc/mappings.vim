@@ -23,8 +23,8 @@
 " noremap : ;
 
 " Smart space mapping
-nnoremap  [Space]   <Nop>
-nmap  <Space>   [Space]
+" nnoremap  [Space]   <Nop>
+" nmap  <Space>   [Space]
 
 " Focus the current fold by closing all others
 nnoremap <CR> zMza
@@ -115,14 +115,11 @@ nnoremap <silent> g= :<C-u>call zvim#format()<CR>
 " nnoremap <C-h> <C-W>h<C-W>_
 " nnoremap <C-l> <C-W>l<C-W>_
 
-" Redraw.
-" nnoremap <silent> <C-l>    :<C-u>redraw!<CR>
-
 " simplify resizing splits
-nnoremap <Down> <C-w>-
-nnoremap <Up> <C-w>+
-nnoremap <Left> <C-w><
-nnoremap <Right> <C-w>>
+" nnoremap <Down> <C-w>-
+" nnoremap <Up> <C-w>+
+" nnoremap <Left> <C-w><
+" nnoremap <Right> <C-w>>
 
 " <tab> / <s-tab> | Circular windows navigation
 " nnoremap <tab>   <c-w>w

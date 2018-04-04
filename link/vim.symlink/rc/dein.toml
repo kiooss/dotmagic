@@ -28,10 +28,10 @@ hook_add = '''
           \ { 'tc': '~/.tmux.conf' },
           \ ]
   let g:startify_commands = [
-      \ ['Vim Reference', 'h ref'],
-      \ ['Vim CheckHealth', 'CheckHealth'],
-      \ ['Dein recache rtp', 'call dein#recache_runtimepath()'],
-      \ ['Update plugins', 'call dein#update()'],
+      \ { 'c1': ['Vim Reference', 'h ref'] },
+      \ { 'c2': ['Vim CheckHealth', 'CheckHealth'] },
+      \ { 'c3': ['Dein recache rtp', 'call dein#recache_runtimepath()'] },
+      \ { 'c4': ['Update plugins', 'call dein#update()'] },
       \ ]
   let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',

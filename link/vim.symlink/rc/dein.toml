@@ -1,11 +1,10 @@
 # Non lazy load plugins
 
-# general plugins {{{
 [[plugins]]
 repo = 'Shougo/dein.vim'
 hook_add = '''
-command! DeinRecache call dein#recache_runtimepath()
-command! DeinCleanUp call map(dein#check_clean(), "delete(v:val, 'rf')")
+  command! DeinRecache call dein#recache_runtimepath()
+  command! DeinCleanUp call map(dein#check_clean(), "delete(v:val, 'rf')")
 '''
 
 [[plugins]]
@@ -114,7 +113,6 @@ repo = 'pbrisbin/vim-mkdir'
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
 
-
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 hook_add = '''
@@ -130,7 +128,6 @@ let g:context_filetype#same_filetypes.gitconfig = '_'
 " In default, completes from all buffers.
 let g:context_filetype#same_filetypes._ = '_'
 '''
-
 [[plugins]]
 repo = 'roxma/nvim-yarp'
 on_if = '!has("nvim")'
@@ -141,8 +138,8 @@ on_if = '!has("nvim")'
 
 [[plugins]]
 repo = 'Shougo/neco-syntax'
-# }}}
-# colors {{{
+
+#### colors start
 [[plugins]]
 repo = 'morhetz/gruvbox'
 
@@ -160,7 +157,10 @@ repo = 'nightsense/vimspectr'
 
 [[plugins]]
 repo = 'rafi/awesome-vim-colorschemes'
-# }}}
+
+[[plugins]]
+repo = 'whatyouhide/vim-gotham'
+#### colors end
 
 [[plugins]]
 repo = 'benmills/vimux'

@@ -11,8 +11,8 @@ endfunction
 
 function! IsMac() abort
   return !s:is_windows && !has('win32unix')
-      \ && (has('mac') || has('macunix') || has('gui_macvim')
-      \     || (!executable('xdg-open') && system('uname') =~? '^darwin'))
+        \ && (has('mac') || has('macunix') || has('gui_macvim')
+        \     || (!executable('xdg-open') && system('uname') =~? '^darwin'))
 endfunction
 
 " Setting of the encoding to use for a save and reading.
@@ -57,7 +57,7 @@ xnoremap ;        <Nop>
 
 if IsWindows()
   " Exchange path separator.
-   set shellslash
+  set shellslash
 endif
 
 " Ensure cache directory "{{{
@@ -70,17 +70,19 @@ if filereadable(expand('~/.secret_vimrc'))
 endif
 
 " Load dein.
-let s:dein_dir = finddir('dein.vim', '.;')
-if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
-  if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
-    let s:dein_dir = expand('$VARPATH/dein')
-          \. '/repos/github.com/Shougo/dein.vim'
-    if !isdirectory(s:dein_dir)
-      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+if g:load_plugins
+  let s:dein_dir = finddir('dein.vim', '.;')
+  if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
+    if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
+      let s:dein_dir = expand('$VARPATH/dein')
+            \. '/repos/github.com/Shougo/dein.vim'
+      if !isdirectory(s:dein_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+      endif
     endif
+    execute 'set runtimepath^=' . substitute(
+          \ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
   endif
-  execute 'set runtimepath^=' . substitute(
-        \ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
 endif
 
 " Disable packpath

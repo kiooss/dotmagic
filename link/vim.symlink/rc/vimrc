@@ -18,6 +18,7 @@ let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
 
 let g:enable_patched_font = ($ENABLE_PATCHED_FONT ==? 'true')
+let g:load_plugins = 1
 
 function! s:source_rc(path, ...) abort "{{{
   let use_global = get(a:000, 0, !has('vim_starting'))
@@ -52,13 +53,15 @@ if has('vim_starting')
   call s:source_rc('init.vim')
 endif
 
-call s:source_rc('dein.vim')
-call s:source_rc('plugins/mix.vim')
+if g:load_plugins
+  call s:source_rc('dein.vim')
+  call s:source_rc('plugins/mix.vim')
+endif
 
 syntax enable
 filetype plugin indent on
 
-if !has('vim_starting')
+if !has('vim_starting') && g:load_plugins
   call dein#call_hook('source')
   call dein#call_hook('post_source')
 endif

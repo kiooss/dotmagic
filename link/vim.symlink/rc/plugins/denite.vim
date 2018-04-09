@@ -16,26 +16,21 @@ call denite#custom#option('_', {
 
 " MATCHERS
 " Default is 'matcher_fuzzy'
-" call denite#custom#source('tag,line', 'matchers', ['matcher_substring'])
+call denite#custom#source('file/old', 'matchers',
+      \ ['matcher/fuzzy', 'matcher/project_files', 'matcher/ignore_globs'])
+call denite#custom#source('tag', 'matchers', ['matcher/substring'])
+
 if has('nvim') && &runtimepath =~# '\/cpsm'
   call denite#custom#source(
-    \ 'buffer,file_old,file_rec,grep,file_rec/git,grep/git,line',
-    \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy', 'matcher_ignore_globs'])
+    \ 'buffer,file_rec,grep,file_rec/git,grep/git,line',
+    \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy', 'matcher/ignore_globs'])
 endif
-" call denite#custom#source('file/old', 'matchers',
-"       \ ['matcher_fuzzy', 'matcher_project_files'])
-" if has('nvim')
-"   call denite#custom#source('file_rec,grep', 'matchers',
-"         \ ['matcher_cpsm'])
-" endif
-" call denite#custom#source('file/old', 'converters',
-"       \ ['converter_relative_word'])
 
 " CONVERTERS
 " Default is none
 if get(g:, 'webdevicons_enable_denite', 0)
   call denite#custom#source(
-        \ 'file_rec,file_rec/git,file/old,buffer,file_mru,directory_rec',
+        \ 'file_rec,file_rec/git,file/old,buffer,directory_rec',
         \ 'converters', ['devicons_denite_converter', 'converter_relative_word'])
 else
   call denite#custom#source(
@@ -87,17 +82,8 @@ call denite#custom#var(
       \ 'buffer',
       \ 'date_format', '%Y-%m-%d %H:%M:%S')
 
-let s:menus = {}
-let s:menus.vim = {
-    \ 'description': 'Vim',
-    \ }
-let s:menus.vim.file_candidates = [
-    \ ['    > Edit configuation file (init.vim)', '~/.config/nvim/']
-    \ ]
-call denite#custom#var('menu', 'menus', s:menus)
-
 " Change ignore_globs
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
       \ [ '.git/', '.ropeproject/', '__pycache__/', 'tmp/', 'var/', '.deprecated/',
       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', 'tags', '*.png', '*.bmp'])
 
@@ -117,6 +103,7 @@ let s:insert_mode_mappings = [
       \  ['<C-v>', '<denite:do_action:vsplit>', 'noremap'],
       \  ['<C-u>', '<denite:delete_entire_text>', 'noremap'],
       \  ['<C-Y>', '<denite:redraw>', 'noremap'],
+      \  ['<C-r>', '<denite:toggle_matchers:matcher/substring>', 'noremap'],
       \ ]
 
 let s:normal_mode_mappings = [

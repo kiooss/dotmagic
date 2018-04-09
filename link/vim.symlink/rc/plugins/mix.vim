@@ -44,9 +44,10 @@ if s:has_plug('fzf.vim')
     \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
 
   nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
-  nnoremap <silent> <leader>ag       :Ag <C-R><C-W><CR>
-  nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
-  xnoremap <silent> <Leader>ag       y:Ag <C-R>"<CR>
+  nnoremap <silent> <LocalLeader>g   :Ag<CR>
+  xnoremap <silent> <LocalLeader>g   y:Ag <C-R>"<CR>
+  nnoremap <silent> <LocalLeader>ag       :Ag <C-R><C-W><CR>
+  nnoremap <silent> <LocalLeader>AG       :Ag <C-R><C-A><CR>
 
   nnoremap <leader>fzbc :BCommits<CR>
   nnoremap <leader>fzc :Commits<CR>

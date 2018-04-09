@@ -43,9 +43,13 @@ if s:has_plug('fzf.vim')
   command! -bang -nargs=? -complete=dir GFiles
     \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
 
+  " Ag match only file content, but not file name.
+  command! -bang -nargs=* GrepWord
+    \ call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
   nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
-  nnoremap <silent> <LocalLeader>g   :Ag<CR>
-  xnoremap <silent> <LocalLeader>g   y:Ag <C-R>"<CR>
+  nnoremap <silent> <LocalLeader>g   :GrepWord<CR>
+  xnoremap <silent> <LocalLeader>g   y:GrepWord <C-R>"<CR>
   nnoremap <silent> <LocalLeader>ag       :Ag <C-R><C-W><CR>
   nnoremap <silent> <LocalLeader>AG       :Ag <C-R><C-A><CR>
 

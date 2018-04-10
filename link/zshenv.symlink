@@ -9,4 +9,4 @@
 # ~/.zlogin
 # }}}
 
-export TZ="/usr/share/zoneinfo/Asia/Tokyo"
+# export TZ="/usr/share/zoneinfo/Asia/Tokyo"

@@ -2,18 +2,17 @@
 " deoplete.nvim
 "
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#buffer#require_same_filetype = 0
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#skip_chars = ['(', ')', '<', '>']
-let g:deoplete#file#enable_buffer_path = 1
-" use phpcd
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
-
-let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
-let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
-let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
+call deoplete#custom#option('camel_case', v:true)
+call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
+" ignore sources
+call deoplete#custom#option('ignore_sources', {
+      \ 'php': ['omni']
+      \})
+" keywordk patterns
+call deoplete#custom#option('keyword_patterns', {
+      \ '_': '[a-zA-Z_]\k*\(?',
+      \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
+      \ })
 " Omni input_patterns and functions {{{
 let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns', {})
 let g:deoplete#omni#input_patterns.python = ''
@@ -82,6 +81,15 @@ endfunction "}}}
 " matcher_length removes candidates shorter than or equal to the user input.
 call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy', 'matcher_length'])
 
+" converters
+call deoplete#custom#source('_', 'converters', [
+      \ 'converter_remove_paren',
+      \ 'converter_remove_overlap',
+      \ 'converter_truncate_abbr',
+      \ 'converter_truncate_menu',
+      \ 'converter_auto_delimiter',
+      \ ])
+
 " Change the source rank
 call deoplete#custom#source('ultisnips',   'rank',  510)
 call deoplete#custom#source('phpcd',       'rank',  500)
@@ -102,20 +110,14 @@ call deoplete#custom#source('phpcd',      'mark',  '')
 call deoplete#custom#source('look',       'mark',  'ℒ𝒪𝒪𝒦')
 call deoplete#custom#source('ultisnips',  'mark',  '⌘')
 
-" converters
-call deoplete#custom#source('_', 'converters', [
-      \ 'converter_remove_paren',
-      \ 'converter_remove_overlap',
-      \ 'converter_truncate_abbr',
-      \ 'converter_truncate_menu',
-      \ 'converter_auto_delimiter',
-      \ ])
-
 " call deoplete#custom#source('buffer', 'min_pattern_length', 9999)
 " call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
 " call deoplete#custom#source('clang', 'max_pattern_length', -1)
 
+call deoplete#custom#source('buffer', 'require_same_filetype', v:false)
 call deoplete#custom#source('look', 'min_pattern_length', 4)
+call deoplete#custom#source('file', 'enable_buffer_path', v:true)
+
 "}}}
 " Debug config {{{
 " let g:deoplete#enable_profile = 1

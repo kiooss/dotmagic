@@ -2,6 +2,7 @@
 " deoplete.nvim
 "
 let g:deoplete#enable_at_startup = 1
+" custom options {{{
 call deoplete#custom#option('camel_case', v:true)
 call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
 " ignore sources
@@ -13,22 +14,6 @@ call deoplete#custom#option('keyword_patterns', {
       \ '_': '[a-zA-Z_]\k*\(?',
       \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
       \ })
-" Omni input_patterns and functions {{{
-let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns', {})
-let g:deoplete#omni#input_patterns.python = ''
-" let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
-let g:deoplete#omni#input_patterns.xml = '<[^>]*'
-let g:deoplete#omni#input_patterns.md = '<[^>]*'
-let g:deoplete#omni#input_patterns.css  = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.scss = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.sass = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.javascript = ''
-
-let g:deoplete#omni#functions = get(g:, 'deoplete#omni#functions', {})
-" let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
-let g:deoplete#omni#functions.css = 'csscomplete#CompleteCSS'
-let g:deoplete#omni#functions.html = 'htmlcomplete#CompleteTags'
-let g:deoplete#omni#functions.markdown = 'htmlcomplete#CompleteTags'
 "}}}
 " Key-mappings and Events " {{{
 " ---
@@ -110,13 +95,24 @@ call deoplete#custom#source('phpcd',      'mark',  '')
 call deoplete#custom#source('look',       'mark',  'ℒ𝒪𝒪𝒦')
 call deoplete#custom#source('ultisnips',  'mark',  '⌘')
 
-" call deoplete#custom#source('buffer', 'min_pattern_length', 9999)
-" call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
-" call deoplete#custom#source('clang', 'max_pattern_length', -1)
-
 call deoplete#custom#source('buffer', 'require_same_filetype', v:false)
 call deoplete#custom#source('look', 'min_pattern_length', 4)
 call deoplete#custom#source('file', 'enable_buffer_path', v:true)
+
+" Omni input_patterns and functions
+call deoplete#custom#source('omni', 'input_patterns', {
+      \'xml': '<[^>]*',
+      \'md': '<[^>]*',
+      \'css': '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]',
+      \'scss': '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]',
+      \'sass': '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]',
+      \})
+
+call deoplete#custom#source('omni', 'functions', {
+      \'css': 'csscomplete#CompleteCSS',
+      \'html': 'htmlcomplete#CompleteTags',
+      \'markdown': 'htmlcomplete#CompleteTags',
+      \})
 
 "}}}
 " Debug config {{{

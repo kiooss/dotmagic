@@ -29,7 +29,8 @@ else
   try
     " let g:airline_theme='ayu'
     " let ayucolor="mirage" " for mirage version of theme
-    colorscheme gotham
+    " colorscheme gotham
+    colorscheme neodark
   catch
   endtry
 endif

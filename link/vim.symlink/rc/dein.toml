@@ -160,6 +160,9 @@ repo = 'rafi/awesome-vim-colorschemes'
 
 [[plugins]]
 repo = 'whatyouhide/vim-gotham'
+
+[[plugins]]
+repo = 'KeitaNakamura/neodark.vim'
 #### colors end
 
 [[plugins]]

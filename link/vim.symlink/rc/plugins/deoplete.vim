@@ -7,6 +7,7 @@ call deoplete#custom#option('camel_case', v:true)
 call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
 " ignore sources
 call deoplete#custom#option('ignore_sources', {
+      \ '_': ['tag'],
       \ 'php': ['omni']
       \})
 " keywordk patterns
@@ -65,6 +66,7 @@ endfunction "}}}
 
 " matcher_length removes candidates shorter than or equal to the user input.
 call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy', 'matcher_length'])
+call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
 " converters
 call deoplete#custom#source('_', 'converters', [
@@ -76,14 +78,13 @@ call deoplete#custom#source('_', 'converters', [
       \ ])
 
 " Change the source rank
-call deoplete#custom#source('ultisnips',   'rank',  510)
+call deoplete#custom#source('ultisnips',   'rank',  1000)
 call deoplete#custom#source('phpcd',       'rank',  500)
 call deoplete#custom#source('omni',        'rank',  420)
 call deoplete#custom#source('file',        'rank',  410)
 call deoplete#custom#source('around',      'rank',  330)
 call deoplete#custom#source('buffer',      'rank',  320)
 call deoplete#custom#source('dictionary',  'rank',  310)
-call deoplete#custom#source('syntax',      'rank',  200)
 call deoplete#custom#source('look',        'rank',  100)
 
 call deoplete#custom#source('omni',       'mark',  '⌾')

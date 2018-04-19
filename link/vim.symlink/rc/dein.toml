@@ -136,8 +136,8 @@ on_if = '!has("nvim")'
 repo = 'roxma/vim-hug-neovim-rpc'
 on_if = '!has("nvim")'
 
-[[plugins]]
-repo = 'Shougo/neco-syntax'
+# [[plugins]]
+# repo = 'Shougo/neco-syntax'
 
 #### colors start
 [[plugins]]
@@ -348,6 +348,11 @@ repo = 'w0rp/ale'
 hook_add = '''
   let g:ale_set_quickfix = 1
   let g:ale_lint_delay = 1000
+  let g:ale_lint_on_text_changed = 0
+  let g:ale_lint_on_save = 1
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+  let g:ale_vim_vint_show_style_issues = 0
+
   let g:ale_linter_aliases = {
         \'javascript.jsx': 'javascript',
         \'jsx': 'javascript'
@@ -357,25 +362,10 @@ hook_add = '''
   \   'javascript': ['eslint'],
   \   'ruby': ['ruby', 'rubocop'],
   \}
-  " \   'ruby': ['ruby', 'rails_best_practices'],
-  " let g:ale_open_list = 1
-  " let g:ale_keep_list_window_open = 1
-  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-  " let g:ale_sign_error = '>>'
-  " let g:ale_sign_info = '--'
-  " let g:ale_sign_style_error = '>>'
-  " let g:ale_sign_style_warning = '--'
-  " let g:ale_sign_warning = '--'
   if get(g:, 'enable_patched_font', 0)
-    let g:ale_echo_msg_error_str = '𝓔'
-    let g:ale_echo_msg_warning_str = '𝓦'
     let g:ale_statusline_format = ['✖ %d', '⚠ %d', '⬥ ok']
-    let g:ale_sign_error = ''
-    let g:ale_sign_warning = '➤'
   endif
-
-  let g:ale_vim_vint_show_style_issues = 0
 
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -487,9 +477,6 @@ hook_add = '''
   let g:dasht_filetype_docsets['haml'] = ['Ruby_on_Rails*']
   let g:dasht_filetype_docsets['php'] = ['Symfony']
 '''
-
-# [[plugins]]
-# repo = 'uplus/deoplete-solargraph'
 
 [[plugins]]
 repo = 'AndrewRadev/splitjoin.vim'

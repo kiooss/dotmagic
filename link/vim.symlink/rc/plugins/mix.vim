@@ -48,14 +48,11 @@ if s:has_plug('fzf.vim')
     \ call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
   nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
+  nnoremap <silent> <LocalLeader>f   :GFiles<CR>
   nnoremap <silent> <LocalLeader>g   :GrepWord<CR>
   xnoremap <silent> <LocalLeader>g   y:GrepWord <C-R>"<CR>
   nnoremap <silent> <LocalLeader>ag       :Ag <C-R><C-W><CR>
   nnoremap <silent> <LocalLeader>AG       :Ag <C-R><C-A><CR>
-
-  nnoremap <leader>fzbc :BCommits<CR>
-  nnoremap <leader>fzc :Commits<CR>
-  nnoremap <leader>fzm :Maps<CR>
 
   inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
 endif

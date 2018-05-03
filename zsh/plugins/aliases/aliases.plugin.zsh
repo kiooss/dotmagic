@@ -79,3 +79,5 @@ alias clip="nc -U ~/.clipper.sock"
 alias fix-time="sudo systemctl restart ntp.service && ntpq -p"
 
 alias debug-nvim="NVIM_PYTHON_LOG_FILE=/tmp/log && NVIM_PYTHON_LOG_LEVEL=DEBUG nvim"
+
+alias fix-gemlock-conflict="git checkout HEAD -- Gemfile.lock && bundle"

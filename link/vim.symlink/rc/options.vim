@@ -20,7 +20,7 @@ set fileformats=unix,dos,mac " Use Unix as the standard file type
 set magic                    " For regular expressions turn magic on
 set path=.,**                " Directories to search when using gf
 " set virtualedit=block        " Position cursor anywhere in visual block
-set whichwrap=[,]
+" set whichwrap=[,]
 set synmaxcol=1000           " Don't syntax highlight long lines
 set formatoptions+=1         " Don't break lines after a one-letter word
 set formatoptions-=t         " Don't auto-wrap text
@@ -108,7 +108,6 @@ set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
 " set linebreak                   " Break long lines at 'breakat'
 " set breakat=\ \	;:,!?           " Long lines break chars
 set nostartofline               " Cursor in same column for few commands
-" set whichwrap+=h,l,<,>,[,],~    " Move to following line on certain keys
 set splitbelow splitright       " Splits open bottom right
 set switchbuf=useopen,usetab    " Jump to the first open window in any tab
 set switchbuf+=vsplit           " Switch buffer behavior to vsplit

@@ -30,6 +30,7 @@ TAGS
 tags
 .tags
 tags.temp
+tags.lock
 !tags/
 gtags.files
 GTAGS

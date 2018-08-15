@@ -512,4 +512,7 @@ repo = 'chr4/nginx.vim'
 # [[plugins]]
 # repo = 'uplus/deoplete-solargraph'
 
+[[plugins]]
+repo = 'christianrondeau/vim-base64'
+
 #  vim: set ts=2 sw=2 tw=80 et :

@@ -133,6 +133,7 @@ casks=(
   font-m-plus
   font-mplus-nerd-font
   font-mplus-nerd-font-mono
+  font-iosevka
 )
 
 # Install Homebrew casks.

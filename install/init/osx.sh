@@ -126,9 +126,9 @@ casks=(
   # # Color pickers
   # colorpicker-developer
   # colorpicker-skalacolor
-  # Fonts
+  #### Fonts ####
   font-firacode-nerd-font
-  font-firamono-nerd-font-mono
+  font-firacode-nerd-font-mono
   font-meslo-nerd-font-mono
   font-m-plus
   font-mplus-nerd-font

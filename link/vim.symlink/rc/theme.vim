@@ -4,7 +4,9 @@
 "=============================================================================
 
 if has('gui_macvim')
-  set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
+  set macligatures
+  set guifont=Fira\ Code:h12
+  " set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h14
 endif
 
 if has('gui_running')

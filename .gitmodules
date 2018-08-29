@@ -22,3 +22,6 @@
 [submodule "vendor/tmux_plugins/tmux-mem-cpu-load"]
 	path = vendor/tmux_plugins/tmux-mem-cpu-load
 	url = https://github.com/thewtex/tmux-mem-cpu-load
+[submodule "vendor/php-version"]
+	path = vendor/php-version
+	url = https://github.com/wilmoore/php-version

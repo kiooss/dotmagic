@@ -321,6 +321,8 @@ source $HOME/.local/bin/aws_zsh_completer.sh
 
 source $MYZSH/base16-shell/base16-shell.plugin.zsh
 
+source $DOTFILES/vendor/php-version/php-version.sh && php-version 7.1.21
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 # }}}
 

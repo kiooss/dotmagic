@@ -61,4 +61,5 @@ curl -# -L http://jp2.php.net/get/php-$PHP_TARGET_VERSION.tar.gz/from/this/mirro
   --with-pdo-mysql=mysqlnd \
   --with-pdo-pgsql=/usr \
   --with-pdo-sqlite=/usr \
+  --with-xsl \
 

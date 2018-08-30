@@ -10,14 +10,14 @@ cd $HOME/source/php-$PHP_TARGET_VERSION
 curl -# -L http://jp2.php.net/get/php-$PHP_TARGET_VERSION.tar.gz/from/this/mirror | tar -xz --strip 1
 
 ./configure \
-  --sysconfdir=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION \
   --prefix=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION \
+  --sysconfdir=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION/etc \
   --with-config-file-path=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION/etc \
   --with-config-file-scan-dir=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION/etc/conf.d \
   --mandir=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION/share/man \
-  --disable-debug \
+  # --disable-debug \
   --disable-cgi \
-  --without-pear \
+  --with-pear \
   --enable-pcntl \
   --enable-cli \
   --with-readline \

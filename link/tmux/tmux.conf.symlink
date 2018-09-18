@@ -128,6 +128,10 @@ if-shell -b '[ "$(echo "$TMUX_VERSION >= 2.4" | bc)" = 1 ]' " \
     bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'nc -U ~/.clipper.sock' \
     "
 
+# Search back to last prompt (mnemonic: "[b]ack"); searches for non-breaking
+# space in prompt.
+bind-key b copy-mode\; send-keys -X start-of-line\; send-keys -X search-backward "❯❯❯"
+
 # Activity Monitoring
 setw -g monitor-activity off
 set -g visual-activity off

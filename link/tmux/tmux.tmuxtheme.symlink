@@ -25,6 +25,9 @@ set -g status-left-bg $tm_status_bg
 set -g status-left-fg colour243
 set -g status-left-length 100
 set -g status-left "#{prefix_highlight}#(tmux-statusline left `tmux display -p '#{client_width}'`)"
+# set -g status-left '#[fg=yellow]#S § ' # SECTION SIGN (UTF-8: c2 a7)
+# set -g status-right "#[fg=yellow]$USER@#h #[fg=magenta]%l:%M %p"
+
 
 # Right side of status bar
 set -g status-right-bg $tm_status_bg

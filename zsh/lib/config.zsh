@@ -1,3 +1,5 @@
+export SPROMPT="zsh: correct %F{red}'%R'%f to %F{red}'%r'%f [%B%Uy%u%bes, %B%Un%u%bo, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
+
 setopt NO_BG_NICE
 setopt NO_HUP
 setopt NO_LIST_BEEP

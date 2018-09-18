@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd "$(tmux display-message -p '#{pane_current_path}')"
-echo "💎  $(rbenv version | cut -d ' ' -f1)"
+echo "  $(rbenv version | cut -d ' ' -f1)"

@@ -52,24 +52,24 @@ right_segment() {
 }
 
 build_left_status() {
-    left_segment 'colour012' 'colour000' '#(random-food)  #S #(tmux-options)'
+    left_segment 'colour012' 'colour000' ' #S §'
     # left_segment 'colour003' 'colour000' '#(tmux-arrow) #P '
     left_segment 'colour009' 'colour015' '#(tmux-rb-version) '
     # left_segment 'colour005' 'colour015' '#(tmux-php-version) '
     if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
-        left_segment 'colour014' 'colour000' '\U1F4BB  #($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
+        left_segment 'colour014' 'colour000' '#($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
     else
         left_segment_end
     fi
 }
 
 build_right_status() {
-    if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
-        right_segment 'colour020' 'colour198' '#(emoji-clock)  #(tmux-time) '
-    else
-        right_segment 'colour020' 'colour198' '#(emoji-clock)  '
-    fi
-    right_segment 'colour016' 'colour000' '#(tmux-date)'
+    # if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
+    #     right_segment 'colour020' 'colour198' '#(emoji-clock)  #(tmux-time) '
+    # else
+    #     right_segment 'colour020' 'colour198' '#(emoji-clock)  '
+    # fi
+    # right_segment 'colour016' 'colour000' '#(tmux-date)'
     right_segment 'colour005' 'colour000' '#(tmux-weather)'
     right_segment 'colour006' 'colour000' '#(tmux-disk-usage)'
     right_segment 'colour004' 'colour000' '#(tmux-public-ip) '

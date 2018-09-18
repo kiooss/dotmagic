@@ -13,7 +13,8 @@ tm_status_bg="default"
 cw_bg="colour12"
 
 # Status update interval
-set -g status-interval 5
+# default is 15
+set -g status-interval 60
 
 # Basic status bar colors
 set -g status-fg colour240
@@ -33,7 +34,7 @@ set -g status-left "#{prefix_highlight}#(tmux-statusline left `tmux display -p '
 set -g status-right-bg $tm_status_bg
 set -g status-right-fg colour243
 set -g status-right-length 100
-set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`)"
+set -g status-right "#[fg=magenta] %F %l:%M %p #(tmux-statusline right `tmux display -p '#{client_width}'`)"
 
 # Window status
 # set -g window-status-format "(#I:#W)"

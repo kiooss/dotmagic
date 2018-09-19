@@ -29,12 +29,42 @@ set-option -g status-keys emacs
 # focus events enabled for terminals that support them
 set-option -g focus-events on
 
+# Start window and pane numbering at 1, (0 is too hard to reach).
 set-option -g base-index 1
 set-window-option -g pane-base-index 1
 
 # ウィンドウのインデックスを1から始める
 set-option -g base-index 1
 set-option -g renumber-windows on
+
+# Don't wrap searches; it's super confusing given tmux's reverse-ordering of
+# position info in copy mode.
+set -w -g wrap-search off
+
+# Don't wrap searches; it's super confusing given tmux's reverse-ordering of
+# position info in copy mode.
+set -w -g wrap-search off
+
+# Dynamically update iTerm tab and window titles.
+set -g set-titles on
+
+# #T      = standard window title (last command, see ~/.bash_profile)
+# #h      = short hostname
+# #S      = session name
+# #W      = tmux window name
+#
+# (Would love to include #(pwd) here as well, but that would only print the
+# current working directory relative to the session -- ie. always the starting
+# cwd -- which is not very interesting).
+set -g set-titles-string "#T : #h > #S > #W"
+
+# Show bells in window titles.
+set -g window-status-bell-style fg=yellow,bold,underscore
+
+# Turn off distracting border highlight: the background highlighting is probably
+# enough. Default value of 8 comes from "pane-border-fg" in tmux's
+# options-table.c.
+set -g pane-active-border-fg 8
 
 # remap prefix from 'C-b' to 'C-Space'
 unbind C-b
@@ -56,7 +86,7 @@ unbind %
 bind X kill-pane -a
 
 # reload config file (change file location to your the tmux.conf you want to use)
-bind r source-file ~/.tmux.conf \; display "Reloaded!"
+bind r source-file ~/.tmux.conf \; display "tmux conf reloaded!"
 
 # switch panes using vi convension
 bind h select-pane -L
@@ -112,6 +142,9 @@ set-option -g allow-rename on
 bind-key a send-prefix
 
 setw -g mode-keys vi
+
+# For those times when C-c and q are not enough.
+bind-key -T copy-mode-vi Escape send-keys -X cancel
 
 unbind p
 bind p paste-buffer

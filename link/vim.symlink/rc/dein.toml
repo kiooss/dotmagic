@@ -195,6 +195,9 @@ repo = 'gregsexton/MatchTag'
 [[plugins]]
 repo = 'ludovicchabant/vim-gutentags'
 hook_add = '''
+  let g:gutentags_define_advanced_commands = 1
+  " let g:gutentags_ctags_executable_ruby = 'rtags'
+
   " let g:gutentags_ctags_executable='exctags'
   " As suggested in https://github.com/ludovicchabant/vim-gutentags/issues/113,
   " to only update existing tags files and never create new ones:

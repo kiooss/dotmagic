@@ -1,0 +1,6 @@
+# Exclude directories that don't contain real code
+--exclude=tmp
+--exclude=var
+--exclude=log
+--exclude=public
+--exclude=design

@@ -38,8 +38,11 @@ set -g status-right "#[fg=magenta] %F  %l:%M %p %a #(tmux-statusline right
 
 # Window status
 # set -g window-status-format "(#I:#W)"
-set -g window-status-format "#[fg=colour019]#[bg=colour019,fg=colour20]#I:#W#[fg=colour019,bg=default]"
-set -g window-status-current-format "#[fg=$cw_bg]#[bg=$cw_bg,fg=colour233]#[fg=colour233][#I]#[fg=colour15,bold]#W#[fg=$cw_bg,bg=default,nobold]"
+# set -g window-status-format "#[fg=colour019]#[bg=colour019,fg=colour20]#I:#W#[fg=colour019,bg=default]"
+# set -g window-status-current-format "#[fg=$cw_bg]#[bg=$cw_bg,fg=colour233]#[fg=colour233][#I]#[fg=colour15,bold]#W#[fg=$cw_bg,bg=default,nobold]"
+
+set -g window-status-format "#[fg=white,bg=colour234] #I #W "
+set -g window-status-current-format "#[fg=colour234,bg=colour39]#[fg=colour25,bg=colour39,noreverse,bold] #I ⮁ #W #[fg=colour39,bg=colour234,nobold]"
 
 # Current window status
 set -g window-status-current-bg $tm_status_bg

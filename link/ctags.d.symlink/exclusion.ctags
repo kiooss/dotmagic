@@ -4,3 +4,6 @@
 --exclude=log
 --exclude=public
 --exclude=design
+--exclude=*.min.js
+--exclude=jquery.*.js
+--exclude=jquery-*.js

@@ -15,7 +15,6 @@ if has('gui_running')
   set lines=70
 endif
 
-let s:use_base16_theme = get(g:, 'use_base16_theme', 1)
 if has('syntax')
   autocmd MyAutoCmd ColorScheme *
         \ highlight Comment gui=bold,italic
@@ -24,26 +23,36 @@ if has('syntax')
         \ | highlight StartifyFile gui=bold,italic
 endif
 
+let s:use_base16_theme = get(g:, 'use_base16_theme', 1)
+
 if s:use_base16_theme && filereadable(expand('~/.vimrc_background'))
   source ~/.vimrc_background
 else
   " set background=dark
-  set background=light
+  " set background=light
   try
-    " let g:airline_theme='ayu'
-    " let ayucolor="mirage" " for mirage version of theme
+    """ gotham
     " colorscheme gotham
+    """ neodark
     " colorscheme neodark
-    let g:airline_theme='snow_light'
-    colorscheme snow
+    """ snow
+    " let g:airline_theme='snow_light'
+    " colorscheme snow
+    """ palenight
+    set background=dark
+    let g:airline_theme='onedark'
+    let g:palenight_terminal_italics=1
+    colorscheme palenight
+    """ ayu
+    " let g:airline_theme='ayu'
+    " let ayucolor="light"  " for light version of theme
+    " let ayucolor="mirage" " for mirage version of theme
+    " let ayucolor="dark"   " for dark version of theme
+    " colorscheme ayu
   catch
   endtry
 endif
 
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme ayu
 
 " colorscheme srcery
 " let g:solarized_visibility="low"

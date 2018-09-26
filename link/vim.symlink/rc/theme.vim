@@ -28,11 +28,14 @@ if s:use_base16_theme && filereadable(expand('~/.vimrc_background'))
   source ~/.vimrc_background
 else
   " set background=dark
+  set background=light
   try
     " let g:airline_theme='ayu'
     " let ayucolor="mirage" " for mirage version of theme
     " colorscheme gotham
-    colorscheme neodark
+    " colorscheme neodark
+    let g:airline_theme='snow_light'
+    colorscheme snow
   catch
   endtry
 endif

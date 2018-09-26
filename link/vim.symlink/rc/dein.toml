@@ -163,6 +163,9 @@ repo = 'whatyouhide/vim-gotham'
 
 [[plugins]]
 repo = 'KeitaNakamura/neodark.vim'
+
+[[plugins]]
+repo = 'nightsense/snow'
 #### colors end
 
 [[plugins]]
@@ -191,6 +194,18 @@ hook_add ='''
 
 [[plugins]]
 repo = 'gregsexton/MatchTag'
+
+# [[plugins]]
+# repo = 'Yggdroot/indentLine'
+# hook_add = '''
+#   " let g:indentLine_char = '│'
+#   " let g:indentLine_first_char = ''
+#   " let g:indentLine_showFirstIndentLevel = 1
+#   " let g:indentLine_setColors = 0
+#   let g:indentLine_fileTypeExclude = ['startify']
+
+#   nnoremap <silent> <leader>\ :<C-u>IndentLinesToggle<CR>
+# '''
 
 [[plugins]]
 repo = 'ludovicchabant/vim-gutentags'

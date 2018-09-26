@@ -3,7 +3,7 @@
 function tmux-public-ip() {
     local ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
     if [[ $ip = '18.182.170.161' ]]; then
-        echo " #[fg=colour235,bold]$ip"
+        echo "-vpn #[fg=colour235,bold]$ip"
     else
         echo "臭$ip"
     fi

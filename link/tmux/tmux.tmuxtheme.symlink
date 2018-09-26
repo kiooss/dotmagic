@@ -2,10 +2,10 @@
 # vim:ft=tmux
 
 # separators
-tm_separator_left=""
-tm_separator_right=""
-# tm_separator_left=""
-# tm_separator_right=""
+# tm_separator_left=""
+# tm_separator_right=""
+tm_separator_left=""
+tm_separator_right=""
 # tm_separator_left=""
 # tm_separator_right=""
 
@@ -34,7 +34,7 @@ set -g status-left "#{prefix_highlight}#(tmux-statusline left `tmux display -p '
 set -g status-right-bg $tm_status_bg
 set -g status-right-fg colour243
 set -g status-right-length 100
-set -g status-right "#[fg=magenta] %F %l:%M %p %a #(tmux-statusline right `tmux display -p '#{client_width}'`)"
+set -g status-right "#[fg=magenta] %F  %l:%M %p %a #(tmux-statusline right `tmux display -p '#{client_width}'`)"
 
 # Window status
 # set -g window-status-format "(#I:#W)"

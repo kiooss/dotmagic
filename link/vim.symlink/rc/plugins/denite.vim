@@ -22,7 +22,7 @@ call denite#custom#source('tag', 'matchers', ['matcher/substring'])
 
 if has('nvim') && &runtimepath =~# '\/cpsm'
   call denite#custom#source(
-    \ 'buffer,file_rec,grep,file_rec/git,grep/git,line',
+    \ 'buffer,file_rec,grep,file_rec/git,grep/git',
     \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy', 'matcher/ignore_globs'])
 endif
 

@@ -32,11 +32,14 @@ else
   " set background=light
   try
     """ gotham
+    " let g:airline_theme='gotham'
     " colorscheme gotham
     """ neodark
+    " let g:airline_theme='neodark'
     " colorscheme neodark
     """ snow
-    " let g:airline_theme='snow_light'
+    " set background=dark
+    " let g:airline_theme='snow_dark'
     " colorscheme snow
     """ palenight
     set background=dark
@@ -45,9 +48,9 @@ else
     colorscheme palenight
     """ ayu
     " let g:airline_theme='ayu'
-    " let ayucolor="light"  " for light version of theme
-    " let ayucolor="mirage" " for mirage version of theme
-    " let ayucolor="dark"   " for dark version of theme
+    " let ayucolor='light'  " for light version of theme
+    " let ayucolor='mirage' " for mirage version of theme
+    " let ayucolor='dark'   " for dark version of theme
     " colorscheme ayu
   catch
   endtry

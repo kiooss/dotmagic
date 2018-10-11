@@ -147,6 +147,7 @@ recipes=(
   clipper
   cmake
   coreutils
+  highlight
   jq
   lesspipe
   pass

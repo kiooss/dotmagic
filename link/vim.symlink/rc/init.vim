@@ -136,5 +136,6 @@ if has('nvim')
   if isdirectory($VARPATH.'/venv/neovim3')
     let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
   endif
-  let g:ruby_host_prog = '~/.rbenv/versions/2.2.4/bin/neovim-ruby-host'
+  " move to ~/.secret_vimrc
+  " let g:ruby_host_prog = '~/.rbenv/versions/2.5.1/bin/neovim-ruby-host'
 endif

@@ -52,9 +52,6 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
 
-# tmuxinator
-alias mux="tmuxinator"
-
 alias eucssh='cocot -t UTF-8 -p EUC-JP ssh'
 
 alias svndiff='svn diff | vi -'

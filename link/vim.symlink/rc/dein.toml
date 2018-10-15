@@ -377,7 +377,7 @@ hook_add = '''
   let g:ale_set_quickfix = 1
   let g:ale_lint_delay = 1000
   let g:ale_lint_on_text_changed = 0
-  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_enter = 1
   let g:ale_lint_on_save = 1
   let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
   let g:ale_vim_vint_show_style_issues = 0
@@ -539,5 +539,8 @@ repo = 'chr4/nginx.vim'
 
 [[plugins]]
 repo = 'christianrondeau/vim-base64'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
 
 #  vim: set ts=2 sw=2 tw=80 et :

@@ -219,6 +219,7 @@ plugins=(
 
 plugins_on_need=(
   composer
+  yarn
   # docker
 )
 

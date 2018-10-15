@@ -1,4 +1,5 @@
 alias vi="$EDITOR"
+alias e="$EDITOR"
 # alias vim="$EDITOR"
 
 alias zshconfig="$EDITOR ~/.zshrc"

@@ -208,6 +208,7 @@ plugins=(
   nmap
   npm
   systemadmin
+  ssh-agent
   tmuxinator
   themes
   z
@@ -268,7 +269,7 @@ else
   )
 
   # don't use some plugin when run as root
-  [[ $(print -P "%#") == '#' ]] || plugins=($plugins ssh-agent rails rake-fast)
+  [[ $(print -P "%#") == '#' ]] || plugins=($plugins rails rake-fast)
 
   my_plugins=(
     $my_plugins

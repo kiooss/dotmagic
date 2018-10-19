@@ -330,8 +330,8 @@ repo = 'rhysd/vim-textobj-anyblock'
 repo = 'nelstrom/vim-textobj-rubyblock'
 # }}}
 
-[[plugins]]
-repo = 'sickill/vim-pasta'
+# [[plugins]]
+# repo = 'sickill/vim-pasta'
 
 # snippets {{{
 [[plugins]]
@@ -389,7 +389,11 @@ hook_add = '''
   let g:ale_linters = {
         \   'php': ['php'],
         \   'javascript': ['eslint'],
+        \   'typescript': ['tslint', 'tsserver'],
         \   'ruby': ['ruby', 'rubocop'],
+        \}
+  let g:ale_fixers = {
+        \ 'javascript': ['eslint'],
         \}
 
   if get(g:, 'enable_patched_font', 0)
@@ -398,6 +402,7 @@ hook_add = '''
 
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  nmap <localleader>j <Plug>(ale_fix)
 '''
 
 [[plugins]]
@@ -541,6 +546,15 @@ repo = 'chr4/nginx.vim'
 repo = 'christianrondeau/vim-base64'
 
 [[plugins]]
-repo = 'leafgarland/typescript-vim'
+repo = 'HerringtonDarkholme/yats.vim'
 
+[[plugins]]
+repo = 'mhartington/nvim-typescript'
+build = './install.sh'
+hook_add = '''
+  nnoremap <leader>i :<C-u>TSImport<CR>
+'''
+
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
 #  vim: set ts=2 sw=2 tw=80 et :

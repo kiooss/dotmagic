@@ -194,6 +194,7 @@ fi
 # }}}
 
 # plugins config {{{
+# oh-my-zsh plugins
 plugins=(
   cp
   capistrano

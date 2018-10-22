@@ -1,27 +1,36 @@
 [submodule "zsh/omz_custom/plugins/zsh-autosuggestions"]
 	path = zsh/omz_custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+  branch = master
 [submodule "zsh/omz_custom/themes/powerlevel9k"]
 	path = zsh/omz_custom/themes/powerlevel9k
 	url = https://github.com/bhilburn/powerlevel9k.git
+  branch = master
 [submodule "zsh/omz_custom/plugins/zsh-completions"]
 	path = zsh/omz_custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+  branch = master
 [submodule "zsh/omz_custom/plugins/zsh-syntax-highlighting"]
 	path = zsh/omz_custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+  branch = master
 [submodule "zsh/base16-shell"]
 	path = zsh/base16-shell
 	url = https://github.com/chriskempson/base16-shell
+  branch = master
 [submodule "vendor/tmux_plugins/tmux-prefix-highlight"]
 	path = vendor/tmux_plugins/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight
+  branch = master
 [submodule "vendor/tmux_plugins/tpm"]
 	path = vendor/tmux_plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+  branch = master
 [submodule "vendor/tmux_plugins/tmux-mem-cpu-load"]
 	path = vendor/tmux_plugins/tmux-mem-cpu-load
 	url = https://github.com/thewtex/tmux-mem-cpu-load
+  branch = master
 [submodule "vendor/php-version"]
 	path = vendor/php-version
 	url = https://github.com/wilmoore/php-version
+  branch = master

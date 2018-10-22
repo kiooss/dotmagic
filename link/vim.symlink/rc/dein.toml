@@ -354,6 +354,9 @@ repo = 'honza/vim-snippets'
 
 [[plugins]]
 repo = 'algotech/ultisnips-php'
+
+[[plugins]]
+repo = 'epilande/vim-react-snippets'
 # }}}
 
 [[plugins]]
@@ -388,12 +391,12 @@ hook_add = '''
         \}
   let g:ale_linters = {
         \   'php': ['php'],
-        \   'javascript': ['eslint'],
+        \   'javascript': ['eslint', 'standard'],
         \   'typescript': ['tslint', 'tsserver'],
         \   'ruby': ['ruby', 'rubocop'],
         \}
   let g:ale_fixers = {
-        \ 'javascript': ['eslint'],
+        \ 'javascript': ['eslint', 'standard'],
         \}
 
   if get(g:, 'enable_patched_font', 0)

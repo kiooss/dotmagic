@@ -397,6 +397,7 @@ hook_add = '''
         \}
   let g:ale_fixers = {
         \ 'javascript': ['eslint', 'standard'],
+        \ 'typescript': ['tslint'],
         \}
 
   if get(g:, 'enable_patched_font', 0)

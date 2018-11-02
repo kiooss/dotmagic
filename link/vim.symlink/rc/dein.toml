@@ -553,5 +553,12 @@ repo = 'christianrondeau/vim-base64'
 repo = 'HerringtonDarkholme/yats.vim'
 
 [[plugins]]
+repo = 'mhartington/nvim-typescript'
+build = './install.sh'
+hook_add = '''
+  nnoremap <leader>i :<C-u>TSImport<CR>
+'''
+
+[[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 #  vim: set ts=2 sw=2 tw=80 et :

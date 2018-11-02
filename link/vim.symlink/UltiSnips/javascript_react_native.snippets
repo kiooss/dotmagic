@@ -32,3 +32,47 @@ const styles = StyleSheet.create({
 
 export default $1;
 endsnippet
+
+snippet rnscreen "React Class Component Screen" b
+import React, { Component } from 'react'
+import { View } from 'react-native'
+import { ApplicationState, ConnectedReduxProps } from '../Redux'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
+
+// Separate state props + dispatch props to their own interfaces.
+interface PropsFromState {
+}
+
+interface PropsFromDispatch {
+}
+
+// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
+type AllProps = PropsFromState & PropsFromDispatch & ConnectedReduxProps
+
+class ${1:`!v expand('%:t:r')`} extends Component<AllProps> {
+	constructor(props) {
+		super(props)
+	}
+
+	componentDidMount() {
+	}
+
+	render() {
+		return (
+			<View style={styles.container}>
+				$3
+			</View>
+		)
+	}
+}
+
+
+const mapStateToProps = ({ state }: ApplicationState) => ({
+})
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)($1)
+endsnippet

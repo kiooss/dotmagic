@@ -160,13 +160,13 @@ on_ft = 'toml'
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
-[[plugins]]
-repo = 'mhartington/nvim-typescript'
-build = './install.sh'
-on_ft = 'ts'
-hook_add = '''
-  nnoremap <leader>i :<C-u>TSImport<CR>
-'''
+# [[plugins]]
+# repo = 'mhartington/nvim-typescript'
+# build = './install.sh'
+# on_ft = 'typescript'
+# hook_add = '''
+#   nnoremap <leader>i :<C-u>TSImport<CR>
+# '''
 
 [[plugins]]
 repo = 'vim-scripts/BufOnly.vim'

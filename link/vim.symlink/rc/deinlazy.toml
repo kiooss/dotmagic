@@ -161,6 +161,14 @@ repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
 [[plugins]]
+repo = 'mhartington/nvim-typescript'
+build = './install.sh'
+on_ft = 'ts'
+hook_add = '''
+  nnoremap <leader>i :<C-u>TSImport<CR>
+'''
+
+[[plugins]]
 repo = 'vim-scripts/BufOnly.vim'
 on_cmd = ['Bonly', 'BufOnly']
 

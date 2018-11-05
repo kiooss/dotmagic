@@ -24,6 +24,8 @@ augroup MyAutoCmd
   " when there are multiple windows open
   autocmd FileType qf wincmd J
   autocmd FileType qf noremap <buffer> q :q<cr>
+  autocmd FileType apache setlocal commentstring=#\ %s
+
   " }}}
   " remove spaces at the end of line
   autocmd BufWritePre * :%s/\s\+$//e

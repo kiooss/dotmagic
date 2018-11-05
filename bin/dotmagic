@@ -51,7 +51,8 @@ main() {
   e_header "Initializing / updating submodule(s)."
   git submodule update --init
   git pull --recurse-submodules
-  git submodule update --remote --recursive
+  # git submodule update --remote --recursive
+  git submodule update --remote
   e_success "done."
 
 

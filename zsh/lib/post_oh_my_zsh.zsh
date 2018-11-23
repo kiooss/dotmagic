@@ -26,3 +26,5 @@ zle -C complete-file complete-word _generic
 zstyle ':completion:complete-file::::' completer _files
 bindkey '^xF' complete-file
 
+# fix paste slow issue
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'

@@ -291,6 +291,9 @@ repo = 'tpope/vim-repeat'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+hook_add = '''
+  let g:surround_no_insert_mappings = 1
+'''
 
 [[plugins]]
 repo = 'tpope/vim-unimpaired'
@@ -558,6 +561,7 @@ repo = 'mhartington/nvim-typescript'
 build = './install.sh'
 hook_add = '''
   nnoremap <leader>i :<C-u>TSImport<CR>
+  nnoremap <leader>] :<C-u>TSDef<CR>
 '''
 
 [[plugins]]

@@ -86,6 +86,10 @@ hook_add = '''
 
   let g:airline#extensions#tabline#buffer_idx_mode = 1
   let g:airline#extensions#tabline#buffer_idx_format = {}
+
+  let g:airline#extensions#ale#error_symbol = '✖ :'
+  let g:airline#extensions#ale#warning_symbol = '⚠ :'
+  let g:airline#extensions#ale#checking_symbol = 'checking...'
   for s:i in range(9)
     call extend(g:airline#extensions#tabline#buffer_idx_format,
           \ {s:i : kiooss#api#import('messletters').bubble_num(s:i, 1). ' '})
@@ -402,6 +406,12 @@ hook_add = '''
         \ 'javascript': ['eslint', 'standard'],
         \ 'typescript': ['tslint'],
         \}
+
+  let g:ale_sign_error = '✖ '
+  let g:ale_sign_warning = '⚠ '
+  let g:ale_sign_info = 'ℹ'
+  let g:ale_sign_style_error = '>>'
+  let g:ale_sign_style_warning = '--'
 
   if get(g:, 'enable_patched_font', 0)
     let g:ale_statusline_format = ['✖ %d', '⚠ %d', '⬥ ok']

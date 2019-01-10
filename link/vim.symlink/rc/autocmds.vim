@@ -17,7 +17,9 @@ augroup MyAutoCmd
   autocmd FileType zsh,bash,sh setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType crontab setlocal nobackup nowritebackup
 
-  autocmd FileType .xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+  " autocmd FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+  autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
   autocmd FileType gitcommit setlocal spell
   autocmd FileType gitcommit,qfreplace setlocal nofoldenable
   " make quickfix windows take all the lower section of the screen
@@ -25,6 +27,7 @@ augroup MyAutoCmd
   autocmd FileType qf wincmd J
   autocmd FileType qf noremap <buffer> q :q<cr>
   autocmd FileType apache setlocal commentstring=#\ %s
+  autocmd FileType php setlocal commentstring=//\ %s
 
   " }}}
   " remove spaces at the end of line

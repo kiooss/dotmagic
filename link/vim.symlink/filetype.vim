@@ -22,6 +22,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.ejs setfiletype html
   autocmd BufNewFile,BufRead *.ino setfiletype c
   autocmd BufNewFile,BufRead *.svg setfiletype xml
+  autocmd BufNewFile,BufRead *.wsdl setfiletype xml
   autocmd BufNewFile,BufRead *.tmuxtheme setfiletype tmux
 
 augroup END

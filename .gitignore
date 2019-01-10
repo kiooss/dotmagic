@@ -14,3 +14,5 @@ plug.vim.old
 /link/rbenv.symlink/src/Makefile
 /link/rbenv.symlink/src/*.o
 /link/rbenv.symlink/gems
+
+/node_modules

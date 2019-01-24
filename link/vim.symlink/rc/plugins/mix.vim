@@ -47,6 +47,8 @@ if s:has_plug('fzf.vim')
   command! -bang -nargs=* GrepWord
     \ call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
+  command! -bang -nargs=+ -complete=dir Rag call fzf#vim#ag_raw(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
   nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
   nnoremap <silent> <LocalLeader>f :GFiles --exclude-standard --cached --others<CR>
   nnoremap <silent> <Leader>l :Lines<CR>

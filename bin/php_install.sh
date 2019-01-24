@@ -5,12 +5,15 @@
 
 set -ex
 
-PHP_TARGET_VERSION=7.1.21
+# PHP_TARGET_VERSION=7.1.21
+PHP_TARGET_VERSION=7.3.1
+# PHP_TARGET_VERSION=7.2.14
 PHP_INSTALL_PREFIX=$HOME/.phps
 mkdir -p $HOME/source/php-$PHP_TARGET_VERSION
 cd $HOME/source/php-$PHP_TARGET_VERSION
 # curl -# -L http://downloads.php.net/stas/php-$PHP_TARGET_VERSION.tar.gz | tar -xz --strip 1
-curl -# -L http://jp2.php.net/get/php-$PHP_TARGET_VERSION.tar.gz/from/this/mirror | tar -xz --strip 1
+# curl -# -L http://jp2.php.net/get/php-$PHP_TARGET_VERSION.tar.gz/from/this/mirror | tar -xz --strip 1
+  # --with-apxs2=/usr/bin/apxs2 \
 
 ./configure \
   --prefix=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION \
@@ -18,13 +21,10 @@ curl -# -L http://jp2.php.net/get/php-$PHP_TARGET_VERSION.tar.gz/from/this/mirro
   --with-config-file-path=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION/etc \
   --with-config-file-scan-dir=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION/etc/conf.d \
   --mandir=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION/share/man \
-  # --disable-debug \
-  --disable-cgi \
   --with-pear \
   --enable-pcntl \
   --enable-cli \
   --with-readline \
-  --with-apxs2=/usr/bin/apxs2 \
   --enable-fpm \
   --with-fpm-user=www-data \
   --with-fpm-group=www-data \
@@ -65,5 +65,3 @@ curl -# -L http://jp2.php.net/get/php-$PHP_TARGET_VERSION.tar.gz/from/this/mirro
   --with-pdo-pgsql=/usr \
   --with-pdo-sqlite=/usr \
   --with-xsl
-
-

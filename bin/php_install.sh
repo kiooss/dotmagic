@@ -1,19 +1,36 @@
 #!/usr/bin/env bash
 
+#### some dependance
+# sudo apt install libsqlite3-dev
+# sudo apt install libbz2-dev
+# sudo apt install libpng++-dev
+# sudo apt install libxslt1-dev
+# sudo apt install libxpm-dev
+# sudo apt install libfreetype6-dev
+
+#### for php-fpm
+# sudo a2enmod proxy_fcgi
+
+#### this is for apache module
+# --with-apxs2=/usr/bin/apxs2 \
+
 # note msgpack is necessary for vim.
 # pecl install msgpack
 
 set -ex
 
 # PHP_TARGET_VERSION=7.1.21
-PHP_TARGET_VERSION=7.3.1
-# PHP_TARGET_VERSION=7.2.14
+# PHP_TARGET_VERSION=7.3.1
+PHP_TARGET_VERSION=7.2.14
 PHP_INSTALL_PREFIX=$HOME/.phps
 mkdir -p $HOME/source/php-$PHP_TARGET_VERSION
 cd $HOME/source/php-$PHP_TARGET_VERSION
 # curl -# -L http://downloads.php.net/stas/php-$PHP_TARGET_VERSION.tar.gz | tar -xz --strip 1
-# curl -# -L http://jp2.php.net/get/php-$PHP_TARGET_VERSION.tar.gz/from/this/mirror | tar -xz --strip 1
-  # --with-apxs2=/usr/bin/apxs2 \
+
+if [ ! -f configure ]; then
+  echo "Download php-$PHP_TARGET_VERSION..."
+  curl -# -L http://jp2.php.net/get/php-$PHP_TARGET_VERSION.tar.gz/from/this/mirror | tar -xz --strip 1
+fi
 
 ./configure \
   --prefix=$PHP_INSTALL_PREFIX/$PHP_TARGET_VERSION \

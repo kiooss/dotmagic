@@ -24,6 +24,7 @@ apt_packages+=(
   gettext
   grc
   htop
+  highlight
   imagemagick
   jq
   libboost-program-options-dev
@@ -38,6 +39,12 @@ apt_packages+=(
   libssl-dev
   libsslcommon2-dev
   libxml2-dev
+  libsqlite3-dev
+  libbz2-dev
+  libpng++-dev
+  libxslt1-dev
+  libxpm-dev
+  libfreetype6-dev
   nmap
   openssl
   pkg-config

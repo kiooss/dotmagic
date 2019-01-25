@@ -6,7 +6,7 @@ main() {
   # set -o nounset
 
   if [ ! -n "$DOTFILES" ]; then
-    DOTFILES=~/.dotfiles
+    DOTFILES=$HOME/.dotfiles
   fi
 
   # Prevent the cloned repository from having insecure permissions. Failing to do

@@ -18,6 +18,7 @@ function add_ppa() {
 apt_packages+=(
   acpi # to get the battery info.
   build-essential
+  cmake
   cowsay
   curl
   figlet

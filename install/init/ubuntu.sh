@@ -45,6 +45,9 @@ apt_packages+=(
   libxslt1-dev
   libxpm-dev
   libfreetype6-dev
+  libmysqlclient-dev
+  libmagickcore-dev
+  libmagickwand-dev
   nmap
   openssl
   pkg-config

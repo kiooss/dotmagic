@@ -63,7 +63,7 @@ export N_PREFIX="$HOME/n"
 # export PATH="$DOTFILES/vendor/rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 # pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
+# export PATH="$HOME/.pyenv/bin:$PATH"
 
 # Add android tools
 if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then

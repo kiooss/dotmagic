@@ -65,8 +65,8 @@ if ! isdirectory(expand($VARPATH))
   call mkdir(expand($VARPATH), 'p')
 endif
 
-if filereadable(expand('~/.secret_vimrc'))
-  execute 'source' expand('~/.secret_vimrc')
+if filereadable(expand('~/.vimrc.local'))
+  execute 'source' expand('~/.vimrc.local')
 endif
 
 " Load dein.
@@ -136,7 +136,7 @@ if has('nvim')
   if isdirectory($VARPATH.'/venv/neovim3')
     let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
   endif
-  " move to ~/.secret_vimrc
+  " move to ~/.vimrc.local
   " let g:ruby_host_prog = '~/.rbenv/versions/2.5.1/bin/neovim-ruby-host'
   " let $NVIM_NODE_LOG_FILE='nvim-node.log'
   " let $NVIM_NODE_LOG_LEVEL='warn'

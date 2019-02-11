@@ -289,6 +289,9 @@ done
 
 fpath+=$HOME/.dasht/etc/zsh/completions/
 
+fpath+=/usr/share/zsh/functions
+fpath+=/usr/share/zsh/vendor-completions/
+
 # autoload function in functions dir
 fpath=($MYZSH/functions $fpath)
 autoload -U $MYZSH/functions/*(:t)

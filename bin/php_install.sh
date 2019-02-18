@@ -11,6 +11,9 @@
 #### for php-fpm
 # sudo a2enmod proxy_fcgi
 
+# cd {source_dir}
+# sudo cp sapi/fpm/php-fpm.service /etc/systemd/system/php-fpm{version}.service
+
 #### this is for apache module
 # --with-apxs2=/usr/bin/apxs2 \
 
@@ -21,7 +24,8 @@ set -ex
 
 # PHP_TARGET_VERSION=7.1.21
 # PHP_TARGET_VERSION=7.3.1
-PHP_TARGET_VERSION=7.2.14
+# PHP_TARGET_VERSION=7.2.14
+PHP_TARGET_VERSION=7.1.26
 PHP_INSTALL_PREFIX=$HOME/.phps
 mkdir -p $HOME/source/php-$PHP_TARGET_VERSION
 cd $HOME/source/php-$PHP_TARGET_VERSION

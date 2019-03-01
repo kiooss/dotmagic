@@ -49,6 +49,7 @@ apt_packages+=(
   libmysqlclient-dev
   libmagickcore-dev
   libmagickwand-dev
+  libxml2-utils # provide xmllint
   nmap
   openssl
   pkg-config

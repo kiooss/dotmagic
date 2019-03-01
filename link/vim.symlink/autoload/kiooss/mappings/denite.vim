@@ -39,7 +39,7 @@ function! kiooss#mappings#denite#init() abort
         \ -resume -mode=normal -refresh<CR>
   " nnoremap <silent> <C-t> :<C-u>Denite
   "       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
-  nnoremap <silent> <Leader>j :<C-u>Denite -mode=normal change jump<CR>
+  " nnoremap <silent> <Leader>j :<C-u>Denite -mode=normal change jump<CR>
   nnoremap <silent> <Leader>gl :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal gitlog<CR>
   nnoremap <silent> <Leader>gs :<C-u>Denite -mode=normal gitstatus<CR>

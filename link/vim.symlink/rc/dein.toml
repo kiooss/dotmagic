@@ -569,10 +569,9 @@ repo = 'HerringtonDarkholme/yats.vim'
 [[plugins]]
 repo = 'mhartington/nvim-typescript'
 build = './install.sh'
-hook_add = '''
-  nnoremap <leader>i :<C-u>TSImport<CR>
-  nnoremap <leader>] :<C-u>TSDef<CR>
-'''
+
+[[plugins]]
+repo = 'galooshi/vim-import-js'
 
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'

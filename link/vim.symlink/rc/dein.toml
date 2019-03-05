@@ -486,11 +486,11 @@ repo = 'tmux-plugins/vim-tmux'
 [[plugins]]
 repo = 'vim-ruby/vim-ruby'
 
-[[plugins]]
-repo = 'neoclide/vim-easygit'
+# [[plugins]]
+# repo = 'neoclide/vim-easygit'
 
-[[plugins]]
-repo = 'neoclide/denite-git'
+# [[plugins]]
+# repo = 'neoclide/denite-git'
 
 [[plugins]]
 repo = '5t111111/denite-rails'

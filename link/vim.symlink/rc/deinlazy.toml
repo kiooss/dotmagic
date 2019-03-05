@@ -2,7 +2,7 @@
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-rev = '1.2'
+# rev = '1.2'
 on_cmd = 'Denite'
 hook_source = "source $VIMPATH/rc/plugins/denite.vim"
 hook_add = 'call kiooss#mappings#denite#init()'

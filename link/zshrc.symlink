@@ -54,8 +54,9 @@ export PATH="$DOTFILES/bin:$PATH"
 [[ -d "$HOME/php/bin" ]] && export PATH="$HOME/php/bin:$PATH"
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 [[ -d "$HOME/venv/py3/bin/" ]] && export PATH="$HOME/venv/py3/bin/:$PATH"
+# dangerous!!!
 # add vendor bin to path
-export PATH="./vendor/bin:$PATH"
+# export PATH="./vendor/bin:$PATH"
 # Added by n-install (see http://git.io/n-install-repo).
 export N_PREFIX="$HOME/n"
 [[ -d "$N_PREFIX" ]] && export PATH="$N_PREFIX/bin:$PATH"

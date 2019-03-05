@@ -77,6 +77,11 @@ repo = 'lvht/phpcd.vim'
 on_ft = 'php'
 build = 'composer install'
 
+[[plugins]]
+repo = 'phpactor/phpactor'
+on_ft = 'php'
+build = 'composer install'
+
 # [[plugins]]
 # repo = 'shawncplus/phpcomplete.vim'
 # on_ft = 'php'
@@ -89,28 +94,29 @@ build = 'composer install'
 # repo = 'swekaj/php-foldexpr.vim'
 # on_ft = 'php'
 
-[[plugins]]
-repo = 'arnaud-lb/vim-php-namespace'
-on_ft = ['php', 'yaml']
-hook_add = '''
-let g:php_namespace_sort_after_insert = 1
-function! IPhpInsertUse()
-  call PhpInsertUse()
-  call feedkeys('a',  'n')
-endfunction
-" autocmd FileType php inoremap <Localleader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Localleader>u :call PhpInsertUse()<CR>
+# use phpactor instead
+# [[plugins]]
+# repo = 'arnaud-lb/vim-php-namespace'
+# on_ft = ['php', 'yaml']
+# hook_add = '''
+# let g:php_namespace_sort_after_insert = 1
+# function! IPhpInsertUse()
+#   call PhpInsertUse()
+#   call feedkeys('a',  'n')
+# endfunction
+# " autocmd FileType php inoremap <Localleader>u <Esc>:call IPhpInsertUse()<CR>
+# autocmd FileType php noremap <Localleader>u :call PhpInsertUse()<CR>
 
-function! IPhpExpandClass()
-  call PhpExpandClass()
-  call feedkeys('a', 'n')
-endfunction
-" autocmd FileType php inoremap <Localleader>e <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap <Localleader>ec :call PhpExpandClass()<CR>
+# function! IPhpExpandClass()
+#   call PhpExpandClass()
+#   call feedkeys('a', 'n')
+# endfunction
+# " autocmd FileType php inoremap <Localleader>e <Esc>:call IPhpExpandClass()<CR>
+# autocmd FileType php noremap <Localleader>ec :call PhpExpandClass()<CR>
 
-" autocmd FileType php inoremap <Localleader>s <Esc>:call PhpSortUse()<CR>
-autocmd FileType php noremap <Localleader>su :call PhpSortUse()<CR>
-'''
+# " autocmd FileType php inoremap <Localleader>s <Esc>:call PhpSortUse()<CR>
+# autocmd FileType php noremap <Localleader>su :call PhpSortUse()<CR>
+# '''
 
 # [[plugins]]
 # repo = 'qbbr/vim-symfony'

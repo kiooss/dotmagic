@@ -36,6 +36,29 @@ for file in $linkables ; do
   fi
 done
 
+linkables=$( find -H "$DOTFILES/dotconfig" -maxdepth 3 -name '*.symlink' )
+for file in $linkables ; do
+  target="$HOME/.config/$(basename $file '.symlink')"
+  e_info "Target: ${target}"
+  if [ -e "$target" ]; then
+    if ! [ "$target" -ef "$file" ]; then
+      if [ "$force" = "force" ]; then
+        e_error "${target} already exists, backup it and do link staff."
+        mv "$target" "$BACKUP_DIR/"
+        e_success "Linking $file to $target"
+        ln -sf "$file" "$target"
+      else
+        e_error "${target} already exists, skip."
+      fi
+    else
+      echo 'Already linked.'
+    fi
+  else
+    e_success "Linking $file to $target"
+    ln -sf "$file" "$target"
+  fi
+done
+
 # for neovim
 e_info "Target: $HOME/.config/nvim"
 if [ -e "$HOME/.config/nvim" ]; then

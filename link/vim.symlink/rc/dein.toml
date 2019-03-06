@@ -1,6 +1,16 @@
 # Non lazy load plugins
 
 [[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+hook_add = '''
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['solargraph', 'stdio'],
+    \ }
+'''
+
+[[plugins]]
 repo = 'Shougo/dein.vim'
 hook_add = '''
   command! DeinRecache call dein#recache_runtimepath()

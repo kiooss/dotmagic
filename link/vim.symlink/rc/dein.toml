@@ -36,6 +36,7 @@ hook_add = '''
         \ ]
   let g:startify_bookmarks = [
           \ { 'tc': '~/.tmux.conf' },
+          \ { 'de':  g:dein#install_log_filename },
           \ ]
   let g:startify_commands = [
       \ { 'c1': ['Vim Reference', 'h ref'] },

@@ -118,26 +118,13 @@ build = 'composer install'
 # autocmd FileType php noremap <Localleader>su :call PhpSortUse()<CR>
 # '''
 
-# [[plugins]]
-# repo = 'qbbr/vim-symfony'
-# on_ft = 'php'
-
-# [[plugins]]
-# repo = 'tobyS/vmustache'
-# on_ft = 'php'
-#
-# [[plugins]]
-# repo = 'tobyS/pdv'
-# on_ft = 'php'
-# depends = 'tobyS/vmustache'
-# hook_add = '''
-#   let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
-#   nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
-# '''
-
-# [[plugins]]
-# repo = 'adoy/vim-php-refactoring-toolbox'
-# on_ft = 'php'
+[[plugins]]
+repo = 'tobyS/pdv'
+on_ft = 'php'
+hook_add = '''
+  let g:pdv_template_dir = $HOME ."/.cache/vim/dein/repos/github.com/tobyS/pdv/templates_snip/"
+  autocmd FileType php nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
+'''
 
 # [[plugins]]
 # repo = 'ecomba/vim-ruby-refactoring'

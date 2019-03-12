@@ -8,6 +8,17 @@ hook_add = '''
 let g:LanguageClient_serverCommands = {
     \ 'ruby': ['solargraph', 'stdio'],
     \ }
+
+function! LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <buffer> <Leader>mm :call LanguageClient_contextMenu()<CR>
+    nnoremap <buffer> <Leader>K :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <buffer> <Leader>o :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <Leader>r :call LanguageClient#textDocument_rename()<CR>
+  endif
+endfunction
+
+autocmd FileType * call LC_maps()
 '''
 
 [[plugins]]
@@ -586,4 +597,7 @@ repo = 'galooshi/vim-import-js'
 
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
+
+[[plugins]]
+repo = 'tobyS/vmustache'
 #  vim: set ts=2 sw=2 tw=80 et :

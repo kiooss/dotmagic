@@ -17,11 +17,4 @@ let g:rubycomplete_buffer_loading    = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails             = 1
 
-" LanguageClient-neovim
-nnoremap <Leader>mm :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> <Leader>K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> <Leader>o :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <Leader>r :call LanguageClient#textDocument_rename()<CR>
-
-
 let &cpo = s:save_cpo

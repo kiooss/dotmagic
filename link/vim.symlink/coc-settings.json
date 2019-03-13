@@ -1,3 +1,4 @@
 {
-  "solargraph.checkGemVersion": true
+  "solargraph.checkGemVersion": true,
+  "suggest.noselect": false
 }

@@ -24,5 +24,6 @@ CocInstall coc-ultisnips
 CocInstall coc-tsserver
 CocInstall coc-json
 CocInstall coc-solargraph
+CocInstall coc-phpls
+CocInstall coc-pairs
 ```
-

@@ -2,7 +2,6 @@
 
 let g:dein#install_progress_type = 'tabline'
 " let g:dein#enable_notification = 1
-" let g:dein#notification_icon = '~/.vim/signs/warn.png'
 let g:dein#install_max_processes = 32
 let g:dein#install_log_filename = $VARPATH.'/dein.log'
 let s:path = expand('$VARPATH/dein')

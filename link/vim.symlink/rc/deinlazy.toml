@@ -2,6 +2,7 @@
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+merge = 0
 on_cmd = 'Denite'
 hook_source = "source $VIMPATH/rc/plugins/denite.vim"
 hook_add = 'call kiooss#mappings#denite#init()'
@@ -65,66 +66,12 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'lvht/phpcd.vim'
-on_ft = 'php'
-build = 'composer install'
-
-[[plugins]]
-repo = 'phpactor/phpactor'
-on_ft = 'php'
-build = 'composer install'
-
-# [[plugins]]
-# repo = 'shawncplus/phpcomplete.vim'
-# on_ft = 'php'
-
-# [[plugins]]
-# repo = 'stephpy/vim-php-cs-fixer'
-# on_ft = 'php'
-
-# [[plugins]]
-# repo = 'swekaj/php-foldexpr.vim'
-# on_ft = 'php'
-
-# use phpactor instead
-# [[plugins]]
-# repo = 'arnaud-lb/vim-php-namespace'
-# on_ft = ['php', 'yaml']
-# hook_add = '''
-# let g:php_namespace_sort_after_insert = 1
-# function! IPhpInsertUse()
-#   call PhpInsertUse()
-#   call feedkeys('a',  'n')
-# endfunction
-# " autocmd FileType php inoremap <Localleader>u <Esc>:call IPhpInsertUse()<CR>
-# autocmd FileType php noremap <Localleader>u :call PhpInsertUse()<CR>
-
-# function! IPhpExpandClass()
-#   call PhpExpandClass()
-#   call feedkeys('a', 'n')
-# endfunction
-# " autocmd FileType php inoremap <Localleader>e <Esc>:call IPhpExpandClass()<CR>
-# autocmd FileType php noremap <Localleader>ec :call PhpExpandClass()<CR>
-
-# " autocmd FileType php inoremap <Localleader>s <Esc>:call PhpSortUse()<CR>
-# autocmd FileType php noremap <Localleader>su :call PhpSortUse()<CR>
-# '''
-
-[[plugins]]
 repo = 'tobyS/pdv'
 on_ft = 'php'
 hook_add = '''
   let g:pdv_template_dir = $HOME ."/.cache/vim/dein/repos/github.com/tobyS/pdv/templates_snip/"
   autocmd FileType php nnoremap <Leader>doc :call pdv#DocumentWithSnip()<CR>
 '''
-
-# [[plugins]]
-# repo = 'ecomba/vim-ruby-refactoring'
-# on_ft = 'ruby'
-
-# [[plugins]]
-# repo = 'tsaleh/vim-shoulda'
-# on_ft = 'ruby'
 
 [[plugins]]
 repo = 'tpope/vim-rails'

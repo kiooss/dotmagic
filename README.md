@@ -8,7 +8,7 @@
 
 # DOTMAGIC
 
-> Manage my dotfiles.
+> Manage my dotfiles (for personal use).
 
 Basicly tested on OSX / Ubuntu, but some configuration like
 (**vim**/**zsh**/**tmux**) should be able to migrate to other os distribution easily.
@@ -46,11 +46,7 @@ dotmagic
 
 ## Vim
 
-Now on vim8 / neovim.
-
-### Vim plugin manager
-<!-- Vim plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug). To install, run `vim +PlugInstall`. -->
-Vim plugins are managed with the ⚡️ Dark powered Vim/Neovim plugin manager [dein.vim](https://github.com/Shougo/dein.vim).
+Now on neovim.
 
 ## Zsh
 
@@ -59,9 +55,6 @@ Oh-my-zsh is optional, but it does a lot things for me and worked well, so I add
 
 ## Tmux
 Tmux is awesome, it saves me a lot of time since I decided to use it.
-
-## Screenshot
-![My Screen](screenshot/ScreenCapture.jpg)
 
 ## License
 

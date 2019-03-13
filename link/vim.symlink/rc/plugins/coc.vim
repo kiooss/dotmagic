@@ -81,7 +81,7 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>mm  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
@@ -94,4 +94,17 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+command! -nargs=0 CocInitExtensions call coc#add_extension(
+  \ 'coc-dictionary',
+  \ 'coc-word',
+  \ 'coc-emoji',
+  \ 'coc-ultisnips',
+  \ 'coc-solargraph',
+  \ 'coc-phpls',
+  \ 'coc-pairs',
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-tsserver'
+  \)
 " }}}

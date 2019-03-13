@@ -114,6 +114,9 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+
+[[plugins]]
 repo = 'mhinz/vim-startify'
 hook_add = '''
   " autocmd User Startified doautocmd ColorScheme
@@ -584,9 +587,6 @@ repo = 'vim-ruby/vim-ruby'
 # repo = 'neoclide/denite-git'
 
 [[plugins]]
-repo = '5t111111/denite-rails'
-
-[[plugins]]
 repo = 'wincent/vim-clipper'
 hook_add = '''
 let g:ClipperAddress='~/.clipper.sock'
@@ -624,17 +624,6 @@ hook_add = '''
 [[plugins]]
 repo = 'AndrewRadev/splitjoin.vim'
 
-# [[plugins]]
-# repo = 'itchyny/vim-parenmatch'
-
-# [[plugins]]
-# repo = 'itchyny/vim-cursorword'
-# hook_add = '''
-#   autocmd MyAutoCmd FileType denite,qf,nerdtree let b:cursorword=0
-#   autocmd MyAutoCmd InsertEnter * let b:cursorword=0
-#   autocmd MyAutoCmd InsertLeave * let b:cursorword=1
-# '''
-
 [[plugins]]
 repo = 'junegunn/vim-peekaboo'
 
@@ -648,24 +637,11 @@ repo = 'junegunn/fzf.vim'
 [[plugins]]
 repo = 'chr4/nginx.vim'
 
-# [[plugins]]
-# repo = 'uplus/deoplete-solargraph'
-
 [[plugins]]
 repo = 'christianrondeau/vim-base64'
 
 [[plugins]]
 repo = 'HerringtonDarkholme/yats.vim'
-
-# [[plugins]]
-# repo = 'mhartington/nvim-typescript'
-# build = './install.sh'
-
-# [[plugins]]
-# repo = 'galooshi/vim-import-js'
-
-[[plugins]]
-repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
 repo = 'tobyS/vmustache'

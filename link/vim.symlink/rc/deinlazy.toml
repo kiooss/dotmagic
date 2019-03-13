@@ -2,16 +2,15 @@
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-# rev = '1.2'
 on_cmd = 'Denite'
 hook_source = "source $VIMPATH/rc/plugins/denite.vim"
 hook_add = 'call kiooss#mappings#denite#init()'
 
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-depends = 'context_filetype.vim'
-on_event = 'InsertEnter'
-hook_source = "source $VIMPATH/rc/plugins/deoplete.vim"
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# depends = 'context_filetype.vim'
+# on_event = 'InsertEnter'
+# hook_source = "source $VIMPATH/rc/plugins/deoplete.vim"
 
 # [[plugins]]
 # repo = 'Shougo/echodoc.vim'

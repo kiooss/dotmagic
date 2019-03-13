@@ -13,3 +13,15 @@ running vim with the -V[N] option will do a pretty hefty runtime log, here N is 
 `
 vim -V9myVim.log
 `
+
+
+#### coc.nvim
+```
+CocInstall coc-dictionary
+CocInstall coc-word
+CocInstall coc-emoji
+CocInstall coc-ultisnips
+CocInstall coc-tsserver
+CocInstall coc-json
+```
+

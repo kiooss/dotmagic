@@ -1,6 +1,10 @@
 # Non lazy load plugins
 
 [[plugins]]
+repo = 'Shougo/denite.nvim'
+merge = 0
+
+[[plugins]]
 repo = 'neoclide/coc.nvim'
 merged = 0
 hook_add = '''
@@ -657,8 +661,8 @@ repo = 'HerringtonDarkholme/yats.vim'
 # repo = 'mhartington/nvim-typescript'
 # build = './install.sh'
 
-[[plugins]]
-repo = 'galooshi/vim-import-js'
+# [[plugins]]
+# repo = 'galooshi/vim-import-js'
 
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'

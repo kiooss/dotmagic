@@ -46,13 +46,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
-on_cmd = 'TarbarToggle'
-hook_add = '''
-  nnoremap <silent> <Leader>t :TagbarToggle<CR>
-'''
-
-[[plugins]]
 repo = 'Yggdroot/indentLine'
 on_cmd = 'IndentLinesToggle'
 hook_add = '''

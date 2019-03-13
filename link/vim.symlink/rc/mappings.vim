@@ -80,10 +80,6 @@ nnoremap <Leader>/ /
 " ----------------------------------------------------------------------------
 nnoremap <leader>c :cclose<bar>lclose<bar>pclose<cr>
 
-" nnoremap <silent> <Leader>y :<C-u>call system('nc localhost 8377', @")<CR>
-" nnoremap <silent> yy "*yy:let [@+,@"]=[@*,@*] <bar>
-"       \ call system('nc localhost 8377', @")<CR>
-
 " better redraw
 nnoremap <c-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr>:GitGutter<cr><c-l>
 

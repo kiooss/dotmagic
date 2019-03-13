@@ -2,7 +2,7 @@
 function! kiooss#mappings#denite#init() abort
   nnoremap <silent><LocalLeader>b :<C-u>Denite buffer file/old -default-action=switch<CR>
   nnoremap <silent><LocalLeader>o :<C-u>Denite outline<CR>
-  nnoremap <silent><LocalLeader>v :<C-u>Denite file_rec/git:~/.dotfiles/link/vim.symlink/<CR>
+  nnoremap <silent><LocalLeader>v :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/<CR>
   nnoremap <silent> <Leader>r
         \ :<C-u>Denite -mode=normal -buffer-name=register
         \ -highlight-mode-insert=Search register<CR>

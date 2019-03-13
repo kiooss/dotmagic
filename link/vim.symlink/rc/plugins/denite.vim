@@ -22,7 +22,7 @@ call denite#custom#source('tag', 'matchers', ['matcher/substring'])
 
 if has('nvim') && &runtimepath =~# '\/cpsm'
   call denite#custom#source(
-    \ 'buffer,file_rec,grep,file_rec/git,grep/git',
+    \ 'buffer,file/rec,grep,file/rec/git,grep/git',
     \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy', 'matcher/ignore_globs'])
 endif
 
@@ -30,18 +30,18 @@ endif
 " Default is none
 if get(g:, 'webdevicons_enable_denite', 0)
   call denite#custom#source(
-        \ 'file_rec,file_rec/git,file/old,buffer,directory_rec',
+        \ 'file/rec,file/rec/git,file/old,buffer,directory_rec',
         \ 'converters', ['devicons_denite_converter', 'converter_relative_word'])
 else
   call denite#custom#source(
-        \ 'file_rec,file/old,buffer,file_mru,directory_rec',
+        \ 'file/rec,file/old,buffer,file_mru,directory_rec',
         \ 'converters', ['converter_relative_word'])
 endif
 
 " FIND and GREP COMMANDS
 if executable('ag')
   " The Silver Searcher
-  call denite#custom#var('file_rec', 'command',
+  call denite#custom#var('file/rec', 'command',
     \ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
   " Setup ignore patterns in your .agignore file!
@@ -68,8 +68,8 @@ elseif executable('ack')
 endif
 
 
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command',
       \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
 call denite#custom#alias('source', 'grep/git', 'grep')

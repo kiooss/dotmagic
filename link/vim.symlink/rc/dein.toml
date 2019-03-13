@@ -648,9 +648,9 @@ repo = 'christianrondeau/vim-base64'
 [[plugins]]
 repo = 'HerringtonDarkholme/yats.vim'
 
-[[plugins]]
-repo = 'mhartington/nvim-typescript'
-build = './install.sh'
+# [[plugins]]
+# repo = 'mhartington/nvim-typescript'
+# build = './install.sh'
 
 [[plugins]]
 repo = 'galooshi/vim-import-js'

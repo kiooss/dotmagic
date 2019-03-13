@@ -23,5 +23,6 @@ CocInstall coc-emoji
 CocInstall coc-ultisnips
 CocInstall coc-tsserver
 CocInstall coc-json
+CocInstall coc-solargraph
 ```
 

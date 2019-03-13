@@ -50,6 +50,8 @@ apt_packages+=(
   libmagickcore-dev
   libmagickwand-dev
   libxml2-utils # provide xmllint
+  libtool-bin # neovim deps
+  ninja-build # neovim deps
   nmap
   openssl
   pkg-config

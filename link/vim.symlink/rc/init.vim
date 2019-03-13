@@ -126,6 +126,9 @@ let g:loaded_zipPlugin          = 1
 " let g:loaded_spellfile_plugin = 1
 " let g:loaded_python_provider  = 1
 
+" disable Python 2 support
+let g:loaded_python_provider = 1
+
 if has('nvim')
   let g:python_host_skip_check = 1
   let g:python3_host_skip_check = 1

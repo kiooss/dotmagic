@@ -18,6 +18,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
+" Use <C-l> to trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
 " Use <c-g> for trigger completion.
 inoremap <silent><expr> <c-g> coc#refresh()
 
@@ -97,6 +100,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 call coc#add_extension(
   \ 'coc-dictionary',
+  \ 'coc-snippets',
   \ 'coc-css',
   \ 'coc-html',
   \ 'coc-word',
@@ -114,6 +118,7 @@ call coc#add_extension(
 
 command! -nargs=0 CocInitExtensions call coc#add_extension(
   \ 'coc-dictionary',
+  \ 'coc-snippets',
   \ 'coc-css',
   \ 'coc-html',
   \ 'coc-word',

@@ -1,4 +1,12 @@
 {
   "solargraph.checkGemVersion": true,
-  "suggest.noselect": false
+  // "suggest.noselect": false,
+  "phpls.enable": false,
+  "languageserver": {
+    "intelephense": {
+      "command": "node",
+      "args": ["/home/yang/n/lib/node_modules/intelephense/lib/intelephense.js", "--stdio"],
+      "filetypes": ["php"]
+    }
+  }
 }

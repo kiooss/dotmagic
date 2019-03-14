@@ -95,8 +95,10 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-command! -nargs=0 CocInitExtensions call coc#add_extension(
+call coc#add_extension(
   \ 'coc-dictionary',
+  \ 'coc-css',
+  \ 'coc-html',
   \ 'coc-word',
   \ 'coc-emoji',
   \ 'coc-ultisnips',
@@ -105,6 +107,25 @@ command! -nargs=0 CocInitExtensions call coc#add_extension(
   \ 'coc-pairs',
   \ 'coc-json',
   \ 'coc-yaml',
+  \ 'coc-stylelint',
+  \ 'coc-highlight',
+  \ 'coc-tsserver'
+  \)
+
+command! -nargs=0 CocInitExtensions call coc#add_extension(
+  \ 'coc-dictionary',
+  \ 'coc-css',
+  \ 'coc-html',
+  \ 'coc-word',
+  \ 'coc-emoji',
+  \ 'coc-ultisnips',
+  \ 'coc-solargraph',
+  \ 'coc-phpls',
+  \ 'coc-pairs',
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-stylelint',
+  \ 'coc-highlight',
   \ 'coc-tsserver'
   \)
 " }}}

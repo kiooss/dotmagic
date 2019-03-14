@@ -41,7 +41,7 @@ augroup MyAutoCmd
 
   autocmd Syntax * if 5000 < line('$') | syntax sync minlines=200 | endif
 
-  autocmd FileType * execute 'setlocal dict+='.$VIMPATH.'/words/'.&filetype.'.txt'
+  " autocmd FileType * execute 'setlocal dict+='.$VIMPATH.'/words/'.&filetype.'.txt'
 
   " Update filetype on save if empty
   autocmd BufWritePost * nested

@@ -19,6 +19,8 @@ ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=green,bold'
 unalias c 2>/dev/null
 unalias g 2>/dev/null
 
+unalias rg 2>/dev/null
+
 # filename completion as a default when other completions fail
 # zstyle ':completion:*' completer _complete _ignored _files
 

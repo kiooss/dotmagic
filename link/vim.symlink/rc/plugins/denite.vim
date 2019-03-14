@@ -24,8 +24,8 @@ call denite#custom#source('tag', 'matchers', ['matcher/substring'])
 
 if has('nvim') && &runtimepath =~# '\/cpsm'
   call denite#custom#source(
-    \ 'buffer,file/rec,grep,file/rec/git,grep/git',
-    \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy', 'matcher/ignore_globs'])
+        \ 'buffer,file/rec,grep,file/rec/git,grep/git',
+        \ 'matchers', ['matcher_cpsm', 'matcher_fuzzy', 'matcher/ignore_globs'])
 endif
 
 " CONVERTERS
@@ -40,11 +40,17 @@ else
         \ 'converters', ['converter_relative_word'])
 endif
 
+" Change file_rec command.
+" if executable('rg')
+"   call denite#custom#var('file/rec', 'command',
+"         \ ['rg', '--color', 'never', '--files'])
+" endif
+
 " FIND and GREP COMMANDS
 if executable('ag')
   " The Silver Searcher
   call denite#custom#var('file/rec', 'command',
-    \ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
+        \ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
   " Setup ignore patterns in your .agignore file!
   " https://github.com/ggreer/the_silver_searcher/wiki/Advanced-Usage
@@ -55,7 +61,7 @@ if executable('ag')
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'final_opts', [])
   call denite#custom#var('grep', 'default_opts',
-    \ [ '--skip-vcs-ignores', '--vimgrep', '--smart-case', '--hidden' ])
+        \ [ '--skip-vcs-ignores', '--vimgrep', '--smart-case', '--hidden' ])
 
 elseif executable('ack')
   " Ack command
@@ -65,8 +71,8 @@ elseif executable('ack')
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'final_opts', [])
   call denite#custom#var('grep', 'default_opts',
-      \ ['--ackrc', $HOME.'/.config/ackrc', '-H',
-      \ '--nopager', '--nocolor', '--nogroup', '--column'])
+        \ ['--ackrc', $HOME.'/.config/ackrc', '-H',
+        \ '--nopager', '--nocolor', '--nogroup', '--column'])
 endif
 
 

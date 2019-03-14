@@ -129,18 +129,24 @@ endfor
 
 unlet s:m s:insert_mode_mappings s:normal_mode_mappings
 
-nnoremap <silent><LocalLeader>b :<C-u>Denite buffer file/old -default-action=switch<CR>
-nnoremap <silent><LocalLeader>o :<C-u>Denite outline<CR>
-nnoremap <silent><LocalLeader>v :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/<CR>
-nnoremap <silent> <Leader>r
+nnoremap <silent> <LocalLeader>b :<C-u>Denite buffer file/old -default-action=switch<CR>
+nnoremap <silent> <LocalLeader>o :<C-u>Denite outline<CR>
+nnoremap <silent> <LocalLeader>vv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/<CR>
+nnoremap <silent> <LocalLeader>vd :<C-u>Denite dein -default-action=open<CR>
+nnoremap <silent> <LocalLeader>vc :<C-u>Denite colorscheme -auto-preview<CR>
+nnoremap <silent> <LocalLeader>vf :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
+nnoremap <silent> <LocalLeader>vh :<C-u>Denite -buffer-name=search help<CR>
+
+nnoremap <silent> <LocalLeader>r
       \ :<C-u>Denite -mode=normal -buffer-name=register
       \ -highlight-mode-insert=Search register<CR>
-xnoremap <silent> <Leader>r
+xnoremap <silent> <LocalLeader>r
       \ :<C-u>Denite -mode=normal -default-action=replace -buffer-name=register
       \ -highlight-mode-insert=Search register<CR>
+
 nnoremap <silent> / :<C-u>Denite -buffer-name=search
       \ -highlight-mode-insert=Search line<CR>
-nnoremap <silent> <Leader>g :<C-u>Denite -buffer-name=search
+nnoremap <silent> <LocalLeader>g :<C-u>Denite -buffer-name=search
       \ -no-empty -mode=normal grep/git<CR>
 nnoremap <silent> n :<C-u>Denite -buffer-name=search
       \ -resume -mode=normal -refresh<CR>
@@ -150,8 +156,3 @@ nnoremap <silent> # :<C-u>DeniteCursorWord -buffer-name=search
       \ -no-empty -mode=normal grep/git<CR>
 nnoremap <silent><expr> tp  &filetype == 'help' ?
       \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
-
-nnoremap <silent> <Leader>vn :<C-u>Denite dein -default-action=open<CR>
-nnoremap <silent> <Leader>vc :<C-u>Denite colorscheme -auto-preview<CR>
-nnoremap <silent> <Leader>ft :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
-nnoremap <silent> <Leader>vh :<C-u>Denite -buffer-name=search help<CR>

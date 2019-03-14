@@ -50,13 +50,13 @@ if s:has_plug('fzf.vim')
   command! -bang -nargs=+ -complete=dir Rag call fzf#vim#ag_raw(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
   nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
-  nnoremap <silent> <LocalLeader>f :GFiles --exclude-standard --cached --others<CR>
-  nnoremap <silent> <LocalLeader>F :Files<CR>
-  nnoremap <silent> <LocalLeader>; :Lines<CR>
-  nnoremap <silent> <LocalLeader>g :GrepWord<CR>
-  xnoremap <silent> <LocalLeader>g y:GrepWord <C-R>"<CR>
-  nnoremap <silent> <LocalLeader>ag :Ag <C-R><C-W><CR>
-  nnoremap <silent> <LocalLeader>AG :Ag <C-R><C-A><CR>
+  nnoremap <silent> <Leader>f :GFiles --exclude-standard --cached --others<CR>
+  nnoremap <silent> <Leader>F :Files<CR>
+  nnoremap <silent> <Leader>; :Lines<CR>
+  nnoremap <silent> <Leader>g :GrepWord<CR>
+  xnoremap <silent> <Leader>g y:GrepWord <C-R>"<CR>
+  nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+  nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
 
   inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
 

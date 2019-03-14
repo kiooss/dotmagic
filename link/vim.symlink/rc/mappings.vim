@@ -286,7 +286,7 @@ cnoremap <C-k>          <C-\>estrpart(getcmdline(),0,getcmdpos()-1)<CR>
 " xnoremap <silent> y "*y:let [@+,@"]=[@*,@*] <bar>
 "       \ call system('nc localhost 8377', @")<CR>
 
-xnoremap <silent> <Leader>gg :<C-u>call kiooss#util#GrepSource()<CR>
+" xnoremap <silent> <Leader>gg :<C-u>call kiooss#util#GrepSource()<CR>
 
 " use up and down to move sleceted lines.
 xmap <Up> ]egv=gv

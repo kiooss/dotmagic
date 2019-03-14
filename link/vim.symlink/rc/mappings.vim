@@ -1,11 +1,12 @@
 "==============================================================================
 " mappings.vim---Mapping settings.
 " => Yang Yang
+" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 "==============================================================================
 
 "==============================================================================
 " Normal Mode Key Mappings {{{
-"==============================================================================
+
 " defauts
 " q: record macros
 " w: Move word forward
@@ -136,9 +137,6 @@ noremap <expr> <C-b> max([winheight(0) - 2, 1])
 nnoremap B ^
 nnoremap E $
 
-" Open the definition in a vertical split
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
 " Tags
 nnoremap g] g<C-]>
 nnoremap g[ :pop<cr>
@@ -194,18 +192,12 @@ if has('mac')
   nmap <Leader>? :!open dict://<cword><CR><CR>
 endif
 
-" Append modeline to EOF {{{
+" toggle number & list
+nnoremap <leader>nu :call <SID>NumberToggle()<CR>
+
+" Append modeline to EOF
 nnoremap <silent> <Leader>ml :call <SID>append_modeline()<CR>
 
-" Append modeline after last line in buffer
-" See: http://vim.wikia.com/wiki/Modeline_magic
-function! s:append_modeline() "{{{
-  let l:modeline = printf(' vim: set ts=%d sw=%d tw=%d %set :',
-        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
-  let l:modeline = substitute(&commentstring, '%s', l:modeline, '')
-  call append(line('$'), l:modeline)
-endfunction "}}}
-" }}}
 "}}}
 "==============================================================================
 " Insert Mode Key Mappings {{{
@@ -316,4 +308,17 @@ endfunction "}}}
 "}}}
 "==============================================================================
 
-" vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:
+" functions {{
+function! s:NumberToggle()
+  if(&number == 1) | set nu! | set rnu! | set list! | else | set rnu | set nu | set list |endif
+endfunction
+
+" Append modeline after last line in buffer
+" See: http://vim.wikia.com/wiki/Modeline_magic
+function! s:append_modeline()
+  let l:modeline = printf(' vim: set ts=%d sw=%d tw=%d %set :',
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, '%s', l:modeline, '')
+  call append(line('$'), l:modeline)
+endfunction
+" }}

@@ -18,9 +18,9 @@ if s:has_plug('fzf.vim')
   endif
 
   " Hide statusline of terminal buffer
-  " autocmd! FileType fzf
-  " autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  "   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
   let g:fzf_colors =
   \ { 'fg':      ['fg', 'Normal'],
@@ -59,5 +59,6 @@ if s:has_plug('fzf.vim')
   nnoremap <silent> <LocalLeader>AG :Ag <C-R><C-A><CR>
 
   inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
+
 endif
 "}}}

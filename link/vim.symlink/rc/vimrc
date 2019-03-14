@@ -23,6 +23,9 @@ let g:load_plugins = 1
 function! s:source_rc(path, ...) abort "{{{
   let use_global = get(a:000, 0, !has('vim_starting'))
   let abspath = resolve(expand($VIMPATH . '/rc/' . a:path))
+  " do not use global.
+  execute 'source' fnameescape(abspath)
+  return
   if !use_global
     execute 'source' fnameescape(abspath)
     return
@@ -55,7 +58,6 @@ endif
 
 if g:load_plugins
   call s:source_rc('dein.vim')
-  " call s:source_rc('plugins/mix.vim')
   for s:path in split(glob($VIMPATH.'/rc/plugins/*.vim'), "\n")
     exe 'source ' . s:path
   endfor

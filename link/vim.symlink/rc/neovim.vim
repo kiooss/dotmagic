@@ -36,11 +36,6 @@ endfor
 unlet! s:num
 unlet! s:color
 
-" comment out due to side effors when using fzf.
-" Modifiable terminal
-"autocmd MyAutoCmd TermOpen * setlocal modifiable
-"autocmd MyAutoCmd TermClose * buffer #
-
 let g:terminal_scrollback_buffer_size = 3000
 
 command! -complete=file -nargs=* Nrun :call s:Terminal(<q-args>)
@@ -61,3 +56,15 @@ function! s:OnExit(job_id, status, event) dict
     execute 'silent! bd! '.self.buffer_nr
   endif
 endfunction
+
+function! s:OnTermOpen(buf)
+  setl nolist norelativenumber nonumber
+  if &buftype ==# 'terminal'
+    nnoremap <buffer> q :<C-U>bd!<CR>
+  endif
+endfunction
+
+augroup neovim
+  autocmd!
+  autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
+augroup end

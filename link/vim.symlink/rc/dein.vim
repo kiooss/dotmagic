@@ -13,7 +13,6 @@ endif
 
 let s:plugins_path = s:config_path . '/dein.toml'
 let s:lazy_plugins_path = s:config_path . '/deinlazy.toml'
-let s:neo_plugins_path = s:config_path . '/deineo.toml'
 let s:ft_path = s:config_path . '/deinft.toml'
 
 " Note: It executes ":filetype off" automatically.
@@ -21,15 +20,11 @@ call dein#begin(s:path, [
       \ expand('<sfile>'),
       \ s:plugins_path,
       \ s:lazy_plugins_path,
-      \ s:neo_plugins_path,
       \ s:ft_path
       \])
 
 call dein#load_toml(s:plugins_path, {'lazy': 0})
 call dein#load_toml(s:lazy_plugins_path, {'lazy' : 1})
-if has('nvim')
-  call dein#load_toml(s:neo_plugins_path)
-endif
 call dein#load_toml(s:ft_path)
 
 call dein#end()

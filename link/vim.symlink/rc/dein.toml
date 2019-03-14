@@ -9,6 +9,9 @@ repo = 'neoclide/coc.nvim'
 merged = 0
 
 [[plugins]]
+repo = 'neoclide/coc-denite'
+
+[[plugins]]
 repo = 'Shougo/dein.vim'
 hook_add = '''
   command! DeinRecache call dein#recache_runtimepath()

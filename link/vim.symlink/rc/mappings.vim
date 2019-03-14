@@ -339,7 +339,9 @@ function! OpenCurrentFileInGithub()
   if has('mac')
     call system('open ' . url)
   else
-    echomsg url
+    echohl WarningMsg
+    echon  url
+    echohl None
   endif
 endfunction
 " }}

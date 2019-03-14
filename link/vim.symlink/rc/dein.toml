@@ -405,6 +405,7 @@ hook_add = '''
   let g:ale_fixers = {
         \ 'javascript': ['eslint', 'standard'],
         \ 'typescript': ['tslint'],
+        \ 'ruby': ['rubocop']
         \}
 
   let g:ale_sign_error = '✖'

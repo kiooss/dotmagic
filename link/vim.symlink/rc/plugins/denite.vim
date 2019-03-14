@@ -1,6 +1,8 @@
 "---------------------------------------------------------------------------
 " denite.nvim
 "
+let g:webdevicons_enable_denite = 1
+
 " INTERFACE
 call denite#custom#option('_', {
       \ 'prompt': 'λ:',

@@ -1,6 +1,8 @@
 {
+  "diagnostic.displayByAle": true,
   "solargraph.checkGemVersion": true,
   // "suggest.noselect": false,
+  "suggest.snippetIndicator": "⭐︎",
   "phpls.enable": false,
   "languageserver": {
     "intelephense": {

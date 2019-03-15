@@ -10,6 +10,7 @@ execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
 " }}}
 
 augroup MyAutoCmd
+  autocmd!
   " {{{ file type specific settings
   autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
@@ -30,6 +31,10 @@ augroup MyAutoCmd
   autocmd FileType php setlocal commentstring=//\ %s
 
   " }}}
+
+  autocmd BufNewFile,BufReadPost *.json setf jsonc
+  autocmd BufNewFile,BufReadPost *.ejs setf html
+
   " remove spaces at the end of line
   autocmd BufWritePre * :%s/\s\+$//e
   " automatically resize panes on resize

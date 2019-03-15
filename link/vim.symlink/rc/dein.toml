@@ -103,8 +103,8 @@ hook_add = '''
   let g:airline#extensions#tabline#buffer_idx_mode = 1
   let g:airline#extensions#tabline#buffer_idx_format = {}
 
-  let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-  let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+  " let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+  " let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
   let g:airline#extensions#ale#error_symbol = '✖ :'
   let g:airline#extensions#ale#warning_symbol = '⚠ :'
@@ -408,6 +408,11 @@ hook_add = '''
         \ 'ruby': ['rubocop']
         \}
 
+  let g:ale_pattern_options = {
+        \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+        \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+        \}
+
   let g:ale_sign_error = '✖'
   let g:ale_sign_warning = '⚠'
   let g:ale_sign_info = 'ℹ'
@@ -486,6 +491,9 @@ repo = 'tmux-plugins/vim-tmux'
 
 [[plugins]]
 repo = 'vim-ruby/vim-ruby'
+
+[[plugins]]
+repo = 'neoclide/jsonc.vim'
 
 # [[plugins]]
 # repo = 'neoclide/vim-easygit'

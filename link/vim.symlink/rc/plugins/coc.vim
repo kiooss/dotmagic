@@ -1,7 +1,4 @@
 " {{{  coc.nvim config
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -73,6 +70,9 @@ nmap <leader>rn <Plug>(coc-rename)
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>ac <Plug>(coc-codeaction)
+
+nmap <leader>mz <Plug>(coc-codelens-action)
 
 " Remap for do codeAction of current line
 " nmap <leader>ac  <Plug>(coc-codeaction)
@@ -97,10 +97,20 @@ command! -nargs=0 Format :call CocAction('format')
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
+function! SetupCommandAbbrs(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
+
+" Use C to open coc config
+call SetupCommandAbbrs('C', 'CocConfig')
+
 call coc#add_extension(
   \ 'coc-dictionary',
   \ 'coc-snippets',
   \ 'coc-css',
+  \ 'coc-omni',
   \ 'coc-html',
   \ 'coc-word',
   \ 'coc-emoji',
@@ -119,6 +129,7 @@ command! -nargs=0 CocInitExtensions call coc#add_extension(
   \ 'coc-dictionary',
   \ 'coc-snippets',
   \ 'coc-css',
+  \ 'coc-omni',
   \ 'coc-html',
   \ 'coc-word',
   \ 'coc-emoji',

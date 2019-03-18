@@ -171,6 +171,7 @@ autocmd MyAutoCmd BufWritePost *
 " --------------------
 set noshowmode      " Don't show mode in cmd window
 set shortmess=aoOTI " Shorten messages and don't show intro
+set shortmess+=c    " don't give |ins-completion-menu| messages.
 set scrolloff=2     " Keep at least 2 lines above/below
 set sidescrolloff=5 " Keep at least 5 lines left/right
 set number          " show line numbers

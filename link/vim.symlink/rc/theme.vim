@@ -31,6 +31,7 @@ else
   " set background=dark
   " set background=light
   try
+    colorscheme gruvbox
     """ gotham
     " let g:airline_theme='gotham'
     " colorscheme gotham
@@ -42,10 +43,10 @@ else
     " let g:airline_theme='snow_dark'
     " colorscheme snow
     """ palenight
-    set background=dark
-    let g:airline_theme='onedark'
-    let g:palenight_terminal_italics=1
-    colorscheme palenight
+    " set background=dark
+    " let g:airline_theme='onedark'
+    " let g:palenight_terminal_italics=1
+    " colorscheme palenight
     """ ayu
     " let g:airline_theme='ayu'
     " let ayucolor='light'  " for light version of theme

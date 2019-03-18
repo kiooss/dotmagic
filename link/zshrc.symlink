@@ -74,6 +74,9 @@ fi
 
 export PATH=$PATH:$HOME/.dasht/bin
 export MANPATH=$HOME/.dasht/man:$MANPATH
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 # }}}
 
 # EDITOR ENV {{{

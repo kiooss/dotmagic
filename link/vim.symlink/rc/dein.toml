@@ -398,7 +398,7 @@ hook_add = '''
         \   'php': ['php'],
         \   'javascript': ['eslint', 'standard'],
         \   'typescript': ['tslint', 'tsserver'],
-        \   'ruby': ['ruby', 'rubocop'],
+        \   'ruby': [],
         \}
   let g:ale_fixers = {
         \ 'javascript': ['eslint', 'standard'],
@@ -561,4 +561,7 @@ repo = 'tobyS/vmustache'
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank'
+
+[[plugins]]
+repo = 'mattn/vim-sqlfmt'
 #  vim: set ts=2 sw=2 tw=80 et :

@@ -64,15 +64,15 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-" vmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+vmap ,f  <Plug>(coc-format-selected)
+nmap ,f  <Plug>(coc-format-selected)
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>ac <Plug>(coc-codeaction)
+" Remap for do codeAction of selected region, ex: `,aap` for current paragraph
+vmap ,a  <Plug>(coc-codeaction-selected)
+nmap ,a  <Plug>(coc-codeaction-selected)
+nmap ,ac <Plug>(coc-codeaction)
 
-nmap <leader>mz <Plug>(coc-codelens-action)
+nmap ,c <Plug>(coc-codelens-action)
 
 " Remap for do codeAction of current line
 " nmap <leader>ac  <Plug>(coc-codeaction)

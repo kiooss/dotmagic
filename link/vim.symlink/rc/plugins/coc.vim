@@ -72,12 +72,13 @@ vmap ,a  <Plug>(coc-codeaction-selected)
 nmap ,a  <Plug>(coc-codeaction-selected)
 nmap ,ac <Plug>(coc-codeaction)
 
-nmap ,c <Plug>(coc-codelens-action)
+nmap ,r <Plug>(coc-codelens-action)
 
 " Remap for do codeAction of current line
 " nmap <leader>ac  <Plug>(coc-codeaction)
+
 " Fix autofix problem of current line
-" nmap <leader>qf  <Plug>(coc-fix-current)
+nmap ,qf  <Plug>(coc-fix-current)
 
 augroup mygroup
   autocmd!
@@ -90,6 +91,8 @@ augroup mygroup
 
   autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup end
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -116,6 +119,7 @@ call coc#add_extension(
   \ 'coc-emoji',
   \ 'coc-ultisnips',
   \ 'coc-solargraph',
+  \ 'coc-prettier',
   \ 'coc-phpls',
   \ 'coc-pairs',
   \ 'coc-json',
@@ -135,6 +139,7 @@ command! -nargs=0 CocInitExtensions call coc#add_extension(
   \ 'coc-emoji',
   \ 'coc-ultisnips',
   \ 'coc-solargraph',
+  \ 'coc-prettier',
   \ 'coc-phpls',
   \ 'coc-pairs',
   \ 'coc-json',

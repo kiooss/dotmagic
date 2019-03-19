@@ -30,7 +30,7 @@
 " Focus the current fold by closing all others
 nnoremap <CR> zMza
 
-nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<CR>
+nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>
 
 " Change current word in a repeatable manner
 nnoremap <leader>cn *``cgn
@@ -67,8 +67,6 @@ nnoremap <silent> [Window]w :update <bar> GitGutter<CR>
 nnoremap <silent> <Leader>w :update <bar> GitGutter<CR>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
-" delete current buffer
-nnoremap <silent> <Leader>b :<C-u>call kiooss#util#BufferDelete()<CR>
 " delete other buffers except current one
 nnoremap <silent> <Leader>B :<C-u>Bonly<CR>
 nnoremap <Leader>x :x<cr>

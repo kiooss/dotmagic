@@ -394,16 +394,18 @@ hook_add = '''
         \   'javascript.jsx': 'javascript',
         \   'jsx': 'javascript'
         \}
+
   let g:ale_linters = {
         \   'php': ['php'],
-        \   'javascript': ['eslint', 'standard'],
+        \   'javascript': ['eslint'],
         \   'typescript': ['tslint', 'tsserver'],
         \   'ruby': [],
         \}
   let g:ale_fixers = {
         \ 'javascript': ['eslint', 'standard'],
         \ 'typescript': ['tslint'],
-        \ 'ruby': ['rubocop']
+        \ 'json': ['fixjson'],
+        \ 'ruby': ['rubocop', 'prettier']
         \}
 
   let g:ale_pattern_options = {

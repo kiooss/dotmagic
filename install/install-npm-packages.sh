@@ -12,6 +12,7 @@ PACKAGES=(
   typescript
   tldr
   neovim
+  fixjson
 )
 
 npm install -g ${PACKAGES[@]}

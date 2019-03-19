@@ -52,6 +52,7 @@ if s:has_plug('fzf.vim')
   nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
   nnoremap <silent> <Leader>f :GFiles --exclude-standard --cached --others<CR>
   nnoremap <silent> <Leader>F :Files<CR>
+  nnoremap <silent> <Leader>bc :BCommits<CR>
   nnoremap <silent> <Leader>; :Lines<CR>
   nnoremap <silent> <Leader>g :GrepWord<CR>
   xnoremap <silent> <Leader>g y:GrepWord <C-R>"<CR>

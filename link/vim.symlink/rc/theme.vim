@@ -31,6 +31,10 @@ else
   " set background=dark
   " set background=light
   try
+    let g:gruvbox_contrast_dark = 'soft'
+    let g:gruvbox_invert_tabline = 1
+    let g:gruvbox_improved_strings = 1
+    let g:gruvbox_improved_warnings = 1
     colorscheme gruvbox
     """ gotham
     " let g:airline_theme='gotham'

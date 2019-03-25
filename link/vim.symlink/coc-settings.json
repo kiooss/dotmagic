@@ -5,6 +5,7 @@
   // "suggest.noselect": false,
   "suggest.snippetIndicator": "⭐︎",
   "phpls.enable": false,
+  "prettier.singleQuote": true,
   "languageserver": {
     "intelephense": {
       "command": "node",

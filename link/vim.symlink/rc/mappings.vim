@@ -40,6 +40,9 @@ nnoremap <leader>cN *``cgN
 vnoremap <expr> <leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
+vnoremap ,64 c<c-r>=system('base64 --decode', @")<cr><esc>
+
+
 " s: Windows and buffers(High priority) "{{{
 " The prefix key.
 nnoremap [Window]   <Nop>

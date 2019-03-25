@@ -9,7 +9,7 @@ execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
       \ .' | echo "config reloaded!"'
 " }}}
 
-augroup MyAutoCmd
+augroup common
   autocmd!
   " {{{ file type specific settings
   autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
@@ -18,7 +18,6 @@ augroup MyAutoCmd
   autocmd FileType zsh,bash,sh setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType crontab setlocal nobackup nowritebackup
 
-  " autocmd FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
   autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
   autocmd FileType gitcommit setlocal spell

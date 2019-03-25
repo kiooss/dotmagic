@@ -399,13 +399,14 @@ hook_add = '''
         \   'php': ['php'],
         \   'javascript': ['eslint'],
         \   'typescript': ['tslint', 'tsserver'],
-        \   'ruby': [],
+        \   'ruby': ['rubocop'],
+        \   'eruby': [],
         \}
   let g:ale_fixers = {
         \ 'javascript': ['eslint', 'standard'],
         \ 'typescript': ['tslint'],
         \ 'json': ['fixjson'],
-        \ 'ruby': ['rubocop', 'prettier']
+        \ 'ruby': ['rubocop']
         \}
 
   let g:ale_pattern_options = {
@@ -478,10 +479,6 @@ repo = 'cespare/vim-toml'
 
 [[plugins]]
 repo = 'cakebaker/scss-syntax.vim'
-
-[[plugins]]
-repo = 'ternjs/tern_for_vim'
-build = 'npm install'
 
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
@@ -566,4 +563,8 @@ repo = 'machakann/vim-highlightedyank'
 
 [[plugins]]
 repo = 'mattn/vim-sqlfmt'
+
+[[plugins]]
+repo = 'prettier/vim-prettier'
+build = 'yarn install'
 #  vim: set ts=2 sw=2 tw=80 et :

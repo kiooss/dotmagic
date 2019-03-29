@@ -54,3 +54,5 @@ local.properties
 .gutctags
 .notags
 .tern-project
+
+.solargraph.yml

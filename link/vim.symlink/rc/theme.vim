@@ -31,6 +31,7 @@ else
   " set background=dark
   " set background=light
   try
+    colorscheme onedark
     " let g:gruvbox_contrast_dark = 'medium'
     " let g:gruvbox_invert_tabline = 1
     " let g:gruvbox_improved_strings = 1
@@ -47,10 +48,10 @@ else
     " let g:airline_theme='snow_dark'
     " colorscheme snow
     """ palenight
-    set background=dark
-    let g:airline_theme='onedark'
-    let g:palenight_terminal_italics=1
-    colorscheme palenight
+    " set background=dark
+    " let g:airline_theme='onedark'
+    " let g:palenight_terminal_italics=1
+    " colorscheme palenight
     """ ayu
     " let g:airline_theme='ayu'
     " let ayucolor='light'  " for light version of theme

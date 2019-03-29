@@ -410,8 +410,9 @@ hook_add = '''
         \}
 
   let g:ale_pattern_options = {
-        \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-        \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+        \ '\.min\.js$': {'ale_enabled': 0},
+        \ '\.min\.css$': {'ale_enabled': 0},
+        \   '.*gems/.*\.rb$': {'ale_enabled': 0},
         \}
 
   let g:ale_sign_error = '✖'
@@ -567,4 +568,7 @@ repo = 'mattn/vim-sqlfmt'
 [[plugins]]
 repo = 'prettier/vim-prettier'
 build = 'yarn install'
+
+# [[plugins]]
+# repo = 'mtdl9/vim-log-highlighting'
 #  vim: set ts=2 sw=2 tw=80 et :

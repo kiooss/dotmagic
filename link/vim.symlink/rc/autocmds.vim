@@ -35,6 +35,7 @@ augroup common
   autocmd BufNewFile,BufReadPost *.json setf jsonc
   autocmd BufNewFile,BufReadPost *.ejs setf html
 
+  autocmd BufReadPost *.log normal! G
   " remove spaces at the end of line
   autocmd BufWritePre * :%s/\s\+$//e
   " automatically resize panes on resize

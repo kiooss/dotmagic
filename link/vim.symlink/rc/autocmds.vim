@@ -35,6 +35,7 @@ augroup common
   autocmd BufNewFile,BufReadPost *.json setf jsonc
   autocmd BufNewFile,BufReadPost *.ejs setf html
 
+  autocmd BufEnter * call EmptyBuffer()
   autocmd BufReadPost *.log normal! G
   " remove spaces at the end of line
   autocmd BufWritePre * :%s/\s\+$//e
@@ -107,5 +108,11 @@ augroup common
     autocmd VimLeave * call system('tmux set-window automatic-rename on')
   endif
 augroup END
+
+function! EmptyBuffer()
+  if @% ==# ""
+    setfiletype txt
+  endif
+endfunction
 
 " vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

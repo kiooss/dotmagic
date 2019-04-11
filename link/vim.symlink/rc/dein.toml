@@ -573,6 +573,9 @@ build = 'yarn install'
 repo = 'phpactor/phpactor'
 build = 'composer install'
 
+[[plugins]]
+repo = 'vim-scripts/apachestyle'
+
 # [[plugins]]
 # repo = 'mtdl9/vim-log-highlighting'
 #  vim: set ts=2 sw=2 tw=80 et :

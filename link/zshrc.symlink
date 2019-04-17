@@ -345,6 +345,11 @@ fi
 if [[ -d "$HOME/.nix-profile/" ]]; then
   source $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
+
+# Set up hub wrapper for git, if it is available; https://github.com/github/hub
+if (( $+commands[hub] )); then
+  alias git=hub
+fi
 # }}}
 
 # FZF {{{

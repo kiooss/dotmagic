@@ -5,6 +5,11 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
+" for endwise
+function! s:SmartCR()
+    return "\<CR>" . "\<C-R>=EndwiseDiscretionary()\<CR>"
+endfunction
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -12,7 +17,8 @@ inoremap <silent><expr> <TAB>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : <SID>SmartCR()
 
 " Use <C-l> to trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)

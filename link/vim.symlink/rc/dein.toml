@@ -273,8 +273,11 @@ hook_add ='''
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.js"
 '''
 
-# [[plugins]]
-# repo = 'tpope/vim-endwise'
+[[plugins]]
+repo = 'tpope/vim-endwise'
+hook_add = '''
+let g:endwise_no_mappings = 1
+'''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'

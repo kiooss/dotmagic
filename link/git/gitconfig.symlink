@@ -20,7 +20,7 @@ df = diff
 dc = diff --cached
 ls = ls-files
 lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --
-ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
 lol = log --graph --decorate --pretty=oneline --abbrev-commit
 lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 lm = log --pretty=format:'%s%n   by %C(yellow)%an%Creset (%ad)%n %n%b' --date=local

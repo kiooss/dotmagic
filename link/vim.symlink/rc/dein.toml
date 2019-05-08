@@ -416,6 +416,7 @@ hook_add = '''
         \ '\.min\.js$': {'ale_enabled': 0},
         \ '\.min\.css$': {'ale_enabled': 0},
         \   '.*gems/.*\.rb$': {'ale_enabled': 0},
+        \ 'Vagrantfile$': {'ale_enabled': 0},
         \}
 
   let g:ale_sign_error = '✖'

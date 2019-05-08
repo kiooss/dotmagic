@@ -229,7 +229,8 @@ plugins_on_need=(
   composer
   react-native
   yarn
-  # docker
+  docker
+  vagrant
 )
 
 for plugin ($plugins_on_need); do
@@ -259,6 +260,7 @@ if [[ "$OSTYPE" = darwin* ]]; then
     adb
     gradle
     pass
+    vagrant-prompt
   )
 
   my_plugins=(

@@ -8,8 +8,8 @@
   "prettier.singleQuote": true,
   "languageserver": {
     "intelephense": {
-      "command": "node",
-      "args": ["/home/yang/n/lib/node_modules/intelephense/lib/intelephense.js", "--stdio"],
+      "command": "intelephense",
+      "args": ["--stdio"],
       "filetypes": ["php"]
     }
   }

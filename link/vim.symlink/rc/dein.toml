@@ -197,6 +197,9 @@ repo = 'nightsense/snow'
 
 [[plugins]]
 repo = 'drewtempelmeyer/palenight.vim'
+
+[[plugins]]
+repo = 'rakr/vim-two-firewatch'
 #### colors end
 
 [[plugins]]

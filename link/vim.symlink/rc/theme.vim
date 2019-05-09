@@ -28,7 +28,7 @@ let s:use_base16_theme = get(g:, 'use_base16_theme', 1)
 if s:use_base16_theme && filereadable(expand('~/.vimrc_background'))
   source ~/.vimrc_background
 else
-  " set background=dark
+  set background=dark
   " set background=light
   try
     colorscheme onedark

@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # Ruby script to show all 256 xterm colors in the terminal/bash
 

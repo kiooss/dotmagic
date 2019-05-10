@@ -14,7 +14,7 @@ cw_bg="colour12"
 
 # Status update interval
 # default is 15
-set -g status-interval 60
+set -g status-interval 10
 
 # Basic status bar colors
 set -g status-fg colour240

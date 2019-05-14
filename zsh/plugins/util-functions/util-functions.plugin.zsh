@@ -270,7 +270,7 @@ function ssh() {
     if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux: server" ]; then
         # tmux rename-window "$(echo $* | rev | cut -d ' ' -f1 | rev | cut -d . -f 1)"
         local window_name=$(tmux display -p '#{window_name}')
-        tmux rename-window "💻 $(echo $*)"
+        tmux rename-window "ﲒ #[fg=red] $(echo $*)"
         TERM=xterm-256color command ssh "$@"
         tmux rename-window $window_name
         # tmux set-window-option automatic-rename "on" 1>/dev/null

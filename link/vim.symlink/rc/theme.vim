@@ -1,4 +1,4 @@
-"=============================================================================
+
 " theme.vim---Theme settings.
 " => Yang Yang
 "=============================================================================
@@ -31,7 +31,12 @@ else
   set background=dark
   " set background=light
   try
+    " let g:falcon_airline = 1
+    " let g:airline_theme = 'falcon'
+    " colorscheme falcon
+
     colorscheme onedark
+
     " let g:gruvbox_contrast_dark = 'medium'
     " let g:gruvbox_invert_tabline = 1
     " let g:gruvbox_improved_strings = 1

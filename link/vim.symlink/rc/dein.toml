@@ -200,6 +200,9 @@ repo = 'drewtempelmeyer/palenight.vim'
 
 [[plugins]]
 repo = 'rakr/vim-two-firewatch'
+
+[[plugins]]
+repo = 'fenetikm/falcon'
 #### colors end
 
 [[plugins]]

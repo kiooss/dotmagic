@@ -44,11 +44,11 @@ right_segment() {
     local bg fg
     [[ -n $1 ]] && bg=$1
     [[ -n $2 ]] && fg=$2
-    if [[ $R_CURRENT_BG != 'NONE' && $1 != $R_CURRENT_BG ]]; then
-        echo -n "#[fg=$bg,bg=$R_CURRENT_BG]$R_SEP#[fg=$fg,bg=$bg]"
-    else
-        echo -n "#[fg=$bg,bg=default]$R_SEP#[fg=$fg,bg=$bg]"
-    fi
+    # if [[ $R_CURRENT_BG != 'NONE' && $1 != $R_CURRENT_BG ]]; then
+    #     echo -n "#[fg=$bg,bg=$R_CURRENT_BG]$R_SEP#[fg=$fg,bg=$bg]"
+    # else
+    #     echo -n "#[fg=$bg,bg=default]$R_SEP#[fg=$fg,bg=$bg]"
+    # fi
     R_CURRENT_BG=$1
     [[ -n $3 ]] && echo -n $3
 }
@@ -59,23 +59,29 @@ build_left_status() {
     # left_segment 'colour003' 'colour000' '#(tmux-arrow) #P '
     left_segment 'colour009' 'colour015' '#(tmux-rb-version) '
     # left_segment 'colour005' 'colour015' '#(tmux-php-version) '
-    if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
-        left_segment 'colour014' 'colour000' '#($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
-    else
-        left_segment_end
-    fi
+    left_segment 'colour002' 'colour000' '#(tmux-date)'
+    left_segment 'colour005' 'colour000' '#(tmux-weather)'
+    left_segment 'colour006' 'colour000' '#(tmux-disk-usage)'
+    left_segment 'colour004' 'colour000' '#(get-public-ip) '
+    left_segment_end
+    # if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
+    #     left_segment 'colour014' 'colour000' '#($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-left --graph-lines 0 --averages-count 3 --interval 2)'
+    # else
+    #     left_segment_end
+    # fi
 }
 
 build_right_status() {
+    right_segment 'colour014' 'colour000' '#($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-right --graph-lines 0 --averages-count 3 --interval 2)'
     # if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
     #     right_segment 'colour020' 'colour198' '#(emoji-clock)  #(tmux-time) '
     # else
     #     right_segment 'colour020' 'colour198' '#(emoji-clock)  '
     # fi
-    right_segment 'colour016' 'colour000' '#(tmux-date)'
-    right_segment 'colour005' 'colour000' '#(tmux-weather)'
-    right_segment 'colour006' 'colour000' '#(tmux-disk-usage)'
-    right_segment 'colour004' 'colour000' '#(get-public-ip) '
+    # right_segment 'colour016' 'colour000' '#(tmux-date)'
+    # right_segment 'colour005' 'colour000' '#(tmux-weather)'
+    # right_segment 'colour006' 'colour000' '#(tmux-disk-usage)'
+    # right_segment 'colour004' 'colour000' '#(get-public-ip) '
 }
 
 if [[ $SIDE = 'right' ]]; then

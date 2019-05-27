@@ -54,8 +54,8 @@ right_segment() {
 }
 
 build_left_status() {
-    left_segment 'colour012' 'colour000' '❐ #S §'
-    left_segment 'colour005' 'colour253' '  #H '
+    left_segment 'colour012' 'colour000' '❐ #S'
+    # left_segment 'colour005' 'colour253' '  #H '
     # left_segment 'colour003' 'colour000' '#(tmux-arrow) #P '
     left_segment 'colour009' 'colour015' '#(tmux-rb-version) '
     # left_segment 'colour005' 'colour015' '#(tmux-php-version) '
@@ -72,7 +72,7 @@ build_right_status() {
     # else
     #     right_segment 'colour020' 'colour198' '#(emoji-clock)  '
     # fi
-    # right_segment 'colour016' 'colour000' '#(tmux-date)'
+    right_segment 'colour016' 'colour000' '#(tmux-date)'
     right_segment 'colour005' 'colour000' '#(tmux-weather)'
     right_segment 'colour006' 'colour000' '#(tmux-disk-usage)'
     right_segment 'colour004' 'colour000' '#(get-public-ip) '

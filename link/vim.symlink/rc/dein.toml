@@ -586,6 +586,8 @@ build = 'composer install'
 [[plugins]]
 repo = 'vim-scripts/apachestyle'
 
+[[plugins]]
+repo = 'rhysd/vim-grammarous'
 # [[plugins]]
 # repo = 'mtdl9/vim-log-highlighting'
 #  vim: set ts=2 sw=2 tw=80 et :

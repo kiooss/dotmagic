@@ -72,8 +72,8 @@ getPublicIp('https://ifconfig.me', (err, response) => {
     throw err
   }
   if (response === '18.182.170.161') {
-    console.log(`vpn: ${response}`)
+    console.log(`嬨#[fg=red,bold]${response}`)
   } else {
-    console.log(`ip: ${response}`)
+    console.log(` ${response}`)
   }
 })

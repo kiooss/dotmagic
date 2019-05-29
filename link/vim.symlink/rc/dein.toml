@@ -70,7 +70,7 @@ hook_add = '''
 [[plugins]]
 repo = 'nixprime/cpsm'
 merge = 0
-build = 'sh -c "PY3=ON ./install.sh"'
+build = 'bash -c "PY3=ON ./install.sh"'
 
 [[plugins]]
 on_if = "get(g:, 'enable_patched_font', 0)"

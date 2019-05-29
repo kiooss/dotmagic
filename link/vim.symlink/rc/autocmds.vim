@@ -49,6 +49,9 @@ augroup common
   autocmd Syntax * if 5000 < line('$') | syntax sync minlines=200 | endif
 
   " autocmd FileType * execute 'setlocal dict+='.$VIMPATH.'/words/'.&filetype.'.txt'
+  autocmd FileType vue syntax sync fromstart
+  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css.less.pug
+
 
   " Update filetype on save if empty
   autocmd BufWritePost * nested

@@ -6,6 +6,9 @@
   "suggest.snippetIndicator": "⭐︎",
   "phpls.enable": false,
   "prettier.singleQuote": true,
+  "typescript.implementationsCodeLens.enable": true,
+  "typescript.referencesCodeLens.enable": false,
+  "suggest.echodocSupport": false,
   "languageserver": {
     "intelephense": {
       "command": "intelephense",

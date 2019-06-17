@@ -6,8 +6,8 @@ merge = 0
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
+rev = 'release'
 merged = 0
-build = 'yarn install'
 
 [[plugins]]
 repo = 'neoclide/coc-denite'
@@ -407,13 +407,14 @@ hook_add = '''
   let g:ale_linters = {
         \   'php': ['php'],
         \   'javascript': ['eslint'],
-        \   'typescript': ['tslint', 'tsserver'],
+        \   'typescript': ['tslint', 'tsserver', 'eslint'],
         \   'ruby': ['rubocop'],
         \   'eruby': [],
         \}
   let g:ale_fixers = {
         \ 'javascript': ['eslint', 'standard'],
-        \ 'typescript': ['tslint'],
+        \ 'vue': ['eslint'],
+        \ 'typescript': ['tslint', 'eslint'],
         \ 'json': ['fixjson'],
         \ 'ruby': ['rubocop']
         \}

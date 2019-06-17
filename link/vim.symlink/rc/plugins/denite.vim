@@ -100,65 +100,79 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
 " \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
 " \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
 " KEY MAPPINGS
-let s:insert_mode_mappings = [
-      \  ['<C-a>', '<denite:move_caret_to_head>', 'noremap'],
-      \  ['<C-e>', '<denite:move_caret_to_tail>', 'noremap'],
-      \  ['<C-f>', '<denite:move_caret_to_right>', 'noremap'],
-      \  ['<C-b>', '<denite:move_caret_to_left>', 'noremap'],
-      \  ['jk', '<denite:enter_mode:normal>', 'noremap'],
-      \  ['<C-j>', '<denite:move_to_next_line>', 'noremap'],
-      \  ['<C-k>', '<denite:move_to_previous_line>', 'noremap'],
-      \  ['<C-v>', '<denite:do_action:vsplit>', 'noremap'],
-      \  ['<C-u>', '<denite:delete_entire_text>', 'noremap'],
-      \  ['<C-Y>', '<denite:redraw>', 'noremap'],
-      \  ['<C-r>', '<denite:toggle_matchers:matcher/substring>', 'noremap'],
-      \ ]
+" let s:insert_mode_mappings = [
+"       \  ['<C-a>', '<denite:move_caret_to_head>', 'noremap'],
+"       \  ['<C-e>', '<denite:move_caret_to_tail>', 'noremap'],
+"       \  ['<C-f>', '<denite:move_caret_to_right>', 'noremap'],
+"       \  ['<C-b>', '<denite:move_caret_to_left>', 'noremap'],
+"       \  ['jk', '<denite:enter_mode:normal>', 'noremap'],
+"       \  ['<C-j>', '<denite:move_to_next_line>', 'noremap'],
+"       \  ['<C-k>', '<denite:move_to_previous_line>', 'noremap'],
+"       \  ['<C-v>', '<denite:do_action:vsplit>', 'noremap'],
+"       \  ['<C-u>', '<denite:delete_entire_text>', 'noremap'],
+"       \  ['<C-Y>', '<denite:redraw>', 'noremap'],
+"       \  ['<C-r>', '<denite:toggle_matchers:matcher/substring>', 'noremap'],
+"       \ ]
 
-let s:normal_mode_mappings = [
-      \   ["'", '<denite:toggle_select_down>', 'noremap'],
-      \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
-      \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
-      \   ['gg', '<denite:move_to_first_line>', 'noremap'],
-      \   ['st', '<denite:do_action:tabopen>', 'noremap'],
-      \   ['sp', '<denite:do_action:vsplit>', 'noremap'],
-      \   ['sh', '<denite:do_action:split>', 'noremap'],
-      \   ['q', '<denite:quit>', 'noremap'],
-      \   ['r', '<denite:redraw>', 'noremap'],
-      \ ]
+" let s:normal_mode_mappings = [
+"       \   ["'", '<denite:toggle_select_down>', 'noremap'],
+"       \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
+"       \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
+"       \   ['gg', '<denite:move_to_first_line>', 'noremap'],
+"       \   ['st', '<denite:do_action:tabopen>', 'noremap'],
+"       \   ['sp', '<denite:do_action:vsplit>', 'noremap'],
+"       \   ['sh', '<denite:do_action:split>', 'noremap'],
+"       \   ['q', '<denite:quit>', 'noremap'],
+"       \   ['r', '<denite:redraw>', 'noremap'],
+"       \ ]
 
-for s:m in s:insert_mode_mappings
-  call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
-endfor
-for s:m in s:normal_mode_mappings
-  call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
-endfor
+" for s:m in s:insert_mode_mappings
+"   call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
+" endfor
+" for s:m in s:normal_mode_mappings
+"   call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
+" endfor
 
-unlet s:m s:insert_mode_mappings s:normal_mode_mappings
+" unlet s:m s:insert_mode_mappings s:normal_mode_mappings
+
+" Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
 
 nnoremap <silent> <LocalLeader>b :<C-u>Denite buffer file/old -default-action=switch<CR>
 nnoremap <silent> <LocalLeader>o :<C-u>Denite outline<CR>
-nnoremap <silent> <LocalLeader>vv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/<CR>
+nnoremap <silent> <LocalLeader>vv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/ -start-filter<CR>
 nnoremap <silent> <LocalLeader>vd :<C-u>Denite dein -default-action=open<CR>
 nnoremap <silent> <LocalLeader>vc :<C-u>Denite colorscheme -auto-preview<CR>
-nnoremap <silent> <LocalLeader>vf :<C-u>Denite filetype -highlight-mode-insert=Search<CR>
+nnoremap <silent> <LocalLeader>vf :<C-u>Denite filetype<CR>
 nnoremap <silent> <LocalLeader>vh :<C-u>Denite -buffer-name=search help<CR>
 
 nnoremap <silent> <LocalLeader>r
-      \ :<C-u>Denite -mode=normal -buffer-name=register
-      \ -highlight-mode-insert=Search register<CR>
+      \ :<C-u>Denite -buffer-name=register register<CR>
 xnoremap <silent> <LocalLeader>r
-      \ :<C-u>Denite -mode=normal -default-action=replace -buffer-name=register
-      \ -highlight-mode-insert=Search register<CR>
+      \ :<C-u>Denite -mode=normal -default-action=replace -buffer-name=register register<CR>
 
-nnoremap <silent> / :<C-u>Denite -buffer-name=search
-      \ -highlight-mode-insert=Search line<CR>
-nnoremap <silent> <LocalLeader>g :<C-u>Denite -buffer-name=search
-      \ -no-empty -mode=normal grep/git<CR>
-nnoremap <silent> n :<C-u>Denite -buffer-name=search
-      \ -resume -mode=normal -refresh<CR>
-nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
-      \ -mode=normal line<CR>
-nnoremap <silent> # :<C-u>DeniteCursorWord -buffer-name=search
-      \ -no-empty -mode=normal grep/git<CR>
+nnoremap <expr> / line('$') > 10000 ? '/' :
+\ ":\<C-u>Denite -buffer-name=search -start-filter line\<CR>"
+nnoremap <expr> n line('$') > 10000 ? 'n' :
+\ ":\<C-u>Denite -buffer-name=search -resume -refresh -no-start-filter\<CR>"
+nnoremap <expr> * line('$') > 10000 ? '*' :
+\ ":\<C-u>DeniteCursorWord -buffer-name=search line\<CR>"
+
+nnoremap <silent> <LocalLeader>g :<C-u>Denite -buffer-name=search -no-empty grep/git<CR>
+nnoremap <silent> # :<C-u>DeniteCursorWord -buffer-name=search -no-empty grep/git<CR>
 nnoremap <silent><expr> tp  &filetype == 'help' ?
       \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"

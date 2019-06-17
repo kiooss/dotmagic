@@ -132,6 +132,7 @@ call coc#add_extension(
   \ 'coc-yaml',
   \ 'coc-stylelint',
   \ 'coc-highlight',
+  \ 'coc-vetur',
   \ 'coc-tsserver'
   \)
 

@@ -43,8 +43,8 @@ set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`
 
 # set -g window-status-format "#[fg=white,bg=colour234] #I #W "
 # set -g window-status-current-format "#[fg=colour234,bg=colour12]#[fg=colour25,bg=colour12,noreverse,bold] #I ⮁ #W #[fg=colour12,bg=colour234,nobold]"
-set -g window-status-format "#[bg=colour243] #[fg=colour222]#I #[fg=colour238]#W "
-set -g window-status-current-format "#[bg=colour238] #[fg=colour196]ﴔ #[fg=colour048]#I #[fg=colour172]#W "
+set -g window-status-format "#[bg=colour235] #[fg=colour240]#I #[fg=colour240]#W "
+set -g window-status-current-format "#[bg=colour222] #[fg=colour196]ﴔ #[fg=colour024]#I #[fg=colour233]#W "
 
 # Current window status
 set -g window-status-current-style fg=colour232,bg=$tm_status_bg

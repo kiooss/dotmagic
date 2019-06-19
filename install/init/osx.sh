@@ -147,6 +147,7 @@ recipes=(
   clipper
   cmake
   coreutils
+  exa
   fd
   highlight
   jq

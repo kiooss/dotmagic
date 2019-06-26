@@ -29,6 +29,7 @@ augroup common
   autocmd FileType apache setlocal commentstring=#\ %s
   autocmd FileType php setlocal commentstring=//\ %s
   autocmd FileType gitconfig setlocal commentstring=#\ %s
+  autocmd FileType vue setlocal commentstring=//\ %s
 
   " }}}
 

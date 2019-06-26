@@ -6,8 +6,30 @@ merge = 0
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-rev = 'release'
 merged = 0
+build = 'yarn install --frozen-lockfile'
+hook_add='''
+  let g:coc_global_extensions = [
+    \ 'coc-dictionary',
+    \ 'coc-snippets',
+    \ 'coc-css',
+    \ 'coc-omni',
+    \ 'coc-html',
+    \ 'coc-word',
+    \ 'coc-emoji',
+    \ 'coc-ultisnips',
+    \ 'coc-solargraph',
+    \ 'coc-prettier',
+    \ 'coc-phpls',
+    \ 'coc-pairs',
+    \ 'coc-json',
+    \ 'coc-yaml',
+    \ 'coc-stylelint',
+    \ 'coc-highlight',
+    \ 'coc-vetur',
+    \ 'coc-tsserver'
+    \ ]
+'''
 
 [[plugins]]
 repo = 'neoclide/coc-denite'
@@ -169,7 +191,7 @@ on_if = '!has("nvim")'
 
 #### colors start
 [[plugins]]
-repo = 'morhetz/gruvbox'
+repo = 'gruvbox-community/gruvbox'
 
 [[plugins]]
 repo = 'ayu-theme/ayu-vim'
@@ -391,6 +413,7 @@ repo = 'kiooss/vim-zenkaku-space'
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
+  " let g:ale_sign_column_always = 1
   let g:ale_set_quickfix = 1
   let g:ale_lint_delay = 1500
   let g:ale_lint_on_text_changed = 0
@@ -426,7 +449,7 @@ hook_add = '''
         \ 'Vagrantfile$': {'ale_enabled': 0},
         \}
 
-  let g:ale_sign_error = '✖'
+  let g:ale_sign_error = '✗' " u2717
   let g:ale_sign_warning = '⚠'
   let g:ale_sign_info = 'ℹ'
   let g:ale_sign_style_error = '>>'

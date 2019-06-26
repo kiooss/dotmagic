@@ -1,4 +1,5 @@
 " {{{  coc.nvim config
+
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -114,45 +115,4 @@ endfunction
 
 " Use C to open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
-
-call coc#add_extension(
-  \ 'coc-dictionary',
-  \ 'coc-snippets',
-  \ 'coc-css',
-  \ 'coc-omni',
-  \ 'coc-html',
-  \ 'coc-word',
-  \ 'coc-emoji',
-  \ 'coc-ultisnips',
-  \ 'coc-solargraph',
-  \ 'coc-prettier',
-  \ 'coc-phpls',
-  \ 'coc-pairs',
-  \ 'coc-json',
-  \ 'coc-yaml',
-  \ 'coc-stylelint',
-  \ 'coc-highlight',
-  \ 'coc-vetur',
-  \ 'coc-tsserver'
-  \)
-
-command! -nargs=0 CocInitExtensions call coc#add_extension(
-  \ 'coc-dictionary',
-  \ 'coc-snippets',
-  \ 'coc-css',
-  \ 'coc-omni',
-  \ 'coc-html',
-  \ 'coc-word',
-  \ 'coc-emoji',
-  \ 'coc-ultisnips',
-  \ 'coc-solargraph',
-  \ 'coc-prettier',
-  \ 'coc-phpls',
-  \ 'coc-pairs',
-  \ 'coc-json',
-  \ 'coc-yaml',
-  \ 'coc-stylelint',
-  \ 'coc-highlight',
-  \ 'coc-tsserver'
-  \)
 " }}}

@@ -155,15 +155,18 @@ endfunction
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <esc> <Plug>(denite_filter_quit)
+  imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)
+  imap <silent><buffer> <C-j> <Plug>(denite_filter_quit)
+  imap <silent><buffer> <C-k> <Plug>(denite_filter_quit)
 endfunction
 
 nnoremap <silent> <LocalLeader>b :<C-u>Denite buffer file/old -default-action=switch<CR>
-nnoremap <silent> <LocalLeader>o :<C-u>Denite outline<CR>
+nnoremap <silent> <LocalLeader>o :<C-u>Denite outline -start-filter<CR>
 nnoremap <silent> <LocalLeader>vv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/ -start-filter<CR>
 nnoremap <silent> <LocalLeader>vd :<C-u>Denite dein -default-action=open<CR>
-nnoremap <silent> <LocalLeader>vc :<C-u>Denite colorscheme -auto-preview<CR>
-nnoremap <silent> <LocalLeader>vf :<C-u>Denite filetype<CR>
-nnoremap <silent> <LocalLeader>vh :<C-u>Denite -buffer-name=search help<CR>
+nnoremap <silent> <LocalLeader>vc :<C-u>Denite colorscheme -auto-preview -start-filter<CR>
+nnoremap <silent> <LocalLeader>vf :<C-u>Denite filetype -start-filter<CR>
+nnoremap <silent> <LocalLeader>vh :<C-u>Denite -buffer-name=search -start-filter help<CR>
 
 nnoremap <silent> <LocalLeader>r
       \ :<C-u>Denite -buffer-name=register register<CR>

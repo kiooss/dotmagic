@@ -131,7 +131,7 @@ hook_add = '''
 
   let g:airline#extensions#ale#error_symbol = '✖ :'
   let g:airline#extensions#ale#warning_symbol = '⚠ :'
-  let g:airline#extensions#ale#checking_symbol = 'checking...'
+  let g:airline#extensions#ale#checking_symbol = '⚙  checking...'
   for s:i in range(9)
     call extend(g:airline#extensions#tabline#buffer_idx_format,
           \ {s:i : kiooss#api#import('messletters').bubble_num(s:i, 1). ' '})
@@ -197,9 +197,6 @@ repo = 'gruvbox-community/gruvbox'
 repo = 'ayu-theme/ayu-vim'
 
 [[plugins]]
-repo = 'lu-ren/SerialExperimentsLain'
-
-[[plugins]]
 repo = 'chriskempson/base16-vim'
 
 [[plugins]]
@@ -254,17 +251,17 @@ hook_add ='''
 [[plugins]]
 repo = 'gregsexton/MatchTag'
 
-# [[plugins]]
-# repo = 'Yggdroot/indentLine'
-# hook_add = '''
-#   " let g:indentLine_char = '│'
-#   " let g:indentLine_first_char = ''
-#   " let g:indentLine_showFirstIndentLevel = 1
-#   " let g:indentLine_setColors = 0
-#   let g:indentLine_fileTypeExclude = ['startify']
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  " let g:indentLine_char = '│'
+  " let g:indentLine_first_char = ''
+  " let g:indentLine_showFirstIndentLevel = 1
+  " let g:indentLine_setColors = 0
+  let g:indentLine_fileTypeExclude = ['startify']
 
-#   nnoremap <silent> <leader>\ :<C-u>IndentLinesToggle<CR>
-# '''
+  nnoremap <silent> <leader>\ :<C-u>IndentLinesToggle<CR>
+'''
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -475,9 +472,6 @@ repo = 'AndrewRadev/switch.vim'
 repo = 'chrisbra/vim-zsh'
 
 [[plugins]]
-repo = 'ujihisa/neco-look'
-
-[[plugins]]
 repo = 'airblade/vim-rooter'
 hook_add = '''
   let g:rooter_silent_chdir = 1
@@ -570,6 +564,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'AndrewRadev/splitjoin.vim'
+# mapping: gS gJ
 
 [[plugins]]
 repo = 'junegunn/vim-peekaboo'

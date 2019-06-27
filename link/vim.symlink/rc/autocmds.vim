@@ -114,7 +114,7 @@ augroup common
 augroup END
 
 function! EmptyBuffer()
-  if @% ==# ""
+  if @% ==# "" && &filetype !=# "startify"
     setfiletype txt
   endif
 endfunction

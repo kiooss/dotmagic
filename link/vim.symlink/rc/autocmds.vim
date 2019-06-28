@@ -36,7 +36,7 @@ augroup common
   autocmd BufNewFile,BufReadPost *.json setf jsonc
   autocmd BufNewFile,BufReadPost *.ejs setf html
 
-  autocmd BufEnter * call EmptyBuffer()
+  " autocmd BufEnter * call EmptyBuffer()
   autocmd BufReadPost *.log normal! G
   " remove spaces at the end of line
   autocmd BufWritePre * :%s/\s\+$//e

@@ -367,3 +367,7 @@ fi
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/yang/.sdkman"
+[[ -s "/Users/yang/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yang/.sdkman/bin/sdkman-init.sh"

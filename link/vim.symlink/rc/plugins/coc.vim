@@ -18,11 +18,12 @@ inoremap <silent><expr> <TAB>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : <SID>SmartCR()
 
-" Use <C-l> to trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-j> to trigger snippet expand.
+imap <C-j> <Plug>(coc-snippets-expand)
 
 " Use <c-g> for trigger completion.
 inoremap <silent><expr> <c-g> coc#refresh()

@@ -19,6 +19,7 @@ hook_add='''
     \ 'coc-emoji',
     \ 'coc-ultisnips',
     \ 'coc-solargraph',
+    \ 'coc-tabnine',
     \ 'coc-prettier',
     \ 'coc-phpls',
     \ 'coc-pairs',

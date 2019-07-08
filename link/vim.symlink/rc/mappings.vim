@@ -30,6 +30,10 @@
 " Focus the current fold by closing all others
 nnoremap <CR> zMza
 
+" Toggle folds
+" nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent> <leader>; @=(foldlevel('.')?'za':"")<CR>
+
 nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>
 
 " Change current word in a repeatable manner
@@ -63,8 +67,6 @@ nnoremap <silent> [Window]sp :vsplit<CR>:wincmd p<CR>:e#<CR>
 " close the preview window
 nnoremap <silent> [Window]z  :wincmd z<CR>
 nnoremap <silent> <Tab>      :wincmd w<CR>
-" nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
-" nnoremap <silent> q :call kiooss#util#SmartQuit()<CR>
 "}}}
 
 nnoremap <silent> [Window]w :update <bar> GitGutter<CR>
@@ -147,9 +149,6 @@ nnoremap g[ :pop<cr>
 
 " disable EX mode
 nnoremap Q q
-
-" Toggle folds
-" nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 " +/-: Increment number
 " nnoremap + <c-a>

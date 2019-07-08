@@ -149,7 +149,7 @@ nnoremap g[ :pop<cr>
 nnoremap Q q
 
 " Toggle folds
-nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+" nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 " +/-: Increment number
 " nnoremap + <c-a>

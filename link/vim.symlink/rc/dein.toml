@@ -104,8 +104,8 @@ repo = 'vim-airline/vim-airline'
 hook_add = '''
   if get(g:, 'enable_patched_font', 0)
     let g:airline_powerline_fonts=1
-    " let g:airline_left_sep=''
-    " let g:airline_right_sep=''
+    let g:airline_left_sep=''
+    let g:airline_right_sep=''
   endif
   " let g:airline_left_sep = ' '
   " let g:airline_left_alt_sep = '|'
@@ -255,7 +255,7 @@ repo = 'gregsexton/MatchTag'
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = '''
-  " let g:indentLine_char = '│'
+  let g:indentLine_char = '│'
   " let g:indentLine_first_char = ''
   " let g:indentLine_showFirstIndentLevel = 1
   " let g:indentLine_setColors = 0
@@ -363,9 +363,6 @@ repo = 'rhysd/vim-textobj-anyblock'
 [[plugins]]
 repo = 'nelstrom/vim-textobj-rubyblock'
 # }}}
-
-# [[plugins]]
-# repo = 'sickill/vim-pasta'
 
 # snippets {{{
 [[plugins]]
@@ -611,6 +608,8 @@ repo = 'rhysd/vim-grammarous'
 
 [[plugins]]
 repo = 'posva/vim-vue'
+
 # [[plugins]]
 # repo = 'mtdl9/vim-log-highlighting'
+
 #  vim: set ts=2 sw=2 tw=80 et :

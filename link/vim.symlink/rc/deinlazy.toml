@@ -25,12 +25,12 @@ hook_add = '''
         \ b:NERDTree.isTabTree()) | q | endif
 '''
 
-[[plugins]]
-repo = 'Yggdroot/indentLine'
-on_cmd = 'IndentLinesToggle'
-hook_add = '''
-  nnoremap <silent> <leader>\ :<C-u>IndentLinesToggle<CR>
-'''
+# [[plugins]]
+# repo = 'Yggdroot/indentLine'
+# on_cmd = 'IndentLinesToggle'
+# hook_add = '''
+#   nnoremap <silent> <leader>\ :<C-u>IndentLinesToggle<CR>
+# '''
 
 [[plugins]]
 repo = 'godlygeek/tabular'

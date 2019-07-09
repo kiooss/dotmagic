@@ -5,9 +5,8 @@ let g:webdevicons_enable_denite = 1
 
 " INTERFACE
 call denite#custom#option('_', {
-      \ 'prompt': 'λ:',
+      \ 'prompt': 'λ>',
       \ 'vertical-preview': v:true,
-      \ 'auto-accel': 1,
       \ 'auto-resume': 1,
       \ 'statusline': v:false,
       \ 'split': 'floating',
@@ -123,7 +122,6 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
 "       \   ['sh', '<denite:do_action:split>', 'noremap'],
 "       \   ['q', '<denite:quit>', 'noremap'],
 "       \   ['r', '<denite:redraw>', 'noremap'],
-"       \ ]
 
 " for s:m in s:insert_mode_mappings
 "   call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
@@ -145,9 +143,11 @@ function! s:denite_my_settings() abort
   \ denite#do_map('do_action', 'preview')
   nnoremap <silent><buffer><expr> q
   \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> v
+  \ denite#do_map('do_action', 'vsplit')
   nnoremap <silent><buffer><expr> i
   \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
+  nnoremap <silent><buffer><expr> s
   \ denite#do_map('toggle_select').'j'
 endfunction
 
@@ -155,7 +155,7 @@ autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <esc> <Plug>(denite_filter_quit)
   imap <silent><buffer> jk <Plug>(denite_filter_quit)
-  imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)
+  imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)q
 endfunction
 
 nnoremap <silent> <Leader><Leader> :<C-u>Denite buffer file/old -default-action=switch<CR>
@@ -164,7 +164,7 @@ nnoremap <silent> <LocalLeader>vv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim
 nnoremap <silent> <LocalLeader>vd :<C-u>Denite dein -default-action=open<CR>
 nnoremap <silent> <LocalLeader>vc :<C-u>Denite colorscheme -auto-preview -start-filter<CR>
 nnoremap <silent> <LocalLeader>vf :<C-u>Denite filetype -start-filter<CR>
-nnoremap <silent> <LocalLeader>vh :<C-u>Denite -buffer-name=search -start-filter help<CR>
+nnoremap <silent> <LocalLeader>vh :<C-u>Denite -buffer-name=search-help -start-filter help<CR>
 
 nnoremap <silent> <LocalLeader>r
       \ :<C-u>Denite -buffer-name=register register<CR>

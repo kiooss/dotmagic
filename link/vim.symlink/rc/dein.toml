@@ -113,6 +113,9 @@ hook_add = '''
   " let g:airline_right_alt_sep = '|'
 
   let g:airline_skip_empty_sections = 1
+
+  " extensions
+  let g:airline#extensions#coc#enabled = 1
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#hunks#enabled = 1
   let g:airline#extensions#ale#enabled = 1
@@ -259,7 +262,7 @@ hook_add = '''
   " let g:indentLine_first_char = ''
   " let g:indentLine_showFirstIndentLevel = 1
   " let g:indentLine_setColors = 0
-  let g:indentLine_fileTypeExclude = ['startify']
+  let g:indentLine_fileTypeExclude = ['startify', 'help', 'denite']
 
   nnoremap <silent> <leader>\ :<C-u>IndentLinesToggle<CR>
 '''
@@ -410,8 +413,8 @@ repo = 'w0rp/ale'
 hook_add = '''
   " let g:ale_sign_column_always = 1
   let g:ale_set_quickfix = 1
-  let g:ale_lint_delay = 1500
-  let g:ale_lint_on_text_changed = 0
+  let g:ale_lint_delay = 1000
+  let g:ale_lint_on_text_changed = 'normal'
   let g:ale_lint_on_enter = 1
   let g:ale_lint_on_save = 1
   let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'

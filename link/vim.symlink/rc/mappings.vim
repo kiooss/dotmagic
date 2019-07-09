@@ -27,28 +27,7 @@
 " nnoremap  [Space]   <Nop>
 " nmap  <Space>   [Space]
 
-" Focus the current fold by closing all others
-nnoremap <CR> zMza
-
-" Toggle folds
-" nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-nnoremap <silent> <leader>; @=(foldlevel('.')?'za':"")<CR>
-
-nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>
-
-" Change current word in a repeatable manner
-nnoremap <leader>cn *``cgn
-nnoremap <leader>cN *``cgN
-
-" Change selected word in a repeatable manner
-vnoremap <expr> <leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
-vnoremap <expr> <leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
-
-vnoremap ,64 c<c-r>=system('base64 --decode', @")<cr><esc>
-
-nnoremap gp :silent !prettier --write %<CR>
-
-" s: Windows and buffers(High priority) "{{{
+" s: Windows and buffers(High priority)
 " The prefix key.
 nnoremap [Window]   <Nop>
 nmap     s [Window]
@@ -67,7 +46,27 @@ nnoremap <silent> [Window]sp :vsplit<CR>:wincmd p<CR>:e#<CR>
 " close the preview window
 nnoremap <silent> [Window]z  :wincmd z<CR>
 nnoremap <silent> <Tab>      :wincmd w<CR>
-"}}}
+
+" Focus the current fold by closing all others
+nnoremap <CR> zMza
+
+" Toggle folds
+" nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent> [Window]f @=(foldlevel('.')?'za':"")<CR>
+
+nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>
+
+" Change current word in a repeatable manner
+nnoremap <leader>cn *``cgn
+nnoremap <leader>cN *``cgN
+
+" Change selected word in a repeatable manner
+vnoremap <expr> <leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
+vnoremap <expr> <leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
+
+vnoremap ,64 c<c-r>=system('base64 --decode', @")<cr><esc>
+
+nnoremap gp :silent !prettier --write %<CR>
 
 nnoremap <silent> [Window]w :update <bar> GitGutter<CR>
 nnoremap <silent> <Leader>w :update <bar> GitGutter<CR>
@@ -177,7 +176,7 @@ nnoremap <c-o>  <c-o>zvzz
 
 " git mappings
 nnoremap [Git]   <Nop>
-nmap     [Window]g [Git]
+nmap     [Window]s [Git]
 nnoremap <silent> [Git]bl :<C-u>Gblame<CR>
 nnoremap <silent> [Git]st :<C-u>Gstatus<CR>
 nnoremap <silent> [Git]cm :<C-u>Gcommit -v<CR>

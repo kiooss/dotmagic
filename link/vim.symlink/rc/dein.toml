@@ -13,6 +13,7 @@ hook_add='''
     \ 'coc-dictionary',
     \ 'coc-snippets',
     \ 'coc-css',
+    \ 'coc-lists',
     \ 'coc-omni',
     \ 'coc-html',
     \ 'coc-word',
@@ -70,7 +71,7 @@ hook_add = '''
       \ { 'c1': ['Vim Reference', 'h ref'] },
       \ { 'c2': ['Vim CheckHealth', 'CheckHealth'] },
       \ { 'c3': ['Dein recache rtp', 'call dein#recache_runtimepath()'] },
-      \ { 'c4': ['Update plugins', 'call dein#update()'] },
+      \ { 'c4': ['Update plugins', 'DeinUpdate'] },
       \ ]
   let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',
@@ -128,19 +129,11 @@ hook_add = '''
   let g:airline#extensions#tabline#tabs_label = '𝓣𝓐𝓑𝓢'
 
   let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline#extensions#tabline#buffer_idx_format = {}
-
-  " let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-  " let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
   let g:airline#extensions#ale#error_symbol = '✖ :'
   let g:airline#extensions#ale#warning_symbol = '⚠ :'
   let g:airline#extensions#ale#checking_symbol = '⚙  checking...'
-  for s:i in range(9)
-    call extend(g:airline#extensions#tabline#buffer_idx_format,
-          \ {s:i : kiooss#api#import('messletters').bubble_num(s:i, 1). ' '})
-  endfor
-  unlet s:i
+
   nmap <leader>1 <Plug>AirlineSelectTab1
   nmap <leader>2 <Plug>AirlineSelectTab2
   nmap <leader>3 <Plug>AirlineSelectTab3
@@ -443,7 +436,8 @@ hook_add = '''
   let g:ale_pattern_options = {
         \ '\.min\.js$': {'ale_enabled': 0},
         \ '\.min\.css$': {'ale_enabled': 0},
-        \   '.*gems/.*\.rb$': {'ale_enabled': 0},
+        \ '\.txt$': {'ale_enabled': 0},
+        \ '.*gems/.*\.rb$': {'ale_enabled': 0},
         \ 'Vagrantfile$': {'ale_enabled': 0},
         \}
 

@@ -1,4 +1,11 @@
-" {{{  coc.nvim config
+""" coc.nvim config
+
+" {{{ functions
+function! SetupCommandAbbrs(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
 
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
@@ -10,6 +17,31 @@ endfunction
 function! s:SmartCR()
     return "\<CR>" . "\<C-R>=EndwiseDiscretionary()\<CR>"
 endfunction
+
+function! s:GrepFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList grep '.word
+endfunction
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" }}}
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -60,14 +92,6 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>rf <Plug>(coc-refactor)
@@ -83,6 +107,9 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
 nmap ,qf  <Plug>(coc-fix-current)
+
+vnoremap \g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+nnoremap \g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 
 augroup mygroup
   autocmd!
@@ -104,12 +131,7 @@ command! -nargs=0 Format :call CocAction('format')
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-function! SetupCommandAbbrs(from, to)
-  exec 'cnoreabbrev <expr> '.a:from
-        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
-        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
-endfunction
-
 " Use C to open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
-" }}}
+
+" vim: set ts=2 sw=2 tw=80 fdl=0 et :

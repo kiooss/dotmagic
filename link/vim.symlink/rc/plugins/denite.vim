@@ -162,7 +162,7 @@ nnoremap <silent> <Leader><Leader> :<C-u>Denite buffer file/old -default-action=
 nnoremap <silent> <LocalLeader>o :<C-u>Denite outline -start-filter<CR>
 nnoremap <silent> <LocalLeader>vv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/ -start-filter<CR>
 nnoremap <silent> <LocalLeader>vd :<C-u>Denite dein -default-action=open<CR>
-nnoremap <silent> <LocalLeader>vc :<C-u>Denite colorscheme -auto-preview -start-filter<CR>
+nnoremap <silent> <LocalLeader>vc :<C-u>Denite colorscheme -start-filter<CR>
 nnoremap <silent> <LocalLeader>vf :<C-u>Denite filetype -start-filter<CR>
 nnoremap <silent> <LocalLeader>vh :<C-u>Denite -buffer-name=search-help -start-filter help<CR>
 

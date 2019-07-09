@@ -71,19 +71,14 @@ endfunction
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>rf <Plug>(coc-refactor)
+nmap <leader>ca <Plug>(coc-codelens-action)
 
 " Remap for format selected region
 vmap ,f  <Plug>(coc-format-selected)
 nmap ,f  <Plug>(coc-format-selected)
 
 " Remap for do codeAction of selected region, ex: `,aap` for current paragraph
-vmap ,a  <Plug>(coc-codeaction-selected)
-nmap ,a  <Plug>(coc-codeaction-selected)
-nmap ,ac <Plug>(coc-codeaction)
-
-nmap ,r <Plug>(coc-codelens-action)
-
-" Remap for do codeAction of current line
+xmap <leader>ac  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line

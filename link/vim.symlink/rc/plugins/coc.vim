@@ -1,4 +1,6 @@
-""" coc.nvim config
+" ------------------------------------------------
+" coc.nvim config
+" ------------------------------------------------
 
 " {{{ functions
 function! SetupCommandAbbrs(from, to)
@@ -64,24 +66,21 @@ inoremap <silent><expr> <c-g> coc#refresh()
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
-" Using CocList
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
+" CocList
 " Show all diagnostics
-nnoremap <silent> <space>md  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>md  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>me  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>me  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>mc  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>mc  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>mo  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
+" mru
+nnoremap <silent> <leader>mm :<C-u>CocList mru<cr>
 " Search workspace symbols
-nnoremap <silent> <space>ms  :<C-u>CocList -I symbols<cr>
-" Resume CocList
-nnoremap <silent> <space>mr  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
+" Resume latest coc list
+nnoremap <silent> <leader>mr  :<C-u>CocListResume<CR>
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -98,21 +97,20 @@ nmap <leader>rf <Plug>(coc-refactor)
 nmap <leader>ca <Plug>(coc-codelens-action)
 
 " Remap for format selected region
-vmap ,f  <Plug>(coc-format-selected)
-nmap ,f  <Plug>(coc-format-selected)
+vmap \f  <Plug>(coc-format-selected)
+nmap \f  <Plug>(coc-format-selected)
 
 " Remap for do codeAction of selected region, ex: `,aap` for current paragraph
 xmap <leader>ac  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
-nmap ,qf  <Plug>(coc-fix-current)
+nmap \q  <Plug>(coc-fix-current)
 
 vnoremap \g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
 nnoremap \g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 
-augroup mygroup
-  autocmd!
+augroup MyAutoCmd
   " Highlight symbol under cursor on CursorHold
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " Setup formatexpr specified filetype(s).

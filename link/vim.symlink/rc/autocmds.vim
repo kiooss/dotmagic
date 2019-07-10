@@ -33,8 +33,6 @@ augroup common
 
   " }}}
 
-  autocmd BufNewFile,BufReadPost *.json setf jsonc
-  autocmd BufNewFile,BufReadPost *.ejs setf html
 
   " autocmd BufEnter * call EmptyBuffer()
   autocmd BufReadPost *.log normal! G

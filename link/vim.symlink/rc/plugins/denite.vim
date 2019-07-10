@@ -10,8 +10,8 @@ call denite#custom#option('_', {
       \ 'auto-resume': 1,
       \ 'statusline': v:false,
       \ 'split': 'floating',
-      \ 'highlight-matched-char' : 'MoreMsg',
-      \ 'highlight-matched-range' : 'MoreMsg',
+      \ 'highlight_matched_char' : 'MoreMsg',
+      \ 'highlight_matched_range' : 'MoreMsg',
       \ })
 
 " MATCHERS
@@ -29,13 +29,13 @@ endif
 " CONVERTERS
 " Default is none
 if get(g:, 'webdevicons_enable_denite', 0)
-  call denite#custom#source(
-        \ 'file/rec,file/rec/git,file/old,buffer,directory_rec',
-        \ 'converters', ['devicons_denite_converter', 'converter_relative_word'])
+  " call denite#custom#source(
+  "       \ 'file/rec,file/rec/git,file/old,buffer,directory_rec',
+  "       \ 'converters', ['devicons_denite_converter', 'converter/relative_abbr'])
 else
-  call denite#custom#source(
-        \ 'file/rec,file/old,buffer,file_mru,directory_rec',
-        \ 'converters', ['converter_relative_word'])
+  " call denite#custom#source(
+  "       \ 'file/rec,file/old,buffer,file_mru,directory_rec',
+  "       \ 'converters', ['converter/relative_word'])
 endif
 
 " Change file_rec command.

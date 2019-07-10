@@ -175,12 +175,10 @@ nmap     [Window]s [Git]
 nnoremap <silent> [Git]bl :<C-u>Gblame<CR>
 nnoremap <silent> [Git]st :<C-u>Gstatus<CR>
 nnoremap <silent> [Git]cm :<C-u>Gcommit -v<CR>
-" nnoremap [Git]ga :<C-u>Gina add .<CR>
-" nnoremap [Git]gU :<C-u>Gina reset -q %<CR>
-nnoremap [Git]ca :<C-u>Gina commit -a -v<CR>
-nnoremap [Git]pu :<C-u>Gina push<CR>
-nnoremap [Git]df :<C-u>Gina diff<CR>
-nnoremap [Git]aa :<C-u>Gina add -A<CR>
+nnoremap <silent> [Git]aa :<C-u>Git add -A<CR>
+nnoremap <silent> [Git]df :<C-u>Gdiff<CR>
+nnoremap <silent> [Git]U :<C-u>Git reset -q %<CR>
+nnoremap <silent> [Git]pu :<C-u>Gpush<CR>
 
 if has('mac')
   " Open the macOS dictionary on current word

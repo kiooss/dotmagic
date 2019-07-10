@@ -59,12 +59,6 @@ augroup common
         \ |   filetype detect
         \ | endif
 
-  " Reload Vim script automatically if setlocal autoread
-  autocmd BufWritePost,FileWritePost *.vim nested
-        \ if &l:autoread > 0 | source <afile> |
-        \   echo 'source '.bufname('%') |
-        \ endif
-
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   autocmd BufReadPost *

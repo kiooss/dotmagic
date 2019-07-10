@@ -79,11 +79,6 @@ nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>p "0p
 nnoremap <Leader>/ /
 
-" ----------------------------------------------------------------------------
-" <Leader>c Close quickfix/location/preview window
-" ----------------------------------------------------------------------------
-nnoremap <leader>c :cclose<bar>lclose<bar>pclose<cr>
-
 " better redraw
 nnoremap <c-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr>:GitGutter<cr><c-l>
 

@@ -48,6 +48,7 @@ repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
 repo = 'mhinz/vim-startify'
+merge = 0
 hook_add = '''
   " autocmd User Startified doautocmd ColorScheme
   autocmd User Startified for key in ['b','s','t','v'] | exe 'nunmap <buffer>' key | endfor

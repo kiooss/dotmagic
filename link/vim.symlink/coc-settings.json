@@ -9,6 +9,7 @@
   "typescript.implementationsCodeLens.enable": true,
   "typescript.referencesCodeLens.enable": false,
   "suggest.echodocSupport": false,
+  "session.directory": "~/.cache/vim/sessions",
   "languageserver": {
     "intelephense": {
       "command": "intelephense",

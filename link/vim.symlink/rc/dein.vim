@@ -1,5 +1,6 @@
 " dein configurations.
 
+let g:dein#auto_recache = 1
 let g:dein#install_progress_type = 'tabline'
 " let g:dein#enable_notification = 1
 let g:dein#install_max_processes = 32
@@ -26,6 +27,9 @@ call dein#begin(s:path, [
 call dein#load_toml(s:plugins_path, {'lazy': 0})
 call dein#load_toml(s:lazy_plugins_path, {'lazy' : 1})
 call dein#load_toml(s:ft_path)
+
+" disable some plugins temporary.
+" call dein#disable('coc.nvim')
 
 call dein#end()
 call dein#save_state()

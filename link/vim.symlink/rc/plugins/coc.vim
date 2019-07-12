@@ -77,10 +77,12 @@ nnoremap <silent> <leader>mc  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 " mru
 nnoremap <silent> <leader>mm :<C-u>CocList mru<cr>
+nnoremap <silent> <leader>mf :<C-u>CocList files<cr>
 " Search workspace symbols
 nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
 " Resume latest coc list
-nnoremap <silent> <leader>mr  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>mr  :<C-u>CocListResume<cr>
+nnoremap <leader>ma  :<C-u>CocList<space>
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)

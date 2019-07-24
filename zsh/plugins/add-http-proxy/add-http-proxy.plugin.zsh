@@ -2,9 +2,9 @@
 add-http-proxy-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == http_proxy=*\ * ]]; then
-        LBUFFER="${LBUFFER#http_proxy=\"http://192.168.1.100:8123\" }"
+        LBUFFER="${LBUFFER#env ALL_PROXY=socks5h://localhost:7891 }"
     else
-        LBUFFER="http_proxy=\"http://192.168.1.100:8123\" $LBUFFER"
+        LBUFFER="env ALL_PROXY=socks5h://localhost:7891 $LBUFFER"
     fi
 }
 zle -N add-http-proxy-command-line

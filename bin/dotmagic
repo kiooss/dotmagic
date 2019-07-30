@@ -56,7 +56,7 @@ main() {
   select yn in "Yes" "No"; do
     case $yn in
       Yes )
-        e_header "Install necessary lib and apps."
+        e_header "Updating submodules."
         git pull --recurse-submodules
         git submodule update --remote
         e_success "done."

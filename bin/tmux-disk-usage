@@ -1,12 +1,14 @@
 #!/usr/bin/env zsh
 
 function tmux-disk-usage() {
-    local percent="${$(\df -P . | sed -n '2p' | awk '{ print $5 }')%%\%}"
-    if [[ $percent -ge 95 ]]; then
-        echo " $percent% "
-    else
-        echo " $percent% "
-    fi
+    # local percent="${$(\df -P . | sed -n '2p' | awk '{ print $5 }')%%\%}"
+    # if [[ $percent -ge 95 ]]; then
+    #     echo " $percent% "
+    # else
+    #     echo " $percent% "
+    # fi
+    local percent="${$(\df -Ph . | sed -n '2p' | awk '{ printf "%s (%s)",  $5, $4 }')}"
+    echo " $percent "
 }
 
 tmux-disk-usage

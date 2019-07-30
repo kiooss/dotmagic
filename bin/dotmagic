@@ -48,13 +48,24 @@ main() {
     e_success "done."
   fi
 
-  e_header "Initializing / updating submodule(s)."
+  e_header "Initializing submodules."
   git submodule update --init
-  git pull --recurse-submodules
-  # git submodule update --remote --recursive
-  git submodule update --remote
   e_success "done."
 
+  e_question "Updating submodules?"
+  select yn in "Yes" "No"; do
+    case $yn in
+      Yes )
+        e_header "Install necessary lib and apps."
+        git pull --recurse-submodules
+        git submodule update --remote
+        e_success "done."
+        break;;
+      No )
+        e_info "Skip submodule updating."
+        break;;
+    esac
+  done
 
   e_question "Do you wish to install lib and apps?"
   select yn in "Yes" "No"; do

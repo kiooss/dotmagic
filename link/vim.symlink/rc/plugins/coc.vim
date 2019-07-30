@@ -77,7 +77,10 @@ nnoremap <silent> <leader>mc  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 " mru
 nnoremap <silent> <leader>mm :<C-u>CocList mru<cr>
+" files
 nnoremap <silent> <leader>mf :<C-u>CocList files<cr>
+" words
+nnoremap <silent> <leader>mw :<C-u>CocList words<cr>
 " Search workspace symbols
 nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
 " Resume latest coc list

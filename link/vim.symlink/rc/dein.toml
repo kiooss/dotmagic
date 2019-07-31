@@ -568,6 +568,14 @@ repo = 'rhysd/vim-grammarous'
 [[plugins]]
 repo = 'posva/vim-vue'
 
+[[plugins]]
+repo = 'liuchengxu/vim-which-key'
+hook_add='''
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+'''
+
 # [[plugins]]
 # repo = 'mtdl9/vim-log-highlighting'
 

@@ -147,10 +147,6 @@ nnoremap Q q
 " nnoremap + <c-a>
 " nnoremap - <c-x>
 
-" dein update
-nnoremap <Leader>U :<C-u>call dein#update() <bar>
-      \ call termopen("tail -f " . g:dein#install_log_filename)<CR>
-
 " zz cyclically
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
       \ 'zt' : (winline() == &scrolloff + 1) ? 'zb' : 'zz'
@@ -169,15 +165,14 @@ nnoremap <silent> gr :<C-u>tabprevious<CR>
 nnoremap <c-o>  <c-o>zvzz
 
 " git mappings
-nnoremap [Git]   <Nop>
-nmap     [Window]s [Git]
-nnoremap <silent> [Git]bl :<C-u>Gblame<CR>
-nnoremap <silent> [Git]st :<C-u>Gstatus<CR>
-nnoremap <silent> [Git]cm :<C-u>Gcommit -v<CR>
-nnoremap <silent> [Git]aa :<C-u>Git add -A<CR>
-nnoremap <silent> [Git]df :<C-u>Gdiff<CR>
-nnoremap <silent> [Git]U :<C-u>Git reset -q %<CR>
-nnoremap <silent> [Git]pu :<C-u>Gpush<CR>
+nnoremap <silent> <leader>sb :<C-u>Gblame<CR>
+nnoremap <silent> <leader>st :<C-u>Gstatus<CR>
+nnoremap <silent> <leader>sc :<C-u>Gcommit -v<CR>
+nnoremap <silent> <leader>sa :<C-u>Git add -A<CR>
+nnoremap <silent> <leader>sd :<C-u>Gdiff<CR>
+nnoremap <silent> <leader>sU :<C-u>Git reset -q %<CR>
+nnoremap <silent> <leader>sp :<C-u>Gpush<CR>
+nnoremap <silent> <leader>sl V:<c-u>call OpenCurrentFileInGithub()<cr>
 
 if has('mac')
   " Open the macOS dictionary on current word
@@ -185,12 +180,10 @@ if has('mac')
 endif
 
 " toggle number & list
-nnoremap <leader>nu :call <SID>NumberToggle()<CR>
+nnoremap <leader>t :call <SID>NumberToggle()<CR>
 
 " Append modeline to EOF
-nnoremap <silent> <Leader>ml :call <SID>append_modeline()<CR>
-
-nnoremap <silent> <leader>mg V:<c-u>call OpenCurrentFileInGithub()<cr>
+nnoremap <silent> <Leader>i :call <SID>append_modeline()<CR>
 
 "}}}
 "==============================================================================

@@ -20,12 +20,14 @@ hook_add='''
     \ 'coc-emoji',
     \ 'coc-ultisnips',
     \ 'coc-solargraph',
+    \ 'coc-translator',
     \ 'coc-tabnine',
     \ 'coc-prettier',
     \ 'coc-phpls',
     \ 'coc-pairs',
     \ 'coc-json',
     \ 'coc-yaml',
+    \ 'coc-yank',
     \ 'coc-stylelint',
     \ 'coc-highlight',
     \ 'coc-vetur',
@@ -131,7 +133,7 @@ hook_add = '''
 
   let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-  let g:airline#extensions#ale#error_symbol = '✖ :'
+  let g:airline#extensions#ale#error_symbol = '✗:'
   let g:airline#extensions#ale#warning_symbol = '⚠ :'
   let g:airline#extensions#ale#checking_symbol = '⚙  checking...'
 
@@ -184,9 +186,6 @@ on_if = '!has("nvim")'
 repo = 'roxma/vim-hug-neovim-rpc'
 on_if = '!has("nvim")'
 
-# [[plugins]]
-# repo = 'Shougo/neco-syntax'
-
 #### colors start
 [[plugins]]
 repo = 'gruvbox-community/gruvbox'
@@ -196,9 +195,6 @@ repo = 'ayu-theme/ayu-vim'
 
 [[plugins]]
 repo = 'chriskempson/base16-vim'
-
-[[plugins]]
-repo = 'nightsense/vimspectr'
 
 [[plugins]]
 repo = 'rafi/awesome-vim-colorschemes'
@@ -225,10 +221,10 @@ repo = 'fenetikm/falcon'
 [[plugins]]
 repo = 'benmills/vimux'
 hook_add ='''
-  " map <Leader>rb :<C-u>call VimuxRunCommand("clear; date")<CR>
+  noremap <Leader>vg :<C-u>call VimuxRunCommand("git up")<CR>
 
   " Prompt for a command to run
-  map <Leader>vp :VimuxPromptCommand<CR>
+  noremap <Leader>vp :VimuxPromptCommand<CR>
 
   " Run last command executed by VimuxRunCommand
   " map <Leader>vl :VimuxRunLastCommand<CR>
@@ -237,13 +233,13 @@ hook_add ='''
   " map <Leader>vi :VimuxInspectRunner<CR>
 
   " Close vim tmux runner opened by VimuxRunCommand
-  map <Leader>vq :VimuxCloseRunner<CR>
+  noremap <Leader>vq :VimuxCloseRunner<CR>
 
   " Interrupt any command running in the runner pane
   " map <Leader>vx :VimuxInterruptRunner<CR>
 
   " Zoom the runner pane (use <bind-key> z to restore runner pane)
-  map <Leader>vz :call VimuxZoomRunner()<CR>
+  noremap <Leader>vz :call VimuxZoomRunner()<CR>
 '''
 
 [[plugins]]
@@ -395,12 +391,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'kiooss/vim-zenkaku-space'
-
-# [[plugins]]
-# repo = 'jiangmiao/auto-pairs'
-
-# [[plugins]]
-# repo = 'thinca/vim-quickrun'
 
 [[plugins]]
 repo = 'w0rp/ale'
@@ -583,9 +573,6 @@ repo = 'HerringtonDarkholme/yats.vim'
 
 [[plugins]]
 repo = 'tobyS/vmustache'
-
-[[plugins]]
-repo = 'machakann/vim-highlightedyank'
 
 [[plugins]]
 repo = 'mattn/vim-sqlfmt'

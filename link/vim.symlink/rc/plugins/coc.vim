@@ -67,6 +67,7 @@ nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " CocList
+nnoremap <leader>ma  :<C-u>CocList<space>
 " Show all diagnostics
 nnoremap <silent> <leader>md  :<C-u>CocList diagnostics<cr>
 " Manage extensions
@@ -85,13 +86,15 @@ nnoremap <silent> <leader>mw :<C-u>CocList words<cr>
 nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
 " Resume latest coc list
 nnoremap <silent> <leader>mr  :<C-u>CocListResume<cr>
-nnoremap <leader>ma  :<C-u>CocList<space>
+" yank
+nnoremap <silent> <leader>my  :<C-u>CocList -A --normal yank<cr>
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gt <Plug>(coc-translator-p)
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>

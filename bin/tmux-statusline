@@ -59,7 +59,7 @@ build_left_status() {
     # left_segment 'colour003' 'colour000' '#(tmux-arrow) #P '
     # left_segment 'colour005' 'colour015' '#(tmux-php-version) '
     left_segment 'colour002' 'colour000' '#(tmux-date)'
-    left_segment 'colour005' 'colour000' '#(tmux-weather)'
+    left_segment 'colour255' 'colour000' '#(tmux-weather)'
     left_segment 'colour009' 'colour015' '#(tmux-rb-version) '
     left_segment 'colour006' 'colour000' '#(tmux-disk-usage)'
     left_segment 'colour004' 'colour000' '#(get-public-ip) '
@@ -89,5 +89,5 @@ if [[ $SIDE = 'right' ]]; then
 elif [[ $SIDE = 'left' ]]; then
     build_left_status
 else
-    echo -n "First paramter should only be left or right"
+    echo -n "First parameter should only be left or right"
 fi

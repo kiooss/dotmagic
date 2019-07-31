@@ -1,6 +1,34 @@
 " ------------------------------------------------
 " coc.nvim config
 " ------------------------------------------------
+let g:coc_global_extensions = [
+  \ 'coc-css',
+  \ 'coc-dictionary',
+  \ 'coc-docker',
+  \ 'coc-emoji',
+  \ 'coc-gitignore',
+  \ 'coc-highlight',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-lists',
+  \ 'coc-omni',
+  \ 'coc-pairs',
+  \ 'coc-phpls',
+  \ 'coc-post',
+  \ 'coc-prettier',
+  \ 'coc-snippets',
+  \ 'coc-solargraph',
+  \ 'coc-sql',
+  \ 'coc-stylelint',
+  \ 'coc-tabnine',
+  \ 'coc-translator',
+  \ 'coc-tsserver',
+  \ 'coc-ultisnips',
+  \ 'coc-vetur',
+  \ 'coc-word',
+  \ 'coc-yaml',
+  \ 'coc-yank',
+  \ ]
 
 " {{{ functions
 function! SetupCommandAbbrs(from, to)
@@ -80,6 +108,8 @@ nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 nnoremap <silent> <leader>mm :<C-u>CocList mru<cr>
 " files
 nnoremap <silent> <leader>mf :<C-u>CocList files<cr>
+" filetypes
+nnoremap <silent> <leader>mt :<C-u>CocList filetypes<cr>
 " words
 nnoremap <silent> <leader>mw :<C-u>CocList words<cr>
 " Search workspace symbols

@@ -8,32 +8,6 @@ merge = 0
 repo = 'neoclide/coc.nvim'
 merged = 0
 build = 'yarn install --frozen-lockfile'
-hook_add='''
-  let g:coc_global_extensions = [
-    \ 'coc-dictionary',
-    \ 'coc-snippets',
-    \ 'coc-css',
-    \ 'coc-lists',
-    \ 'coc-omni',
-    \ 'coc-html',
-    \ 'coc-word',
-    \ 'coc-emoji',
-    \ 'coc-ultisnips',
-    \ 'coc-solargraph',
-    \ 'coc-translator',
-    \ 'coc-tabnine',
-    \ 'coc-prettier',
-    \ 'coc-phpls',
-    \ 'coc-pairs',
-    \ 'coc-json',
-    \ 'coc-yaml',
-    \ 'coc-yank',
-    \ 'coc-stylelint',
-    \ 'coc-highlight',
-    \ 'coc-vetur',
-    \ 'coc-tsserver'
-    \ ]
-'''
 
 [[plugins]]
 repo = 'neoclide/coc-denite'

@@ -6,6 +6,7 @@ let g:coc_global_extensions = [
   \ 'coc-dictionary',
   \ 'coc-docker',
   \ 'coc-emoji',
+  \ 'coc-git',
   \ 'coc-gitignore',
   \ 'coc-highlight',
   \ 'coc-html',
@@ -118,6 +119,20 @@ nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <leader>mr  :<C-u>CocListResume<cr>
 " yank
 nnoremap <silent> <leader>my  :<C-u>CocList -A --normal yank<cr>
+" grep with selected content
+vnoremap <silent> <leader>mg :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+nnoremap <silent> <leader>mg :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+" coc-git
+nnoremap <silent> <leader>mb  :<C-u>CocList -A --normal bcommits<cr>
+nnoremap <silent> <leader>mh  :<C-u>CocList -A --normal gstatus<cr>
+
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -144,9 +159,6 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
 nmap \q  <Plug>(coc-fix-current)
-
-vnoremap \g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
-nnoremap \g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 
 augroup MyAutoCmd
   " Highlight symbol under cursor on CursorHold

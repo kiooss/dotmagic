@@ -61,7 +61,7 @@ function! s:GrepFromSelected(type)
   let word = substitute(@@, '\n$', '', 'g')
   let word = escape(word, '| ')
   let @@ = saved_unnamed_register
-  execute 'CocList grep '.word
+  execute 'CocList --normal grep '.word
 endfunction
 
 function! s:show_documentation()

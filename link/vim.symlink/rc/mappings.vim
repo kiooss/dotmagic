@@ -63,11 +63,10 @@ nnoremap <leader>cN *``cgN
 vnoremap <expr> <leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
-vnoremap ,64 c<c-r>=system('base64 --decode', @")<cr><esc>
+vnoremap <leader>64 c<c-r>=system('base64 --decode', @")<cr><esc>
 
 nnoremap gp :silent !prettier --write %<CR>
 
-nnoremap <silent> [Window]w :update <bar> GitGutter<CR>
 nnoremap <silent> <Leader>w :update <bar> GitGutter<CR>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
@@ -184,6 +183,8 @@ nnoremap <leader>t :call <SID>NumberToggle()<CR>
 
 " Append modeline to EOF
 nnoremap <silent> <Leader>i :call <SID>append_modeline()<CR>
+
+nnoremap <silent> <Leader>u :call <SID>timestamp_to_datetime()<CR>
 
 "}}}
 "==============================================================================
@@ -307,6 +308,10 @@ function! s:append_modeline()
         \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
   let l:modeline = substitute(&commentstring, '%s', l:modeline, '')
   call append(line('$'), l:modeline)
+endfunction
+
+function! s:timestamp_to_datetime()
+  echo strftime("%Y-%m-%d %H:%M:%S", expand("<cword>"))
 endfunction
 
 function! OpenCurrentFileInGithub()

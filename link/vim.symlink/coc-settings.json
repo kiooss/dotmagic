@@ -2,6 +2,7 @@
   "codeLens.enable": true,
   "coc.preferences.extensionUpdateCheck": "weekly",
   "diagnostic.displayByAle": true,
+  "git.enableGutters": false,
   "list.indicator": "❯❯❯",
   "list.maxHeight": 15,
   "phpls.enable": false,

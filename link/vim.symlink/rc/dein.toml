@@ -369,7 +369,7 @@ repo = 'kiooss/vim-zenkaku-space'
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
-  " let g:ale_sign_column_always = 1
+  let g:ale_sign_column_always = 1
   let g:ale_set_quickfix = 1
   let g:ale_lint_delay = 1000
   let g:ale_lint_on_text_changed = 'normal'

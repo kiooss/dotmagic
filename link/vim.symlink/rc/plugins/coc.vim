@@ -6,6 +6,7 @@ let g:coc_global_extensions = [
   \ 'coc-dictionary',
   \ 'coc-docker',
   \ 'coc-emoji',
+  \ 'coc-eslint',
   \ 'coc-git',
   \ 'coc-gitignore',
   \ 'coc-highlight',

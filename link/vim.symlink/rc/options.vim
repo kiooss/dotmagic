@@ -73,7 +73,7 @@ endif
 " set notimeout       " don't timeout on mappings
 set timeout         " do timeout on mappings
 set ttimeout        " do timeout on terminal key codes
-set timeoutlen=750  " Time out on mappings
+set timeoutlen=500  " Time out on mappings
 set ttimeoutlen=10  " Time out on key codes
 " set updatetime=1000 " Idle time to write swap and trigger CursorHold
 set updatetime=400 " Idle time to write swap and trigger CursorHold

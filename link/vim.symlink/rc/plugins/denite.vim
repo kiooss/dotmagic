@@ -5,13 +5,16 @@ let g:webdevicons_enable_denite = 1
 
 " INTERFACE
 call denite#custom#option('_', {
-      \ 'prompt': 'λ>',
+      \ 'prompt': '❯',
       \ 'vertical-preview': v:true,
       \ 'auto-resume': 1,
-      \ 'statusline': v:false,
+      \ 'statusline': 1,
       \ 'split': 'floating',
       \ 'highlight_matched_char' : 'MoreMsg',
       \ 'highlight_matched_range' : 'MoreMsg',
+      \ 'highlight_prompt': 'Function',
+      \ 'highlight_window_background': 'CursorColumn',
+      \ 'highlight_filter_background': 'CursorLine',
       \ })
 
 " MATCHERS
@@ -136,19 +139,25 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
+        \ denite#do_map('do_action')
   nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
+        \ denite#do_map('do_action', 'delete')
   nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
+        \ denite#do_map('do_action', 'preview')
   nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
+        \ denite#do_map('quit')
   nnoremap <silent><buffer><expr> v
-  \ denite#do_map('do_action', 'vsplit')
+        \ denite#do_map('do_action', 'vsplit')
   nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
+        \ denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> s
-  \ denite#do_map('toggle_select').'j'
+        \ denite#do_map('toggle_select').'j'
+  nnoremap <silent><buffer><expr> <Esc>
+        \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Tab>
+        \ denite#do_map('choose_action')
+  nnoremap <silent><buffer><expr><nowait> <Space>
+        \ denite#do_map('toggle_select').'j'
 endfunction
 
 autocmd FileType denite-filter call s:denite_filter_my_settings()
@@ -158,16 +167,16 @@ function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)q
 endfunction
 
-nnoremap <silent> <LocalLeader>o :<C-u>Denite outline -start-filter<CR>
-nnoremap <silent> <LocalLeader>vv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/ -start-filter<CR>
-nnoremap <silent> <LocalLeader>vd :<C-u>Denite dein -default-action=open<CR>
-nnoremap <silent> <LocalLeader>vc :<C-u>Denite colorscheme -start-filter<CR>
-nnoremap <silent> <LocalLeader>vf :<C-u>Denite filetype -start-filter<CR>
-nnoremap <silent> <LocalLeader>vh :<C-u>Denite -buffer-name=search-help -start-filter help<CR>
+nnoremap <silent> <Leader>do :<C-u>Denite outline -start-filter<CR>
+nnoremap <silent> <Leader>dv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/ -start-filter<CR>
+nnoremap <silent> <Leader>dd :<C-u>Denite dein -default-action=open<CR>
+nnoremap <silent> <Leader>dc :<C-u>Denite colorscheme -start-filter<CR>
+nnoremap <silent> <Leader>df :<C-u>Denite filetype -start-filter<CR>
+nnoremap <silent> <Leader>dh :<C-u>Denite -buffer-name=search-help -start-filter help<CR>
 
-nnoremap <silent> <LocalLeader>r
+nnoremap <silent> <Leader>dr
       \ :<C-u>Denite -buffer-name=register register<CR>
-xnoremap <silent> <LocalLeader>r
+xnoremap <silent> <Leader>dr
       \ :<C-u>Denite -mode=normal -default-action=replace -buffer-name=register register<CR>
 
 nnoremap <silent><expr> / line('$') > 10000 ? '/' :
@@ -177,7 +186,7 @@ nnoremap <silent><expr> n line('$') > 10000 ? 'n' :
 nnoremap <silent><expr> * line('$') > 10000 ? '*' :
 \ ":\<C-u>DeniteCursorWord -buffer-name=search line\<CR>"
 
-nnoremap <silent> <LocalLeader>g :<C-u>Denite -buffer-name=search -no-empty grep/git<CR>
+nnoremap <silent> <Leader>dg :<C-u>Denite -buffer-name=search -no-empty grep/git<CR>
 nnoremap <silent> # :<C-u>DeniteCursorWord -buffer-name=search -no-empty grep/git<CR>
 nnoremap <silent><expr> tp  &filetype == 'help' ?
       \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"

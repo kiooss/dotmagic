@@ -438,8 +438,8 @@ hook_add = '''
     let g:ale_statusline_format = ['✖ %d', '⚠ %d', '⬥ ok']
   endif
 
-  " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  " nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <C-j> <Plug>(ale_next_wrap)
   nmap <localleader>j <Plug>(ale_fix)
   nmap <localleader>d <Plug>(ale_detail)
 '''

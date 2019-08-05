@@ -8,7 +8,7 @@ call denite#custom#option('_', {
       \ 'prompt': '❯',
       \ 'vertical-preview': v:true,
       \ 'auto-resume': 1,
-      \ 'statusline': 1,
+      \ 'statusline': 0,
       \ 'split': 'floating',
       \ 'highlight_matched_char' : 'MoreMsg',
       \ 'highlight_matched_range' : 'MoreMsg',

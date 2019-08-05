@@ -383,42 +383,42 @@ hook_add = '''
   "       \   'jsx': 'javascript'
   "       \}
 
-  " let g:ale_linters = {
-  "       \   'php': ['php'],
-  "       \   'javascript': ['eslint'],
-  "       \   'typescript': ['tslint', 'tsserver', 'eslint'],
-  "       \   'ruby': ['rubocop'],
-  "       \   'eruby': [],
-  "       \}
   let g:ale_linters = {
-        \   'rust': [],
-        \   'go': [],
-        \   'vue': [],
-        \   'objcpp': [],
-        \   'c': [],
-        \   'java': [],
-        \   'javascript': [],
-        \   'dart': [],
-        \   'tex': [],
-        \   'wxss': [],
-        \   'vim': ['vint'],
-        \   'markdown': [],
-        \   'python': [],
-        \   'html': [],
-        \   'ruby': [],
-        \   'scss': [],
-        \   'css': [],
-        \   'typescript': [],
-        \   'json': [],
-        \   'swift': ['swiftlint'],
+        \   'php': ['php'],
+        \   'javascript': ['eslint'],
+        \   'typescript': ['tslint', 'tsserver', 'eslint'],
+        \   'ruby': ['rubocop'],
+        \   'eruby': [],
         \}
-  " let g:ale_fixers = {
-  "       \ 'javascript': ['eslint', 'standard'],
-  "       \ 'vue': ['eslint'],
-  "       \ 'typescript': ['tslint', 'eslint'],
-  "       \ 'json': ['fixjson'],
-  "       \ 'ruby': ['rubocop']
+  " let g:ale_linters = {
+  "       \   'rust': [],
+  "       \   'go': [],
+  "       \   'vue': [],
+  "       \   'objcpp': [],
+  "       \   'c': [],
+  "       \   'java': [],
+  "       \   'javascript': [],
+  "       \   'dart': [],
+  "       \   'tex': [],
+  "       \   'wxss': [],
+  "       \   'vim': ['vint'],
+  "       \   'markdown': [],
+  "       \   'python': [],
+  "       \   'html': [],
+  "       \   'ruby': [],
+  "       \   'scss': [],
+  "       \   'css': [],
+  "       \   'typescript': [],
+  "       \   'json': [],
+  "       \   'swift': ['swiftlint'],
   "       \}
+  let g:ale_fixers = {
+        \ 'javascript': ['eslint'],
+        \ 'vue': ['eslint'],
+        \ 'typescript': ['eslint'],
+        \ 'json': ['fixjson'],
+        \ 'ruby': ['rubocop']
+        \}
 
   let g:ale_pattern_options = {
         \ '\.min\.js$': {'ale_enabled': 0},

@@ -1,7 +1,11 @@
 {
   "codeLens.enable": true,
   "coc.preferences.extensionUpdateCheck": "weekly",
-  "diagnostic.displayByAle": true,
+  /* "diagnostic.displayByAle": true, */
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.errorSign": "✗",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.warningSign": "⚠",
   "git.enableGutters": false,
   "list.indicator": "❯❯❯",
   "list.maxHeight": 15,

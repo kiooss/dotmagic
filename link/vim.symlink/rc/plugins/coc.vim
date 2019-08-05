@@ -161,6 +161,8 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap \q  <Plug>(coc-fix-current)
 
+nnoremap <silent> ;f :<C-u>CocCommand eslint.executeAutofix<CR>
+
 augroup MyAutoCmd
   " Highlight symbol under cursor on CursorHold
   autocmd CursorHold * silent call CocActionAsync('highlight')

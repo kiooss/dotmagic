@@ -39,9 +39,11 @@ function icon(weather) {
 }
 
 function temperature(weather) {
-  let tempC = weather.temperature;
+  const tempC = weather.temperature;
+  const apparentTemperature = weather.apparentTemperature;
+  const tempF = tempC * 1.8 + 32;
+
   let color = 255;
-  let tempF = tempC * 1.8 + 32;
   if (tempF < 40) {
     color = 27;
   } else if (tempF < 50) {
@@ -57,8 +59,17 @@ function temperature(weather) {
   } else {
     color = 196;
   }
+
+  let face = "☺️";
+  if (apparentTemperature > 35) {
+    face = "🥵";
+  } else if (apparentTemperature > 30) {
+    face = "😳";
+  } else if (apparentTemperature < 0) {
+    face = "🥶";
+  }
   // return `#[fg=colour${color}]${parseInt((temp - 32) / 1.8)}°C`
-  return `#[fg=colour${color}]${tempC}°C`;
+  return `#[fg=colour${color}]${tempC}°C ${face}  ${apparentTemperature}°C`;
 }
 
 const latlon = {

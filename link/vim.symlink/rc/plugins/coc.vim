@@ -98,6 +98,8 @@ nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " CocList
 nnoremap <leader>ma  :<C-u>CocList<space>
+" buffers
+nnoremap <silent> <leader>t  :<C-u>CocList buffers<cr>
 " Show all diagnostics
 nnoremap <silent> <leader>md  :<C-u>CocList diagnostics<cr>
 " Manage extensions

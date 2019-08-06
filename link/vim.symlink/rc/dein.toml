@@ -79,6 +79,9 @@ repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
 repo = 'liuchengxu/eleline.vim'
+hook_add='''
+  let g:eleline_powerline_fonts = 1
+'''
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'

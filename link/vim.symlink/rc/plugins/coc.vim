@@ -127,6 +127,11 @@ nnoremap <silent> <leader>mg :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 nnoremap <silent> <leader>mb  :<C-u>CocList -A --normal bcommits<cr>
 nnoremap <silent> <leader>mh  :<C-u>CocList -A --normal gstatus<cr>
 
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <leader>mg :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+
+nnoremap <silent> <leader>j  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+
 " navigate chunks of current buffer
 nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
@@ -181,6 +186,15 @@ command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" grep word under cursor
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
 
 " Use C to open coc config
 call SetupCommandAbbrs('C', 'CocConfig')

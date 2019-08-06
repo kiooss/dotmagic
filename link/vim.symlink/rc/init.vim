@@ -53,11 +53,11 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
 nnoremap <silent> ]             :<c-u>WhichKey  ']'<CR>
 nnoremap <silent> [             :<c-u>WhichKey  '['<CR>
 
-xnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
-xnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
+vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
+vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
 " vnoremap <silent> g             :<c-u>WhichKeyVisual  'g'<CR>
-xnoremap <silent> ]             :<c-u>WhichKeyVisual  ']'<CR>
-xnoremap <silent> [             :<c-u>WhichKeyVisual  '['<CR>
+vnoremap <silent> ]             :<c-u>WhichKeyVisual  ']'<CR>
+vnoremap <silent> [             :<c-u>WhichKeyVisual  '['<CR>
 
 " Release keymappings for plug-in.
 " nnoremap <Space>  <Nop>

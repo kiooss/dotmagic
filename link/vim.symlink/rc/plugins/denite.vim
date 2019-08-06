@@ -167,16 +167,16 @@ function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)q
 endfunction
 
-nnoremap <silent> <Leader>do :<C-u>Denite outline -start-filter<CR>
-nnoremap <silent> <Leader>dv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/ -start-filter<CR>
-nnoremap <silent> <Leader>dd :<C-u>Denite dein -default-action=open<CR>
-nnoremap <silent> <Leader>dc :<C-u>Denite colorscheme -start-filter<CR>
-nnoremap <silent> <Leader>df :<C-u>Denite filetype -start-filter<CR>
-nnoremap <silent> <Leader>dh :<C-u>Denite -buffer-name=search-help -start-filter help<CR>
+nnoremap <silent> <Leader>vo :<C-u>Denite outline -start-filter<CR>
+nnoremap <silent> <Leader>vv :<C-u>Denite file/rec/git:~/.dotfiles/link/vim.symlink/ -start-filter<CR>
+nnoremap <silent> <Leader>vd :<C-u>Denite dein -default-action=open<CR>
+nnoremap <silent> <Leader>vc :<C-u>Denite colorscheme -start-filter<CR>
+nnoremap <silent> <Leader>vf :<C-u>Denite filetype -start-filter<CR>
+nnoremap <silent> <Leader>vh :<C-u>Denite -buffer-name=search-help -start-filter help<CR>
 
-nnoremap <silent> <Leader>dr
+nnoremap <silent> <Leader>vr
       \ :<C-u>Denite -buffer-name=register register<CR>
-xnoremap <silent> <Leader>dr
+xnoremap <silent> <Leader>vr
       \ :<C-u>Denite -mode=normal -default-action=replace -buffer-name=register register<CR>
 
 nnoremap <silent><expr> / line('$') > 10000 ? '/' :
@@ -186,7 +186,7 @@ nnoremap <silent><expr> n line('$') > 10000 ? 'n' :
 nnoremap <silent><expr> * line('$') > 10000 ? '*' :
 \ ":\<C-u>DeniteCursorWord -buffer-name=search line\<CR>"
 
-nnoremap <silent> <Leader>dg :<C-u>Denite -buffer-name=search -no-empty grep/git<CR>
+nnoremap <silent> <Leader>vg :<C-u>Denite -buffer-name=search -no-empty grep/git<CR>
 nnoremap <silent> # :<C-u>DeniteCursorWord -buffer-name=search -no-empty grep/git<CR>
 nnoremap <silent><expr> tp  &filetype == 'help' ?
       \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"

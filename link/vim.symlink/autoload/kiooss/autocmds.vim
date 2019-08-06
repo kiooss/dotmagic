@@ -1,4 +1,4 @@
-let g:KioossColorColumnBlacklist = ['diff', 'fugitiveblame', 'undotree', 'nerdtree', 'qf']
+let g:KioossColorColumnBlacklist = ['diff', 'fugitiveblame', 'undotree', 'nerdtree', 'qf', 'list']
 
 function! kiooss#autocmds#should_colorcolumn() abort
   return index(g:KioossColorColumnBlacklist, &filetype) == -1
@@ -10,6 +10,7 @@ function! kiooss#autocmds#vim_refresh() abort
     AirlineRefresh
   endif
   call kiooss#autocmds#base16_customize()
+  syntax on
 endfunction
 
 function! kiooss#autocmds#check_clipper() abort

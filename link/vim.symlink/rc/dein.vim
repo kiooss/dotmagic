@@ -30,6 +30,7 @@ call dein#load_toml(s:ft_path)
 
 " disable some plugins temporary.
 " call dein#disable('coc.nvim')
+call dein#disable('vim-airline')
 
 call dein#end()
 call dein#save_state()

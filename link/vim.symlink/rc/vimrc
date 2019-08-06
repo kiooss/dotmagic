@@ -58,9 +58,6 @@ endif
 
 if g:load_plugins
   call s:source_rc('dein.vim')
-  for s:path in split(glob($VIMPATH.'/rc/plugins/*.vim'), "\n")
-    exe 'source ' . s:path
-  endfor
 endif
 
 syntax enable
@@ -83,6 +80,12 @@ if has('nvim')
   call s:source_rc('neovim.vim')
 endif
 call s:source_rc('theme.vim')
+
+if g:load_plugins
+  for s:path in split(glob($VIMPATH.'/rc/plugins/*.vim'), "\n")
+    exe 'source ' . s:path
+  endfor
+endif
 
 "---------------------------------------------------------------------------
 set secure

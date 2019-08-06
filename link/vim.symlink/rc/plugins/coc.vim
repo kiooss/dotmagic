@@ -33,12 +33,6 @@ let g:coc_global_extensions = [
   \ ]
 
 " {{{ functions
-function! SetupCommandAbbrs(from, to)
-  exec 'cnoreabbrev <expr> '.a:from
-        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
-        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
-endfunction
-
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -199,7 +193,5 @@ function! s:GrepArgs(...)
   return join(list, "\n")
 endfunction
 
-" Use C to open coc config
-call SetupCommandAbbrs('C', 'CocConfig')
 
 " vim: set ts=2 sw=2 tw=80 fdl=0 et :

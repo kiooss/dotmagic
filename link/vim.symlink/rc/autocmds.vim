@@ -30,11 +30,8 @@ augroup common
   autocmd FileType php setlocal commentstring=//\ %s
   autocmd FileType gitconfig setlocal commentstring=#\ %s
   autocmd FileType vue setlocal commentstring=//\ %s
-
   " }}}
 
-
-  " autocmd BufEnter * call EmptyBuffer()
   autocmd BufReadPost *.log normal! G
   " remove spaces at the end of line
   autocmd BufWritePre * :%s/\s\+$//e

@@ -13,6 +13,7 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-json',
   \ 'coc-lists',
+  \ 'coc-marketplace',
   \ 'coc-omni',
   \ 'coc-pairs',
   \ 'coc-phpls',

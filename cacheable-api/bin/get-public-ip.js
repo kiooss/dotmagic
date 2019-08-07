@@ -9,9 +9,9 @@ getPublicIp("https://ifconfig.me/all.json")
   .then(res => {
     const ip = res.ip_addr;
     if (ip === "18.182.170.161") {
-      console.log(`vpn: #[fg=red,bold]${ip}`);
+      console.log(`嬨#[fg=red,bold]${ip}`);
     } else {
-      console.log(`ip: ${ip}`);
+      console.log(` ${ip}`);
     }
   })
   .catch(err => {

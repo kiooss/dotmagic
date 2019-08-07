@@ -51,7 +51,7 @@ nnoremap <silent> <Tab>      :wincmd w<CR>
 nnoremap <CR> zMza
 
 " Toggle folds
-nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent> + @=(foldlevel('.')?'za':"+")<CR>
 
 nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>
 

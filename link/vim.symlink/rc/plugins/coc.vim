@@ -93,7 +93,7 @@ nmap <silent> ]d <Plug>(coc-diagnostic-next)
 " CocList
 nnoremap <leader>ma  :<C-u>CocList<space>
 " buffers
-nnoremap <silent> <leader>j  :<C-u>CocList -N buffers<cr>
+nnoremap <silent> <leader><space>  :<C-u>CocList -N buffers<cr>
 " Show all diagnostics
 nnoremap <silent> <leader>md  :<C-u>CocList diagnostics<cr>
 " Manage extensions
@@ -127,7 +127,7 @@ nnoremap <silent> <leader>mh  :<C-u>CocList -A --normal gstatus<cr>
 nnoremap <silent> <leader>mg :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
 " grep word under cursor.
-nnoremap <silent> <leader>,  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+nnoremap <silent> <leader>j  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 
 " navigate chunks of current buffer
 nmap [g <Plug>(coc-git-prevchunk)

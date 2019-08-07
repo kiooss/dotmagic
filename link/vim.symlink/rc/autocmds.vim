@@ -4,13 +4,18 @@
 "==============================================================================
 
 " Reload vim config automatically {{{
-execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
-      \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
-      \ .' | echo "config reloaded!"'
+"
+"
+"
+" execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
+"       \ .' echom 1111'
+
+" execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
+"       \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
+"       \ .' | echom "config reloaded!"'
 " }}}
 
-augroup common
-  autocmd!
+augroup MyAutoCmd
   " {{{ file type specific settings
   autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab

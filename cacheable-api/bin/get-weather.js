@@ -8,7 +8,7 @@ const fonts = require("weird-fonts");
 const configDir = path.join(os.homedir(), "etc");
 const forecastIOApiKey = require(path.join(configDir, "forecastio.json")).token;
 
-const getWeather = lib.cacheableRequest("get-weather", lib.getJSON);
+const getWeather = lib.cacheableRequest("get-weather", lib.getJSON, 5);
 
 function icon(weather) {
   switch (weather.icon) {

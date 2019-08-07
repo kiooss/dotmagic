@@ -56,13 +56,13 @@ function getJSON(url) {
   });
 }
 
-function cacheableRequest(key, fn) {
+function cacheableRequest(key, fn, expiredInMinutes) {
   const f = path.join(cacheDir, `${key}.json`);
 
   return function(url) {
     return new Promise((resolve, _reject) => {
       fs.stat(f, (_, stat) => {
-        if (stat && minutesAgo(5) < stat.mtime) {
+        if (stat && minutesAgo(expiredInMinutes) < stat.mtime) {
           fs.readFile(f, (err, data) => {
             if (err) {
               throw err;

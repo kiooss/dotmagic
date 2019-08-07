@@ -3,7 +3,7 @@
 const lib = require("../");
 
 const NAME = "get-public-ip";
-const getPublicIp = lib.cacheableRequest(NAME, lib.getJSON);
+const getPublicIp = lib.cacheableRequest(NAME, lib.getJSON, 1);
 
 getPublicIp("https://ifconfig.me/all.json")
   .then(res => {

@@ -165,6 +165,16 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap \q  <Plug>(coc-fix-current)
 
+" Multiple cursors support
+" nmap <silent> <C-c> <Plug>(coc-cursors-position)
+" nmap <silent> <C-d> <Plug>(coc-cursors-word)
+" xmap <silent> <C-d> <Plug>(coc-cursors-range)
+" use normal command like `<leader>ii(`
+" nmap <leader>i  <Plug>(coc-cursors-operator)
+
+" nmap <silent> <C-d> <Plug>(coc-cursors-word)*
+" xmap <silent> <C-d> y/\V<C-r>=escape(@",'/\')<CR><CR>gN<Plug>(coc-cursors-range)gn
+
 nnoremap <silent> ;f :<C-u>CocCommand eslint.executeAutofix<CR>
 
 augroup MyAutoCmd
@@ -194,6 +204,5 @@ function! s:GrepArgs(...)
         \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
   return join(list, "\n")
 endfunction
-
 
 " vim: set ts=2 sw=2 tw=80 fdl=0 et :

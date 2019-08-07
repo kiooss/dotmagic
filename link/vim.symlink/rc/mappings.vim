@@ -19,18 +19,10 @@
 " o: Insert line below cursor
 " p: Paste
 
-" Swap ; and :
-" noremap ; :
-" noremap : ;
-
-" Smart space mapping
-" nnoremap  [Space]   <Nop>
-" nmap  <Space>   [Space]
-
 " s: Windows and buffers(High priority)
 " The prefix key.
 nnoremap [Window]   <Nop>
-nmap     s [Window]
+" nmap     s [Window]
 nnoremap <silent> [Window]p  :<C-u>vsplit<CR>:wincmd w<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
 nnoremap <silent> [Window]b  :b#<CR>
@@ -45,6 +37,8 @@ nnoremap <silent> [Window]sv :split<CR>:wincmd p<CR>:e#<CR>
 nnoremap <silent> [Window]sp :vsplit<CR>:wincmd p<CR>:e#<CR>
 " close the preview window
 nnoremap <silent> [Window]z  :wincmd z<CR>
+
+" Tab to swich windows
 nnoremap <silent> <Tab>      :wincmd w<CR>
 
 " Focus the current fold by closing all others

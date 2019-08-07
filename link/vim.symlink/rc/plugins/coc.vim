@@ -106,12 +106,14 @@ nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 nnoremap <silent> <leader>mm :<C-u>CocList -N mru<cr>
 " files
 nnoremap <silent> <leader>mf :<C-u>CocList files<cr>
+" help
+nnoremap <silent> <leader>mh :<C-u>CocList helptags<cr>
 " filetypes
 nnoremap <silent> <leader>mt :<C-u>CocList filetypes<cr>
 " words
 nnoremap <silent> <leader>mw :<C-u>CocList words<cr>
 " Search workspace symbols
-nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
 " Resume latest coc list
 nnoremap <silent> <leader>mr  :<C-u>CocListResume<cr>
 " yank
@@ -121,7 +123,7 @@ vnoremap <silent> <leader>mg :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
 nnoremap <silent> <leader>mg :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 " coc-git
 nnoremap <silent> <leader>mb  :<C-u>CocList -A --normal bcommits<cr>
-nnoremap <silent> <leader>mh  :<C-u>CocList -A --normal gstatus<cr>
+nnoremap <silent> <leader>ms  :<C-u>CocList -A --normal gstatus<cr>
 
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <leader>mg :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>

@@ -50,8 +50,8 @@ nnoremap <silent> + @=(foldlevel('.')?'za':"+")<CR>
 nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>
 
 " Change current word in a repeatable manner
-nnoremap <leader>cn *``cgn
-nnoremap <leader>cN *``cgN
+" nnoremap <leader>cn *``cgn
+" nnoremap <leader>cN *``cgN
 
 " Change selected word in a repeatable manner
 vnoremap <expr> <leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"

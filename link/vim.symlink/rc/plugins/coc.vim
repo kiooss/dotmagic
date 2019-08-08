@@ -92,7 +92,8 @@ nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " CocList
-nnoremap <leader>ma  :<C-u>CocList<space>
+nnoremap <leader>l  :<C-u>CocList<space>
+nnoremap <silent> <leader>mn  :<C-u>CocList snippets<cr>
 " buffers
 nnoremap <silent> <leader><space>  :<C-u>CocList -N buffers<cr>
 " Show all diagnostics
@@ -100,7 +101,7 @@ nnoremap <silent> <leader>md  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <leader>me  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <leader>mc  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>c  :<C-u>CocList -N commands<cr>
 " Find symbol of current document
 nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 " mru

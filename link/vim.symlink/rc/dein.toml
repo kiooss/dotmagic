@@ -387,10 +387,11 @@ hook_add = '''
   "       \}
 
   let g:ale_linters = {
-        \   'php': ['php'],
-        \   'javascript': ['eslint'],
-        \   'typescript': ['tslint', 'tsserver', 'eslint'],
+        \   'php': [],
+        \   'javascript': [],
+        \   'typescript': [],
         \   'ruby': ['rubocop'],
+        \   'vim': ['vint'],
         \   'eruby': [],
         \}
   " let g:ale_linters = {

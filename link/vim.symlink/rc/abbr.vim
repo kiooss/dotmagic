@@ -7,3 +7,4 @@ endfunction
 " Use C to open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
 call SetupCommandAbbrs('L', 'CocList')
+call SetupCommandAbbrs('S', 'CocSearch')

@@ -11,9 +11,6 @@ merged = 0
 build = 'yarn install --frozen-lockfile'
 
 [[plugins]]
-repo = 'neoclide/coc-denite'
-
-[[plugins]]
 repo = 'Shougo/dein.vim'
 hook_add = '''
   command! DeinRecache call dein#recache_runtimepath()

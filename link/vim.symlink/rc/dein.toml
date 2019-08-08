@@ -54,6 +54,7 @@ hook_add = '''
       \ ]
   let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',
+      \ '.git/*',
       \ 'runtime/doc/.*\.txt',
       \ 'bundle/.*/doc/.*\.txt',
       \ 'plugged/.*/doc/.*\.txt',

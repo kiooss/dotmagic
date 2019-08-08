@@ -6,6 +6,7 @@
   "diagnostic.errorSign": "✗",
   "diagnostic.infoSign": "ℹ",
   "diagnostic.warningSign": "⚠",
+  "diagnostic.hintSign": "\ufaa5", //瘟
   "git.enableGutters": false,
   "list.indicator": "❯❯❯",
   "list.maxHeight": 15,

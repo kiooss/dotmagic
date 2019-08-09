@@ -41,6 +41,17 @@ nnoremap <silent> [Window]z  :wincmd z<CR>
 " Tab to swich windows
 nnoremap <silent> <Tab>      :wincmd w<CR>
 
+" switch tabs
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
+
 " Focus the current fold by closing all others
 nnoremap <CR> zMza
 

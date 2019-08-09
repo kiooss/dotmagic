@@ -146,7 +146,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gt <Plug>(coc-translator-p)
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -159,6 +158,8 @@ nmap <leader>rl <Plug>(coc-codelens-action)
 " Remap for format selected region
 vmap \f  <Plug>(coc-format-selected)
 nmap \f  <Plug>(coc-format-selected)
+
+nmap <silent> \t <Plug>(coc-translator-p)
 
 " Remap for do codeAction of selected region, ex: `,aap` for current paragraph
 xmap <leader>ac  <Plug>(coc-codeaction-selected)

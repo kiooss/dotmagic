@@ -61,7 +61,7 @@ function temperature(weather) {
   }
 
   let face = "☺️";
-  if (apparentTemperature > 35) {
+  if (apparentTemperature > 40) {
     face = "🥵";
   } else if (apparentTemperature > 30) {
     face = "😳";

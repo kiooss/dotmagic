@@ -154,7 +154,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>rf <Plug>(coc-refactor)
-nmap <leader>rl <Plug>(coc-codelens-action)
+nmap <leader>ca <Plug>(coc-codelens-action)
 
 " Remap for format selected region
 vmap \f  <Plug>(coc-format-selected)
@@ -174,8 +174,8 @@ nmap \q  <Plug>(coc-fix-current)
 " use normal command like `<leader>ii(`
 " nmap <leader>i  <Plug>(coc-cursors-operator)
 
-" nmap <silent> <C-d> <Plug>(coc-cursors-word)*
-" xmap <silent> <C-d> y/\V<C-r>=escape(@",'/\')<CR><CR>gN<Plug>(coc-cursors-range)gn
+nmap <silent> <C-d> <Plug>(coc-cursors-word)*
+xmap <silent> <C-d> y/\V<C-r>=escape(@",'/\')<CR><CR>gN<Plug>(coc-cursors-range)gn
 
 nnoremap <silent> ;f :<C-u>CocCommand eslint.executeAutofix<CR>
 

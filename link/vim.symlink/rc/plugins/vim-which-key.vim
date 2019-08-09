@@ -25,3 +25,7 @@ let g:which_key_sep = '➡'
 " let g:which_key_position = 'topleft'
 let g:which_key_run_map_on_popup = 1
 " let g:which_key_default_group_name = '+'
+
+" autocmd! FileType which_key
+" autocmd  FileType which_key set laststatus=0 noshowmode noruler
+"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler

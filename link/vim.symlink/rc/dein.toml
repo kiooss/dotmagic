@@ -134,8 +134,8 @@ hook_add='''
 #   nmap <leader>9 <Plug>AirlineSelectTab9
 # '''
 
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
+# [[plugins]]
+# repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
@@ -594,8 +594,3 @@ repo = 'posva/vim-vue'
 
 [[plugins]]
 repo = 'liuchengxu/vim-which-key'
-hook_add='''
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-'''

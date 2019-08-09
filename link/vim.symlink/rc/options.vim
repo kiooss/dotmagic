@@ -184,6 +184,7 @@ set cursorline
 set showcmd         " show incomplete commands
 set cmdheight=1     " Height of the command line
 set cmdwinheight=5  " Command-line lines
+set showtabline=2   " Always show tabline
 set laststatus=2    " Always show a status line
 
 set invlist         " toggle invisible characters
@@ -193,12 +194,11 @@ highlight SpecialKey ctermbg=none
 set listchars=tab:▸\ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸
 
 set nolazyredraw " don't redraw while executing macros
-set mat=2        " how many tenths of a second to blink
+set matchtime=2        " how many tenths of a second to blink
 set title        " set terminal title
 set titlestring   =VIM:\ %f
 
 set t_vb=
-set tm=500
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold

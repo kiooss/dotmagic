@@ -154,7 +154,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>rf <Plug>(coc-refactor)
-nmap <leader>ca <Plug>(coc-codelens-action)
+nmap <leader>rl <Plug>(coc-codelens-action)
 
 " Remap for format selected region
 vmap \f  <Plug>(coc-format-selected)

@@ -3,7 +3,6 @@
 const lib = require("../");
 const path = require("path");
 const os = require("os");
-const fonts = require("weird-fonts");
 
 const configDir = path.join(os.homedir(), "etc");
 const forecastIOApiKey = require(path.join(configDir, "forecastio.json")).token;

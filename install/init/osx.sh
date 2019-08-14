@@ -131,6 +131,7 @@ casks=(
   font-firacode-nerd-font-mono
   font-meslo-nerd-font-mono
   font-m-plus
+  font-mononoki-nerd-font-mono
   font-mplus-nerd-font
   font-mplus-nerd-font-mono
   font-iosevka

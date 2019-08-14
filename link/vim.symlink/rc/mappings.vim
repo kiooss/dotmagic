@@ -171,6 +171,7 @@ nnoremap <c-o>  <c-o>zvzz
 " git mappings
 nnoremap <silent> <leader>sb :<C-u>Gblame<CR>
 nnoremap <silent> <leader>st :<C-u>Gstatus<CR>
+nnoremap <silent> <leader>d :<C-u>Gstatus<CR>
 nnoremap <silent> <leader>sc :<C-u>Gcommit -v<CR>
 nnoremap <silent> <leader>sa :<C-u>Git add -A<CR>
 nnoremap <silent> <leader>sd :<C-u>Gdiff<CR>

@@ -64,6 +64,8 @@ else
     " let ayucolor='dark'   " for dark version of theme
     " colorscheme ayu
   catch
+    colorscheme desert
+    highlight ColorColumn guibg=Grey40
   endtry
 endif
 

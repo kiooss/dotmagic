@@ -522,7 +522,7 @@ let g:ClipperPort=0
 repo = 'justinmk/vim-sneak'
 hook_add = '''
   map s <Plug>Sneak_s
-  map S <Plug>Sneak_S
+  " map S <Plug>Sneak_S
   let g:sneak#label = 1
   let g:sneak#use_ic_scs = 1
   let g:sneak#absolute_dir = 1
@@ -594,3 +594,6 @@ repo = 'posva/vim-vue'
 
 [[plugins]]
 repo = 'liuchengxu/vim-which-key'
+
+[[plugins]]
+repo = 'tommcdo/vim-exchange'

@@ -8,6 +8,7 @@ e_header "Global rust packages"
 
 PACKAGES=(
   exa
+  # lsd
   ripgrep
 )
 

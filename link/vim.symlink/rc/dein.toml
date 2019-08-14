@@ -277,6 +277,9 @@ let g:endwise_no_mappings = 1
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
+repo = 'tpope/vim-rhubarb'
+
+[[plugins]]
 repo = 'tpope/vim-git'
 
 [[plugins]]

@@ -100,6 +100,7 @@ let s:file_node_exact_matches = {
   \  'dropbox'                          : '',
   \  '.ds_store'                        : '',
   \  '.gitconfig'                       : '',
+  \  '.editorconfig'                    : '',
   \  '.gitignore'                       : '',
   \  '.bashrc'                          : '',
   \  '.bashprofile'                     : '',
@@ -109,6 +110,7 @@ let s:file_node_exact_matches = {
   \  'react.jsx'                        : '',
   \  'Procfile'                         : '',
   \  '.vimrc'                           : '',
+  \  'vimrc'                            : '',
 \}
 
 let s:file_node_pattern_matches = {
@@ -129,6 +131,19 @@ let s:colors = {
   \ 'active_mod': ['#d3869d', '#458588', '#000000'],
   \ 'inactive_ro': ['darkred', 'lightred', 'black'],
   \ 'active_ro': ['lightred', 'darkred', '#000000'],
+\ }
+
+let s:number_map = {
+  \ '0': '⁰',
+  \ '1': '¹',
+  \ '2': '²',
+  \ '3': '³',
+  \ '4': '⁴',
+  \ '5': '⁵',
+  \ '6': '⁶',
+  \ '7': '⁷',
+  \ '8': '⁸',
+  \ '9': '⁹'
 \ }
 
 function! s:init_colors()
@@ -172,7 +187,7 @@ function! MyTabLabel(n)
   if empty(name)
     return '[No Name]'
   else
-    return a:n . ' '. icon.' '.fnamemodify(name, ':t')
+    return get(s:number_map, a:n, a:n) . ' '. icon.' '.fnamemodify(name, ':t')
   endif
 endfunction
 

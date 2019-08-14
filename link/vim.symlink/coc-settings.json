@@ -51,5 +51,8 @@
       "args": ["--stdio"],
       "filetypes": ["php"]
     }
-  }
+  },
+  "weather.aqi.token": "9ff83d20e4304845fde8dfa37ebfe983a9dc600c",
+  "weather.aqi.city": "suzhou",
+  "weather.aqi.interval": 60
 }

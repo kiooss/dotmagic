@@ -77,11 +77,11 @@ call s:source_rc('mappings.vim')
 call s:source_rc('autocmds.vim')
 call s:source_rc('commands.vim')
 call s:source_rc('abbr.vim')
-call s:source_rc('tabline.vim')
 if has('nvim')
   call s:source_rc('neovim.vim')
 endif
 call s:source_rc('theme.vim')
+call s:source_rc('tabline.vim')
 
 if g:load_plugins
   for s:path in split(glob($VIMPATH.'/rc/plugins/*.vim'), "\n")

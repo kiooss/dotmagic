@@ -600,3 +600,14 @@ repo = 'liuchengxu/vim-which-key'
 
 [[plugins]]
 repo = 'tommcdo/vim-exchange'
+
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
+hook_add='''
+noremap <silent><leader>V :<c-u>Vista finder coc<cr>
+noremap <silent><leader>vs :<c-u>Vista!!<cr>
+let g:vista_executive_for = {
+  \ 'ruby': 'coc',
+  \ 'php': 'coc',
+  \ }
+'''

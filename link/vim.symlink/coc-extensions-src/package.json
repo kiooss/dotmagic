@@ -1,0 +1,22 @@
+{
+  "name": "coc-extensions-src",
+  "version": "1.0.0",
+  "description": "My personal coc extensions.",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "coc.nvim": "^0.0.73",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.2"
+  }
+}

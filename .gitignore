@@ -15,4 +15,4 @@ plug.vim.old
 /link/rbenv.symlink/src/*.o
 /link/rbenv.symlink/gems
 
-/node_modules
+node_modules/

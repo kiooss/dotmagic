@@ -2,20 +2,16 @@
 #  vim: set ts=2 sw=2 tw=80 et :
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-merge = 0
-
-[[plugins]]
-repo = 'neoclide/coc.nvim'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
 repo = 'Shougo/dein.vim'
 hook_add = '''
   command! DeinRecache call dein#recache_runtimepath()
   command! DeinCleanUp call map(dein#check_clean(), "delete(v:val, 'rf')")
 '''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+merged = 0
+build = 'yarn install --frozen-lockfile'
 
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'

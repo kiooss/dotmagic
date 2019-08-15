@@ -18,7 +18,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.ihtml setfiletype php
   autocmd BufNewFile,BufRead *.ino setfiletype c
   autocmd BufNewFile,BufRead *.js setfiletype javascript.jsx
-  " autocmd BufNewFile,BufRead *.json setfiletype jsonc
+  autocmd BufNewFile,BufRead *.json setfiletype jsonc
   autocmd BufNewFile,BufRead *.svg setfiletype xml
   autocmd BufNewFile,BufRead *.tmuxtheme setfiletype tmux
   autocmd BufNewFile,BufRead *.wsdl setfiletype xml

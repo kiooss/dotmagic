@@ -95,7 +95,7 @@ nmap <silent> ]d <Plug>(coc-diagnostic-next)
 nnoremap <leader>l  :<C-u>CocList<space>
 nnoremap <silent> <leader>mn  :<C-u>CocList snippets<cr>
 " buffers
-nnoremap <silent> <leader><space>  :<C-u>CocList -N buffers<cr>
+nnoremap <silent> <leader><space>  :<C-u>CocList -N --normal buffers<cr>
 " Show all diagnostics
 nnoremap <silent> <leader>md  :<C-u>CocList diagnostics<cr>
 " Manage extensions

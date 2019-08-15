@@ -108,6 +108,7 @@ nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 nnoremap <silent> <leader>mm :<C-u>CocList -N mru<cr>
 " files
 nnoremap <silent> <leader>mf :<C-u>CocList files<cr>
+nnoremap <silent> <leader>mv :<C-u>cd ~/.dotfiles/link/vim.symlink <bar> CocList files<cr>
 " help
 nnoremap <silent> <leader>mh :<C-u>CocList helptags<cr>
 " filetypes

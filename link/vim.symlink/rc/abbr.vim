@@ -8,3 +8,4 @@ endfunction
 call SetupCommandAbbrs('C', 'CocConfig')
 call SetupCommandAbbrs('L', 'CocList')
 call SetupCommandAbbrs('S', 'CocSearch')
+call SetupCommandAbbrs('W', 'SudaWrite')

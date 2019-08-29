@@ -37,3 +37,6 @@
 [submodule "vendor/git-when-merged"]
 	path = vendor/git-when-merged
 	url = https://github.com/mhagger/git-when-merged.git
+[submodule "vendor/cacheable-api"]
+	path = vendor/cacheable-api
+	url = git@me.github.com:kiooss/cacheable-api.git

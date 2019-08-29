@@ -85,8 +85,6 @@ nnoremap <Leader>/ /
 " better redraw
 nnoremap <c-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr>:GitGutter<cr><c-l>
 
-nnoremap <silent> <Leader>hp :call zvim#previewHunkToggle()<CR>
-
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
@@ -102,7 +100,7 @@ nnoremap x "_x
 nnoremap Y y$
 
 " format whole buffer
-nnoremap <silent> g= :<C-u>call zvim#format()<CR>
+nnoremap <silent> g= :<C-u>call <SID>format()<CR>
 
 " nnoremap > >>
 " nnoremap < <<
@@ -317,7 +315,13 @@ function! s:append_modeline()
 endfunction
 
 function! s:timestamp_to_datetime()
-  echo strftime("%Y-%m-%d %H:%M:%S", expand("<cword>"))
+  echo strftime('%Y-%m-%d %H:%M:%S', expand('<cword>'))
+endfunction
+
+function! s:format() abort
+  let save_cursor = getpos('.')
+  normal! gg=G
+  call setpos('.', save_cursor)
 endfunction
 
 function! OpenCurrentFileInGithub()

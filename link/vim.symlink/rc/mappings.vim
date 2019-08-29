@@ -40,6 +40,9 @@ nnoremap <silent> [Window]z  :wincmd z<CR>
 
 " Tab to swich windows
 nnoremap <silent> <Tab>      :wincmd w<CR>
+" vsplit all buffers
+nnoremap <leader>- :<C-u>vertical sball<CR>
+nnoremap <leader>e :<C-u>tab sball<CR>
 
 " switch tabs
 nmap <leader>1 1gt
@@ -144,10 +147,6 @@ nnoremap g[ :pop<cr>
 
 " disable EX mode
 nnoremap Q q
-
-" +/-: Increment number
-" nnoremap + <c-a>
-" nnoremap - <c-x>
 
 " zz cyclically
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?

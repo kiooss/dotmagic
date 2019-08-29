@@ -13,15 +13,6 @@ if has('gui_running')
   set lines=70
 endif
 
-if has('syntax')
-  autocmd MyAutoCmd ColorScheme *
-        \ highlight Comment gui=bold,italic
-        \ | highlight Folded gui=bold,italic
-        \ | highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
-        \ | highlight StartifyFile gui=bold,italic
-        \ | highlight NormalFloat cterm=bold,reverse gui=bold,reverse
-endif
-
 let s:use_base16_theme = get(g:, 'use_base16_theme', 1)
 
 if s:use_base16_theme && filereadable(expand('~/.vimrc_background'))
@@ -69,9 +60,11 @@ else
   endtry
 endif
 
+highlight Comment gui=bold,italic
+highlight Folded gui=bold,italic
+highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
+highlight StartifyFile gui=bold,italic
+highlight NormalFloat cterm=bold,reverse gui=bold,reverse
 
-" colorscheme srcery
-" let g:solarized_visibility="low"
-" let g:solarized_termtrans=1
-" colorscheme solarized8_dark_high
-" colorscheme solarized8_dark
+" make the highlighting of tabs and other non-text less annoying
+highlight SpecialKey ctermfg=19 guifg=#333333

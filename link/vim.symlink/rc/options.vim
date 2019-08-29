@@ -189,8 +189,6 @@ set laststatus=2    " Always show a status line
 
 set invlist         " toggle invisible characters
 set list            " Show hidden characters
-" make the highlighting of tabs less annoying
-highlight SpecialKey ctermbg=none
 set listchars=tab:▸\ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸
 
 set nolazyredraw " don't redraw while executing macros
@@ -199,9 +197,6 @@ set title        " set terminal title
 set titlestring   =VIM:\ %f
 
 set t_vb=
-
-"improve autocomplete menu color
-highlight Pmenu ctermbg=238 gui=bold
 
 " https://sunaku.github.io/vim-256color-bce.html
 " if &term =~ '256color'

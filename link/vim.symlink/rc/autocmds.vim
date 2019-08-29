@@ -85,20 +85,20 @@ augroup MyAutoCmd
         \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
       \ if &l:diff | diffupdate | endif
 
-  " window hlight {{{
+  " window hlight
   " Make current window more obvious by turning off/adjusting some features
   " in non-current windows.
   if exists('+winhighlight')
-    autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | set winhighlight= | endif
-    autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn()
+    autocmd BufEnter,FocusGained,VimEnter,WinEnter * if <sid>should_colorcolumn() | set winhighlight= | endif
+    autocmd FocusLost,WinLeave * if <sid>should_colorcolumn()
           \ | set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn | endif
     if exists('+colorcolumn')
-      autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn='+' . join(range(1, 254), ',+') | endif
+      autocmd BufEnter,FocusGained,VimEnter,WinEnter * if <sid>should_colorcolumn() | let &l:colorcolumn='+' . join(range(1, 254), ',+') | endif
     endif
   elseif exists('+colorcolumn')
-    autocmd BufEnter,FocusGained,VimEnter,WinEnter * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn='+' . join(range(1, 254), ',+') | endif
-    autocmd FocusLost,WinLeave * if kiooss#autocmds#should_colorcolumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
-  endif "}}}
+    autocmd BufEnter,FocusGained,VimEnter,WinEnter * if <sid>should_colorcolumn() | let &l:colorcolumn='+' . join(range(1, 254), ',+') | endif
+    autocmd FocusLost,WinLeave * if <sid>should_colorcolumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
+  endif
 
   " Automatic rename of tmux window
   if exists('$TMUX') && !exists('$NORENAME')
@@ -111,6 +111,12 @@ function! EmptyBuffer()
   if @% ==# "" && &filetype !=# "startify"
     setfiletype txt
   endif
+endfunction
+
+let g:ColorColumnBlacklist = ['diff', 'fugitiveblame', 'undotree', 'nerdtree', 'qf', 'list']
+
+function! s:should_colorcolumn() abort
+  return index(g:ColorColumnBlacklist, &filetype) == -1
 endfunction
 
 " vim: set ts=2 sw=2 tw=80 et fdm=marker fdl=0:

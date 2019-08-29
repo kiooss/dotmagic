@@ -123,7 +123,8 @@ nnoremap <silent> <leader>mr  :<C-u>CocListResume<cr>
 nnoremap <silent> <leader>my  :<C-u>CocList -A --normal yank<cr>
 " grep with selected content
 vnoremap <silent> <leader>mg :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
-nnoremap <silent> <leader>mg :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+
+" nnoremap <silent> <leader>mg :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 " coc-git
 nnoremap <silent> <leader>mb  :<C-u>CocList -A --normal bcommits<cr>
 " nnoremap <silent> <leader>ms  :<C-u>CocList -A --normal gstatus<cr>
@@ -131,8 +132,17 @@ nnoremap <silent> <leader>mb  :<C-u>CocList -A --normal bcommits<cr>
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <leader>mg :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
+nnoremap <silent> <leader>/ :<C-u>CocList grep<cr>
+
 " grep word under cursor.
 nnoremap <silent> <leader>j  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+
+nnoremap <silent><expr> / line('$') > 10000 ? '/' :
+  \ ":\<C-u>CocList words<CR>"
+nnoremap <silent><expr> n line('$') > 10000 ? 'n' :
+  \ ":\<C-u>CocListResume<CR>"
+nnoremap <silent><expr> * line('$') > 10000 ? '*' :
+        \ ":exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>"
 
 " navigate chunks of current buffer
 nmap [g <Plug>(coc-git-prevchunk)

@@ -14,9 +14,6 @@ merged = 0
 build = 'yarn install --frozen-lockfile'
 
 [[plugins]]
-repo = 'wsdjeg/dein-ui.vim'
-
-[[plugins]]
 repo = 'mhinz/vim-startify'
 merge = 0
 hook_add = '''

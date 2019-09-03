@@ -81,7 +81,7 @@ call s:source_rc('abbr.vim')
 if has('nvim')
   call s:source_rc('neovim.vim')
 endif
-call s:source_rc('tabline.vim')
+" call s:source_rc('tabline.vim')
 
 if g:load_plugins
   for s:path in split(glob($VIMPATH.'/rc/plugins/*.vim'), "\n")

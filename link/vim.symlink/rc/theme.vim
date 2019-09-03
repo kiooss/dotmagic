@@ -65,6 +65,7 @@ highlight Folded gui=bold,italic
 highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
 highlight StartifyFile gui=bold,italic
 highlight NormalFloat cterm=bold,reverse gui=bold,reverse
+highlight TablineSel cterm=bold,reverse gui=bold,reverse
 
 " make the highlighting of tabs and other non-text less annoying
 highlight SpecialKey ctermfg=19 guifg=#333333

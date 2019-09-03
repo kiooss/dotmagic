@@ -120,6 +120,7 @@ let s:file_node_pattern_matches = {
   \ '.*require.*\.js$'      : '',
   \ '.*materialize.*\.js$'  : '',
   \ '.*materialize.*\.css$' : '',
+  \ '.env\.?*$'            : '',
   \ '.*mootools.*\.js$'     : ''
 \}
 
@@ -187,7 +188,7 @@ function! MyTabLabel(n)
   if empty(name)
     return '[No Name]'
   else
-    return get(s:number_map, a:n, a:n) . ' '. icon.' '.fnamemodify(name, ':t')
+    return get(s:number_map, a:n, a:n) . ' ' . icon.' '.fnamemodify(name, ':t')
   endif
 endfunction
 
@@ -210,7 +211,7 @@ endfunction
 
 function! MyTabLine()
   "if &buftype =~# '\v(help|nofile|terminal)' | return '' | endif
-  let s = ''
+  let s = " \ue7c5 \ue0bb"
   for i in range(tabpagenr('$'))
     " select the highlighting
     if i + 1 == tabpagenr()
@@ -223,6 +224,7 @@ function! MyTabLine()
 
     " the label is made by MyTabLabel()
     let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+    let s .= "\ue0bb"
   endfor
   " after the last tab fill with TabLineFill and reset tab page nr
   let s .= '%#TabLineFill#%T'

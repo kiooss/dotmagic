@@ -127,6 +127,9 @@ P9K_RPROMPT_ON_NEWLINE=false
 P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%{%F{red}%}╭"
 P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%{%F{red}%}╰%{%F{red}%}❯%{%F{green}%}❯%{%F{blue}%}❯ "
 
+P9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon context dir dir_writable vcs)
+P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time php_version node_version custom_base16_theme disk_usage ram)
+
 P9K_CUSTOM_DRINK_WATER="drink_water"
 P9K_CUSTOM_DRINK_WATER_FOREGROUND='black'
 P9K_CUSTOM_DRINK_WATER_BACKGROUND='red'
@@ -139,6 +142,7 @@ P9K_CUSTOM_BASE16_THEME_BACKGROUND='cyan'
 # P9K_SHORTEN_STRATEGY="truncate_middle"
 
 P9K_VCS_GIT_HOOKS=(vcs-detect-changes git-untracked git-aheadbehind git-stash git-remotebranch)
+P9K_VCS_SHOW_CHANGESET=true
 
 P9K_TIME_FORMAT="%D{%H:%M}"
 P9K_OS_ICON_BACKGROUND="red"
@@ -146,9 +150,6 @@ P9K_OS_ICON_FOREGROUND="black"
 # P9K_TODO_BACKGROUND="16"
 # P9K_TODO_FOREGROUND="black"
 P9K_NODE_VERSION_FOREGROUND="black"
-P9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon context dir dir_writable vcs)
-P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time php_version node_version custom_base16_theme)
-P9K_VCS_SHOW_CHANGESET=true
 # }}}
 
 # oh-my-zsh config {{{

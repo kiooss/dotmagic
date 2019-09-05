@@ -101,7 +101,7 @@ nnoremap <silent> <leader>md  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <leader>me  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <leader>c  :<C-u>CocList -N commands<cr>
+nnoremap <silent> <leader>mc  :<C-u>CocList -N commands<cr>
 " Find symbol of current document
 nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 " mru

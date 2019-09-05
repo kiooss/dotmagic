@@ -4,8 +4,8 @@
   branch = master
 [submodule "zsh/omz_custom/themes/powerlevel9k"]
 	path = zsh/omz_custom/themes/powerlevel9k
-	url = https://github.com/bhilburn/powerlevel9k.git
-  branch = master
+	url = https://github.com/Powerlevel9k/powerlevel9k.git
+  branch = next
 [submodule "zsh/omz_custom/plugins/zsh-completions"]
 	path = zsh/omz_custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions

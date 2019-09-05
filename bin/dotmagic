@@ -57,6 +57,7 @@ main() {
     case $yn in
       Yes )
         e_header "Updating submodules."
+        git submodule sync
         git pull --recurse-submodules
         git submodule update --remote
         e_success "done."

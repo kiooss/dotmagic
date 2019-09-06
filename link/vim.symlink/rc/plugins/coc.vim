@@ -34,6 +34,26 @@ let g:coc_global_extensions = [
   \ ]
 
 " {{{ functions
+
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, '✗:' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, '⚠ :' . info['warning'])
+  endif
+  if get(info, 'information', 0)
+    call add(msgs, 'ℹ:' . info['information'])
+  endif
+  if get(info, 'hint', 0)
+    call add(msgs, "\ufaa5:" . info['hint'])
+  endif
+  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+endfunction
+
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -221,4 +241,4 @@ function! s:GrepArgs(...)
   return join(list, "\n")
 endfunction
 
-" vim: set ts=2 sw=2 tw=80 fdl=0 et :
+" vim: set ts=2 sw=2 tw=80 fdl=1 et :

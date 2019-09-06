@@ -28,10 +28,6 @@ if has('patch-7.3.541')
   set formatoptions+=j       " Remove comment leader when joining lines
 endif
 
-if has('vim_starting')
-  scriptencoding utf-8
-endif
-
 " What to save for views:
 set viewoptions-=options
 set viewoptions+=slash,unix
@@ -214,11 +210,6 @@ set noswapfile
 
 " History saving
 set history=2000
-if has('nvim')
-  set shada=!,'300,<50,s10,h
-else
-  set viminfo=!,'300,<50,s10,h,n$VARPATH/viminfo
-endif
 
 if exists('$SUDO_USER')
   if has('nvim')
@@ -227,6 +218,11 @@ if exists('$SUDO_USER')
     set viminfo=                      " don't create root-owned files
   endif
 else
+  if has('nvim')
+    set shada=!,'300,<50,s10,h
+  else
+    set viminfo=!,'300,<50,s10,h,n$VARPATH/viminfo
+  endif
 endif
 
 if has('persistent_undo')

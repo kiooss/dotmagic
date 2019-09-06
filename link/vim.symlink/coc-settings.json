@@ -1,7 +1,7 @@
 {
   "codeLens.enable": true,
   "coc.preferences.extensionUpdateCheck": "weekly",
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.currentFunctionSymbolAutoUpdate": false,
   /* "diagnostic.displayByAle": true, */
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "✗",

@@ -23,9 +23,11 @@ hook_add = '''
   let g:startify_change_to_vcs_root  = 1
   let g:startify_update_oldfiles     = 1
   let g:startify_fortune_use_unicode = 1
+  let g:startify_session_dir = '~/.cache/vim/sessions'
   " let g:startify_custom_header =
   "       \ map(split(system('fortune | cowsay -f dragon-and-cow'), '\n'), '"   ". v:val')
   let g:startify_lists = [
+        \ { 'type': 'sessions',  'header': ['   ❐ SESSIONS']       },
         \ { 'type': 'dir',       'header': ['    MRU '. getcwd()] },
         \ { 'type': 'files',     'header': ['    MRU']            },
         \ { 'type': 'bookmarks', 'header': ['    BOOKMARKS']      },
@@ -222,7 +224,7 @@ repo = 'gregsexton/MatchTag'
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = '''
-  let g:indentLine_char = '│'
+  " let g:indentLine_char = '│'
   " let g:indentLine_first_char = ''
   " let g:indentLine_showFirstIndentLevel = 1
   " let g:indentLine_setColors = 0

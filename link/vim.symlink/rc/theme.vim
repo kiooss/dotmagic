@@ -18,8 +18,8 @@ let s:use_base16_theme = get(g:, 'use_base16_theme', 1)
 if s:use_base16_theme && filereadable(expand('~/.vimrc_background'))
   source ~/.vimrc_background
 else
-  " set background=dark
-  set background=light
+  set background=dark
+  " set background=light
   try
     " let g:falcon_airline = 1
     " let g:airline_theme = 'falcon'
@@ -27,8 +27,8 @@ else
 
     " colorscheme onedark
 
-    " let g:gruvbox_contrast_dark = 'medium'
-    let g:gruvbox_contrast_light = 'medium'
+    let g:gruvbox_contrast_dark = 'medium'
+    " let g:gruvbox_contrast_light = 'medium'
     " let g:gruvbox_invert_tabline = 1
     " let g:gruvbox_improved_strings = 1
     let g:gruvbox_improved_warnings = 1

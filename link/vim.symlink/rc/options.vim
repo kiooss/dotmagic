@@ -37,13 +37,13 @@ set viewoptions-=options
 set viewoptions+=slash,unix
 
 " What to save in sessions:
-set sessionoptions-=blank
-set sessionoptions-=options
-set sessionoptions-=globals
-set sessionoptions-=folds
-set sessionoptions-=help
-set sessionoptions-=buffers
-set sessionoptions+=tabpages
+" set sessionoptions-=blank
+" set sessionoptions-=options
+" set sessionoptions-=globals
+" set sessionoptions-=folds
+" set sessionoptions-=help
+" set sessionoptions-=buffers
+" set sessionoptions+=tabpages
 
 if has('clipboard')
   if has('unnamedplus')

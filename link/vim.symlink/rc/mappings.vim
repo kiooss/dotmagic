@@ -86,7 +86,7 @@ nnoremap <Leader>p "0p
 nnoremap <Leader>/ /
 
 " better redraw
-nnoremap <c-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr>:GitGutter<cr><c-l>
+nnoremap <c-l> :nohlsearch<cr>:diffupdate<cr>:syntax on<cr>:GitGutter<cr><c-l>
 
 nnoremap <silent> j gj
 nnoremap <silent> k gk

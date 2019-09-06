@@ -116,7 +116,9 @@ nnoremap <silent> <leader>mt :<C-u>CocList filetypes<cr>
 " words
 nnoremap <silent> <leader>mw :<C-u>CocList words<cr>
 " Search workspace symbols
-nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
+" Sessions
+nnoremap <silent> <leader>ms  :<C-u>CocList -N sessions<cr>
 " Resume latest coc list
 nnoremap <silent> <leader>mr  :<C-u>CocListResume<cr>
 " yank

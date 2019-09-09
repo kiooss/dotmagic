@@ -59,7 +59,8 @@ nnoremap <leader>e :<C-u>tab sball<CR>
 nnoremap <CR> zMza
 
 " Toggle folds
-nnoremap <silent> + @=(foldlevel('.')?'za':"+")<CR>
+" nnoremap <silent> + @=(foldlevel('.')?'za':"+")<CR>
+nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>
 
@@ -184,10 +185,12 @@ endif
 " toggle number & list
 nnoremap <leader>t :call <SID>NumberToggle()<CR>
 
-" Append modeline to EOF
-nnoremap <silent> <Leader>i :call <SID>append_modeline()<CR>
-
-nnoremap <silent> <Leader>u :call <SID>timestamp_to_datetime()<CR>
+" util {{{
+nnoremap <silent> <Leader>us :vsplit<CR>:wincmd p<CR>:e#<CR>
+nnoremap <silent> <Leader>ut :call <SID>timestamp_to_datetime()<CR>
+" append modeline to EOF
+nnoremap <silent> <Leader>um :call <SID>append_modeline()<CR>
+" }}}
 
 "}}}
 "==============================================================================

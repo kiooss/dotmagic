@@ -8,6 +8,7 @@ let g:space_prefix_dict.v = { 'name' : '+denite-vimux' }
 let g:space_prefix_dict.r = { 'name' : '+refactor' }
 let g:space_prefix_dict.s = { 'name' : '+git' }
 let g:space_prefix_dict.m = { 'name' : '+coc-list' }
+let g:space_prefix_dict.u = { 'name' : '+util' }
 
 " let g:space_prefix_dict.1 = 'which_key_ignore'
 " let g:space_prefix_dict.2 = 'which_key_ignore'

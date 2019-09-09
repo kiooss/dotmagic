@@ -33,8 +33,7 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ ]
 
-" {{{ functions
-
+" functions {{{
 function! StatusDiagnostic() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
@@ -89,7 +88,7 @@ function! s:show_documentation()
 endfunction
 
 " }}}
-
+" mappings {{{
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -212,6 +211,7 @@ nmap <silent> <C-d> <Plug>(coc-cursors-word)*
 xmap <silent> <C-d> y/\V<C-r>=escape(@",'/\')<CR><CR>gN<Plug>(coc-cursors-range)gn
 
 nnoremap <silent> ;f :<C-u>CocCommand eslint.executeAutofix<CR>
+"}}}
 
 augroup MyAutoCmd
   " Highlight symbol under cursor on CursorHold
@@ -241,4 +241,4 @@ function! s:GrepArgs(...)
   return join(list, "\n")
 endfunction
 
-" vim: set ts=2 sw=2 tw=80 fdl=1 et :
+" vim: set ts=2 sw=2 tw=80 fdl=0 et :

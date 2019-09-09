@@ -4,12 +4,6 @@
 "==============================================================================
 
 " Reload vim config automatically {{{
-"
-"
-"
-" execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
-"       \ .' echom 1111'
-
 execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/rc/*,vimrc nested'
       \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
       \ .' | echom "config reloaded!"'

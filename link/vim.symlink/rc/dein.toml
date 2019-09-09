@@ -619,3 +619,9 @@ let g:vista_executive_for = {
   \ 'typescript': 'coc',
   \ }
 '''
+
+[[plugins]]
+repo = 'kkoomen/vim-doge'
+hook_add = '''
+let g:doge_mapping = '<leader>k'
+'''

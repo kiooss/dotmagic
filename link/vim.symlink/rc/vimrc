@@ -20,30 +20,8 @@ let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
 let g:enable_patched_font = ($ENABLE_PATCHED_FONT ==? 'true')
 let g:load_plugins = 1
 
-function! s:source_rc(path, ...) abort "{{{
-  let use_global = get(a:000, 0, !has('vim_starting'))
-  let abspath = resolve(expand($VIMPATH . '/rc/' . a:path))
-  " do not use global.
-  execute 'source' fnameescape(abspath)
-  return
-  if !use_global
-    execute 'source' fnameescape(abspath)
-    return
-  endif
-
-  " substitute all 'set' to 'setglobal'
-  let content = map(readfile(abspath),
-        \ 'substitute(v:val, "^\\W*\\zsset\\ze\\W", "setglobal", "")')
-  " create tempfile and source the tempfile
-  let tempfile = tempname()
-  try
-    call writefile(content, tempfile)
-    execute 'source' fnameescape(tempfile)
-  finally
-    if filereadable(tempfile)
-      call delete(tempfile)
-    endif
-  endtry
+function! s:source_rc(module) abort "{{{
+  exec 'source ' . $VIMPATH . '/rc/' . a:module . '.vim'
 endfunction "}}}
 
 " Set augroup.
@@ -53,11 +31,11 @@ augroup END
 
 " Initialize base requirements
 if has('vim_starting')
-  call s:source_rc('init.vim')
+  call s:source_rc('init')
 endif
 
 if g:load_plugins
-  call s:source_rc('dein.vim')
+  call s:source_rc('dein')
   for s:path in split(glob($VIMPATH.'/rc/plugins/*.vim'), "\n")
     exe 'source ' . s:path
   endfor
@@ -73,17 +51,34 @@ endif
 
 "---------------------------------------------------------------------------
 " Loading configuration modules
-call s:source_rc('theme.vim')
-call s:source_rc('encoding.vim')
-call s:source_rc('options.vim')
-call s:source_rc('filetype.vim')
-call s:source_rc('mappings.vim')
-call s:source_rc('autocmds.vim')
-call s:source_rc('commands.vim')
-call s:source_rc('abbr.vim')
-if has('nvim')
-  call s:source_rc('neovim.vim')
-endif
+let s:sourceList = [
+      \ 'theme',
+      \ 'encoding',
+      \ 'options',
+      \ 'commands',
+      \ 'filetype',
+      \ 'mappings',
+      \ 'autocmds',
+      \ 'neovim',
+      \ 'abbr',
+      \]
+for s:item in s:sourceList
+  call s:source_rc(s:item)
+endfor
+" Free memory
+unlet s:sourceList
+
+" call s:source_rc('theme.vim')
+" call s:source_rc('encoding.vim')
+" call s:source_rc('options.vim')
+" call s:source_rc('filetype.vim')
+" call s:source_rc('mappings.vim')
+" call s:source_rc('autocmds.vim')
+" call s:source_rc('commands.vim')
+" call s:source_rc('abbr.vim')
+" if has('nvim')
+"   call s:source_rc('neovim.vim')
+" endif
 " call s:source_rc('tabline.vim')
 
 " if g:load_plugins

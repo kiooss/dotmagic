@@ -28,4 +28,7 @@ let g:markdown_fenced_languages = [
       \  'vim',
       \]
 
+" PHP
+let g:php_folding = 0
+
 " }}}

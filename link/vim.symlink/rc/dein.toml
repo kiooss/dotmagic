@@ -1,6 +1,7 @@
 # Non lazy load plugins
 #  vim: set ts=2 sw=2 tw=80 et fdl=0:
 
+# base {{{
 [[plugins]]
 repo = 'Shougo/dein.vim'
 hook_add = '''
@@ -17,23 +18,9 @@ build = 'yarn install --frozen-lockfile'
 repo = 'mhinz/vim-startify'
 merge = 0
 
-# [[plugins]]
-# repo = 'nixprime/cpsm'
-# merge = 0
-# build = 'bash -c "PY3=ON ./install.sh"'
-
 [[plugins]]
 on_if = "get(g:, 'enable_patched_font', 0)"
 repo = 'ryanoasis/vim-devicons'
-
-# [[plugins]]
-# repo = 'liuchengxu/eleline.vim'
-# hook_add='''
-#   let g:eleline_powerline_fonts = 1
-# '''
-
-# [[plugins]]
-# repo = 'pacha/vem-tabline'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
@@ -72,8 +59,9 @@ on_if = '!has("nvim")'
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 on_if = '!has("nvim")'
+#}}}
 
-#### colors start {{{
+# colorschemes {{{
 [[plugins]]
 repo = 'gruvbox-community/gruvbox'
 
@@ -99,30 +87,7 @@ repo = 'nightsense/snow'
 repo = 'drewtempelmeyer/palenight.vim'
 # }}}
 
-[[plugins]]
-repo = 'benmills/vimux'
-hook_add ='''
-  noremap <Leader>vg :<C-u>call VimuxRunCommand("git up")<CR>
-
-  " Prompt for a command to run
-  noremap <Leader>vp :VimuxPromptCommand<CR>
-
-  " Run last command executed by VimuxRunCommand
-  " map <Leader>vl :VimuxRunLastCommand<CR>
-
-  " Inspect runner pane
-  " map <Leader>vi :VimuxInspectRunner<CR>
-
-  " Close vim tmux runner opened by VimuxRunCommand
-  noremap <Leader>vq :VimuxCloseRunner<CR>
-
-  " Interrupt any command running in the runner pane
-  " map <Leader>vx :VimuxInterruptRunner<CR>
-
-  " Zoom the runner pane (use <bind-key> z to restore runner pane)
-  noremap <Leader>vz :call VimuxZoomRunner()<CR>
-'''
-
+# enhance {{{
 [[plugins]]
 repo = 'gregsexton/MatchTag'
 
@@ -150,21 +115,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'chemzqm/vim-jsx-improve'
-
-# [[plugins]]
-# repo = 'pangloss/vim-javascript'
-
-# [[plugins]]
-# repo = 'MaxMEllon/vim-jsx-pretty'
-
-# [[plugins]]
-# repo = 'mxw/vim-jsx'
-# hook_add = '''
-# let g:jsx_ext_required = 0
-# '''
-
-[[plugins]]
 repo = 'alvan/vim-closetag'
 hook_add ='''
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.js"
@@ -177,39 +127,16 @@ let g:endwise_no_mappings = 1
 '''
 
 [[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
-repo = 'tpope/vim-rhubarb'
-
-[[plugins]]
-repo = 'tpope/vim-git'
-
-[[plugins]]
-repo = 'tpope/vim-haml'
-
-[[plugins]]
-repo = 'tpope/vim-markdown'
-
-[[plugins]]
-repo = 'tpope/vim-repeat'
-
-[[plugins]]
-repo = 'tpope/vim-surround'
+repo = 'ntpeters/vim-better-whitespace'
 hook_add = '''
-  let g:surround_no_insert_mappings = 1
+  let g:better_whitespace_operator='_s'
 '''
 
 [[plugins]]
-repo = 'tpope/vim-unimpaired'
+repo = 'kiooss/vim-zenkaku-space'
+#}}}
 
-[[plugins]]
-repo = 'tpope/vim-eunuch'
-
-[[plugins]]
-repo = 'tpope/vim-dispatch'
-
-# text object plugins {{{
+# text object {{{
 [[plugins]]
 repo = 'wellle/targets.vim'
 
@@ -264,20 +191,112 @@ repo = 'algotech/ultisnips-php'
 repo = 'epilande/vim-react-snippets'
 # }}}
 
+# syntax {{{
 [[plugins]]
-repo = 'ntpeters/vim-better-whitespace'
-hook_add = '''
-  let g:better_whitespace_operator='_s'
-'''
+repo = 'chemzqm/vim-jsx-improve'
 
 [[plugins]]
-repo = 'kiooss/vim-zenkaku-space'
+repo = 'posva/vim-vue'
 
 [[plugins]]
-repo = 'dense-analysis/ale'
+repo = 'tpope/vim-git'
+
+[[plugins]]
+repo = 'tpope/vim-haml'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
 
 [[plugins]]
 repo = 'nelsyeung/twig.vim'
+
+[[plugins]]
+repo = 'StanAngeloff/php.vim'
+
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+
+[[plugins]]
+repo = 'othree/html5.vim'
+
+[[plugins]]
+repo = 'groenewege/vim-less'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = 'cakebaker/scss-syntax.vim'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux'
+
+[[plugins]]
+repo = 'vim-ruby/vim-ruby'
+
+[[plugins]]
+repo = 'neoclide/jsonc.vim'
+
+[[plugins]]
+repo = 'chr4/nginx.vim'
+
+[[plugins]]
+repo = 'vim-scripts/apachestyle'
+# }}}
+
+# utils {{{
+[[plugins]]
+repo = 'benmills/vimux'
+hook_add ='''
+  noremap <Leader>vg :<C-u>call VimuxRunCommand("git up")<CR>
+
+  " Prompt for a command to run
+  noremap <Leader>vp :VimuxPromptCommand<CR>
+
+  " Run last command executed by VimuxRunCommand
+  " map <Leader>vl :VimuxRunLastCommand<CR>
+
+  " Inspect runner pane
+  " map <Leader>vi :VimuxInspectRunner<CR>
+
+  " Close vim tmux runner opened by VimuxRunCommand
+  noremap <Leader>vq :VimuxCloseRunner<CR>
+
+  " Interrupt any command running in the runner pane
+  " map <Leader>vx :VimuxInterruptRunner<CR>
+
+  " Zoom the runner pane (use <bind-key> z to restore runner pane)
+  noremap <Leader>vz :call VimuxZoomRunner()<CR>
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'tpope/vim-rhubarb'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+hook_add = '''
+  let g:surround_no_insert_mappings = 1
+'''
+
+[[plugins]]
+repo = 'tpope/vim-unimpaired'
+
+[[plugins]]
+repo = 'tpope/vim-eunuch'
+
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+[[plugins]]
+repo = 'dense-analysis/ale'
 
 [[plugins]]
 repo = 'AndrewRadev/switch.vim'
@@ -301,45 +320,6 @@ hook_add = '''
     \ '.svn/'
     \ ]
 '''
-
-[[plugins]]
-repo = 'StanAngeloff/php.vim'
-
-[[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-
-[[plugins]]
-repo = 'othree/html5.vim'
-
-# [[plugins]]
-# repo = 'docteurklein/php-getter-setter.vim'
-
-[[plugins]]
-repo = 'groenewege/vim-less'
-
-[[plugins]]
-repo = 'cespare/vim-toml'
-
-[[plugins]]
-repo = 'cakebaker/scss-syntax.vim'
-
-[[plugins]]
-repo = 'kchmck/vim-coffee-script'
-
-[[plugins]]
-repo = 'tmux-plugins/vim-tmux'
-
-[[plugins]]
-repo = 'vim-ruby/vim-ruby'
-
-[[plugins]]
-repo = 'neoclide/jsonc.vim'
-
-# [[plugins]]
-# repo = 'neoclide/vim-easygit'
-
-# [[plugins]]
-# repo = 'neoclide/denite-git'
 
 [[plugins]]
 repo = 'wincent/vim-clipper'
@@ -391,9 +371,6 @@ build = './install --all'
 repo = 'junegunn/fzf.vim'
 
 [[plugins]]
-repo = 'chr4/nginx.vim'
-
-[[plugins]]
 repo = 'christianrondeau/vim-base64'
 
 [[plugins]]
@@ -414,13 +391,7 @@ repo = 'phpactor/phpactor'
 build = 'composer install'
 
 [[plugins]]
-repo = 'vim-scripts/apachestyle'
-
-[[plugins]]
 repo = 'rhysd/vim-grammarous'
-
-[[plugins]]
-repo = 'posva/vim-vue'
 
 [[plugins]]
 repo = 'liuchengxu/vim-which-key'
@@ -445,4 +416,7 @@ let g:vista_executive_for = {
 repo = 'kkoomen/vim-doge'
 hook_add = '''
 let g:doge_mapping = '<leader>k'
+let g:doge_mapping_comment_jump_forward = '<c-n>'
+let g:doge_mapping_comment_jump_backward = '<c-p>'
 '''
+#}}}

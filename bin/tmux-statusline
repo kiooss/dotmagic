@@ -72,7 +72,7 @@ build_left_status() {
 }
 
 build_right_status() {
-    right_segment 'colour014' 'colour000' '#($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-right --graph-lines 0 --averages-count 3 --interval 2)'
+    right_segment 'colour014' 'colour000' '#($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-right --graph-lines 10 --averages-count 0 --interval 2)'
     # if [[ "$WIDTH" -gt "$MEDIUM" ]]; then
     #     right_segment 'colour020' 'colour198' '#(emoji-clock)  #(tmux-time) '
     # else

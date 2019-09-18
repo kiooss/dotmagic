@@ -176,6 +176,7 @@ set sidescrolloff=5 " Keep at least 5 lines left/right
 set number          " show line numbers
 set relativenumber  " show relative line numbers
 set cursorline
+set signcolumn=auto:2
 
 set showcmd         " show incomplete commands
 set cmdheight=1     " Height of the command line

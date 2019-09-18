@@ -84,7 +84,7 @@ if dein#tap('vim-startify')
       \ { 'c1': ['Vim Reference', 'h ref'] },
       \ { 'c2': ['Vim CheckHealth', 'CheckHealth'] },
       \ { 'c3': ['Dein recache rtp', 'call dein#recache_runtimepath()'] },
-      \ { 'c4': ['Update plugins', 'DeinUpdate'] },
+      \ { 'c4': ['Update plugins', 'call dein#update()'] },
       \ ]
   let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',

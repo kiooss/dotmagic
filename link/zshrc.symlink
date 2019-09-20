@@ -127,7 +127,7 @@ P9K_RPROMPT_ON_NEWLINE=false
 P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%{%F{red}%}╭"
 P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%{%F{red}%}╰%{%F{red}%}❯%{%F{green}%}❯%{%F{blue}%}❯ "
 
-P9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon context dir dir_writable vcs)
+P9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon dir dir_writable vcs)
 P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time php_version node_version custom_base16_theme disk_usage ram)
 
 P9K_CUSTOM_DRINK_WATER="drink_water"

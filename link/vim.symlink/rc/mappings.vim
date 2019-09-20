@@ -41,9 +41,10 @@ nnoremap <silent> [Window]z  :wincmd z<CR>
 " Tab to swich windows
 nnoremap <silent> <Tab>      :wincmd w<CR>
 " vsplit all buffers
-nnoremap <leader>- :<C-u>vertical sball<CR>
+" nnoremap <leader>- :<C-u>vertical sball<CR>
 nnoremap <leader>e :<C-u>tab sball<CR>
 
+nnoremap <silent> <Leader>- :vsplit<CR>:wincmd p<CR>:e#<CR>
 " switch tabs
 " nmap <leader>1 1gt
 " nmap <leader>2 2gt

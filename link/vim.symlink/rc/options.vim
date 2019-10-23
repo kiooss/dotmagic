@@ -58,7 +58,7 @@ if has('wildmenu')
   set wildignore+=*.so,*.swp,.rsync_cache,cache,*.phar,autocomplete.php
   set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
   set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store
-  set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
+  " set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
   set wildignore+=application/vendor/**,**/vendor/ckeditor/**,media/vendor/**
   set wildignore+=__pycache__,*.egg-info
   set wildignore+=tmp,var,test,tests,Test,Tests

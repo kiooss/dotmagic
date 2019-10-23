@@ -199,6 +199,7 @@ nnoremap <silent> <Leader>um :call <SID>append_modeline()<CR>
 "==============================================================================
 " escaping
 inoremap jk <esc>
+inoremap jj <esc>
 inoremap j<Space>     j
 
 inoremap <C-c> <Esc>`^

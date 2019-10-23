@@ -23,7 +23,6 @@ let g:coc_global_extensions = [
   \ 'coc-solargraph',
   \ 'coc-sql',
   \ 'coc-stylelint',
-  \ 'coc-tabnine',
   \ 'coc-translator',
   \ 'coc-tsserver',
   \ 'coc-ultisnips',
@@ -32,6 +31,7 @@ let g:coc_global_extensions = [
   \ 'coc-yaml',
   \ 'coc-yank',
   \ ]
+  " \ 'coc-tabnine',
 
 " functions {{{
 function! StatusDiagnostic() abort

@@ -46,10 +46,12 @@ set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`
 # set -g window-status-format "#[fg=colour019]#[bg=colour019,fg=colour20]#I:#W#[fg=colour019,bg=default]"
 # set -g window-status-current-format "#[fg=$cw_bg]#[bg=$cw_bg,fg=colour233]#[fg=colour233][#I]#[fg=colour15,bold]#W#[fg=$cw_bg,bg=default,nobold]"
 
-# set -g window-status-format "#[fg=white,bg=colour234] #I #W "
-# set -g window-status-current-format "#[fg=colour234,bg=colour12]#[fg=colour25,bg=colour12,noreverse,bold] #I ⮁ #W #[fg=colour12,bg=colour234,nobold]"
-set -g window-status-format "#[bg=colour243] #[fg=colour222]#I #[fg=colour238]#W "
-set -g window-status-current-format "#[bg=colour238] #[fg=colour196]ﴔ #[fg=colour048]#I #[fg=colour172]#W "
+# set -g window-status-format "#[fg=white,bg=default] #I #W "
+# set -g window-status-current-format "#[fg=colour15,bg=colour25,noreverse,bold] #I ⮁ #W #[fg=colour25,bg=default,nobold]"
+set -g window-status-format "#[fg=white,bg=default] #I #W "
+set -g window-status-current-format "#[fg=colour15,bg=colour75,noreverse,bold] #I #[fg=colour75,bg=colour25,nobold]#[fg=colour15,bg=colour25,nobold]#W#[fg=colour25,bg=default,nobold]"
+# set -g window-status-format "#[bg=default] #[fg=colour019]#I/#[fg=colour019]#W "
+# set -g window-status-current-format "#[bg=colour024] #[fg=colour196]ﴔ #[fg=colour015]#I/#[fg=colour015]#W "
 
 # Current window status
 set -g window-status-current-bg $tm_status_bg

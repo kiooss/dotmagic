@@ -128,6 +128,7 @@ bind -n M-8 select-window -t :8
 
 # Enable mouse mode (tmux 2.1 and above)
 # set -g mouse on
+set-option -g mouse off
 
 # don't rename windows automatically
 # set-option -g allow-rename off

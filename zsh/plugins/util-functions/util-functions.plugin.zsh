@@ -319,6 +319,10 @@ aws-get-ips() {
   aws ec2 describe-instances --profile "$1" | jq '.Reservations | .[]' | jq '.Instances | .[]' | jq '.Tags[].Value + ":" + .PublicIpAddress'
 }
 
+function sort_mem_usage() {
+  ps -o pid,user,%mem,command ax | sort -b -k3 -r | less
+}
+
 # aws-ip-to-ssh-config() {
 #   profile="$1"
 #   aws ec2 describe-instances --profile "$profile" \

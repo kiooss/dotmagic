@@ -112,6 +112,7 @@ nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " CocList
 nnoremap <leader>l  :<C-u>CocList<space>
+nnoremap <leader>S  :<C-u>CocSearch<space>
 nnoremap <silent> <leader>mn  :<C-u>CocList snippets<cr>
 " buffers
 nnoremap <silent> <leader><space>  :<C-u>CocList -N --normal buffers<cr>
@@ -157,6 +158,7 @@ nnoremap <silent> <leader>/ :<C-u>CocList grep<cr>
 
 " grep word under cursor.
 nnoremap <silent> <leader>j  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+
 
 nnoremap <silent><expr> / line('$') > 10000 ? '/' :
   \ ":\<C-u>CocList words<CR>"

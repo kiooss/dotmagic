@@ -11,7 +11,7 @@
   "git.enableGutters": false,
   "list.indicator": "❯❯❯",
   "list.maxHeight": 15,
-  "phpls.enable": true,
+  "phpls.enable": false,
   "prettier.singleQuote": true,
   "session.directory": "~/.cache/vim/sessions",
   "solargraph.checkGemVersion": true,
@@ -45,14 +45,14 @@
     "default": "\uf29c"
   },
   "typescript.implementationsCodeLens.enable": true,
-  "typescript.referencesCodeLens.enable": false
-  /* "languageserver": { */
-    /* "intelephense": { */
-    /*   "command": "intelephense", */
-    /*   "args": ["--stdio"], */
-    /*   "filetypes": ["php"] */
-    /* } */
-  /* }, */
+  "typescript.referencesCodeLens.enable": false,
+  "languageserver": {
+    "intelephense": {
+      "command": "intelephense",
+      "args": ["--stdio"],
+      "filetypes": ["php"]
+    }
+  },
   /* "weather.aqi.token": "9ff83d20e4304845fde8dfa37ebfe983a9dc600c", */
   /* "weather.aqi.city": "suzhou", */
   /* "weather.aqi.interval": 60 */

@@ -220,8 +220,9 @@ inoremap <C-u> <C-g>u<C-u>
 
 inoremap <C-t> <></><Esc>5hdiwp3lpT>i
 
-inoremap {%     {%  %}<Left><Left><Left>
-inoremap <%     <%  %><Left><Left><Left>
+" conflicts with coc
+" inoremap {%     {%  %}<Left><Left><Left>
+" inoremap <%     <%  %><Left><Left><Left>
 
 imap <a-o> <c-o>o
 

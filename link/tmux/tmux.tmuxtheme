@@ -49,8 +49,8 @@ set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`
 # set -g window-status-format "#[fg=white,bg=default] #I #W "
 # set -g window-status-current-format "#[fg=colour15,bg=colour25,noreverse,bold] #I ⮁ #W #[fg=colour25,bg=default,nobold]"
 set -g window-status-format "#[fg=white,bg=default] #I #W "
-set -g window-status-current-format "#[fg=colour15,bg=colour75,noreverse,bold] #I #[fg=colour75,bg=colour25,nobold]#[fg=colour15,bg=colour25,nobold]#W#[fg=colour25,bg=default,nobold]"
-# set -g window-status-format "#[bg=default] #[fg=colour019]#I/#[fg=colour019]#W "
+set -g window-status-current-format "#[fg=colour15,bg=colour198,noreverse,bold] #I #[fg=colour198,bg=colour25,nobold]#[fg=colour15,bg=colour25,nobold]#W#[fg=colour25,bg=default,nobold]"
+# set -g window-status-format "#[bg=default] #[fg=colour019]#I/#[fg=colour019]#W
 # set -g window-status-current-format "#[bg=colour024] #[fg=colour196]ﴔ #[fg=colour015]#I/#[fg=colour015]#W "
 
 # Current window status

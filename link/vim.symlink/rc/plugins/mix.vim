@@ -101,8 +101,6 @@ if dein#tap('vim-startify')
       return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
     endfunction
   endif
-
-  nnoremap <silent> <Leader>S :Startify<CR>
 endif
 " }}}
 
@@ -133,8 +131,8 @@ if dein#tap('vim-airline')
   let g:airline#extensions#tabline#show_tab_nr = 1
   let g:airline#extensions#tabline#tab_nr_type= 2
   let g:airline#extensions#tabline#show_tab_type = 1
-  let g:airline#extensions#tabline#buffers_label = '𝓑𝓤𝓕𝓕𝓔𝓡𝓢'
-  let g:airline#extensions#tabline#tabs_label = '𝓣𝓐𝓑𝓢'
+  let g:airline#extensions#tabline#buffers_label = "\ufb18"
+  let g:airline#extensions#tabline#tabs_label = "\uf9e8"
   let g:airline#extensions#tabline#buffer_idx_mode = 1
 
   let g:airline#extensions#coc#error_symbol = '✗:'

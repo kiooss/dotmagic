@@ -40,8 +40,6 @@ typeset -U path cdpath fpath manpath
 [[ -d ~/workspace ]] && export CODE_DIR=~/workspace
 [[ -d ~/.cache ]] && export CACHE_DIR=~/.cache
 
-# secret env values
-[[ -s $HOME/.secret_env ]] && source $HOME/.secret_env
 [[ "$OSTYPE" = darwin* ]] && export SUDO_ASKPASS="$DOTFILES/bin/macos_sudo_askpass.sh"
 # }}}
 

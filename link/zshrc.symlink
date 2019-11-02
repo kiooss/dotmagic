@@ -212,7 +212,7 @@ plugins=(
   nmap
   npm
   systemadmin
-  ssh-agent
+  # ssh-agent
   tmuxinator
   themes
   z
@@ -269,6 +269,7 @@ else
   # plugin used in my dev machine.
   plugins=(
     $plugins
+    ssh-agent
     command-not-found
     symfony
     symfony2

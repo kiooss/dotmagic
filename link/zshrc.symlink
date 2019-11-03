@@ -40,6 +40,8 @@ typeset -U path cdpath fpath manpath
 [[ -d ~/workspace ]] && export CODE_DIR=~/workspace
 [[ -d ~/.cache ]] && export CACHE_DIR=~/.cache
 
+[[ -f "$HOME/.env.local" ]] && source "$HOME/.env.local"
+
 [[ "$OSTYPE" = darwin* ]] && export SUDO_ASKPASS="$DOTFILES/bin/macos_sudo_askpass.sh"
 # }}}
 
@@ -339,9 +341,7 @@ source $MYZSH/base16-shell/base16-shell.plugin.zsh
 source $DOTFILES/vendor/php-version/php-version.sh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-if [[ -f "$HOME/.zshrc.local" ]]; then
-  source "$HOME/.zshrc.local"
-fi
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
 if [[ -d "$HOME/.nix-profile/" ]]; then
   source $HOME/.nix-profile/etc/profile.d/nix.sh

@@ -209,7 +209,6 @@ plugins=(
   fancy-ctrl-z
   git
   gem
-  gitfast
   history-substring-search
   nmap
   npm

@@ -8,6 +8,8 @@
   "diagnostic.infoSign": "ℹ",
   "diagnostic.warningSign": "⚠",
   "diagnostic.hintSign": "\ufaa5", //瘟
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript","javascriptreact", "typescript", "vue"],
   "git.enableGutters": false,
   "list.indicator": "❯❯❯",
   "list.maxHeight": 15,

@@ -154,10 +154,10 @@ nnoremap <silent> <leader>mb  :<C-u>CocList -A --normal bcommits<cr>
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <leader>mg :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
-nnoremap <silent> <leader>/ :<C-u>CocList grep<cr>
+nnoremap <silent> <leader>j :<C-u>CocList grep<CR>
 
 " grep word under cursor.
-nnoremap <silent> <leader>j  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+" nnoremap <silent> <leader>j  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 
 
 nnoremap <silent><expr> / line('$') > 10000 ? '/' :

@@ -29,6 +29,7 @@ augroup MyAutoCmd
   autocmd FileType php setlocal commentstring=//\ %s
   autocmd FileType gitconfig setlocal commentstring=#\ %s
   autocmd FileType vue setlocal commentstring=//\ %s
+  autocmd FileType typescript setlocal commentstring=//\ %s
   " }}}
 
   autocmd BufReadPost *.log normal! G

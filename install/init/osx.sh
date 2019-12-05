@@ -89,6 +89,7 @@ casks=(
   # gyazo
   # hex-fiend
   # iterm2
+  kawa # https://github.com/utatti/kawa
   # karabiner-elements
   # macvim
   # messenger-for-desktop

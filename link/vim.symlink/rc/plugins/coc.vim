@@ -125,7 +125,7 @@ nnoremap <silent> <leader>mc  :<C-u>CocList -N commands<cr>
 " Find symbol of current document
 nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 " mru
-nnoremap <silent> <leader>mm :<C-u>CocList -N mru<cr>
+nnoremap <silent> <leader>, :<C-u>CocList -N mru<cr>
 " files
 nnoremap <silent> <leader>mf :<C-u>CocList files<cr>
 nnoremap <silent> <leader>mv :<C-u>cd ~/.dotfiles/link/vim.symlink <bar> CocList files<cr>

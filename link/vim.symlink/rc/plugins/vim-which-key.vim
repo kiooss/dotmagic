@@ -20,7 +20,7 @@ let g:space_prefix_dict.u = { 'name' : '+util' }
 " let g:space_prefix_dict.8 = 'which_key_ignore'
 " let g:space_prefix_dict.9 = 'which_key_ignore'
 
-" let g:which_key_use_floating_win = 1
+let g:which_key_use_floating_win = 1
 let g:which_key_sep = '➡'
 " let g:which_key_vertical = 0
 " let g:which_key_position = 'topleft'

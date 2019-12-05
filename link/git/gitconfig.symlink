@@ -10,6 +10,7 @@ user = kiooss
 # list all aliases
 la = "!git config -l | grep alias | cut -c 7-"
 cm = commit -a -v
+cma = commit --amend
 unstage = reset HEAD
 hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 d = difftool
@@ -86,6 +87,10 @@ personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@g
 # git deleted                         # find a deleted file and its commit
 # git checkout <commit>~1 <filename>  # restore the deleted file
 deleted = log --diff-filter=D --summary
+
+### hub
+# show pr list
+prlist = pr list --format='%t [%H → %B] | %U%n'
 
 [core]
 excludesfile = ~/.gitignore_global

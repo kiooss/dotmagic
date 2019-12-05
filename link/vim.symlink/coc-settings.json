@@ -52,7 +52,10 @@
     "intelephense": {
       "command": "intelephense",
       "args": ["--stdio"],
-      "filetypes": ["php"]
+      "filetypes": ["php"],
+      "initializationOptions": {
+        "storagePath": "/tmp/intelephense"
+      }
     }
   },
   /* "weather.aqi.token": "9ff83d20e4304845fde8dfa37ebfe983a9dc600c", */

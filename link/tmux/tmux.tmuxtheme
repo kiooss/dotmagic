@@ -1,25 +1,18 @@
 #### my tmux theme
 # vim:ft=tmux
 
-# separators
-# tm_separator_left=""
-# tm_separator_right=""
-tm_separator_left=""
-tm_separator_right=""
-# tm_separator_left=""
-# tm_separator_right=""
-
 tm_status_bg="default"
 cw_bg="colour12"
-
-# Status update interval
-# default is 15
-set -g status-interval 10
 
 # Turn off distracting border highlight: the background highlighting is probably
 # enough. Default value of 8 comes from "pane-border-fg" in tmux's
 # options-table.c.
-set -g pane-active-border-fg 8
+# set -g pane-active-border-fg 8
+set -g pane-active-border-style fg=colour008
+
+# Status update interval
+# default is 15
+set -g status-interval 10
 
 # Basic status bar colors
 set -g status-fg colour240
@@ -27,8 +20,9 @@ set -g status-fg colour240
 set -g status-bg $tm_status_bg
 
 # Left side of status bar
-set -g status-left-bg $tm_status_bg
-set -g status-left-fg colour243
+# set -g status-left-bg $tm_status_bg
+# set -g status-left-fg colour243
+set -g status-left-style bg=$tm_status_bg,fg=colour243
 set -g status-left-length 100
 set -g status-left "#{prefix_highlight}#(tmux-statusline left `tmux display -p '#{client_width}'`)"
 # set -g status-left '#[fg=yellow]#S § ' # SECTION SIGN (UTF-8: c2 a7)
@@ -36,8 +30,9 @@ set -g status-left "#{prefix_highlight}#(tmux-statusline left `tmux display -p '
 
 
 # Right side of status bar
-set -g status-right-bg $tm_status_bg
-set -g status-right-fg colour243
+# set -g status-right-bg $tm_status_bg
+# set -g status-right-fg colour243
+set -g status-right-style bg=$tm_status_bg,fg=colour243
 set -g status-right-length 100
 set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`)"
 
@@ -46,20 +41,16 @@ set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`
 # set -g window-status-format "#[fg=colour019]#[bg=colour019,fg=colour20]#I:#W#[fg=colour019,bg=default]"
 # set -g window-status-current-format "#[fg=$cw_bg]#[bg=$cw_bg,fg=colour233]#[fg=colour233][#I]#[fg=colour15,bold]#W#[fg=$cw_bg,bg=default,nobold]"
 
-# set -g window-status-format "#[fg=white,bg=default] #I #W "
-# set -g window-status-current-format "#[fg=colour15,bg=colour25,noreverse,bold] #I ⮁ #W #[fg=colour25,bg=default,nobold]"
-set -g window-status-format "#[fg=white,bg=default] #I #W "
-set -g window-status-current-format "#[fg=colour15,bg=colour198,noreverse,bold] #I #[fg=colour198,bg=colour25,nobold]#[fg=colour15,bg=colour25,nobold]#W#[fg=colour25,bg=default,nobold]"
-# set -g window-status-format "#[bg=default] #[fg=colour019]#I/#[fg=colour019]#W
-# set -g window-status-current-format "#[bg=colour024] #[fg=colour196]ﴔ #[fg=colour015]#I/#[fg=colour015]#W "
+# set -g window-status-format "#[fg=white,bg=colour234] #I #W "
+# set -g window-status-current-format "#[fg=colour234,bg=colour12]#[fg=colour25,bg=colour12,noreverse,bold] #I ⮁ #W #[fg=colour12,bg=colour234,nobold]"
+set -g window-status-format "#[bg=colour235] #[fg=colour240]#I #[fg=colour240]#W "
+set -g window-status-current-format "#[bg=colour222] #[fg=colour196]ﴔ #[fg=colour024]#I #[fg=colour233]#W "
 
 # Current window status
-set -g window-status-current-bg $tm_status_bg
-set -g window-status-current-fg colour232
+set -g window-status-current-style fg=colour232,bg=$tm_status_bg
 
 # Window with activity status
-set -g window-status-activity-bg colour75 # fg and bg are flipped here due to
-set -g window-status-activity-fg colour233 # a bug in tmux
+set -g window-status-activity-style fg=colour233,bg=colour75
 
 # Window separator
 set -g window-status-separator ""
@@ -69,12 +60,20 @@ set -g status-justify centre
 # set -g status-justify left
 
 # Pane border
-set -g pane-border-bg default
-set -g pane-border-fg colour238
+set -g pane-border-style fg=colour238,bg=default
 
 # Active pane border
-set -g pane-active-border-bg default
-set -g pane-active-border-fg colour12
+set -g pane-active-border-style fg=colour12,bg=default
+
+
+# Message
+set -g message-style fg=black,bg=colour12
+
+# Command message
+set -g message-command-style fg=black,bg=colour233
+
+# Mode
+set -g mode-style fg=colour232,bg=colour39
 
 # Pane number indicator
 set -g display-panes-colour colour233
@@ -83,15 +82,3 @@ set -g display-panes-active-colour colour12
 # Clock mode
 set -g clock-mode-colour colour12
 set -g clock-mode-style 24
-
-# Message
-set -g message-bg colour12
-set -g message-fg black
-
-# Command message
-set -g message-command-bg colour233
-set -g message-command-fg black
-
-# Mode
-set -g mode-bg colour39
-set -g mode-fg colour232

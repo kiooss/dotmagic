@@ -1,5 +1,5 @@
 {
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.currentFunctionSymbolAutoUpdate": false,
   /* "diagnostic.displayByAle": true, */

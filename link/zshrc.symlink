@@ -337,7 +337,7 @@ fi
 source $MYZSH/base16-shell/base16-shell.plugin.zsh
 
 # set php-version x.x.x in zshrc.local
-source $DOTFILES/vendor/php-version/php-version.sh
+# source $DOTFILES/vendor/php-version/php-version.sh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
@@ -374,3 +374,5 @@ export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/yang/.sdkman"
 [[ -s "/Users/yang/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yang/.sdkman/bin/sdkman-init.sh"
+
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc

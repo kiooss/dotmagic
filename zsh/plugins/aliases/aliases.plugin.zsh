@@ -14,7 +14,7 @@ alias .....="cd ../../../.."
 # exa is a better ls tool
 if which exa >/dev/null 2>&1; then
   alias ls='exa'
-  alias ll='exa -la --git'
+  alias ll='exa -lag --git'
   alias la='exa -laa --git'
   alias l='exa -l --git'
 else

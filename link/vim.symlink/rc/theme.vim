@@ -60,6 +60,7 @@ else
   endtry
 endif
 
+highlight User1 guibg=#282828 gui=bold,italic
 highlight Comment gui=bold,italic
 highlight Folded gui=bold,italic
 highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
@@ -69,3 +70,7 @@ highlight TablineSel cterm=bold,reverse gui=bold,reverse
 
 " make the highlighting of tabs and other non-text less annoying
 highlight SpecialKey ctermfg=19 guifg=#333333
+
+" highlight CocHighlightText gui=bold,reverse
+" highlight CocHighlightText gui=bold,italic,reverse
+highlight default link CocHighlightText User1

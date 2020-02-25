@@ -144,9 +144,9 @@ let g:loaded_zipPlugin          = 1
 " let g:loaded_python_provider = 1
 
 if has('nvim')
-  let g:python_host_skip_check = 1
-  let g:python3_host_skip_check = 1
-  " Search and use environments specifically made for Neovim.
+  " let g:python_host_skip_check = 1
+  " let g:python3_host_skip_check = 1
+  " " Search and use environments specifically made for Neovim.
   if isdirectory($VARPATH.'/venv/neovim2')
     let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
   endif

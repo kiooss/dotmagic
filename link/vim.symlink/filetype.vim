@@ -12,6 +12,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead .jsbeautifyrc setfiletype json
   autocmd BufNewFile,BufRead .eslintrc     setfiletype json
   autocmd BufNewFile,BufRead .jscsrc       setfiletype json
+  autocmd BufNewFile,BufRead *.env.*       setfiletype sh
 
   autocmd BufNewFile,BufRead *.cjsx setfiletype javascript.jsx
   autocmd BufNewFile,BufRead *.ejs setfiletype html

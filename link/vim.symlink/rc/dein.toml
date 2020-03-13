@@ -422,4 +422,12 @@ let g:doge_mapping_comment_jump_backward = '<c-p>'
 
 # [[plugins]]
 # repo = 'edkolev/tmuxline.vim'
+
+[[plugins]]
+repo = 'stephpy/vim-php-cs-fixer'
+hook_add='''
+let g:php_cs_fixer_verbose = 1
+nnoremap <silent><leader>cd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>cs :call PhpCsFixerFixFile()<CR>
+'''
 #}}}

@@ -333,7 +333,7 @@ var FloatWindow = /** @class */ (function () {
                         return [4 /*yield*/, win.setOption('signcolumn', 'no')];
                     case 11:
                         _a.sent();
-                        return [4 /*yield*/, win.setOption('foldcolumn', 1)];
+                        return [4 /*yield*/, win.setOption('foldcolumn', '1')];
                     case 12:
                         _a.sent();
                         return [4 /*yield*/, win.setOption('winhighlight', 'FoldColumn:NormalFloat')];

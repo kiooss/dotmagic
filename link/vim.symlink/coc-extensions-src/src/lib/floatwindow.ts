@@ -95,7 +95,7 @@ export class FloatWindow {
     await win.setOption('cursorcolumn', false)
     await win.setOption('conceallevel', 2)
     await win.setOption('signcolumn', 'no')
-    await win.setOption('foldcolumn', 1)
+    await win.setOption('foldcolumn', '1')
     await win.setOption('winhighlight', 'FoldColumn:NormalFloat')
     await this.nvim.resumeNotification()
     return true

@@ -14,6 +14,7 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-lists',
   \ 'coc-marketplace',
+  \ 'coc-markdownlint',
   \ 'coc-omni',
   \ 'coc-pairs',
   \ 'coc-phpls',

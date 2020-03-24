@@ -27,12 +27,14 @@ copy from existed enviroment (which may cause a lot of wired problems).
 Install is quite easy, just follow the steps below.
 
 Via git
+
 ```sh
 git clone https://github.com/kiooss/dotmagic.git ~/.dotfiles
 bash ~/.dotfiles/bin/dotmagic
 ```
 
 Via curl
+
 ```sh
 curl -fsSL https://raw.github.com/kiooss/dotmagic/master/bin/dotmagic | bash
 ```
@@ -40,6 +42,7 @@ curl -fsSL https://raw.github.com/kiooss/dotmagic/master/bin/dotmagic | bash
 ## Upgrade
 
 You just need to run:
+
 ```sh
 dotmagic
 ```
@@ -54,8 +57,10 @@ My own config plus [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh).
 Oh-my-zsh is optional, but it does a lot things for me and worked well, so I add it to my config.
 
 ## Tmux
+
 Tmux is awesome, it saves me a lot of time since I decided to use it.
 
 ## License
 
 [MIT](license)
+

@@ -77,7 +77,6 @@ if dein#tap('vim-startify')
         \ ]
   let g:startify_bookmarks = [
           \ { 'tc': '~/.tmux.conf' },
-          \ { 'vc': '~/.dotfiles/link/vim.symlink/rc' },
           \ { 'de':  g:dein#install_log_filename },
           \ ]
   let g:startify_commands = [

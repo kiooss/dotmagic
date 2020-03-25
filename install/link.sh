@@ -36,9 +36,9 @@ for file in $linkables ; do
   fi
 done
 
-linkables=$( find -H "$DOTFILES/dotconfig" -maxdepth 3 -name '*.symlink' )
+linkables=$( find -H "$DOTFILES/dotconfig" -maxdepth 1 -mindepth 1 -type d )
 for file in $linkables ; do
-  target="$HOME/.config/$(basename $file '.symlink')"
+  target="$HOME/.config/$(basename $file)"
   e_info "Target: ${target}"
   if [ -e "$target" ]; then
     if ! [ "$target" -ef "$file" ]; then
@@ -59,17 +59,17 @@ for file in $linkables ; do
   fi
 done
 
-# for neovim
-e_info "Target: $HOME/.config/nvim"
-if [ -e "$HOME/.config/nvim" ]; then
-  if ! [ "$DOTFILES/link/vim.symlink" -ef "$HOME/.config/nvim" ]; then
-    e_error "$HOME/.config/nvim already exists, skip."
-  else
-    echo 'Already linked.'
-  fi
-else
-  e_success "Linking $DOTFILES/link/vim.symlink to $HOME/.config/nvim"
-  ln -sf "$DOTFILES/link/vim.symlink" "$HOME/.config/nvim"
-fi
+# # for neovim
+# e_info "Target: $HOME/.config/nvim"
+# if [ -e "$HOME/.config/nvim" ]; then
+#   if ! [ "$DOTFILES/link/vim.symlink" -ef "$HOME/.config/nvim" ]; then
+#     e_error "$HOME/.config/nvim already exists, skip."
+#   else
+#     echo 'Already linked.'
+#   fi
+# else
+#   e_success "Linking $DOTFILES/link/vim.symlink to $HOME/.config/nvim"
+#   ln -sf "$DOTFILES/link/vim.symlink" "$HOME/.config/nvim"
+# fi
 
 e_success "done."

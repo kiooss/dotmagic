@@ -10,6 +10,7 @@ PACKAGES=(
   exa
   # lsd
   ripgrep
+  fd-find
 )
 
 cargo install ${PACKAGES[@]}

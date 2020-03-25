@@ -1,11 +1,49 @@
 # gitconfig
 # vim: set ts=4 sw=4 tw=80 et ft=gitconfig:
+
+#
+# General Config
+#
 [include]
-path=.secret_gitconfig
+    path=.secret_gitconfig
 
 [github]
-user = kiooss
+    user = kiooss
 
+[core]
+    excludesfile = ~/.gitignore_global
+    # pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = less --quit-if-one-screen --no-init
+    quotepath = false
+    attributesfile = ~/.gitattributes
+
+[pager]
+    log = diff-so-fancy | $(git config --get core.pager)
+    diff = diff-so-fancy | $(git config --get core.pager)
+    show = diff-so-fancy | $(git config --get core.pager)
+
+[format]
+    pretty = onelineplus
+
+[pretty]
+    onelineplus = format:%C(yellow)%h%C(auto)%d%C(reset) %s %C(blue)(%cr)%C(reset) %C(green)<%aN>
+    columns = format:%C(yellow)%h%C(magenta)% G? %C(blue)%<(12,trunc)%ar %C(green)%<(16,trunc)%aN %C(reset)%s%C(auto)%d
+
+[push]
+    default = current
+
+[branch]
+    autosetupmerge = true
+
+[grep]
+    extendRegexp = true
+    linenumber = true
+
+[commit]
+    template = ~/.dotfiles/link/git/commit.tpl
+#
+# Aliases
+#
 [alias]
 # list all aliases
 la = "!git config -l | grep alias | cut -c 7-"
@@ -92,17 +130,33 @@ deleted = log --diff-filter=D --summary
 # show pr list
 prlist = pr list --format='%t [%H → %B] | %U%n'
 
-[core]
-excludesfile = ~/.gitignore_global
-pager = diff-so-fancy | less --tabs=4 -RFX
-quotepath = false
-attributesfile = ~/.gitattributes
+# fzf primitives
+    fzf = "!f() { fzf --height=100% --ansi --preview='git fzf-pre {}' -q \"$1\" | cut -d' ' -f1; }; f"
+    fzf-pre = "!f() { git show --stat --color $(echo $1 | cut -d ' ' -f1); }; f "
+# interactively select commits
+    sel = "!f() { git log --oneline --color | git fzf $1; }; f"
+    rsel = "!f() { git log -g --oneline --color |  git fzf $1; }; f"
+    sel-ref = "!f() { git show-ref --abbrev | git fzf $1; }; f"
+# quick and easy autosquash commits
+    squash = "!f() { git commit --squash=$(git sel $1); }; f"
+    fixup = "!f() { git commit --fixup=$(git sel $1); }; f"
+# quick and easy branch tracking
+    track = "!f() { git branch -u $(git branch -r --format '%(refname:short)' | git fzf $1); }; f"
+# misc aliases
+    prune = fetch --prune
+    stash-all = stash save --include-untracked
+    preset = !git diff -p -R | grep -E '^(diff|(old|new) mode)' | git apply
+
 
 [diff]
 tool = vimdiff
 mnemonicprefix = true
 [difftool]
 prompt = false
+
+#
+# Colors
+#
 
 # git colors: normal, black, red, green, yellow, blue, magenta, cyan, or white.
 # git formats: bold, dim, ul (underline), blink, and reverse (swap foreground and background).
@@ -130,15 +184,6 @@ added = yellow bold
 changed = green bold
 untracked = red bold
 
-[push]
-default = current
-
-[branch]
-autosetupmerge = true
-
-[grep]
-extendRegexp = true
-linenumber = true
 
 [filter "media"]
 clean = git-media-clean %f
@@ -177,5 +222,3 @@ newHighlight = green bold 22
 [diff-so-fancy]
 stripLeadingSymbols = false
 
-[commit]
-template = ~/.dotfiles/link/git/commit.tpl

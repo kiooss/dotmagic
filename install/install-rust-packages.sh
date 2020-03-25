@@ -4,6 +4,10 @@
 
 source "$(dirname "$0")/util.sh"
 
+e_header "update both Rust and Cargo"
+
+rustup update stable
+
 e_header "Global rust packages"
 
 PACKAGES=(

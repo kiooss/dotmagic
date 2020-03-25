@@ -72,21 +72,9 @@ on_ft = 'toml'
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
-# [[plugins]]
-# repo = 'mhartington/nvim-typescript'
-# build = './install.sh'
-# on_ft = 'typescript'
-# hook_add = '''
-#   nnoremap <leader>i :<C-u>TSImport<CR>
-# '''
-
 [[plugins]]
 repo = 'vim-scripts/BufOnly.vim'
 on_cmd = ['Bonly', 'BufOnly']
-
-# [[plugins]]
-# repo = 'Shougo/deol.nvim'
-# on_cmd = ['Deol', 'DeolEdit', 'DeolCd']
 
 [[plugins]]
 repo = 'junegunn/gv.vim'
@@ -122,19 +110,6 @@ on_map = {nv = '<Plug>'}
 hook_add = '''
   nmap <Leader>M <Plug>(sidemenu)
   xmap <Leader>M <Plug>(sidemenu-visual)
-'''
-
-[[plugins]]
-repo = 'itchyny/calendar.vim'
-on_cmd = 'Calendar'
-on_map = {n = '<Plug>'}
-hook_add = '''
-  nmap <Leader>C <Plug>(calendar)
-'''
-hook_source = '''
-  let g:calendar_cache_directory = $VARPATH.'/calendar'
-  let g:calendar_google_calendar = 1
-  let g:calendar_google_task = 1
 '''
 
 [[plugins]]

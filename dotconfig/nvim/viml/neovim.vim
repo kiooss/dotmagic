@@ -16,6 +16,20 @@ elseif g:cursor_shape == 2
   set guicursor=n-v-c:block-blinkon10,i-ci-ve:ver25-blinkon10,r-cr:hor20,o:hor50
 endif
 
+" transparent background for popupmenu
+set pumblend=20
+
+" do not use provider
+let g:loaded_node_provider = 0
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
+" let g:loaded_python_provider = 0
+" let g:loaded_python3_provider = 0
+
+let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
+let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
+let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
+
 " Share the histories
 autocmd MyAutoCmd CursorHold *
       \if exists(':rshada') | rshada | wshada | endif

@@ -16,6 +16,12 @@ set fileformats=unix,dos,mac
 " }}} encoding
 
 " General {{{
+" Use English interface.
+language message C
+
+" Disable packpath
+set packpath=
+
 set shell=$SHELL
 " use K to run a program to lookup the keyword under the cursor
 set keywordprg=:help

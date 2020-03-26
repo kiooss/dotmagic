@@ -3,6 +3,11 @@
 " => Yang Yang
 "==============================================================================
 
+" Set augroup.
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
 " Reload vim config automatically {{{
 execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/* nested'
       \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'

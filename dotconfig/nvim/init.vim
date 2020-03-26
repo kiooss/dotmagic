@@ -12,7 +12,6 @@ let $VIMPATH = s:script_path
 "---------------------------------------------------------------------------
 " Loading configuration modules
 let s:sourceList = [
-      \ 'init',
       \ 'plugins',
       \ 'functions',
       \ 'commands',
@@ -27,6 +26,10 @@ let s:sourceList = [
 for s:item in s:sourceList
   exec 'source ' . s:script_path . '/viml/' . s:item . '.vim'
 endfor
+
+if filereadable(expand('~/.vimrc.local'))
+  execute 'source' expand('~/.vimrc.local')
+endif
 
 unlet s:script_path
 unlet s:sourceList

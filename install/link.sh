@@ -36,6 +36,8 @@ for file in $linkables ; do
   fi
 done
 
+e_header "Linking files into ~/.config directory."
+
 linkables=$( find -H "$DOTFILES/dotconfig" -maxdepth 1 -mindepth 1 -type d )
 for file in $linkables ; do
   target="$HOME/.config/$(basename $file)"

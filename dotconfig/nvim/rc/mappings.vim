@@ -282,8 +282,6 @@ vnoremap > >gv
 " Substitute.
 xnoremap s :s//g<Left><Left>
 
-xnoremap <Leader>s :<C-u>call kiooss#util#ReplaceDelimiter()<CR>
-
 " C-r: Easier search and replace
 xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 

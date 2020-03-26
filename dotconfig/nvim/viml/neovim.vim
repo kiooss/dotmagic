@@ -19,6 +19,8 @@ endif
 " transparent background for popupmenu
 set pumblend=20
 
+set wildoptions=pum
+
 " do not use provider
 let g:loaded_node_provider = 0
 let g:loaded_ruby_provider = 0

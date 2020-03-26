@@ -12,9 +12,8 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " let &fileencodings = join([
 "       \ 'ucs-bom', 'iso-2022-jp-3', 'utf-8', 'euc-jp', 'cp932'])
 set fileformat=unix
-set fileformats=unix,dos,mac
+set fileformats=unix,dos,mac " Use Unix as the standard file type
 " }}} encoding
-
 " General {{{
 " Use English interface.
 language message C
@@ -34,7 +33,6 @@ set report=0                 " Don't report on line changes
 set errorbells               " Trigger bell on error
 set visualbell               " Use visual bell instead of beeping
 set hidden                   " hide buffers when abandoned instead of unload
-set fileformats=unix,dos,mac " Use Unix as the standard file type
 set magic                    " For regular expressions turn magic on
 set path=.,**                " Directories to search when using gf
 " set virtualedit=block        " Position cursor anywhere in visual block
@@ -71,7 +69,7 @@ endif
 if has('wildmenu')
   set wildmenu " enhanced command line completion
   set wildmode=list:longest,full
-  set wildoptions=tagfile " Can supplement a tag in a command-line.
+  " set wildoptions=tagfile " Can supplement a tag in a command-line.
   set wildignorecase " case-insensitive filename completion
   set wildignore+=*.so,*.swp,.rsync_cache,cache,*.phar,autocomplete.php
   set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*

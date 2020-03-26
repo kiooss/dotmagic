@@ -22,8 +22,8 @@
     diff = diff-so-fancy | $(git config --get core.pager)
     show = diff-so-fancy | $(git config --get core.pager)
 
-[format]
-    pretty = onelineplus
+# [format]
+#     pretty = onelineplus
 
 [pretty]
     onelineplus = format:%C(yellow)%h%C(auto)%d%C(reset) %s %C(blue)(%cr)%C(reset) %C(green)<%aN>

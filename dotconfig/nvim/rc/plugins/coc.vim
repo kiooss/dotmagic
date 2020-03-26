@@ -29,6 +29,7 @@ let g:coc_global_extensions = [
   \ 'coc-ultisnips',
   \ 'coc-vetur',
   \ 'coc-word',
+  \ 'coc-webpack',
   \ 'coc-yaml',
   \ 'coc-yank',
   \ ]

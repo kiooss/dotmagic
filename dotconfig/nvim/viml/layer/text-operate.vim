@@ -1,0 +1,8 @@
+Plug 'wellle/targets.vim'
+Plug 'junegunn/vim-after-object'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-entire'
+Plug 'thalesmello/vim-textobj-methodcall'
+Plug 'rhysd/vim-textobj-anyblock'
+Plug 'nelstrom/vim-textobj-rubyblock'

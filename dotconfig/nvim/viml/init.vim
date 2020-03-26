@@ -1,0 +1,97 @@
+"=============================================================================
+" init.vim--- Vim initialize config.
+" => Yang Yang
+"=============================================================================
+
+" Set augroup.
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+
+" Use English interface.
+language message C
+
+" Use <Leader> in global plugin.
+let g:mapleader = "\<Space>"
+" Use <LocalLeader> in filetype plugin.
+let g:maplocalleader = ';'
+
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
+" nnoremap <silent> g             :<c-u>WhichKey  'g'<CR>
+nnoremap <silent> ]             :<c-u>WhichKey  ']'<CR>
+nnoremap <silent> [             :<c-u>WhichKey  '['<CR>
+
+vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
+vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
+" vnoremap <silent> g             :<c-u>WhichKeyVisual  'g'<CR>
+vnoremap <silent> ]             :<c-u>WhichKeyVisual  ']'<CR>
+vnoremap <silent> [             :<c-u>WhichKeyVisual  '['<CR>
+
+" Release keymappings for plug-in.
+" nnoremap <Space>  <Nop>
+" xnoremap <Space>  <Nop>
+" nnoremap ,        <Nop>
+" xnoremap ,        <Nop>
+" nnoremap ;        <Nop>
+" xnoremap ;        <Nop>
+
+if filereadable(expand('~/.vimrc.local'))
+  execute 'source' expand('~/.vimrc.local')
+endif
+
+" Disable packpath
+set packpath=
+
+" Enable true color
+if has('termguicolors')
+  set termguicolors
+else
+  " Explicitly tell vim that the terminal supports 256 colors
+  set t_Co=256
+endif
+
+" Disable pre-bundled plugins
+let g:loaded_2html_plugin       = 1
+let g:loaded_getscript          = 1
+let g:loaded_getscriptPlugin    = 1
+" let g:loaded_gzip               = 1
+let g:loaded_logiPat            = 1
+" let g:loaded_matchit          = 1
+" let g:loaded_matchparen       = 1
+let g:loaded_netrwFileHandlers  = 1
+let g:loaded_netrwPlugin        = 1
+let g:loaded_netrwSettings      = 1
+let g:loaded_rrhelper           = 1
+let g:loaded_shada_plugin       = 1
+let g:loaded_tar                = 1
+let g:loaded_tarPlugin          = 1
+let g:loaded_tutor_mode_plugin  = 1
+let g:loaded_tutor_mode_plugin  = 1
+let g:loaded_vimball            = 1
+let g:loaded_vimballPlugin      = 1
+let g:loaded_zip                = 1
+let g:loaded_zipPlugin          = 1
+" let g:loaded_man              = 1
+" let g:loaded_spellfile_plugin = 1
+" let g:loaded_python_provider  = 1
+
+" disable Python 2 support
+" let g:loaded_python_provider = 1
+
+if has('nvim')
+  " let g:python_host_skip_check = 1
+  " let g:python3_host_skip_check = 1
+  " " Search and use environments specifically made for Neovim.
+  "if isdirectory($VARPATH.'/venv/neovim2')
+  "  let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
+  "endif
+  "if isdirectory($VARPATH.'/venv/neovim3')
+  "  let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
+  "endif
+  " move to ~/.vimrc.local
+  " let g:ruby_host_prog = '~/.rbenv/versions/2.5.1/bin/neovim-ruby-host'
+  " let $NVIM_NODE_LOG_FILE='nvim-node.log'
+  " let $NVIM_NODE_LOG_LEVEL='warn'
+endif

@@ -1,9 +1,6 @@
 "=============================================================================
-" .vimrc --- Config Entry file for Vim(8)
+" init.vim --- Config Entry file for neovim
 " => Yang Yang
 "=============================================================================
-
-" Note: Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
 
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/rc/vimrc'

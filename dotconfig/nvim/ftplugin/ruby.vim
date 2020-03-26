@@ -11,6 +11,9 @@ let b:undo_ftplugin .= 'setl modeline<'
 " set indent.
 setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
+setlocal iskeyword+=!
+setlocal iskeyword+=?
+
 let g:ruby_operators                 = 1
 let g:ruby_space_errors              = 1
 let g:rubycomplete_buffer_loading    = 1

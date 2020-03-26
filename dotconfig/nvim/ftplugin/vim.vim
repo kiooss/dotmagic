@@ -12,6 +12,8 @@ let b:undo_ftplugin .= 'setl modeline<'
 " set indent.
 setlocal shiftwidth=2 softtabstop=2
 
+setlocal foldmethod=marker
+
 setlocal iskeyword+=:,#
 
 vnoremap <buffer> <Leader>e "xy<C-u>:exe 'echo '.@x<CR>

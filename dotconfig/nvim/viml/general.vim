@@ -192,6 +192,14 @@ set titlestring   =VIM:\ %f
 
 set t_vb=
 
+" Enable true color
+if has('termguicolors')
+  set termguicolors
+else
+  " Explicitly tell vim that the terminal supports 256 colors
+  set t_Co=256
+endif
+
 " https://sunaku.github.io/vim-256color-bce.html
 " if &term =~ '256color'
 "   " disable Background Color Erase (BCE) so that color schemes

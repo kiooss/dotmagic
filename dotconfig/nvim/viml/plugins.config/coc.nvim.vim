@@ -34,6 +34,7 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ ]
   " \ 'coc-tabnine',
+let g:coc_snippet_next = '<tab>'
 
 " functions {{{
 function! StatusDiagnostic() abort

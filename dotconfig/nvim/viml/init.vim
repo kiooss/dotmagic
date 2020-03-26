@@ -8,34 +8,8 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-
 " Use English interface.
 language message C
-
-" Use <Leader> in global plugin.
-let g:mapleader = "\<Space>"
-" Use <LocalLeader> in filetype plugin.
-let g:maplocalleader = ';'
-
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
-" nnoremap <silent> g             :<c-u>WhichKey  'g'<CR>
-nnoremap <silent> ]             :<c-u>WhichKey  ']'<CR>
-nnoremap <silent> [             :<c-u>WhichKey  '['<CR>
-
-vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
-vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
-" vnoremap <silent> g             :<c-u>WhichKeyVisual  'g'<CR>
-vnoremap <silent> ]             :<c-u>WhichKeyVisual  ']'<CR>
-vnoremap <silent> [             :<c-u>WhichKeyVisual  '['<CR>
-
-" Release keymappings for plug-in.
-" nnoremap <Space>  <Nop>
-" xnoremap <Space>  <Nop>
-" nnoremap ,        <Nop>
-" xnoremap ,        <Nop>
-" nnoremap ;        <Nop>
-" xnoremap ;        <Nop>
 
 if filereadable(expand('~/.vimrc.local'))
   execute 'source' expand('~/.vimrc.local')
@@ -43,14 +17,6 @@ endif
 
 " Disable packpath
 set packpath=
-
-" Enable true color
-if has('termguicolors')
-  set termguicolors
-else
-  " Explicitly tell vim that the terminal supports 256 colors
-  set t_Co=256
-endif
 
 " Disable pre-bundled plugins
 let g:loaded_2html_plugin       = 1
@@ -80,18 +46,8 @@ let g:loaded_zipPlugin          = 1
 " disable Python 2 support
 " let g:loaded_python_provider = 1
 
-if has('nvim')
-  " let g:python_host_skip_check = 1
-  " let g:python3_host_skip_check = 1
-  " " Search and use environments specifically made for Neovim.
-  "if isdirectory($VARPATH.'/venv/neovim2')
-  "  let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
-  "endif
-  "if isdirectory($VARPATH.'/venv/neovim3')
-  "  let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
-  "endif
-  " move to ~/.vimrc.local
-  " let g:ruby_host_prog = '~/.rbenv/versions/2.5.1/bin/neovim-ruby-host'
-  " let $NVIM_NODE_LOG_FILE='nvim-node.log'
-  " let $NVIM_NODE_LOG_LEVEL='warn'
-endif
+let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
+let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
+let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
+" let $NVIM_NODE_LOG_FILE='nvim-node.log'
+" let $NVIM_NODE_LOG_LEVEL='warn'

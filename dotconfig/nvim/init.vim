@@ -7,6 +7,8 @@ scriptencoding utf-8
 
 let s:script_path = expand('<sfile>:p:h')
 
+let $VIMPATH = s:script_path
+
 "---------------------------------------------------------------------------
 " Loading configuration modules
 let s:sourceList = [

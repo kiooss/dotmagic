@@ -8,12 +8,8 @@
 " profile file ~/.vim/rc/*
 " profile func dein#*
 
-if &compatible
-  set nocompatible
-endif
-
 " Main config directory
-let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
+let $VIMPATH = expand('<sfile>:p:h:h')
 " Cache directory
 let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
 

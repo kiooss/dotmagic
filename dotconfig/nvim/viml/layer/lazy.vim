@@ -12,3 +12,4 @@ Plug 'lambdalisue/suda.vim'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
+Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}

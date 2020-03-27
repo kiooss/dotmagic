@@ -2,6 +2,13 @@
   "codeLens.enable": false,
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.currentFunctionSymbolAutoUpdate": false,
+  "coc.preferences.rootPatterns": [
+    ".git",
+    ".hg",
+    ".root",
+    ".env",
+    ".projections.json"
+  ],
   /* "diagnostic.displayByAle": true, */
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "✗",

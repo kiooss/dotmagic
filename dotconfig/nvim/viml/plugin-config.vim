@@ -10,3 +10,5 @@ if len(get(g:, 'plugs_order', [])) !=# 0
     endif
   endfor
 endif
+
+execute 'source ' . s:script_cwd . '/mix.config.vim'

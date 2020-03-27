@@ -121,6 +121,8 @@ submodule-update = submodule update --init --recursive
 
 personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@gmail.com'"
 
+    sync-submodules = "!git submodule sync && git pull --recurse-submodules && git submodule update --remote"
+
 # show the log with deleted files
 # git deleted                         # find a deleted file and its commit
 # git checkout <commit>~1 <filename>  # restore the deleted file
@@ -221,8 +223,3 @@ newHighlight = green bold 22
 
 [diff-so-fancy]
 stripLeadingSymbols = false
-
-[http]
-	proxy = socks5h://localhost:7891
-[https]
-	proxy = socks5h://localhost:7891

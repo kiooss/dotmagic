@@ -7,8 +7,6 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': ['Bonly', 'BufOnly'] }
 Plug 'junegunn/gv.vim', { 'on': ['GV', 'GV!'] }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-Plug 'mbbill/undotree'
-Plug 'lambdalisue/suda.vim'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }

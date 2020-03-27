@@ -222,3 +222,7 @@ newHighlight = green bold 22
 [diff-so-fancy]
 stripLeadingSymbols = false
 
+[http]
+	proxy = socks5h://10.211.55.2:7891
+[https]
+	proxy = socks5h://10.211.55.2:7891

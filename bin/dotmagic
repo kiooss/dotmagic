@@ -73,9 +73,9 @@ main() {
     case $yn in
       Yes )
         e_header "Install necessary lib and apps."
-        if is_osx; then
-          e_info "System is osx."
-          source $DOTFILES/install/init/osx.sh
+        if is_mac; then
+          e_info "System is macOS."
+          source $DOTFILES/install/init/brew.sh
         elif is_ubuntu; then
           e_info "System is ubuntu."
           source $DOTFILES/install/init/ubuntu.sh

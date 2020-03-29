@@ -63,7 +63,7 @@ big_title() {
 }
 
 # OS detection
-function is_osx() {
+function is_mac() {
   [[ "$OSTYPE" =~ ^darwin ]] || return 1
 }
 

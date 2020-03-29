@@ -1,5 +1,5 @@
-# OSX-only stuff. Abort if not OSX.
-is_osx || return 1
+# mac-only stuff. Abort if not macOS
+is_mac || return 1
 
 # Install Homebrew.
 if [[ ! "$(type -P brew)" ]]; then
@@ -13,21 +13,21 @@ fi
 e_info "Running Homebrew doctor"
 brew doctor
 
-e_info "Running Homebrew prune to remove broken symlinks."
-brew prune
+e_info "Running Homebrew cleanup."
+brew cleanup
 
 e_info "Updating Homebrew"
 brew update
 
 # Functions used in subsequent init scripts.
 
-# Tap Homebrew kegs.
-function brew_tap_kegs() {
-  kegs=($(setdiff "${kegs[*]}" "$(brew tap)"))
-  if (( ${#kegs[@]} > 0 )); then
-    e_info "Tapping Homebrew kegs: ${kegs[*]}"
-    for keg in "${kegs[@]}"; do
-      brew tap $keg
+# brew tap
+function brew_add_taps() {
+  taps=($(setdiff "${taps[*]}" "$(brew tap)"))
+  if (( ${#taps[@]} > 0 )); then
+    e_info "Add Homebrew taps: ${taps[*]}"
+    for tap in "${taps[@]}"; do
+      brew tap $tap
     done
   fi
 }
@@ -55,16 +55,16 @@ function brew_install_recipes() {
   fi
 }
 
-# Ensure the cask kegs are installed.
-kegs=(
-  caskroom/cask
-  caskroom/drivers
-  caskroom/fonts
-  waltarix/homebrew-customs
+# Taps (Third-Party Repositories).
+taps=(
+  # caskroom/cask
+  # caskroom/drivers
+  # caskroom/fonts
+  # waltarix/homebrew-customs
 )
 
-e_info "brew_tap_kegs"
-brew_tap_kegs
+e_info "brew_add_taps"
+brew_add_taps
 
 # Hack to show the first-run brew-cask password prompt immediately.
 brew cask info this-is-somewhat-annoying 2>/dev/null
@@ -73,7 +73,11 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 casks=(
   # Applications
   # a-better-finder-rename
-  # alfred
+  alfred
+  accessmenubarapps
+  sequel-pro
+  spectacle
+  wkhtmltopdf
   # android-platform-tools
   # bartender
   # battle-net
@@ -88,25 +92,26 @@ casks=(
   # firefox
   # gyazo
   # hex-fiend
-  # iterm2
+  iterm2
+  itsycal
+  iina
   kawa # https://github.com/utatti/kawa
-  # karabiner-elements
+  karabiner-elements
   # macvim
   # messenger-for-desktop
   # midi-monitor
   # moom
-  # omnidisksweeper
+  omnidisksweeper
   # race-for-the-galaxy
   # reaper
   # robo-3t
   # screenhero
   # scroll-reverser
-  # skype
-  # slack
+  skype
+  slack
   # sourcetree
   # spotify
-  # steam
-  # the-unarchiver
+  the-unarchiver
   # totalfinder
   # tower
   # vagrant
@@ -154,17 +159,19 @@ recipes=(
   highlight
   jq
   lesspipe
+  php
   pass
   pkg-config
   neovim
   terminal-notifier
   the_silver_searcher
   todo-txt
-  # tmux
-  waltarix/homebrew-customs/tmux
+  tmux
+  # waltarix/homebrew-customs/tmux
   tree
   utf8proc
-  vim
+  # vim
+  yarn
   wget
   zsh
 )

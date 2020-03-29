@@ -150,29 +150,31 @@ brew_install_casks
 # Homebrew recipes
 recipes=(
   aria2
+  automake
   autossh
   clipper
   cmake
   coreutils
   exa
   fd
+  git
   highlight
+  hub
   jq
   lesspipe
-  php
-  pass
-  pkg-config
   neovim
+  pass
+  php
+  pkg-config
+  ripgrep
   terminal-notifier
   the_silver_searcher
-  todo-txt
   tmux
-  # waltarix/homebrew-customs/tmux
+  todo-txt
   tree
   utf8proc
-  # vim
-  yarn
   wget
+  yarn
   zsh
 )
 

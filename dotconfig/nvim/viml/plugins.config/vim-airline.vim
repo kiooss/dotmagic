@@ -40,9 +40,9 @@ function! CocCurrentFunction()
   return get(b:, 'coc_current_function', '')
 endfunction
 
-call airline#parts#define_function('current_function', 'CocCurrentFunction')
-call airline#parts#define_function('status_diagnostic', 'StatusDiagnostic')
-let g:airline_section_c = airline#section#create(['%<', 'file', ' ', 'readonly', ' ', 'status_diagnostic', ' ', 'current_function'])
+" call airline#parts#define_function('current_function', 'CocCurrentFunction')
+" call airline#parts#define_function('status_diagnostic', 'StatusDiagnostic')
+" let g:airline_section_c = airline#section#create(['%<', 'file', ' ', 'readonly', ' ', 'status_diagnostic', ' ', 'current_function'])
 
 " mappings
 nmap <leader>1 <Plug>AirlineSelectTab1

@@ -31,3 +31,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'algotech/ultisnips-php'
 Plug 'epilande/vim-react-snippets'
+
+if !has('mac')
+Plug 'wincent/vim-clipper'
+endif

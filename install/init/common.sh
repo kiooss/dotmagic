@@ -20,6 +20,8 @@ else
     git clone https://github.com/carsomyr/rbenv-bundler.git "$RBENV_ROOT"/plugins/bundler
     git clone https://github.com/rbenv/ruby-build.git "$RBENV_ROOT"/plugins/ruby-build
     git clone https://github.com/rbenv/rbenv-default-gems.git "$RBENV_ROOT"/plugins/rbenv-default-gems
+    git clone https://github.com/andorchen/rbenv-china-mirror.git "$RBENV_ROOT"/plugins/rbenv-china-mirror
+    git clone https://github.com/rkh/rbenv-update.git "$RBENV_ROOT"/plugins/rbenv-update
     cat <<EOT >> "$RBENV_ROOT"/default-gems
 bundler
 awesome_print

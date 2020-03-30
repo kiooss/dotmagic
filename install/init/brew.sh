@@ -57,10 +57,7 @@ function brew_install_recipes() {
 
 # Taps (Third-Party Repositories).
 taps=(
-  # caskroom/cask
-  # caskroom/drivers
-  # caskroom/fonts
-  # waltarix/homebrew-customs
+  homebrew/cask-fonts
 )
 
 e_info "brew_add_taps"

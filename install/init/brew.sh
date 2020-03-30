@@ -83,7 +83,6 @@ casks=(
   # battle-net
   # bettertouchtool
   # charles
-  # chromium
   # chronosync
   # controllermate
   # docker
@@ -98,8 +97,6 @@ casks=(
   kawa # https://github.com/utatti/kawa
   karabiner-elements
   # macvim
-  # messenger-for-desktop
-  # midi-monitor
   # moom
   omnidisksweeper
   # race-for-the-galaxy
@@ -110,14 +107,9 @@ casks=(
   skype
   slack
   # sourcetree
-  # spotify
   the-unarchiver
-  # totalfinder
-  # tower
-  # vagrant
-  # virtualbox
-  # vlc
-  # ynab
+  vagrant
+  virtualbox
   # # Quick Look plugins
   # betterzipql
   # qlcolorcode

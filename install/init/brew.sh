@@ -125,14 +125,14 @@ casks=(
   # colorpicker-developer
   # colorpicker-skalacolor
   #### Fonts ####
-  font-firacode-nerd-font
-  font-firacode-nerd-font-mono
+  font-sarasa-gothic # 更纱黑体 / 更紗黑體 / 更紗ゴシック
+  font-firacode-nerd-font # double-width (non-monospaced) glyphs
+  font-firacode-nerd-font-mono # Monospaced (fixed-pitch, fixed-width) glyphs
   font-meslo-nerd-font-mono
-  font-m-plus
   font-mononoki-nerd-font-mono
   font-mplus-nerd-font
   font-mplus-nerd-font-mono
-  font-iosevka
+  font-iosevka-nerd-font-mono
 )
 
 # Install Homebrew casks.

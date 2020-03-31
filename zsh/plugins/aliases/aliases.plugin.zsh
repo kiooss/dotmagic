@@ -2,7 +2,7 @@ alias vi="$EDITOR"
 alias e="$EDITOR"
 # alias vim="$EDITOR"
 
-alias zshconfig="$EDITOR ~/.zshrc"
+alias zshrc="$EDITOR ~/.zshrc"
 alias zz="source ~/.zshenv && source ~/.zshrc"
 
 # Filesystem aliases

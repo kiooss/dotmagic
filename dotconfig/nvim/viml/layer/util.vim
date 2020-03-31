@@ -36,4 +36,6 @@ if !has('mac')
 Plug 'wincent/vim-clipper'
 endif
 
+if has('mac')
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+endif

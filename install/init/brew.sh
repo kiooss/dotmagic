@@ -70,11 +70,6 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 casks=(
   # Applications
   # a-better-finder-rename
-  alfred
-  accessmenubarapps
-  sequel-pro
-  spectacle
-  wkhtmltopdf
   # android-platform-tools
   # bartender
   # battle-net
@@ -88,25 +83,34 @@ casks=(
   # firefox
   # gyazo
   # hex-fiend
-  iterm2
-  itsycal
-  iina
-  kawa # https://github.com/utatti/kawa
-  karabiner-elements
   # macvim
   # moom
-  omnidisksweeper
   # race-for-the-galaxy
   # reaper
   # robo-3t
   # screenhero
   # scroll-reverser
+  # sourcetree
+  accessmenubarapps
+  alfred
+  # docker
+  kitematic
+  iina
+  iterm2
+  itsycal
+  karabiner-elements
+  kawa # https://github.com/utatti/kawa
+  omnidisksweeper
+  psequel
+  quitter
+  sequel-pro
   skype
   slack
-  # sourcetree
+  spectacle
   the-unarchiver
   vagrant
   virtualbox
+  wkhtmltopdf
   # # Quick Look plugins
   # betterzipql
   # qlcolorcode
@@ -127,7 +131,6 @@ casks=(
   font-firacode-nerd-font-mono # Monospaced (fixed-pitch, fixed-width) glyphs
   font-meslo-nerd-font-mono
   font-mononoki-nerd-font-mono
-  font-mplus-nerd-font
   font-mplus-nerd-font-mono
   font-iosevka-nerd-font-mono
 )

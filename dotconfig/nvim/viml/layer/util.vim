@@ -35,3 +35,5 @@ Plug 'epilande/vim-react-snippets'
 if !has('mac')
 Plug 'wincent/vim-clipper'
 endif
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }

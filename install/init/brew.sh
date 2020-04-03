@@ -98,6 +98,7 @@ casks=(
   iina
   iterm2
   itsycal
+  jmeter
   karabiner-elements
   kawa # https://github.com/utatti/kawa
   omnidisksweeper

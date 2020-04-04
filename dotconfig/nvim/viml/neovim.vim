@@ -25,11 +25,11 @@ set wildoptions=pum
 let g:loaded_node_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
-" let g:loaded_python_provider = 0
+let g:loaded_python_provider = 0
 " let g:loaded_python3_provider = 0
 
 let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
-let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
+" let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
 let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
 
 " Share the histories

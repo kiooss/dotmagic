@@ -98,6 +98,7 @@ casks=(
   iina
   iterm2
   itsycal
+  intel-power-gadget # 监控CPU频率
   jmeter
   karabiner-elements
   kawa # https://github.com/utatti/kawa
@@ -109,6 +110,7 @@ casks=(
   slack
   spectacle
   the-unarchiver
+  timemachineeditor
   vagrant
   virtualbox
   wkhtmltopdf

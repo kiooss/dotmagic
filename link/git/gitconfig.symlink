@@ -13,7 +13,7 @@
 [core]
     excludesfile = ~/.gitignore_global
     # pager = diff-so-fancy | less --tabs=4 -RFX
-    pager = less --quit-if-one-screen --no-init
+    pager = less --tabs=4 -RFX
     quotepath = false
     attributesfile = ~/.gitattributes
 
@@ -28,6 +28,9 @@
 [pretty]
     onelineplus = format:%C(yellow)%h%C(auto)%d%C(reset) %s %C(blue)(%cr)%C(reset) %C(green)<%aN>
     columns = format:%C(yellow)%h%C(magenta)% G? %C(blue)%<(12,trunc)%ar %C(green)%<(16,trunc)%aN %C(reset)%s%C(auto)%d
+
+[log]
+    date = iso # show iso format date in log
 
 [push]
     default = current

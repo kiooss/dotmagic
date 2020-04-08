@@ -95,6 +95,7 @@ casks=(
   alfred
   # docker
   kitematic
+  hocus-focus # auto hide apps lost focus
   iina
   iterm2
   itsycal

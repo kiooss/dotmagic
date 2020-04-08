@@ -102,6 +102,7 @@ casks=(
   jmeter
   karabiner-elements
   kawa # https://github.com/utatti/kawa
+  lulu
   omnidisksweeper
   psequel
   quitter

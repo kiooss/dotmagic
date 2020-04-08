@@ -243,11 +243,11 @@ my_plugins=(
   add-http-proxy
   aliases
   auto-ls-after-cd
-  fix-ssh-agent
+  # fix-ssh-agent
   insert-datestamp
   mysql
-  thirsty
-  todotxt
+  # thirsty
+  # todotxt
   util-functions
 )
 

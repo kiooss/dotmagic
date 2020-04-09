@@ -75,3 +75,7 @@ highlight SpecialKey ctermfg=19 guifg=#333333
 " highlight CocHighlightText gui=bold,reverse
 " highlight CocHighlightText gui=bold,italic,reverse
 highlight default link CocHighlightText User1
+
+" background transparent
+" highlight Normal guibg=none
+" highlight NonText guibg=none

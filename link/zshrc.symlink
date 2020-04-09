@@ -26,6 +26,7 @@ export ENABLE_PATCHED_FONT=true
 
 MYZSH="$DOTFILES/zsh"
 ZSH_CUSTOM="$MYZSH/omz_custom"
+# ZSH_THEME=""
 ZSH_THEME="powerlevel9k/powerlevel9k"
 # DIRCOLORS=$HOME/.dircolors
 

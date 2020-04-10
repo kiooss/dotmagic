@@ -1,163 +1,163 @@
 # gitconfig
-# vim: set ts=4 sw=4 tw=80 et ft=gitconfig:
+# vim: set ts=4 sw=4 tw=80 noet ft=gitconfig:
 
 #
 # General Config
 #
 [include]
-    path=.secret_gitconfig
+	path=.secret_gitconfig
 
 [github]
-    user = kiooss
+	user = kiooss
 
 [core]
-    excludesfile = ~/.gitignore_global
-    # pager = diff-so-fancy | less --tabs=4 -RFX
-    pager = less --tabs=4 -RFX
-    quotepath = false
-    attributesfile = ~/.gitattributes
+	excludesfile = ~/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	# pager =  "nkf -w | LESSCHARSET=utf-8 less"
+	quotepath = false
+	attributesfile = ~/.gitattributes
 
-[pager]
-    log = diff-so-fancy | $(git config --get core.pager)
-    diff = diff-so-fancy | $(git config --get core.pager)
-    show = diff-so-fancy | $(git config --get core.pager)
+# [pager]
+	# log = diff-so-fancy | $(git config --get core.pager)
+	# diff = diff-so-fancy | $(git config --get core.pager)
+	# show = diff-so-fancy | $(git config --get core.pager)
 
 # [format]
 #     pretty = onelineplus
 
 [pretty]
-    onelineplus = format:%C(yellow)%h%C(auto)%d%C(reset) %s %C(blue)(%cr)%C(reset) %C(green)<%aN>
-    columns = format:%C(yellow)%h%C(magenta)% G? %C(blue)%<(12,trunc)%ar %C(green)%<(16,trunc)%aN %C(reset)%s%C(auto)%d
+	onelineplus = format:%C(yellow)%h%C(auto)%d%C(reset) %s %C(blue)(%cr)%C(reset) %C(green)<%aN>
+	columns = format:%C(yellow)%h%C(magenta)% G? %C(blue)%<(12,trunc)%ar %C(green)%<(16,trunc)%aN %C(reset)%s%C(auto)%d
 
 [log]
-    date = iso # show iso format date in log
+	date = iso # show iso format date in log
 
 [push]
-    default = current
+	default = current
 
 [branch]
-    autosetupmerge = true
+	autosetupmerge = true
 
 [grep]
-    extendRegexp = true
-    linenumber = true
+	extendRegexp = true
+	linenumber = true
 
 [commit]
-    template = ~/.dotfiles/link/git/commit.tpl
+	template = ~/.dotfiles/link/git/commit.tpl
 #
 # Aliases
 #
 [alias]
 # list all aliases
-la = "!git config -l | grep alias | cut -c 7-"
-cm = commit -a -v
-cma = commit --amend
-unstage = reset HEAD
-hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-d = difftool
-st = status
-br = branch -vv
-co = checkout
-df = diff
-dc = diff --cached
-ls = ls-files
-lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --
-ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
-lol = log --graph --decorate --pretty=oneline --abbrev-commit
-lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-lm = log --pretty=format:'%s%n   by %C(yellow)%an%Creset (%ad)%n %n%b' --date=local
-cc = clean -i
-wc = whatchanged
-logd = log --all --full-history
-noffmerge = merge --no-ff --log --verbose
+	la = "!git config -l | grep alias | cut -c 7-"
+	cm = commit -a -v
+	cma = commit --amend
+	unstage = reset HEAD
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	d = difftool
+	st = status
+	br = branch -vv
+	co = checkout
+	df = diff
+	dc = diff --cached
+	ls = ls-files
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lm = log --pretty=format:'%s%n   by %C(yellow)%an%Creset (%ad)%n %n%b' --date=local
+	cc = clean -i
+	wc = whatchanged
+	logd = log --all --full-history
+	noffmerge = merge --no-ff --log --verbose
 # Show files ignored by git:
-ign = ls-files -o -i --exclude-standard
+	ign = ls-files -o -i --exclude-standard
 # unmerged commit with master
-notinmaster = log --no-merges --pretty='%C(yellow)%h%d %Creset%an %Cgreen%ar:%Creset %s' --graph master..
-notin = log --no-merges --pretty='%C(yellow)%h%d %Creset%an %Cgreen%ar:%Creset %s' --graph
-out = "!git fetch; git cherry origin/HEAD -v"
+	notinmaster = log --no-merges --pretty='%C(yellow)%h%d %Creset%an %Cgreen%ar:%Creset %s' --graph master..
+	notin = log --no-merges --pretty='%C(yellow)%h%d %Creset%an %Cgreen%ar:%Creset %s' --graph
+	out = "!git fetch; git cherry origin/HEAD -v"
 #dp = diff --stat origin/master HEAD
-dp = "!DIFF_PREVIEW1=$(git diff --stat origin/master HEAD);"
-delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
-diff-ignore-space = diff --ignore-space-at-eol -b -w --ignore-blank-lines
+	dp = "!DIFF_PREVIEW1=$(git diff --stat origin/master HEAD);"
+	delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
+	diff-ignore-space = diff --ignore-space-at-eol -b -w --ignore-blank-lines
 
 # order files by number of commits, ascending
-churn = "!f() { git log --all -M -C --name-only --format='format:' \"$@\" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print \"count\tfile\"} {print $1 \"\t\" $2}' | sort -g; }; f"
+	churn = "!f() { git log --all -M -C --name-only --format='format:' \"$@\" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print \"count\tfile\"} {print $1 \"\t\" $2}' | sort -g; }; f"
 
 # show all deleted files in the repo
-deleted = "!git log --diff-filter=D --summary | grep delete"
+	deleted = "!git log --diff-filter=D --summary | grep delete"
 
 # current branch
-cbr = rev-parse --abbrev-ref HEAD
+	cbr = rev-parse --abbrev-ref HEAD
 
 # show number of commits per contributer, sorted
-count = shortlog -sn
+	count = shortlog -sn
 
-undo = reset --soft HEAD~1
-amend = commit -a --amend
+	undo = reset --soft HEAD~1
+	amend = commit -a --amend
 
-cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
+	cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
 
 # rebase the current branch with changes from upstream remote
-update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
+	update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
 
 # tag aliases
 # show the last tag
-lt = describe --tags --abbrev=0
+	lt = describe --tags --abbrev=0
 
 # assume aliases
-assume = update-index --assume-unchanged
-unassume = update-index --no-assume-unchanged
-assumed = "!git ls-files -v | grep ^h | cut -c 3-"
-unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+	assume = update-index --assume-unchanged
+	unassume = update-index --no-assume-unchanged
+	assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+	unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
 
-change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD'  ]]; then export $VAR='$NEW'; fi\" $@;  }; f "
+	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD'  ]]; then export $VAR='$NEW'; fi\" $@;  }; f "
 
 # git branch --merged | egrep -v "(^\*|master|dev|devlopment|staging)" | xargs git branch -d
 
-delete-both-branch = "!f() { VAR=$1; git branch -d \"$VAR\" && git push origin \":$VAR\"; }; f"
+	delete-both-branch = "!f() { VAR=$1; git branch -d \"$VAR\" && git push origin \":$VAR\"; }; f"
 
 # find email in source
-grepemail = grep -E '\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\\b'
+	grepemail = grep -E '\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\\b'
 
-submodule-update = submodule update --init --recursive
+	submodule-update = submodule update --init --recursive
 
-personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@gmail.com'"
+	personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@gmail.com'"
 
-    sync-submodules = "!git submodule sync && git pull --recurse-submodules && git submodule update --remote"
+	sync-submodules = "!git submodule sync && git pull --recurse-submodules && git submodule update --remote"
 
 # show the log with deleted files
 # git deleted                         # find a deleted file and its commit
 # git checkout <commit>~1 <filename>  # restore the deleted file
-deleted = log --diff-filter=D --summary
+	deleted = log --diff-filter=D --summary
 
 ### hub
 # show pr list
-prlist = pr list --format='%t [%H → %B] | %U%n'
+	prlist = pr list --format='%t [%H → %B] | %U%n'
 
 # fzf primitives
-    fzf = "!f() { fzf --height=100% --ansi --preview='git fzf-pre {}' -q \"$1\" | cut -d' ' -f1; }; f"
-    fzf-pre = "!f() { git show --stat --color $(echo $1 | cut -d ' ' -f1); }; f "
+	fzf = "!f() { fzf --height=100% --ansi --preview='git fzf-pre {}' -q \"$1\" | cut -d' ' -f1; }; f"
+	fzf-pre = "!f() { git show --stat --color $(echo $1 | cut -d ' ' -f1); }; f "
 # interactively select commits
-    sel = "!f() { git log --oneline --color | git fzf $1; }; f"
-    rsel = "!f() { git log -g --oneline --color |  git fzf $1; }; f"
-    sel-ref = "!f() { git show-ref --abbrev | git fzf $1; }; f"
+	sel = "!f() { git log --oneline --color | git fzf $1; }; f"
+	rsel = "!f() { git log -g --oneline --color |  git fzf $1; }; f"
+	sel-ref = "!f() { git show-ref --abbrev | git fzf $1; }; f"
 # quick and easy autosquash commits
-    squash = "!f() { git commit --squash=$(git sel $1); }; f"
-    fixup = "!f() { git commit --fixup=$(git sel $1); }; f"
+	squash = "!f() { git commit --squash=$(git sel $1); }; f"
+	fixup = "!f() { git commit --fixup=$(git sel $1); }; f"
 # quick and easy branch tracking
-    track = "!f() { git branch -u $(git branch -r --format '%(refname:short)' | git fzf $1); }; f"
+	track = "!f() { git branch -u $(git branch -r --format '%(refname:short)' | git fzf $1); }; f"
 # misc aliases
-    prune = fetch --prune
-    stash-all = stash save --include-untracked
-    preset = !git diff -p -R | grep -E '^(diff|(old|new) mode)' | git apply
+	prune = fetch --prune
+	stash-all = stash save --include-untracked
+	preset = !git diff -p -R | grep -E '^(diff|(old|new) mode)' | git apply
 
 
 [diff]
-tool = vimdiff
-mnemonicprefix = true
+	tool = vimdiff
+	mnemonicprefix = true
 [difftool]
-prompt = false
+	prompt = false
 
 #
 # Colors
@@ -166,63 +166,67 @@ prompt = false
 # git colors: normal, black, red, green, yellow, blue, magenta, cyan, or white.
 # git formats: bold, dim, ul (underline), blink, and reverse (swap foreground and background).
 [color]
-diff = auto
-status = auto
-branch = auto
-interactive = auto
-ui = true
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+
 [color "branch"]
-current = yellow reverse
-local = yellow
-remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
+
 [color "sh"]
-branch = yellow
+	branch = yellow
+
 [color "diff"]
-meta = yellow
-frag = magenta bold
-old = red bold
-new = green bold
-commit = yellow bold
-whitespace = red reverse
+	meta = yellow
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
+
 [color "status"]
-added = yellow bold
-changed = green bold
-untracked = red bold
+	added = yellow bold
+	changed = green bold
+	untracked = red bold
 
 
 [filter "media"]
-clean = git-media-clean %f
-smudge = git-media-smudge %f
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
 
 [rerere]
-enabled = true
+	enabled = true
 
 [credential]
-helper = cache --timeout=3600
+	helper = cache --timeout=3600
 
 [merge]
-tool = vimdiff
-conflictstyle = diff3
+	tool = vimdiff
+	conflictstyle = diff3
 
 [mergetool]
-prompt = false
+	prompt = false
 
 [merge "railsschema"]
-name = newer Rails schema version
-driver = "ruby -e '\n\
-          system %(git), %(merge-file), %(--marker-size=%L), %(%A), %(%O), %(%B)\n\
-          b = File.read(%(%A))\n\
-          b.sub!(/^<+ .*\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n=+\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n>+ .*/) do\n\
-          %(ActiveRecord::Schema.define(:version => #{[$1, $2].max}) do)\n\
-          end\n\
-          File.open(%(%A), %(w)) {|f| f.write(b)}\n\
-          exit 1 if b.include?(%(<)*%L)'"
+	name = newer Rails schema version
+	driver = "ruby -e '\n\
+		system %(git), %(merge-file), %(--marker-size=%L), %(%A), %(%O), %(%B)\n\
+		b = File.read(%(%A))\n\
+		b.sub!(/^<+ .*\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n=+\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n>+ .*/) do\n\
+		%(ActiveRecord::Schema.define(:version => #{[$1, $2].max}) do)\n\
+		end\n\
+		File.open(%(%A), %(w)) {|f| f.write(b)}\n\
+		exit 1 if b.include?(%(<)*%L)'"
 
-[color "diff-highlight"]
-oldNormal = red bold
-oldHighlight = red bold 52
-newNormal = green bold
-newHighlight = green bold 22
+# [color "diff-highlight"]
+#     oldNormal = red bold
+#     oldHighlight = red bold 52
+#     newNormal = green bold
+#     newHighlight = green bold 22
 
 [diff-so-fancy]
-stripLeadingSymbols = false
+	stripLeadingSymbols = false

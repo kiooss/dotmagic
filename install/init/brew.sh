@@ -93,6 +93,7 @@ casks=(
   # sourcetree
   accessmenubarapps
   alfred
+  aerial
   # docker
   kitematic
   hocus-focus # auto hide apps lost focus

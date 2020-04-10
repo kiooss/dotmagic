@@ -7,7 +7,8 @@
 set encoding=utf-8
 scriptencoding utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+" set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set fileencodings=ucs-bom,utf-8,euc-jp,cp932,latin1
 " " Build encodings.
 " let &fileencodings = join([
 "       \ 'ucs-bom', 'iso-2022-jp-3', 'utf-8', 'euc-jp', 'cp932'])

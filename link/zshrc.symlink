@@ -368,7 +368,13 @@ export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
 export SDKMAN_DIR="/Users/yang/.sdkman"
 [[ -s "/Users/yang/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yang/.sdkman/bin/sdkman-init.sh"
 
-[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+# phpbrew
+if [[ -e ~/.phpbrew/bashrc ]]; then
+  source ~/.phpbrew/bashrc
+  export PATH="$HOME/.phpbrew/bin:$PATH"
+  # generation by `phpbrew zsh`
+  source ~/.phpbrew_completion.sh
+fi
 
 # PROFILE_STARTUP_END {{{
 if [[ "$PROFILE_STARTUP" == true ]]; then

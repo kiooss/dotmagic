@@ -132,12 +132,16 @@ P9K_RPROMPT_ON_NEWLINE=false
 P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%{%F{red}%}╭"
 P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%{%F{red}%}╰%{%F{red}%}❯%{%F{green}%}❯%{%F{blue}%}❯ "
 
-P9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon dir dir_writable vcs)
+P9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon custom_proxy dir dir_writable vcs)
 P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time php_version node_version custom_base16_theme disk_usage ram)
 
 P9K_CUSTOM_DRINK_WATER="drink_water"
 P9K_CUSTOM_DRINK_WATER_FOREGROUND='black'
 P9K_CUSTOM_DRINK_WATER_BACKGROUND='red'
+
+P9K_CUSTOM_PROXY="proxy-state"
+P9K_CUSTOM_PROXY_FOREGROUND='white'
+P9K_CUSTOM_PROXY_BACKGROUND='198'
 
 P9K_CUSTOM_BASE16_THEME="echo \"\ue623\" \$(echo \$BASE16_THEME)"
 P9K_CUSTOM_BASE16_THEME_FOREGROUND='black'
@@ -374,6 +378,29 @@ if [[ -e ~/.phpbrew/bashrc ]]; then
   export PATH="$HOME/.phpbrew/bin:$PATH"
   # generation by `phpbrew zsh`
   source ~/.phpbrew_completion.sh
+fi
+
+function proxy-on() {
+  local HOST=${MY_PROXY_HOST:-localhost}
+  export https_proxy=http://$HOST:7890 http_proxy=http://$HOST:7890 all_proxy=socks5://$HOST:7891
+  echo "on" > ~/.cache/proxy_state
+}
+
+function proxy-off() {
+  unset all_proxy https_proxy http_proxy
+  echo "off" > ~/.cache/proxy_state
+}
+
+function proxy-state() {
+  if [[ -z "$all_proxy" ]]; then
+    echo -n ""
+  else
+    echo -n "異"
+  fi
+}
+
+if [[ -f ~/.cache/proxy_state && `cat ~/.cache/proxy_state` == 'on' ]]; then
+  proxy-on
 fi
 
 # PROFILE_STARTUP_END {{{

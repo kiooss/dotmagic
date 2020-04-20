@@ -395,7 +395,7 @@ function proxy-state() {
   if [[ -z "$all_proxy" ]]; then
     echo -n ""
   else
-    echo -n "異"
+    echo -n "🚀"
   fi
 }
 

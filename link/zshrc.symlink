@@ -212,7 +212,7 @@ plugins=(
   # emoji
   encode64
   fancy-ctrl-z
-  git
+  # git
   gem
   history-substring-search
   nmap
@@ -220,8 +220,8 @@ plugins=(
   systemadmin
   # ssh-agent
   tmuxinator
-  themes
-  z
+  # themes
+  # z
   zsh-autosuggestions
   zsh-navigation-tools
   zsh-syntax-highlighting
@@ -260,10 +260,10 @@ if [[ "$OSTYPE" = darwin* ]]; then
   # plugin used in my mac.
   plugins=(
     $plugins
-    adb
-    gradle
+    # adb
+    # gradle
     pass
-    vagrant-prompt
+    # vagrant-prompt
   )
 
   my_plugins=(

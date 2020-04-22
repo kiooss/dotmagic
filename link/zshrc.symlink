@@ -378,7 +378,7 @@ export SDKMAN_DIR="/Users/yang/.sdkman"
 # phpbrew
 if [[ -e ~/.phpbrew/bashrc ]]; then
   source ~/.phpbrew/bashrc
-  export PATH="$HOME/.phpbrew/bin:$PATH"
+  # export PATH="$HOME/.phpbrew/bin:$PATH"
   # generation by `phpbrew zsh`
   source ~/.phpbrew_completion.sh
 fi

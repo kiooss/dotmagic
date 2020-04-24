@@ -24,6 +24,7 @@
   "prettier.singleQuote": true,
   "session.directory": "~/.cache/vim/sessions",
   "solargraph.checkGemVersion": true,
+  "snippets.ultisnips.enable": false,
   "suggest.echodocSupport": false,
   "suggest.snippetIndicator": "⭐︎",
   "suggest.completionItemKindLabels": {

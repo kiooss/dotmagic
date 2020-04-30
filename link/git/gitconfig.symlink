@@ -159,6 +159,9 @@
 [difftool]
 	prompt = false
 
+[diff "nkf"]
+	textconv = nkf
+
 #
 # Colors
 #

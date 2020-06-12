@@ -118,7 +118,8 @@ nnoremap <leader>l  :<C-u>CocList<space>
 nnoremap <leader>S  :<C-u>CocSearch<space>
 nnoremap <silent> <leader>mn  :<C-u>CocList snippets<cr>
 " buffers
-nnoremap <silent> <leader><space>  :<C-u>CocList -N --normal buffers<cr>
+" nnoremap <silent> <leader><space>  :<C-u>CocList -N --normal buffers<cr>
+nnoremap <silent> <leader><space>  :<C-u>CocList buffers<cr>
 " Show all diagnostics
 nnoremap <silent> <leader>md  :<C-u>CocList diagnostics<cr>
 " Manage extensions

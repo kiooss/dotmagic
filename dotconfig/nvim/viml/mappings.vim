@@ -194,6 +194,7 @@ nnoremap <silent> <leader>sd :<C-u>Gdiff<CR>
 nnoremap <silent> <leader>sU :<C-u>Git reset -q %<CR>
 nnoremap <silent> <leader>sp :<C-u>Gpush<CR>
 nnoremap <silent> <leader>sl V:<c-u>call OpenCurrentFileInGithub()<cr>
+nnoremap <silent> <leader>sk V:<c-u>call OpenCurrentFileInGitee()<cr>
 
 if has('mac')
   " Open the macOS dictionary on current word
@@ -346,6 +347,27 @@ function! OpenCurrentFileInGithub()
   let git_remote = system('cd ' . file_dir . '; git remote get-url origin')
   let repo_path = matchlist(git_remote, ':\(.*\)\.')[1]
   let url = 'https://github.com/' . repo_path . '/blob/' . branch . '/' . file_path
+  let first_line = getpos("'<")[1]
+  let url .= '#L' . first_line
+  let last_line = getpos("'>")[1]
+  if last_line != first_line | let url .= '-L' . last_line | endif
+  if has('mac')
+    call system('open ' . url)
+  else
+    echohl WarningMsg
+    echon  url
+    echohl None
+  endif
+endfunction
+
+function! OpenCurrentFileInGitee()
+  let file_dir = expand('%:h')
+  let git_root = system('cd ' . file_dir . '; git rev-parse --show-toplevel | tr -d "\n"')
+  let file_path = substitute(expand('%:p'), git_root . '/', '', '')
+  let branch = system('git symbolic-ref --short -q HEAD | tr -d "\n"')
+  let git_remote = system('cd ' . file_dir . '; git remote get-url origin')
+  let repo_path = matchlist(git_remote, ':\(.*\)\.')[1]
+  let url = 'https://gitee.com/' . repo_path . '/blob/' . branch . '/' . file_path
   let first_line = getpos("'<")[1]
   let url .= '#L' . first_line
   let last_line = getpos("'>")[1]

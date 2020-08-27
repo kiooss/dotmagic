@@ -21,7 +21,6 @@ filetype indent on
 " base
 set nocompatible                " don't bother with vi compatibility
 set autoread                    " reload files when changed on disk, i.e. via `git checkout`
-set shortmess=atI
 
 set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
@@ -35,7 +34,6 @@ set tm=500
 
 
 " show location
-set cursorcolumn
 set cursorline
 
 " movement
@@ -105,7 +103,6 @@ set wildignore=*.o,*~,*.pyc,*.class
 
 " others
 set backspace=indent,eol,start  " make that backspace key work the way it should
-set whichwrap+=<,>,h,l
 
 " if this not work ,make sure .viminfo is writable for you
 if has("autocmd")

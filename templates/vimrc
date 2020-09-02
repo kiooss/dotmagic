@@ -25,7 +25,6 @@ set autoread                    " reload files when changed on disk, i.e. via `g
 set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
 set nobackup                    " do not keep a backup file
-set wrap
 
 set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
@@ -43,7 +42,6 @@ set scrolloff=7                 " keep 3 lines when scrolling
 " show
 set ruler                       " show the current row and column
 set number                      " show line numbers
-set nowrap
 set showcmd                     " display incomplete commands
 set showmode                    " display current modes
 set showmatch                   " jump to matches when entering parentheses

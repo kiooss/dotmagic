@@ -13,6 +13,7 @@ PACKAGES=(
   tldr
   neovim
   fixjson
+  eslint
 )
 
 npm install -g ${PACKAGES[@]}

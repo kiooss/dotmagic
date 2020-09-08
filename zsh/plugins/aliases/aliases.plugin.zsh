@@ -81,3 +81,5 @@ alias debug-nvim="NVIM_PYTHON_LOG_FILE=/tmp/log && NVIM_PYTHON_LOG_LEVEL=DEBUG n
 alias fix-gemlock-conflict="git checkout HEAD -- Gemfile.lock && bundle"
 
 alias mux="tmuxinator"
+
+alias dl="youtube-dl -f best"

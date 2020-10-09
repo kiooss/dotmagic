@@ -161,6 +161,16 @@ function text-replace() {
     grep -rl $1 $3 | xargs sed -i -e "s/$1/$2/g"
 }
 
+function gtext-replace() {
+    if [[ $# -eq 0 ]] ; then
+        echo "Usage: $0 [from] [to] [dir]";
+        echo "Example: $0 foo bar /tmp"
+        return 1
+    fi
+    set -x
+    git grep --files-with-matches $1 -- $3 | xargs sed -i -e "s/$1/$2/g"
+}
+
 function indent-with-vim() {
     set -x
     #vim -E -c "normal ggVG=" $1 <<'EOF'

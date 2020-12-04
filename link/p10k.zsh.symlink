@@ -101,6 +101,7 @@
     # =========================[ Line #2 ]=========================
     newline
     time                    # current time
+    proxy_state
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -1020,7 +1021,7 @@
 
   ##############################[ node_version: node.js version ]###############################
   # Node version color.
-  # typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=7
+  typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=0
   # typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=2
   # Show node version only when in a directory tree containing package.json.
   typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
@@ -1605,6 +1606,15 @@
   function prompt_example() {
     p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
   }
+
+  # add by me start
+  function prompt_proxy_state() {
+    if [[ -z "$all_proxy" ]]; then
+    else
+      p10k segment -b 1 -f 3 -i '' -t 'proxy'
+    fi
+  }
+  # add by me end
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See

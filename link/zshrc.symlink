@@ -432,3 +432,10 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon custom_proxy dir dir_writable vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time php_version node_version custom_base16_theme disk_usage ram)
+
+# Created by `userpath` on 2020-12-07 03:12:21
+export PATH="$PATH:/Users/yang/Library/Python/3.9/bin"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi

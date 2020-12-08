@@ -1611,7 +1611,7 @@
   function prompt_proxy_state() {
     if [[ -z "$all_proxy" ]]; then
     else
-      p10k segment -b 1 -f 3 -i '' -t 'proxy'
+      p10k segment -b 1 -f 3 -i '' -t 'on'
     fi
   }
   # add by me end

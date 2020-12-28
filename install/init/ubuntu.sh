@@ -73,6 +73,12 @@ apt_packages+=(
   libncurses5-dev libffi-dev libgdbm3 libgdbm-dev zlib1g-dev
 )
 
+# https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+apt_packages+=(
+  make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
+  wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+)
+
 # Add APT sources.
 function __temp() { [[ ! -e /etc/apt/sources.list.d/$1.list ]]; }
 source_i=($(array_filter_i apt_source_files __temp))

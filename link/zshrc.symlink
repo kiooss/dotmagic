@@ -435,6 +435,10 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Created by `userpath` on 2020-12-07 03:12:21
 export PATH="$PATH:/Users/yang/Library/Python/3.9/bin"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"

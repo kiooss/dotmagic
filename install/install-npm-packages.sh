@@ -7,6 +7,7 @@ e_header "Global npm packages"
 npm update -g
 
 PACKAGES=(
+  n
   diff-so-fancy
   intelephense
   typescript

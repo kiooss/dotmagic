@@ -53,3 +53,14 @@ else
     e_info "Installing dasht"
     git clone https://github.com/sunaku/dasht ~/.dasht
 fi
+
+# install node
+export N_PREFIX=$HOME/.n
+if [ -d "$N_PREFIX" ]; then
+    e_error "n already exists... Skipping."
+else
+    e_info "Installing node via n"
+    cd ~
+    curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
+    bash n lts
+fi

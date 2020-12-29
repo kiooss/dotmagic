@@ -31,6 +31,7 @@ apt_packages+=(
   libboost-program-options-dev
   libcurl4-openssl-dev
   libedit-dev
+  libevent-dev # tmux deps
   libicu-dev
   libjpeg-dev
   libncursesw5-dev

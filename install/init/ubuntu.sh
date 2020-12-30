@@ -60,6 +60,7 @@ apt_packages+=(
   silversearcher-ag
   todotxt-cli
   tree
+  zip
 )
 
 # apt_packages+=(vim)

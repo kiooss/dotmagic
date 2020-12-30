@@ -28,6 +28,8 @@ apt_packages+=(
   highlight
   imagemagick
   jq
+  language-pack-ja-base
+  language-pack-ja
   libboost-program-options-dev
   libcurl4-openssl-dev
   libedit-dev
@@ -126,3 +128,6 @@ sudo apt-get autoclean
 
 e_info "Run APT autoremove"
 sudo apt-get autoremove
+
+e_info "update locale"
+update-locale LANG=ja_JP.UTF-8

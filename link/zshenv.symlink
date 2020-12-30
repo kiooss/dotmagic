@@ -10,3 +10,4 @@
 # }}}
 
 # export TZ="/usr/share/zoneinfo/Asia/Tokyo"
+source "$HOME/.cargo/env"

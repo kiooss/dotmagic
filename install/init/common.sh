@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # create dirs
+mkdir -p ~/.cache
 mkdir -p ~/.config
 mkdir -p ~/.local
 

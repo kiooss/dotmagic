@@ -30,7 +30,8 @@ let g:loaded_python_provider = 0
 
 let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
 " let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
-let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
+" let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
 
 " Share the histories
 autocmd MyAutoCmd CursorHold *

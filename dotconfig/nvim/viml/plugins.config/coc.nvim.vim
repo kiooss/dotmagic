@@ -11,7 +11,6 @@ let g:coc_global_extensions = [
   \ 'coc-gitignore',
   \ 'coc-highlight',
   \ 'coc-html',
-  \ 'coc-jedi',
   \ 'coc-json',
   \ 'coc-lists',
   \ 'coc-marketplace',
@@ -36,6 +35,7 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ ]
   " \ 'coc-tabnine',
+  " \ 'coc-jedi',
 let g:coc_snippet_next = '<tab>'
 
 " functions {{{

@@ -83,3 +83,5 @@ alias fix-gemlock-conflict="git checkout HEAD -- Gemfile.lock && bundle"
 alias mux="tmuxinator"
 
 alias dl="youtube-dl -f best"
+
+alias cats='highlight -O ansi --force'

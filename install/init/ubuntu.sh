@@ -17,6 +17,7 @@ function add_ppa() {
 # Misc.
 apt_packages+=(
   acpi # to get the battery info.
+  apache2
   build-essential
   cmake
   cowsay

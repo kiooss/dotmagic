@@ -42,7 +42,7 @@ if [ -d "$PYENV_ROOT" ]; then
     e_error "pyenv already exists... Skipping."
 else
     e_info "Installing pyenv"
-    git clone https://github.com/rbenv/rbenv.git "$PYENV_ROOT"
+    git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
     git clone https://github.com/pyenv/pyenv-virtualenv.git "$PYENV_ROOT/plugins/pyenv-virtualenv"
     git clone git://github.com/yyuu/pyenv-update.git "$PYENV_ROOT/plugins/pyenv-update"
 fi

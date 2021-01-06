@@ -53,6 +53,8 @@ apt_packages+=(
   libmysqlclient-dev
   libmagickcore-dev
   libmagickwand-dev
+  libonig-dev # php7.4 deps
+  libzip-dev # php deps
   libxml2-utils # provide xmllint
   libtool-bin # neovim deps
   ninja-build # neovim deps

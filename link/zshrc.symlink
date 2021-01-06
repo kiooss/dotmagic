@@ -318,6 +318,7 @@ if [[ -e ~/.phpbrew/bashrc ]]; then
   source ~/.phpbrew/bashrc
   # export PATH="$HOME/.phpbrew/bin:$PATH"
   # generation by `phpbrew zsh`
+  # phpbrew zsh --bind phpbrew --program phpbrew > ~/.phpbrew_completion.sh
   source ~/.phpbrew_completion.sh
 fi
 

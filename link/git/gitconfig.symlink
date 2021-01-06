@@ -120,7 +120,8 @@
 # find email in source
 	grepemail = grep -E '\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\\b'
 
-	submodule-update = submodule update --init --recursive
+	submodule-init = submodule update --init --recursive
+	submodule-update = "!git submodule sync && git pull --recurse-submodules && git submodule update --remote"
 
 	personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@gmail.com'"
 

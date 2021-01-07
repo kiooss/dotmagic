@@ -1060,7 +1060,7 @@
   typeset -g POWERLEVEL9K_PHP_VERSION_FOREGROUND=0
   typeset -g POWERLEVEL9K_PHP_VERSION_BACKGROUND=5
   # Show PHP version only when in a PHP project subdirectory.
-  typeset -g POWERLEVEL9K_PHP_VERSION_PROJECT_ONLY=true
+  typeset -g POWERLEVEL9K_PHP_VERSION_PROJECT_ONLY=false
   # Custom icon.
   # typeset -g POWERLEVEL9K_PHP_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 

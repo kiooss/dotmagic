@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # create dirs
+mkdir -p ~/bin
 mkdir -p ~/.cache
 mkdir -p ~/.config
 mkdir -p ~/.local
@@ -64,4 +65,15 @@ else
     cd ~
     curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
     bash n lts
+fi
+
+# install phppbrew
+if [ -d "$HOME/.phpbrew" ]; then
+    e_error "phpbrew already exists... Skipping."
+else
+    e_info "Installing phpbrew"
+    cd ~/bin
+    curl -L -O https://github.com/phpbrew/phpbrew/releases/latest/download/phpbrew.phar
+    chmod +x phpbrew.phar
+    mv phpbrew.phar phpbrew
 fi

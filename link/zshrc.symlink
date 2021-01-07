@@ -315,6 +315,7 @@ export SDKMAN_DIR="/Users/yang/.sdkman"
 
 # phpbrew
 if [[ -e ~/.phpbrew/bashrc ]]; then
+  export PHPBREW_RC_ENABLE=1
   source ~/.phpbrew/bashrc
   # export PATH="$HOME/.phpbrew/bin:$PATH"
   # generation by `phpbrew zsh`

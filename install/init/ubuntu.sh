@@ -29,6 +29,7 @@ apt_packages+=(
   highlight
   imagemagick
   jq
+  php-cli
   language-pack-ja-base
   language-pack-ja
   libboost-program-options-dev

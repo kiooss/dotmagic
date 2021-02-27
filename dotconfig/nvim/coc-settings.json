@@ -66,6 +66,8 @@
       }
     }
   },
+  "python.pythonPath": "/home/yang/.pyenv/versions/sato/bin/python",
+  /* "python.venvPath": "/home/yang/.pyenv/versions/sato", */
   "markdownlint.onOpen": false,
   "java.errors.incompleteClasspath.severity": "ignore"
   /* "weather.aqi.token": "9ff83d20e4304845fde8dfa37ebfe983a9dc600c", */

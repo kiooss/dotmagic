@@ -58,3 +58,5 @@ local.properties
 .solargraph.yml
 
 .phpbrewrc
+
+pyrightconfig.json

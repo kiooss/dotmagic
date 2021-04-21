@@ -61,6 +61,7 @@
 	df = diff
 	dc = diff --cached
 	ls = ls-files
+	logs = log --stat --pretty=short --graph
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit

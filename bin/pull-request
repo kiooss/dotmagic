@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -ex
+
+TARGET=$1
+
+CURRENT_BRANCH=`git symbolic-ref --short HEAD`
+PROJECT=${CURRENT_BRANCH/-develop/}
+
+STAGING_BRANCH="${PROJECT}-staging"
+PRODUCTION_BRANCH="${PROJECT}-master"
+
+if [[ $TARGET == "staging" ]]; then
+  hub pull-request -b $STAGING_BRANCH -l "staging-release,${PROJECT}" -m "${PROJECT}-ステージング反映"
+elif [[ $TARGET == "production" ]]; then
+  hub pull-request -b $PRODUCTION_BRANCH -l "production-release,${PROJECT}" -m "${PROJECT}-本番反映"
+else
+  echo "Wrong deploy target."
+fi

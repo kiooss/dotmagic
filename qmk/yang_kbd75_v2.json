@@ -1,6 +1,7 @@
 {
   "version": 1,
-  "documentation": "This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\n",
+  "notes": "",
+  "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
   "keyboard": "kbdfans/kbd75/rev1",
   "keymap": "yang_kbd75",
   "layout": "LAYOUT",
@@ -159,11 +160,11 @@
       "KC_WH_D",
       "KC_TRNS",
       "BL_STEP",
+      "BL_STEP",
       "BL_BRTG",
       "BL_ON",
       "BL_OFF",
       "BL_TOGG",
-      "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
@@ -186,6 +187,5 @@
       "KC_MS_R"
     ]
   ],
-  "author": "",
-  "notes": ""
+  "author": ""
 }

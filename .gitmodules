@@ -14,18 +14,6 @@
 	path = zsh/base16-shell
 	url = https://github.com/chriskempson/base16-shell
   branch = master
-[submodule "vendor/tmux_plugins/tmux-prefix-highlight"]
-	path = vendor/tmux_plugins/tmux-prefix-highlight
-	url = https://github.com/tmux-plugins/tmux-prefix-highlight
-  branch = master
-[submodule "vendor/tmux_plugins/tpm"]
-	path = vendor/tmux_plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-  branch = master
-[submodule "vendor/tmux_plugins/tmux-mem-cpu-load"]
-	path = vendor/tmux_plugins/tmux-mem-cpu-load
-	url = https://github.com/thewtex/tmux-mem-cpu-load
-  branch = master
 [submodule "vendor/php-version"]
 	path = vendor/php-version
 	url = https://github.com/wilmoore/php-version

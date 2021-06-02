@@ -2,7 +2,6 @@
 
 set -g default-shell $SHELL
 run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6-)"
-run-shell "tmux setenv -g TMUX_PLUGIN_MANAGER_PATH $DOTFILES/vendor/tmux_plugins/"
 
 # set -g default-command "reattach-to-user-namespace -l zsh"
 if 'command -v reattach-to-user-namespace >/dev/null' \
@@ -168,16 +167,30 @@ set -g visual-activity off
 # set -g visual-activity on
 
 # theme config.
-source ~/.tmux.tmuxtheme
+# source ~/.tmux.tmuxtheme
 
 # tpm config.
-set -g @prefix_highlight_fg 'colour233' # default is 'colour231'
-set -g @prefix_highlight_bg 'colour155'  # default is 'colour04'
+set -g @base16-statusline 'main'
+
+set -g @prefix_highlight_bg black
+set -g @prefix_highlight_fg red
+set -g @prefix_highlight_prefix_prompt "\uf6d7"
 set -g @prefix_highlight_show_copy_mode 'on'
+set -g @prefix_highlight_copy_prompt "\uf0c5"
+set -g @prefix_highlight_copy_mode_attr "fg=red,bg=black,bold"
+set -g @prefix_highlight_output_prefix ''
+set -g @prefix_highlight_output_suffix ''
+
+# status bar
+set-option -g status-position top
+set -g status-right "#{prefix_highlight} #[fg=yellow]%H:%M:%S #[fg=white]#{@main_separator} #[fg=green]%d-%b-%y "
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set -g @plugin 'jatap/tmux-base16-statusline'
+set -g @plugin 'thewtex/tmux-mem-cpu-load'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run "${DOTFILES}/vendor/tmux_plugins/tpm/tpm"
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+run '~/.tmux/plugins/tpm/tpm'

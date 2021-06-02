@@ -18,6 +18,7 @@ set -g status-interval 10
 set -g status-fg colour240
 # set -g status-bg colour233
 set -g status-bg $tm_status_bg
+set -g status-style bg=default
 
 # Left side of status bar
 # set -g status-left-bg $tm_status_bg
@@ -35,6 +36,7 @@ set -g status-left "#{prefix_highlight}#(tmux-statusline left `tmux display -p '
 set -g status-right-style bg=$tm_status_bg,fg=colour243
 set -g status-right-length 100
 set -g status-right "#(tmux-statusline right `tmux display -p '#{client_width}'`)"
+set -g status-right "#[fg=colour189,bg=default]#[fg=colour000,bg=colour189]#(tmux-date)#[fg=colour005,bg=colour189]#[fg=colour000,bg=colour005]#(get-weather)#[fg=colour006,bg=colour005]#[fg=colour000,bg=colour006]#(tmux-disk-usage)#[fg=colour004,bg=colour006]#[fg=colour000,bg=colour004]#(get-public-ip)"
 
 # Window status
 # set -g window-status-format "(#I:#W)"

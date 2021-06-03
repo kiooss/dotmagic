@@ -181,8 +181,8 @@ set -g @prefix_highlight_copy_mode_attr "fg=red,bg=black,bold"
 set -g @prefix_highlight_output_prefix ''
 set -g @prefix_highlight_output_suffix ''
 
-# status bar
-set-option -g status-position top
+# status bar (top|bottom)
+set-option -g status-position bottom
 set -g status-right "#{prefix_highlight} #{ram_fg_color} \uf85a#{ram_icon} #{ram_percentage}#{cpu_fg_color} \
 \uf2db#{cpu_icon} #{cpu_percentage}#[default] \
 #[fg=black]#{@main_separator} #(get-weather) \

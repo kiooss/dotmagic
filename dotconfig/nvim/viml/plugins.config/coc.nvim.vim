@@ -141,6 +141,8 @@ nnoremap <silent> <leader>mh :<C-u>CocList helptags<cr>
 nnoremap <silent> <leader>mt :<C-u>CocList filetypes<cr>
 " words
 nnoremap <silent> <leader>mw :<C-u>CocList words<cr>
+
+nnoremap <silent> <leader>mm :<C-u>CocList mru<cr>
 " Search workspace symbols
 " nnoremap <silent> <leader>ms  :<C-u>CocList -I symbols<cr>
 " Sessions
@@ -159,8 +161,6 @@ nnoremap <silent> <leader>mb  :<C-u>CocList -A --normal bcommits<cr>
 
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <leader>mg :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
-
-nnoremap <silent> <leader>j :<C-u>CocList grep<CR>
 
 " grep word under cursor.
 " nnoremap <silent> <leader>j  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>

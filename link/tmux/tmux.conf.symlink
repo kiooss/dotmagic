@@ -80,7 +80,7 @@ unbind %
 bind X kill-pane -a
 
 # reload config file (change file location to your the tmux.conf you want to use)
-bind r source-file ~/.tmux.conf \; display "tmux conf reloaded!"
+bind r source-file ~/.tmux.conf #\; display "tmux conf reloaded!"
 
 # switch panes using vi convension
 bind h select-pane -L
@@ -183,22 +183,26 @@ set -g @prefix_highlight_output_suffix ''
 
 # status bar (top|bottom)
 set-option -g status-position bottom
-set -g status-right "#{prefix_highlight} #{ram_fg_color} \uf85a#{ram_icon} #{ram_percentage}#{cpu_fg_color} \
-\uf2db#{cpu_icon} #{cpu_percentage}#[default] \
-#[fg=black]#{@main_separator} #(get-weather) \
-#[fg=black]#{@main_separator} #[fg=yellow]%H:%M:%S %Z \
-#[fg=white]#{@main_separator} #[fg=blue]%d-%b-%y %a "
+#set -g status-right "#{prefix_highlight} #{ram_fg_color} \uf85a#{ram_icon} #{ram_percentage}#{cpu_fg_color} \
+#\uf2db#{cpu_icon} #{cpu_percentage}#[default] \
+##[fg=black]#{@main_separator} #(get-weather) \
+##[fg=black]#{@main_separator} #[fg=yellow]%H:%M:%S %Z \
+##[fg=white]#{@main_separator} #[fg=blue]%d-%b-%y %a "
+
+set -g @tmux_power_theme 'gold'
+set -g @tmux_power_prefix_highlight_pos 'R'
+set -g @tmux_power_time_format '%H:%M:%S %Z'
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
+# set -g @plugin 'kiooss/tmux-power'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
-set -g @plugin 'jatap/tmux-base16-statusline'
-set -g @plugin 'thewtex/tmux-mem-cpu-load'
+# set -g @plugin 'jatap/tmux-base16-statusline'
+# set -g @plugin 'thewtex/tmux-mem-cpu-load'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 
+run-shell "~/.dotfiles/link/tmux/tmux-power.tmux"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 run '~/.tmux/plugins/tpm/tpm'
-
-set -g status-right-length 100

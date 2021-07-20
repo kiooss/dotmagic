@@ -60,7 +60,7 @@ else
   endtry
 endif
 
-highlight User1 guibg=#282828 gui=bold,italic
+highlight User1 guibg=#333333 gui=bold,italic
 highlight Comment gui=bold,italic
 highlight Folded gui=bold,italic
 highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse

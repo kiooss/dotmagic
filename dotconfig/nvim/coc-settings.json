@@ -21,6 +21,7 @@
   "list.indicator": "❯❯❯",
   "phpls.enable": false,
   "prettier.singleQuote": true,
+  "prettier.onlyUseLocalVersion": true,
   "session.directory": "~/.cache/vim/sessions",
   "solargraph.checkGemVersion": true,
   "snippets.ultisnips.enable": false,

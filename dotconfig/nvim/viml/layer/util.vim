@@ -27,10 +27,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-unimpaired'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'algotech/ultisnips-php'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'algotech/ultisnips-php'
 Plug 'epilande/vim-react-snippets'
+
 Plug 'mattn/vim-sqlfmt'
 
 if !has('mac')

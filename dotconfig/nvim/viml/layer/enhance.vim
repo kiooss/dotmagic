@@ -12,5 +12,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-endwise'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
+if has('nvim-0.5')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
+endif

@@ -32,7 +32,8 @@ else
     " let g:gruvbox_invert_tabline = 1
     " let g:gruvbox_improved_strings = 1
     let g:gruvbox_improved_warnings = 1
-    colorscheme gruvbox
+    " colorscheme gruvbox
+    colorscheme happy_hacking
     """ gotham
     " let g:airline_theme='gotham'
     " colorscheme gotham

@@ -13,3 +13,4 @@ Plug 'tpope/vim-endwise'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'p00f/nvim-ts-rainbow'

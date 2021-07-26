@@ -27,13 +27,11 @@ else
 
     " colorscheme onedark
 
-    let g:gruvbox_contrast_dark = 'medium'
     " let g:gruvbox_contrast_light = 'medium'
     " let g:gruvbox_invert_tabline = 1
     " let g:gruvbox_improved_strings = 1
-    let g:gruvbox_improved_warnings = 1
+    " let g:gruvbox_improved_warnings = 1
     " colorscheme gruvbox
-    colorscheme happy_hacking
     """ gotham
     " let g:airline_theme='gotham'
     " colorscheme gotham
@@ -50,11 +48,11 @@ else
     " let g:palenight_terminal_italics=1
     " colorscheme palenight
     """ ayu
-    " let g:airline_theme='ayu'
-    " let ayucolor='light'  " for light version of theme
-    " let ayucolor='mirage' " for mirage version of theme
-    " let ayucolor='dark'   " for dark version of theme
-    " colorscheme ayu
+    let g:airline_theme='ayu'
+    let ayucolor='light'  " for light version of theme
+    let ayucolor='mirage' " for mirage version of theme
+    let ayucolor='dark'   " for dark version of theme
+    colorscheme ayu
   catch
     colorscheme desert
     highlight ColorColumn guibg=Grey40

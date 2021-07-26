@@ -16,7 +16,7 @@ let g:ale_linters = {
       \   'php': [],
       \   'javascript': [],
       \   'typescript': [],
-      \   'ruby': ['rubocop'],
+      \   'ruby': [],
       \   'vim': ['vint'],
       \   'eruby': [],
       \}

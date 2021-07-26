@@ -10,13 +10,13 @@
     ".projections.json"
   ],
   /* "diagnostic.displayByAle": true, */
-  "diagnostic.checkCurrentLine": true,
+  "diagnostic.checkCurrentLine": false,
   "diagnostic.errorSign": "✗",
   "diagnostic.infoSign": "ℹ",
   "diagnostic.warningSign": "⚠",
   "diagnostic.hintSign": "\ufaa5", //瘟
+  "diagnostic.messageTarget": "echo",
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": ["javascript","javascriptreact", "typescript", "vue"],
   "git.enableGutters": false,
   "list.indicator": "❯❯❯",
   "phpls.enable": false,

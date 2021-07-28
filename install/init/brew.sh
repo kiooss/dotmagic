@@ -34,19 +34,18 @@ function brew_add_taps() {
 
 # Install Homebrew casks.
 function brew_install_casks() {
-  casks=($(setdiff "${casks[*]}" "$(brew cask list 2>/dev/null)"))
+  casks=($(setdiff "${casks[*]}" "$(brew list --cask 2>/dev/null)"))
   if (( ${#casks[@]} > 0 )); then
     e_info "Installing Homebrew casks: ${casks[*]}"
     for cask in "${casks[@]}"; do
-      brew cask install $cask
+      brew install $cask
     done
-    brew cask cleanup
   fi
 }
 
 # Install Homebrew recipes.
 function brew_install_recipes() {
-  recipes=($(setdiff "${recipes[*]}" "$(brew list)"))
+  recipes=($(setdiff "${recipes[*]}" "$(brew list --formula)"))
   if (( ${#recipes[@]} > 0 )); then
     e_info "Installing Homebrew recipes: ${recipes[*]}"
     for recipe in "${recipes[@]}"; do
@@ -153,6 +152,7 @@ recipes=(
   exa
   fd
   git
+  git-delta
   highlight
   hub
   jq

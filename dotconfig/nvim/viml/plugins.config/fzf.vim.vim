@@ -5,7 +5,7 @@ if has('nvim') || has('gui_running')
 endif
 
 " Fzf previx
-let g:fzf_command_prefix = 'Fzf'
+" let g:fzf_command_prefix = 'Fzf'
 
 let g:fzf_files_options='--preview-window down:wrap --reverse'
 let g:fzf_layout = { 'window': 'call UserFzfOpenWin()' }
@@ -46,25 +46,25 @@ endfunction
 " command! -bang -nargs=? -complete=dir FzfFiles
 "   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('down:50%', '?'), <bang>0)
 
-command! -bang -nargs=? -complete=dir FzfFiles
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+" command! -bang -nargs=? -complete=dir FzfFiles
+"   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-command! -bang -nargs=? -complete=dir FzfGFiles
-  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+" command! -bang -nargs=? -complete=dir FzfGFiles
+"   \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " Ag match only file content, but not file name.
-command! -bang -nargs=* FzfGrepWord
+command! -bang -nargs=* GrepWord
   \ call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 command! -bang -nargs=+ -complete=dir Rag call fzf#vim#ag_raw(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FzfGFiles\<cr>"
-nnoremap <silent> <Leader>f :FzfGFiles --exclude-standard --cached --others<CR>
-nnoremap <silent> <Leader>F :FzfFiles<CR>
-nnoremap <silent> <Leader>bc :FzfBCommits<CR>
-nnoremap <silent> <Leader>; :FzfLines<CR>
-nnoremap <silent> <Leader>g :FzfGrepWord<CR>
-xnoremap <silent> <Leader>g y:FzfGrepWord <C-R>"<CR>
-nnoremap <silent> <Leader>ag :FzfAg <C-R><C-W><CR>
-nnoremap <silent> <Leader>AG :FzfAg <C-R><C-A><CR>
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
+nnoremap <silent> <Leader>f :GFiles --exclude-standard --cached --others<CR>
+nnoremap <silent> <Leader>F :Files<CR>
+nnoremap <silent> <Leader>bc :BCommits<CR>
+nnoremap <silent> <Leader>; :Lines<CR>
+nnoremap <silent> <Leader>g :GrepWord<CR>
+xnoremap <silent> <Leader>g y:GrepWord <C-R>"<CR>
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
 inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')

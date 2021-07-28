@@ -12,7 +12,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	# pager = diff-so-fancy | less --tabs=4 -RFX
 	# pager =  "nkf -w | LESSCHARSET=utf-8 less"
 	quotepath = false
 	attributesfile = ~/.gitattributes
@@ -21,6 +21,25 @@
 	# log = diff-so-fancy | $(git config --get core.pager)
 	# diff = diff-so-fancy | $(git config --get core.pager)
 	# show = diff-so-fancy | $(git config --get core.pager)
+
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	features = side-by-side line-numbers decorations
+	whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+
 
 # [format]
 #     pretty = onelineplus

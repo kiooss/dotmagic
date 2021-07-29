@@ -19,7 +19,7 @@
 	url = https://github.com/mhagger/git-when-merged.git
 [submodule "vendor/cacheable-api"]
 	path = vendor/cacheable-api
-	url = git@me.github.com:kiooss/cacheable-api.git
+	url = https://github.com/kiooss/cacheable-api.git
 [submodule "zsh/omz_custom/themes/powerlevel10k"]
 	path = zsh/omz_custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git

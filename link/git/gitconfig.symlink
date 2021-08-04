@@ -50,6 +50,7 @@
 
 [log]
 	date = iso # show iso format date in log
+	decorate = true
 
 [push]
 	default = current

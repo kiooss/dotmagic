@@ -126,7 +126,7 @@ if "$show_web_reachable"; then
 fi
 
 RS="#[fg=blue,bg=$G07] #(get-weather) #[fg=$G06,bg=$G07]$left_arrow_icon$RS"
-RS="#[fg=$G03,bg=$BG]$left_arrow_icon#[fg=$TC,bg=$G03] #{ram_fg_color}  #{ram_icon} #{ram_percentage} #{cpu_fg_color}  #{cpu_icon} #{cpu_percentage} #[fg=$G07,bg=$G03]$left_arrow_icon$RS"
+RS="#[fg=$G03,bg=$BG]$left_arrow_icon#[fg=$TC,bg=$G03] #{cpu_fg_color}  #{cpu_icon} #{cpu_percentage} /#{ram_fg_color}  #{ram_icon} #{ram_percentage} #[fg=$G07,bg=$G03]$left_arrow_icon$RS"
 
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"

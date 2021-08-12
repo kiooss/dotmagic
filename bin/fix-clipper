@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ssh dev rm .clipper.sock && ssh -O exit dev && ssh dev
+ssh $1 rm .clipper.sock; ssh -O exit $1 && ssh $1

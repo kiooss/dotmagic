@@ -3,7 +3,7 @@ alias e="$EDITOR"
 # alias vim="$EDITOR"
 
 alias zshrc="$EDITOR ~/.zshrc"
-alias zz="source ~/.zshenv && source ~/.zshrc"
+alias zz="source ~/.zshenv; source ~/.zshrc"
 
 # Filesystem aliases
 alias ..='cd ..'
@@ -13,10 +13,10 @@ alias .....="cd ../../../.."
 
 # exa is a better ls tool
 if which exa >/dev/null 2>&1; then
-  alias ls='exa'
-  alias ll='exa -lag --git'
-  alias la='exa -laa --git'
-  alias l='exa -l --git'
+  alias ls='exa --icons'
+  alias ll='exa -lag --git --icons'
+  alias la='exa -laag --git --icons'
+  alias l='exa -l --git --icons'
 else
   alias l="ls -CF"
   alias la="ls -AF"

@@ -7,6 +7,10 @@
 [include]
 	path=.secret_gitconfig
 
+[include]
+	path = ~/workspace/delta/themes.gitconfig
+
+
 [github]
 	user = kiooss
 
@@ -257,3 +261,9 @@
 	stripLeadingSymbols = false
 [init]
 	defaultBranch = main
+
+[delta]
+	# features = collared-trogon
+	# features = woolly-mammoth
+	features = mantis-shrimp
+	side-by-side = true

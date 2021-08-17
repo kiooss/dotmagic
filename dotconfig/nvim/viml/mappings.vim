@@ -302,6 +302,9 @@ vnoremap > >gv
 " Substitute.
 xnoremap s :s//g<Left><Left>
 
+" add line number
+xnoremap l :s/^/\=(line('.')-line("'<")+1).'. '/g
+
 " C-r: Easier search and replace
 xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 

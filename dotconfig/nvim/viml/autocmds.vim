@@ -31,6 +31,7 @@ augroup MyAutoCmd
   autocmd FileType qf wincmd J
   autocmd FileType qf noremap <buffer> q :q<cr>
   autocmd FileType apache setlocal commentstring=#\ %s
+  autocmd FileType pfmain setlocal commentstring=#\ %s
   autocmd FileType php setlocal commentstring=//\ %s
   autocmd FileType gitconfig setlocal commentstring=#\ %s
   autocmd FileType vue setlocal commentstring=//\ %s

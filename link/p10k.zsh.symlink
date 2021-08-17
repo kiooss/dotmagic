@@ -105,6 +105,7 @@
     newline
     time                    # current time
     proxy_state
+    clipper_state
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -1662,6 +1663,17 @@
     if [[ -z "$all_proxy" ]]; then
     else
       p10k segment -b 1 -f 3 -i '' -t 'on'
+    fi
+  }
+
+  function prompt_clipper_state() {
+    if [[ "$OSTYPE" = darwin* ]]; then
+      return
+    fi
+    if nc -z -U ~/.clipper.sock 2>/dev/null; then
+      p10k segment -b 2 -f 15 -i '' -t 'clipper'
+    else
+      p10k segment -b 3 -f 18 -i '' -t 'clipper disconnected'
     fi
   }
   # add by me end

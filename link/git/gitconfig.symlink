@@ -265,5 +265,5 @@
 [delta]
 	# features = collared-trogon
 	# features = woolly-mammoth
-	features = mantis-shrimp
-	side-by-side = true
+	# features = mantis-shrimp
+	# side-by-side = true

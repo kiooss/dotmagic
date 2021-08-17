@@ -48,11 +48,13 @@ else
     " let g:palenight_terminal_italics=1
     " colorscheme palenight
     """ ayu
-    let g:airline_theme='ayu'
-    let ayucolor='light'  " for light version of theme
-    let ayucolor='mirage' " for mirage version of theme
-    let ayucolor='dark'   " for dark version of theme
-    colorscheme ayu
+    " let g:airline_theme='ayu'
+    " let ayucolor='light'  " for light version of theme
+    " let ayucolor='mirage' " for mirage version of theme
+    " let ayucolor='dark'   " for dark version of theme
+    " colorscheme ayu
+
+    colorscheme OceanicNext
   catch
     colorscheme desert
     highlight ColorColumn guibg=Grey40

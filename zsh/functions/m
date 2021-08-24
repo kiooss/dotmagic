@@ -1,0 +1,1 @@
+mycli -uroot -proot $1

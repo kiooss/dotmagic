@@ -1,0 +1,13 @@
+#compdef m
+#autoload
+
+_m() {
+  local databases
+  databases=(${(f)"$(mysql -uroot -proot -e 'show databases;' -B -N | grep -vE 'information_schema|mysql|performance_schema|sys|test')"})
+
+  _describe -t databases "mysql databases" databases
+
+  return
+}
+
+compdef _m m

@@ -148,6 +148,7 @@ fi
 # plugins config {{{
 # oh-my-zsh plugins
 plugins=(
+  aliases
   cp
   capistrano
   colored-man-pages
@@ -168,6 +169,7 @@ plugins=(
   zsh-navigation-tools
   zsh-syntax-highlighting
   zsh-completions
+  zsh_reload
 )
 
 plugins_on_need=(

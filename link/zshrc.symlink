@@ -429,3 +429,15 @@ elif type compctl &>/dev/null; then
   compctl -K _pm2_completion + -f + pm2
 fi
 ###-end-pm2-completion-###
+
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+NOCOLOR="\033[0m"
+
+### check clipper state
+if [[ "$OSTYPE" != darwin* ]]; then
+  if nc -z -U ~/.clipper.sock 2>/dev/null; then
+  else
+     echo -e "${RED}WARN:  clipper disconnected!!!${NOCOLOR}"
+  fi
+fi

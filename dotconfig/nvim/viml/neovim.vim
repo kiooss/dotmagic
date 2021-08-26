@@ -84,4 +84,5 @@ endfunction
 augroup neovim
   autocmd!
   autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
+  autocmd VimLeave,VimSuspend * set guicursor=a:ver25-blinkon10
 augroup end

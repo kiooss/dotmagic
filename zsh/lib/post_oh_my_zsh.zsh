@@ -57,3 +57,5 @@ zstyle ':completion:*' completer _complete _prefix _correct _match _approximate
 zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-shlashes 'yes'
 zstyle ':completion::complete:*' '\\'
+
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'

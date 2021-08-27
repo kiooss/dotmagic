@@ -1,2 +1,3 @@
 #compdef h
-_files -W ~ -/
+_dir_list -W ~
+# _files -W ~ -/

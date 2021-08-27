@@ -1,2 +1,3 @@
 #compdef c
-_files -W $CODE_DIR -/
+_dir_list -W $CODE_DIR
+# _files -W $CODE_DIR -/

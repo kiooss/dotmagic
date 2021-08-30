@@ -18,4 +18,5 @@ Plug 'p00f/nvim-ts-rainbow'
 
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'akinsho/bufferline.nvim'
 endif

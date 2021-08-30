@@ -58,7 +58,7 @@ command! -bang -nargs=* GrepWord
 
 command! -bang -nargs=+ -complete=dir Rag call fzf#vim#ag_raw(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
+" nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
 nnoremap <silent> <Leader>f :GFiles --exclude-standard --cached --others<CR>
 nnoremap <silent> <Leader>F :Files<CR>
 nnoremap <silent> <Leader>bc :BCommits<CR>

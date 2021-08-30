@@ -9,6 +9,8 @@ local gls = gl.section
 gl.short_line_list = {'plug', 'fugitive', 'NvimTree', 'vista', 'dbui', 'packer', 'startify', 'coc'}
 
 -- Functions
+local white_space = function() return ' ' end
+
 local function lsp_status(status)
     local shorter_stat = ''
     for match in string.gmatch(status, "[^%s]+")  do
@@ -263,7 +265,7 @@ gls.left[i] = {
   LeftEnd = {
     provider = function() return '' end,
     condition = condition.buffer_not_empty,
-    highlight = {colors.section_bg,colors.bg}
+    highlight = { colors.section_bg, colors.bg }
   }
 }
 
@@ -271,16 +273,8 @@ i = i + 1
 gls.left[i] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
-    icon = '  ',
+    icon = '   ',
     highlight = {colors.red,colors.section_bg}
-  }
-}
-
-i = i + 1
-gls.left[i] = {
-  Space = {
-    provider = function () return ' ' end,
-    highlight = {colors.section_bg,colors.section_bg},
   }
 }
 
@@ -288,16 +282,8 @@ i = i + 1
 gls.left[i] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
-    icon = '  ',
+    icon = '   ',
     highlight = {colors.orange,colors.section_bg},
-  }
-}
-
-i = i + 1
-gls.left[i] = {
-  Space = {
-    provider = function () return ' ' end,
-    highlight = {colors.section_bg,colors.section_bg},
   }
 }
 
@@ -305,16 +291,8 @@ i = i + 1
 gls.left[i] = {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
-    icon = '  ',
+    icon = '   ',
     highlight = {colors.blue, colors.section_bg},
-  }
-}
-
-i = i + 1
-gls.left[i] = {
-  Space = {
-    provider = function () return ' ' end,
-    highlight = {colors.section_bg,colors.section_bg},
   }
 }
 
@@ -322,30 +300,40 @@ i = i + 1
 gls.left[i] = {
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
-    icon = '  ',
+    icon = '   ',
     highlight = {colors.blue,colors.section_bg},
+    -- separator = '',
+    -- separator_highlight = { colors.section_bg, colors.bg },
+  }
+}
+
+i = i + 1
+gls.left[i] = {
+  Space = {
+    provider = white_space,
+    highlight = {colors.section_bg, colors.section_bg},
     separator = '',
     separator_highlight = { colors.section_bg, colors.bg },
   }
 }
 
 -- Mid side
--- gls.mid[1] = {
---   ShowLspClient = {
---     provider = 'GetLspClient',
---     condition = function ()
---       local tbl = {['dashboard'] = true,['']=true}
---       if tbl[vim.bo.filetype] then
---         return false
---       end
---       return true
---     end,
---     icon = '  LSP:',
---     highlight = { colors.cyan, colors.section_bg, 'bold' }
---   }
--- }
-
 gls.mid[1] = {
+  ShowLspClient = {
+    provider = 'GetLspClient',
+    condition = function ()
+      local tbl = {['dashboard'] = true,['']=true}
+      if tbl[vim.bo.filetype] then
+        return false
+      end
+      return true
+    end,
+    icon = '  LSP: ',
+    highlight = { colors.cyan, colors.section_bg, 'bold' }
+  }
+}
+
+gls.mid[2] = {
   CocStatus = {
     provider = CocStatus,
     highlight = {colors.green, colors.section_bg },

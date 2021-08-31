@@ -68,6 +68,7 @@
   },
   "python.pythonPath": "/home/yang/.pyenv/versions/sato/bin/python",
   /* "python.venvPath": "/home/yang/.pyenv/versions/sato", */
+  "Lua.diagnostics.globals": ["vim"],
   "markdownlint.onOpen": false,
   "solargraph.diagnostics": true
   /* "weather.aqi.token": "9ff83d20e4304845fde8dfa37ebfe983a9dc600c", */

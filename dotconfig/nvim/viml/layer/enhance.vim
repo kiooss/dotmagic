@@ -20,4 +20,7 @@ Plug 'yamatsum/nvim-nonicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/bufferline.nvim'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 endif

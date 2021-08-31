@@ -8,7 +8,8 @@ endif
 " let g:fzf_command_prefix = 'Fzf'
 
 let g:fzf_files_options='--preview-window down:wrap --reverse'
-let g:fzf_layout = { 'window': 'call UserFzfOpenWin()' }
+" let g:fzf_layout = { 'window': 'call UserFzfOpenWin()' }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 
 function! UserFzfOpenWin()
     let width = min([&columns - 4, max([80, &columns - 20])])

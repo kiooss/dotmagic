@@ -4,9 +4,8 @@ local fileinfo = require('galaxyline.provider_fileinfo')
 local condition = require('galaxyline.condition')
 local iconz = require("nvim-nonicons")
 
-
 local gls = gl.section
-gl.short_line_list = {'plug', 'fugitive', 'NvimTree', 'vista', 'dbui', 'packer', 'startify', 'coc'}
+gl.short_line_list = {'plug', 'fugitive', 'NvimTree', 'vista', 'dbui', 'packer', 'startify', 'coc', 'help'}
 
 -- Functions
 local white_space = function() return ' ' end
@@ -383,6 +382,18 @@ gls.right[i] = {
 
 i = i + 1
 gls.right[i] = {
+  LineCount = {
+    provider = function ()
+      return vim.fn.line('$')
+    end,
+    highlight = { colors.fg, colors.section_bg },
+    separator = '| ',
+    separator_highlight = { colors.red, colors.section_bg },
+  },
+}
+
+i = i + 1
+gls.right[i] = {
   PerCent = {
     provider = 'LinePercent',
     highlight = { colors.fg, colors.section_bg },
@@ -396,7 +407,7 @@ i = i + 1
 gls.right[i] = {
   ScrollBar = {
     provider = 'ScrollBar',
-    highlight = { colors.cyan, colors.purple },
+    highlight = { colors.cyan, colors.section_bg },
   }
 }
 
@@ -414,7 +425,7 @@ gls.right[i] = {
 gls.short_line_left[1] = {
   BufferType = {
     provider = 'FileTypeName',
-    highlight = { colors.fg, colors.section_bg },
+    highlight = { colors.fg, colors.section_bg, 'bold,italic' },
     separator = '',
     separator_highlight = { colors.section_bg, colors.bg },
   }

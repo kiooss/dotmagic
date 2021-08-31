@@ -1,7 +1,6 @@
 " nvim-treesitter
-if has('nvim-0.5')
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup {
   highlight = { enable = true },
   rainbow = {
     enable = true,
@@ -12,5 +11,3 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-
-endif

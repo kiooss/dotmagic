@@ -2,10 +2,10 @@ local vim = vim
 local gl = require('galaxyline')
 local fileinfo = require('galaxyline.provider_fileinfo')
 local condition = require('galaxyline.condition')
-local iconz = require("nvim-nonicons")
+-- local iconz = require("nvim-nonicons")
 
 local gls = gl.section
-gl.short_line_list = {'plug', 'fugitive', 'NvimTree', 'vista', 'dbui', 'packer', 'startify', 'coc', 'help'}
+gl.short_line_list = {'plug', 'fugitive', 'NvimTree', 'vista', 'dbui', 'packer', 'startify', 'coc', 'help', 'dashboard'}
 
 -- Functions
 local white_space = function() return ' ' end
@@ -42,50 +42,51 @@ CocStatus = get_diagnostic_info
 -- Icons
 local icons = {
     sep = {
-        right = "",
-        left = ""
+        right = "",
+        left = ""
     },
-    diagnostic = {
-        -- error = " ",
-        error = iconz.get("x-circle-fill"),
-        -- warn = " ",
-        warn = iconz.get("alert"),
-        -- info = " "
-        info = iconz.get("info"),
-        -- hint = "  "
-        hint = iconz.get("hint")
-    },
-    diff = {
-        added = iconz.get("diff-added"),
-        modified = iconz.get("diff-modified"),
-        removed = iconz.get("diff-removed"),
-        -- add = " ",
-        -- modified = " ",
-        -- remove = " "
-    },
-    git = iconz.get("git-branch"),
-    line_nr = iconz.get("list-ordered"),
-    file = {
-      read_only = '',
-      -- modified = '⨁ ',
-      -- modified = '✎',
-      modified = iconz.get("pencil"),
-    },
-    normal    = iconz.get("vim-normal-mode"),
-    insert    = iconz.get("vim-insert-mode"),
-    command   = iconz.get("vim-command-mode"),
-    visual    = iconz.get("vim-visual-mode"),
-    replace   = iconz.get("vim-replace-mode"),
-    selection = iconz.get("vim-select-mode"),
-    terminal  = iconz.get("terminal"),
-    visual_block = iconz.get("field")
+    -- diagnostic = {
+    --     -- error = " ",
+    --     error = iconz.get("x-circle-fill"),
+    --     -- warn = " ",
+    --     warn = iconz.get("alert"),
+    --     -- info = " "
+    --     info = iconz.get("info"),
+    --     -- hint = "  "
+    --     hint = iconz.get("hint")
+    -- },
+    -- diff = {
+    --     added = iconz.get("diff-added"),
+    --     modified = iconz.get("diff-modified"),
+    --     removed = iconz.get("diff-removed"),
+    --     -- add = " ",
+    --     -- modified = " ",
+    --     -- remove = " "
+    -- },
+    -- git = iconz.get("git-branch"),
+    line_nr = '',
+    -- file = {
+    --   read_only = '',
+    --   -- modified = '⨁ ',
+    --   -- modified = '✎',
+    --   modified = iconz.get("pencil"),
+    -- },
+    -- normal    = iconz.get("vim-normal-mode"),
+    -- insert    = iconz.get("vim-insert-mode"),
+    -- command   = iconz.get("vim-command-mode"),
+    -- visual    = iconz.get("vim-visual-mode"),
+    -- replace   = iconz.get("vim-replace-mode"),
+    -- selection = iconz.get("vim-select-mode"),
+    -- terminal  = iconz.get("terminal"),
+    -- visual_block = iconz.get("field")
     -- terminal  = iconz.get("vim-terminal-mode")
 }
 
 -- Colors
 local colors = {
   -- bg = '#282a36',
-  bg = "#343d46",
+  -- bg = "#343d46",
+  bg = "#1f2335",
   fg = '#f8f8f2',
   -- section_bg = '#38393f',
   section_bg = '#39313a',
@@ -178,7 +179,7 @@ gls.left[i] = {
       return mode_icon()..alias_mode..' '
     end,
     highlight = { colors.bg, colors.bg },
-    separator = " ",
+    separator = icons.sep.left .. ' ',
     separator_highlight = {colors.bg, colors.section_bg},
   },
 }
@@ -199,7 +200,7 @@ gls.left[i] = {
     provider = {'FileName','FileSize'},
     condition = condition.buffer_not_empty,
     highlight = { colors.fg, colors.section_bg, 'bold' },
-    separator = " ",
+    separator = icons.sep.left .. ' ',
     separator_highlight = {colors.section_bg, colors.bg},
   }
 }
@@ -233,7 +234,7 @@ i = i + 1
 gls.left[i] = {
   DiffAdd = {
     provider = 'DiffAdd',
-    condition = condition.hide_in_width,
+    condition = condition.check_git_workspace and condition.hide_in_width,
     icon = ' ',
     highlight = { colors.green, colors.bg },
   }
@@ -243,7 +244,7 @@ i = i + 1
 gls.left[i] = {
   DiffModified = {
     provider = 'DiffModified',
-    condition = condition.hide_in_width,
+    condition = condition.check_git_workspace and condition.hide_in_width,
     icon = ' ',
     highlight = { colors.orange, colors.bg },
   }
@@ -253,18 +254,11 @@ i = i + 1
 gls.left[i] = {
   DiffRemove = {
     provider = 'DiffRemove',
-    condition = condition.hide_in_width,
+    condition = condition.check_git_workspace and condition.hide_in_width,
     icon = ' ',
     highlight = { colors.red,colors.bg },
-  }
-}
-
-i = i + 1
-gls.left[i] = {
-  LeftEnd = {
-    provider = function() return '' end,
-    condition = condition.buffer_not_empty,
-    highlight = { colors.section_bg, colors.bg }
+    separator = icons.sep.left..' ',
+    separator_highlight = {colors.bg, colors.section_bg},
   }
 }
 
@@ -272,37 +266,8 @@ i = i + 1
 gls.left[i] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
-    icon = '   ',
-    highlight = {colors.red,colors.section_bg}
-  }
-}
-
-i = i + 1
-gls.left[i] = {
-  DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = '   ',
-    highlight = {colors.orange,colors.section_bg},
-  }
-}
-
-i = i + 1
-gls.left[i] = {
-  DiagnosticHint = {
-    provider = 'DiagnosticHint',
-    icon = '   ',
-    highlight = {colors.blue, colors.section_bg},
-  }
-}
-
-i = i + 1
-gls.left[i] = {
-  DiagnosticInfo = {
-    provider = 'DiagnosticInfo',
-    icon = '   ',
-    highlight = {colors.blue,colors.section_bg},
-    -- separator = '',
-    -- separator_highlight = { colors.section_bg, colors.bg },
+    icon = ' ',
+    highlight = {colors.red,colors.section_bg},
   }
 }
 
@@ -311,8 +276,58 @@ gls.left[i] = {
   Space = {
     provider = white_space,
     highlight = {colors.section_bg, colors.section_bg},
-    separator = '',
-    separator_highlight = { colors.section_bg, colors.bg },
+  }
+}
+
+i = i + 1
+gls.left[i] = {
+  DiagnosticWarn = {
+    provider = 'DiagnosticWarn',
+    icon = ' ',
+    highlight = {colors.orange,colors.section_bg},
+  }
+}
+
+i = i + 1
+gls.left[i] = {
+  Space = {
+    provider = white_space,
+    highlight = {colors.section_bg, colors.section_bg},
+  }
+}
+
+i = i + 1
+gls.left[i] = {
+  DiagnosticHint = {
+    provider = 'DiagnosticHint',
+    icon = ' ',
+    highlight = {colors.cyan , colors.section_bg},
+  }
+}
+
+i = i + 1
+gls.left[i] = {
+  Space = {
+    provider = white_space,
+    highlight = {colors.section_bg, colors.section_bg},
+  }
+}
+
+i = i + 1
+gls.left[i] = {
+  DiagnosticInfo = {
+    provider = 'DiagnosticInfo',
+    icon = ' ',
+    highlight = {colors.blue,colors.section_bg},
+  }
+}
+
+i = i + 1
+gls.left[i] = {
+  LeftEnd = {
+    provider = function() return icons.sep.left end,
+    condition = condition.buffer_not_empty,
+    highlight = { colors.section_bg, colors.bg }
   }
 }
 
@@ -327,8 +342,10 @@ gls.mid[1] = {
       end
       return true
     end,
-    icon = '  LSP: ',
-    highlight = { colors.cyan, colors.section_bg, 'bold' }
+    icon = ' ',
+    highlight = { colors.cyan, colors.section_bg, 'bold' },
+    separator = icons.sep.right,
+    separator_highlight = {colors.section_bg, colors.bg},
   }
 }
 
@@ -336,6 +353,13 @@ gls.mid[2] = {
   CocStatus = {
     provider = CocStatus,
     highlight = {colors.green, colors.section_bg },
+  }
+}
+
+gls.mid[3] = {
+  MidEnd = {
+    provider = function() return icons.sep.left end,
+    highlight = {colors.section_bg, colors.bg },
   }
 }
 
@@ -347,16 +371,16 @@ gls.right[i]= {
   FileFormat = {
     provider = function() return ' '..vim.bo.filetype..' ' end,
     highlight = { colors.fg, colors.section_bg },
-    separator = '',
+    separator = icons.sep.right,
     separator_highlight = { colors.section_bg, colors.bg },
   }
 }
 
 i = i + 1
 gls.right[i] = {
-  FileEF = { -- {{{2
+  FileEF = {
     highlight = { colors.fg, colors.bg },
-    separator = '',
+    separator = icons.sep.right,
     separator_highlight = { colors.bg, colors.section_bg },
 
     provider = function ()
@@ -374,8 +398,8 @@ gls.right[i] = {
   LineInfo = {
     provider = 'LineColumn',
     highlight = { colors.fg, colors.section_bg },
-    icon = '  ',
-    separator = '',
+    icon = ' '..icons.line_nr..' ',
+    separator = icons.sep.right,
     separator_highlight = { colors.section_bg, colors.bg },
   },
 }
@@ -426,7 +450,7 @@ gls.short_line_left[1] = {
   BufferType = {
     provider = 'FileTypeName',
     highlight = { colors.fg, colors.section_bg, 'bold,italic' },
-    separator = '',
+    separator = icons.sep.left,
     separator_highlight = { colors.section_bg, colors.bg },
   }
 }
@@ -435,7 +459,7 @@ gls.short_line_right[1] = {
   BufferIcon = {
     provider= 'BufferIcon',
     highlight = { colors.yellow, colors.section_bg },
-    separator = '',
+    separator = icons.sep.right,
     separator_highlight = { colors.section_bg, colors.bg },
   }
 }

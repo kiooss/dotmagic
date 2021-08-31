@@ -11,7 +11,8 @@ Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-sneak'
 Plug 'kkoomen/vim-doge'
 Plug 'lambdalisue/suda.vim'
-Plug 'liuchengxu/vim-which-key'
+" Plug 'liuchengxu/vim-which-key'
+Plug 'folke/which-key.nvim'
 Plug 'liuchengxu/vista.vim'
 Plug 'mbbill/undotree'
 Plug 'pechorin/any-jump.vim'
@@ -31,6 +32,8 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'algotech/ultisnips-p
 Plug 'epilande/vim-react-snippets'
 
 Plug 'mattn/vim-sqlfmt'
+
+" Plug 'henriquehbr/nvim-startup.lua'
 
 if !has('mac')
 Plug 'wincent/vim-clipper'

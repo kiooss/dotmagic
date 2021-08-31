@@ -54,7 +54,8 @@ else
     " let ayucolor='dark'   " for dark version of theme
     " colorscheme ayu
 
-    colorscheme OceanicNext
+    " colorscheme OceanicNext
+    colorscheme tokyonight
   catch
     colorscheme desert
     highlight ColorColumn guibg=Grey40

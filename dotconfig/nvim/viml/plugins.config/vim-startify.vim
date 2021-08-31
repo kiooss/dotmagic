@@ -31,5 +31,6 @@ let g:startify_skiplist = [
     \ ]
 
 function! StartifyEntryFormat()
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+  " return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+  return 'v:lua.require("utils").webDevIcons(absolute_path) . " " . entry_path'
 endfunction

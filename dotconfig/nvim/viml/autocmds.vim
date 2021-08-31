@@ -129,7 +129,7 @@ function! EmptyBuffer()
   endif
 endfunction
 
-let g:ColorColumnBlacklist = ['diff', 'fugitiveblame', 'undotree', 'nerdtree', 'qf', 'list']
+let g:ColorColumnBlacklist = ['diff', 'fugitiveblame', 'undotree', 'nerdtree', 'qf', 'list', 'dashboard', 'startify']
 
 function! s:should_colorcolumn() abort
   return index(g:ColorColumnBlacklist, &filetype) == -1

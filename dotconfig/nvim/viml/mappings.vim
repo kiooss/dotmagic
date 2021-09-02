@@ -59,7 +59,7 @@ nnoremap <silent> [Window]z  :wincmd z<CR>
 nnoremap <silent> <Tab>      :wincmd w<CR>
 " vsplit all buffers
 " nnoremap <leader>- :<C-u>vertical sball<CR>
-nnoremap <leader>e :<C-u>tab sball<CR>
+" nnoremap <leader>e :<C-u>tab sball<CR>
 
 nnoremap <silent> <Leader>- :vsplit<CR>:wincmd p<CR>:e#<CR>
 " switch tabs

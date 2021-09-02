@@ -31,4 +31,7 @@ Plug 'folke/todo-comments.nvim'
 
 " Plug 'folke/trouble.nvim'
 
+
+Plug 'mhartington/formatter.nvim' ", { 'as': 'formatter' }
+
 endif

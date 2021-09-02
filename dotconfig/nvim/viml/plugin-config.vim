@@ -12,3 +12,5 @@ if len(get(g:, 'plugs_order', [])) !=# 0
 endif
 
 execute 'source ' . s:script_cwd . '/mix.config.vim'
+
+lua require('plugins.formatter')

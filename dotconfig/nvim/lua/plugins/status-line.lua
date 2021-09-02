@@ -1,86 +1,87 @@
 local vim = vim
-local gl = require('galaxyline')
-local fileinfo = require('galaxyline.provider_fileinfo')
-local condition = require('galaxyline.condition')
-local utils = require('utils')
+local gl = require("galaxyline")
+local fileinfo = require("galaxyline.provider_fileinfo")
+local condition = require("galaxyline.condition")
+local utils = require("utils")
 -- local iconz = require("nvim-nonicons")
 
 local gls = gl.section
-gl.short_line_list = {'plug', 'fugitive', 'NvimTree', 'vista', 'dbui', 'packer', 'startify', 'coc', 'help', 'dashboard'}
+gl.short_line_list = {"plug", "fugitive", "NvimTree", "vista", "dbui", "packer", "startify", "coc", "help", "dashboard"}
 
 -- Functions
-local white_space = function() return ' ' end
-
-local function lsp_status(status)
-    local shorter_stat = ''
-    for match in string.gmatch(status, "[^%s]+")  do
-        local err_warn = string.find(match, "^[WE]%d+", 0)
-        if not err_warn then
-            shorter_stat = shorter_stat .. ' ' .. match
-        end
-    end
-    return shorter_stat
+local white_space = function()
+  return " "
 end
 
+local function lsp_status(status)
+  local shorter_stat = ""
+  for match in string.gmatch(status, "[^%s]+") do
+    local err_warn = string.find(match, "^[WE]%d+", 0)
+    if not err_warn then
+      shorter_stat = shorter_stat .. " " .. match
+    end
+  end
+  return shorter_stat
+end
 
 local function get_coc_lsp()
-  local status = vim.fn['coc#status']()
-  if not status or status == '' then
-      return ''
+  local status = vim.fn["coc#status"]()
+  if not status or status == "" then
+    return ""
   end
   return lsp_status(status)
 end
 
 local function get_diagnostic_info()
-  if vim.fn.exists('*coc#rpc#start_server') == 1 then
+  if vim.fn.exists("*coc#rpc#start_server") == 1 then
     return get_coc_lsp()
   end
-  return ''
+  return ""
 end
 
 CocStatus = get_diagnostic_info
 
 -- Icons
 local icons = {
-    sep = {
-        right = "",
-        left = ""
-    },
-    -- diagnostic = {
-    --     -- error = " ",
-    --     error = iconz.get("x-circle-fill"),
-    --     -- warn = " ",
-    --     warn = iconz.get("alert"),
-    --     -- info = " "
-    --     info = iconz.get("info"),
-    --     -- hint = "  "
-    --     hint = iconz.get("hint")
-    -- },
-    -- diff = {
-    --     added = iconz.get("diff-added"),
-    --     modified = iconz.get("diff-modified"),
-    --     removed = iconz.get("diff-removed"),
-    --     -- add = " ",
-    --     -- modified = " ",
-    --     -- remove = " "
-    -- },
-    -- git = iconz.get("git-branch"),
-    line_nr = '',
-    -- file = {
-    --   read_only = '',
-    --   -- modified = '⨁ ',
-    --   -- modified = '✎',
-    --   modified = iconz.get("pencil"),
-    -- },
-    -- normal    = iconz.get("vim-normal-mode"),
-    -- insert    = iconz.get("vim-insert-mode"),
-    -- command   = iconz.get("vim-command-mode"),
-    -- visual    = iconz.get("vim-visual-mode"),
-    -- replace   = iconz.get("vim-replace-mode"),
-    -- selection = iconz.get("vim-select-mode"),
-    -- terminal  = iconz.get("terminal"),
-    -- visual_block = iconz.get("field")
-    -- terminal  = iconz.get("vim-terminal-mode")
+  sep = {
+    right = "",
+    left = ""
+  },
+  -- diagnostic = {
+  --     -- error = " ",
+  --     error = iconz.get("x-circle-fill"),
+  --     -- warn = " ",
+  --     warn = iconz.get("alert"),
+  --     -- info = " "
+  --     info = iconz.get("info"),
+  --     -- hint = "  "
+  --     hint = iconz.get("hint")
+  -- },
+  -- diff = {
+  --     added = iconz.get("diff-added"),
+  --     modified = iconz.get("diff-modified"),
+  --     removed = iconz.get("diff-removed"),
+  --     -- add = " ",
+  --     -- modified = " ",
+  --     -- remove = " "
+  -- },
+  -- git = iconz.get("git-branch"),
+  line_nr = ""
+  -- file = {
+  --   read_only = '',
+  --   -- modified = '⨁ ',
+  --   -- modified = '✎',
+  --   modified = iconz.get("pencil"),
+  -- },
+  -- normal    = iconz.get("vim-normal-mode"),
+  -- insert    = iconz.get("vim-insert-mode"),
+  -- command   = iconz.get("vim-command-mode"),
+  -- visual    = iconz.get("vim-visual-mode"),
+  -- replace   = iconz.get("vim-replace-mode"),
+  -- selection = iconz.get("vim-select-mode"),
+  -- terminal  = iconz.get("terminal"),
+  -- visual_block = iconz.get("field")
+  -- terminal  = iconz.get("vim-terminal-mode")
 }
 
 -- Colors
@@ -88,17 +89,17 @@ local colors = {
   -- bg = '#282a36',
   -- bg = "#343d46",
   bg = "#1f2335",
-  fg = '#f8f8f2',
+  fg = "#f8f8f2",
   -- section_bg = '#38393f',
-  section_bg = '#39313a',
-  yellow = '#f1fa8c',
-  cyan = '#8be9fd',
-  green = '#50fa7b',
-  violet = '#a9a1e1',
-  orange = '#ffb86c',
-  magenta = '#ff79c6',
-  blue = '#8be9fd',
-  red = '#ff5555'
+  section_bg = "#39313a",
+  yellow = "#f1fa8c",
+  cyan = "#8be9fd",
+  green = "#50fa7b",
+  violet = "#a9a1e1",
+  orange = "#ffb86c",
+  magenta = "#ff79c6",
+  blue = "#8be9fd",
+  red = "#ff5555"
 }
 
 -- -- Local helper functions
@@ -119,9 +120,9 @@ local mode_color = function()
     i = colors.green,
     c = colors.orange,
     V = colors.magenta,
-    [''] = colors.magenta,
+    [""] = colors.magenta,
     v = colors.magenta,
-    R = colors.red,
+    R = colors.red
   }
 
   local color = mode_colors[vim.fn.mode()]
@@ -133,16 +134,26 @@ local mode_color = function()
   return color
 end
 
-local mode_icon = function ()
+local mode_icon = function()
   local mode_icons = {
-    c = "🅒 ", ['!'] = "🅒 ",
-    i = "🅘 ", ic    = "🅘 ", ix     = "🅘 ",
+    c = "🅒 ",
+    ["!"] = "🅒 ",
+    i = "🅘 ",
+    ic = "🅘 ",
+    ix = "🅘 ",
     n = "🅝 ",
-    R = "🅡 ", Rv    = "🅡 ",
-    r = "🅡 ", rm    = "🅡 ", ['r?'] = "🅡 ",
-    s = "🅢 ", S     = "🅢 ", [''] = "🅢 ",
+    R = "🅡 ",
+    Rv = "🅡 ",
+    r = "🅡 ",
+    rm = "🅡 ",
+    ["r?"] = "🅡 ",
+    s = "🅢 ",
+    S = "🅢 ",
+    [""] = "🅢 ",
     t = "🅣 ",
-    v = "🅥 ", V     = "🅥 ", [''] = "🅥 ",
+    v = "🅥 ",
+    V = "🅥 ",
+    [""] = "🅥 "
   }
 
   return mode_icons[vim.fn.mode()]
@@ -154,9 +165,11 @@ local i = 0
 i = i + 1
 gls.left[i] = {
   FirstElement = {
-    provider = function() return '▋' end,
-    highlight = { colors.violet, colors.section_bg }
-  },
+    provider = function()
+      return "▋"
+    end,
+    highlight = {colors.violet, colors.section_bg}
+  }
 }
 
 i = i + 1
@@ -164,54 +177,55 @@ gls.left[i] = {
   ViMode = {
     provider = function()
       local alias = {
-        n = 'NORMAL',
-        i = 'INSERT',
-        c = 'COMMAND',
-        V = 'VISUAL',
-        [''] = 'VISUAL',
-        v = 'VISUAL',
-        R = 'REPLACE',
+        n = "NORMAL",
+        i = "INSERT",
+        c = "COMMAND",
+        V = "VISUAL",
+        [""] = "VISUAL",
+        v = "VISUAL",
+        R = "REPLACE"
       }
-      vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color()..' gui=bold')
+      vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color() .. " gui=bold")
       local alias_mode = alias[vim.fn.mode()]
       if alias_mode == nil then
         alias_mode = vim.fn.mode()
       end
-      return mode_icon()..alias_mode..' '
+      return mode_icon() .. alias_mode .. " "
     end,
-    highlight = { colors.bg, colors.bg },
-    separator = icons.sep.left .. ' ',
-    separator_highlight = {colors.bg, colors.section_bg},
-  },
+    highlight = {colors.bg, colors.bg},
+    separator = icons.sep.left .. " ",
+    separator_highlight = {colors.bg, colors.section_bg}
+  }
 }
 
-
 i = i + 1
-gls.left[i] ={
+gls.left[i] = {
   FileIcon = {
-    provider = 'FileIcon',
+    provider = "FileIcon",
     condition = condition.buffer_not_empty,
-    highlight = { require('galaxyline.provider_fileinfo').get_file_icon_color, colors.section_bg },
-  },
+    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.section_bg}
+  }
 }
 
 i = i + 1
 gls.left[i] = {
   FileName = {
-    provider = {'FileName','FileSize'},
+    provider = {"FileName", "FileSize"},
     condition = condition.buffer_not_empty,
-    highlight = { colors.fg, colors.section_bg, 'bold' },
-    separator = icons.sep.left .. ' ',
-    separator_highlight = {colors.section_bg, colors.bg},
+    highlight = {colors.fg, colors.section_bg, "bold"},
+    separator = icons.sep.left .. " ",
+    separator_highlight = {colors.section_bg, colors.bg}
   }
 }
 
 i = i + 1
 gls.left[i] = {
   GitIcon = {
-    provider = function() return ' ' end,
+    provider = function()
+      return " "
+    end,
     condition = condition.check_git_workspace,
-    highlight = { colors.red, colors.bg },
+    highlight = {colors.red, colors.bg}
   }
 }
 
@@ -219,56 +233,56 @@ i = i + 1
 gls.left[i] = {
   GitBranch = {
     provider = function()
-      local vcs = require('galaxyline.provider_vcs')
+      local vcs = require("galaxyline.provider_vcs")
       local branch_name = vcs.get_git_branch()
       if (string.len(branch_name) > 28) then
-        return string.sub(branch_name, 1, 25).."..."
+        return string.sub(branch_name, 1, 25) .. "..."
       end
       return branch_name .. " "
     end,
     condition = condition.check_git_workspace,
-    highlight = { colors.fg, colors.bg, 'bold,italic'},
+    highlight = {colors.fg, colors.bg, "bold,italic"}
   }
 }
 
 i = i + 1
 gls.left[i] = {
   DiffAdd = {
-    provider = 'DiffAdd',
+    provider = "DiffAdd",
     condition = condition.check_git_workspace and condition.hide_in_width,
-    icon = ' ',
-    highlight = { colors.green, colors.bg },
+    icon = " ",
+    highlight = {colors.green, colors.bg}
   }
 }
 
 i = i + 1
 gls.left[i] = {
   DiffModified = {
-    provider = 'DiffModified',
+    provider = "DiffModified",
     condition = condition.check_git_workspace and condition.hide_in_width,
-    icon = ' ',
-    highlight = { colors.orange, colors.bg },
+    icon = " ",
+    highlight = {colors.orange, colors.bg}
   }
 }
 
 i = i + 1
 gls.left[i] = {
   DiffRemove = {
-    provider = 'DiffRemove',
+    provider = "DiffRemove",
     condition = condition.check_git_workspace and condition.hide_in_width,
-    icon = ' ',
-    highlight = { colors.red,colors.bg },
-    separator = icons.sep.left..' ',
-    separator_highlight = {colors.bg, colors.section_bg},
+    icon = " ",
+    highlight = {colors.red, colors.bg},
+    separator = icons.sep.left .. " ",
+    separator_highlight = {colors.bg, colors.section_bg}
   }
 }
 
 i = i + 1
 gls.left[i] = {
   DiagnosticError = {
-    provider = 'DiagnosticError',
-    icon = ' ',
-    highlight = {colors.red,colors.section_bg},
+    provider = "DiagnosticError",
+    icon = " ",
+    highlight = {colors.red, colors.section_bg}
   }
 }
 
@@ -276,16 +290,16 @@ i = i + 1
 gls.left[i] = {
   Space = {
     provider = white_space,
-    highlight = {colors.section_bg, colors.section_bg},
+    highlight = {colors.section_bg, colors.section_bg}
   }
 }
 
 i = i + 1
 gls.left[i] = {
   DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = ' ',
-    highlight = {colors.orange,colors.section_bg},
+    provider = "DiagnosticWarn",
+    icon = " ",
+    highlight = {colors.orange, colors.section_bg}
   }
 }
 
@@ -293,16 +307,16 @@ i = i + 1
 gls.left[i] = {
   Space = {
     provider = white_space,
-    highlight = {colors.section_bg, colors.section_bg},
+    highlight = {colors.section_bg, colors.section_bg}
   }
 }
 
 i = i + 1
 gls.left[i] = {
   DiagnosticHint = {
-    provider = 'DiagnosticHint',
-    icon = ' ',
-    highlight = {colors.cyan , colors.section_bg},
+    provider = "DiagnosticHint",
+    icon = " ",
+    highlight = {colors.cyan, colors.section_bg}
   }
 }
 
@@ -310,16 +324,16 @@ i = i + 1
 gls.left[i] = {
   Space = {
     provider = white_space,
-    highlight = {colors.section_bg, colors.section_bg},
+    highlight = {colors.section_bg, colors.section_bg}
   }
 }
 
 i = i + 1
 gls.left[i] = {
   DiagnosticInfo = {
-    provider = 'DiagnosticInfo',
-    icon = ' ',
-    highlight = {colors.blue,colors.section_bg},
+    provider = "DiagnosticInfo",
+    icon = " ",
+    highlight = {colors.blue, colors.section_bg}
   }
 }
 
@@ -328,9 +342,9 @@ gls.left[i] = {
   LeftEnd = {
     provider = white_space,
     condition = condition.buffer_not_empty,
-    highlight = { colors.section_bg, colors.section_bg },
-    separator = icons.sep.left..' ',
-    separator_highlight = { colors.section_bg, colors.bg },
+    highlight = {colors.section_bg, colors.section_bg},
+    separator = icons.sep.left .. " ",
+    separator_highlight = {colors.section_bg, colors.bg}
   }
 }
 
@@ -338,39 +352,41 @@ i = i + 1
 gls.left[i] = {
   CurrentFunction = {
     provider = utils.coc_current_function,
-    highlight = {colors.green, colors.bg },
+    highlight = {colors.green, colors.bg}
   }
 }
 
 -- Mid side
 gls.mid[1] = {
   ShowLspClient = {
-    provider = 'GetLspClient',
-    condition = function ()
-      local tbl = {['dashboard'] = true,['']=true}
+    provider = "GetLspClient",
+    condition = function()
+      local tbl = {["dashboard"] = true, [""] = true}
       if tbl[vim.bo.filetype] then
         return false
       end
       return true
     end,
-    icon = ' ',
-    highlight = { colors.cyan, colors.section_bg, 'bold' },
+    icon = " ",
+    highlight = {colors.cyan, colors.section_bg, "bold"},
     separator = icons.sep.right,
-    separator_highlight = {colors.section_bg, colors.bg},
+    separator_highlight = {colors.section_bg, colors.bg}
   }
 }
 
 gls.mid[2] = {
   CocStatus = {
     provider = CocStatus,
-    highlight = {colors.green, colors.section_bg },
+    highlight = {colors.green, colors.section_bg}
   }
 }
 
 gls.mid[3] = {
   MidEnd = {
-    provider = function() return icons.sep.left end,
-    highlight = {colors.section_bg, colors.bg },
+    provider = function()
+      return icons.sep.left
+    end,
+    highlight = {colors.section_bg, colors.bg}
   }
 }
 
@@ -378,100 +394,103 @@ gls.mid[3] = {
 local i = 0
 
 i = i + 1
-gls.right[i]= {
+gls.right[i] = {
   FileFormat = {
-    provider = function() return ' '..vim.bo.filetype..' ' end,
-    highlight = { colors.fg, colors.section_bg },
+    provider = function()
+      return " " .. vim.bo.filetype .. " "
+    end,
+    highlight = {colors.fg, colors.section_bg},
     separator = icons.sep.right,
-    separator_highlight = { colors.section_bg, colors.bg },
+    separator_highlight = {colors.section_bg, colors.bg}
   }
 }
 
 i = i + 1
 gls.right[i] = {
   FileEF = {
-    highlight = { colors.fg, colors.bg },
+    highlight = {colors.fg, colors.bg},
     separator = icons.sep.right,
-    separator_highlight = { colors.bg, colors.section_bg },
+    separator_highlight = {colors.bg, colors.section_bg},
+    provider = function()
+      local format_icon = {["DOS"] = " ", ["MAC"] = " ", ["UNIX"] = " "}
+      local encode = fileinfo.get_file_encode()
+      local format = fileinfo.get_file_format()
 
-    provider = function ()
-      local format_icon = {['DOS'] = " ", ['MAC'] = " ", ['UNIX'] = " "}
-      local encode      = fileinfo.get_file_encode()
-      local format      = fileinfo.get_file_format()
-
-      return encode..' '..format_icon[format]
-    end,
+      return encode .. " " .. format_icon[format]
+    end
   }
 }
 
 i = i + 1
 gls.right[i] = {
   LineInfo = {
-    provider = 'LineColumn',
-    highlight = { colors.fg, colors.section_bg },
-    icon = ' '..icons.line_nr..' ',
+    provider = "LineColumn",
+    highlight = {colors.fg, colors.section_bg},
+    icon = " " .. icons.line_nr .. " ",
     separator = icons.sep.right,
-    separator_highlight = { colors.section_bg, colors.bg },
-  },
+    separator_highlight = {colors.section_bg, colors.bg}
+  }
 }
 
 i = i + 1
 gls.right[i] = {
   LineCount = {
-    provider = function ()
-      return vim.fn.line('$')
+    provider = function()
+      return vim.fn.line("$")
     end,
-    highlight = { colors.fg, colors.section_bg },
-    separator = '| ',
-    separator_highlight = { colors.red, colors.section_bg },
-  },
+    highlight = {colors.fg, colors.section_bg},
+    separator = "| ",
+    separator_highlight = {colors.red, colors.section_bg}
+  }
 }
 
 i = i + 1
 gls.right[i] = {
   PerCent = {
-    provider = 'LinePercent',
-    highlight = { colors.fg, colors.section_bg },
+    provider = "LinePercent",
+    highlight = {colors.fg, colors.section_bg},
     -- separator = ' | ',
     separator = " ",
-    separator_highlight = { colors.cyan, colors.section_bg },
-  },
+    separator_highlight = {colors.cyan, colors.section_bg}
+  }
 }
 
 i = i + 1
 gls.right[i] = {
   ScrollBar = {
-    provider = 'ScrollBar',
-    highlight = { colors.cyan, colors.section_bg },
+    provider = "ScrollBar",
+    highlight = {colors.cyan, colors.section_bg}
   }
 }
 
 i = i + 1
 gls.right[i] = {
   Heart = {
-    provider = function() return ' ' end,
-    highlight = { colors.red, colors.section_bg },
-    separator = ' | ',
-    separator_highlight = { colors.bg, colors.section_bg },
+    provider = function()
+      return " "
+    end,
+    highlight = {colors.red, colors.section_bg},
+    separator = " | ",
+    separator_highlight = {colors.bg, colors.section_bg}
   }
 }
 
 -- Short status line
 gls.short_line_left[1] = {
   BufferType = {
-    provider = 'FileTypeName',
-    highlight = { colors.fg, colors.section_bg, 'bold,italic' },
+    provider = "FileTypeName",
+    highlight = {colors.fg, colors.section_bg, "bold,italic"},
     separator = icons.sep.left,
-    separator_highlight = { colors.section_bg, colors.bg },
+    separator_highlight = {colors.section_bg, colors.bg}
   }
 }
 
 gls.short_line_right[1] = {
   BufferIcon = {
-    provider= 'BufferIcon',
-    highlight = { colors.yellow, colors.section_bg },
+    provider = "BufferIcon",
+    highlight = {colors.yellow, colors.section_bg},
     separator = icons.sep.right,
-    separator_highlight = { colors.section_bg, colors.bg },
+    separator_highlight = {colors.section_bg, colors.bg}
   }
 }
 

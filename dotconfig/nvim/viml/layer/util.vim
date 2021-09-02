@@ -3,7 +3,7 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'chrisbra/vim-zsh'
 Plug 'christianrondeau/vim-base64'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'

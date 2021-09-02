@@ -2,6 +2,7 @@ local vim = vim
 local gl = require('galaxyline')
 local fileinfo = require('galaxyline.provider_fileinfo')
 local condition = require('galaxyline.condition')
+local utils = require('utils')
 -- local iconz = require("nvim-nonicons")
 
 local gls = gl.section
@@ -33,7 +34,7 @@ end
 local function get_diagnostic_info()
   if vim.fn.exists('*coc#rpc#start_server') == 1 then
     return get_coc_lsp()
-    end
+  end
   return ''
 end
 
@@ -325,9 +326,19 @@ gls.left[i] = {
 i = i + 1
 gls.left[i] = {
   LeftEnd = {
-    provider = function() return icons.sep.left end,
+    provider = white_space,
     condition = condition.buffer_not_empty,
-    highlight = { colors.section_bg, colors.bg }
+    highlight = { colors.section_bg, colors.section_bg },
+    separator = icons.sep.left..' ',
+    separator_highlight = { colors.section_bg, colors.bg },
+  }
+}
+
+i = i + 1
+gls.left[i] = {
+  CurrentFunction = {
+    provider = utils.coc_current_function,
+    highlight = {colors.green, colors.bg },
   }
 }
 

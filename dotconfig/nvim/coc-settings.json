@@ -1,7 +1,7 @@
 {
-  "codeLens.enable": false,
+  "codeLens.enable": true,
   "coc.preferences.extensionUpdateCheck": "weekly",
-  "coc.preferences.currentFunctionSymbolAutoUpdate": false,
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.rootPatterns": [
     ".git",
     ".hg",
@@ -9,13 +9,12 @@
     ".env",
     ".projections.json"
   ],
-  /* "diagnostic.displayByAle": true, */
   "diagnostic.checkCurrentLine": false,
-  "diagnostic.errorSign": "✗",
-  "diagnostic.infoSign": "ℹ",
-  "diagnostic.warningSign": "⚠",
-  "diagnostic.hintSign": "\ufaa5", //瘟
-  "diagnostic.messageTarget": "echo",
+  "diagnostic.errorSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.hintSign": "",
+  /* "diagnostic.messageTarget": "echo", */
   "eslint.autoFixOnSave": true,
   "git.enableGutters": false,
   "list.indicator": "❯❯❯",
@@ -24,6 +23,8 @@
   "prettier.onlyUseLocalVersion": true,
   "session.directory": "~/.cache/vim/sessions",
   "solargraph.checkGemVersion": true,
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
   "snippets.ultisnips.enable": false,
   "suggest.echodocSupport": false,
   "suggest.snippetIndicator": "⭐︎",
@@ -69,8 +70,7 @@
   "python.pythonPath": "/home/yang/.pyenv/versions/sato/bin/python",
   /* "python.venvPath": "/home/yang/.pyenv/versions/sato", */
   "Lua.diagnostics.globals": ["vim"],
-  "markdownlint.onOpen": false,
-  "solargraph.diagnostics": true
+  "markdownlint.onOpen": false
   /* "weather.aqi.token": "9ff83d20e4304845fde8dfa37ebfe983a9dc600c", */
   /* "weather.aqi.city": "suzhou", */
   /* "weather.aqi.interval": 60 */

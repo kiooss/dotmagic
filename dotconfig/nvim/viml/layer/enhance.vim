@@ -28,4 +28,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/todo-comments.nvim'
 
 " Plug 'neovim/nvim-lspconfig'
+
+" Plug 'folke/trouble.nvim'
+
 endif

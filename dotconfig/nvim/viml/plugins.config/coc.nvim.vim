@@ -116,6 +116,10 @@ inoremap <silent><expr> <c-g> coc#refresh()
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+
 " CocList
 nnoremap <leader>l  :<C-u>CocList<space>
 nnoremap <leader>S  :<C-u>CocSearch<space>
@@ -174,13 +178,10 @@ nnoremap <silent><expr> n line('$') > 10000 ? 'n' :
 nnoremap <silent><expr> * line('$') > 10000 ? '*' :
         \ ":exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>"
 
-" navigate chunks of current buffer
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
 " show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
+" nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
-nmap gc <Plug>(coc-git-commit)
+" nmap gc <Plug>(coc-git-commit)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -199,6 +200,8 @@ nmap <leader>rl <Plug>(coc-codelens-action)
 " Remap for format selected region
 vmap \f  <Plug>(coc-format-selected)
 nmap \f  <Plug>(coc-format-selected)
+
+nmap <silent> <C-f> <Plug>(coc-format)
 
 nmap <silent> \t <Plug>(coc-translator-p)
 
@@ -220,7 +223,7 @@ nmap <silent> <C-d> <Plug>(coc-cursors-word)*
 xmap <silent> <C-d> y/\V<C-r>=escape(@",'/\')<CR><CR>gN<Plug>(coc-cursors-range)gn
 
 nnoremap <silent> ;f :<C-u>CocCommand eslint.executeAutofix<CR>
-nnoremap <silent> <C-f> :<C-u>CocCommand prettier.formatFile<CR>
+" nnoremap <silent> <C-f> :<C-u>CocCommand prettier.formatFile<CR>
 "}}}
 
 augroup MyAutoCmd

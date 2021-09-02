@@ -7,6 +7,7 @@ require("bufferline").setup{
     show_close_icon = false,
     show_buffer_close_icons = false,
     separator_style = 'slant',
+    diagnostics = "nvim_lsp"
   }
 }
 EOF

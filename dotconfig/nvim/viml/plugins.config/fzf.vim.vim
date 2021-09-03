@@ -63,6 +63,7 @@ command! -bang -nargs=+ -complete=dir Rag call fzf#vim#ag_raw(<q-args>, {'option
 nnoremap <silent> <Leader>f :GFiles --exclude-standard --cached --others<CR>
 nnoremap <silent> <Leader>F :Files<CR>
 nnoremap <silent> <Leader>bc :BCommits<CR>
+nnoremap <silent> <Leader>bl :BLines<CR>
 nnoremap <silent> <Leader>; :Lines<CR>
 nnoremap <silent> <Leader>g :GrepWord<CR>
 xnoremap <silent> <Leader>g y:GrepWord <C-R>"<CR>

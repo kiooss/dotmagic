@@ -11,6 +11,10 @@ if len(get(g:, 'plugs_order', [])) !=# 0
   endfor
 endif
 
-execute 'source ' . s:script_cwd . '/mix.config.vim'
+" vim-sneak
+let g:sneak#label = 1
+
+" committia.vim
+let g:committia_min_window_width = 70
 
 lua require('plugins.formatter')

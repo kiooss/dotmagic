@@ -352,7 +352,7 @@ i = i + 1
 gls.left[i] = {
   CurrentFunction = {
     provider = utils.coc_current_function,
-    highlight = {colors.green, colors.bg}
+    highlight = {colors.green, colors.bg, 'bold,italic'}
   }
 }
 

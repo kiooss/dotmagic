@@ -88,7 +88,6 @@ set timeout         " do timeout on mappings
 set ttimeout        " do timeout on terminal key codes
 set timeoutlen=500  " Time out on mappings
 set ttimeoutlen=10  " Time out on key codes
-" set updatetime=1000 " Idle time to write swap and trigger CursorHold
 set updatetime=100 " Idle time to write swap and trigger CursorHold
 " }}}
 " Tabs and Indents {{{
@@ -102,7 +101,6 @@ set smarttab        " Tab insert blanks according to 'shiftwidth'
 set autoindent      " Use same indenting on new lines
 set smartindent     " Smart autoindenting on new lines
 set shiftround      " Round indent to multiple of 'shiftwidth'
-
 " }}}
 " Searching {{{
 " ---------
@@ -116,7 +114,6 @@ set showmatch       " Jump to matching bracket
 set matchpairs+=<:> " Add HTML brackets to pair matching
 set matchtime=1     " Tenths of a second to show the matching paren
 set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
-
 " }}}
 " Behavior {{{
 " --------

@@ -18,7 +18,7 @@ let s:use_base16_theme = get(g:, 'use_base16_theme', 1)
 if s:use_base16_theme && filereadable(expand('~/.vimrc_background'))
   source ~/.vimrc_background
 else
-  set background=dark
+  " set background=dark
   " set background=light
   try
     " let g:falcon_airline = 1
@@ -55,9 +55,14 @@ else
     " colorscheme ayu
 
     " colorscheme OceanicNext
-    let g:tokyonight_style = "storm"
+    " let g:tokyonight_style = "storm"
     " let g:tokyonight_italic_functions = 1
-    colorscheme tokyonight
+    " colorscheme tokyonight
+
+    " -- @usage 'base' | 'moon' | 'dawn' | 'rose-pine[-moon][-dawn]'
+    " let g:rose_pine_variant = 'rose-pine-moon'
+    let g:rose_pine_variant = 'moon'
+    colorscheme rose-pine
   catch
     colorscheme desert
     highlight ColorColumn guibg=Grey40

@@ -7,3 +7,4 @@ Plug 'nightsense/snow'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'whatyouhide/vim-gotham'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'rose-pine/neovim'

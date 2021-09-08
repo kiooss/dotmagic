@@ -88,7 +88,8 @@ local icons = {
 local colors = {
   -- bg = '#282a36',
   -- bg = "#343d46",
-  bg = "#1f2335",
+  -- bg = "#1f2335", -- tokyonight
+  bg = "#2a273f", -- rose-pine
   fg = "#f8f8f2",
   -- section_bg = '#38393f',
   section_bg = "#39313a",
@@ -369,7 +370,7 @@ gls.mid[1] = {
     end,
     icon = " ",
     highlight = {colors.cyan, colors.section_bg, "bold"},
-    separator = icons.sep.right,
+    separator = "",
     separator_highlight = {colors.section_bg, colors.bg}
   }
 }
@@ -384,7 +385,7 @@ gls.mid[2] = {
 gls.mid[3] = {
   MidEnd = {
     provider = function()
-      return icons.sep.left
+      return ""
     end,
     highlight = {colors.section_bg, colors.bg}
   }

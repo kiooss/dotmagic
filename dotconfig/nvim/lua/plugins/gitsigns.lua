@@ -8,7 +8,7 @@ require("gitsigns").setup {
   },
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
   linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-  word_diff = true -- Toggle with `:Gitsigns toggle_word_diff`
+  word_diff = false -- Toggle with `:Gitsigns toggle_word_diff`
 }
 
 vim.api.nvim_set_keymap("n", "<leader>hB", [[<Cmd>Gitsigns toggle_current_line_blame<CR>]], {noremap = true})

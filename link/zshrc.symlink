@@ -278,7 +278,7 @@ fi
 # source $HOME/.local/bin/aws_zsh_completer.sh
 
 # base16-shell
-source $MYZSH/base16-shell/base16-shell.plugin.zsh
+# source $MYZSH/base16-shell/base16-shell.plugin.zsh
 
 # set php-version x.x.x in zshrc.local
 # source $DOTFILES/vendor/php-version/php-version.sh
@@ -432,12 +432,12 @@ GREEN="\033[1;32m"
 NOCOLOR="\033[0m"
 
 ### check clipper state
-if [[ "$OSTYPE" != darwin* ]]; then
-  if nc -z -U ~/.clipper.sock 2>/dev/null; then
-  else
-     echo -e "${RED}WARN:  clipper disconnected!!!${NOCOLOR}"
-  fi
-fi
+# if [[ "$OSTYPE" != darwin* ]]; then
+#   if nc -z -U ~/.clipper.sock 2>/dev/null; then
+#   else
+#      echo -e "${RED}WARN:  clipper disconnected!!!${NOCOLOR}"
+#   fi
+# fi
 
 ### fix cursor type after exit nvim
 _fix_cursor() {

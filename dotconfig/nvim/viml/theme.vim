@@ -55,6 +55,8 @@ else
     " colorscheme ayu
 
     " colorscheme OceanicNext
+    let g:tokyonight_style = "storm"
+    " let g:tokyonight_italic_functions = 1
     colorscheme tokyonight
   catch
     colorscheme desert
@@ -73,6 +75,8 @@ highlight TablineSel cterm=bold,reverse gui=bold,reverse
 
 " make the highlighting of tabs and other non-text less annoying
 highlight SpecialKey ctermfg=19 guifg=#333333
+
+highlight TSKeyword gui=bold,italic
 
 " highlight CocHighlightText gui=bold,reverse
 " highlight CocHighlightText gui=bold,italic,reverse

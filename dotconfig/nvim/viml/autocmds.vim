@@ -70,12 +70,14 @@ augroup MyAutoCmd
         \ |   execute 'normal! g`"zvzz'
         \ | endif
 
-  autocmd FileType *
-        \ if &ft ==# 'dirvish'
-        \ |   GitGutterDisable
-        \ | else
-          \ |   GitGutterEnable
-          \ | endif
+  autocmd BufEnter * if expand("%:p:h") =~ '\.dotfiles' | silent! lcd %:p:h | endif
+
+  " autocmd FileType *
+  "       \ if &ft ==# 'dirvish'
+  "       \ |   GitGutterDisable
+  "       \ | else
+  "         \ |   GitGutterEnable
+  "         \ | endif
   " Show absolute numbers in insert mode, otherwise relative line numbers.
   autocmd InsertEnter *
         \ if &relativenumber | setlocal norelativenumber | endif |

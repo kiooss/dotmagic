@@ -17,6 +17,10 @@
   /* "diagnostic.messageTarget": "echo", */
   "eslint.autoFixOnSave": true,
   "git.enableGutters": false,
+  "git.addedSign.text": "",
+  "git.removedSign.text": "",
+  "git.changedSign.text": "",
+  "git.changeRemovedSign.text": "≃",
   "list.indicator": "❯❯❯",
   "phpls.enable": false,
   "prettier.singleQuote": true,

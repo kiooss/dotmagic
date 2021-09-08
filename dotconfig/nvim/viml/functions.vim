@@ -10,3 +10,11 @@ function! StatusDiagnostic() abort
   endif
   return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
 endfunction
+
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
+

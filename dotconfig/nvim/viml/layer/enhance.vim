@@ -1,6 +1,6 @@
 Plug 'Yggdroot/indentLine'
 " Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'gregsexton/MatchTag'
@@ -17,6 +17,8 @@ Plug 'tpope/vim-endwise'
 if has('nvim-0.5')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
+Plug 'nvim-treesitter/playground'
+
 Plug 'kyazdani42/nvim-web-devicons'  " for file icons
 " Plug 'yamatsum/nvim-nonicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -27,6 +29,7 @@ Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 " Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/todo-comments.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 " Plug 'neovim/nvim-lspconfig'
 

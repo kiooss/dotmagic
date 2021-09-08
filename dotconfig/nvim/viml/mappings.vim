@@ -94,7 +94,7 @@ vnoremap <leader>64 c<c-r>=system('base64 --decode', @")<cr><esc>
 
 nnoremap gp :silent !prettier --write %<CR>
 
-nnoremap <silent> <Leader>w :update <bar> GitGutter<CR>
+nnoremap <silent> <Leader>w :update<CR>
 nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
 " delete other buffers except current one

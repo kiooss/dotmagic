@@ -17,4 +17,10 @@ let g:sneak#label = 1
 " committia.vim
 let g:committia_min_window_width = 70
 
-lua require('plugins.formatter')
+if index(get(g:, 'plugs_order', []), 'formatter.nvim') >= 0
+  lua require('plugins.formatter')
+end
+
+if index(get(g:, 'plugs_order', []), 'gitsigns.nvim') >= 0
+  lua require('plugins.gitsigns')
+end

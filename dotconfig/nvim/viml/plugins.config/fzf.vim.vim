@@ -67,6 +67,6 @@ nnoremap <silent> <Leader>bl :BLines<CR>
 nnoremap <silent> <Leader>; :Lines<CR>
 nnoremap <silent> <Leader>g :GrepWord<CR>
 xnoremap <silent> <Leader>g y:GrepWord <C-R>"<CR>
-nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
-nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
+" nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+" nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
 inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')

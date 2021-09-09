@@ -150,13 +150,12 @@ local mode_icon = function()
     ["r?"] = "🅡 ",
     s = "🅢 ",
     S = "🅢 ",
-    [""] = "🅢 ",
+    [""] = "🅢 ",
     t = "🅣 ",
     v = "🅥 ",
     V = "🅥 ",
-    [""] = "🅥 "
+    [""] = "🅥 "
   }
-
   return mode_icons[vim.fn.mode()]
 end
 
@@ -178,13 +177,35 @@ gls.left[i] = {
   ViMode = {
     provider = function()
       local alias = {
-        n = "NORMAL",
-        i = "INSERT",
-        c = "COMMAND",
-        V = "VISUAL",
-        [""] = "VISUAL",
-        v = "VISUAL",
-        R = "REPLACE"
+        ["n"] = "NORMAL",
+        ["no"] = "O-PENDING",
+        ["nov"] = "O-PENDING",
+        ["noV"] = "O-PENDING",
+        ["no"] = "O-PENDING",
+        ["niI"] = "NORMAL",
+        ["niR"] = "NORMAL",
+        ["niV"] = "NORMAL",
+        ["v"] = "VISUAL",
+        ["V"] = "V-LINE",
+        [""] = "V-BLOCK",
+        ["s"] = "SELECT",
+        ["S"] = "S-LINE",
+        [""] = "S-BLOCK",
+        ["i"] = "INSERT",
+        ["ic"] = "INSERT",
+        ["ix"] = "INSERT",
+        ["R"] = "REPLACE",
+        ["Rc"] = "REPLACE",
+        ["Rv"] = "V-REPLACE",
+        ["Rx"] = "REPLACE",
+        ["c"] = "COMMAND",
+        ["cv"] = "EX",
+        ["ce"] = "EX",
+        ["r"] = "REPLACE",
+        ["rm"] = "MORE",
+        ["r?"] = "CONFIRM",
+        ["!"] = "SHELL",
+        ["t"] = "TERMINAL"
       }
       vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color() .. " gui=bold")
       local alias_mode = alias[vim.fn.mode()]
@@ -353,7 +374,7 @@ i = i + 1
 gls.left[i] = {
   CurrentFunction = {
     provider = utils.coc_current_function,
-    highlight = {colors.green, colors.bg, 'bold,italic'}
+    highlight = {colors.green, colors.bg, "bold,italic"}
   }
 }
 

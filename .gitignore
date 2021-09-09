@@ -1,6 +1,9 @@
 .netrwhist
 npm-debug.log
 
+packer_compiled.lua
+packer_compiled.vim
+
 plug.vim.old
 /link/vim.symlink/plugged
 /dotconfig/nvim/viml/plugins

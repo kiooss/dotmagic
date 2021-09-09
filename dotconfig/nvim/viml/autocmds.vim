@@ -9,10 +9,15 @@ augroup MyAutoCmd
 augroup END
 
 " Reload vim config automatically {{{
-execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/* nested'
-      \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
-      \ .' | echom "config reloaded!"'
+" execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/* nested'
+"       \ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
+"       \ .' | echom "config reloaded!"'
 " }}}
+
+augroup packer_user_config
+  autocmd!
+  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+augroup end
 
 augroup MyAutoCmd
   " {{{ file type specific settings

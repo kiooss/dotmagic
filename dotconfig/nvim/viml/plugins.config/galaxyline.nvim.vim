@@ -1,8 +1,9 @@
-function! ConfigStatusLine()
-  lua require('plugins.status-line')
-endfunction
+" function! ConfigStatusLine()
+"   lua require('plugins.galaxyline')
+" endfunction
 
-augroup status_line_init
-  autocmd!
-  autocmd VimEnter * call ConfigStatusLine()
-augroup END
+" augroup status_line_init
+"   autocmd!
+"   autocmd VimEnter * call ConfigStatusLine()
+" augroup END
+lua require('plugins.galaxyline')

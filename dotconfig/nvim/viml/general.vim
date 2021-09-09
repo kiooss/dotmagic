@@ -20,7 +20,7 @@ set fileformats=unix,dos,mac " Use Unix as the standard file type
 language message C
 
 " Disable packpath
-set packpath=
+" set packpath=
 
 set shell=$SHELL
 " use K to run a program to lookup the keyword under the cursor

@@ -121,8 +121,8 @@ nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
 
 " CocList
-nnoremap <leader>l  :<C-u>CocList<space>
-nnoremap <leader>S  :<C-u>CocSearch<space>
+" nnoremap <leader>l  :<C-u>CocList<space>
+" nnoremap <leader>S  :<C-u>CocSearch<space>
 nnoremap <silent> <leader>mn  :<C-u>CocList snippets<cr>
 " buffers
 " nnoremap <silent> <leader><space>  :<C-u>CocList -N --normal buffers<cr>
@@ -136,7 +136,7 @@ nnoremap <silent> <leader>mc  :<C-u>CocList -N commands<cr>
 " Find symbol of current document
 nnoremap <silent> <leader>mo  :<C-u>CocList outline<cr>
 " mru
-nnoremap <silent> <leader>, :<C-u>CocList -N mru<cr>
+" nnoremap <silent> <leader>, :<C-u>CocList -N mru<cr>
 " files
 nnoremap <silent> <leader>mf :<C-u>CocList files<cr>
 nnoremap <silent> <leader>mv :<C-u>CocList files ~/.dotfiles/dotconfig/nvim<cr>

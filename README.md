@@ -49,7 +49,7 @@ dotmagic
 
 ## Vim
 
-Now on neovim.
+Now on neovim 0.5.
 
 ## Zsh
 

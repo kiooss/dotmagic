@@ -24,3 +24,11 @@ end
 if index(get(g:, 'plugs_order', []), 'gitsigns.nvim') >= 0
   lua require('plugins.gitsigns')
 end
+
+if index(get(g:, 'plugs_order', []), 'bufferline.nvim') >= 0
+  lua require('plugins.bufferline')
+end
+
+if index(get(g:, 'plugs_order', []), 'which-key.nvim') >= 0
+  lua require('plugins.which-key')
+end

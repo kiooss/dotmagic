@@ -14,19 +14,23 @@ if filereadable(expand('~/.vimrc.local'))
   execute 'source' expand('~/.vimrc.local')
 endif
 
+lua require("util")
+lua require("options")
+lua require("plugins")
+
 "---------------------------------------------------------------------------
 " Loading configuration modules
+      " \ 'plugins',
+      " \ 'autocmds',
+      " \ 'neovim',
+      " \ 'plugin-config',
+      " \ 'functions',
+      " \ 'mappings',
+      " \ 'theme',
 let s:sourceList = [
-      \ 'plugins',
-      \ 'functions',
       \ 'commands',
       \ 'abbr',
       \ 'general',
-      \ 'autocmds',
-      \ 'mappings',
-      \ 'neovim',
-      \ 'plugin-config',
-      \ 'theme',
       \]
 for s:item in s:sourceList
   exec 'source ' . s:script_path . '/viml/' . s:item . '.vim'

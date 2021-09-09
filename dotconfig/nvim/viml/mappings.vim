@@ -5,9 +5,9 @@
 "==============================================================================
 
 " Use <Leader> in global plugin.
-let g:mapleader = "\<Space>"
+" let g:mapleader = "\<Space>"
 " Use <LocalLeader> in filetype plugin.
-let g:maplocalleader = ';'
+" let g:maplocalleader = ';'
 
 " nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 " nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
@@ -55,8 +55,6 @@ nnoremap <silent> [Window]sp :vsplit<CR>:wincmd p<CR>:e#<CR>
 " close the preview window
 nnoremap <silent> [Window]z  :wincmd z<CR>
 
-" Tab to swich windows
-nnoremap <silent> <Tab>      :wincmd w<CR>
 " vsplit all buffers
 " nnoremap <leader>- :<C-u>vertical sball<CR>
 " nnoremap <leader>e :<C-u>tab sball<CR>
@@ -78,7 +76,7 @@ nnoremap <CR> zMza
 
 " Toggle folds
 " nnoremap <silent> + @=(foldlevel('.')?'za':"+")<CR>
-nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+" nnoremap <silent> <leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 nnoremap <silent> <ESC><ESC> :<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>
 
@@ -99,13 +97,8 @@ nnoremap <silent> <Leader>q :q<cr>
 nnoremap <silent> <Leader>z :qa!<cr>
 " delete other buffers except current one
 nnoremap <silent> <Leader>B :<C-u>Bonly<CR>
-nnoremap <Leader>x :x<cr>
 nnoremap <Leader><Tab> <C-^>
-nnoremap <Leader>p "0p
 nnoremap <Leader>/ /
-
-" better redraw
-nnoremap <c-l> :nohlsearch<cr>:diffupdate<cr>:syntax on<cr>:GitGutter<cr><c-l>
 
 nnoremap <silent> j gj
 nnoremap <silent> k gk

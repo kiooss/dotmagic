@@ -195,6 +195,20 @@ local function plugins(use)
     {
       "kyazdani42/nvim-tree.lua",
       cmd = {"NvimTreeToggle", "NvimTreeClose", "NvimTreeFindFile"},
+      setup = function()
+        vim.g.nvim_tree_ignore = {".git", "node_modules"}
+        vim.g.nvim_tree_gitignore = 1
+        vim.g.nvim_tree_auto_open = 1
+        vim.g.nvim_tree_auto_close = 1
+        vim.g.nvim_tree_follow = 1
+        vim.g.nvim_tree_auto_ignore_ft = {"dashboard", "startify"}
+        vim.g.nvim_tree_git_hl = 1
+        vim.g.nvim_tree_highlight_opened_files = 1 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
+        -- vim.g.nvim_tree_disable_netrw = 0
+        vim.g.nvim_tree_lsp_diagnostics = 1
+        -- vim.g.nvim_tree_special_files = {"README.md", "Makefile", "MAKEFILE"} -- List of filenames that gets highlighted with NvimTreeSpecialFile
+        vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1, folder_arrows = 1}
+      end,
       config = function()
         require("config.tree")
       end
@@ -544,7 +558,12 @@ local function plugins(use)
   }
 
   use {
-    "wincent/vim-clipper"
+    "wincent/vim-clipper",
+    setup = function()
+      vim.g.ClipperMap = 0
+      vim.g.ClipperAddress = "~/.clipper.sock"
+      vim.g.ClipperPort = 0
+    end
   }
   use {"junegunn/vim-easy-align"}
   use {"kana/vim-textobj-entire"}

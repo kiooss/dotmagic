@@ -22,6 +22,6 @@ vim.g.dashboard_custom_shortcut = {
   ["find_file"] = "SPC spc",
   ["new_file"] = "SPC f n",
   ["change_colorscheme"] = "SPC h c",
-  ["find_word"] = "SPC f g",
-  ["book_marks"] = "SPC f b",
+  ["find_word"] = "SPC f w",
+  ["book_marks"] = "SPC f m",
 }

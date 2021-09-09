@@ -133,9 +133,10 @@ local leader = {
     d = "Dot Files",
     f = {"<cmd>FormatWrite<cr>", "FormatWrite"},
     t = {"<cmd>NvimTreeFindFile<cr>", "NvimTreeFindFile"},
-    g = {"<cmd>Telescope live_grep<cr>", "Search word"},
+    w = {"<cmd>Telescope live_grep<cr>", "Search word"},
     r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
-    n = {"<cmd>enew<cr>", "New File"}
+    n = {"<cmd>enew<cr>", "New File"},
+    m = {"<cmd>Telescope marks<cr>", "Jump to Mark"}
   },
   l = {
     name = "+list",

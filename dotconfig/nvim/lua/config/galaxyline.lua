@@ -125,7 +125,6 @@ local mode_color = function()
     v = colors.magenta,
     R = colors.red
   }
-
   local color = mode_colors[vim.fn.mode()]
 
   if color == nil then
@@ -254,14 +253,7 @@ gls.left[i] = {
 i = i + 1
 gls.left[i] = {
   GitBranch = {
-    provider = function()
-      local vcs = require("galaxyline.provider_vcs")
-      local branch_name = vcs.get_git_branch()
-      if (string.len(branch_name) > 28) then
-        return string.sub(branch_name, 1, 25) .. "..."
-      end
-      return branch_name .. " "
-    end,
+    provider = "GitBranch",
     condition = condition.check_git_workspace,
     highlight = {colors.fg, colors.bg, "bold,italic"}
   }

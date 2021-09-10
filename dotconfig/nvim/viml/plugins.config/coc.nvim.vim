@@ -167,9 +167,11 @@ nnoremap <silent> <leader>mb  :<C-u>CocList -A --normal bcommits<cr>
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <leader>mg :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
+" Fix autofix problem of current line
+nmap <silent> <leader>mq  <Plug>(coc-fix-current)
+
 " grep word under cursor.
 " nnoremap <silent> <leader>j  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
-
 
 nnoremap <silent><expr> / line('$') > 10000 ? '/' :
   \ ":\<C-u>CocList words<CR>"
@@ -209,9 +211,6 @@ nmap <silent> \t <Plug>(coc-translator-p)
 xmap <leader>ac  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 
-" Fix autofix problem of current line
-nmap \q  <Plug>(coc-fix-current)
-
 " Multiple cursors support
 " nmap <silent> <C-c> <Plug>(coc-cursors-position)
 " nmap <silent> <C-d> <Plug>(coc-cursors-word)
@@ -240,7 +239,7 @@ augroup end
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Use `:Format` for format current buffer
-command! -nargs=0 Format :call CocAction('format')
+" command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)

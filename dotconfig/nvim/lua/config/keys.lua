@@ -37,7 +37,7 @@ vim.o.timeoutlen = 300
 
 util.nnoremap("q", ":Sayonara<cr>")
 util.nnoremap("<Tab>", ":wincmd w<cr>")
-util.nnoremap("<C-p>", ":NvimTreeFindFile<cr>")
+util.nnoremap("<C-p>", ":NvimTreeToggle<cr>")
 
 wk.setup({show_help = false, triggers = "auto", plugins = {spelling = true}, key_labels = {["<leader>"] = "SPC"}})
 
@@ -161,12 +161,12 @@ local leader = {
     name = "+project",
     p = "Open Project",
     b = {":Telescope file_browser cwd=~/workspace<CR>", "Browse ~/workspace"},
-    a = {
+    k = {
       name = "+packer",
       c = {"<cmd>PackerCompile<cr>", "Compile"},
-      p = {"<cmd>PackerSync<cr>", "Sync"},
-      s = {"<cmd>PackerStatus<cr>", "Status"},
-      i = {"<cmd>PackerInstall<cr>", "Install"}
+      i = {"<cmd>PackerInstall<cr>", "Install"},
+      s = {"<cmd>PackerSync<cr>", "Sync"},
+      t = {"<cmd>PackerStatus<cr>", "Status"}
     }
   },
   -- t = {

@@ -46,5 +46,24 @@ vim.g.tokyonight_dark_float = true
 vim.g.tokyonight_colors = {}
 -- vim.g.tokyonight_colors = { border = "orange" }
 
-require("tokyonight").colorscheme()
+-- require("tokyonight").colorscheme()
 -- vim.cmd("colorscheme tokyonight") -- Put your favorite colorscheme here
+
+
+-- Set variant
+-- Defaults to 'dawn' if vim background is light
+-- @usage 'base' | 'moon' | 'dawn' | 'rose-pine[-moon][-dawn]'
+vim.g.rose_pine_variant = 'rose-pine-moon'
+
+-- Disable italics
+vim.g.rose_pine_disable_italics = false
+
+-- Use terminal background
+vim.g.rose_pine_disable_background = false
+
+-- Set colorscheme after options
+vim.cmd('colorscheme rose-pine')
+
+-- Toggle variant
+vim.api.nvim_set_keymap('n', '<c-0>', [[<cmd>lua require('rose-pine.functions').toggle_variant()<cr>]], { noremap = true, silent = true })
+

@@ -160,15 +160,6 @@ local function plugins(use)
   -- Dashboard
   use({"glepnir/dashboard-nvim", config = [[require('config.dashboard')]]})
 
-  -- use(
-  --   {
-  --     "mhinz/vim-startify",
-  --     -- config = function()
-  --     --   vim.cmd "source ~/.config/nvim/viml/plugins.config/vim-startify.vim"
-  --     -- end
-  --   }
-  -- )
-
   use(
     {
       "norcalli/nvim-terminal.lua",
@@ -472,17 +463,17 @@ local function plugins(use)
     }
   )
 
-  -- TODO
-  -- use(
-  --   {
-  --     "sindrets/diffview.nvim",
-  --     cmd = {"DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles"},
-  --     config = function()
-  --       require("config.diffview")
-  --     end
-  --   }
-  -- )
+  use(
+    {
+      "sindrets/diffview.nvim",
+      cmd = {"DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles"},
+      config = function()
+        require("config.diffview")
+      end
+    }
+  )
 
+  -- TODO
   -- use(
   --   {
   --     "RRethy/vim-illuminate",

@@ -575,6 +575,8 @@ local function plugins(use)
   use {"honza/vim-snippets"}
   use {"algotech/ultisnips-php"}
   use {"epilande/vim-react-snippets"}
+  use {"famiu/bufdelete.nvim"}
+  use {"editorconfig/editorconfig-vim"}
 
   use {
     "vimwiki/vimwiki",

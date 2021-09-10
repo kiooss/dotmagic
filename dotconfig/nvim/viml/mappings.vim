@@ -178,16 +178,16 @@ nnoremap <silent> gr :<C-u>tabprevious<CR>
 nnoremap <c-o>  <c-o>zvzz
 
 " git mappings
-nnoremap <silent> <leader>sb :<C-u>Gblame<CR>
-nnoremap <silent> <leader>st :<C-u>Gstatus<CR>
-nnoremap <silent> <leader>d :<C-u>Gstatus<CR>
-nnoremap <silent> <leader>sc :<C-u>Gcommit -v<CR>
-nnoremap <silent> <leader>sa :<C-u>Git add -A<CR>
-nnoremap <silent> <leader>sd :<C-u>Gdiff<CR>
-nnoremap <silent> <leader>sU :<C-u>Git reset -q %<CR>
-nnoremap <silent> <leader>sp :<C-u>Gpush<CR>
-nnoremap <silent> <leader>sl V:<c-u>call OpenCurrentFileInGithub()<cr>
-nnoremap <silent> <leader>sk V:<c-u>call OpenCurrentFileInGitee()<cr>
+" nnoremap <silent> <leader>sb :<C-u>Gblame<CR>
+" nnoremap <silent> <leader>st :<C-u>Gstatus<CR>
+" nnoremap <silent> <leader>d :<C-u>Gstatus<CR>
+" nnoremap <silent> <leader>sc :<C-u>Gcommit -v<CR>
+" nnoremap <silent> <leader>sa :<C-u>Git add -A<CR>
+" nnoremap <silent> <leader>sd :<C-u>Gdiff<CR>
+" nnoremap <silent> <leader>sU :<C-u>Git reset -q %<CR>
+" nnoremap <silent> <leader>sp :<C-u>Gpush<CR>
+" nnoremap <silent> <leader>sl V:<c-u>call OpenCurrentFileInGithub()<cr>
+" nnoremap <silent> <leader>sk V:<c-u>call OpenCurrentFileInGitee()<cr>
 
 if has('mac')
   " Open the macOS dictionary on current word

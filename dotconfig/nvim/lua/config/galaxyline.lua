@@ -255,7 +255,9 @@ gls.left[i] = {
   GitBranch = {
     provider = "GitBranch",
     condition = condition.check_git_workspace,
-    highlight = {colors.fg, colors.bg, "bold,italic"}
+    highlight = {colors.fg, colors.bg, "bold,italic"},
+    separator = " ",
+    separator_highlight = {colors.section_bg, colors.bg}
   }
 }
 

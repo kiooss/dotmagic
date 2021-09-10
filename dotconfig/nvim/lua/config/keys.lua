@@ -36,6 +36,7 @@ local util = require("util")
 vim.o.timeoutlen = 300
 
 util.nnoremap("q", ":Sayonara<cr>")
+-- util.nnoremap("q", ":Bdelete<cr>")
 util.nnoremap("<Tab>", ":wincmd w<cr>")
 util.nnoremap("<C-p>", ":NvimTreeToggle<cr>")
 
@@ -112,22 +113,22 @@ local leader = {
     -- }
   },
   -- u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
-  -- s = {
-  --   name = "+search",
-  --   g = { "<cmd>Telescope live_grep<cr>", "Grep" },
-  --   b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer" },
-  --   s = {
-  --     function()
-  --       require("telescope.builtin").lsp_document_symbols({
-  --         symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
-  --       })
-  --     end,
-  --     "Goto Symbol",
-  --   },
-  --   h = { "<cmd>Telescope command_history<cr>", "Command History" },
-  --   m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
-  --   r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" },
-  -- },
+  s = {
+    name = "+search",
+    g = { "<cmd>Telescope live_grep<cr>", "Grep" },
+    s = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer" },
+    l = {
+      function()
+        require("telescope.builtin").lsp_document_symbols({
+          symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
+        })
+      end,
+      "Goto Symbol",
+    },
+    h = { "<cmd>Telescope command_history<cr>", "Command History" },
+    m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
+    -- r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" },
+  },
   f = {
     name = "+file",
     d = "Dot Files",

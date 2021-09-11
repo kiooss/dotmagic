@@ -10,6 +10,7 @@ vim.g.nvim_tree_disable_netrw = 1
 vim.g.nvim_tree_lsp_diagnostics = 1
 vim.g.nvim_tree_hijack_cursor = 1
 vim.g.nvim_tree_update_cwd = 1
+vim.g.nvim_tree_root_folder_modifier = ':~'
 vim.g.nvim_tree_special_files = {README = 1, Makefile = 1, MAKEFILE = 1} -- List of filenames that gets highlighted with NvimTreeSpecialFile
 vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1, folder_arrows = 1}
 

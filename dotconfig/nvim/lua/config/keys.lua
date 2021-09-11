@@ -79,7 +79,7 @@ local leader = {
   -- },
   g = {
     name = "+git",
-    -- g = { "<cmd>Neogit<CR>", "NeoGit" },
+    g = { "<cmd>Neogit<CR>", "NeoGit" },
     -- l = {
     --   function()
     --     require("util").float_terminal("lazygit")
@@ -88,8 +88,8 @@ local leader = {
     -- },
     c = {"<Cmd>Telescope git_bcommits<CR>", "buffer commits"},
     b = {"<Cmd>Telescope git_branches<CR>", "branches"},
-    s = {"<Cmd>Telescope git_status<CR>", "status"}
-    -- d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
+    s = {"<Cmd>Telescope git_status<CR>", "status"},
+    d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
     -- h = { name = "+hunk" },
   },
   ["h"] = {

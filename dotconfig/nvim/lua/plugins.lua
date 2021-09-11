@@ -307,15 +307,15 @@ local function plugins(use)
   --   cmd = "LazyGit",
   --   config = function() vim.g.lazygit_floating_window_use_plenary = 0 end
   -- }
-  -- use(
-  --   {
-  --     "TimUntersberger/neogit",
-  --     cmd = "Neogit",
-  --     config = function()
-  --       require("config.neogit")
-  --     end
-  --   }
-  -- )
+  use(
+    {
+      "TimUntersberger/neogit",
+      cmd = "Neogit",
+      config = function()
+        require("config.neogit")
+      end
+    }
+  )
 
   -- Statusline
   use(

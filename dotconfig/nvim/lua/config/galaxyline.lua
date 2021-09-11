@@ -6,7 +6,7 @@ local utils = require("utils")
 -- local iconz = require("nvim-nonicons")
 
 local gls = gl.section
-gl.short_line_list = {"plug", "fugitive", "NvimTree", "vista", "dbui", "packer", "startify", "coc", "help", "dashboard"}
+gl.short_line_list = {"plug", "fugitive", "NvimTree", "vista", "dbui", "packer", "startify", "coc", "help", "dashboard", "DiffviewFiles"}
 
 -- Functions
 local white_space = function()

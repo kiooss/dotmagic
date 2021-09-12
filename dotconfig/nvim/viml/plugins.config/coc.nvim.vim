@@ -28,13 +28,13 @@ let g:coc_global_extensions = [
   \ 'coc-stylelint',
   \ 'coc-translator',
   \ 'coc-tsserver',
-  \ 'coc-ultisnips',
   \ 'coc-vetur',
   \ 'coc-word',
   \ 'coc-webpack',
   \ 'coc-yaml',
   \ 'coc-yank',
   \ ]
+  " \ 'coc-ultisnips',
   " \ 'coc-tabnine',
   " \ 'coc-jedi',
 let g:coc_snippet_next = '<tab>'

@@ -516,16 +516,16 @@ local function plugins(use)
   use({ "tpope/vim-surround" })
   use({ "wellle/targets.vim" })
 
-  use({
-    "SirVer/ultisnips",
-    setup = function()
-      vim.g.UltiSnipsExpandTrigger = "<c-k>"
-      vim.g.UltiSnipsJumpForwardTrigger = "<c-k>"
-      vim.g.UltiSnipsJumpBackwardTrigger = "<c-j>"
-      vim.g.UltiSnipsEditSplit = "vertical"
-      vim.g.UltiSnipsSnippetDirectories = { "UltiSnips" }
-    end,
-  })
+  -- use({
+  --   "SirVer/ultisnips",
+  --   setup = function()
+  --     vim.g.UltiSnipsExpandTrigger = "<c-k>"
+  --     vim.g.UltiSnipsJumpForwardTrigger = "<c-k>"
+  --     vim.g.UltiSnipsJumpBackwardTrigger = "<c-j>"
+  --     vim.g.UltiSnipsEditSplit = "vertical"
+  --     vim.g.UltiSnipsSnippetDirectories = { "UltiSnips" }
+  --   end,
+  -- })
   use({ "honza/vim-snippets" })
   use({ "algotech/ultisnips-php" })
   use({ "epilande/vim-react-snippets" })

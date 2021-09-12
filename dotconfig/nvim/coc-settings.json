@@ -29,7 +29,9 @@
   "solargraph.checkGemVersion": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
-  "snippets.ultisnips.enable": false,
+  "snippets.shortcut": "֍",
+  "snippets.ultisnips.enable": true,
+  "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
   "suggest.echodocSupport": false,
   "suggest.snippetIndicator": "⭐︎",
   "suggest.completionItemKindLabels": {

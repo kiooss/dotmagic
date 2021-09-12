@@ -523,7 +523,7 @@ table.insert(cur_section, {
     provider = function()
       return "▊ "
     end,
-    highlight = { colors.blue, colors.bg },
+    highlight = { colors.blue, colors.section_bg },
   },
 })
 

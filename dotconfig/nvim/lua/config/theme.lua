@@ -67,3 +67,5 @@ vim.cmd('colorscheme rose-pine')
 -- Toggle variant
 vim.api.nvim_set_keymap('n', '<c-0>', [[<cmd>lua require('rose-pine.functions').toggle_variant()<cr>]], { noremap = true, silent = true })
 
+-- zephyr
+-- vim.cmd('colorscheme zephyr')

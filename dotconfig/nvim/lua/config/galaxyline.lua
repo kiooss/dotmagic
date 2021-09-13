@@ -115,18 +115,6 @@ local colors = {
   red = "#ff5555",
 }
 
--- -- Local helper functions
--- local in_git_repo = function()
---   local vcs = require('galaxyline.provider_vcs')
---   local branch_name = vcs.get_git_branch()
-
---   return branch_name ~= nil
--- end
-
--- local checkwidth = function()
---   return utils.has_width_gt(40) and in_git_repo()
--- end
-
 local mode_color = function()
   local mode_colors = {
     n = colors.cyan,
@@ -173,20 +161,16 @@ end
 local cur_section = nil
 
 -- Left side
-local i = 0
-
-i = i + 1
-gls.left[i] = {
+cur_section = gls.left
+table.insert(cur_section, {
   FirstElement = {
     provider = function()
       return "▋"
     end,
     highlight = { colors.violet, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   ViMode = {
     provider = function()
       local alias = {
@@ -233,10 +217,8 @@ gls.left[i] = {
     separator = icons.sep.left .. " ",
     separator_highlight = { colors.bg, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   FileIcon = {
     provider = "FileIcon",
     condition = condition.buffer_not_empty,
@@ -245,10 +227,8 @@ gls.left[i] = {
       colors.section_bg,
     },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   FileName = {
     provider = { "FileName", "FileSize" },
     condition = condition.buffer_not_empty,
@@ -256,10 +236,8 @@ gls.left[i] = {
     separator = icons.sep.left .. " ",
     separator_highlight = { colors.section_bg, colors.bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   GitIcon = {
     provider = function()
       return " "
@@ -267,10 +245,8 @@ gls.left[i] = {
     condition = condition.check_git_workspace,
     highlight = { colors.red, colors.bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   GitBranch = {
     provider = "GitBranch",
     condition = condition.check_git_workspace,
@@ -278,30 +254,24 @@ gls.left[i] = {
     separator = " ",
     separator_highlight = { colors.section_bg, colors.bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   DiffAdd = {
     provider = "DiffAdd",
     condition = condition.check_git_workspace and condition.hide_in_width,
     icon = " ",
     highlight = { colors.green, colors.bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   DiffModified = {
     provider = "DiffModified",
     condition = condition.check_git_workspace and condition.hide_in_width,
     icon = " ",
     highlight = { colors.orange, colors.bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   DiffRemove = {
     provider = "DiffRemove",
     condition = condition.check_git_workspace and condition.hide_in_width,
@@ -310,70 +280,54 @@ gls.left[i] = {
     separator = icons.sep.left .. " ",
     separator_highlight = { colors.bg, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   DiagnosticError = {
     provider = "DiagnosticError",
     icon = " ",
     highlight = { colors.red, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   Space = {
     provider = white_space,
     highlight = { colors.section_bg, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   DiagnosticWarn = {
     provider = "DiagnosticWarn",
     icon = " ",
     highlight = { colors.orange, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   Space = {
     provider = white_space,
     highlight = { colors.section_bg, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   DiagnosticHint = {
     provider = "DiagnosticHint",
     icon = " ",
     highlight = { colors.cyan, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   Space = {
     provider = white_space,
     highlight = { colors.section_bg, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   DiagnosticInfo = {
     provider = "DiagnosticInfo",
     icon = " ",
     highlight = { colors.blue, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   LeftEnd = {
     provider = white_space,
     condition = condition.buffer_not_empty,
@@ -381,18 +335,17 @@ gls.left[i] = {
     separator = icons.sep.left .. " ",
     separator_highlight = { colors.section_bg, colors.bg },
   },
-}
-
-i = i + 1
-gls.left[i] = {
+})
+table.insert(cur_section, {
   CurrentFunction = {
     provider = utils.coc_current_function,
     highlight = { colors.green, colors.bg, "bold,italic" },
   },
-}
+})
 
 -- Mid side
-gls.mid[1] = {
+cur_section = gls.mid
+table.insert(cur_section, {
   ShowLspClient = {
     provider = "GetLspClient",
     condition = function()
@@ -407,29 +360,25 @@ gls.mid[1] = {
     separator = "",
     separator_highlight = { colors.section_bg, colors.bg },
   },
-}
-
-gls.mid[2] = {
+})
+table.insert(cur_section, {
   CocStatus = {
     provider = CocStatus,
     highlight = { colors.green, colors.section_bg },
   },
-}
-
-gls.mid[3] = {
+})
+table.insert(cur_section, {
   MidEnd = {
     provider = function()
       return ""
     end,
     highlight = { colors.section_bg, colors.bg },
   },
-}
+})
 
 -- Right side
-local i = 0
-
-i = i + 1
-gls.right[i] = {
+cur_section = gls.right
+table.insert(cur_section, {
   FileFormat = {
     provider = function()
       return " " .. vim.bo.filetype .. " "
@@ -438,31 +387,26 @@ gls.right[i] = {
     separator = icons.sep.right,
     separator_highlight = { colors.section_bg, colors.bg },
   },
-}
-
-i = i + 1
-gls.right[i] = {
+})
+table.insert(cur_section, {
   FileEF = {
     highlight = { colors.fg, colors.bg },
     separator = icons.sep.right,
     separator_highlight = { colors.bg, colors.section_bg },
     provider = function()
-      local format_icon =
-        {
-          ["DOS"] = " ",
-          ["MAC"] = " ",
-          ["UNIX"] = " ",
-        }
+      local format_icon = {
+        ["DOS"] = " ",
+        ["MAC"] = " ",
+        ["UNIX"] = " ",
+      }
       local encode = fileinfo.get_file_encode()
       local format = fileinfo.get_file_format()
 
       return encode .. " " .. format_icon[format]
     end,
   },
-}
-
-i = i + 1
-gls.right[i] = {
+})
+table.insert(cur_section, {
   LineInfo = {
     provider = "LineColumn",
     highlight = { colors.fg, colors.section_bg },
@@ -470,10 +414,8 @@ gls.right[i] = {
     separator = icons.sep.right,
     separator_highlight = { colors.section_bg, colors.bg },
   },
-}
-
-i = i + 1
-gls.right[i] = {
+})
+table.insert(cur_section, {
   LineCount = {
     provider = function()
       return vim.fn.line("$")
@@ -482,10 +424,8 @@ gls.right[i] = {
     separator = "| ",
     separator_highlight = { colors.red, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.right[i] = {
+})
+table.insert(cur_section, {
   PerCent = {
     provider = "LinePercent",
     highlight = { colors.fg, colors.section_bg },
@@ -493,18 +433,14 @@ gls.right[i] = {
     separator = " ",
     separator_highlight = { colors.cyan, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.right[i] = {
+})
+table.insert(cur_section, {
   ScrollBar = {
     provider = "ScrollBar",
     highlight = { colors.cyan, colors.section_bg },
   },
-}
-
-i = i + 1
-gls.right[i] = {
+})
+table.insert(cur_section, {
   Heart = {
     provider = function()
       return " "
@@ -513,7 +449,7 @@ gls.right[i] = {
     separator = " | ",
     separator_highlight = { colors.bg, colors.section_bg },
   },
-}
+})
 
 -- Short status line
 cur_section = gls.short_line_left

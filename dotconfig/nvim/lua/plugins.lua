@@ -133,6 +133,7 @@ local function plugins(use)
 
     -- "folke/tokyonight.nvim",
     "rose-pine/neovim",
+    -- "glepnir/zephyr-nvim",
     config = function()
       require("config.theme")
     end,

@@ -21,6 +21,29 @@ _G.profile = function(cmd, times)
   print(((vim.loop.hrtime() - start) / 1000000 / times) .. "ms")
 end
 
+
+_G.should_colorcolumn = function()
+  local filetype_exclude = {
+    "diff",
+    "fugitiveblame",
+    "undotree",
+    "nerdtree",
+    "qf",
+    "list",
+    "dashboard",
+    "startify",
+    "DiffviewFiles",
+  }
+
+  for _, ft in ipairs(filetype_exclude) do
+    if ft == vim.bo.filetype then
+      return false
+    end
+  end
+
+  return true
+end
+
 local M = {}
 
 M.functions = {}

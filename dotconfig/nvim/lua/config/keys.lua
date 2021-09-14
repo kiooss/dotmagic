@@ -132,7 +132,7 @@ local leader = {
   f = {
     name = "+file",
     d = "Dot Files",
-    b = {"<cmd>Telescope file_browser<cr>", "File browser"},
+    b = {"<cmd>Telescope file_browser cwd=~/workspace<cr>", "File browser"},
     f = {"<cmd>FormatWrite<cr>", "FormatWrite"},
     t = {"<cmd>NvimTreeFindFile<cr>", "NvimTreeFindFile"},
     w = {"<cmd>Telescope live_grep<cr>", "Search word"},

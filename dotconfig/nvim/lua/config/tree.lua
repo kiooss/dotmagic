@@ -16,7 +16,7 @@ vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1, folder_arrows = 1
 
 local tree_cb = require "nvim-tree.config".nvim_tree_callback
 vim.g.nvim_tree_bindings = {
-  {key = "<Tab>", cb = ":wincmd w<cr>"},
+  -- {key = "<Tab>", cb = ":wincmd w<cr>"},
   {key = "?", cb = tree_cb("toggle_help")}
 }
 

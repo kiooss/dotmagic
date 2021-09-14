@@ -82,7 +82,7 @@ telescope.setup(
 
 -- telescope.load_extension("frecency")
 telescope.load_extension("fzy_native")
-telescope.load_extension("z")
+-- telescope.load_extension("z")
 -- telescope.load_extension("project")
 
 local M = {}

@@ -35,7 +35,7 @@ local util = require("util")
 
 vim.o.timeoutlen = 300
 
-util.nnoremap("q", ":Sayonara<cr>")
+util.nnoremap("q", [[len(getbufinfo({'buflisted':1})) > 1 ? ":Sayonara!<cr>" : ":Sayonara<cr>"]], { expr = true })
 -- util.nnoremap("q", ":Bdelete<cr>")
 util.nnoremap("<Tab>", ":wincmd w<cr>")
 util.nnoremap("<C-p>", ":NvimTreeToggle<cr>")

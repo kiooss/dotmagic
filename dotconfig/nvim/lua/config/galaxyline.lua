@@ -2,7 +2,6 @@ local vim = vim
 local gl = require("galaxyline")
 local fileinfo = require("galaxyline.provider_fileinfo")
 local condition = require("galaxyline.condition")
-local utils = require("utils")
 -- local iconz = require("nvim-nonicons")
 
 local gls = gl.section
@@ -49,6 +48,17 @@ local function get_diagnostic_info()
     return get_coc_lsp()
   end
   return ""
+end
+
+local function coc_current_function()
+  if vim.fn.exists('*coc#rpc#start_server') == 1 then
+    local ret,current_function = pcall(vim.api.nvim_buf_get_var, 0, 'coc_current_function')
+    if not ret then return end
+    if current_function and current_function ~= '' then
+      return ' '..current_function
+    end
+  end
+  return ''
 end
 
 CocStatus = get_diagnostic_info
@@ -338,7 +348,7 @@ table.insert(cur_section, {
 })
 table.insert(cur_section, {
   CurrentFunction = {
-    provider = utils.coc_current_function,
+    provider = coc_current_function,
     highlight = { colors.green, colors.bg, "bold,italic" },
   },
 })

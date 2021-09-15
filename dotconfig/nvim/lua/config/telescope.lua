@@ -56,7 +56,7 @@ telescope.setup(
       -- file_ignore_patterns = {},
       -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
       -- shorten_path = true,
-      winblend = 10
+      winblend = 10,
       -- width = 0.7,
       -- preview_cutoff = 120,
       -- results_height = 1,

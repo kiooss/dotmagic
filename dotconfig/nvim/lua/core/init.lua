@@ -52,9 +52,6 @@ local function load_core()
     require("plugins")
   end, 0)
 
-  -- vim.cmd("source ~/.config/nvim/viml/autocmds.vim")
-  -- vim.cmd("source ~/.config/nvim/viml/mappings.vim")
-  vim.cmd("source ~/.config/nvim/viml/abbr.vim")
   vim.cmd("source ~/.config/nvim/custom_highlight.vim")
 end
 

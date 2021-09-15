@@ -39,14 +39,79 @@ vim.o.timeoutlen = 300
 util.nnoremap("q", ":Sayonara<cr>")
 util.nnoremap("<Tab>", ":wincmd w<cr>")
 util.nnoremap("<C-p>", ":NvimTreeToggle<cr>")
+-- vsplit buffers
+util.nnoremap("<leader>-", ":vsplit<CR>:wincmd p<CR>:e#<CR>")
+-- Focus the current fold by closing all others
+util.nnoremap("<CR>", "zMza")
+util.nnoremap(
+  "<ESC><ESC>",
+  ":<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>",
+  { silent = true }
+)
+util.nnoremap("j", "gj", { silent = true })
+util.nnoremap("k", "gk", { silent = true })
+util.nnoremap("gj", "j", { silent = true })
+util.nnoremap("gk", "k", { silent = true })
+util.nnoremap("g;", "g;zvzz", { silent = true })
+util.nnoremap("g,", "g,zvzz", { silent = true })
+-- Better x with black hole register "_
+util.nnoremap("x", "_x")
+util.nnoremap("Y", "y$")
+util.nnoremap("B", "^")
+util.nnoremap("E", "$")
+util.nnoremap("g]", "g<C-]>")
+util.nnoremap("g[", ":pop<cr>")
 
-wk.setup({show_help = false, triggers = "auto", plugins = {spelling = true}, key_labels = {["<leader>"] = "SPC"}})
+-- disable EX mode
+util.nnoremap("Q", "q")
+
+util.nnoremap("<c-o>", "<c-o>zvzz")
+
+util.inoremap("jk", "<esc>")
+util.inoremap("jj", "<esc>")
+util.inoremap("j<space>", "j")
+util.inoremap("<C-c>", "<esc>`^")
+util.inoremap("<C-b>", "<Left>")
+util.inoremap("<C-f>", "<Right>")
+util.inoremap("<C-a>", "<C-o>I")
+util.inoremap("<C-e>", "<C-o>A")
+util.inoremap("<C-u>", "<C-g>u<C-u>")
+util.inoremap("jj", "<esc>")
+
+util.cnoremap("jk", "<C-c>")
+util.cnoremap(
+  "j",
+  [[getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j']],
+  { expr = true }
+)
+util.cnoremap("<C-a>", "<Home>")
+util.cnoremap("<C-b>", "<Left>")
+util.cnoremap("<C-f>", "<Right>")
+util.cnoremap("<C-d>", "<Del>")
+util.cnoremap("<C-e>", "<End>")
+util.cnoremap("<C-y>", "<C-r>*")
+util.cnoremap("<C-v>", "<C-r>*")
+util.cnoremap("<C-g>", "<C-c>")
+
+util.xnoremap("s", ":s//g<Left><Left>")
+util.xnoremap("<C-l>", [[:s/^/\=(line('.')-line("'<")+1).'. '/g]])
+
+-- TODO:
+-- noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>M")
+-- noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>M")
+
+wk.setup({
+  show_help = false,
+  triggers = "auto",
+  plugins = { spelling = true },
+  key_labels = { ["<leader>"] = "SPC" },
+})
 
 local leader = {
-  ["W"] = {"<cmd>:VimwikiIndex<cr>", "Wiki"},
-  ["w"] = {"<cmd>:update<cr>", "Save"},
-  ["x"] = {"<cmd>:x<cr>", "Save and quit"},
-  ["z"] = {"<cmd>:qa!<cr>", "Quit all"},
+  ["W"] = { "<cmd>:VimwikiIndex<cr>", "Wiki" },
+  ["w"] = { "<cmd>:update<cr>", "Save" },
+  ["x"] = { "<cmd>:x<cr>", "Save and quit" },
+  ["z"] = { "<cmd>:qa!<cr>", "Quit all" },
   -- ["w"] = {
   --   name = "+windows",
   --   ["w"] = {"<C-W>p", "other-window"},
@@ -86,14 +151,15 @@ local leader = {
     --   end,
     --   "LazyGit",
     -- },
-    c = {"<Cmd>Telescope git_bcommits<CR>", "buffer commits"},
-    b = {"<Cmd>Telescope git_branches<CR>", "branches"},
-    s = {"<Cmd>Telescope git_status<CR>", "status"},
+    a = { "<Cmd>Telescope git_commits<CR>", "git commits" },
+    b = { "<Cmd>Telescope git_branches<CR>", "git branches" },
+    c = { "<Cmd>Telescope git_bcommits<CR>", "buffer's git commits" },
     d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
+    s = { "<Cmd>Telescope git_status<CR>", "git status" },
     -- h = { name = "+hunk" },
   },
   ["h"] = {
-    name = "+gitsigns"
+    name = "+gitsigns",
     -- t = {"<cmd>:Telescope builtin<cr>", "Telescope"}
     -- c = { "<cmd>:Telescope commands<cr>", "Commands" },
     -- h = { "<cmd>:Telescope help_tags<cr>", "Help Pages" },
@@ -120,7 +186,14 @@ local leader = {
     l = {
       function()
         require("telescope.builtin").lsp_document_symbols({
-          symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
+          symbols = {
+            "Class",
+            "Function",
+            "Method",
+            "Constructor",
+            "Interface",
+            "Module",
+          },
         })
       end,
       "Goto Symbol",
@@ -132,71 +205,72 @@ local leader = {
   f = {
     name = "+file",
     d = "Dot Files",
-    b = {"<cmd>Telescope file_browser cwd=~/workspace<cr>", "File browser"},
-    f = {"<cmd>FormatWrite<cr>", "FormatWrite"},
-    t = {"<cmd>NvimTreeFindFile<cr>", "NvimTreeFindFile"},
-    w = {"<cmd>Telescope live_grep<cr>", "Search word"},
-    r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
-    n = {"<cmd>enew<cr>", "New File"},
-    m = {"<cmd>Telescope marks<cr>", "Jump to Mark"}
+    b = { "<cmd>Telescope file_browser cwd=~/workspace<cr>", "File browser" },
+    f = { "<cmd>FormatWrite<cr>", "FormatWrite" },
+    t = { "<cmd>NvimTreeFindFile<cr>", "NvimTreeFindFile" },
+    w = { "<cmd>Telescope live_grep<cr>", "Search word" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    n = { "<cmd>enew<cr>", "New File" },
+    m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
+    p = "Open Project",
   },
   l = {
     name = "+list",
-    t = {"<cmd>:Telescope builtin<cr>", "Telescope"},
-    c = {"<cmd>:Telescope commands<cr>", "Commands"},
-    h = {"<cmd>:Telescope help_tags<cr>", "Help Pages"},
-    m = {"<cmd>:Telescope man_pages<cr>", "Man Pages"},
-    k = {"<cmd>:Telescope keymaps<cr>", "Key Maps"},
-    s = {"<cmd>:Telescope highlights<cr>", "Search Highlight Groups"},
-    l = {[[<cmd>TSHighlightCapturesUnderCursor<cr>]], "Highlight Groups at cursor"},
-    f = {"<cmd>:Telescope filetypes<cr>", "File Types"},
-    o = {"<cmd>:Telescope vim_options<cr>", "Options"},
-    a = {"<cmd>:Telescope autocommands<cr>", "Auto Commands"}
+    t = { "<cmd>:Telescope builtin<cr>", "Telescope" },
+    c = { "<cmd>:Telescope commands<cr>", "Commands" },
+    h = { "<cmd>:Telescope help_tags<cr>", "Help Pages" },
+    m = { "<cmd>:Telescope man_pages<cr>", "Man Pages" },
+    k = { "<cmd>:Telescope keymaps<cr>", "Key Maps" },
+    s = { "<cmd>:Telescope highlights<cr>", "Search Highlight Groups" },
+    l = {
+      [[<cmd>TSHighlightCapturesUnderCursor<cr>]],
+      "Highlight Groups at cursor",
+    },
+    f = { "<cmd>:Telescope filetypes<cr>", "File Types" },
+    o = { "<cmd>:Telescope vim_options<cr>", "Options" },
+    a = { "<cmd>:Telescope autocommands<cr>", "Auto Commands" },
   },
-  m = {name = "+coc"},
+  m = { name = "+coc" },
   -- o = {
   --   name = "+open",
   --   p = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
   --   g = { "<cmd>Glow<cr>", "Markdown Glow" },
   -- },
   p = {
-    name = "+project",
-    p = "Open Project",
-    b = {":Telescope file_browser cwd=~/workspace<CR>", "Browse ~/workspace"},
-    k = {
-      name = "+packer",
-      c = {"<cmd>PackerCompile<cr>", "Compile"},
-      i = {"<cmd>PackerInstall<cr>", "Install"},
-      s = {"<cmd>PackerSync<cr>", "Sync"},
-      t = {"<cmd>PackerStatus<cr>", "Status"}
-    }
+    name = "+packer",
+    c = { "<cmd>PackerCompile<cr>", "Compile" },
+    i = { "<cmd>PackerInstall<cr>", "Install" },
+    s = { "<cmd>PackerSync<cr>", "Sync" },
+    t = { "<cmd>PackerStatus<cr>", "Status" },
   },
-  -- t = {
-  --   name = "toggle",
-  --   f = {
-  --     require("config.lsp.formatting").toggle,
-  --     "Format on Save",
-  --   },
-  --   s = {
-  --     function()
-  --       util.toggle("spell")
-  --     end,
-  --     "Spelling",
-  --   },
-  --   w = {
-  --     function()
-  --       util.toggle("wrap")
-  --     end,
-  --     "Word Wrap",
-  --   },
-  --   n = {
-  --     function()
-  --       util.toggle("relativenumber", true)
-  --       util.toggle("number")
-  --     end,
-  --     "Line Numbers",
-  --   },
-  -- },
+  t = {
+    name = "toggle",
+    -- f = {
+    --   require("config.lsp.formatting").toggle,
+    --   "Format on Save",
+    -- },
+    s = {
+      function()
+        util.toggle("spell")
+      end,
+      "Spelling",
+    },
+    w = {
+      function()
+        util.toggle("wrap")
+      end,
+      "Word Wrap",
+    },
+    n = {
+      function()
+        util.toggle("relativenumber", true)
+        util.toggle("number", true)
+        util.toggle("list", true)
+        vim.cmd("IndentBlanklineToggle")
+      end,
+      "Line Numbers",
+    },
+  },
   -- ["<tab>"] = {
   --   name = "workspace",
   --   ["<tab>"] = { "<cmd>tabnew<CR>", "New Tab" },
@@ -209,8 +283,8 @@ local leader = {
   --   f = { "<cmd>tabfirst<CR>", "First" },
   --   l = { "<cmd>tablast<CR>", "Last" },
   -- },
-  -- ["`"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
-  [" "] = "Find File"
+  ["`"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
+  [" "] = "Find File",
   -- ["."] = { ":Telescope file_browser<CR>", "Browse Files" },
   -- [","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
   -- ["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
@@ -248,4 +322,4 @@ for i = 0, 10 do
   leader[tostring(i)] = "which_key_ignore"
 end
 
-wk.register(leader, {prefix = "<leader>"})
+wk.register(leader, { prefix = "<leader>" })

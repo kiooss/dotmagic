@@ -121,6 +121,6 @@ util.nnoremap(
 --   end
 -- )
 
-util.nnoremap("<leader>pp", ":lua require'telescope'.extensions.project.project{}<CR>")
+util.nnoremap("<leader>fp", ":lua require'telescope'.extensions.project.project{}<CR>")
 
 return M

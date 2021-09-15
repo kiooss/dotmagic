@@ -517,7 +517,12 @@ local function plugins(use)
   use({ "nelstrom/vim-textobj-rubyblock" })
   use({ "thalesmello/vim-textobj-methodcall" })
   use({ "tpope/vim-repeat" })
-  use({ "tpope/vim-surround" })
+  use({
+    "tpope/vim-surround",
+    config = function()
+      vim.g.surround_no_insert_mappings = 1
+    end,
+  })
   use({ "wellle/targets.vim" })
 
   -- use({

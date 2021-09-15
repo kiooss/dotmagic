@@ -18,11 +18,11 @@ vim.g.dashboard_disable_statusline = 0
 -- vim.g.dashboard_preview_file_height = 20
 -- vim.g.dashboard_preview_file_width = 80
 
-vim.g.dashboard_preview_command = "cat"
--- vim.g.dashboard_preview_pipeline = "lolcat"
-vim.g.dashboard_preview_file = "~/.config/nvim/resource/baby2.ans"
-vim.g.dashboard_preview_file_width = 70
-vim.g.dashboard_preview_file_height = 29
+-- vim.g.dashboard_preview_command = "cat"
+-- -- vim.g.dashboard_preview_pipeline = "lolcat"
+-- vim.g.dashboard_preview_file = "~/.config/nvim/resource/baby2.ans"
+-- vim.g.dashboard_preview_file_width = 70
+-- vim.g.dashboard_preview_file_height = 29
 
 -- vim.g.dashboard_preview_command = "bat -p"
 -- vim.g.dashboard_preview_pipeline = "head -n 30"
@@ -38,12 +38,12 @@ vim.g.dashboard_preview_file_height = 29
 --   " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
 -- }
 
--- local header_str = vim.fn.system([[figlet -f "DOS Rebel" "Yang's neovim"]])
--- local header_lines = {}
--- for s in header_str:gmatch("[^\r\n]+") do
---   table.insert(header_lines, s)
--- end
--- vim.g.dashboard_custom_header = header_lines
+local header_str = vim.fn.system([[figlet -f "DOS Rebel" "Yang's neovim"]])
+local header_lines = {}
+for s in header_str:gmatch("[^\r\n]+") do
+  table.insert(header_lines, s)
+end
+vim.g.dashboard_custom_header = header_lines
 
 -- vim.g.dashboard_custom_shortcut = {
 --   ["last_session"] = "SPC s l",

@@ -110,7 +110,7 @@ inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : <SID>SmartCR()
 imap <C-j> <Plug>(coc-snippets-expand)
 
 " Use <c-g> for trigger completion.
-inoremap <silent><expr> <c-g> coc#refresh()
+" inoremap <silent><expr> <c-g> coc#refresh()
 
 " Use `[d` and `]d` for navigate diagnostics
 nmap <silent> [d <Plug>(coc-diagnostic-prev)

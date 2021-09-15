@@ -103,6 +103,7 @@ local function plugins(use)
     requires = {
       { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "p00f/nvim-ts-rainbow",
       "RRethy/nvim-treesitter-textsubjects",
     },
     config = [[require('config.treesitter')]],
@@ -138,7 +139,31 @@ local function plugins(use)
     "rose-pine/neovim",
     -- "glepnir/zephyr-nvim",
     config = function()
+      -- require("config.theme")
+      -- Set variant
+      -- Defaults to 'dawn' if vim background is light
+      -- @usage 'base' | 'moon' | 'dawn' | 'rose-pine[-moon][-dawn]'
+      vim.g.rose_pine_variant = "rose-pine-moon"
+      -- Disable italics
+      vim.g.rose_pine_disable_italics = false
+      -- Use terminal background
+      vim.g.rose_pine_disable_background = false
+    end,
+  })
+
+  use({
+    "folke/tokyonight.nvim",
+    config = function()
       require("config.theme")
+    end,
+  })
+
+  use({
+    "sainnhe/everforest",
+    config = function()
+      vim.g.everforest_background = "soft"
+      vim.g.everforest_enable_italic = 1
+      vim.g.everforest_diagnostic_text_highlight = 1
     end,
   })
 
@@ -456,12 +481,10 @@ local function plugins(use)
 
   -- use("DanilaMihailov/vim-tips-wiki")
   -- use("nanotee/luv-vimdocs")
-  -- use(
-  --   {
-  --     "andymass/vim-matchup",
-  --     event = "CursorMoved"
-  --   }
-  -- )
+  use({
+    "andymass/vim-matchup",
+    event = "CursorMoved",
+  })
   -- use({"camspiers/snap", rocks = {"fzy"}, module = "snap"})
   -- use("kmonad/kmonad-vim")
 

@@ -80,6 +80,23 @@ function autocmd.load_autocmds()
       { "BufNewFile,BufRead", "*.toml", " setf toml" },
     },
 
+    custom_highlight = {
+      {
+        "VimEnter",
+        "*",
+        [[
+          highlight CocHighlightText guibg=#333333 gui=bold,italic
+          highlight Comment gui=bold,italic
+          highlight Folded gui=bold,italic
+          highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
+          highlight NormalFloat cterm=bold gui=bold
+          highlight TablineSel cterm=bold,reverse gui=bold,reverse
+          highlight SpecialKey ctermfg=19 guifg=#333333
+          highlight TSKeyword gui=bold,italic
+        ]],
+      },
+    },
+
     -- yank = {
     --   {
     --     "TextYankPost",

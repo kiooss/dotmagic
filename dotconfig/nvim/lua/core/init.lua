@@ -45,14 +45,16 @@ local function load_core()
   leader_map()
   require("util")
   require("core.options")
-  require('core.event')
+  require("core.event")
 
   -- no need to load this immediately, since we have packer_compiled
   vim.defer_fn(function()
     require("plugins")
   end, 0)
 
-  vim.cmd("source ~/.config/nvim/custom_highlight.vim")
+  -- vim.cmd("colorscheme everforest")
+  vim.cmd("colorscheme rose-pine")
+  -- vim.cmd("colorscheme tokyonight")
 end
 
 load_core()

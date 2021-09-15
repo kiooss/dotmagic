@@ -1,4 +1,5 @@
 highlight User1 guibg=#333333 gui=bold,italic
+highlight CocHighlightText guibg=#333333 gui=bold,italic
 highlight Comment gui=bold,italic
 highlight Folded gui=bold,italic
 highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
@@ -14,7 +15,7 @@ highlight TSKeyword gui=bold,italic
 
 " highlight CocHighlightText gui=bold,reverse
 " highlight CocHighlightText gui=bold,italic,reverse
-highlight default link CocHighlightText User1
+" highlight default link CocHighlightText User1
 
 " background transparent
 " highlight Normal guibg=none

@@ -38,7 +38,20 @@ vim.g.dashboard_disable_statusline = 0
 --   " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
 -- }
 
-local header_str = vim.fn.system([[figlet -f "DOS Rebel" "Yang's neovim"]])
+local fonts = {
+  "DOS Rebel",
+  "NScript",
+  "3d",
+  "ANSI Shadow",
+  "Bloody",
+  "Electronic",
+  "Elite",
+  "maxiwi",
+}
+math.randomseed(os.time())
+local header_str = vim.fn.system(
+  [[figlet -f "]] .. fonts[math.random(#fonts)] .. [[" "Yang's neovim"]]
+)
 local header_lines = {}
 for s in header_str:gmatch("[^\r\n]+") do
   table.insert(header_lines, s)
@@ -60,27 +73,27 @@ vim.g.dashboard_custom_section = {
     description = { "  Marks                                   SPC s m" },
     command = "Telescope marks",
   },
-  b= {
+  b = {
     description = { "  Recently opened files                   SPC f r" },
     command = "DashboardFindHistory",
   },
-  c= {
+  c = {
     description = { "  Find file                               SPC spc" },
     command = "DashboardFindFile",
   },
-  d= {
+  d = {
     description = { "  File browser                            SPC f b" },
     command = "Telescope file_browser",
   },
-  e= {
+  e = {
     description = { "  Find word                               SPC f w" },
     command = "DashboardFindWord",
   },
-  f= {
+  f = {
     description = { "  New file                                SPC f n" },
     command = "enew",
   },
-  g= {
+  g = {
     description = { "  PackerSync                             SPC p k s" },
     command = "PackerSync",
   },

@@ -2,6 +2,7 @@ local vim = vim
 local gl = require("galaxyline")
 local fileinfo = require("galaxyline.provider_fileinfo")
 local condition = require("galaxyline.condition")
+local colors = require("core.theme")[vim.g.theme]
 -- local iconz = require("nvim-nonicons")
 
 local gls = gl.section
@@ -51,14 +52,20 @@ local function get_diagnostic_info()
 end
 
 local function coc_current_function()
-  if vim.fn.exists('*coc#rpc#start_server') == 1 then
-    local ret,current_function = pcall(vim.api.nvim_buf_get_var, 0, 'coc_current_function')
-    if not ret then return end
-    if current_function and current_function ~= '' then
-      return ' '..current_function
+  if vim.fn.exists("*coc#rpc#start_server") == 1 then
+    local ret, current_function = pcall(
+      vim.api.nvim_buf_get_var,
+      0,
+      "coc_current_function"
+    )
+    if not ret then
+      return
+    end
+    if current_function and current_function ~= "" then
+      return " " .. current_function
     end
   end
-  return ''
+  return ""
 end
 
 CocStatus = get_diagnostic_info
@@ -104,25 +111,6 @@ local icons = {
   -- terminal  = iconz.get("terminal"),
   -- visual_block = iconz.get("field")
   -- terminal  = iconz.get("vim-terminal-mode")
-}
-
--- Colors
-local colors = {
-  -- bg = '#282a36',
-  -- bg = "#343d46",
-  -- bg = "#1f2335", -- tokyonight
-  bg = "#2a273f", -- rose-pine
-  -- bg = "#374247", -- everforest
-  fg = "#f8f8f2",
-  section_bg = "#39313a",
-  yellow = "#f1fa8c",
-  cyan = "#8be9fd",
-  green = "#50fa7b",
-  violet = "#a9a1e1",
-  orange = "#ffb86c",
-  magenta = "#ff79c6",
-  blue = "#8be9fd",
-  red = "#ff5555",
 }
 
 local mode_color = function()
@@ -294,46 +282,46 @@ table.insert(cur_section, {
 table.insert(cur_section, {
   DiagnosticError = {
     provider = "DiagnosticError",
-    icon = " ",
+    icon = "  ",
     highlight = { colors.red, colors.section_bg },
   },
 })
-table.insert(cur_section, {
-  Space = {
-    provider = white_space,
-    highlight = { colors.section_bg, colors.section_bg },
-  },
-})
+-- table.insert(cur_section, {
+--   Space = {
+--     provider = white_space,
+--     highlight = { colors.section_bg, colors.section_bg },
+--   },
+-- })
 table.insert(cur_section, {
   DiagnosticWarn = {
     provider = "DiagnosticWarn",
-    icon = " ",
+    icon = "  ",
     highlight = { colors.orange, colors.section_bg },
   },
 })
-table.insert(cur_section, {
-  Space = {
-    provider = white_space,
-    highlight = { colors.section_bg, colors.section_bg },
-  },
-})
+-- table.insert(cur_section, {
+--   Space = {
+--     provider = white_space,
+--     highlight = { colors.section_bg, colors.section_bg },
+--   },
+-- })
 table.insert(cur_section, {
   DiagnosticHint = {
     provider = "DiagnosticHint",
-    icon = " ",
+    icon = "  ",
     highlight = { colors.cyan, colors.section_bg },
   },
 })
-table.insert(cur_section, {
-  Space = {
-    provider = white_space,
-    highlight = { colors.section_bg, colors.section_bg },
-  },
-})
+-- table.insert(cur_section, {
+--   Space = {
+--     provider = white_space,
+--     highlight = { colors.section_bg, colors.section_bg },
+--   },
+-- })
 table.insert(cur_section, {
   DiagnosticInfo = {
     provider = "DiagnosticInfo",
-    icon = " ",
+    icon = "  ",
     highlight = { colors.blue, colors.section_bg },
   },
 })

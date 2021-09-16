@@ -1,6 +1,6 @@
 require("bufferline").setup {
   options = {
-    -- mappings = true,
+    modified_icon = '✥',
     numbers = function(opts)
       return string.format("%s", opts.raise(opts.ordinal))
     end,

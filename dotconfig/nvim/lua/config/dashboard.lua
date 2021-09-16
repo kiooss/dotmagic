@@ -44,7 +44,6 @@ local fonts = {
   "3d",
   "ANSI Shadow",
   "Bloody",
-  "Electronic",
   "Elite",
   "maxiwi",
 }

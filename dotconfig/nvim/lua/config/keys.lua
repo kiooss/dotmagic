@@ -55,7 +55,7 @@ util.nnoremap("gk", "k", { silent = true })
 util.nnoremap("g;", "g;zvzz", { silent = true })
 util.nnoremap("g,", "g,zvzz", { silent = true })
 -- Better x with black hole register "_
-util.nnoremap("x", "_x")
+util.nnoremap("x", [["_x]])
 util.nnoremap("Y", "y$")
 util.nnoremap("B", "^")
 util.nnoremap("E", "$")
@@ -95,6 +95,10 @@ util.cnoremap("<C-g>", "<C-c>")
 
 util.xnoremap("s", ":s//g<Left><Left>")
 util.xnoremap("<C-l>", [[:s/^/\=(line('.')-line("'<")+1).'. '/g]])
+
+-- stile select when indent in visual mode
+util.vnoremap("<", "<gv")
+util.vnoremap(">", ">gv")
 
 -- TODO:
 -- noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>M")
@@ -142,8 +146,25 @@ local leader = {
   --   ["d"] = { "<cmd>:bd<CR>", "Delete Buffer" },
   --   ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
   -- },
+  f = {
+    name = "+file",
+    d = "Dot Files",
+    b = { "<cmd>Telescope file_browser cwd=~/workspace<cr>", "File browser" },
+    f = { "<cmd>FormatWrite<cr>", "FormatWrite" },
+    t = { "<cmd>NvimTreeFindFile<cr>", "NvimTreeFindFile" },
+    w = { "<cmd>Telescope live_grep<cr>", "Search word" },
+    r = {
+      function()
+        require("telescope.builtin").oldfiles({ cwd_only = true })
+      end,
+      "Open Recent Files",
+    },
+    n = { "<cmd>enew<cr>", "New File" },
+    m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
+    p = "Open Project",
+  },
   g = {
-    name = "+git",
+    name = "git",
     g = { "<cmd>Neogit<CR>", "NeoGit" },
     l = {
       function()
@@ -155,6 +176,7 @@ local leader = {
     b = { "<Cmd>Telescope git_branches<CR>", "git branches" },
     c = { "<Cmd>Telescope git_bcommits<CR>", "buffer's git commits" },
     d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
+    e = { "<cmd>CocCommand git.showCommit<cr>", "Show Commit" },
     s = { "<Cmd>Telescope git_status<CR>", "git status" },
     -- h = { name = "+hunk" },
   },
@@ -180,7 +202,7 @@ local leader = {
   },
   -- u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {
-    name = "+search",
+    name = "search",
     g = { "<cmd>Telescope live_grep<cr>", "Grep" },
     s = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer" },
     l = {
@@ -202,20 +224,8 @@ local leader = {
     m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
     -- r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" },
   },
-  f = {
-    name = "+file",
-    d = "Dot Files",
-    b = { "<cmd>Telescope file_browser cwd=~/workspace<cr>", "File browser" },
-    f = { "<cmd>FormatWrite<cr>", "FormatWrite" },
-    t = { "<cmd>NvimTreeFindFile<cr>", "NvimTreeFindFile" },
-    w = { "<cmd>Telescope live_grep<cr>", "Search word" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-    n = { "<cmd>enew<cr>", "New File" },
-    m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
-    p = "Open Project",
-  },
   l = {
-    name = "+list",
+    name = "list",
     t = { "<cmd>:Telescope builtin<cr>", "Telescope" },
     c = { "<cmd>:Telescope commands<cr>", "Commands" },
     h = { "<cmd>:Telescope help_tags<cr>", "Help Pages" },
@@ -237,7 +247,7 @@ local leader = {
   --   g = { "<cmd>Glow<cr>", "Markdown Glow" },
   -- },
   p = {
-    name = "+packer",
+    name = "packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
     i = { "<cmd>PackerInstall<cr>", "Install" },
     s = { "<cmd>PackerSync<cr>", "Sync" },
@@ -249,6 +259,12 @@ local leader = {
     --   require("config.lsp.formatting").toggle,
     --   "Format on Save",
     -- },
+    b = {
+      function()
+        require("gitsigns").toggle_current_line_blame()
+      end,
+      "Current Line Blame",
+    },
     s = {
       function()
         util.toggle("spell")

@@ -21,6 +21,8 @@
   "git.removedSign.text": "",
   "git.changedSign.text": "",
   "git.changeRemovedSign.text": "≃",
+  /* "git.splitWindowCommand": "vsp", */
+  "git.showCommitInFloating": true,
   "list.indicator": "❯❯❯",
   "phpls.enable": false,
   "prettier.singleQuote": true,

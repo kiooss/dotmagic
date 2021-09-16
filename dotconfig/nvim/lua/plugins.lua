@@ -561,7 +561,7 @@ local function plugins(use)
   use({ "honza/vim-snippets" })
   use({ "algotech/ultisnips-php" })
   use({ "epilande/vim-react-snippets" })
-  use({ "famiu/bufdelete.nvim" })
+  use({ "famiu/bufdelete.nvim", cmd = "Bdelete" })
   use({ "editorconfig/editorconfig-vim" })
 
   use({

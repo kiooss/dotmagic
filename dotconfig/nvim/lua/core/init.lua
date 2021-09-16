@@ -24,6 +24,12 @@ local function disable_distribution_plugins()
   vim.g.loaded_netrwFileHandlers = 1
 end
 
+local function set_theme()
+  vim.g.theme = "everforest"
+  -- vim.g.theme = "rose-pine"
+  -- vim.g.theme = "tokyonight"
+end
+
 local function load_core()
   -- local pack = require('core.pack')
   -- createdir()
@@ -41,8 +47,10 @@ local function load_core()
   -- pack.load_compile()
 
   -- vim.cmd [[colorscheme edge]]
+
   disable_distribution_plugins()
   leader_map()
+  set_theme()
   require("util")
   require("core.options")
   require("core.event")
@@ -52,9 +60,7 @@ local function load_core()
     require("plugins")
   end, 0)
 
-  -- vim.cmd("colorscheme everforest")
-  vim.cmd("colorscheme rose-pine")
-  -- vim.cmd("colorscheme tokyonight")
+  vim.cmd("colorscheme "..vim.g.theme)
 end
 
 load_core()

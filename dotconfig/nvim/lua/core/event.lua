@@ -39,6 +39,11 @@ function autocmd.load_autocmds()
       -- { "BufWritePre", "*.tsx", "lua vim.api.nvim_command('Format')" },
       -- { "BufWritePre", "*.go", "lua require('internal.golines').golines_format()" },
       { "BufReadPost", "*.log", "normal! G" },
+      {
+        "BufReadPost",
+        "*",
+        [[if &ft !~ '^git\c' && ! &diff && line("'\"") > 0 && line("'\"") <= line("$") | execute 'normal! g`"zvzz' | endif]],
+      },
     },
 
     wins = {
@@ -78,6 +83,8 @@ function autocmd.load_autocmds()
         "set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2",
       },
       { "BufNewFile,BufRead", "*.toml", " setf toml" },
+      { "FileType", "crontab", "setlocal nobackup nowritebackup"},
+      { "FileType", "apache", "setlocal commentstring=#\\ %s"},
     },
 
     custom_highlight = {

@@ -277,15 +277,16 @@ local function plugins(use)
   -- )
 
   -- Smooth Scrolling
-  -- use(
-  --   {
-  --     "karb94/neoscroll.nvim",
-  --     keys = {"<C-u>", "<C-d>", "gg", "G"},
-  --     config = function()
-  --       require("config.scroll")
-  --     end
-  --   }
-  -- )
+  use(
+    {
+      "karb94/neoscroll.nvim",
+      keys = {"<C-u>", "<C-d>", "gg", "G"},
+      config = function()
+        require("config.scroll")
+      end
+    }
+  )
+
   -- use(
   --   {
   --     "edluffy/specs.nvim",
@@ -582,6 +583,9 @@ local function plugins(use)
       vim.g.vimwiki_table_mappings = 0
     end,
   })
+
+  -- Syntax plugins
+  use({ "lumiliet/vim-twig", ft = "twig" })
 end
 
 return packer.setup(config, plugins)

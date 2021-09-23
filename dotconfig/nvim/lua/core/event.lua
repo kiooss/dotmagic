@@ -15,9 +15,9 @@ end
 
 function autocmd.load_autocmds()
   local definitions = {
-    -- packer = {
-    --   { "BufWritePost", "*.lua", "lua require('core.pack').auto_compile()" },
-    -- },
+    packer = {
+      { "BufWritePost", "plugins.lua", "source <afile> | PackerCompile" },
+    },
     bufs = {
       -- Reload vim config automatically
       {
@@ -93,7 +93,7 @@ function autocmd.load_autocmds()
         "*",
         [[
           highlight CocHighlightText guibg=#333333 gui=bold,italic
-          highlight Comment gui=bold,italic
+          highlight CocUnderline gui=undercurl
           highlight Folded gui=bold,italic
           highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
           highlight NormalFloat cterm=bold gui=bold
@@ -101,6 +101,7 @@ function autocmd.load_autocmds()
           highlight SpecialKey ctermfg=19 guifg=#333333
           highlight TSKeyword gui=bold,italic
         ]],
+          -- highlight Comment gui=bold,italic
       },
     },
 

@@ -246,6 +246,22 @@ local function plugins(use)
     },
   })
 
+  use({
+    "sudormrfbin/cheatsheet.nvim",
+    -- requires = {
+    --   { "nvim-telescope/telescope.nvim" },
+    --   { "nvim-lua/popup.nvim" },
+    --   { "nvim-lua/plenary.nvim" },
+    -- },
+    config = function()
+      require("cheatsheet").setup({
+        bundled_cheatsheets = true,
+        bundled_plugin_cheatsheets = true,
+        include_only_installed_plugins = true,
+      })
+    end,
+  })
+
   -- Indent Guides and rainbow brackets
   use({
     "lukas-reineke/indent-blankline.nvim",
@@ -277,15 +293,13 @@ local function plugins(use)
   -- )
 
   -- Smooth Scrolling
-  use(
-    {
-      "karb94/neoscroll.nvim",
-      keys = {"<C-u>", "<C-d>", "gg", "G"},
-      config = function()
-        require("config.scroll")
-      end
-    }
-  )
+  use({
+    "karb94/neoscroll.nvim",
+    keys = { "<C-u>", "<C-d>", "gg", "G" },
+    config = function()
+      require("config.scroll")
+    end,
+  })
 
   -- use(
   --   {
@@ -583,6 +597,8 @@ local function plugins(use)
       vim.g.vimwiki_table_mappings = 0
     end,
   })
+
+  use({ "mg979/vim-visual-multi" })
 
   -- Syntax plugins
   use({ "lumiliet/vim-twig", ft = "twig" })

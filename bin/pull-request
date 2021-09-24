@@ -2,32 +2,81 @@
 
 set -ex
 
-TARGET=$1
+main() {
+  local target=$1
+  local current_branch
+  local project
+  current_branch=$(current_branch)
 
-CURRENT_BRANCH=`git symbolic-ref --short HEAD`
-
-if [[ $CURRENT_BRANCH =~ (.*)-develop$ ]]; then
-  PROJECT=${CURRENT_BRANCH/-develop/}
-
-  STAGING_BRANCH="${PROJECT}-staging"
-  PRODUCTION_BRANCH="${PROJECT}-master"
-
-  if [[ $TARGET == "staging" ]]; then
-    hub pull-request -b $STAGING_BRANCH -l "staging-release,${PROJECT}" -m "${PROJECT}-ステージング反映"
-  elif [[ $TARGET == "production" ]]; then
-    hub pull-request -b $PRODUCTION_BRANCH -l "production-release,${PROJECT}" -m "${PROJECT}-本番反映"
-  else
-    echo "Wrong deploy target."
+  if [[ $current_branch =~ (.*)-develop$ ]]; then
+    project=${current_branch/-develop/}
   fi
-else
-  STAGING_BRANCH="staging"
-  PRODUCTION_BRANCH="master"
-  if [[ $TARGET == "staging" ]]; then
-    hub pull-request -b $STAGING_BRANCH -l "staging-release" -m "ステージング反映"
-  elif [[ $TARGET == "production" ]]; then
-    hub pull-request -b $PRODUCTION_BRANCH -l "production-release" -m "本番反映"
-  else
-    echo "Wrong deploy target."
-  fi
-fi
 
+  case "$target" in
+  "staging") pull_request_staging "$project" ;;
+  "production") pull_request_production "$project" ;;
+  *) echo "Wrong deploy target." ;;
+  esac
+}
+
+current_branch() {
+  git symbolic-ref --short HEAD
+}
+
+get_diff() {
+  git log --oneline --no-decorate --no-merges "$1".. | grep -aEo '#[0-9]+' | sort | uniq
+}
+
+pull_request_staging() {
+  local project=$1
+  local diff
+  local target_branch
+  local pr_label
+  local pr_message
+
+  if [[ -z $project ]]; then
+    target_branch="staging"
+    diff=$(get_diff "$target_branch")
+    pr_label="staging-release"
+    pr_message="ステージング反映\n${diff}"
+  else
+    target_branch="${project}-staging"
+    diff=$(get_diff "$target_branch")
+    pr_label="staging-release,${project}"
+    pr_message="${project}-ステージング反映\n${diff}"
+  fi
+
+  if [[ -n $diff ]]; then
+    echo "These tickets are include: ${diff}"
+  fi
+
+  hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_message"
+}
+
+pull_request_production() {
+  local project=$1
+  local diff
+  local target_branch
+  local pr_label
+  local pr_message
+
+  if [[ -z $project ]]; then
+    target_branch="master"
+    diff=$(get_diff "$target_branch")
+    pr_label="production-release"
+    pr_message="本番反映\n${diff}"
+  else
+    target_branch="${project}-master"
+    diff=$(get_diff "$target_branch")
+    pr_label="production-release,${project}"
+    pr_message="${project}-本番反映\n${diff}"
+  fi
+
+  if [[ -n $diff ]]; then
+    echo "These tickets are include: ${diff}"
+  fi
+
+  hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_message"
+}
+
+main "$@"

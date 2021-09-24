@@ -14,9 +14,18 @@ local luafmt = function()
   }
 end
 
+local shfmt = function()
+  return {
+    exe = "shfmt",
+    args = { "-i", 2 },
+    stdin = true,
+  }
+end
+
 require("formatter").setup({
   filetype = {
     lua = { stylua },
+    sh = { shfmt }
   },
 })
 

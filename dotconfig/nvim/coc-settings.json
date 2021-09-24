@@ -68,18 +68,42 @@
   "languageserver": {
     "intelephense": {
       "command": "intelephense",
-      "args": ["--stdio"],
-      "filetypes": ["php"],
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "php"
+      ],
       "initializationOptions": {
         "storagePath": "/tmp/intelephense"
       }
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
     }
   },
   "python.pythonPath": "/home/yang/.pyenv/versions/sato/bin/python",
   /* "python.venvPath": "/home/yang/.pyenv/versions/sato", */
-  "Lua.diagnostics.globals": ["vim"],
-  "markdownlint.onOpen": false
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "markdownlint.onOpen": false,
   /* "weather.aqi.token": "9ff83d20e4304845fde8dfa37ebfe983a9dc600c", */
   /* "weather.aqi.city": "suzhou", */
   /* "weather.aqi.interval": 60 */
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  }
 }

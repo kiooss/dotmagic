@@ -5,6 +5,7 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-dictionary',
   \ 'coc-docker',
+  \ 'coc-diagnostic',
   \ 'coc-emoji',
   \ 'coc-eslint',
   \ 'coc-git',

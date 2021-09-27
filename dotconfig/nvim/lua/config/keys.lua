@@ -37,6 +37,7 @@ vim.o.timeoutlen = 300
 
 -- util.nnoremap("q", [[len(getbufinfo({'buflisted':1})) > 1 ? ":Sayonara!<cr>" : ":Sayonara<cr>"]], { expr = true })
 util.nnoremap("q", ":Sayonara<cr>")
+util.nnoremap("/", ":Telescope current_buffer_fuzzy_find<cr>")
 util.nnoremap("<Tab>", ":wincmd w<cr>")
 util.nnoremap("<C-p>", ":NvimTreeToggle<cr>")
 -- vsplit buffers
@@ -116,6 +117,10 @@ local leader = {
   ["w"] = { "<cmd>:update<cr>", "Save" },
   ["x"] = { "<cmd>:x<cr>", "Save and quit" },
   ["z"] = { "<cmd>:qa!<cr>", "Quit all" },
+  ["/"] = {
+    "<cmd>Telescope live_grep<cr>",
+    "Search",
+  },
   -- ["w"] = {
   --   name = "+windows",
   --   ["w"] = {"<C-W>p", "other-window"},
@@ -146,6 +151,16 @@ local leader = {
   --   ["d"] = { "<cmd>:bd<CR>", "Delete Buffer" },
   --   ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
   -- },
+  e = {
+    name = "+errors",
+    e = { "<cmd>TroubleToggle<cr>", "Trouble" },
+    w = { "<cmd>TroubleWorkspaceToggle<cr>", "Workspace Trouble" },
+    d = { "<cmd>TroubleDocumentToggle<cr>", "Document Trouble" },
+    t = { "<cmd>TodoTrouble<cr>", "Todo Trouble" },
+    T = { "<cmd>TodoTelescope<cr>", "Todo Telescope" },
+    l = { "<cmd>lopen<cr>", "Open Location List" },
+    q = { "<cmd>copen<cr>", "Open Quickfix List" },
+  },
   f = {
     name = "+file",
     d = "Dot Files",
@@ -248,22 +263,23 @@ local leader = {
   -- },
   p = {
     name = "packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    t = { "<cmd>PackerStatus<cr>", "Status" },
+    c = { "<cmd>PackerCompile<cr>", "PackerCompile" },
+    i = { "<cmd>PackerInstall<cr>", "PackerInstall" },
+    s = { "<cmd>PackerSync<cr>", "PackerSync" },
+    t = { "<cmd>PackerStatus<cr>", "PakcerStatus" },
+    x = { "<cmd>PackerClean<cr>", "PakcerClean" },
   },
   t = {
     name = "toggle",
-    -- f = {
-    --   require("config.lsp.formatting").toggle,
-    --   "Format on Save",
-    -- },
     b = {
       function()
         require("gitsigns").toggle_current_line_blame()
       end,
       "Current Line Blame",
+    },
+    f = {
+      require("config.lsp.formatting").toggle,
+      "Format on Save",
     },
     s = {
       function()

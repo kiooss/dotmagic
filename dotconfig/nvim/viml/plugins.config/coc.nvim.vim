@@ -124,6 +124,7 @@ nmap ]g <Plug>(coc-git-nextchunk)
 " CocList
 " nnoremap <leader>l  :<C-u>CocList<space>
 " nnoremap <leader>S  :<C-u>CocSearch<space>
+nnoremap <silent> <leader>ma  :<C-u>CocConfig<cr>
 nnoremap <silent> <leader>mn  :<C-u>CocList snippets<cr>
 " buffers
 " nnoremap <silent> <leader><space>  :<C-u>CocList -N --normal buffers<cr>
@@ -228,7 +229,7 @@ nnoremap <silent> ;f :<C-u>CocCommand eslint.executeAutofix<CR>
 
 augroup MyAutoCmd
   " Highlight symbol under cursor on CursorHold
-  autocmd CursorHold * silent call CocActionAsync('highlight')
+  " autocmd CursorHold * silent call CocActionAsync('highlight')
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder

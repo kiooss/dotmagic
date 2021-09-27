@@ -3,9 +3,16 @@ local lspconfig = require("lspconfig")
 
 if vim.lsp.setup then
   vim.lsp.setup({
-    floating_preview = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
+    floating_preview = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
     diagnostics = {
-      signs = { error = " ", warning = " ", hint = " ", information = " " },
+      signs = {
+        error = " ",
+        warning = " ",
+        hint = " ",
+        information = " ",
+      },
       display = {
         underline = true,
         update_in_insert = false,
@@ -64,31 +71,38 @@ local servers = {
   -- dockerls = {},
   -- tsserver = {},
   -- cssls = { cmd = { "css-languageserver", "--stdio" } },
-  -- rnix = {},
   -- jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
   -- html = { cmd = { "html-languageserver", "--stdio" } },
-  -- clangd = {},
-  -- gopls = {},
+  html = {},
+  jsonls = {},
+  cssls = {},
+  yamlls = {},
   -- intelephense = {},
+  solargraph = {},
   ["null-ls"] = {},
-  -- sumneko_lua = { cmd = { "lua-language-server" }, },
-  -- efm = require("config.lsp.efm").config,
+  sumneko_lua = require("config.lsp.sumneko_lua").config,
+  efm = require("config.lsp.efm").config,
   -- vimls = {},
   -- tailwindcss = {},
 }
 
+-- TODO: yang nvim-cmp
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.resolveSupport = {
+--   properties = { "documentation", "detail", "additionalTextEdits" },
+-- }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = { "documentation", "detail", "additionalTextEdits" },
-}
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- TODO: yang
--- require("workspace").setup()
 -- require("lua-dev").setup()
+
+-- null-ls inject non-LSP sources.
 require("config.lsp.null-ls").setup()
 
 for server, config in pairs(servers) do
+  util.info(server, "Setup LSP")
   lspconfig[server].setup(vim.tbl_deep_extend("force", {
     on_attach = on_attach,
     capabilities = capabilities,

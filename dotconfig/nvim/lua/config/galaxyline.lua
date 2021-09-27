@@ -25,6 +25,31 @@ local white_space = function()
   return " "
 end
 
+local function get_lsp_client(msg)
+  return function()
+    msg = msg or "No Active Lsp"
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+      return msg
+    end
+
+    local lsp_client_names = {}
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        table.insert(lsp_client_names, client.name)
+      end
+    end
+
+    if next(lsp_client_names) == nil then
+      return msg
+    else
+      return table.concat(lsp_client_names, " │ ")
+    end
+  end
+end
+
 local function lsp_status(status)
   local shorter_stat = ""
   for match in string.gmatch(status, "[^%s]+") do
@@ -345,7 +370,8 @@ table.insert(cur_section, {
 cur_section = gls.mid
 table.insert(cur_section, {
   ShowLspClient = {
-    provider = "GetLspClient",
+    -- provider = "GetLspClient",
+    provider = get_lsp_client("なし"),
     condition = function()
       local tbl = { ["dashboard"] = true, [""] = true }
       if tbl[vim.bo.filetype] then

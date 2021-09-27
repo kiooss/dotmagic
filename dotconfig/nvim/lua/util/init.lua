@@ -15,13 +15,18 @@ _G.profile = function(cmd, times)
   for _ = 1, times, 1 do
     local ok = pcall(cmd, unpack(args))
     if not ok then
-      error("Command failed: " .. tostring(ok) .. " " .. vim.inspect({ cmd = cmd, args = args }))
+      error(
+        "Command failed: "
+          .. tostring(ok)
+          .. " "
+          .. vim.inspect({ cmd = cmd, args = args })
+      )
     end
   end
   print(((vim.loop.hrtime() - start) / 1000000 / times) .. "ms")
 end
 
-
+-- selene: allow(global_usage)
 _G.should_colorcolumn = function()
   local filetype_exclude = {
     "diff",
@@ -57,7 +62,12 @@ function M.execute(id)
 end
 
 local map = function(mode, key, cmd, opts, defaults)
-  opts = vim.tbl_deep_extend("force", { silent = true }, defaults or {}, opts or {})
+  opts = vim.tbl_deep_extend(
+    "force",
+    { silent = true },
+    defaults or {},
+    opts or {}
+  )
 
   if type(cmd) == "function" then
     table.insert(M.functions, cmd)
@@ -196,7 +206,10 @@ end
 function M.lsp_config()
   local ret = {}
   for _, client in pairs(vim.lsp.get_active_clients()) do
-    ret[client.name] = { root_dir = client.config.root_dir, settings = client.config.settings }
+    ret[client.name] = {
+      root_dir = client.config.root_dir,
+      settings = client.config.settings,
+    }
   end
   dump(ret)
 end

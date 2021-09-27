@@ -16,7 +16,8 @@ end
 function autocmd.load_autocmds()
   local definitions = {
     packer = {
-      { "BufWritePost", "plugins.lua", "source <afile> | PackerCompile" },
+      -- { "BufWritePost", "plugins.lua", "source <afile> | PackerCompile" },
+      { "BufWritePost", "plugins.lua", "source <afile>" },
     },
     bufs = {
       -- Reload vim config automatically
@@ -83,8 +84,8 @@ function autocmd.load_autocmds()
         "set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2",
       },
       { "BufNewFile,BufRead", "*.toml", " setf toml" },
-      { "FileType", "crontab", "setlocal nobackup nowritebackup"},
-      { "FileType", "apache", "setlocal commentstring=#\\ %s"},
+      { "FileType", "crontab", "setlocal nobackup nowritebackup" },
+      { "FileType", "apache", "setlocal commentstring=#\\ %s" },
     },
 
     custom_highlight = {
@@ -93,6 +94,8 @@ function autocmd.load_autocmds()
         "*",
         [[
           highlight CocHighlightText guibg=#333333 gui=bold,italic
+          highlight illuminatedWord cterm=italic gui=italic
+          highlight illuminatedCurWord cterm=italic gui=italic
           highlight CocUnderline gui=undercurl
           highlight Folded gui=bold,italic
           highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
@@ -101,16 +104,16 @@ function autocmd.load_autocmds()
           highlight SpecialKey ctermfg=19 guifg=#333333
           highlight TSKeyword gui=bold,italic
         ]],
-          -- highlight Comment gui=bold,italic
+        -- highlight Comment gui=bold,italic
       },
     },
 
-    -- yank = {
-    --   {
-    --     "TextYankPost",
-    --     [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]],
-    --   },
-    -- },
+    yank = {
+      {
+        "TextYankPost",
+        [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=500})]],
+      },
+    },
   }
 
   autocmd.nvim_create_augroups(definitions)

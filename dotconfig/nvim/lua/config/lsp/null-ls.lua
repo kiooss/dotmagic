@@ -4,15 +4,31 @@ function M.setup()
   local nls = require("null-ls")
 
   nls.config({
+    debug = true,
     debounce = 150,
     save_after_format = false,
     sources = {
-      nls.builtins.formatting.prettierd,
-      nls.builtins.formatting.stylua,
-      nls.builtins.formatting.eslint_d,
+      -- formatters
+      -- nls.builtins.formatting.prettierd,
+      nls.builtins.formatting.stylua.with({
+        extra_args = {
+          "--config-path",
+          vim.fn.expand("~/.config/nvim/.stylua"),
+          "-",
+        },
+      }),
+      -- nls.builtins.formatting.eslint_d,
+      nls.builtins.formatting.shfmt.with({
+        extra_args = { "-i", "2", "-ci" },
+      }),
+      nls.builtins.formatting.sqlformat,
+
+      -- diagnostics
       nls.builtins.diagnostics.shellcheck,
       nls.builtins.diagnostics.markdownlint,
-      nls.builtins.diagnostics.selene,
+      -- nls.builtins.diagnostics.selene,
+
+      -- code_actions
       nls.builtins.code_actions.gitsigns,
     },
   })

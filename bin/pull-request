@@ -13,9 +13,9 @@ main() {
   fi
 
   case "$target" in
-  "staging") pull_request_staging "$project" ;;
-  "production") pull_request_production "$project" ;;
-  *) echo "Wrong deploy target." ;;
+    "staging") pull_request_staging "$project" ;;
+    "production") pull_request_production "$project" ;;
+    *) echo "Wrong deploy target." ;;
   esac
 }
 
@@ -32,25 +32,26 @@ pull_request_staging() {
   local diff
   local target_branch
   local pr_label
-  local pr_message
+  local pr_title
 
   if [[ -z $project ]]; then
     target_branch="staging"
     diff=$(get_diff "$target_branch")
     pr_label="staging-release"
-    pr_message="ステージング反映\n${diff}"
+    pr_title="ステージング反映\n${diff}"
   else
     target_branch="${project}-staging"
     diff=$(get_diff "$target_branch")
     pr_label="staging-release,${project}"
-    pr_message="${project}-ステージング反映\n${diff}"
+    pr_title="${project}-ステージング反映"
   fi
 
   if [[ -n $diff ]]; then
     echo "These tickets are include: ${diff}"
+    hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title" -m "$diff"
+  else
+    hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title"
   fi
-
-  hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_message"
 }
 
 pull_request_production() {
@@ -58,25 +59,26 @@ pull_request_production() {
   local diff
   local target_branch
   local pr_label
-  local pr_message
+  local pr_title
 
   if [[ -z $project ]]; then
     target_branch="master"
     diff=$(get_diff "$target_branch")
     pr_label="production-release"
-    pr_message="本番反映\n${diff}"
+    pr_title="本番反映\n${diff}"
   else
     target_branch="${project}-master"
     diff=$(get_diff "$target_branch")
     pr_label="production-release,${project}"
-    pr_message="${project}-本番反映\n${diff}"
+    pr_title="${project}-本番反映"
   fi
 
   if [[ -n $diff ]]; then
     echo "These tickets are include: ${diff}"
+    hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title" -m "$diff"
+  else
+    hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title"
   fi
-
-  hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_message"
 }
 
 main "$@"

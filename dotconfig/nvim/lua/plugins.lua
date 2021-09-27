@@ -22,32 +22,68 @@ local function plugins(use)
 
   use({
     "neoclide/coc.nvim",
+    disable = true,
     branch = "release",
     config = function()
       vim.cmd("source ~/.config/nvim/viml/plugins.config/coc.nvim.vim")
     end,
   })
-  -- -- LSP
-  -- use({
-  --   "neovim/nvim-lspconfig",
-  --   opt = true,
-  --   event = "BufReadPre",
-  --   wants = {
-  --     -- "workspace.nvim",
-  --     -- "nvim-lsp-ts-utils",
-  --     "null-ls.nvim",
-  --     "lua-dev.nvim",
-  --   },
-  --   config = function()
-  --     require("config.lsp")
-  --   end,
-  --   requires = {
-  --     -- "folke/workspace.nvim",
-  --     -- "jose-elias-alvarez/nvim-lsp-ts-utils",
-  --     "jose-elias-alvarez/null-ls.nvim",
-  --     "folke/lua-dev.nvim",
-  --   },
-  -- })
+
+  -- LSP related plugins start
+  use({
+    "neovim/nvim-lspconfig",
+    opt = true,
+    event = "BufReadPre",
+    wants = {
+      -- "nvim-lsp-ts-utils",
+      "null-ls.nvim",
+      "lua-dev.nvim",
+    },
+    config = function()
+      require("config.lsp")
+    end,
+    requires = {
+      -- "jose-elias-alvarez/nvim-lsp-ts-utils",
+      "jose-elias-alvarez/null-ls.nvim",
+      "folke/lua-dev.nvim",
+    },
+  })
+
+  use({
+    "RRethy/vim-illuminate",
+    event = "CursorHold",
+    module = "illuminate",
+    config = function()
+      vim.g.Illuminate_delay = 100
+    end,
+  })
+  -- LSP related plugins end
+
+  use({
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    config = function()
+      require("config.nvim-cmp")
+    end,
+    requires = {
+      "onsails/lspkind-nvim",
+      "hrsh7th/cmp-nvim-lsp",
+      { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+      { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
+      { "hrsh7th/cmp-path", after = "nvim-cmp" },
+      { "octaltree/cmp-look", after = "nvim-cmp" },
+      {
+        "windwp/nvim-autopairs",
+        after = "nvim-cmp",
+        config = function()
+          require("config.autopairs")
+        end,
+      },
+      { "hrsh7th/vim-vsnip", after = "nvim-cmp" },
+      { "hrsh7th/vim-vsnip-integ", after = "nvim-cmp" },
+      { "rafamadriz/friendly-snippets", after = "vim-vsnip" },
+    },
+  })
 
   -- use(
   --   {
@@ -107,6 +143,13 @@ local function plugins(use)
       "RRethy/nvim-treesitter-textsubjects",
     },
     config = [[require('config.treesitter')]],
+  })
+
+  use({
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("config.colorizer")
+    end,
   })
 
   -- Theme: color schemes
@@ -479,18 +522,6 @@ local function plugins(use)
       require("config.diffview")
     end,
   })
-
-  -- TODO
-  -- use(
-  --   {
-  --     "RRethy/vim-illuminate",
-  --     event = "CursorHold",
-  --     module = "illuminate",
-  --     config = function()
-  --       vim.g.Illuminate_delay = 1000
-  --     end
-  --   }
-  -- )
 
   -- use({ "wellle/targets.vim" })
 

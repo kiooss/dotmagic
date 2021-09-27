@@ -445,3 +445,5 @@ _fix_cursor() {
 }
 
 precmd_functions+=(_fix_cursor)
+
+alias luamake=/home/yang/workspace/lua-language-server/3rd/luamake/luamake

@@ -70,7 +70,7 @@ cmp.setup({
     { name = "path" },
     { name = "look" },
     -- { name = "calc" },
-    -- { name = "nvim_lua" },
+    { name = "nvim_lua" },
     { name = "vsnip" },
     -- { name = "luasnip" },
   },

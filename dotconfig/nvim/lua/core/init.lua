@@ -60,7 +60,7 @@ local function load_core()
     require("plugins")
   end, 0)
 
-  vim.cmd("colorscheme "..vim.g.theme)
+  vim.cmd("colorscheme " .. vim.g.theme)
 end
 
 load_core()

@@ -281,6 +281,10 @@ local leader = {
       require("config.lsp.formatting").toggle,
       "Format on Save",
     },
+    i = {
+      "<cmd>IndentBlanklineToggle<cr>",
+      "IndentLine",
+    },
     s = {
       function()
         util.toggle("spell")

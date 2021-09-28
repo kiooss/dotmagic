@@ -1,6 +1,7 @@
 local util = require("util")
 local lspconfig = require("lspconfig")
 
+-- NOTE: https://github.com/neovim/neovim/pull/14681
 if vim.lsp.setup then
   vim.lsp.setup({
     floating_preview = {
@@ -49,7 +50,7 @@ if vim.lsp.setup then
 else
   -- require("config.lsp.saga")
   require("config.lsp.diagnostics")
-  require("config.lsp.kind").setup()
+  -- require("config.lsp.kind").setup()
 end
 
 local function on_attach(client, bufnr)
@@ -74,10 +75,10 @@ local servers = {
   -- jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
   -- html = { cmd = { "html-languageserver", "--stdio" } },
   html = {},
-  jsonls = {},
+  jsonls = { filetypes = { "json", "jsonc" } },
   cssls = {},
   yamlls = {},
-  -- intelephense = {},
+  intelephense = {},
   solargraph = {},
   ["null-ls"] = {},
   sumneko_lua = require("config.lsp.sumneko_lua").config,
@@ -86,16 +87,11 @@ local servers = {
   -- tailwindcss = {},
 }
 
--- TODO: yang nvim-cmp
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.resolveSupport = {
---   properties = { "documentation", "detail", "additionalTextEdits" },
--- }
+-- nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
--- TODO: yang
+-- lua-dev
 -- require("lua-dev").setup()
 
 -- null-ls inject non-LSP sources.

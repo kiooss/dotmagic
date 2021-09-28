@@ -21,7 +21,9 @@ function M.setup()
       nls.builtins.formatting.shfmt.with({
         extra_args = { "-i", "2", "-ci" },
       }),
-      nls.builtins.formatting.sqlformat,
+      nls.builtins.formatting.sqlformat.with({
+        extra_args = { "-r" },
+      }),
 
       -- diagnostics
       nls.builtins.diagnostics.shellcheck,

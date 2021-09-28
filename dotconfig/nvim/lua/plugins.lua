@@ -71,6 +71,7 @@ local function plugins(use)
       { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
       { "hrsh7th/cmp-path", after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
       { "octaltree/cmp-look", after = "nvim-cmp" },
       {
         "windwp/nvim-autopairs",

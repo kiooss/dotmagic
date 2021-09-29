@@ -1,35 +1,3 @@
--- require("which-key").setup {
---   icons = {
---     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
---     separator = "➜", -- symbol used between a key and it's label
---     group = "+" -- symbol prepended to a group
---   }
--- }
-
--- local wk = require("which-key")
-
--- wk.register(
---   {
---     f = {
---       name = "+file",
---       t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
---       f = { "<cmd>FormatWrite<cr>", "FormatWrite" },
---       -- f = { "<cmd>Telescope find_files<cr>", "Find File" },
---       -- r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
---       -- n = { "<cmd>enew<cr>", "New File" },
---       -- z = "Zoxide",
---       -- d = "Dot Files",
---     },
---     h = {
---       name = "GitSigns" -- optional group name
---     },
---     m = {
---       name = "Coc" -- optional group name
---     }
---   },
---   {prefix = "<leader>"}
--- )
-
 local wk = require("which-key")
 local util = require("util")
 
@@ -237,6 +205,7 @@ local leader = {
     },
     h = { "<cmd>Telescope command_history<cr>", "Command History" },
     m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
+    w = { "<cmd>Telescope lsp_workspace_symbols<cr>", "LSP workspace symbols" },
     -- r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" },
   },
   l = {

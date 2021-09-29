@@ -40,7 +40,7 @@ vim.g.dashboard_disable_statusline = 0
 
 local fonts = {
   "DOS Rebel",
-  "NScript",
+  -- "NScript",
   "3d",
   "ANSI Shadow",
   "Bloody",
@@ -74,12 +74,12 @@ vim.g.dashboard_custom_header = header_lines
 
 vim.g.dashboard_custom_section = {
   a = {
-    description = { "  Marks                                   SPC s m" },
-    command = "Telescope marks",
-  },
-  b = {
     description = { "  Recently opened files                   SPC f r" },
     command = "DashboardFindHistory",
+  },
+  b = {
+    description = { "  Marks                                   SPC s m" },
+    command = "Telescope marks",
   },
   c = {
     description = { "  Find file                               SPC spc" },

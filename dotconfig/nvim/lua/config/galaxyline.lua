@@ -380,17 +380,17 @@ table.insert(cur_section, {
       return true
     end,
     icon = " ",
-    highlight = { colors.cyan, colors.section_bg, "bold" },
+    highlight = { colors.cyan, colors.section_bg, "bold,italic" },
     separator = "",
     separator_highlight = { colors.section_bg, colors.bg },
   },
 })
-table.insert(cur_section, {
-  CocStatus = {
-    provider = CocStatus,
-    highlight = { colors.green, colors.section_bg },
-  },
-})
+-- table.insert(cur_section, {
+--   CocStatus = {
+--     provider = CocStatus,
+--     highlight = { colors.green, colors.section_bg },
+--   },
+-- })
 table.insert(cur_section, {
   MidEnd = {
     provider = function()
@@ -407,7 +407,7 @@ table.insert(cur_section, {
     provider = function()
       return " " .. vim.bo.filetype .. " "
     end,
-    highlight = { colors.fg, colors.section_bg },
+    highlight = { colors.fg, colors.section_bg, "bold,italic" },
     separator = icons.sep.right,
     separator_highlight = { colors.section_bg, colors.bg },
   },
@@ -416,7 +416,7 @@ table.insert(cur_section, {
   FileEF = {
     highlight = { colors.fg, colors.bg },
     separator = icons.sep.right,
-    separator_highlight = { colors.bg, colors.section_bg },
+    separator_highlight = { colors.bg, colors.section_bg, "bold,italic" },
     provider = function()
       local format_icon = {
         ["DOS"] = " ",

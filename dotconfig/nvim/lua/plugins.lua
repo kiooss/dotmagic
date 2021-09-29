@@ -1,4 +1,5 @@
 local packer = require("util.packer")
+local global = require("core.global")
 
 local config = {
   profile = {
@@ -572,14 +573,17 @@ local function plugins(use)
     ft = "sql",
   })
 
-  use({
-    "wincent/vim-clipper",
-    setup = function()
-      vim.g.ClipperMap = 0
-      vim.g.ClipperAddress = "~/.clipper.sock"
-      vim.g.ClipperPort = 0
-    end,
-  })
+  if global.is_linux then
+    use({
+      "wincent/vim-clipper",
+      setup = function()
+        vim.g.ClipperMap = 0
+        vim.g.ClipperAddress = "~/.clipper.sock"
+        vim.g.ClipperPort = 0
+      end,
+    })
+  end
+
   use({ "junegunn/vim-easy-align" })
   use({ "kana/vim-textobj-entire" })
   use({ "kana/vim-textobj-function" })

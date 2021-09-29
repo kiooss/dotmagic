@@ -68,7 +68,7 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "buffer" },
     { name = "path" },
-    { name = "look" },
+    { name = "look", keyword_length = 2 },
     -- { name = "calc" },
     { name = "nvim_lua" },
     { name = "vsnip" },

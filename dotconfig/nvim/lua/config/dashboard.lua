@@ -47,6 +47,11 @@ local fonts = {
   "Elite",
   "maxiwi",
 }
+
+if require("core.global").is_mac then
+  fonts = { "slant", "speed" }
+end
+
 math.randomseed(os.time())
 local header_str = vim.fn.system(
   [[figlet -f "]] .. fonts[math.random(#fonts)] .. [[" "Yang's neovim"]]

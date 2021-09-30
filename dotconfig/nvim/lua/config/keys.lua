@@ -108,7 +108,6 @@ local leader = {
   --   ["s"] = {"<C-W>s", "split-window-below"},
   --   ["v"] = {"<C-W>v", "split-window-right"}
   -- },
-  -- c = { v = { "<cmd>Vista!!<CR>", "Vista" }, o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" } },
   -- b = {
   --   name = "+buffer",
   --   ["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
@@ -119,6 +118,10 @@ local leader = {
   --   ["d"] = { "<cmd>:bd<CR>", "Delete Buffer" },
   --   ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
   -- },
+  c = {
+    v = { "<cmd>Vista!!<CR>", "Vista" },
+    o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
+  },
   e = {
     name = "+errors",
     e = { "<cmd>TroubleToggle<cr>", "Trouble" },
@@ -275,10 +278,6 @@ local leader = {
       end,
       "Line Numbers",
     },
-  },
-  v = {
-    name = "Vista",
-    v = { "<cmd>Vista!!<cr>", "Vista toggle" },
   },
   -- ["<tab>"] = {
   --   name = "workspace",

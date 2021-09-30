@@ -26,8 +26,8 @@ end
 
 local function set_theme()
   -- vim.g.theme = "everforest"
-  -- vim.g.theme = "rose-pine"
-  vim.g.theme = "tokyonight"
+  vim.g.theme = "rose-pine"
+  -- vim.g.theme = "tokyonight"
 end
 
 local function load_core()

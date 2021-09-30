@@ -94,40 +94,10 @@ local function plugins(use)
     },
   })
 
-  -- use(
-  --   {
-  --     "hrsh7th/nvim-compe",
-  --     event = "InsertEnter",
-  --     opt = true,
-  --     config = function()
-  --       require("config.compe")
-  --     end,
-  --     wants = {"LuaSnip"},
-  --     requires = {
-  --       {
-  --         "L3MON4D3/LuaSnip",
-  --         wants = "friendly-snippets",
-  --         config = function()
-  --           require("config.snippets")
-  --         end
-  --       },
-  --       "rafamadriz/friendly-snippets",
-  --       {
-  --         "windwp/nvim-autopairs",
-  --         config = function()
-  --           require("config.autopairs")
-  --         end
-  --       }
-  --     }
-  --   }
-  -- )
-
-  -- use(
-  --   {
-  --     "simrat39/symbols-outline.nvim",
-  --     cmd = {"SymbolsOutline"}
-  --   }
-  -- )
+  use({
+    "simrat39/symbols-outline.nvim",
+    cmd = { "SymbolsOutline" },
+  })
 
   use({
     "b3nj5m1n/kommentary",

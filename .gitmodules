@@ -23,3 +23,6 @@
 [submodule "zsh/omz_custom/themes/powerlevel10k"]
 	path = zsh/omz_custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "vendor/kitty-themes/rose-pine"]
+	path = vendor/kitty-themes/rose-pine
+	url = https://github.com/rose-pine/kitty.git

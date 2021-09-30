@@ -1,5 +1,4 @@
 local theme = {}
-local tokyonight_colors = require("tokyonight.colors").setup({})
 
 theme.default = {
   bg = "#202328",
@@ -15,23 +14,27 @@ theme.default = {
   red = "#ec5f67",
 }
 
+local tokyonight_colors = require("tokyonight.colors").setup({})
+
 theme.tokyonight = vim.tbl_deep_extend("force", tokyonight_colors, {
   bg = tokyonight_colors.bg_statusline,
   section_bg = tokyonight_colors.bg_highlight,
 })
 
+local palette = require("rose-pine.palette")
+
 theme["rose-pine"] = {
-  bg = "#2a273f",
-  fg = "#f8f8f2",
+  bg = palette.surface,
   section_bg = "#39313a",
-  yellow = "#f1fa8c",
-  cyan = "#8be9fd",
-  green = "#50fa7b",
-  violet = "#a9a1e1",
-  orange = "#ffb86c",
-  magenta = "#ff79c6",
-  blue = "#8be9fd",
-  red = "#ff5555",
+  fg = palette.text,
+  fg_alt = palette.subtle,
+  yellow = palette.gold,
+  cyan = palette.foam,
+  green = palette.pine,
+  orange = palette.rose,
+  magenta = palette.iris,
+  blue = palette.subtle,
+  red = palette.love,
 }
 
 theme.everforest = {

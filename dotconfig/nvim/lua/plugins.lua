@@ -19,7 +19,6 @@ local config = {
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim", opt = true })
-  -- use({"folke/workspace.nvim"})
 
   use({
     "neoclide/coc.nvim",
@@ -293,7 +292,7 @@ local function plugins(use)
     end,
   })
 
-  -- Tabs
+  -- Tabline
   use({
     "akinsho/nvim-bufferline.lua",
     event = "BufReadPre",
@@ -334,7 +333,7 @@ local function plugins(use)
   -- )
   -- use { "Xuyuanp/scrollbar.nvim", config = function() require("config.scrollbar") end }
 
-  -- Git Gutter
+  -- Git signs
   use({
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
@@ -344,11 +343,7 @@ local function plugins(use)
       require("config.gitsigns")
     end,
   })
-  -- use {
-  --   "kdheepak/lazygit.nvim",
-  --   cmd = "LazyGit",
-  --   config = function() vim.g.lazygit_floating_window_use_plenary = 0 end
-  -- }
+
   use({
     "TimUntersberger/neogit",
     cmd = "Neogit",
@@ -373,15 +368,6 @@ local function plugins(use)
     end,
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
-  -- use(
-  --   {
-  --     "norcalli/nvim-colorizer.lua",
-  --     event = "BufReadPre",
-  --     config = function()
-  --       require("config.colorizer")
-  --     end
-  --   }
-  -- )
 
   -- use({"npxbr/glow.nvim", cmd = "Glow"})
 
@@ -391,6 +377,7 @@ local function plugins(use)
     requires = "godlygeek/tabular",
     ft = "markdown",
   })
+
   use({
     "iamcco/markdown-preview.nvim",
     run = function()
@@ -455,23 +442,6 @@ local function plugins(use)
 
   use({ "mbbill/undotree", cmd = "UndotreeToggle" })
 
-  -- use(
-  --   {
-  --     "folke/zen-mode.nvim",
-  --     cmd = "ZenMode",
-  --     opt = true,
-  --     wants = "twilight.nvim",
-  --     requires = {"folke/twilight.nvim"},
-  --     config = function()
-  --       require("zen-mode").setup(
-  --         {
-  --           plugins = {gitsigns = true, tmux = true, kitty = {enabled = false, font = "+2"}}
-  --         }
-  --       )
-  --     end
-  --   }
-  -- )
-
   use({
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
@@ -511,7 +481,6 @@ local function plugins(use)
     event = "CursorMoved",
   })
   -- use({"camspiers/snap", rocks = {"fzy"}, module = "snap"})
-  -- use("kmonad/kmonad-vim")
 
   use({
     "tpope/vim-endwise",
@@ -535,14 +504,17 @@ local function plugins(use)
 
   use({
     "lambdalisue/suda.vim",
+    cmd = { "SudaWrite", "SudaRead" },
   })
 
   use({
     "pechorin/any-jump.vim",
+    cmd = { "AnyJump", "AnyJumpVisual" },
   })
 
   use({
     "rhysd/committia.vim",
+    ft = "gitcommit",
   })
 
   use({

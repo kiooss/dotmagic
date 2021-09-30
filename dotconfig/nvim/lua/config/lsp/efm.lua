@@ -30,7 +30,11 @@ local eslint = {
 local shellcheck = {
   lintCommand = "shellcheck -f gcc -x -",
   lintStdin = true,
-  lintFormats = { "%f=%l:%c: %trror: %m", "%f=%l:%c: %tarning: %m", "%f=%l:%c: %tote: %m" },
+  lintFormats = {
+    "%f=%l:%c: %trror: %m",
+    "%f=%l:%c: %tarning: %m",
+    "%f=%l:%c: %tote: %m",
+  },
 }
 
 local markdownlint = {
@@ -42,6 +46,15 @@ local markdownlint = {
 local fish = { formatCommand = "fish_indent", formatStdin = true }
 
 local eslintPrettier = { prettierLocal, eslint }
+
+local eruby = {
+  lintCommand = "erb -x -T - | ruby -c",
+  lintDebounce = "2s",
+  lintStdin = true,
+  lintOffset = 1,
+  -- formatStdin = true,
+  -- formatCommand = "htmlbeautifier",
+}
 
 M.config = {
   init_options = { documentFormatting = true },
@@ -63,6 +76,7 @@ M.config = {
       -- markdown = { prettierLocal, markdownlint },
       -- sh = { shellcheck },
       fish = { fish },
+      eruby = { eruby },
     },
   },
 }

@@ -81,6 +81,7 @@ wk.setup({
 })
 
 local leader = {
+  ["j"] = { "<cmd>:AnyJump<cr>", "AnyJump" },
   ["W"] = { "<cmd>:VimwikiIndex<cr>", "Wiki" },
   ["w"] = { "<cmd>:update<cr>", "Save" },
   ["x"] = { "<cmd>:x<cr>", "Save and quit" },

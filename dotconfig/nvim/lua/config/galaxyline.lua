@@ -361,7 +361,8 @@ table.insert(cur_section, {
 })
 table.insert(cur_section, {
   CurrentFunction = {
-    provider = coc_current_function,
+    -- provider = coc_current_function,
+    provider = "VistaPlugin",
     highlight = { colors.green, colors.bg, "bold,italic" },
   },
 })
@@ -416,7 +417,7 @@ table.insert(cur_section, {
   FileEF = {
     highlight = { colors.fg, colors.bg },
     separator = icons.sep.right,
-    separator_highlight = { colors.bg, colors.section_bg, "bold,italic" },
+    separator_highlight = { colors.bg, colors.section_bg },
     provider = function()
       local format_icon = {
         ["DOS"] = " ",
@@ -465,13 +466,21 @@ table.insert(cur_section, {
   },
 })
 table.insert(cur_section, {
+  WhiteSpace = {
+    provider = "WhiteSpace",
+    highlight = { colors.red, colors.bg, "bold,italic" },
+    separator = icons.sep.right,
+    separator_highlight = { colors.bg, colors.section_bg },
+  },
+})
+table.insert(cur_section, {
   Heart = {
     provider = function()
       return " "
     end,
     highlight = { colors.red, colors.section_bg },
-    separator = " | ",
-    separator_highlight = { colors.bg, colors.section_bg },
+    separator = icons.sep.right,
+    separator_highlight = { colors.section_bg, colors.bg },
   },
 })
 

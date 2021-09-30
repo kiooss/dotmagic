@@ -276,6 +276,10 @@ local leader = {
       "Line Numbers",
     },
   },
+  v = {
+    name = "Vista",
+    v = { "<cmd>Vista!!<cr>", "Vista toggle" },
+  },
   -- ["<tab>"] = {
   --   name = "workspace",
   --   ["<tab>"] = { "<cmd>tabnew<CR>", "New Tab" },

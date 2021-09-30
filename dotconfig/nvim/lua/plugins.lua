@@ -58,6 +58,13 @@ local function plugins(use)
       vim.g.Illuminate_delay = 100
     end,
   })
+
+  use({
+    "liuchengxu/vista.vim",
+    config = function()
+      vim.g.vista_default_executive = "nvim_lsp"
+    end,
+  })
   -- LSP related plugins end
 
   use({

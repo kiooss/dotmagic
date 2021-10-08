@@ -2,6 +2,7 @@ local packer = require("util.packer")
 local global = require("core.global")
 
 local config = {
+  max_jobs = global.is_mac and 70 or nil,
   profile = {
     enable = false,
     threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile

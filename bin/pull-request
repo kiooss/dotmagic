@@ -38,7 +38,7 @@ pull_request_staging() {
     target_branch="staging"
     diff=$(get_diff "$target_branch")
     pr_label="staging-release"
-    pr_title="ステージング反映\n${diff}"
+    pr_title="ステージング反映"
   else
     target_branch="${project}-staging"
     diff=$(get_diff "$target_branch")
@@ -65,7 +65,7 @@ pull_request_production() {
     target_branch="master"
     diff=$(get_diff "$target_branch")
     pr_label="production-release"
-    pr_title="本番反映\n${diff}"
+    pr_title="本番反映"
   else
     target_branch="${project}-master"
     diff=$(get_diff "$target_branch")

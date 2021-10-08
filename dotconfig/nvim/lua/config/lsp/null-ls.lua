@@ -24,6 +24,9 @@ function M.setup()
       nls.builtins.formatting.sqlformat.with({
         extra_args = { "-r" },
       }),
+      -- nls.builtins.formatting.phpcsfixer.with({
+      --   command = "php-cs-fixer",
+      -- }),
 
       -- diagnostics
       nls.builtins.diagnostics.shellcheck,

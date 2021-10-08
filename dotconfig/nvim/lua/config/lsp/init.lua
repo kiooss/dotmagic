@@ -83,6 +83,7 @@ local servers = {
   ["null-ls"] = {},
   sumneko_lua = require("config.lsp.sumneko_lua").config,
   efm = require("config.lsp.efm").config,
+  vuels = {},
   -- vimls = {},
   -- tailwindcss = {},
 }

@@ -98,7 +98,7 @@ vim.g.dashboard_custom_section = {
     command = "enew",
   },
   g = {
-    description = { "  PackerSync                             SPC p k s" },
+    description = { "  PackerSync                              SPC p s" },
     command = "PackerSync",
   },
 }

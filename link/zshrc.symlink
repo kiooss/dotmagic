@@ -169,7 +169,6 @@ plugins=(
   zsh-navigation-tools
   zsh-syntax-highlighting
   zsh-completions
-  zsh_reload
 )
 
 plugins_on_need=(

@@ -246,7 +246,7 @@ local function plugins(use)
     end,
     cmd = { "Telescope" },
     module = "telescope",
-    keys = { "<leader><space>", "<leader>fd", "<leader>pp" },
+    keys = { "<leader><space>", "<leader>fd", "<leader>fr" },
     wants = {
       "plenary.nvim",
       "popup.nvim",
@@ -390,9 +390,12 @@ local function plugins(use)
 
   -- use { "tjdevries/train.nvim", cmd = { "TrainClear", "TrainTextObj", "TrainUpDown", "TrainWord" } }
 
-  -- use({ "wfxr/minimap.vim", config = function()
-  --   require("config.minimap")
-  -- end })
+  use({
+    "wfxr/minimap.vim",
+    config = function()
+      require("config.minimap")
+    end,
+  })
 
   -- use(
   --   {

@@ -28,6 +28,12 @@ function M.setup(client, bufnr)
           "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
           "List Folders",
         },
+        h = {
+          function()
+            require("util").lsp_config()
+          end,
+          "Lsp Config",
+        },
       },
     },
     x = {

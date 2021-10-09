@@ -78,7 +78,7 @@ local servers = {
   jsonls = { filetypes = { "json", "jsonc" } },
   cssls = {},
   yamlls = {},
-  intelephense = {},
+  intelephense = require("config.lsp.intelephense").config,
   solargraph = {},
   ["null-ls"] = {},
   sumneko_lua = require("config.lsp.sumneko_lua").config,

@@ -1,5 +1,5 @@
-local packer = require("util.packer")
-local global = require("core.global")
+local packer = require('util.packer')
+local global = require('core.global')
 
 local config = {
   max_jobs = global.is_mac and 70 or nil,
@@ -9,7 +9,7 @@ local config = {
   },
   display = {
     open_fn = function()
-      return require("packer.util").float({ border = "single" })
+      return require('packer.util').float({ border = 'single' })
     end,
   },
   -- list of plugins that should be taken from ~/projects
@@ -19,115 +19,115 @@ local config = {
 
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
-  use({ "wbthomason/packer.nvim", opt = true })
+  use({ 'wbthomason/packer.nvim', opt = true })
 
   use({
-    "neoclide/coc.nvim",
+    'neoclide/coc.nvim',
     disable = true,
-    branch = "release",
+    branch = 'release',
     config = function()
-      vim.cmd("source ~/.config/nvim/viml/plugins.config/coc.nvim.vim")
+      vim.cmd('source ~/.config/nvim/viml/plugins.config/coc.nvim.vim')
     end,
   })
 
   -- LSP related plugins start
   use({
-    "neovim/nvim-lspconfig",
+    'neovim/nvim-lspconfig',
     opt = true,
-    event = "BufReadPre",
+    event = 'BufReadPre',
     wants = {
       -- "nvim-lsp-ts-utils",
-      "null-ls.nvim",
-      "lua-dev.nvim",
+      'null-ls.nvim',
+      'lua-dev.nvim',
     },
     config = function()
-      require("config.lsp")
+      require('config.lsp')
     end,
     requires = {
       -- "jose-elias-alvarez/nvim-lsp-ts-utils",
-      "jose-elias-alvarez/null-ls.nvim",
-      "folke/lua-dev.nvim",
+      'jose-elias-alvarez/null-ls.nvim',
+      'folke/lua-dev.nvim',
     },
   })
 
   use({
-    "RRethy/vim-illuminate",
-    event = "CursorHold",
-    module = "illuminate",
+    'RRethy/vim-illuminate',
+    event = 'CursorHold',
+    module = 'illuminate',
     config = function()
       vim.g.Illuminate_delay = 100
     end,
   })
 
   use({
-    "liuchengxu/vista.vim",
+    'liuchengxu/vista.vim',
     config = function()
-      vim.g.vista_default_executive = "nvim_lsp"
+      vim.g.vista_default_executive = 'nvim_lsp'
     end,
   })
   -- LSP related plugins end
 
   use({
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     config = function()
-      require("config.nvim-cmp")
+      require('config.nvim-cmp')
     end,
     requires = {
-      "onsails/lspkind-nvim",
-      "hrsh7th/cmp-nvim-lsp",
-      { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-      { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
-      { "hrsh7th/cmp-path", after = "nvim-cmp" },
-      { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
-      { "octaltree/cmp-look", after = "nvim-cmp" },
+      'onsails/lspkind-nvim',
+      'hrsh7th/cmp-nvim-lsp',
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-vsnip', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'octaltree/cmp-look', after = 'nvim-cmp' },
       {
-        "windwp/nvim-autopairs",
-        after = "nvim-cmp",
+        'windwp/nvim-autopairs',
+        after = 'nvim-cmp',
         config = function()
-          require("config.autopairs")
+          require('config.autopairs')
         end,
       },
-      { "hrsh7th/vim-vsnip", after = "nvim-cmp" },
-      { "hrsh7th/vim-vsnip-integ", after = "nvim-cmp" },
-      { "rafamadriz/friendly-snippets", after = "vim-vsnip" },
+      { 'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
+      { 'hrsh7th/vim-vsnip-integ', after = 'nvim-cmp' },
+      { 'rafamadriz/friendly-snippets', after = 'vim-vsnip' },
     },
   })
 
   use({
-    "simrat39/symbols-outline.nvim",
-    cmd = { "SymbolsOutline" },
+    'simrat39/symbols-outline.nvim',
+    cmd = { 'SymbolsOutline' },
   })
 
   use({
-    "b3nj5m1n/kommentary",
+    'b3nj5m1n/kommentary',
     opt = true,
-    wants = "nvim-ts-context-commentstring",
-    keys = { "gc", "gcc" },
+    wants = 'nvim-ts-context-commentstring',
+    keys = { 'gc', 'gcc' },
     config = function()
-      require("config.comments")
+      require('config.comments')
     end,
-    requires = "JoosepAlviste/nvim-ts-context-commentstring",
+    requires = 'JoosepAlviste/nvim-ts-context-commentstring',
   })
 
   use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
     opt = true,
-    event = "BufRead",
+    event = 'BufRead',
     requires = {
-      { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "p00f/nvim-ts-rainbow",
-      "RRethy/nvim-treesitter-textsubjects",
+      { 'nvim-treesitter/playground', cmd = 'TSHighlightCapturesUnderCursor' },
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'p00f/nvim-ts-rainbow',
+      'RRethy/nvim-treesitter-textsubjects',
     },
     config = [[require('config.treesitter')]],
   })
 
   use({
-    "norcalli/nvim-colorizer.lua",
+    'norcalli/nvim-colorizer.lua',
     config = function()
-      require("config.colorizer")
+      require('config.colorizer')
     end,
   })
 
@@ -158,14 +158,14 @@ local function plugins(use)
     -- "Th3Whit3Wolf/one-nvim"
 
     -- "folke/tokyonight.nvim",
-    "rose-pine/neovim",
+    'rose-pine/neovim',
     -- "glepnir/zephyr-nvim",
     config = function()
       -- require("config.theme")
       -- Set variant
       -- Defaults to 'dawn' if vim background is light
       -- @usage 'base' | 'moon' | 'dawn' | 'rose-pine[-moon][-dawn]'
-      vim.g.rose_pine_variant = "rose-pine-moon"
+      vim.g.rose_pine_variant = 'rose-pine-moon'
       -- Disable italics
       vim.g.rose_pine_disable_italics = false
       -- Use terminal background
@@ -174,16 +174,16 @@ local function plugins(use)
   })
 
   use({
-    "folke/tokyonight.nvim",
+    'folke/tokyonight.nvim',
     config = function()
-      require("config.theme")
+      require('config.theme')
     end,
   })
 
   use({
-    "sainnhe/everforest",
+    'sainnhe/everforest',
     config = function()
-      vim.g.everforest_background = "soft"
+      vim.g.everforest_background = 'soft'
       vim.g.everforest_enable_italic = 1
       vim.g.everforest_diagnostic_text_highlight = 1
     end,
@@ -191,25 +191,25 @@ local function plugins(use)
 
   -- Theme: icons
   use({
-    "kyazdani42/nvim-web-devicons",
-    module = "nvim-web-devicons",
+    'kyazdani42/nvim-web-devicons',
+    module = 'nvim-web-devicons',
     config = function()
-      require("nvim-web-devicons").setup({ default = true })
+      require('nvim-web-devicons').setup({ default = true })
     end,
   })
 
   -- Dashboard
-  use({ "glepnir/dashboard-nvim", config = [[require('config.dashboard')]] })
+  use({ 'glepnir/dashboard-nvim', config = [[require('config.dashboard')]] })
 
   use({
-    "norcalli/nvim-terminal.lua",
-    ft = "terminal",
+    'norcalli/nvim-terminal.lua',
+    ft = 'terminal',
     config = function()
-      require("terminal").setup()
+      require('terminal').setup()
     end,
   })
-  use({ "nvim-lua/plenary.nvim", module = "plenary" })
-  use({ "nvim-lua/popup.nvim", module = "popup" })
+  use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
+  use({ 'nvim-lua/popup.nvim', module = 'popup' })
 
   -- use(
   --   {
@@ -223,60 +223,60 @@ local function plugins(use)
 
   -- file explorer
   use({
-    "kyazdani42/nvim-tree.lua",
+    'kyazdani42/nvim-tree.lua',
     config = function()
-      require("config.tree")
+      require('config.tree')
     end,
   })
 
   use({
-    "mhartington/formatter.nvim",
-    cmd = { "Format", "FormatWrite" },
+    'mhartington/formatter.nvim',
+    cmd = { 'Format', 'FormatWrite' },
     config = function()
-      require("config.formatter")
+      require('config.formatter')
     end,
   })
 
   -- Fuzzy finder
   use({
-    "nvim-telescope/telescope.nvim",
+    'nvim-telescope/telescope.nvim',
     opt = true,
     config = function()
-      require("config.telescope")
+      require('config.telescope')
     end,
-    cmd = { "Telescope" },
-    module = "telescope",
-    keys = { "<leader><space>", "<leader>fd", "<leader>fr" },
+    cmd = { 'Telescope' },
+    module = 'telescope',
+    keys = { '<leader><space>', '<leader>fd', '<leader>fr' },
     wants = {
-      "plenary.nvim",
-      "popup.nvim",
-      "telescope-z.nvim",
+      'plenary.nvim',
+      'popup.nvim',
+      'telescope-z.nvim',
       -- "telescope-frecency.nvim",
-      "telescope-fzy-native.nvim",
-      "telescope-project.nvim",
-      "trouble.nvim",
-      "telescope-symbols.nvim",
+      'telescope-fzy-native.nvim',
+      'telescope-project.nvim',
+      'trouble.nvim',
+      'telescope-symbols.nvim',
     },
     requires = {
-      "nvim-telescope/telescope-z.nvim",
-      "nvim-telescope/telescope-project.nvim",
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-symbols.nvim",
-      "nvim-telescope/telescope-fzy-native.nvim",
+      'nvim-telescope/telescope-z.nvim',
+      'nvim-telescope/telescope-project.nvim',
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-symbols.nvim',
+      'nvim-telescope/telescope-fzy-native.nvim',
       -- { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
     },
   })
 
   use({
-    "sudormrfbin/cheatsheet.nvim",
+    'sudormrfbin/cheatsheet.nvim',
     -- requires = {
     --   { "nvim-telescope/telescope.nvim" },
     --   { "nvim-lua/popup.nvim" },
     --   { "nvim-lua/plenary.nvim" },
     -- },
     config = function()
-      require("cheatsheet").setup({
+      require('cheatsheet').setup({
         bundled_cheatsheets = true,
         bundled_plugin_cheatsheets = true,
         include_only_installed_plugins = true,
@@ -286,20 +286,20 @@ local function plugins(use)
 
   -- Indent Guides and rainbow brackets
   use({
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'BufReadPre',
     config = function()
-      require("config.indent-blankline")
+      require('config.indent-blankline')
     end,
   })
 
   -- Tabline
   use({
-    "akinsho/nvim-bufferline.lua",
-    event = "BufReadPre",
-    wants = "nvim-web-devicons",
+    'akinsho/nvim-bufferline.lua',
+    event = 'BufReadPre',
+    wants = 'nvim-web-devicons',
     config = function()
-      require("config.bufferline")
+      require('config.bufferline')
     end,
   })
 
@@ -316,10 +316,10 @@ local function plugins(use)
 
   -- Smooth Scrolling
   use({
-    "karb94/neoscroll.nvim",
-    keys = { "<C-u>", "<C-d>", "gg", "G" },
+    'karb94/neoscroll.nvim',
+    keys = { '<C-u>', '<C-d>', 'gg', 'G' },
     config = function()
-      require("config.scroll")
+      require('config.scroll')
     end,
   })
 
@@ -336,66 +336,66 @@ local function plugins(use)
 
   -- Git signs
   use({
-    "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
-    wants = "plenary.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    'lewis6991/gitsigns.nvim',
+    event = 'BufReadPre',
+    wants = 'plenary.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require("config.gitsigns")
+      require('config.gitsigns')
     end,
   })
 
   use({
-    "TimUntersberger/neogit",
-    cmd = "Neogit",
+    'TimUntersberger/neogit',
+    cmd = 'Neogit',
     config = function()
-      require("config.neogit")
+      require('config.neogit')
     end,
   })
 
   -- Statusline
   use({
-    "hoob3rt/lualine.nvim",
+    'hoob3rt/lualine.nvim',
     disable = true,
-    event = "VimEnter",
+    event = 'VimEnter',
     config = [[require('config.lualine')]],
-    wants = "nvim-web-devicons",
+    wants = 'nvim-web-devicons',
   })
 
   use({
-    "glepnir/galaxyline.nvim",
+    'glepnir/galaxyline.nvim',
     config = function()
-      require("config.galaxyline")
+      require('config.galaxyline')
     end,
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   })
 
   -- use({"npxbr/glow.nvim", cmd = "Glow"})
 
   use({
-    "plasticboy/vim-markdown",
+    'plasticboy/vim-markdown',
     opt = true,
-    requires = "godlygeek/tabular",
-    ft = "markdown",
+    requires = 'godlygeek/tabular',
+    ft = 'markdown',
   })
 
   use({
-    "iamcco/markdown-preview.nvim",
+    'iamcco/markdown-preview.nvim',
     run = function()
-      vim.fn["mkdp#util#install"]()
+      vim.fn['mkdp#util#install']()
     end,
-    ft = "markdown",
-    cmd = { "MarkdownPreview" },
+    ft = 'markdown',
+    cmd = { 'MarkdownPreview' },
   })
 
   -- use { "tjdevries/train.nvim", cmd = { "TrainClear", "TrainTextObj", "TrainUpDown", "TrainWord" } }
 
-  use({
-    "wfxr/minimap.vim",
-    config = function()
-      require("config.minimap")
-    end,
-  })
+  -- use({
+  --   "wfxr/minimap.vim",
+  --   config = function()
+  --     require("config.minimap")
+  --   end,
+  -- })
 
   -- use(
   --   {
@@ -422,12 +422,12 @@ local function plugins(use)
   -- )
 
   use({
-    "folke/trouble.nvim",
-    event = "BufReadPre",
-    wants = "nvim-web-devicons",
-    cmd = { "TroubleToggle", "Trouble" },
+    'folke/trouble.nvim',
+    event = 'BufReadPre',
+    wants = 'nvim-web-devicons',
+    cmd = { 'TroubleToggle', 'Trouble' },
     config = function()
-      require("trouble").setup({ auto_open = false })
+      require('trouble').setup({ auto_open = false })
     end,
   })
 
@@ -442,37 +442,37 @@ local function plugins(use)
   --   }
   -- )
 
-  use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
+  use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
 
-  use({ "mbbill/undotree", cmd = "UndotreeToggle" })
+  use({ 'mbbill/undotree', cmd = 'UndotreeToggle' })
 
   use({
-    "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = "BufReadPost",
+    'folke/todo-comments.nvim',
+    cmd = { 'TodoTrouble', 'TodoTelescope' },
+    event = 'BufReadPost',
     config = function()
-      require("config.todo-comments")
+      require('config.todo-comments')
     end,
   })
 
   use({
-    "folke/which-key.nvim",
-    event = "VimEnter",
+    'folke/which-key.nvim',
+    event = 'VimEnter',
     config = function()
-      require("config.keys")
+      require('config.keys')
     end,
   })
 
   use({
-    "sindrets/diffview.nvim",
+    'sindrets/diffview.nvim',
     cmd = {
-      "DiffviewOpen",
-      "DiffviewClose",
-      "DiffviewToggleFiles",
-      "DiffviewFocusFiles",
+      'DiffviewOpen',
+      'DiffviewClose',
+      'DiffviewToggleFiles',
+      'DiffviewFocusFiles',
     },
     config = function()
-      require("config.diffview")
+      require('config.diffview')
     end,
   })
 
@@ -481,76 +481,76 @@ local function plugins(use)
   -- use("DanilaMihailov/vim-tips-wiki")
   -- use("nanotee/luv-vimdocs")
   use({
-    "andymass/vim-matchup",
-    event = "CursorMoved",
+    'andymass/vim-matchup',
+    event = 'CursorMoved',
   })
   -- use({"camspiers/snap", rocks = {"fzy"}, module = "snap"})
 
   use({
-    "tpope/vim-endwise",
+    'tpope/vim-endwise',
     config = function()
       vim.g.endwise_no_mappings = 1
     end,
   })
 
-  use({ "mhinz/vim-sayonara", cmd = { "Sayonara" } })
+  use({ 'mhinz/vim-sayonara', cmd = { 'Sayonara' } })
 
-  use({ "AndrewRadev/switch.vim" })
+  use({ 'AndrewRadev/switch.vim' })
 
-  use({ "kiooss/vim-zenkaku-space" })
+  use({ 'kiooss/vim-zenkaku-space' })
 
   use({
-    "jghauser/mkdir.nvim",
+    'jghauser/mkdir.nvim',
     config = function()
-      require("mkdir")
+      require('mkdir')
     end,
   })
 
   use({
-    "lambdalisue/suda.vim",
-    cmd = { "SudaWrite", "SudaRead" },
+    'lambdalisue/suda.vim',
+    cmd = { 'SudaWrite', 'SudaRead' },
   })
 
   use({
-    "pechorin/any-jump.vim",
-    cmd = { "AnyJump", "AnyJumpVisual" },
+    'pechorin/any-jump.vim',
+    cmd = { 'AnyJump', 'AnyJumpVisual' },
   })
 
   use({
-    "rhysd/committia.vim",
-    ft = "gitcommit",
+    'rhysd/committia.vim',
+    ft = 'gitcommit',
   })
 
   use({
-    "mattn/vim-sqlfmt",
-    ft = "sql",
+    'mattn/vim-sqlfmt',
+    ft = 'sql',
   })
 
   if global.is_linux then
     use({
-      "wincent/vim-clipper",
+      'wincent/vim-clipper',
       setup = function()
         vim.g.ClipperMap = 0
-        vim.g.ClipperAddress = "~/.clipper.sock"
+        vim.g.ClipperAddress = '~/.clipper.sock'
         vim.g.ClipperPort = 0
       end,
     })
   end
 
-  use({ "junegunn/vim-easy-align" })
-  use({ "kana/vim-textobj-entire" })
-  use({ "kana/vim-textobj-function" })
-  use({ "kana/vim-textobj-user" })
-  use({ "nelstrom/vim-textobj-rubyblock" })
-  use({ "thalesmello/vim-textobj-methodcall" })
-  use({ "tpope/vim-repeat" })
+  use({ 'junegunn/vim-easy-align' })
+  use({ 'kana/vim-textobj-entire' })
+  use({ 'kana/vim-textobj-function' })
+  use({ 'kana/vim-textobj-user' })
+  use({ 'nelstrom/vim-textobj-rubyblock' })
+  use({ 'thalesmello/vim-textobj-methodcall' })
+  use({ 'tpope/vim-repeat' })
   use({
-    "tpope/vim-surround",
+    'tpope/vim-surround',
     config = function()
       vim.g.surround_no_insert_mappings = 1
     end,
   })
-  use({ "wellle/targets.vim" })
+  use({ 'wellle/targets.vim' })
 
   -- use({
   --   "SirVer/ultisnips",
@@ -562,35 +562,35 @@ local function plugins(use)
   --     vim.g.UltiSnipsSnippetDirectories = { "UltiSnips" }
   --   end,
   -- })
-  use({ "honza/vim-snippets" })
-  use({ "algotech/ultisnips-php" })
-  use({ "epilande/vim-react-snippets" })
-  use({ "famiu/bufdelete.nvim", cmd = "Bdelete" })
-  use({ "editorconfig/editorconfig-vim" })
+  use({ 'honza/vim-snippets' })
+  use({ 'algotech/ultisnips-php' })
+  use({ 'epilande/vim-react-snippets' })
+  use({ 'famiu/bufdelete.nvim', cmd = 'Bdelete' })
+  use({ 'editorconfig/editorconfig-vim' })
 
   use({
-    "vimwiki/vimwiki",
+    'vimwiki/vimwiki',
     opt = true,
-    cmd = "VimwikiIndex",
-    keys = { "<leader>W" },
+    cmd = 'VimwikiIndex',
+    keys = { '<leader>W' },
     setup = function()
       vim.g.vimwiki_list = {
-        { path = "~/vimwiki/", syntax = "markdown", ext = ".md" },
+        { path = '~/vimwiki/', syntax = 'markdown', ext = '.md' },
       }
       vim.g.vimwiki_conceallevel = 0
       vim.g.vimwiki_use_calendar = 1
       vim.g.vimwiki_hl_headers = 1
       vim.g.vimwiki_hl_cb_checked = 1
       vim.g.vimwiki_autowriteall = 0
-      vim.g.vimwiki_map_prefix = "<F12>"
+      vim.g.vimwiki_map_prefix = '<F12>'
       vim.g.vimwiki_table_mappings = 0
     end,
   })
 
-  use({ "mg979/vim-visual-multi" })
+  use({ 'mg979/vim-visual-multi' })
 
   -- Syntax plugins
-  use({ "lumiliet/vim-twig", ft = "twig" })
+  use({ 'lumiliet/vim-twig', ft = 'twig' })
 end
 
 return packer.setup(config, plugins)

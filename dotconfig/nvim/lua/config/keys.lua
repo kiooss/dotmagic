@@ -286,6 +286,12 @@ local leader = {
   -- },
   ['`'] = { '<cmd>:e #<cr>', 'Switch to Other Buffer' },
   [' '] = 'Find File',
+  ['*'] = {
+    function()
+      require('telescope.builtin').grep_string()
+    end,
+    'Searches string under your cursor',
+  },
   -- ["."] = { ":Telescope file_browser<CR>", "Browse Files" },
   -- [","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
   -- ["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },

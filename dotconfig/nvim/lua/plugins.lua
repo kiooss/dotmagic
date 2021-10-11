@@ -589,6 +589,17 @@ local function plugins(use)
 
   use({ 'mg979/vim-visual-multi' })
 
+  use({ 'tpope/vim-fugitive' })
+  use({ 'tpope/vim-rhubarb' })
+  use({
+    'ruanyl/vim-gh-line',
+    config = function()
+      vim.g.gh_trace = 1
+      vim.g.gh_open_command = 'echo '
+      vim.g.gh_use_canonical = 0
+    end,
+  })
+
   -- Syntax plugins
   use({ 'lumiliet/vim-twig', ft = 'twig' })
 end

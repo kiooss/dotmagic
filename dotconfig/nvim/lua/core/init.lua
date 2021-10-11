@@ -1,32 +1,32 @@
-local global = require("core.global")
+local global = require('core.global')
 local vim = vim
 
 -- Create cache dir and subs dir
 local createdir = function()
   local data_dir = {
-    global.cache_dir .. "backup",
-    global.cache_dir .. "session",
-    global.cache_dir .. "swap",
-    global.cache_dir .. "tags",
-    global.cache_dir .. "undo",
+    global.cache_dir .. 'backup',
+    global.cache_dir .. 'session',
+    global.cache_dir .. 'swap',
+    global.cache_dir .. 'tags',
+    global.cache_dir .. 'undo',
   }
   -- There only check once that If cache_dir exists
   -- Then I don't want to check subs dir exists
   if vim.fn.isdirectory(global.cache_dir) == 0 then
-    os.execute("mkdir -p " .. global.cache_dir)
+    os.execute('mkdir -p ' .. global.cache_dir)
     for _, v in pairs(data_dir) do
       if vim.fn.isdirectory(v) == 0 then
-        os.execute("mkdir -p " .. v)
+        os.execute('mkdir -p ' .. v)
       end
     end
   end
 end
 
 local function leader_map()
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = ","
-  vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
-  vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
+  vim.g.mapleader = ' '
+  vim.g.maplocalleader = ','
+  vim.api.nvim_set_keymap('n', ' ', '', { noremap = true })
+  vim.api.nvim_set_keymap('x', ' ', '', { noremap = true })
 end
 
 local function disable_distribution_plugins()
@@ -52,7 +52,7 @@ end
 
 local function set_theme()
   -- vim.g.theme = "everforest"
-  vim.g.theme = "rose-pine"
+  vim.g.theme = 'rose-pine'
   -- vim.g.theme = "tokyonight"
 end
 
@@ -61,16 +61,16 @@ local function load_core()
   disable_distribution_plugins()
   leader_map()
   set_theme()
-  require("util")
-  require("core.options")
-  require("core.event")
+  require('util')
+  require('core.options')
+  require('core.event')
 
   -- no need to load this immediately, since we have packer_compiled
   vim.defer_fn(function()
-    require("plugins")
+    require('plugins')
   end, 0)
 
-  vim.cmd("colorscheme " .. vim.g.theme)
+  vim.cmd('colorscheme ' .. vim.g.theme)
 end
 
 load_core()

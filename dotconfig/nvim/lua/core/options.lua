@@ -1,11 +1,11 @@
 local function bind_option(options)
   for k, v in pairs(options) do
     if v == true then
-      vim.cmd("set " .. k)
+      vim.cmd('set ' .. k)
     elseif v == false then
-      vim.cmd("set no" .. k)
+      vim.cmd('set no' .. k)
     else
-      vim.cmd("set " .. k .. "=" .. v)
+      vim.cmd('set ' .. k .. '=' .. v)
     end
   end
 end
@@ -13,24 +13,24 @@ end
 local function load_options()
   local global_local = {
     termguicolors = true,
-    encoding = "utf-8",
-    fileencoding="utf-8",
-    fileencodings="ucs-bom,utf-8,euc-jp,cp932,latin1",
+    encoding = 'utf-8',
+    fileencoding = 'utf-8',
+    fileencodings = 'ucs-bom,utf-8,euc-jp,cp932,latin1',
     -- TODO
     -- mouse = "a",
     errorbells = true,
     visualbell = true,
     hidden = true,
-    fileformat = "unix",
-    fileformats = "unix,mac,dos",
+    fileformat = 'unix',
+    fileformats = 'unix,mac,dos',
     magic = true,
-    virtualedit = "block",
-    viewoptions = "folds,cursor,curdir,slash,unix",
-    sessionoptions = "curdir,help,tabpages,winsize",
-    clipboard = "unnamedplus",
-    wildmode = "list:longest,full",
+    virtualedit = 'block',
+    viewoptions = 'folds,cursor,curdir,slash,unix',
+    sessionoptions = 'curdir,help,tabpages,winsize',
+    clipboard = 'unnamedplus',
+    wildmode = 'list:longest,full',
     wildignorecase = true,
-    wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
+    wildignore = '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**',
     backup = false,
     writebackup = false,
     swapfile = false,
@@ -43,7 +43,7 @@ local function load_options()
     history = 2000,
     -- TODO
     shada = "!,'300,<50,@100,s10,h",
-    backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
+    backupskip = '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim',
     smarttab = true,
     shiftround = true,
     timeout = true,
@@ -57,29 +57,29 @@ local function load_options()
     infercase = true,
     incsearch = true,
     wrapscan = true,
-    complete = ".,w,b,k",
+    complete = '.,w,b,k',
     -- TODO
     -- set complete=.,w,b,u
-    inccommand = "nosplit",
-    grepformat = "%f:%l:%c:%m",
-    grepprg = "rg --hidden --vimgrep --smart-case --",
+    inccommand = 'nosplit',
+    grepformat = '%f:%l:%c:%m',
+    grepprg = 'rg --hidden --vimgrep --smart-case --',
     breakat = [[\ \	;:,!?]],
     startofline = false,
     -- whichwrap = "h,l,<,>,[,],~",
     splitbelow = true,
     splitright = true,
     -- TODO
--- set switchbuf=useopen,usetab    " Jump to the first open window in any tab
--- set switchbuf+=vsplit           " Switch buffer behavior to vsplit
-    switchbuf = "useopen",
-    backspace = "indent,eol,start",
-    diffopt = "filler,iwhite,internal,algorithm:patience",
+    -- set switchbuf=useopen,usetab    " Jump to the first open window in any tab
+    -- set switchbuf+=vsplit           " Switch buffer behavior to vsplit
+    switchbuf = 'useopen',
+    backspace = 'indent,eol,start',
+    diffopt = 'filler,iwhite,internal,algorithm:patience',
     showfulltag = true,
     -- TODO
-    completeopt = "menuone,noselect",
-    jumpoptions = "stack",
+    completeopt = 'menuone,noselect',
+    jumpoptions = 'stack',
     showmode = false,
-    shortmess = "aoOTIcF",
+    shortmess = 'aoOTIcF',
     scrolloff = 2,
     sidescrolloff = 5,
     foldlevelstart = 99,
@@ -99,12 +99,12 @@ local function load_options()
     cmdwinheight = 5,
     equalalways = false,
     laststatus = 2,
-    display = "lastline",
+    display = 'lastline',
     -- showbreak = "↳  ",
     showbreak = '↪ ',
     -- TODO
     -- listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
-    listchars = "tab:▸ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸",
+    listchars = 'tab:▸ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸',
     pumblend = 10,
     winblend = 10,
     autoread = true,
@@ -112,16 +112,16 @@ local function load_options()
     modeline = true,
     report = 0,
     -- todo
-    path = ".,**",
+    path = '.,**',
     matchtime = 2,
     title = true,
-    titlestring = "VIM:  %f",
+    titlestring = 'VIM:  %f',
   }
 
   local bw_local = {
     undofile = true,
     synmaxcol = 2500,
-    formatoptions = "1jcroql",
+    formatoptions = '1jcroql',
     textwidth = 80,
     expandtab = true,
     autoindent = true,
@@ -129,7 +129,7 @@ local function load_options()
     tabstop = 4,
     shiftwidth = 4,
     softtabstop = -1, -- When 'sts' is negative, the value of 'shiftwidth' is used.
-    breakindentopt = "shift:2,min:20",
+    breakindentopt = 'shift:2,min:20',
     wrap = true,
     linebreak = true,
     number = true,
@@ -138,10 +138,10 @@ local function load_options()
     foldmethod = 'marker',
     foldlevelstart = 99,
     foldnestmax = 10,
-    foldtext="vimrc#MyFoldText()",
-    signcolumn = "auto:4",
+    -- foldtext="vimrc#MyFoldText()",
+    signcolumn = 'auto:4',
     conceallevel = 0,
-    concealcursor = "niv",
+    concealcursor = 'niv',
   }
 
   for name, value in pairs(global_local) do

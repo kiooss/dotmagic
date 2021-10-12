@@ -210,6 +210,7 @@ set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 # set -g @plugin 'jatap/tmux-base16-statusline'
 # set -g @plugin 'thewtex/tmux-mem-cpu-load'
 set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
 
 run-shell "~/.dotfiles/link/tmux/tmux-power.tmux"
 

@@ -132,12 +132,7 @@ local leader = {
     f = { '<cmd>FormatWrite<cr>', 'FormatWrite' },
     t = { '<cmd>NvimTreeFindFile<cr>', 'NvimTreeFindFile' },
     w = { '<cmd>Telescope live_grep<cr>', 'Search word' },
-    r = {
-      function()
-        require('telescope.builtin').oldfiles({ cwd_only = true })
-      end,
-      'Open Recent Files',
-    },
+    r = 'Open Recent Files',
     n = { '<cmd>enew<cr>', 'New File' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },
     p = 'Open Project',

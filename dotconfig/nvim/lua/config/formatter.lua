@@ -1,31 +1,31 @@
 local stylua = function()
   return {
-    exe = "stylua",
-    args = { "--config-path", "~/.config/nvim/.stylua", "-" },
+    exe = 'stylua',
+    args = { '--config-path', '~/.config/nvim/.stylua', '-' },
     stdin = true,
   }
 end
 
 local luafmt = function()
   return {
-    exe = "luafmt",
-    args = { "--indent-count", 2, "--stdin" },
+    exe = 'luafmt',
+    args = { '--indent-count', 2, '--stdin' },
     stdin = true,
   }
 end
 
 local shfmt = function()
   return {
-    exe = "shfmt",
-    args = { "-i", 2 },
+    exe = 'shfmt',
+    args = { '-i', 2 },
     stdin = true,
   }
 end
 
-require("formatter").setup({
+require('formatter').setup({
   filetype = {
     lua = { stylua },
-    sh = { shfmt }
+    sh = { shfmt },
   },
 })
 

@@ -1,24 +1,29 @@
-require("bufferline").setup {
+require('bufferline').setup({
   options = {
     modified_icon = '✥',
     numbers = function(opts)
-      return string.format("%s", opts.raise(opts.ordinal))
+      return string.format('%s', opts.raise(opts.ordinal))
     end,
     show_close_icon = false,
     show_buffer_close_icons = false,
-    separator_style = "slant",
-    diagnostics = "nvim_lsp",
+    separator_style = 'slant',
+    diagnostics = 'nvim_lsp',
     diagnostics_indicator = function(_, _, diagnostics_dict)
-      local s = " "
+      local s = ' '
       for e, n in pairs(diagnostics_dict) do
-        local sym = e == "error" and " " or (e == "warning" and " " or "")
+        local sym = e == 'error' and ' ' or (e == 'warning' and ' ' or '')
         s = s .. sym .. n
       end
       return s
     end,
-  }
-}
+  },
+})
 
 for i = 1, 9 do
-  vim.api.nvim_set_keymap("n", "<leader>"..i, [[<Cmd>BufferLineGoToBuffer ]]..i..[[<CR>]], {noremap = true, silent = true})
+  vim.api.nvim_set_keymap(
+    'n',
+    '<leader>' .. i,
+    [[<Cmd>BufferLineGoToBuffer ]] .. i .. [[<CR>]],
+    { noremap = true, silent = true }
+  )
 end

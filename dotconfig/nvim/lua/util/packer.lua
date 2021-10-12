@@ -1,4 +1,4 @@
-local util = require("util")
+local util = require('util')
 
 local M = {}
 
@@ -6,35 +6,35 @@ M.local_plugins = {}
 
 function M.bootstrap()
   local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})
-    vim.cmd("packadd packer.nvim")
+    fn.system({ 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd('packadd packer.nvim')
   end
   vim.cmd([[packadd packer.nvim]])
   -- vim.cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when there are changes in plugins.lua
 end
 
 function M.get_name(pkg)
-  local parts = vim.split(pkg, "/")
+  local parts = vim.split(pkg, '/')
   return parts[#parts], parts[1]
 end
 
 function M.has_local(name)
-  return vim.loop.fs_stat(vim.fn.expand("~/workspace/" .. name)) ~= nil
+  return vim.loop.fs_stat(vim.fn.expand('~/workspace/' .. name)) ~= nil
 end
 
 -- This method replaces any plugins with the local clone under ~/workspace
 function M.process_local_plugins(spec)
-  if type(spec) == "string" then
+  if type(spec) == 'string' then
     local name, owner = M.get_name(spec)
-    local local_pkg = "~/workspace/" .. name
+    local local_pkg = '~/workspace/' .. name
 
-    if M.local_plugins[name] or M.local_plugins[owner] or M.local_plugins[owner .. "/" .. name] then
+    if M.local_plugins[name] or M.local_plugins[owner] or M.local_plugins[owner .. '/' .. name] then
       if M.has_local(name) then
         return local_pkg
       else
-        util.error("Local package " .. name .. " not found")
+        util.error('Local package ' .. name .. ' not found')
       end
     end
     return spec
@@ -58,20 +58,18 @@ end
 
 function M.setup(config, fn)
   -- HACK: see https://github.com/wbthomason/packer.nvim/issues/180
-  vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
+  vim.fn.setenv('MACOSX_DEPLOYMENT_TARGET', '10.15')
 
   M.bootstrap()
-  local packer = require("packer")
+  local packer = require('packer')
   packer.init(config)
   M.local_plugins = config.local_plugins or {}
-  return packer.startup(
-    {
-      function(use)
-        use = M.wrap(use)
-        fn(use)
-      end
-    }
-  )
+  return packer.startup({
+    function(use)
+      use = M.wrap(use)
+      fn(use)
+    end,
+  })
 end
 
 return M

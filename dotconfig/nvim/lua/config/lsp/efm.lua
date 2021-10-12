@@ -2,54 +2,54 @@ local M = {}
 
 -- local luafmt = { formatCommand = "lua-format -i", formatStdin = true }
 
-local stylua = { formatCommand = "stylua -", formatStdin = true }
+local stylua = { formatCommand = 'stylua -', formatStdin = true }
 local selene = {
-  lintCommand = "selene --display-style quiet -",
+  lintCommand = 'selene --display-style quiet -',
   lintIgnoreExitCode = true,
   lintStdin = true,
-  lintFormats = { "%f:%l:%c: %tarning%m", "%f:%l:%c: %tarning%m" },
+  lintFormats = { '%f:%l:%c: %tarning%m', '%f:%l:%c: %tarning%m' },
 }
 
 local prettierLocal = {
-  formatCommand = "./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT}",
+  formatCommand = './node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT}',
   formatStdin = true,
 }
 
 local prettierGlobal = {
-  formatCommand = "prettier --stdin --stdin-filepath ${INPUT}",
+  formatCommand = 'prettier --stdin --stdin-filepath ${INPUT}',
   formatStdin = true,
 }
 
 local eslint = {
-  lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
+  lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
   lintIgnoreExitCode = true,
   lintStdin = true,
-  lintFormats = { "%f(%l,%c): %tarning %m", "%f(%l,%c): %trror %m" },
+  lintFormats = { '%f(%l,%c): %tarning %m', '%f(%l,%c): %trror %m' },
 }
 
 local shellcheck = {
-  lintCommand = "shellcheck -f gcc -x -",
+  lintCommand = 'shellcheck -f gcc -x -',
   lintStdin = true,
   lintFormats = {
-    "%f=%l:%c: %trror: %m",
-    "%f=%l:%c: %tarning: %m",
-    "%f=%l:%c: %tote: %m",
+    '%f=%l:%c: %trror: %m',
+    '%f=%l:%c: %tarning: %m',
+    '%f=%l:%c: %tote: %m',
   },
 }
 
 local markdownlint = {
-  lintCommand = "markdownlint -s",
+  lintCommand = 'markdownlint -s',
   lintStdin = true,
-  lintFormats = { "%f:%l:%c %m" },
+  lintFormats = { '%f:%l:%c %m' },
 }
 
-local fish = { formatCommand = "fish_indent", formatStdin = true }
+local fish = { formatCommand = 'fish_indent', formatStdin = true }
 
 local eslintPrettier = { prettierLocal, eslint }
 
 local eruby = {
-  lintCommand = "erb -x -T - | ruby -c",
-  lintDebounce = "2s",
+  lintCommand = 'erb -x -T - | ruby -c',
+  lintDebounce = '2s',
   lintStdin = true,
   lintOffset = 1,
   -- formatStdin = true,
@@ -59,7 +59,7 @@ local eruby = {
 M.config = {
   init_options = { documentFormatting = true },
   settings = {
-    rootMarkers = { "package.json", ".git" },
+    rootMarkers = { 'package.json', '.git' },
     languages = {
       -- lua = { selene, stylua },
       -- typescript = { prettierLocal },

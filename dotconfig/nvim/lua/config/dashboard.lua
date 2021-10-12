@@ -1,14 +1,14 @@
-vim.g.dashboard_footer_icon = "🦖 "
+vim.g.dashboard_footer_icon = '🦖 '
 
-local str = vim.g.dashboard_footer_icon .. vim.fn.system("fortune -s computers")
+local str = vim.g.dashboard_footer_icon .. vim.fn.system('fortune -s computers')
 local lines = {}
-for s in str:gmatch("[^\r\n]+") do
+for s in str:gmatch('[^\r\n]+') do
   table.insert(lines, s)
 end
 
 vim.g.dashboard_custom_footer = lines
 
-vim.g.dashboard_default_executive = "telescope"
+vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_enable_session = 0
 vim.g.dashboard_disable_statusline = 0
 
@@ -39,25 +39,23 @@ vim.g.dashboard_disable_statusline = 0
 -- }
 
 local fonts = {
-  "DOS Rebel",
+  'DOS Rebel',
   -- "NScript",
-  "3d",
-  "ANSI Shadow",
-  "Bloody",
-  "Elite",
-  "maxiwi",
+  '3d',
+  'ANSI Shadow',
+  'Bloody',
+  'Elite',
+  'maxiwi',
 }
 
-if require("core.global").is_mac then
-  fonts = { "slant", "speed" }
+if require('core.global').is_mac then
+  fonts = { 'slant', 'speed' }
 end
 
 math.randomseed(os.time())
-local header_str = vim.fn.system(
-  [[figlet -f "]] .. fonts[math.random(#fonts)] .. [[" "Yang's neovim"]]
-)
+local header_str = vim.fn.system([[figlet -f "]] .. fonts[math.random(#fonts)] .. [[" "Yang's neovim"]])
 local header_lines = {}
-for s in header_str:gmatch("[^\r\n]+") do
+for s in header_str:gmatch('[^\r\n]+') do
   table.insert(header_lines, s)
 end
 vim.g.dashboard_custom_header = header_lines
@@ -74,31 +72,31 @@ vim.g.dashboard_custom_header = header_lines
 
 vim.g.dashboard_custom_section = {
   a = {
-    description = { "  Recently opened files                   SPC f r" },
-    command = "DashboardFindHistory",
+    description = { '  Recently opened files                   SPC f r' },
+    command = 'DashboardFindHistory',
   },
   b = {
-    description = { "  Marks                                   SPC s m" },
-    command = "Telescope marks",
+    description = { '  Marks                                   SPC s m' },
+    command = 'Telescope marks',
   },
   c = {
-    description = { "  Find file                               SPC spc" },
-    command = "DashboardFindFile",
+    description = { '  Find file                               SPC spc' },
+    command = 'DashboardFindFile',
   },
   d = {
-    description = { "  File browser                            SPC f b" },
-    command = "Telescope file_browser",
+    description = { '  File browser                            SPC f b' },
+    command = 'Telescope file_browser',
   },
   e = {
-    description = { "  Find word                               SPC f w" },
-    command = "DashboardFindWord",
+    description = { '  Find word                               SPC f w' },
+    command = 'DashboardFindWord',
   },
   f = {
-    description = { "  New file                                SPC f n" },
-    command = "enew",
+    description = { '  New file                                SPC f n' },
+    command = 'enew',
   },
   g = {
-    description = { "  PackerSync                              SPC p s" },
-    command = "PackerSync",
+    description = { '  PackerSync                              SPC p s' },
+    command = 'PackerSync',
   },
 }

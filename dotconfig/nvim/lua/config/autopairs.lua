@@ -1,4 +1,4 @@
-require("nvim-autopairs").setup({})
+require('nvim-autopairs').setup({})
 -- -- you need setup cmp first put this after cmp.setup()
 -- require("nvim-autopairs.completion.cmp").setup({
 --   map_cr = true, --  map <CR> on insert mode

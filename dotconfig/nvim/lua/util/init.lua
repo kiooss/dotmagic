@@ -25,6 +25,7 @@ end
 _G.should_colorcolumn = function()
   local filetype_exclude = {
     'diff',
+    'packer',
     'fugitiveblame',
     'undotree',
     'nerdtree',

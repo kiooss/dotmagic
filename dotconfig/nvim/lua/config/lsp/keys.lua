@@ -20,6 +20,7 @@ function M.setup(client, bufnr)
         name = '+lsp',
         i = { '<cmd>LspInfo<cr>', 'Lsp Info' },
         a = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add Folder' },
+        e = { "<cmd>lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", 'Debug log' },
         r = {
           '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
           'Remove Folder',

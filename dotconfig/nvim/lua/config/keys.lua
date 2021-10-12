@@ -73,14 +73,22 @@ wk.setup({
 })
 
 local leader = {
+  [' '] = 'Find File',
   ['j'] = { '<cmd>:AnyJump<cr>', 'AnyJump' },
   ['W'] = { '<cmd>:VimwikiIndex<cr>', 'Wiki' },
   ['w'] = { '<cmd>:update<cr>', 'Save' },
   ['x'] = { '<cmd>:x<cr>', 'Save and quit' },
   ['z'] = { '<cmd>:qa!<cr>', 'Quit all' },
+  ['`'] = { '<cmd>:e #<cr>', 'Switch to Other Buffer' },
   ['/'] = {
     '<cmd>Telescope live_grep<cr>',
     'Search',
+  },
+  ['*'] = {
+    function()
+      require('telescope.builtin').grep_string()
+    end,
+    'Searches string under cursor',
   },
   -- ["w"] = {
   --   name = "+windows",
@@ -279,14 +287,6 @@ local leader = {
   --   f = { "<cmd>tabfirst<CR>", "First" },
   --   l = { "<cmd>tablast<CR>", "Last" },
   -- },
-  ['`'] = { '<cmd>:e #<cr>', 'Switch to Other Buffer' },
-  [' '] = 'Find File',
-  ['*'] = {
-    function()
-      require('telescope.builtin').grep_string()
-    end,
-    'Searches string under your cursor',
-  },
   -- ["."] = { ":Telescope file_browser<CR>", "Browse Files" },
   -- [","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
   -- ["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },

@@ -136,8 +136,8 @@ bind -n M-8 select-window -t :8
 bind-key -n M-0 swap-window -t 1\; select-window -t 1
 
 # Enable mouse mode (tmux 2.1 and above)
-# set -g mouse on
-set-option -g mouse off
+set-window-option -g mouse on
+# set-option -g mouse off
 
 # don't rename windows automatically
 # set-option -g allow-rename off

@@ -16,8 +16,7 @@ local function load_options()
     encoding = 'utf-8',
     fileencoding = 'utf-8',
     fileencodings = 'ucs-bom,utf-8,euc-jp,cp932,latin1',
-    -- TODO
-    -- mouse = "a",
+    mouse = 'a',
     errorbells = true,
     visualbell = true,
     hidden = true,
@@ -111,7 +110,6 @@ local function load_options()
     autowrite = true,
     modeline = true,
     report = 0,
-    -- todo
     path = '.,**',
     matchtime = 2,
     title = true,

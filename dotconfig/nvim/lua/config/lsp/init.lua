@@ -10,6 +10,7 @@ local function on_attach(client, bufnr)
   require('config.lsp.keys').setup(client, bufnr)
   -- require("config.lsp.completion").setup(client, bufnr)
   require('config.lsp.highlighting').setup(client)
+  require('config.lsp.ui').setup()
 
   -- TypeScript specific stuff
   -- TODO: yang

@@ -14,11 +14,12 @@ vim.g.nvim_tree_icons = {
   default = '',
   symlink = '',
   git = {
-    unstaged = '✚',
-    staged = '✚',
+    unstaged = '',
+    staged = '✓',
     unmerged = '≠',
     renamed = '≫',
     untracked = '★',
+    deleted = '',
   },
 }
 

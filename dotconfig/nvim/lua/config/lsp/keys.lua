@@ -19,15 +19,15 @@ function M.setup(client, bufnr)
       l = {
         name = '+lsp',
         i = { '<cmd>LspInfo<cr>', 'Lsp Info' },
-        a = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add Folder' },
-        e = { "<cmd>lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", 'Debug log' },
+        a = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add Workspace Folder' },
+        e = { "<cmd>lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", 'Open LSP Debug log' },
         r = {
           '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-          'Remove Folder',
+          'Remove Workspace Folder',
         },
         l = {
           '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-          'List Folders',
+          'List Workspace Folders',
         },
         h = {
           function()
@@ -66,24 +66,25 @@ function M.setup(client, bufnr)
     r = { '<cmd>Telescope lsp_references<cr>', 'References' },
     R = { '<cmd>Trouble lsp_references<cr>', 'Trouble References' },
     d = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition' },
+    D = { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Goto Declaration' },
     -- dv = { "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     -- ds = { "<Cmd>split | lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     h = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help' },
     I = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Goto Implementation' },
-    -- I = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
     t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Goto Type Definition' },
   }
 
   util.nnoremap('K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  util.nnoremap('<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   util.nnoremap('[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   util.nnoremap(']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
   local trigger_chars = client.resolved_capabilities.signature_help_trigger_characters
-  trigger_chars = { ',' }
+  -- trigger_chars = { ',' }
   for _, c in ipairs(trigger_chars) do
     util.inoremap(c, function()
       vim.defer_fn(function()
-        -- pcall(vim.lsp.buf.signature_help)
+        pcall(vim.lsp.buf.signature_help)
       end, 0)
       return c
     end, {

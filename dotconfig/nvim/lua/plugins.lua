@@ -67,6 +67,7 @@ local function plugins(use)
   })
   -- LSP related plugins end
 
+  -- auto completion
   use({
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -99,6 +100,7 @@ local function plugins(use)
     cmd = { 'SymbolsOutline' },
   })
 
+  -- comment plugin
   use({
     'b3nj5m1n/kommentary',
     opt = true,
@@ -110,6 +112,7 @@ local function plugins(use)
     requires = 'JoosepAlviste/nvim-ts-context-commentstring',
   })
 
+  -- better syntax parser
   use({
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -124,6 +127,7 @@ local function plugins(use)
     config = [[require('config.treesitter')]],
   })
 
+  -- display colors
   use({
     'norcalli/nvim-colorizer.lua',
     config = function()
@@ -133,43 +137,35 @@ local function plugins(use)
 
   -- Theme: color schemes
   -- use("tjdevries/colorbuddy.vim")
-  use({
-    -- "shaunsingh/nord.nvim",
-    -- "shaunsingh/moonlight.nvim",
-    -- { "olimorris/onedark.nvim", requires = "rktjmp/lush.nvim" },
-    -- "joshdick/onedark.vim",
-    -- "wadackel/vim-dogrun",
-    -- { "npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim" },
-    -- "bluz71/vim-nightfly-guicolors",
-    -- { "marko-cerovac/material.nvim" },
-    -- "sainnhe/edge",
-    -- { "embark-theme/vim", as = "embark" },
-    -- "norcalli/nvim-base16.lua",
-    -- "RRethy/nvim-base16",
-    -- "novakne/kosmikoa.nvim",
-    -- "glepnir/zephyr-nvim",
-    -- "ghifarit53/tokyonight-vim"
-    -- "sainnhe/sonokai",
-    -- "morhetz/gruvbox",
-    -- "arcticicestudio/nord-vim",
-    -- "drewtempelmeyer/palenight.vim",
-    -- "Th3Whit3Wolf/onebuddy",
-    -- "christianchiarulli/nvcode-color-schemes.vim",
-    -- "Th3Whit3Wolf/one-nvim"
+  -- "shaunsingh/nord.nvim",
+  -- "shaunsingh/moonlight.nvim",
+  -- { "olimorris/onedark.nvim", requires = "rktjmp/lush.nvim" },
+  -- "joshdick/onedark.vim",
+  -- "wadackel/vim-dogrun",
+  -- { "npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim" },
+  -- "bluz71/vim-nightfly-guicolors",
+  -- { "marko-cerovac/material.nvim" },
+  -- "sainnhe/edge",
+  -- { "embark-theme/vim", as = "embark" },
+  -- "norcalli/nvim-base16.lua",
+  -- "RRethy/nvim-base16",
+  -- "novakne/kosmikoa.nvim",
+  -- "glepnir/zephyr-nvim",
+  -- "ghifarit53/tokyonight-vim"
+  -- "sainnhe/sonokai",
+  -- "morhetz/gruvbox",
+  -- "arcticicestudio/nord-vim",
+  -- "drewtempelmeyer/palenight.vim",
+  -- "Th3Whit3Wolf/onebuddy",
+  -- "christianchiarulli/nvcode-color-schemes.vim",
+  -- "Th3Whit3Wolf/one-nvim"
+  -- "folke/tokyonight.nvim",
+  -- "glepnir/zephyr-nvim",
 
-    -- "folke/tokyonight.nvim",
+  use({
     'rose-pine/neovim',
-    -- "glepnir/zephyr-nvim",
     config = function()
-      -- require("config.theme")
-      -- Set variant
-      -- Defaults to 'dawn' if vim background is light
-      -- @usage 'base' | 'moon' | 'dawn' | 'rose-pine[-moon][-dawn]'
-      vim.g.rose_pine_variant = 'rose-pine-moon'
-      -- Disable italics
-      vim.g.rose_pine_disable_italics = false
-      -- Use terminal background
-      vim.g.rose_pine_disable_background = false
+      require('config.theme')
     end,
   })
 
@@ -183,9 +179,14 @@ local function plugins(use)
   use({
     'sainnhe/everforest',
     config = function()
-      vim.g.everforest_background = 'soft'
-      vim.g.everforest_enable_italic = 1
-      vim.g.everforest_diagnostic_text_highlight = 1
+      require('config.theme')
+    end,
+  })
+
+  use({
+    'ray-x/aurora',
+    config = function()
+      require('config.theme')
     end,
   })
 

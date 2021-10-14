@@ -1,4 +1,5 @@
 local theme = {}
+local vim = vim
 
 theme.default = {
   bg = '#202328',
@@ -40,6 +41,20 @@ theme['rose-pine'] = {
 theme.everforest = {
   bg = '#374247',
   fg = '#d3c6aa',
+  section_bg = '#2f383e',
+  yellow = '#f1fa8c',
+  cyan = '#7fbbb3',
+  green = '#50fa7b',
+  violet = '#a9a1e1',
+  orange = '#ffb86c',
+  magenta = '#ff79c6',
+  blue = '#8be9fd',
+  red = '#ff5555',
+}
+
+theme.aurora = {
+  bg = '#443a54',
+  fg = vim.g.terminal_color_14,
   section_bg = '#2f383e',
   yellow = '#f1fa8c',
   cyan = '#7fbbb3',

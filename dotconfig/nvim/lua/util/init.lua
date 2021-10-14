@@ -58,7 +58,7 @@ function M.execute(id)
 end
 
 local map = function(mode, key, cmd, opts, defaults)
-  opts = vim.tbl_deep_extend('force', { silent = true }, defaults or {}, opts or {})
+  opts = vim.tbl_deep_extend('force', {}, defaults or {}, opts or {})
 
   if type(cmd) == 'function' then
     table.insert(M.functions, cmd)

@@ -2,7 +2,7 @@ local vim = vim
 local gl = require('galaxyline')
 local fileinfo = require('galaxyline.provider_fileinfo')
 local condition = require('galaxyline.condition')
-local colors = require('core.theme')[vim.g.theme]
+local colors = require('core.theme')[vim.g.theme] or require('core.theme').default
 -- local iconz = require("nvim-nonicons")
 
 local gls = gl.section

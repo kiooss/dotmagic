@@ -51,9 +51,10 @@ local function disable_distribution_plugins()
 end
 
 local function set_theme()
-  -- vim.g.theme = "everforest"
-  vim.g.theme = 'rose-pine'
-  -- vim.g.theme = "tokyonight"
+  -- vim.g.theme = 'everforest'
+  -- vim.g.theme = 'rose-pine'
+  -- vim.g.theme = 'tokyonight'
+  vim.g.theme = 'aurora'
 end
 
 local function load_core()
@@ -69,8 +70,6 @@ local function load_core()
   vim.defer_fn(function()
     require('plugins')
   end, 0)
-
-  vim.cmd('colorscheme ' .. vim.g.theme)
 end
 
 load_core()

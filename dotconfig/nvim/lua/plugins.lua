@@ -4,7 +4,7 @@ local global = require('core.global')
 local config = {
   max_jobs = global.is_mac and 60 or nil,
   profile = {
-    enable = false,
+    enable = true,
     threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
   },
   display = {
@@ -212,15 +212,13 @@ local function plugins(use)
   use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
   use({ 'nvim-lua/popup.nvim', module = 'popup' })
 
-  -- use(
-  --   {
-  --     "windwp/nvim-spectre",
-  --     opt = true,
-  --     module = "spectre",
-  --     wants = {"plenary.nvim", "popup.nvim"},
-  --     requires = {"nvim-lua/popup.nvim", "nvim-lua/plenary.nvim"}
-  --   }
-  -- )
+  use({
+    'windwp/nvim-spectre',
+    opt = true,
+    module = 'spectre',
+    wants = { 'plenary.nvim', 'popup.nvim' },
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
+  })
 
   -- file explorer
   use({
@@ -253,7 +251,8 @@ local function plugins(use)
       'popup.nvim',
       'telescope-z.nvim',
       -- "telescope-frecency.nvim",
-      'telescope-fzy-native.nvim',
+      -- 'telescope-fzy-native.nvim',
+      'telescope-fzf-native.nvim',
       'telescope-project.nvim',
       'trouble.nvim',
       'telescope-symbols.nvim',
@@ -265,6 +264,7 @@ local function plugins(use)
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-symbols.nvim',
       'nvim-telescope/telescope-fzy-native.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       -- { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
     },
   })

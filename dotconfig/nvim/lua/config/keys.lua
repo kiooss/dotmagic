@@ -162,25 +162,8 @@ local leader = {
     s = { '<Cmd>Telescope git_status<CR>', 'git status' },
     -- h = { name = "+hunk" },
   },
-  ['h'] = {
+  h = {
     name = '+gitsigns',
-    -- t = {"<cmd>:Telescope builtin<cr>", "Telescope"}
-    -- c = { "<cmd>:Telescope commands<cr>", "Commands" },
-    -- h = { "<cmd>:Telescope help_tags<cr>", "Help Pages" },
-    -- m = { "<cmd>:Telescope man_pages<cr>", "Man Pages" },
-    -- k = { "<cmd>:Telescope keymaps<cr>", "Key Maps" },
-    -- s = { "<cmd>:Telescope highlights<cr>", "Search Highlight Groups" },
-    -- l = { [[<cmd>TSHighlightCapturesUnderCursor<cr>]], "Highlight Groups at cursor" },
-    -- f = { "<cmd>:Telescope filetypes<cr>", "File Types" },
-    -- o = { "<cmd>:Telescope vim_options<cr>", "Options" },
-    -- a = { "<cmd>:Telescope autocommands<cr>", "Auto Commands" },
-    -- p = {
-    --   name = "+packer",
-    --   p = {"<cmd>PackerSync<cr>", "Sync"},
-    --   s = {"<cmd>PackerStatus<cr>", "Status"},
-    --   i = {"<cmd>PackerInstall<cr>", "Install"},
-    --   c = {"<cmd>PackerCompile<cr>", "Compile"}
-    -- }
   },
   -- u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {
@@ -205,7 +188,7 @@ local leader = {
     h = { '<cmd>Telescope command_history<cr>', 'Command History' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },
     w = { '<cmd>Telescope lsp_workspace_symbols<cr>', 'LSP workspace symbols' },
-    -- r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" },
+    r = { "<cmd>lua require('spectre').open()<CR>", 'Replace (Spectre)' },
   },
   l = {
     name = 'list',
@@ -231,9 +214,11 @@ local leader = {
   -- },
   p = {
     name = 'packer',
-    c = { '<cmd>PackerCompile<cr>', 'PackerCompile' },
+    a = { '<cmd>PackerCompile profile=true<cr>', 'PackerCompile (profile)' },
+    c = { '<cmd>PackerCompile profile=false<cr>', 'PackerCompile' },
     i = { '<cmd>PackerInstall<cr>', 'PackerInstall' },
     s = { '<cmd>PackerSync<cr>', 'PackerSync' },
+    p = { '<cmd>PackerProfile<cr>', 'PackerProfile' },
     t = { '<cmd>PackerStatus<cr>', 'PakcerStatus' },
     x = { '<cmd>PackerClean<cr>', 'PakcerClean' },
   },
@@ -272,7 +257,7 @@ local leader = {
         util.toggle('list', true)
         vim.cmd('IndentBlanklineToggle')
       end,
-      'Line Numbers',
+      'Line Numbers + List + IndentLine',
     },
   },
   -- ["<tab>"] = {

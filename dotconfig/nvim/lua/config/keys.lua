@@ -1,7 +1,7 @@
 local wk = require('which-key')
 local util = require('util')
 
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 100
 
 -- util.nnoremap("q", [[len(getbufinfo({'buflisted':1})) > 1 ? ":Sayonara!<cr>" : ":Sayonara<cr>"]], { expr = true })
 util.nnoremap('q', ':Sayonara<cr>')
@@ -69,7 +69,7 @@ wk.setup({
   show_help = false,
   triggers = 'auto',
   plugins = { spelling = true },
-  key_labels = { ['<leader>'] = 'SPC' },
+  key_labels = { ['<leader>'] = 'SPC', ['<space>'] = 'SPC' },
 })
 
 local leader = {

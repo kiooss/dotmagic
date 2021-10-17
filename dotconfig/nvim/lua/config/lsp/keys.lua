@@ -37,12 +37,12 @@ function M.setup(client, bufnr)
         },
       },
     },
-    x = {
+    e = {
       s = {
         '<cmd>Telescope lsp_document_diagnostics<cr>',
         'Search Document Diagnostics',
       },
-      w = {
+      W = {
         '<cmd>Telescope lsp_workspace_diagnostics<cr>',
         'Workspace Diagnostics',
       },

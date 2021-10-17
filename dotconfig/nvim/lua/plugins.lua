@@ -601,6 +601,8 @@ local function plugins(use)
     end,
   })
 
+  use({ 'rcarriga/nvim-notify' })
+
   -- Syntax plugins
   use({ 'lumiliet/vim-twig', ft = 'twig' })
 end

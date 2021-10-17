@@ -49,7 +49,6 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 require('config.lsp.null-ls').setup()
 
 for server, config in pairs(servers) do
-  util.info(server, 'Setup LSP')
   lspconfig[server].setup(vim.tbl_deep_extend('force', {
     on_attach = on_attach,
     capabilities = capabilities,

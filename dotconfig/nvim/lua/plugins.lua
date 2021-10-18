@@ -190,6 +190,13 @@ local function plugins(use)
     end,
   })
 
+  use({
+    'sainnhe/sonokai',
+    config = function()
+      require('config.theme')
+    end,
+  })
+
   -- Theme: icons
   use({
     'kyazdani42/nvim-web-devicons',

@@ -47,6 +47,10 @@ elseif theme == 'everforest' then
 elseif theme == 'aurora' then
   vim.g.aurora_italic = 1
   vim.g.aurora_bold = 1
+elseif theme == 'sonokai' then
+  vim.g.sonokai_style = 'andromeda'
+  vim.g.sonokai_enable_italic = 1
+  -- vim.g.sonokai_disable_italic_comment = 1
 end
 
 vim.cmd('colorscheme ' .. theme)

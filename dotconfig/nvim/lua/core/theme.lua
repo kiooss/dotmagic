@@ -66,4 +66,18 @@ theme.aurora = {
   red = '#ff5555',
 }
 
+theme.sonokai = {
+  fg = '#bbc2cf',
+  bg = '#393e53',
+  section_bg = '#2f383e',
+  yellow = '#f1fa8c',
+  cyan = '#7fbbb3',
+  green = '#50fa7b',
+  violet = '#a9a1e1',
+  orange = '#ffb86c',
+  magenta = '#ff79c6',
+  blue = '#8be9fd',
+  red = '#ff5555',
+}
+
 return theme

@@ -47,6 +47,24 @@ function M.setup(client, bufnr)
         'Workspace Diagnostics',
       },
     },
+    s = {
+      l = {
+        function()
+          require('telescope.builtin').lsp_document_symbols({
+            symbols = {
+              'Class',
+              'Function',
+              'Method',
+              'Constructor',
+              'Interface',
+              'Module',
+            },
+          })
+        end,
+        'Goto Symbol',
+      },
+      w = { '<cmd>Telescope lsp_workspace_symbols<cr>', 'LSP workspace symbols' },
+    },
   }
 
   if client.name == 'typescript' then

@@ -168,26 +168,10 @@ local leader = {
   -- u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {
     name = 'search',
-    g = { '<cmd>Telescope live_grep<cr>', 'Grep' },
+    g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
     s = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer' },
-    l = {
-      function()
-        require('telescope.builtin').lsp_document_symbols({
-          symbols = {
-            'Class',
-            'Function',
-            'Method',
-            'Constructor',
-            'Interface',
-            'Module',
-          },
-        })
-      end,
-      'Goto Symbol',
-    },
     h = { '<cmd>Telescope command_history<cr>', 'Command History' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },
-    w = { '<cmd>Telescope lsp_workspace_symbols<cr>', 'LSP workspace symbols' },
     r = { "<cmd>lua require('spectre').open()<CR>", 'Replace (Spectre)' },
   },
   l = {
@@ -198,10 +182,7 @@ local leader = {
     m = { '<cmd>:Telescope man_pages<cr>', 'Man Pages' },
     k = { '<cmd>:Telescope keymaps<cr>', 'Key Maps' },
     s = { '<cmd>:Telescope highlights<cr>', 'Search Highlight Groups' },
-    l = {
-      [[<cmd>TSHighlightCapturesUnderCursor<cr>]],
-      'Highlight Groups at cursor',
-    },
+    l = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'Highlight Groups at cursor' },
     f = { '<cmd>:Telescope filetypes<cr>', 'File Types' },
     o = { '<cmd>:Telescope vim_options<cr>', 'Options' },
     a = { '<cmd>:Telescope autocommands<cr>', 'Auto Commands' },

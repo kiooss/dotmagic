@@ -70,6 +70,7 @@ local function load_core()
   -- no need to load this immediately, since we have packer_compiled
   vim.defer_fn(function()
     require('plugins')
+    -- require('core.custom')
   end, 0)
 end
 

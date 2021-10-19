@@ -211,6 +211,7 @@ set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 # set -g @plugin 'thewtex/tmux-mem-cpu-load'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
 
 run-shell "~/.dotfiles/link/tmux/tmux-power.tmux"
 

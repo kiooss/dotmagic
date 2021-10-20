@@ -5,14 +5,15 @@ vim.o.timeoutlen = 100
 
 -- util.nnoremap("q", [[len(getbufinfo({'buflisted':1})) > 1 ? ":Sayonara!<cr>" : ":Sayonara<cr>"]], { expr = true })
 util.nnoremap('q', ':Sayonara<cr>')
-util.nnoremap('/', ':Telescope current_buffer_fuzzy_find<cr>')
 util.nnoremap('<Tab>', ':wincmd w<cr>')
 util.nnoremap('<C-p>', ':NvimTreeToggle<cr>')
 -- vsplit buffers
 util.nnoremap('<leader>-', ':vsplit<CR>:wincmd p<CR>:e#<CR>')
 -- Focus the current fold by closing all others
-util.nnoremap('<CR>', 'zMza')
-util.nnoremap('<ESC><ESC>', ':<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>', { silent = true })
+-- util.nnoremap('<CR>', 'zMza')
+-- nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
+util.nnoremap('<CR>', [[{-> v:hlsearch ? ":nohlsearch\<CR>" : "\<CR>"}()]], { expr = true })
+-- util.nnoremap('<ESC><ESC>', ':<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>', { silent = true })
 util.nnoremap('j', 'gj', { silent = true })
 util.nnoremap('k', 'gk', { silent = true })
 util.nnoremap('gj', 'j', { silent = true })
@@ -137,7 +138,7 @@ local leader = {
     name = '+file',
     d = 'Dot Files',
     b = { '<cmd>Telescope file_browser cwd=~/workspace<cr>', 'File browser' },
-    f = { '<cmd>FormatWrite<cr>', 'FormatWrite' },
+    f = 'Frecency Files',
     t = { '<cmd>NvimTreeFindFile<cr>', 'NvimTreeFindFile' },
     w = { '<cmd>Telescope live_grep<cr>', 'Search word' },
     r = 'Open Recent Files',

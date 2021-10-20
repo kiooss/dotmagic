@@ -1,12 +1,12 @@
-```
+# DOTMAGIC
+
+```sh
  _    _                           _       _    __ _ _
 | | _(_) ___   ___  ___ ___    __| | ___ | |_ / _(_) | ___  ___
 | |/ / |/ _ \ / _ \/ __/ __|  / _` |/ _ \| __| |_| | |/ _ \/ __|
 |   <| | (_) | (_) \__ \__ \ | (_| | (_) | |_|  _| | |  __/\__ \
 |_|\_\_|\___/ \___/|___/___/  \__,_|\___/ \__|_| |_|_|\___||___/
 ```
-
-# DOTMAGIC
 
 > Manage my dotfiles (for personal use).
 
@@ -50,11 +50,13 @@ dotmagic
 ## Vim
 
 Now on neovim 0.5.
+Note: the configuration is always WIP state.
 
 ## Zsh
 
 My own config plus [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh).
-Oh-my-zsh is optional, but it does a lot things for me and worked well, so I add it to my config.
+Oh-my-zsh is optional, but it does a lot things for me and worked well, so I add
+it to my config.
 
 ## Tmux
 

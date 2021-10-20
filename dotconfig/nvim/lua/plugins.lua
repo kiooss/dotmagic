@@ -252,12 +252,12 @@ local function plugins(use)
     end,
     cmd = { 'Telescope' },
     module = 'telescope',
-    keys = { '<leader><space>', '<leader>fd', '<leader>fr' },
+    keys = { '<leader><space>', '<leader>fd', '<leader>fr', '<leader>ff', '/', '<leader>/' },
     wants = {
       'plenary.nvim',
       'popup.nvim',
       'telescope-z.nvim',
-      -- "telescope-frecency.nvim",
+      'telescope-frecency.nvim',
       -- 'telescope-fzy-native.nvim',
       'telescope-fzf-native.nvim',
       'telescope-project.nvim',
@@ -270,9 +270,9 @@ local function plugins(use)
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-symbols.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim',
+      -- 'nvim-telescope/telescope-fzy-native.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      -- { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
+      { 'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sqlite.lua' },
     },
   })
 

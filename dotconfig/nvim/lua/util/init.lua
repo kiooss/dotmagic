@@ -46,7 +46,7 @@ _G.should_colorcolumn = function()
 end
 
 local M = {}
-local notify = require('notify')
+vim.notify = require('notify')
 
 M.functions = {}
 
@@ -135,17 +135,17 @@ end
 
 function M.warn(msg, name)
   M.log(msg, 'LspDiagnosticsDefaultWarning', name)
-  notify(msg, 'warn', { title = name })
+  vim.notify(msg, 'warn', { title = name })
 end
 
 function M.error(msg, name)
   M.log(msg, 'LspDiagnosticsDefaultError', name)
-  notify(msg, 'error', { title = name })
+  vim.notify(msg, 'error', { title = name })
 end
 
 function M.info(msg, name)
   M.log(msg, 'LspDiagnosticsDefaultInformation', name)
-  notify(msg, 'info', { title = name })
+  vim.notify(msg, 'info', { title = name })
 end
 
 function M.toggle(option, silent)

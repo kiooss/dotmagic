@@ -46,7 +46,6 @@ _G.should_colorcolumn = function()
 end
 
 local M = {}
-vim.notify = require('notify')
 
 M.functions = {}
 

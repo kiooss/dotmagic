@@ -20,3 +20,5 @@ plug.vim.old
 /link/rbenv.symlink/gems
 
 node_modules/
+
+/dotconfig/kitty/theme.conf

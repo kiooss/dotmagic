@@ -66,6 +66,19 @@ util.vnoremap('>', '>gv')
 -- noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>M")
 -- noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>M")
 
+-- telescope mappings
+local telescope_helper = require('config.telescope.helper')
+
+util.nnoremap('/', telescope_helper.curbuf)
+util.nnoremap('<leader><space>', telescope_helper.project_files)
+util.nnoremap('<leader>ca', telescope_helper.lsp_code_actions)
+util.nnoremap('<leader>fd', telescope_helper.dotfiles)
+util.nnoremap('<leader>ff', telescope_helper.frecency_files)
+util.nnoremap('<leader>fp', telescope_helper.projects)
+util.nnoremap('<leader>fr', telescope_helper.oldfiles_cwd_only)
+util.nnoremap('<leader>fv', telescope_helper.edit_neovim)
+util.nnoremap('<leader>ln', telescope_helper.notify)
+
 wk.setup({
   show_help = false,
   triggers = 'auto',
@@ -136,15 +149,15 @@ local leader = {
   },
   f = {
     name = '+file',
-    d = 'Dot Files',
     b = { '<cmd>Telescope file_browser cwd=~/workspace<cr>', 'File browser' },
+    d = 'Dot Files',
     f = 'Frecency Files',
-    t = { '<cmd>NvimTreeFindFile<cr>', 'NvimTreeFindFile' },
-    w = { '<cmd>Telescope live_grep<cr>', 'Search word' },
-    r = 'Open Recent Files',
-    n = { '<cmd>enew<cr>', 'New File' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },
+    n = { '<cmd>enew<cr>', 'New File' },
     p = 'Open Project',
+    r = 'Open Recent Files',
+    t = { '<cmd>:Telescope filetypes<cr>', 'File Types' },
+    w = { '<cmd>Telescope live_grep<cr>', 'Search word' },
   },
   g = {
     name = 'git',
@@ -165,28 +178,29 @@ local leader = {
   },
   h = {
     name = '+gitsigns',
+    l = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'Highlight Groups at cursor' },
   },
   -- u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {
     name = 'search',
     g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
-    s = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer' },
     h = { '<cmd>Telescope command_history<cr>', 'Command History' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },
     r = { "<cmd>lua require('spectre').open()<CR>", 'Replace (Spectre)' },
+    s = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer' },
   },
   l = {
     name = 'list',
-    t = { '<cmd>:Telescope builtin<cr>', 'Telescope' },
-    c = { '<cmd>:Telescope commands<cr>', 'Commands' },
-    h = { '<cmd>:Telescope help_tags<cr>', 'Help Pages' },
-    m = { '<cmd>:Telescope man_pages<cr>', 'Man Pages' },
-    k = { '<cmd>:Telescope keymaps<cr>', 'Key Maps' },
-    s = { '<cmd>:Telescope highlights<cr>', 'Search Highlight Groups' },
-    l = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'Highlight Groups at cursor' },
-    f = { '<cmd>:Telescope filetypes<cr>', 'File Types' },
-    o = { '<cmd>:Telescope vim_options<cr>', 'Options' },
     a = { '<cmd>:Telescope autocommands<cr>', 'Auto Commands' },
+    c = { '<cmd>:Telescope commands<cr>', 'Commands' },
+    f = { '<cmd>:Telescope filetypes<cr>', 'File Types' },
+    h = { '<cmd>:Telescope help_tags<cr>', 'Help Pages' },
+    k = { '<cmd>:Telescope keymaps<cr>', 'Key Maps' },
+    m = { '<cmd>:Telescope man_pages<cr>', 'Man Pages' },
+    n = 'Notifications',
+    o = { '<cmd>:Telescope vim_options<cr>', 'Options' },
+    s = { '<cmd>:Telescope highlights<cr>', 'Search Highlight Groups' },
+    t = { '<cmd>:Telescope builtin<cr>', 'Telescope Builtins' },
   },
   m = { name = '+coc' },
   -- o = {

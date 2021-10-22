@@ -12,7 +12,6 @@ function M.setup(client, bufnr)
       name = '+code',
       r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
       -- a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
-      a = { require('config.telescope').lsp_code_actions, 'Code Action' },
       d = {
         '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
         'Line Diagnostics',

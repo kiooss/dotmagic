@@ -30,6 +30,10 @@ local function plugins(use)
     end,
   })
 
+  -- util
+  use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
+  use({ 'nvim-lua/popup.nvim', module = 'popup' })
+
   -- LSP related plugins start
   use({
     'neovim/nvim-lspconfig',
@@ -61,6 +65,7 @@ local function plugins(use)
 
   use({
     'liuchengxu/vista.vim',
+    after = 'nvim-lspconfig',
     config = function()
       vim.g.vista_default_executive = 'nvim_lsp'
     end,
@@ -105,7 +110,7 @@ local function plugins(use)
     'b3nj5m1n/kommentary',
     opt = true,
     wants = 'nvim-ts-context-commentstring',
-    keys = { 'gc', 'gcc' },
+    keys = { 'gc', 'gcc', '<C-_>' },
     config = function()
       require('config.comments')
     end,
@@ -216,9 +221,8 @@ local function plugins(use)
       require('terminal').setup()
     end,
   })
-  use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
-  use({ 'nvim-lua/popup.nvim', module = 'popup' })
 
+  -- search and replace
   use({
     'windwp/nvim-spectre',
     opt = true,
@@ -252,7 +256,6 @@ local function plugins(use)
     end,
     cmd = { 'Telescope' },
     module = 'telescope',
-    keys = { '<leader><space>', '<leader>fd', '<leader>fr', '<leader>ff', '/', '<leader>/' },
     wants = {
       'plenary.nvim',
       'popup.nvim',
@@ -570,9 +573,10 @@ local function plugins(use)
   --     vim.g.UltiSnipsSnippetDirectories = { "UltiSnips" }
   --   end,
   -- })
-  use({ 'honza/vim-snippets' })
-  use({ 'algotech/ultisnips-php' })
-  use({ 'epilande/vim-react-snippets' })
+  -- use({ 'honza/vim-snippets' })
+  -- use({ 'algotech/ultisnips-php' })
+  -- use({ 'epilande/vim-react-snippets' })
+
   use({ 'famiu/bufdelete.nvim', cmd = 'Bdelete' })
   use({ 'editorconfig/editorconfig-vim' })
 
@@ -605,6 +609,7 @@ local function plugins(use)
       vim.g.gh_trace = 1
       vim.g.gh_open_command = 'echo '
       vim.g.gh_use_canonical = 0
+      vim.g.gh_line_blame_map = '<leader>gm'
     end,
   })
 

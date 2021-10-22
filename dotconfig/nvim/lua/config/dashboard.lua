@@ -49,7 +49,7 @@ local fonts = {
 }
 
 if require('core.global').is_mac then
-  fonts = { 'slant', 'speed' }
+  fonts = { 'slant', 'small' }
 end
 
 math.randomseed(os.time())
@@ -70,32 +70,38 @@ vim.g.dashboard_custom_header = header_lines
 --   ["book_marks"] = "SPC f m",
 -- }
 
+local telescope_helper = require('config.telescope.helper')
+
 vim.g.dashboard_custom_section = {
   a = {
-    description = { '  Recently opened files                   SPC f r' },
-    command = 'DashboardFindHistory',
+    description = { '  Recently opened files (cwd only)        SPC f r' },
+    command = telescope_helper.oldfiles_cwd_only,
   },
   b = {
+    description = { '  Frecency files                          SPC f f' },
+    command = telescope_helper.frecency_files,
+  },
+  c = {
     description = { '  Marks                                   SPC s m' },
     command = 'Telescope marks',
   },
-  c = {
+  d = {
     description = { '  Find file                               SPC spc' },
     command = 'DashboardFindFile',
   },
-  d = {
+  e = {
     description = { '  File browser                            SPC f b' },
     command = 'Telescope file_browser',
   },
-  e = {
+  f = {
     description = { '  Find word                               SPC f w' },
     command = 'DashboardFindWord',
   },
-  f = {
+  g = {
     description = { '  New file                                SPC f n' },
     command = 'enew',
   },
-  g = {
+  h = {
     description = { '  Update plugins                          SPC p s' },
     command = 'PackerSync',
   },

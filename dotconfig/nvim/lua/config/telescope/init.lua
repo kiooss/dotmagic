@@ -1,16 +1,43 @@
-local trouble = require('trouble.providers.telescope')
-
+-- local trouble = require('trouble.providers.telescope')
 local telescope = require('telescope')
 local actions = require('telescope.actions')
-local themes = require('telescope.themes')
 
 telescope.setup({
   defaults = {
+    -- layout_strategy = 'horizontal',
+    -- layout_config = {
+    --   width = 0.95,
+    --   height = 0.85,
+    --   -- preview_cutoff = 120,
+    --   prompt_position = 'top',
+
+    --   horizontal = {
+    --     preview_width = function(_, cols, _)
+    --       if cols > 200 then
+    --         return math.floor(cols * 0.4)
+    --       else
+    --         return math.floor(cols * 0.6)
+    --       end
+    --     end,
+    --   },
+
+    --   vertical = {
+    --     width = 0.9,
+    --     height = 0.95,
+    --     preview_height = 0.5,
+    --   },
+
+    --   flex = {
+    --     horizontal = {
+    --       preview_width = 0.9,
+    --     },
+    --   },
+    -- },
     mappings = {
       i = {
         -- To disable a keymap, put [map] = false
         -- So, to not map "<C-n>", just put
-        ['<c-t>'] = trouble.open_with_trouble,
+        -- ['<c-t>'] = trouble.open_with_trouble,
         ['<c-j>'] = actions.move_selection_next,
         ['<c-k>'] = actions.move_selection_previous,
         -- Otherwise, just set the mapping to the function that you want it to be.
@@ -18,6 +45,7 @@ telescope.setup({
         -- Add up multiple actions
         -- ["<cr>"] = actions.select_default + actions.center,
         ['<esc>'] = actions.close,
+        ['<C-h>'] = actions.which_key,
       },
       n = {
         ['<esc>'] = actions.close,
@@ -91,69 +119,4 @@ telescope.load_extension('fzf')
 telescope.load_extension('frecency')
 -- telescope.load_extension("z")
 telescope.load_extension('project')
-
-local M = {}
-
-M.project_files = function(opts)
-  opts = opts or {}
-
-  local _git_pwd = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
-
-  if vim.v.shell_error ~= 0 then
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      opts.cwd = client.config.root_dir
-    end
-    require('telescope.builtin').find_files(opts)
-    return
-  end
-
-  require('telescope.builtin').git_files(opts)
-end
-
-function M.frecency_files()
-  require('telescope').extensions.frecency.frecency()
-end
-
-function M.curbuf()
-  local opts = themes.get_dropdown({
-    winblend = 10,
-    border = true,
-    previewer = false,
-    shorten_path = false,
-  })
-  require('telescope.builtin').current_buffer_fuzzy_find(opts)
-end
-
-function M.lsp_code_actions()
-  local opts = themes.get_cursor({
-    winblend = 10,
-    border = true,
-  })
-
-  require('telescope.builtin').lsp_code_actions(opts)
-end
-
--- mappings
-local util = require('util')
-
-util.nnoremap('<Leader><Space>', M.project_files)
-util.nnoremap('<Leader>ff', M.frecency_files)
-util.nnoremap('<Leader>fd', function()
-  require('telescope.builtin').git_files({ cwd = '~/.dotfiles' })
-end)
-util.nnoremap('<Leader>fr', function()
-  require('telescope.builtin').oldfiles({ cwd_only = true })
-end)
-util.nnoremap('/', M.curbuf)
-
--- util.nnoremap(
---   "<leader>fz",
---   function()
---     require("telescope").extensions.z.list({cmd = {vim.o.shell, "-c", "zoxide query -ls"}})
---   end
--- )
-
-util.nnoremap('<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>")
-
-return M
+telescope.load_extension('notify')

@@ -120,3 +120,6 @@ telescope.load_extension('frecency')
 -- telescope.load_extension("z")
 telescope.load_extension('project')
 telescope.load_extension('notify')
+telescope.load_extension('cheat')
+
+vim.cmd([[autocmd User TelescopePreviewerLoaded setlocal wrap]])

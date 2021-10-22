@@ -64,8 +64,14 @@ local function plugins(use)
   })
 
   use({
+    'simrat39/symbols-outline.nvim',
+    cmd = { 'SymbolsOutline' },
+  })
+
+  use({
     'liuchengxu/vista.vim',
     after = 'nvim-lspconfig',
+    cmd = { 'Vista', 'Vista!!' },
     config = function()
       vim.g.vista_default_executive = 'nvim_lsp'
     end,
@@ -98,11 +104,6 @@ local function plugins(use)
       { 'hrsh7th/vim-vsnip-integ', after = 'nvim-cmp' },
       { 'rafamadriz/friendly-snippets', after = 'vim-vsnip' },
     },
-  })
-
-  use({
-    'simrat39/symbols-outline.nvim',
-    cmd = { 'SymbolsOutline' },
   })
 
   -- comment plugin
@@ -259,23 +260,23 @@ local function plugins(use)
     wants = {
       'plenary.nvim',
       'popup.nvim',
-      'telescope-z.nvim',
       'telescope-frecency.nvim',
       -- 'telescope-fzy-native.nvim',
       'telescope-fzf-native.nvim',
       'telescope-project.nvim',
       'trouble.nvim',
       'telescope-symbols.nvim',
+      'telescope-cheat.nvim',
     },
     requires = {
-      'nvim-telescope/telescope-z.nvim',
-      'nvim-telescope/telescope-project.nvim',
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-project.nvim',
       'nvim-telescope/telescope-symbols.nvim',
       -- 'nvim-telescope/telescope-fzy-native.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       { 'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sqlite.lua' },
+      { 'nvim-telescope/telescope-cheat.nvim', requires = 'tami5/sqlite.lua' },
     },
   })
 

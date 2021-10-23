@@ -94,7 +94,7 @@ function M.notify()
 end
 
 function M.projects()
-  require('telescope').extensions.project.project()
+  require('telescope').extensions.project.project({ display_type = 'full' })
 end
 
 function M.curbuf()

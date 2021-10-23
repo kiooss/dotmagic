@@ -158,6 +158,7 @@ local leader = {
     r = 'Open Recent Files',
     t = { '<cmd>:Telescope filetypes<cr>', 'File Types' },
     w = { '<cmd>Telescope live_grep<cr>', 'Search word' },
+    v = 'Neovim Config',
   },
   g = {
     name = 'git',

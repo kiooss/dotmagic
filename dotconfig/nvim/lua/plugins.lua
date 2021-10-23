@@ -329,21 +329,19 @@ local function plugins(use)
   -- Smooth Scrolling
   use({
     'karb94/neoscroll.nvim',
-    keys = { '<C-u>', '<C-d>', 'gg', 'G' },
+    keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
     config = function()
       require('config.scroll')
     end,
   })
 
-  -- use(
-  --   {
-  --     "edluffy/specs.nvim",
-  --     after = "neoscroll.nvim",
-  --     config = function()
-  --       require("config.specs")
-  --     end
-  --   }
-  -- )
+  use({
+    'edluffy/specs.nvim',
+    after = 'neoscroll.nvim',
+    config = function()
+      require('config.specs')
+    end,
+  })
   -- use { "Xuyuanp/scrollbar.nvim", config = function() require("config.scrollbar") end }
 
   -- Git signs
@@ -488,7 +486,9 @@ local function plugins(use)
     end,
   })
 
-  -- use({ "wellle/targets.vim" })
+  -- additional text objects
+  use({ 'wellle/targets.vim' })
+  use({ 'rhysd/vim-textobj-anyblock' })
 
   -- use("DanilaMihailov/vim-tips-wiki")
   -- use("nanotee/luv-vimdocs")
@@ -624,6 +624,9 @@ local function plugins(use)
 
   -- Syntax plugins
   use({ 'lumiliet/vim-twig', ft = 'twig' })
+
+  -- other mixed
+  use({ 'ThePrimeagen/vim-be-good', cmd = 'VimBeGood' })
 end
 
 return packer.setup(config, plugins)

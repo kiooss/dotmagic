@@ -113,6 +113,11 @@ function autocmd.load_autocmds()
         'TextYankPost',
         [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=500})]],
       },
+      {
+        'TextYankPost',
+        '*',
+        [[if v:event.operator is 'y' && (v:event.regname is '' || v:event.regname is '+') | execute 'OSCYankReg "' | endif]],
+      },
     },
   }
 

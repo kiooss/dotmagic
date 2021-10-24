@@ -486,10 +486,6 @@ local function plugins(use)
     end,
   })
 
-  -- additional text objects
-  use({ 'wellle/targets.vim' })
-  use({ 'rhysd/vim-textobj-anyblock' })
-
   -- use("DanilaMihailov/vim-tips-wiki")
   -- use("nanotee/luv-vimdocs")
   use({
@@ -538,23 +534,29 @@ local function plugins(use)
     ft = 'sql',
   })
 
-  if global.is_linux then
-    use({
-      'wincent/vim-clipper',
-      setup = function()
-        vim.g.ClipperMap = 0
-        vim.g.ClipperAddress = '~/.clipper.sock'
-        vim.g.ClipperPort = 0
-      end,
-    })
-  end
+  -- if global.is_linux then
+  --   use({
+  --     'wincent/vim-clipper',
+  --     setup = function()
+  --       vim.g.ClipperMap = 0
+  --       vim.g.ClipperAddress = '~/.clipper.sock'
+  --       vim.g.ClipperPort = 0
+  --     end,
+  --   })
+  -- end
 
+  -- align
   use({ 'junegunn/vim-easy-align' })
+
+  -- additional text objects
+  use({ 'wellle/targets.vim' })
+  use({ 'rhysd/vim-textobj-anyblock' })
   use({ 'kana/vim-textobj-entire' })
   use({ 'kana/vim-textobj-function' })
   use({ 'kana/vim-textobj-user' })
   use({ 'nelstrom/vim-textobj-rubyblock' })
   use({ 'thalesmello/vim-textobj-methodcall' })
+
   use({ 'tpope/vim-repeat' })
   use({
     'tpope/vim-surround',
@@ -562,7 +564,6 @@ local function plugins(use)
       vim.g.surround_no_insert_mappings = 1
     end,
   })
-  use({ 'wellle/targets.vim' })
 
   -- use({
   --   "SirVer/ultisnips",
@@ -621,6 +622,9 @@ local function plugins(use)
       vim.notify = require('notify')
     end,
   })
+
+  -- copy text to the system clipboard from anywhere
+  use({ 'ojroques/vim-oscyank' })
 
   -- Syntax plugins
   use({ 'lumiliet/vim-twig', ft = 'twig' })

@@ -1,7 +1,5 @@
-local util = require('util')
 local lspconfig = require('lspconfig')
 local vim = vim
-vim.notify = require('notify')
 
 require('config.lsp.diagnostics')
 -- require("config.lsp.kind").setup()

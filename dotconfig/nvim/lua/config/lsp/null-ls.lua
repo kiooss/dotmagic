@@ -1,5 +1,13 @@
 local M = {}
 
+-- arch
+-- pacman -S shfmt
+-- mac
+-- brew install shfmt
+-- npm
+-- npm -i -g markdownlint
+-- cargo install stylua
+
 function M.setup()
   local nls = require('null-ls')
 

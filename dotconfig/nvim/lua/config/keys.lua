@@ -6,7 +6,8 @@ vim.o.timeoutlen = 100
 -- util.nnoremap("q", [[len(getbufinfo({'buflisted':1})) > 1 ? ":Sayonara!<cr>" : ":Sayonara<cr>"]], { expr = true })
 util.nnoremap('q', ':Sayonara<cr>')
 util.nnoremap('<Tab>', ':wincmd w<cr>')
-util.nnoremap('<C-p>', ':NvimTreeToggle<cr>')
+util.nnoremap('<C-p>', ':NvimTreeFindFileToggle<cr>')
+-- util.nnoremap('<C-p>', ':NvimTreeToggle<cr>')
 -- vsplit buffers
 util.nnoremap('<leader>-', ':vsplit<CR>:wincmd p<CR>:e#<CR>')
 -- Focus the current fold by closing all others

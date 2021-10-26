@@ -21,6 +21,10 @@ local function on_attach(client, bufnr)
   -- end
 end
 
+-- lsp install:
+-- npm i -g bash-language-server vscode-langservers-extracted vls yaml-language-server
+-- gem install solargraph
+-- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 local servers = {
   -- pyright = {},
   bashls = {},

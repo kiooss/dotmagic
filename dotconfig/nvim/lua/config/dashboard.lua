@@ -1,6 +1,6 @@
 vim.g.dashboard_footer_icon = '🦖 '
 
-local str = vim.g.dashboard_footer_icon .. vim.fn.system('fortune -s computers')
+local str = vim.g.dashboard_footer_icon .. vim.fn.system('fortune')
 local lines = {}
 for s in str:gmatch('[^\r\n]+') do
   table.insert(lines, s)

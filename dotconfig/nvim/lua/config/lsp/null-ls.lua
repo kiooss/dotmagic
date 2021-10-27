@@ -5,7 +5,7 @@ local M = {}
 -- mac
 -- brew install shfmt
 -- npm
--- npm -i -g markdownlint
+-- npm i -g markdownlint-cli
 -- cargo install stylua
 
 function M.setup()

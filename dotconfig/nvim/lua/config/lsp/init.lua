@@ -15,21 +15,21 @@ local function on_attach(client, bufnr)
   require('config.lsp.ui').setup()
 
   -- TypeScript specific stuff
-  -- TODO: yang
-  -- if client.name == "typescript" or client.name == "tsserver" then
-  --   require("config.lsp.ts-utils").setup(client)
-  -- end
+  if client.name == 'typescript' or client.name == 'tsserver' then
+    require('config.lsp.ts-utils').setup(client)
+  end
 end
 
 -- lsp install:
 -- npm i -g bash-language-server vscode-langservers-extracted vls yaml-language-server
+-- npm i -g typescript typescript-language-server
 -- gem install solargraph
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 local servers = {
   -- pyright = {},
   bashls = {},
   -- dockerls = {},
-  -- tsserver = {},
+  tsserver = {},
   html = {},
   jsonls = { filetypes = { 'json', 'jsonc' } },
   cssls = {},

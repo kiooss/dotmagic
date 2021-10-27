@@ -40,7 +40,7 @@ local function plugins(use)
     opt = true,
     event = 'BufReadPre',
     wants = {
-      -- "nvim-lsp-ts-utils",
+      'nvim-lsp-ts-utils',
       'null-ls.nvim',
       'lua-dev.nvim',
     },
@@ -48,7 +48,7 @@ local function plugins(use)
       require('config.lsp')
     end,
     requires = {
-      -- "jose-elias-alvarez/nvim-lsp-ts-utils",
+      'jose-elias-alvarez/nvim-lsp-ts-utils',
       'jose-elias-alvarez/null-ls.nvim',
       'folke/lua-dev.nvim',
     },

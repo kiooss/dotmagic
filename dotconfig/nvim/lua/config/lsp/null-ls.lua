@@ -1,11 +1,12 @@
 local M = {}
 
--- arch
--- pacman -S shfmt
--- mac
+-- (arch)
+-- pacman -S shfmt shellcheck
+-- (mac)
 -- brew install shfmt
--- npm
+-- (npm)
 -- npm i -g markdownlint-cli
+-- (rust)
 -- cargo install stylua
 
 function M.setup()
@@ -37,7 +38,21 @@ function M.setup()
       -- }),
 
       -- diagnostics
-      nls.builtins.diagnostics.shellcheck,
+      nls.builtins.diagnostics.shellcheck.with({
+        condition = function()
+          local filename_exclude = {
+            '.*%.env$',
+          }
+          local full_name = vim.api.nvim_buf_get_name(0)
+          for _, pattern in ipairs(filename_exclude) do
+            if string.match(full_name, pattern) then
+              return false
+            end
+          end
+
+          return true
+        end,
+      }),
       nls.builtins.diagnostics.markdownlint,
       -- nls.builtins.diagnostics.selene,
 

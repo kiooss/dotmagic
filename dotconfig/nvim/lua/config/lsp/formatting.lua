@@ -24,6 +24,12 @@ function M.format()
 end
 
 function M.setup(client, buf)
+  if client.name == 'vuels' and not client.config.settings.vetur.format.enable then
+    client.resolved_capabilities.document_formatting = false
+
+    return
+  end
+
   local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
   local nls = require('config.lsp.null-ls')
   local efm_formatted = require('config.lsp.efm').formatted_languages
@@ -40,6 +46,9 @@ function M.setup(client, buf)
   client.resolved_capabilities.document_formatting = enable
   -- format on save
   if client.resolved_capabilities.document_formatting then
+    vim.notify('[' .. client.name .. '] document_formatting enable.', 'info', {
+      title = 'LSP',
+    })
     vim.cmd([[
       augroup LspFormat
         autocmd! * <buffer>

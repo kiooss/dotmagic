@@ -11,14 +11,28 @@ local M = {}
 
 function M.setup()
   local nls = require('null-ls')
+  local util = require('lspconfig/util')
+  local node_root_dir = util.root_pattern(
+    '.eslintrc.js',
+    '.eslintrc.cjs',
+    '.eslintrc.yaml',
+    '.eslintrc.yml',
+    '.eslintrc.json',
+    'package.json'
+  )
 
   nls.config({
-    debug = true,
+    debug = false,
     debounce = 150,
     save_after_format = false,
     sources = {
       -- formatters
-      nls.builtins.formatting.prettierd,
+      -- nls.builtins.formatting.prettierd,
+      -- nls.builtins.formatting.eslint_d.with({
+      --   cwd = function(params)
+      --     return node_root_dir(params.bufname)
+      --   end,
+      -- }),
       nls.builtins.formatting.stylua.with({
         extra_args = {
           '--config-path',
@@ -26,7 +40,6 @@ function M.setup()
           '-',
         },
       }),
-      nls.builtins.formatting.eslint_d,
       nls.builtins.formatting.shfmt.with({
         extra_args = { '-i', '2', '-ci' },
       }),
@@ -38,6 +51,11 @@ function M.setup()
       -- }),
 
       -- diagnostics
+      -- nls.builtins.diagnostics.eslint_d.with({
+      --   cwd = function(params)
+      --     return node_root_dir(params.bufname)
+      --   end,
+      -- }),
       nls.builtins.diagnostics.shellcheck.with({
         condition = function()
           local filename_exclude = {
@@ -54,7 +72,6 @@ function M.setup()
         end,
       }),
       nls.builtins.diagnostics.markdownlint,
-      -- nls.builtins.diagnostics.selene,
 
       -- code_actions
       nls.builtins.code_actions.gitsigns,

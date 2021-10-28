@@ -18,7 +18,7 @@ function M.setup()
     save_after_format = false,
     sources = {
       -- formatters
-      -- nls.builtins.formatting.prettierd,
+      nls.builtins.formatting.prettierd,
       nls.builtins.formatting.stylua.with({
         extra_args = {
           '--config-path',
@@ -26,7 +26,7 @@ function M.setup()
           '-',
         },
       }),
-      -- nls.builtins.formatting.eslint_d,
+      nls.builtins.formatting.eslint_d,
       nls.builtins.formatting.shfmt.with({
         extra_args = { '-i', '2', '-ci' },
       }),

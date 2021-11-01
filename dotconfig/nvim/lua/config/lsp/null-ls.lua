@@ -60,6 +60,7 @@ function M.setup()
         condition = function()
           local filename_exclude = {
             '.*%.env$',
+            '.*%.env%..*$',
           }
           local full_name = vim.api.nvim_buf_get_name(0)
           for _, pattern in ipairs(filename_exclude) do

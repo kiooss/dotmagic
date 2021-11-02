@@ -140,9 +140,9 @@ local leader = {
   },
   e = {
     name = '+errors',
-    e = { '<cmd>TroubleToggle<cr>', 'Trouble' },
+    a = { '<cmd>TroubleToggle<cr>', 'Trouble' },
+    e = { '<cmd>TroubleToggle lsp_document_diagnostics<cr>', 'Document Trouble' },
     w = { '<cmd>TroubleToggle lsp_workspace_diagnostics<cr>', 'Workspace Trouble' },
-    d = { '<cmd>TroubleToggle lsp_document_diagnostics<cr>', 'Document Trouble' },
     t = { '<cmd>TodoTrouble<cr>', 'Todo Trouble' },
     T = { '<cmd>TodoTelescope<cr>', 'Todo Telescope' },
     l = { '<cmd>lopen<cr>', 'Open Location List' },

@@ -31,7 +31,7 @@ local servers = {
   -- dockerls = {},
   tsserver = {},
   html = {},
-  jsonls = { filetypes = { 'json', 'jsonc' } },
+  jsonls = require('config.lsp.jsonls').config,
   cssls = {},
   eslint = {},
   yamlls = {},

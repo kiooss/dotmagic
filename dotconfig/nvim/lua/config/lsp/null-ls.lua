@@ -73,6 +73,7 @@ function M.setup()
         end,
       }),
       nls.builtins.diagnostics.markdownlint,
+      -- nls.builtins.diagnostics.pylint,
 
       -- code_actions
       nls.builtins.code_actions.gitsigns,

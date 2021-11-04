@@ -70,7 +70,7 @@ util.vnoremap('>', '>gv')
 -- telescope mappings
 local telescope_helper = require('config.telescope.helper')
 
-util.nnoremap('/', telescope_helper.curbuf)
+-- util.nnoremap('/', telescope_helper.curbuf)
 util.nnoremap('<leader><space>', telescope_helper.project_files)
 util.nnoremap('<leader>ca', telescope_helper.lsp_code_actions)
 util.nnoremap('<leader>fd', telescope_helper.dotfiles)
@@ -189,7 +189,6 @@ local leader = {
     h = { '<cmd>Telescope command_history<cr>', 'Command History' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },
     r = { "<cmd>lua require('spectre').open()<CR>", 'Replace (Spectre)' },
-    s = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer' },
   },
   l = {
     name = 'list',

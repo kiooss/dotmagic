@@ -54,20 +54,11 @@ function M.setup(client, bufnr)
       },
     },
     s = {
-      l = {
+      s = {
         function()
-          require('telescope.builtin').lsp_document_symbols({
-            symbols = {
-              'Class',
-              'Function',
-              'Method',
-              'Constructor',
-              'Interface',
-              'Module',
-            },
-          })
+          require('telescope.builtin').lsp_document_symbols()
         end,
-        'Goto Symbol',
+        'LSP document symbols',
       },
       w = { '<cmd>Telescope lsp_workspace_symbols<cr>', 'LSP workspace symbols' },
     },

@@ -1,4 +1,4 @@
-vim.g.nvim_tree_ignore = { '.git', 'node_modules' }
+-- vim.g.nvim_tree_ignore = { '.git', 'node_modules' }
 vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_auto_ignore_ft = { 'dashboard', 'startify' }
 vim.g.nvim_tree_git_hl = 1
@@ -31,6 +31,7 @@ vim.g.nvim_tree_special_files = {
 vim.g.nvim_tree_disable_window_picker = 1
 
 require('nvim-tree').setup({
+  ignore = { '.git', 'node_modules' },
   -- disables netrw completely
   disable_netrw = true,
   diagnostics = {

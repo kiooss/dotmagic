@@ -22,11 +22,12 @@ function M.setup()
   )
 
   nls.config({
-    debug = false,
+    debug = true,
     debounce = 150,
     save_after_format = false,
     sources = {
       -- formatters
+      nls.builtins.formatting.prettier,
       -- nls.builtins.formatting.prettierd,
       -- nls.builtins.formatting.eslint_d.with({
       --   cwd = function(params)

@@ -22,11 +22,19 @@ local shfmt = function()
   }
 end
 
+local prettier = function()
+  return {
+    exe = 'prettier',
+    args = { '--stdin-filepath', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
+    stdin = true,
+  }
+end
+
 require('formatter').setup({
   filetype = {
     lua = { stylua },
     sh = { shfmt },
+    javascript = { prettier },
+    vue = { prettier },
   },
 })
-
--- vim.api.nvim_set_keymap("n", "<leader>e", [[<Cmd>FormatWrite<CR>]], {noremap = true})

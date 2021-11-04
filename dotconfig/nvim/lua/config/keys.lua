@@ -134,6 +134,9 @@ local leader = {
   --   ["d"] = { "<cmd>:bd<CR>", "Delete Buffer" },
   --   ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
   -- },
+  a = {
+    f = { '<cmd>FormatWrite<CR>', 'FormatWrite' },
+  },
   c = {
     v = { '<cmd>Vista!!<CR>', 'Vista' },
     o = { '<cmd>SymbolsOutline<cr>', 'Symbols Outline' },

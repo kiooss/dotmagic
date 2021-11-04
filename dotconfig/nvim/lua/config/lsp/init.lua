@@ -21,6 +21,7 @@ local function on_attach(client, bufnr)
 end
 
 -- lsp install:
+-- npm i -g pyright
 -- npm i -g bash-language-server vscode-langservers-extracted vls yaml-language-server
 -- npm i -g typescript typescript-language-server
 -- gem install solargraph

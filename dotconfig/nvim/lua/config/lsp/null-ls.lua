@@ -5,7 +5,7 @@ local M = {}
 -- (mac)
 -- brew install shfmt
 -- (npm)
--- npm i -g markdownlint-cli
+-- npm i -g markdownlint-cli prettier
 -- (rust)
 -- cargo install stylua
 

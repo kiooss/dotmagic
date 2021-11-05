@@ -1,5 +1,3 @@
-local M = {}
-
 -- (arch)
 -- pacman -S shfmt shellcheck
 -- (mac)
@@ -9,7 +7,9 @@ local M = {}
 -- (rust)
 -- cargo install stylua
 
-function M.setup()
+local M = {}
+
+function M.setup(options)
   local nls = require('null-ls')
   local util = require('lspconfig/util')
   local node_root_dir = util.root_pattern(
@@ -80,6 +80,8 @@ function M.setup()
       nls.builtins.code_actions.gitsigns,
     },
   })
+
+  require('lspconfig')['null-ls'].setup(options)
 end
 
 function M.has_formatter(ft)

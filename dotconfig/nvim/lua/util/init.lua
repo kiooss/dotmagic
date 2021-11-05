@@ -126,25 +126,28 @@ function M.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-function M.log(msg, hl, name)
+function M.log(msg, level, name)
   name = name or 'Neovim'
-  hl = hl or 'Todo'
+  local hl_map = {
+    info = 'DiagnosticInfo',
+    warn = 'DiagnosticWarn',
+    error = 'DiagnosticError',
+  }
+  local hl = hl_map[level] or 'Todo'
+  vim.notify(msg, level, { title = name })
   vim.api.nvim_echo({ { name .. ': ', hl }, { msg } }, true, {})
 end
 
 function M.warn(msg, name)
-  M.log(msg, 'LspDiagnosticsDefaultWarning', name)
-  vim.notify(msg, 'warn', { title = name })
+  M.log(msg, 'warn', name)
 end
 
 function M.error(msg, name)
-  M.log(msg, 'LspDiagnosticsDefaultError', name)
-  vim.notify(msg, 'error', { title = name })
+  M.log(msg, 'error', name)
 end
 
 function M.info(msg, name)
-  M.log(msg, 'LspDiagnosticsDefaultInformation', name)
-  vim.notify(msg, 'info', { title = name })
+  M.log(msg, 'info', name)
 end
 
 function M.toggle(option, silent)

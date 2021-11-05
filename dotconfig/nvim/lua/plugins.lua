@@ -44,6 +44,7 @@ local function plugins(use)
       'null-ls.nvim',
       'lua-dev.nvim',
       'schemastore.nvim',
+      'nvim-lsp-installer',
     },
     config = function()
       require('config.lsp')
@@ -53,6 +54,7 @@ local function plugins(use)
       'jose-elias-alvarez/null-ls.nvim',
       'folke/lua-dev.nvim',
       'b0o/schemastore.nvim',
+      'williamboman/nvim-lsp-installer',
     },
   })
 

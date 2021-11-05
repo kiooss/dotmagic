@@ -20,6 +20,7 @@ local config = {
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
   use({ 'wbthomason/packer.nvim', opt = true })
+  use({ 'nathom/filetype.nvim' })
 
   use({
     'neoclide/coc.nvim',

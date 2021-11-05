@@ -98,6 +98,9 @@ function M.setup(options)
 
       -- code_actions
       nls.builtins.code_actions.gitsigns,
+
+      -- hover
+      nls.builtins.hover.dictionary,
     },
   })
 

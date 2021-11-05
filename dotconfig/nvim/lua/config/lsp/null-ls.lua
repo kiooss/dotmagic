@@ -8,26 +8,51 @@
 -- cargo install stylua
 
 local M = {}
+local nls = require('null-ls')
+local util = require('lspconfig/util')
+local node_root_dir = util.root_pattern(
+  '.eslintrc.js',
+  '.eslintrc.cjs',
+  '.eslintrc.yaml',
+  '.eslintrc.yml',
+  '.eslintrc.json',
+  'package.json'
+)
+
+local eslint = require('null-ls.helpers').conditional(function(utils)
+  local project_local_bin = './node_modules/.bin/eslint'
+
+  return nls.builtins.formatting.eslint.with({
+    command = utils.root_has_file(project_local_bin) and project_local_bin or 'eslint',
+    cwd = function(params)
+      return node_root_dir(params.bufname)
+    end,
+  })
+end)
+
+local prettier = require('null-ls.helpers').conditional(function(utils)
+  local project_local_bin = './node_modules/.bin/prettier'
+
+  return nls.builtins.formatting.prettier.with({
+    command = utils.root_has_file(project_local_bin) and project_local_bin or 'prettier',
+    cwd = function(params)
+      return node_root_dir(params.bufname)
+    end,
+  })
+end)
 
 function M.setup(options)
-  local nls = require('null-ls')
-  local util = require('lspconfig/util')
-  local node_root_dir = util.root_pattern(
-    '.eslintrc.js',
-    '.eslintrc.cjs',
-    '.eslintrc.yaml',
-    '.eslintrc.yml',
-    '.eslintrc.json',
-    'package.json'
-  )
-
   nls.config({
     debug = true,
     debounce = 150,
     save_after_format = false,
     sources = {
       -- formatters
-      nls.builtins.formatting.prettier,
+      nls.builtins.formatting.fixjson.with({ filetypes = { 'jsonc' } }),
+      prettier,
+      eslint,
+      -- nls.builtins.formatting.prettier,
+      -- nls.builtins.formatting.eslint,
       -- nls.builtins.formatting.prettierd,
       -- nls.builtins.formatting.eslint_d.with({
       --   cwd = function(params)
@@ -52,11 +77,6 @@ function M.setup(options)
       -- }),
 
       -- diagnostics
-      -- nls.builtins.diagnostics.eslint_d.with({
-      --   cwd = function(params)
-      --     return node_root_dir(params.bufname)
-      --   end,
-      -- }),
       nls.builtins.diagnostics.shellcheck.with({
         condition = function()
           local filename_exclude = {

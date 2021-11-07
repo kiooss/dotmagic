@@ -39,7 +39,7 @@ local function plugins(use)
   use({
     'neovim/nvim-lspconfig',
     opt = true,
-    event = 'BufReadPre',
+    event = { 'BufReadPre', 'InsertEnter' },
     wants = {
       'nvim-lsp-ts-utils',
       'null-ls.nvim',

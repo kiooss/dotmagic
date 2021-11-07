@@ -90,6 +90,9 @@ local function plugins(use)
     config = function()
       require('config.nvim-cmp')
     end,
+    wants = {
+      'lspkind-nvim',
+    },
     requires = {
       'onsails/lspkind-nvim',
       'hrsh7th/cmp-nvim-lsp',
@@ -97,6 +100,7 @@ local function plugins(use)
       { 'hrsh7th/cmp-vsnip', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       { 'octaltree/cmp-look', after = 'nvim-cmp' },
       {
         'windwp/nvim-autopairs',
@@ -636,6 +640,13 @@ local function plugins(use)
 
   -- other mixed
   use({ 'ThePrimeagen/vim-be-good', cmd = 'VimBeGood' })
+
+  use({
+    'github/copilot.vim',
+    config = function()
+      require('config.copilot')
+    end,
+  })
 end
 
 return packer.setup(config, plugins)

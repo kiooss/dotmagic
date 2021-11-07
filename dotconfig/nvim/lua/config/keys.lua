@@ -230,6 +230,17 @@ local leader = {
       end,
       'Current Line Blame',
     },
+    c = {
+      function()
+        local copilot_enabled = vim.fn['copilot#Enabled']()
+        if copilot_enabled == 1 then
+          vim.cmd('Copilot disable')
+        else
+          vim.cmd('Copilot enable')
+        end
+      end,
+      'Copilot',
+    },
     f = {
       require('config.lsp.formatting').toggle,
       'Format on Save',

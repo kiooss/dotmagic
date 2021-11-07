@@ -28,13 +28,17 @@ vim.g.nvim_tree_special_files = {
   ['README.md'] = true,
   ['readme.md'] = true,
 }
-vim.g.nvim_tree_disable_window_picker = 1
+-- vim.g.nvim_tree_disable_window_picker = 1
+
+require('nvim-tree.events').on_nvim_tree_ready(function()
+  vim.cmd('NvimTreeRefresh')
+end)
 
 require('nvim-tree').setup({
   ignore = { '.git', 'node_modules' },
   -- disables netrw completely
   disable_netrw = true,
-  diagnostics = {
+  diagnotics = {
     enable = true,
   },
   -- hijack the cursor in the tree to put it at the start of the filename
@@ -52,7 +56,3 @@ require('nvim-tree').setup({
     },
   },
 })
-
-require('nvim-tree.events').on_nvim_tree_ready(function()
-  vim.cmd('NvimTreeRefresh')
-end)

@@ -1,9 +1,3 @@
--- local gcc = vim.fn.getenv("NIX_GCC")
-
--- if gcc and gcc ~= vim.NIL then
---   require("nvim-treesitter.install").compilers = { gcc }
--- end
-
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
     'bash',
@@ -37,7 +31,19 @@ require('nvim-treesitter.configs').setup({
   },
   highlight = { enable = true, use_languagetree = true },
   indent = { enable = false },
-  context_commentstring = { enable = true },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+    config = {
+      -- Languages that have a single comment style
+      typescript = { __default = '// %s', __multiline = '/* %s */' },
+      css = '/* %s */',
+      scss = '/* %s */',
+      html = '<!-- %s -->',
+      svelte = '<!-- %s -->',
+      vue = '<!-- %s -->',
+    },
+  },
   incremental_selection = {
     enable = false,
     keymaps = {

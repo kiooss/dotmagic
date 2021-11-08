@@ -188,6 +188,7 @@ local leader = {
   -- u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {
     name = 'search',
+    b = { telescope_helper.curbuf, 'Current Buffer Fuzzy Search' },
     g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
     h = { '<cmd>Telescope command_history<cr>', 'Command History' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },

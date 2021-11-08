@@ -25,6 +25,27 @@ local white_space = function()
   return ' '
 end
 
+local function clock()
+  return ' ' .. os.date('%H:%M')
+end
+
+local function lsp_progress()
+  local messages = vim.lsp.util.get_progress_messages()
+  if #messages == 0 then
+    return
+  end
+  local status = {}
+  for _, msg in pairs(messages) do
+    table.insert(status, (msg.percentage or 0) .. '% ' .. (msg.title or ''))
+  end
+  local spinners = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
+  local ms = vim.loop.hrtime() / 1000000
+  local frame = math.floor(ms / 120) % #spinners
+  return table.concat(status, ' | ') .. ' ' .. spinners[frame + 1]
+end
+
+vim.cmd([[autocmd User LspProgressUpdate let &ro = &ro]])
+
 local function get_lsp_client(msg)
   return function()
     msg = msg or 'No Active Lsp'
@@ -399,10 +420,13 @@ table.insert(cur_section, {
 cur_section = gls.right
 table.insert(cur_section, {
   FileFormat = {
-    provider = function()
-      return ' ' .. vim.bo.filetype .. ' '
-    end,
-    highlight = { colors.fg, colors.section_bg, 'bold,italic' },
+    provider = {
+      function()
+        return ' ' .. vim.bo.filetype .. ' '
+      end,
+      lsp_progress,
+    },
+    highlight = { colors.cyan, colors.section_bg, 'bold,italic' },
     separator = icons.sep.right,
     separator_highlight = { colors.section_bg, colors.bg },
   },
@@ -459,10 +483,18 @@ table.insert(cur_section, {
     highlight = { colors.cyan, colors.section_bg },
   },
 })
+-- table.insert(cur_section, {
+--   WhiteSpace = {
+--     provider = 'WhiteSpace',
+--     highlight = { colors.red, colors.bg, 'bold,italic' },
+--     separator = icons.sep.right,
+--     separator_highlight = { colors.bg, colors.section_bg },
+--   },
+-- })
 table.insert(cur_section, {
-  WhiteSpace = {
-    provider = 'WhiteSpace',
-    highlight = { colors.red, colors.bg, 'bold,italic' },
+  Clock = {
+    provider = clock,
+    highlight = { colors.green, colors.bg, 'italic' },
     separator = icons.sep.right,
     separator_highlight = { colors.bg, colors.section_bg },
   },

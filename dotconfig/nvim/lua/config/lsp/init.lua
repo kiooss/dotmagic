@@ -35,7 +35,7 @@ local servers = {
   eslint = {},
   yamlls = {},
   intelephense = require('config.lsp.intelephense').config,
-  solargraph = {},
+  solargraph = { cmd = { 'solargraph', 'stdio' } },
   sumneko_lua = require('config.lsp.sumneko_lua').config,
   -- efm = require("config.lsp.efm").config,
   vuels = require('config.lsp.vuels').config,

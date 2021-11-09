@@ -661,6 +661,13 @@ local function plugins(use)
       require('config.copilot')
     end,
   })
+
+  use({
+    'akinsho/toggleterm.nvim',
+    config = function()
+      require('config.toggleterm')
+    end,
+  })
 end
 
 return packer.setup(config, plugins)

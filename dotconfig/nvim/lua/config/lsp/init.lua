@@ -8,7 +8,7 @@
 -- local lspconfig = require('lspconfig')
 -- local vim = vim
 
-require('config.lsp.diagnostics')
+require('config.lsp.diagnostics').setup()
 -- require("config.lsp.kind").setup()
 
 local function on_attach(client, bufnr)

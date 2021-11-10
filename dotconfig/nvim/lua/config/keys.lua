@@ -242,6 +242,10 @@ local leader = {
       end,
       'Copilot',
     },
+    d = {
+      require('config.lsp.diagnostics').toggle,
+      'Diagnostics',
+    },
     f = {
       require('config.lsp.formatting').toggle,
       'Format on Save',

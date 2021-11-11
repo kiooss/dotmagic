@@ -1,6 +1,6 @@
 vim.g.dashboard_footer_icon = '🦖 '
 
-local str = vim.g.dashboard_footer_icon .. vim.fn.system('fortune')
+local str = vim.g.dashboard_footer_icon .. vim.fn.system('fortune -s')
 local lines = {}
 for s in str:gmatch('[^\r\n]+') do
   table.insert(lines, s)
@@ -48,12 +48,14 @@ local fonts = {
   'maxiwi',
 }
 
-if require('core.global').is_mac then
-  fonts = { 'slant', 'small' }
-end
+-- if require('core.global').is_mac then
+--   fonts = { 'slant', 'small' }
+-- end
 
 math.randomseed(os.time())
-local header_str = vim.fn.system([[figlet -f "]] .. fonts[math.random(#fonts)] .. [[" "Yang's neovim"]])
+local header_str = vim.fn.system(
+  [[figlet -d $HOME/.dotfiles/vendor/figlet-fonts -f "]] .. fonts[math.random(#fonts)] .. [[" "Yang's neovim"]]
+)
 local header_lines = {}
 for s in header_str:gmatch('[^\r\n]+') do
   table.insert(header_lines, s)

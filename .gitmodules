@@ -26,3 +26,6 @@
 [submodule "vendor/kitty-themes/rose-pine"]
 	path = vendor/kitty-themes/rose-pine
 	url = https://github.com/rose-pine/kitty.git
+[submodule "vendor/figlet-fonts"]
+	path = vendor/figlet-fonts
+	url = https://github.com/xero/figlet-fonts.git

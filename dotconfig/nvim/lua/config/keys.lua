@@ -275,6 +275,26 @@ local leader = {
       end,
       'Line Numbers + List + IndentLine',
     },
+    m = {
+      function()
+        if vim.o.mouse == 'a' then
+          vim.cmd([[IndentBlanklineDisable]])
+          vim.wo.signcolumn = 'no'
+          vim.o.mouse = 'v'
+          vim.wo.relativenumber = false
+          vim.wo.number = false
+          print('Mouse disabled')
+        else
+          vim.cmd([[IndentBlanklineEnable]])
+          vim.wo.signcolumn = 'yes'
+          vim.o.mouse = 'a'
+          vim.wo.relativenumber = true
+          vim.wo.number = true
+          print('Mouse enabled')
+        end
+      end,
+      'Toggle Mouse',
+    },
   },
   -- ["<tab>"] = {
   --   name = "workspace",

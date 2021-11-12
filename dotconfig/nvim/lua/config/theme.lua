@@ -12,8 +12,8 @@ if theme == 'tokyonight' then
     'spectre_panel',
     'NeogitStatus',
     'help',
+    'NvimTree',
   }
-  vim.g.tokyonight_cterm_colors = false
   vim.g.tokyonight_terminal_colors = true
   vim.g.tokyonight_italic_comments = true
   vim.g.tokyonight_italic_keywords = true
@@ -23,7 +23,7 @@ if theme == 'tokyonight' then
   vim.g.tokyonight_hide_inactive_statusline = false
   vim.g.tokyonight_dark_sidebar = true
   vim.g.tokyonight_dark_float = true
-  vim.g.tokyonight_colors = {}
+  vim.g.tokyonight_colors = { hint = 'orange', error = '#ff0000' }
 elseif theme == 'rose-pine' then
   -- Set variant
   -- Defaults to 'dawn' if vim background is light

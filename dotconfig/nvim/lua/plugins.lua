@@ -226,6 +226,13 @@ local function plugins(use)
     end,
   })
 
+  use({
+    'bluz71/vim-nightfly-guicolors',
+    config = function()
+      require('config.theme')
+    end,
+  })
+
   -- Theme: icons
   use({
     'kyazdani42/nvim-web-devicons',

@@ -1,8 +1,10 @@
 local theme = {}
 local vim = vim
 
+-- bg should be same with StatusLine bg color.
 theme.default = {
   bg = '#202328',
+  section_bg = '#2c3043',
   fg = '#bbc2cf',
   yellow = '#ECBE7B',
   cyan = '#008080',
@@ -78,6 +80,20 @@ theme.sonokai = {
   magenta = '#ff79c6',
   blue = '#8be9fd',
   red = '#ff5555',
+}
+
+theme.nightfly = {
+  bg = '#2c3043',
+  fg = '#acb4c2',
+  section_bg = '#011627',
+  yellow = '#ecc48d',
+  cyan = '#7fdbca',
+  green = '#21c7a8',
+  violet = '#ae81ff',
+  orange = '#ecc48d',
+  magenta = '#ae81ff',
+  blue = '#82aaff',
+  red = '#ff5874',
 }
 
 return theme

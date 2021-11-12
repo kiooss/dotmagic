@@ -54,9 +54,10 @@ end
 local function set_theme()
   -- vim.g.theme = 'everforest'
   -- vim.g.theme = 'rose-pine'
-  vim.g.theme = 'tokyonight'
+  -- vim.g.theme = 'tokyonight'
   -- vim.g.theme = 'aurora'
   -- vim.g.theme = 'sonokai'
+  vim.g.theme = 'nightfly'
 end
 
 local function load_core()

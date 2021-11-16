@@ -45,7 +45,6 @@ cmp.setup({
     end, {
       'i',
       's',
-      'c',
     }),
     -- ['<Tab>'] = cmp.mapping(function(fallback)
     --   if cmp.visible() then
@@ -93,21 +92,6 @@ cmp.setup({
 
   formatting = {
     format = require('lspkind').cmp_format({ with_text = true }),
-    -- format = function(entry, vim_item)
-    --   vim_item.kind = lspkind.presets.default[vim_item.kind]
-    --   -- set a name for each source
-    --   vim_item.menu = ({
-    --     buffer = '[Buffer]',
-    --     nvim_lsp = '[LSP]',
-    --     luasnip = '[LuaSnip]',
-    --     nvim_lua = '[Lua]',
-    --     vsnip = '[Vsnip]',
-    --     latex_symbols = '[Latex]',
-    --     look = '[Look]',
-    --   })[entry.source.name]
-
-    --   return vim_item
-    -- end,
   },
 
   -- You should specify your *installed* sources.

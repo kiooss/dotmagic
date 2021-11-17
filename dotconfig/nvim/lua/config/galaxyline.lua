@@ -26,7 +26,7 @@ local white_space = function()
 end
 
 local function clock()
-  return ' ' .. os.date('%H:%M')
+  return '  ' .. os.date('%H:%M')
 end
 
 local function lsp_progress()
@@ -317,15 +317,16 @@ table.insert(cur_section, {
     condition = condition.check_git_workspace and condition.hide_in_width,
     icon = ' ',
     highlight = { colors.red, colors.bg },
-    separator = icons.sep.left .. ' ',
-    separator_highlight = { colors.bg, colors.section_bg },
+    -- separator = icons.sep.left .. ' ',
+    -- separator_highlight = { colors.bg, colors.section_bg },
   },
 })
 table.insert(cur_section, {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '  ',
-    highlight = { colors.red, colors.section_bg },
+    -- highlight = { colors.red, colors.section_bg },
+    highlight = { colors.red, colors.bg },
   },
 })
 -- table.insert(cur_section, {
@@ -338,7 +339,8 @@ table.insert(cur_section, {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '  ',
-    highlight = { colors.orange, colors.section_bg },
+    -- highlight = { colors.orange, colors.section_bg },
+    highlight = { colors.orange, colors.bg },
   },
 })
 -- table.insert(cur_section, {
@@ -351,7 +353,8 @@ table.insert(cur_section, {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
     icon = '  ',
-    highlight = { colors.cyan, colors.section_bg },
+    -- highlight = { colors.cyan, colors.section_bg },
+    highlight = { colors.cyan, colors.bg },
   },
 })
 -- table.insert(cur_section, {
@@ -364,18 +367,19 @@ table.insert(cur_section, {
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
     icon = '  ',
-    highlight = { colors.blue, colors.section_bg },
+    -- highlight = { colors.blue, colors.section_bg },
+    highlight = { colors.blue, colors.bg },
   },
 })
-table.insert(cur_section, {
-  LeftEnd = {
-    provider = white_space,
-    condition = condition.buffer_not_empty,
-    highlight = { colors.section_bg, colors.section_bg },
-    separator = icons.sep.left .. ' ',
-    separator_highlight = { colors.section_bg, colors.bg },
-  },
-})
+-- table.insert(cur_section, {
+--   LeftEnd = {
+--     provider = white_space,
+--     condition = condition.buffer_not_empty,
+--     highlight = { colors.section_bg, colors.section_bg },
+--     separator = icons.sep.left .. ' ',
+--     separator_highlight = { colors.section_bg, colors.bg },
+--   },
+-- })
 table.insert(cur_section, {
   CurrentFunction = {
     -- provider = coc_current_function,
@@ -398,9 +402,9 @@ table.insert(cur_section, {
       return true
     end,
     icon = ' ',
-    highlight = { colors.cyan, colors.section_bg, 'bold,italic' },
-    separator = '',
-    separator_highlight = { colors.section_bg, colors.bg },
+    highlight = { colors.cyan, colors.bg, 'bold,italic' },
+    -- separator = '',
+    -- separator_highlight = { colors.section_bg, colors.bg },
   },
 })
 -- table.insert(cur_section, {
@@ -409,14 +413,14 @@ table.insert(cur_section, {
 --     highlight = { colors.green, colors.section_bg },
 --   },
 -- })
-table.insert(cur_section, {
-  MidEnd = {
-    provider = function()
-      return ''
-    end,
-    highlight = { colors.section_bg, colors.bg },
-  },
-})
+-- table.insert(cur_section, {
+--   MidEnd = {
+--     provider = function()
+--       return ''
+--     end,
+--     highlight = { colors.section_bg, colors.bg },
+--   },
+-- })
 
 -- Right side
 cur_section = gls.right
@@ -504,11 +508,9 @@ table.insert(cur_section, {
 table.insert(cur_section, {
   Heart = {
     provider = function()
-      return ' '
+      return '   '
     end,
-    highlight = { colors.red, colors.section_bg },
-    separator = icons.sep.right,
-    separator_highlight = { colors.section_bg, colors.bg },
+    highlight = { colors.red, colors.bg },
   },
 })
 

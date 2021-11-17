@@ -41,9 +41,12 @@ elseif theme == 'rose-pine' then
     { noremap = true, silent = true }
   )
 elseif theme == 'everforest' then
-  vim.g.everforest_background = 'soft'
+  -- Available values: `'hard'`, `'medium'`, `'soft'`
+  vim.g.everforest_background = 'medium'
   vim.g.everforest_enable_italic = 1
   vim.g.everforest_diagnostic_text_highlight = 1
+  -- vim.g.everforest_transparent_background = 1
+  vim.g.everforest_diagnostic_virtual_text = 'colored'
 elseif theme == 'aurora' then
   vim.g.aurora_italic = 1
   vim.g.aurora_bold = 1

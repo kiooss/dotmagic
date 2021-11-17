@@ -8,6 +8,8 @@
 -- local lspconfig = require('lspconfig')
 -- local vim = vim
 
+local global = require('core.global')
+
 require('config.lsp.diagnostics').setup()
 -- require("config.lsp.kind").setup()
 
@@ -58,6 +60,10 @@ local options = {
 }
 require('config.lsp.null-ls').setup(options)
 require('config.lsp.install').setup(servers, options)
+
+if global.is_mac then
+  require('config.lsp.dartls').setup(options)
+end
 
 -- for server, config in pairs(servers) do
 --   lspconfig[server].setup(vim.tbl_deep_extend('force', {

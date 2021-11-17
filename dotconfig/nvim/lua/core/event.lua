@@ -83,7 +83,6 @@ function autocmd.load_autocmds()
         'dashboard',
         'set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2',
       },
-      { 'BufNewFile,BufRead', '*.toml', ' setf toml' },
       { 'FileType', 'crontab', 'setlocal nobackup nowritebackup' },
       { 'FileType', 'apache', 'setlocal commentstring=#\\ %s' },
     },
@@ -103,8 +102,6 @@ function autocmd.load_autocmds()
           highlight TablineSel cterm=bold,reverse gui=bold,reverse
           highlight SpecialKey ctermfg=19 guifg=#333333
         ]],
-        -- highlight Comment gui=bold,italic
-        -- highlight TSKeyword gui=bold,italic
       },
     },
 

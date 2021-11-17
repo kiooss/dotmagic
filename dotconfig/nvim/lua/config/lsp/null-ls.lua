@@ -62,7 +62,7 @@ function M.setup(options)
       nls.builtins.formatting.stylua.with({
         extra_args = {
           '--config-path',
-          vim.fn.expand('~/.config/nvim/.stylua'),
+          vim.fn.expand('~/.config/nvim/.stylua.toml'),
           '-',
         },
       }),

@@ -92,6 +92,7 @@ local function plugins(use)
   use({
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
+    module = 'cmp',
     config = function()
       require('config.nvim-cmp')
     end,
@@ -117,6 +118,7 @@ local function plugins(use)
       { 'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
       { 'hrsh7th/vim-vsnip-integ', after = 'nvim-cmp' },
       { 'rafamadriz/friendly-snippets', after = 'vim-vsnip' },
+      { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
     },
   })
 

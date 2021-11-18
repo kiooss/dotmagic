@@ -94,12 +94,15 @@ cmp.setup({
     format = require('lspkind').cmp_format({
       with_text = true,
       menu = {
-        buffer = '[buf]',
-        nvim_lsp = '[LSP]',
-        nvim_lua = '[api]',
-        path = '[Path]',
-        look = '[Word]',
-        vsnip = '[Snip]',
+        look = '',
+        nvim_lsp = '',
+        nvim_lua = '',
+        treesitter = '',
+        path = '',
+        buffer = '﬘',
+        zsh = '',
+        vsnip = '',
+        spell = '暈',
       },
     }),
   },
@@ -108,6 +111,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' }, -- For vsnip users.
+    { name = 'treesitter' },
   }, {
     { name = 'nvim_lua' },
     { name = 'buffer' },

@@ -314,7 +314,7 @@ table.insert(cur_section, {
 table.insert(cur_section, {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
-    icon = '  ',
+    icon = '  ',
     highlight = { colors.cyan, colors.bg },
   },
 })

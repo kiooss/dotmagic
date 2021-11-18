@@ -16,7 +16,7 @@ function M.edit_neovim()
   end
 
   opts_with_preview = {
-    prompt_title = '~ neovim config ~',
+    prompt_title = '  neovim config',
     shorten_path = false,
     cwd = '~/.config/nvim',
 
@@ -54,14 +54,14 @@ end
 
 function M.dotfiles()
   require('telescope.builtin').git_files({
-    prompt_title = '~ dotfiles ~',
+    prompt_title = '  dotfiles ',
     cwd = '~/.dotfiles',
   })
 end
 
 function M.oldfiles_cwd_only()
   require('telescope.builtin').oldfiles({
-    prompt_title = '~ Oldfiles (cwd: ' .. vim.loop.cwd() .. ')~',
+    prompt_title = '  Oldfiles (cwd: ' .. vim.loop.cwd() .. ')',
     cwd_only = true,
   })
 end
@@ -79,6 +79,10 @@ function M.project_files(opts)
     require('telescope.builtin').find_files(opts)
     return
   end
+
+  opts.prompt_title = ' Git Files'
+  opts.prompt_prefix = '  '
+  opts.results_title = 'Project (' .. _git_pwd .. ') Files Results'
 
   require('telescope.builtin').git_files(opts)
 end

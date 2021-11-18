@@ -43,7 +43,7 @@ local fonts = {
   -- "NScript",
   '3d',
   'ANSI Shadow',
-  'Bloody',
+  -- 'Bloody',
   'Elite',
   'maxiwi',
 }

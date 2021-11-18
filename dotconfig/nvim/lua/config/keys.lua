@@ -3,6 +3,8 @@ local util = require('util')
 
 vim.o.timeoutlen = 100
 
+util.nnoremap('-', ':edit %:h<CR>')
+
 -- util.nnoremap("q", [[len(getbufinfo({'buflisted':1})) > 1 ? ":Sayonara!<cr>" : ":Sayonara<cr>"]], { expr = true })
 util.nnoremap('q', ':Sayonara<cr>')
 util.nnoremap('<Tab>', ':wincmd w<cr>')
@@ -43,7 +45,6 @@ util.inoremap('<C-c>', '<esc>`^')
 -- util.inoremap("<C-a>", "<C-o>I")
 -- util.inoremap("<C-e>", "<C-o>A")
 -- util.inoremap("<C-u>", "<C-g>u<C-u>")
-util.inoremap('jj', '<esc>')
 
 util.cnoremap('jk', '<C-c>')
 util.cnoremap('j', [[getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j']], { expr = true })

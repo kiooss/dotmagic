@@ -21,15 +21,24 @@ gl.short_line_list = {
 }
 
 -- Functions
-local white_space = function()
-  return ' '
-end
-
 local function clock()
   return '  ' .. os.date('%H:%M')
 end
 
-local function lsp_progress()
+local LspCheckDiagnostics = function()
+  if
+    #vim.lsp.get_active_clients() > 0
+    and #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }) == 0
+    and #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO }) == 0
+    and #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) == 0
+    and #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT }) == 0
+  then
+    return '  '
+  end
+  return ''
+end
+
+local function LspProgress()
   local messages = vim.lsp.util.get_progress_messages()
   if #messages == 0 then
     return
@@ -72,47 +81,6 @@ local function get_lsp_client(msg)
     end
   end
 end
-
-local function lsp_status(status)
-  local shorter_stat = ''
-  for match in string.gmatch(status, '[^%s]+') do
-    local err_warn = string.find(match, '^[WE]%d+', 0)
-    if not err_warn then
-      shorter_stat = shorter_stat .. ' ' .. match
-    end
-  end
-  return shorter_stat
-end
-
-local function get_coc_lsp()
-  local status = vim.fn['coc#status']()
-  if not status or status == '' then
-    return ''
-  end
-  return lsp_status(status)
-end
-
-local function get_diagnostic_info()
-  if vim.fn.exists('*coc#rpc#start_server') == 1 then
-    return get_coc_lsp()
-  end
-  return ''
-end
-
-local function coc_current_function()
-  if vim.fn.exists('*coc#rpc#start_server') == 1 then
-    local ret, current_function = pcall(vim.api.nvim_buf_get_var, 0, 'coc_current_function')
-    if not ret then
-      return
-    end
-    if current_function and current_function ~= '' then
-      return ' ' .. current_function
-    end
-  end
-  return ''
-end
-
-CocStatus = get_diagnostic_info
 
 -- Icons
 local icons = {
@@ -209,7 +177,7 @@ table.insert(cur_section, {
     provider = function()
       return '▋'
     end,
-    highlight = { colors.violet, colors.section_bg },
+    highlight = { colors.violet, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -254,8 +222,8 @@ table.insert(cur_section, {
       return mode_icon() .. alias_mode .. ' '
     end,
     highlight = { colors.bg, colors.bg },
-    separator = icons.sep.left .. ' ',
-    separator_highlight = { colors.bg, colors.section_bg },
+    -- separator = icons.sep.left .. ' ',
+    -- separator_highlight = { colors.bg, colors.section_bg },
   },
 })
 table.insert(cur_section, {
@@ -264,7 +232,7 @@ table.insert(cur_section, {
     condition = condition.buffer_not_empty,
     highlight = {
       require('galaxyline.provider_fileinfo').get_file_icon_color,
-      colors.section_bg,
+      colors.bg,
     },
   },
 })
@@ -272,9 +240,9 @@ table.insert(cur_section, {
   FileName = {
     provider = { 'FileName', 'FileSize' },
     condition = condition.buffer_not_empty,
-    highlight = { colors.fg, colors.section_bg, 'bold' },
-    separator = icons.sep.left .. ' ',
-    separator_highlight = { colors.section_bg, colors.bg },
+    highlight = { colors.fg, colors.bg, 'bold' },
+    -- separator = icons.sep.left .. ' ',
+    -- separator_highlight = { colors.section_bg, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -288,18 +256,21 @@ table.insert(cur_section, {
 })
 table.insert(cur_section, {
   GitBranch = {
-    provider = 'GitBranch',
+    provider = {
+      'GitBranch',
+      function()
+        return ' '
+      end,
+    },
     condition = condition.check_git_workspace,
     highlight = { colors.fg, colors.bg, 'bold,italic' },
-    separator = ' ',
-    separator_highlight = { colors.section_bg, colors.bg },
   },
 })
 table.insert(cur_section, {
   DiffAdd = {
     provider = 'DiffAdd',
     condition = condition.check_git_workspace and condition.hide_in_width,
-    icon = ' ',
+    icon = '  ',
     highlight = { colors.green, colors.bg },
   },
 })
@@ -307,7 +278,7 @@ table.insert(cur_section, {
   DiffModified = {
     provider = 'DiffModified',
     condition = condition.check_git_workspace and condition.hide_in_width,
-    icon = ' ',
+    icon = '  ',
     highlight = { colors.orange, colors.bg },
   },
 })
@@ -315,10 +286,8 @@ table.insert(cur_section, {
   DiffRemove = {
     provider = 'DiffRemove',
     condition = condition.check_git_workspace and condition.hide_in_width,
-    icon = ' ',
+    icon = '  ',
     highlight = { colors.red, colors.bg },
-    -- separator = icons.sep.left .. ' ',
-    -- separator_highlight = { colors.bg, colors.section_bg },
   },
 })
 table.insert(cur_section, {
@@ -329,40 +298,26 @@ table.insert(cur_section, {
     highlight = { colors.red, colors.bg },
   },
 })
--- table.insert(cur_section, {
---   Space = {
---     provider = white_space,
---     highlight = { colors.section_bg, colors.section_bg },
---   },
--- })
+table.insert(cur_section, {
+  DiagnosticCheck = {
+    provider = { LspCheckDiagnostics },
+    highlight = { colors.green, colors.bg },
+  },
+})
 table.insert(cur_section, {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '  ',
-    -- highlight = { colors.orange, colors.section_bg },
     highlight = { colors.orange, colors.bg },
   },
 })
--- table.insert(cur_section, {
---   Space = {
---     provider = white_space,
---     highlight = { colors.section_bg, colors.section_bg },
---   },
--- })
 table.insert(cur_section, {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
     icon = '  ',
-    -- highlight = { colors.cyan, colors.section_bg },
     highlight = { colors.cyan, colors.bg },
   },
 })
--- table.insert(cur_section, {
---   Space = {
---     provider = white_space,
---     highlight = { colors.section_bg, colors.section_bg },
---   },
--- })
 table.insert(cur_section, {
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
@@ -371,15 +326,6 @@ table.insert(cur_section, {
     highlight = { colors.blue, colors.bg },
   },
 })
--- table.insert(cur_section, {
---   LeftEnd = {
---     provider = white_space,
---     condition = condition.buffer_not_empty,
---     highlight = { colors.section_bg, colors.section_bg },
---     separator = icons.sep.left .. ' ',
---     separator_highlight = { colors.section_bg, colors.bg },
---   },
--- })
 table.insert(cur_section, {
   CurrentFunction = {
     -- provider = coc_current_function,
@@ -430,7 +376,7 @@ table.insert(cur_section, {
       function()
         return ' ' .. vim.bo.filetype .. ' '
       end,
-      lsp_progress,
+      LspProgress,
     },
     highlight = { colors.cyan, colors.section_bg, 'bold,italic' },
     separator = icons.sep.right,

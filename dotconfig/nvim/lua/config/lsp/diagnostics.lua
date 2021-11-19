@@ -34,6 +34,15 @@ function M.setup()
     local hl = 'DiagnosticSign' .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
   end
+
+  -- null-ls using the new diagnostic API
+  vim.diagnostic.config({
+    underline = true,
+    virtual_text = { spacing = 4, prefix = '●' },
+    signs = true,
+    update_in_insert = false,
+    severity_sort = true,
+  })
 end
 
 return M

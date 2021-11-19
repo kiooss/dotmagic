@@ -38,6 +38,18 @@ local LspCheckDiagnostics = function()
   return ''
 end
 
+local DiagnosticCount = function(level)
+  return function()
+    local count = #vim.diagnostic.get(0, { severity = level })
+
+    if count ~= 0 then
+      return count .. ' '
+    end
+
+    return ''
+  end
+end
+
 local function LspProgress()
   local messages = vim.lsp.util.get_progress_messages()
   if #messages == 0 then
@@ -291,46 +303,43 @@ table.insert(cur_section, {
   },
 })
 table.insert(cur_section, {
-  DiagnosticError = {
-    provider = 'DiagnosticError',
-    icon = '  ',
-    -- highlight = { colors.red, colors.section_bg },
-    highlight = { colors.red, colors.bg },
-  },
-})
-table.insert(cur_section, {
   DiagnosticCheck = {
     provider = { LspCheckDiagnostics },
     highlight = { colors.green, colors.bg },
   },
 })
 table.insert(cur_section, {
+  DiagnosticError = {
+    provider = DiagnosticCount(vim.diagnostic.severity.ERROR),
+    icon = ' ',
+    highlight = { colors.red, colors.bg },
+  },
+})
+table.insert(cur_section, {
   DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = '  ',
+    provider = DiagnosticCount(vim.diagnostic.severity.WARN),
+    icon = ' ',
     highlight = { colors.orange, colors.bg },
   },
 })
 table.insert(cur_section, {
-  DiagnosticHint = {
-    provider = 'DiagnosticHint',
-    icon = '  ',
-    highlight = { colors.cyan, colors.bg },
-  },
-})
-table.insert(cur_section, {
   DiagnosticInfo = {
-    provider = 'DiagnosticInfo',
-    icon = '  ',
-    -- highlight = { colors.blue, colors.section_bg },
+    provider = DiagnosticCount(vim.diagnostic.severity.INFO),
+    icon = ' ',
     highlight = { colors.blue, colors.bg },
   },
 })
 table.insert(cur_section, {
+  DiagnosticHint = {
+    provider = DiagnosticCount(vim.diagnostic.severity.HINT),
+    icon = ' ',
+    highlight = { colors.cyan, colors.bg },
+  },
+})
+table.insert(cur_section, {
   CurrentFunction = {
-    -- provider = coc_current_function,
     provider = 'VistaPlugin',
-    highlight = { colors.green, colors.bg, 'bold,italic' },
+    highlight = { colors.yellow, colors.bg, 'bold,italic' },
   },
 })
 

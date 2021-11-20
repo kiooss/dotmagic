@@ -194,47 +194,13 @@ local function plugins(use)
   -- "folke/tokyonight.nvim",
   -- "glepnir/zephyr-nvim",
 
-  use({
-    'rose-pine/neovim',
-    config = function()
-      require('config.theme')
-    end,
-  })
-
-  use({
-    'folke/tokyonight.nvim',
-    config = function()
-      require('config.theme')
-    end,
-  })
-
-  use({
-    'sainnhe/everforest',
-    config = function()
-      require('config.theme')
-    end,
-  })
-
-  use({
-    'ray-x/aurora',
-    config = function()
-      require('config.theme')
-    end,
-  })
-
-  use({
-    'sainnhe/sonokai',
-    config = function()
-      require('config.theme')
-    end,
-  })
-
-  use({
-    'bluz71/vim-nightfly-guicolors',
-    config = function()
-      require('config.theme')
-    end,
-  })
+  use('rose-pine/neovim')
+  use('folke/tokyonight.nvim')
+  use('sainnhe/everforest')
+  use('ray-x/aurora')
+  use('sainnhe/sonokai')
+  use('bluz71/vim-nightfly-guicolors')
+  use('EdenEast/nightfox.nvim')
 
   -- Theme: icons
   use({

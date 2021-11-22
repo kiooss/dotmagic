@@ -94,6 +94,7 @@ fi
 # EDITOR ENV {{{
 if (( $+commands[nvim] )); then
   export EDITOR=nvim
+  export MANPAGER='nvim +Man!'
 elif (( $+commands[vim] )); then
   export EDITOR=vim
 else

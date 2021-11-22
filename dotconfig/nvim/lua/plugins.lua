@@ -93,7 +93,6 @@ local function plugins(use)
   use({
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
-    module = 'cmp',
     config = function()
       require('config.nvim-cmp')
     end,

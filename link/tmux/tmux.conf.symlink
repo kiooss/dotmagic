@@ -199,7 +199,7 @@ set-option -g status-position bottom
 ##[fg=black]#{@main_separator} #[fg=yellow]%H:%M:%S %Z \
 ##[fg=white]#{@main_separator} #[fg=blue]%d-%b-%y %a "
 
-set -g @tmux_power_theme 'gold'
+set -g @tmux_power_theme 'moon'
 set -g @tmux_power_prefix_highlight_pos 'R'
 set -g @tmux_power_time_format '%H:%M:%S %Z'
 

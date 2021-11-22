@@ -26,12 +26,13 @@ local function clock()
 end
 
 local LspCheckDiagnostics = function()
+  local bufnr = vim.fn.bufnr()
   if
     #vim.lsp.get_active_clients() > 0
-    and #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }) == 0
-    and #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO }) == 0
-    and #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) == 0
-    and #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT }) == 0
+    and #vim.diagnostic.get(bufnr, { severity = vim.diagnostic.severity.WARN }) == 0
+    and #vim.diagnostic.get(bufnr, { severity = vim.diagnostic.severity.INFO }) == 0
+    and #vim.diagnostic.get(bufnr, { severity = vim.diagnostic.severity.ERROR }) == 0
+    and #vim.diagnostic.get(bufnr, { severity = vim.diagnostic.severity.HINT }) == 0
   then
     return '  '
   end
@@ -40,7 +41,8 @@ end
 
 local DiagnosticCount = function(level)
   return function()
-    local count = #vim.diagnostic.get(0, { severity = level })
+    local bufnr = vim.fn.bufnr()
+    local count = #vim.diagnostic.get(bufnr, { severity = level })
 
     if count ~= 0 then
       return count .. ' '

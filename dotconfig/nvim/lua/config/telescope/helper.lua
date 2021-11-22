@@ -92,9 +92,7 @@ function M.frecency_files()
 end
 
 function M.notify()
-  require('telescope').extensions.notify.notify({
-    previewer = false,
-  })
+  require('telescope').extensions.notify.notify()
 end
 
 function M.projects()

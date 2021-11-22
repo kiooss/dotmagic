@@ -45,6 +45,30 @@ _G.should_colorcolumn = function()
   return true
 end
 
+_G.P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+
+-- Debug Notification
+-- (value, context_message)
+_G.DN = function(v, cm)
+  local time = os.date('%H:%M')
+  local context_msg = cm or ' '
+  local msg = context_msg .. ' ' .. time
+  require('notify')(vim.inspect(v), 'debug', { title = { 'Debug Output', msg } })
+  return v
+end
+
+_G.RELOAD = function(...)
+  return require('plenary.reload').reload_module(...)
+end
+
+_G.R = function(name)
+  RELOAD(name)
+  return require(name)
+end
+
 local M = {}
 
 M.functions = {}

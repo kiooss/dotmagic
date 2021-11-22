@@ -1,5 +1,7 @@
 local M = {}
 
+local util = require 'lspconfig/util'
+
 local system_name
 if vim.fn.has('mac') == 1 then
   system_name = 'macOS'
@@ -21,6 +23,7 @@ table.insert(runtime_path, 'lua/?/init.lua')
 
 M.config = {
   cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+  root_dir = util.root_pattern('.stylua.toml'),
   settings = {
     Lua = {
       runtime = {

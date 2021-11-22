@@ -49,6 +49,7 @@ require('nvim-tree').setup({
   view = {
     mappings = {
       list = {
+        { key = '<tab>', cb = ':wincmd w<CR>' },
         { key = 'l', cb = ":lua require'nvim-tree'.on_keypress('edit')<CR>" },
         { key = 's', cb = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>" },
         { key = 'i', cb = ":lua require'nvim-tree'.on_keypress('split')<CR>" },

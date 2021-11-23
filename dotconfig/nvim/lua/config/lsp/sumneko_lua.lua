@@ -22,7 +22,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 M.config = {
-  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+  -- cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
   root_dir = util.root_pattern('.stylua.toml'),
   settings = {
     Lua = {

@@ -1,7 +1,7 @@
 local wk = require('which-key')
 local util = require('util')
 
-vim.o.timeoutlen = 100
+vim.o.timeoutlen = 500
 
 util.nnoremap('-', ':edit %:h<CR>')
 
@@ -9,7 +9,6 @@ util.nnoremap('-', ':edit %:h<CR>')
 util.nnoremap('q', ':Sayonara<cr>')
 util.nnoremap('<Tab>', ':wincmd w<cr>')
 util.nnoremap('<C-p>', ':NvimTreeFindFileToggle<cr>')
--- util.nnoremap('<C-p>', ':NvimTreeToggle<cr>')
 -- vsplit buffers
 util.nnoremap('<leader>-', ':vsplit<CR>:wincmd p<CR>:e#<CR>')
 -- Focus the current fold by closing all others
@@ -17,12 +16,12 @@ util.nnoremap('<leader>-', ':vsplit<CR>:wincmd p<CR>:e#<CR>')
 -- nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
 util.nnoremap('<CR>', [[{-> v:hlsearch ? ":nohlsearch\<CR>" : "\<CR>"}()]], { expr = true })
 -- util.nnoremap('<ESC><ESC>', ':<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>', { silent = true })
-util.nnoremap('j', 'gj', { silent = true })
-util.nnoremap('k', 'gk', { silent = true })
-util.nnoremap('gj', 'j', { silent = true })
-util.nnoremap('gk', 'k', { silent = true })
-util.nnoremap('g;', 'g;zvzz', { silent = true })
-util.nnoremap('g,', 'g,zvzz', { silent = true })
+util.nnoremap('j', 'gj')
+util.nnoremap('k', 'gk')
+util.nnoremap('gj', 'j')
+util.nnoremap('gk', 'k')
+util.nnoremap('g;', 'g;zvzz')
+util.nnoremap('g,', 'g,zvzz')
 -- Better x with black hole register "_
 util.nnoremap('x', [["_x]])
 util.nnoremap('Y', 'y$')
@@ -35,16 +34,15 @@ util.nnoremap('g[', ':pop<cr>')
 util.nnoremap('Q', 'q')
 
 util.nnoremap('<c-o>', '<c-o>zvzz')
-
 util.inoremap('jk', '<esc>')
 util.inoremap('jj', '<esc>')
 util.inoremap('j<space>', 'j')
 util.inoremap('<C-c>', '<esc>`^')
--- util.inoremap("<C-b>", "<Left>")
--- util.inoremap("<C-f>", "<Right>")
--- util.inoremap("<C-a>", "<C-o>I")
--- util.inoremap("<C-e>", "<C-o>A")
--- util.inoremap("<C-u>", "<C-g>u<C-u>")
+-- util.inoremap('<C-b>', '<Left>')
+-- util.inoremap('<C-f>', '<Right>')
+-- util.inoremap('<C-a>', '<C-o>I')
+-- util.inoremap('<C-e>', '<C-o>A')
+-- util.inoremap('<C-u>', '<C-g>u<C-u>')
 
 util.cnoremap('jk', '<C-c>')
 util.cnoremap('j', [[getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j']], { expr = true })

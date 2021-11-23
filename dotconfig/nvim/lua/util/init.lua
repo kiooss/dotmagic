@@ -82,7 +82,7 @@ function M.execute(id)
 end
 
 local map = function(mode, key, cmd, opts, defaults)
-  opts = vim.tbl_deep_extend('force', { silent = true }, defaults or {}, opts or {})
+  opts = vim.tbl_deep_extend('force', {}, defaults or {}, opts or {})
 
   if type(cmd) == 'function' then
     table.insert(M.functions, cmd)
@@ -125,7 +125,7 @@ function M.smap(key, cmd, opts)
 end
 
 function M.nnoremap(key, cmd, opts)
-  return map('n', key, cmd, opts, { noremap = true })
+  return map('n', key, cmd, opts, { noremap = true, silent = true })
 end
 function M.vnoremap(key, cmd, opts)
   return map('v', key, cmd, opts, { noremap = true })

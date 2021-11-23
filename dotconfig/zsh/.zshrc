@@ -244,18 +244,15 @@ done
 
 fpath+=$HOME/.dasht/etc/zsh/completions/
 
-fpath+=/usr/share/zsh/functions
-fpath+=/usr/share/zsh/vendor-completions/
-
 # autoload function in functions dir
 fpath=($MYZSH/functions $fpath)
 autoload -U $MYZSH/functions/*(:t)
 # }}}
 
+# MY CUSTOM CONFIG {{{
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# MY CUSTOM CONFIG {{{
 for config_file ($MYZSH/lib/*.zsh); do
   source $config_file
 done
@@ -270,19 +267,12 @@ if hash rbenv 2>/dev/null; then
   eval "$(rbenv init -)"
 fi
 
-#if hash pyenv 2>/dev/null; then
-#    eval "$(pyenv init -)"
-#    eval "$(pyenv virtualenv-init -)"
-#fi
-
 # aws command completion
 # source $HOME/.local/bin/aws_zsh_completer.sh
 
 # base16-shell
 # source $MYZSH/base16-shell/base16-shell.plugin.zsh
 
-# set php-version x.x.x in zshrc.local
-# source $DOTFILES/vendor/php-version/php-version.sh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
@@ -304,10 +294,6 @@ export FZF_CTRL_R_OPTS="--preview-window up:3 --preview 'echo {}'"
 export FZF_CTRL_T_OPTS="--preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # }}}
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/yang/.sdkman"
-[[ -s "/Users/yang/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yang/.sdkman/bin/sdkman-init.sh"
 
 # phpbrew {{{
 if [[ -e ~/.phpbrew/bashrc ]]; then
@@ -342,14 +328,6 @@ function proxy-state() {
 
 if [[ -f ~/.cache/proxy_state && `cat ~/.cache/proxy_state` == 'on' ]]; then
   proxy-on
-fi
-# }}}
-
-# PROFILE_STARTUP_END {{{
-if [[ "$PROFILE_STARTUP" == true ]]; then
-  zprof
-  unsetopt xtrace
-  exec 2>&3 3>&-
 fi
 # }}}
 
@@ -388,7 +366,6 @@ if type pacman &>/dev/null; then
   add-zsh-hook -Uz precmd rehash_precmd
 fi
 #}}}
-
 
 ###-begin-pm2-completion-### {{{
 ### credits to npm for the completion file model
@@ -432,9 +409,18 @@ fi
 ###-end-pm2-completion-###
 #}}}
 
-### fix cursor type after exit nvim
+### fix cursor type after exit nvim {{{
 _fix_cursor() {
    echo -ne '\e[5 q'
 }
 
 precmd_functions+=(_fix_cursor)
+# }}}
+
+# PROFILE_STARTUP_END {{{
+if [[ "$PROFILE_STARTUP" == true ]]; then
+  zprof
+  unsetopt xtrace
+  exec 2>&3 3>&-
+fi
+# }}}

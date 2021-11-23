@@ -309,7 +309,7 @@ export FZF_CTRL_T_OPTS="--preview '[[ \$(file --mime {}) =~ binary ]] && echo {}
 export SDKMAN_DIR="/Users/yang/.sdkman"
 [[ -s "/Users/yang/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yang/.sdkman/bin/sdkman-init.sh"
 
-# phpbrew
+# phpbrew {{{
 if [[ -e ~/.phpbrew/bashrc ]]; then
   export PHPBREW_RC_ENABLE=1
   source ~/.phpbrew/bashrc
@@ -318,7 +318,9 @@ if [[ -e ~/.phpbrew/bashrc ]]; then
   # phpbrew zsh --bind phpbrew --program phpbrew > ~/.phpbrew_completion.sh
   source ~/.phpbrew_completion.sh
 fi
+# }}}
 
+# proxy {{{
 function proxy-on() {
   local HOST=${MY_PROXY_HOST:-localhost}
   export https_proxy=http://$HOST:7890 http_proxy=http://$HOST:7890 all_proxy=socks5://$HOST:7891
@@ -341,6 +343,7 @@ function proxy-state() {
 if [[ -f ~/.cache/proxy_state && `cat ~/.cache/proxy_state` == 'on' ]]; then
   proxy-on
 fi
+# }}}
 
 # PROFILE_STARTUP_END {{{
 if [[ "$PROFILE_STARTUP" == true ]]; then
@@ -366,7 +369,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-## https://wiki.archlinux.org/title/zsh#Persistent_rehash
+## https://wiki.archlinux.org/title/zsh#Persistent_rehash {{{
 if type pacman &>/dev/null; then
   zshcache_time="$(date +%s%N)"
 
@@ -384,10 +387,10 @@ if type pacman &>/dev/null; then
 
   add-zsh-hook -Uz precmd rehash_precmd
 fi
-## end
+#}}}
 
 
-###-begin-pm2-completion-###
+###-begin-pm2-completion-### {{{
 ### credits to npm for the completion file model
 #
 # Installation: pm2 completion >> ~/.bashrc  (or ~/.zshrc)
@@ -427,18 +430,7 @@ elif type compctl &>/dev/null; then
   compctl -K _pm2_completion + -f + pm2
 fi
 ###-end-pm2-completion-###
-
-RED="\033[1;31m"
-GREEN="\033[1;32m"
-NOCOLOR="\033[0m"
-
-### check clipper state
-# if [[ "$OSTYPE" != darwin* ]]; then
-#   if nc -z -U ~/.clipper.sock 2>/dev/null; then
-#   else
-#      echo -e "${RED}WARN:  clipper disconnected!!!${NOCOLOR}"
-#   fi
-# fi
+#}}}
 
 ### fix cursor type after exit nvim
 _fix_cursor() {
@@ -446,10 +438,3 @@ _fix_cursor() {
 }
 
 precmd_functions+=(_fix_cursor)
-
-alias luamake=/home/yang/workspace/lua-language-server/3rd/luamake/luamake
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-export NO_PROXY=localhost,127.0.0.1

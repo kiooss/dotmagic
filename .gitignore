@@ -22,3 +22,4 @@ plug.vim.old
 node_modules/
 
 /dotconfig/kitty/theme.conf
+/dotconfig/zsh/.zcompdump*

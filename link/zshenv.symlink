@@ -11,6 +11,16 @@
 
 # export TZ="/usr/share/zoneinfo/Asia/Tokyo"
 
+# .zshenv is always sourced.
+# Most ${ENV_VAR} variables should be saved here.
+# It is loaded before .zshrc
+
+export ZDOTDIR=$HOME/.config/zsh/
+
+export XDG_CONFIG_HOME=$HOME/.config/
+
+export NO_PROXY=localhost,127.0.0.1
+
 if [[ -f "$HOME/.cargo/env" ]] then
   source "$HOME/.cargo/env"
 fi

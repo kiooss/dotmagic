@@ -1,5 +1,5 @@
 local vim = vim
-local gl = require('galaxyline')
+local gl = R('galaxyline')
 local fileinfo = require('galaxyline.provider_fileinfo')
 local condition = require('galaxyline.condition')
 local colors = require('core.colors')[vim.g.theme] or require('core.colors').default
@@ -22,7 +22,7 @@ gl.short_line_list = {
 
 -- Functions
 local function clock()
-  return '  ' .. os.date('%H:%M')
+  return ' ' .. os.date('%H:%M')
 end
 
 local LspCheckDiagnostics = function()
@@ -255,8 +255,6 @@ table.insert(cur_section, {
     provider = { 'FileName', 'FileSize' },
     condition = condition.buffer_not_empty,
     highlight = { colors.fg, colors.bg, 'bold' },
-    -- separator = icons.sep.left .. ' ',
-    -- separator_highlight = { colors.section_bg, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -365,12 +363,6 @@ table.insert(cur_section, {
   },
 })
 -- table.insert(cur_section, {
---   CocStatus = {
---     provider = CocStatus,
---     highlight = { colors.green, colors.section_bg },
---   },
--- })
--- table.insert(cur_section, {
 --   MidEnd = {
 --     provider = function()
 --       return ''
@@ -389,16 +381,11 @@ table.insert(cur_section, {
       end,
       LspProgress,
     },
-    highlight = { colors.cyan, colors.section_bg, 'bold,italic' },
-    separator = icons.sep.right,
-    separator_highlight = { colors.section_bg, colors.bg },
+    highlight = { colors.cyan, colors.bg, 'bold,italic' },
   },
 })
 table.insert(cur_section, {
   FileEF = {
-    highlight = { colors.fg, colors.bg },
-    separator = icons.sep.right,
-    separator_highlight = { colors.bg, colors.section_bg },
     provider = function()
       local format_icon = {
         ['DOS'] = ' ',
@@ -410,15 +397,16 @@ table.insert(cur_section, {
 
       return encode .. ' ' .. format_icon[format]
     end,
+    highlight = { colors.fg, colors.bg },
+    separator = '│',
+    separator_highlight = { colors.red, colors.bg },
   },
 })
 table.insert(cur_section, {
   LineInfo = {
     provider = 'LineColumn',
-    highlight = { colors.fg, colors.section_bg },
+    highlight = { colors.fg, colors.bg },
     icon = ' ' .. icons.line_nr .. ' ',
-    separator = icons.sep.right,
-    separator_highlight = { colors.section_bg, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -426,40 +414,29 @@ table.insert(cur_section, {
     provider = function()
       return vim.fn.line('$')
     end,
-    highlight = { colors.fg, colors.section_bg },
-    separator = '| ',
-    separator_highlight = { colors.red, colors.section_bg },
+    highlight = { colors.fg, colors.bg },
   },
 })
 table.insert(cur_section, {
   PerCent = {
     provider = 'LinePercent',
-    highlight = { colors.fg, colors.section_bg },
-    -- separator = ' | ',
+    highlight = { colors.fg, colors.bg },
     separator = ' ',
-    separator_highlight = { colors.cyan, colors.section_bg },
+    separator_highlight = { colors.cyan, colors.bg },
   },
 })
 table.insert(cur_section, {
   ScrollBar = {
     provider = 'ScrollBar',
-    highlight = { colors.cyan, colors.section_bg },
+    highlight = { colors.cyan, colors.bg },
   },
 })
--- table.insert(cur_section, {
---   WhiteSpace = {
---     provider = 'WhiteSpace',
---     highlight = { colors.red, colors.bg, 'bold,italic' },
---     separator = icons.sep.right,
---     separator_highlight = { colors.bg, colors.section_bg },
---   },
--- })
 table.insert(cur_section, {
   Clock = {
     provider = clock,
     highlight = { colors.green, colors.bg, 'italic' },
-    separator = icons.sep.right,
-    separator_highlight = { colors.bg, colors.section_bg },
+    separator = '│',
+    separator_highlight = { colors.red, colors.bg },
   },
 })
 table.insert(cur_section, {

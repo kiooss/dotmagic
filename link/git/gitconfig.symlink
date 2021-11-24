@@ -10,7 +10,6 @@
 [include]
 	path = ~/workspace/delta/themes.gitconfig
 
-
 [github]
 	user = kiooss
 
@@ -31,6 +30,8 @@
 	log = delta
 	reflog = delta
 	show = delta
+	blame = delta
+    grep = delta
 
 [interactive]
 	diffFilter = delta --color-only
@@ -44,7 +45,6 @@
 	commit-decoration-style = bold yellow box ul
 	file-style = bold yellow ul
 	file-decoration-style = none
-
 
 # [format]
 #     pretty = onelineplus
@@ -262,9 +262,3 @@
 	stripLeadingSymbols = false
 [init]
 	defaultBranch = main
-
-[delta]
-	# features = collared-trogon
-	# features = woolly-mammoth
-	# features = mantis-shrimp
-	# side-by-side = true

@@ -40,8 +40,8 @@ cmp.setup({
       elseif has_words_before() then
         cmp.complete()
       else
-        feedkey('<Plug>(Tabout)', '')
-        -- fallback()
+        -- feedkey('<Plug>(Tabout)', '')
+        fallback()
       end
     end, {
       'i',

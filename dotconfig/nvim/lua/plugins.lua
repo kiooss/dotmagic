@@ -9,7 +9,11 @@ local config = {
   },
   display = {
     open_fn = function()
-      return require('packer.util').float({ border = 'rounded' })
+      local lines = vim.o.lines
+      local height = math.ceil(lines * 0.8 - 10)
+      local top = math.ceil((lines - height) * 0.2 - 1)
+
+      return require('packer.util').float({ border = 'rounded', height = height, row = top })
     end,
   },
   -- list of plugins that should be taken from ~/projects

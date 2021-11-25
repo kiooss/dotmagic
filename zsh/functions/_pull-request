@@ -1,0 +1,13 @@
+#compdef pull-request
+#autoload
+
+_pull-request() {
+  local stages
+  stages=(staining production)
+
+  _describe -t stages "Target Stages" stages
+
+  return
+}
+
+compdef _pull-request pull-request

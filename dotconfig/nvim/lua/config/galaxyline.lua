@@ -145,7 +145,7 @@ local mode_color = function()
     i = colors.green,
     c = colors.orange,
     V = colors.magenta,
-    [''] = colors.magenta,
+    [''] = colors.magenta,
     v = colors.magenta,
     R = colors.red,
   }
@@ -191,7 +191,7 @@ table.insert(cur_section, {
     provider = function()
       return '▋'
     end,
-    highlight = { colors.violet, colors.bg },
+    highlight = { colors.orange, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -233,7 +233,7 @@ table.insert(cur_section, {
       if alias_mode == nil then
         alias_mode = vim.fn.mode()
       end
-      return mode_icon() .. alias_mode .. ' '
+      return '  ' .. mode_icon() .. alias_mode .. ' '
     end,
     highlight = { colors.bg, colors.bg },
     -- separator = icons.sep.left .. ' ',

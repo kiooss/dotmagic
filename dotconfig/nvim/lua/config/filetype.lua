@@ -3,6 +3,7 @@ require('filetype').setup({
     extensions = {
       -- Set the filetype of *.pn files to potion
       pn = 'potion',
+      rake = 'ruby',
     },
     literal = {
       -- Set the filetype of files named "MyBackupFile" to lua

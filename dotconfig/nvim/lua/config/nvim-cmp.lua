@@ -85,7 +85,7 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'treesitter' },
     { name = 'path' },
-    { name = 'look', keyword_length = 2 },
+    { name = 'look', keyword_length = 2, option = { convert_case = true, loud = true } },
   }),
 
   experimental = {

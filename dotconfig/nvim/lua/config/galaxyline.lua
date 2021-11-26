@@ -456,16 +456,16 @@ table.insert(cur_section, {
     provider = function()
       return '▊ '
     end,
-    highlight = { colors.blue, colors.section_bg },
+    highlight = { colors.blue, colors.bg },
   },
 })
 
 table.insert(cur_section, {
   BufferType = {
     provider = 'FileTypeName',
-    highlight = { colors.fg, colors.section_bg, 'bold,italic' },
+    highlight = { colors.fg, colors.bg, 'bold,italic' },
     separator = icons.sep.left,
-    separator_highlight = { colors.section_bg, colors.bg },
+    separator_highlight = { colors.bg, colors.bg },
   },
 })
 
@@ -482,9 +482,9 @@ cur_section = gls.short_line_right
 table.insert(cur_section, {
   BufferIcon = {
     provider = 'BufferIcon',
-    highlight = { colors.yellow, colors.section_bg },
+    highlight = { colors.yellow, colors.bg },
     separator = icons.sep.right,
-    separator_highlight = { colors.section_bg, colors.bg },
+    separator_highlight = { colors.bg, colors.bg },
   },
 })
 

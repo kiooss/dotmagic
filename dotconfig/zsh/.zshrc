@@ -33,8 +33,7 @@ export DOTFILES="$HOME/.dotfiles"
 # whether use patched font (for shell, tmux, and vim)
 export ENABLE_PATCHED_FONT=true
 
-MYZSH="$DOTFILES/zsh"
-ZSH_CUSTOM="$MYZSH/omz_custom"
+ZSH_CUSTOM="$DOTFILES/zsh/omz_custom"
 # ZSH_THEME=""
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -240,27 +239,27 @@ fi
 # fpath {{{
 # add all my own plugin dir to fpath.
 for plugin ($my_plugins); do
-  fpath=($MYZSH/plugins/$plugin $fpath)
+  fpath=($ZDOTDIR/plugins/$plugin $fpath)
 done
 
 fpath+=$HOME/.dasht/etc/zsh/completions/
 
 # autoload function in functions dir
-fpath=($MYZSH/functions $fpath)
-autoload -U $MYZSH/functions/*(:t)
+fpath=($ZDOTDIR/functions $fpath)
+autoload -U $ZDOTDIR/functions/*(:t)
 # }}}
 
 # MY CUSTOM CONFIG {{{
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-for config_file ($MYZSH/lib/*.zsh); do
+for config_file ($ZDOTDIR/lib/*.zsh); do
   source $config_file
 done
 unset config_file
 
 for plugin ($my_plugins); do
-  source $MYZSH/plugins/$plugin/$plugin.plugin.zsh
+  source $ZDOTDIR/plugins/$plugin/$plugin.plugin.zsh
 done
 unset plugin
 
@@ -270,9 +269,6 @@ fi
 
 # aws command completion
 # source $HOME/.local/bin/aws_zsh_completer.sh
-
-# base16-shell
-# source $MYZSH/base16-shell/base16-shell.plugin.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 

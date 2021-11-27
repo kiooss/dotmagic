@@ -238,6 +238,8 @@ table.insert(cur_section, {
     highlight = { colors.bg, colors.bg },
     -- separator = icons.sep.left .. ' ',
     -- separator_highlight = { colors.bg, colors.section_bg },
+    separator = '| ',
+    separator_highlight = { colors.border, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -255,6 +257,8 @@ table.insert(cur_section, {
     provider = { 'FileName', 'FileSize' },
     condition = condition.buffer_not_empty,
     highlight = { colors.fg, colors.bg, 'bold' },
+    separator = '| ',
+    separator_highlight = { colors.border, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -398,8 +402,8 @@ table.insert(cur_section, {
       return encode .. ' ' .. format_icon[format]
     end,
     highlight = { colors.fg, colors.bg },
-    separator = '│',
-    separator_highlight = { colors.red, colors.bg },
+    separator = '|',
+    separator_highlight = { colors.border, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -434,9 +438,9 @@ table.insert(cur_section, {
 table.insert(cur_section, {
   Clock = {
     provider = clock,
-    highlight = { colors.green, colors.bg, 'italic' },
-    separator = '│',
-    separator_highlight = { colors.red, colors.bg },
+    highlight = { colors.blue, colors.bg, 'bold' },
+    separator = ' | ',
+    separator_highlight = { colors.border, colors.bg },
   },
 })
 table.insert(cur_section, {

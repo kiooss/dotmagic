@@ -45,6 +45,10 @@ local servers = {
   -- tailwindcss = {},
 }
 
+if global.is_mac then
+  servers.dartls = {}
+end
+
 -- nvim-cmp
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -60,10 +64,6 @@ local options = {
 }
 require('config.lsp.null-ls').setup(options)
 require('config.lsp.install').setup(servers, options)
-
-if global.is_mac then
-  require('config.lsp.dartls').setup(options)
-end
 
 -- for server, config in pairs(servers) do
 --   lspconfig[server].setup(vim.tbl_deep_extend('force', {

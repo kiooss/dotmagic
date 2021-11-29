@@ -25,6 +25,66 @@ local function clock()
   return ' ' .. os.date('%H:%M')
 end
 
+local current_treesitter_context = function(width)
+  if not packer_plugins['nvim-treesitter'] or packer_plugins['nvim-treesitter'].loaded == false then
+    return ' '
+  end
+  local type_patterns = {
+    'class',
+    'function',
+    'method',
+    'interface',
+    'type_spec',
+    'table',
+    'if_statement',
+    'for_statement',
+    'for_in_statement',
+    'call_expression',
+  }
+
+  if vim.o.ft == 'json' then
+    type_patterns = { 'object', 'pair' }
+  end
+
+  local f = require('nvim-treesitter').statusline({
+    indicator_size = width,
+    type_patterns = type_patterns,
+  })
+  local context = string.format('%s', f) -- convert to string, it may be a empty ts node
+
+  if context == 'vim.NIL' then
+    return ' '
+  end
+  -- if #context > 200 then
+  --   context = string.format("%-20s", context)
+  --   context = string.format("%.200s", context)
+  -- end
+
+  return ' ' .. context
+end
+
+local current_function = function(width)
+  -- local wwidth = winwidth()
+  if width < 50 then
+    return ''
+  end
+  local ts = current_treesitter_context(width)
+  if string.len(ts) < 4 then
+    return ' '
+  end
+  if width > 200 then
+    width = width * 2 / 3
+  else
+    width = width * 1 / 2
+  end
+  return string.sub(' ' .. ts, 1, width)
+end
+
+local winwidth = function()
+  -- body
+  return vim.api.nvim_call_function('winwidth', { 0 })
+end
+
 local LspCheckDiagnostics = function()
   local bufnr = vim.fn.bufnr()
   if
@@ -331,7 +391,7 @@ table.insert(cur_section, {
   DiagnosticWarn = {
     provider = DiagnosticCount(vim.diagnostic.severity.WARN),
     icon = ' ',
-    highlight = { colors.orange, colors.bg },
+    highlight = { colors.yellow, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -348,10 +408,18 @@ table.insert(cur_section, {
     highlight = { colors.cyan, colors.bg },
   },
 })
+-- table.insert(cur_section, {
+--   CurrentFunction = {
+--     provider = 'VistaPlugin',
+--     highlight = { colors.yellow, colors.bg, 'bold,italic' },
+--   },
+-- })
 table.insert(cur_section, {
   CurrentFunction = {
-    provider = 'VistaPlugin',
-    highlight = { colors.yellow, colors.bg, 'bold,italic' },
+    provider = function()
+      return current_function(winwidth())
+    end,
+    highlight = { colors.orange, colors.bg, 'bold,italic' },
   },
 })
 

@@ -22,7 +22,7 @@ local tokyonight_colors = require('tokyonight.colors').setup({})
 colors.tokyonight = vim.tbl_deep_extend('force', tokyonight_colors, {
   bg = tokyonight_colors.bg_statusline,
   section_bg = tokyonight_colors.bg_highlight,
-  border = tokyonight_colors.bg_highlight,
+  border = tokyonight_colors.border_highlight,
 })
 
 local palette = require('rose-pine.palette')

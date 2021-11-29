@@ -307,6 +307,14 @@ table.insert(cur_section, {
   },
 })
 table.insert(cur_section, {
+  Speparator = {
+    provider = function()
+      return ' | '
+    end,
+    highlight = { colors.border, colors.bg },
+  },
+})
+table.insert(cur_section, {
   DiagnosticCheck = {
     provider = { LspCheckDiagnostics },
     highlight = { colors.green, colors.bg },

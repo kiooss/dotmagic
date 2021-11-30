@@ -73,7 +73,7 @@ function config.nightfox()
   -- This function set the configuration of nightfox. If a value is not passed in the setup function
   -- it will be taken from the default configuration above
   nightfox.setup({
-    fox = 'duskfox', -- change the colorscheme to use nordfox
+    fox = 'nightfox', -- change the colorscheme to use nordfox
     -- fox = 'dawnfox', -- change the colorscheme to use nordfox
     styles = {
       -- comments = 'italic', -- change style of comments to be italic
@@ -91,10 +91,11 @@ function config.nightfox()
     --   red = '#FF000', -- Override the red color for MAX POWER
     --   bg_alt = '#000000',
     -- },
-    -- hlgroups = {
-    --   TSPunctDelimiter = { fg = '${red}' }, -- Override a highlight group with the color red
-    --   LspCodeLens = { bg = '#000000', style = 'italic' },
-    -- },
+    hlgroups = {
+      -- TSPunctDelimiter = { fg = '${red}' }, -- Override a highlight group with the color red
+      -- LspCodeLens = { bg = '#000000', style = 'italic' },
+      -- LspReferenceRead = { style = 'italic,underline' },
+    },
   })
 
   -- Load the configuration set above and apply the colorscheme

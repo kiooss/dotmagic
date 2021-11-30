@@ -24,7 +24,7 @@ function M.setup()
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     update_in_insert = false,
-    virtual_text = { spacing = 4, prefix = '●' },
+    virtual_text = { spacing = 4, prefix = ' ' },
     severity_sort = true,
   })
 
@@ -38,7 +38,7 @@ function M.setup()
   -- null-ls using the new diagnostic API
   vim.diagnostic.config({
     underline = true,
-    virtual_text = { spacing = 4, prefix = '●' },
+    virtual_text = { spacing = 4, prefix = ' ' },
     signs = true,
     update_in_insert = false,
     severity_sort = true,

@@ -268,7 +268,6 @@ local function plugins(use)
       'telescope-project.nvim',
       'trouble.nvim',
       'telescope-symbols.nvim',
-      'telescope-cheat.nvim',
     },
     requires = {
       'nvim-lua/popup.nvim',
@@ -278,7 +277,6 @@ local function plugins(use)
       -- 'nvim-telescope/telescope-fzy-native.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       { 'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sqlite.lua' },
-      { 'nvim-telescope/telescope-cheat.nvim', requires = 'tami5/sqlite.lua' },
     },
   })
 

@@ -342,6 +342,14 @@ local function plugins(use)
       require('config.specs')
     end,
   })
+
+  use({
+    'kevinhwang91/nvim-hlslens',
+    config = function()
+      require('config.hlslens')
+    end,
+  })
+
   -- use { "Xuyuanp/scrollbar.nvim", config = function() require("config.scrollbar") end }
 
   -- Git signs

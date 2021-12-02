@@ -46,9 +46,9 @@ function M.setup(client, buf)
   client.resolved_capabilities.document_formatting = enable
   -- format on save
   if client.resolved_capabilities.document_formatting then
-    vim.notify('[' .. client.name .. '] document_formatting enable.', 'info', {
-      title = 'LSP',
-    })
+    -- vim.notify('[' .. client.name .. '] document_formatting enable.', 'info', {
+    --   title = 'LSP',
+    -- })
     vim.cmd([[
       augroup LspFormat
         autocmd! * <buffer>

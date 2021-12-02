@@ -3,7 +3,7 @@
 	url = https://github.com/zsh-users/zsh-autosuggestions
   branch = master
 [submodule "zsh/omz_custom/plugins/zsh-completions"]
-	path = zsh/omz_custom/plugins/zsh-completions
+	path = vendor/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
   branch = master
 [submodule "zsh/omz_custom/plugins/zsh-syntax-highlighting"]

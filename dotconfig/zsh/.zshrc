@@ -42,7 +42,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 typeset -U path cdpath fpath manpath
 
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
-# [[ -z "$TMUX" ]] && export TERM=xterm-256color
 
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
@@ -169,7 +168,6 @@ plugins=(
   zsh-autosuggestions
   zsh-navigation-tools
   zsh-syntax-highlighting
-  zsh-completions
 )
 
 plugins_on_need=(
@@ -246,13 +244,15 @@ fpath+=$HOME/.dasht/etc/zsh/completions/
 
 # autoload function in functions dir
 fpath=($ZDOTDIR/functions $fpath)
+# zsh-completions
+fpath=($DOTFILES/vendor/zsh-completions/src $fpath)
 autoload -U $ZDOTDIR/functions/*(:t)
 # }}}
 
-# MY CUSTOM CONFIG {{{
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# MY CUSTOM CONFIG {{{
 for config_file ($ZDOTDIR/lib/*.zsh); do
   source $config_file
 done

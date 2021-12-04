@@ -85,6 +85,46 @@ local winwidth = function()
   return vim.api.nvim_call_function('winwidth', { 0 })
 end
 
+local function file_readonly()
+  if vim.bo.filetype == 'help' then
+    return '  '
+  end
+  if vim.bo.readonly == true then
+    return '  '
+  end
+  return ''
+end
+
+local function get_current_file_name()
+  local file = vim.fn.expand('%:p:.')
+  if vim.fn.empty(file) == 1 then
+    return ''
+  end
+  if string.len(file_readonly()) ~= 0 then
+    return file .. file_readonly()
+  end
+  if vim.bo.modifiable then
+    if vim.bo.modified then
+      return file .. '  '
+    end
+  end
+  return file .. ' '
+end
+
+local function get_basename(file)
+  return file:match('^.+/(.+)$')
+end
+
+local GetGitRoot = function()
+  local git_dir = require('galaxyline.provider_vcs').get_git_dir()
+  if not git_dir then
+    return ''
+  end
+
+  local git_root = git_dir:gsub('/.git/?$', '')
+  return get_basename(git_root)
+end
+
 local LspCheckDiagnostics = function()
   local bufnr = vim.fn.bufnr()
   if
@@ -151,7 +191,7 @@ local function get_lsp_client(msg)
     if next(lsp_client_names) == nil then
       return msg
     else
-      return table.concat(lsp_client_names, ' │ ')
+      return table.concat(lsp_client_names, ' ')
     end
   end
 end
@@ -314,9 +354,16 @@ table.insert(cur_section, {
 })
 table.insert(cur_section, {
   FileName = {
-    provider = { 'FileName', 'FileSize' },
+    provider = get_current_file_name,
     condition = condition.buffer_not_empty,
-    highlight = { colors.fg, colors.bg, 'bold' },
+    highlight = { colors.fg, colors.bg },
+  },
+})
+table.insert(cur_section, {
+  FileSize = {
+    provider = 'FileSize',
+    condition = condition.buffer_not_empty,
+    highlight = { colors.magenta, colors.bg, 'bold' },
     separator = '| ',
     separator_highlight = { colors.border, colors.bg },
   },
@@ -425,23 +472,23 @@ table.insert(cur_section, {
 
 -- Mid side
 cur_section = gls.mid
-table.insert(cur_section, {
-  ShowLspClient = {
-    -- provider = "GetLspClient",
-    provider = get_lsp_client('なし'),
-    condition = function()
-      local tbl = { ['dashboard'] = true, [''] = true }
-      if tbl[vim.bo.filetype] then
-        return false
-      end
-      return true
-    end,
-    icon = ' ',
-    highlight = { colors.cyan, colors.bg, 'bold,italic' },
-    -- separator = '',
-    -- separator_highlight = { colors.section_bg, colors.bg },
-  },
-})
+-- table.insert(cur_section, {
+--   ShowLspClient = {
+--     -- provider = "GetLspClient",
+--     provider = get_lsp_client('なし'),
+--     condition = function()
+--       local tbl = { ['dashboard'] = true, [''] = true }
+--       if tbl[vim.bo.filetype] then
+--         return false
+--       end
+--       return true
+--     end,
+--     icon = ' ',
+--     highlight = { colors.cyan, colors.bg, 'bold,italic' },
+--     -- separator = '',
+--     -- separator_highlight = { colors.section_bg, colors.bg },
+--   },
+-- })
 -- table.insert(cur_section, {
 --   MidEnd = {
 --     provider = function()
@@ -462,6 +509,23 @@ table.insert(cur_section, {
       LspProgress,
     },
     highlight = { colors.cyan, colors.bg, 'bold,italic' },
+  },
+})
+table.insert(cur_section, {
+  ShowLspClient = {
+    -- provider = "GetLspClient",
+    provider = get_lsp_client('なし'),
+    condition = function()
+      local tbl = { ['dashboard'] = true, [''] = true }
+      if tbl[vim.bo.filetype] then
+        return false
+      end
+      return true
+    end,
+    icon = ' ',
+    highlight = { colors.green, colors.bg, 'bold,italic' },
+    separator = '|',
+    separator_highlight = { colors.border, colors.bg },
   },
 })
 table.insert(cur_section, {
@@ -516,6 +580,15 @@ table.insert(cur_section, {
     provider = clock,
     highlight = { colors.blue, colors.bg, 'bold' },
     separator = ' | ',
+    separator_highlight = { colors.border, colors.bg },
+  },
+})
+table.insert(cur_section, {
+  GitRoot = {
+    provider = GetGitRoot,
+    condition = condition.check_git_workspace,
+    highlight = { colors.orange, colors.bg, 'bold' },
+    separator = '| ',
     separator_highlight = { colors.border, colors.bg },
   },
 })

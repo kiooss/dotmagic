@@ -37,6 +37,7 @@ require('nvim-tree').setup({
   },
   -- hijack the cursor in the tree to put it at the start of the filename
   hijack_cursor = true,
+  update_cwd = true,
   update_focused_file = {
     enable = true,
   },

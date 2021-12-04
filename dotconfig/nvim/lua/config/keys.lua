@@ -134,6 +134,8 @@ local leader = {
   --   ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
   -- },
   a = {
+    a = { '<cmd>Glcd<cr>', "change dir for window to file's git working dir" },
+    b = { '<cmd>lcd %:p:h<cr>', "change dir for window to file's dir" },
     f = { '<cmd>FormatWrite<CR>', 'FormatWrite' },
   },
   c = {

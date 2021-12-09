@@ -19,27 +19,27 @@ local node_root_dir = util.root_pattern(
   'package.json'
 )
 
-local eslint = require('null-ls.helpers').conditional(function(utils)
-  local project_local_bin = './node_modules/.bin/eslint'
+-- local eslint = require('null-ls.helpers').conditional(function(utils)
+--   local project_local_bin = './node_modules/.bin/eslint'
 
-  return nls.builtins.formatting.eslint.with({
-    command = utils.root_has_file(project_local_bin) and project_local_bin or 'eslint',
-    cwd = function(params)
-      return node_root_dir(params.bufname)
-    end,
-  })
-end)
+--   return nls.builtins.formatting.eslint.with({
+--     command = utils.root_has_file(project_local_bin) and project_local_bin or 'eslint',
+--     cwd = function(params)
+--       return node_root_dir(params.bufname)
+--     end,
+--   })
+-- end)
 
-local prettier = require('null-ls.helpers').conditional(function(utils)
-  local project_local_bin = './node_modules/.bin/prettier'
+-- local prettier = require('null-ls.helpers').conditional(function(utils)
+--   local project_local_bin = './node_modules/.bin/prettier'
 
-  return nls.builtins.formatting.prettier.with({
-    command = utils.root_has_file(project_local_bin) and project_local_bin or 'prettier',
-    cwd = function(params)
-      return node_root_dir(params.bufname)
-    end,
-  })
-end)
+--   return nls.builtins.formatting.prettier.with({
+--     command = utils.root_has_file(project_local_bin) and project_local_bin or 'prettier',
+--     cwd = function(params)
+--       return node_root_dir(params.bufname)
+--     end,
+--   })
+-- end)
 
 function M.setup(options)
   nls.config({
@@ -49,10 +49,8 @@ function M.setup(options)
     sources = {
       -- formatters
       nls.builtins.formatting.fixjson.with({ filetypes = { 'jsonc' } }),
-      prettier,
-      eslint,
-      -- nls.builtins.formatting.prettier,
-      -- nls.builtins.formatting.eslint,
+      nls.builtins.formatting.prettier.with({ prefer_local = 'node_modules/.bin' }),
+      nls.builtins.formatting.eslint.with({ prefer_local = 'node_modules/.bin' }),
       -- nls.builtins.formatting.prettierd,
       -- nls.builtins.formatting.eslint_d.with({
       --   cwd = function(params)

@@ -8,6 +8,7 @@ require('filetype').setup({
     literal = {
       -- Set the filetype of files named "MyBackupFile" to lua
       Capfile = 'ruby',
+      skhdrc = 'conf',
     },
     complex = {
       -- Set the filetype of any full filename matching the regex to gitconfig

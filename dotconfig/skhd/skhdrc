@@ -115,11 +115,6 @@ shift + cmd - l : \
     yabai -m window --resize right:20:0 ; \
     yabai -m window --resize left:20:0
 
-# Float and center window
-shift + alt - c : yabai -m window --toggle float;\
-                  yabai -m window --grid 4:4:1:1:2:2
-
-
 # balance size of windows
 shift + cmd - 0 : yabai -m space --balance
 
@@ -162,14 +157,18 @@ shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
 # shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
 
 # focus monitor
-shift + alt - n  : yabai -m display --focus next
+shift + alt - n  : yabai -m display --focus next || yabai -m display --focus first
 shift + alt - 1  : yabai -m display --focus 1
 shift + alt - 2  : yabai -m display --focus 2
 shift + alt - 3  : yabai -m display --focus 3
 
 # send window to monitor and follow focus
-# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
-# ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+alt - n : yabai -m window --display next; yabai -m display --focus next
+alt - p : yabai -m window --display prev; yabai -m display --focus prev
+alt - 1 : yabai -m window --display 1; yabai -m display --focus 1
+
+# toogle padding and gap on current space.
+alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # move floating window
 # shift + ctrl - a : yabai -m window --move rel:-20:0
@@ -195,10 +194,10 @@ shift + alt - f : yabai -m window --toggle native-fullscreen
 shift + alt - e : yabai -m window --toggle split
 
 # float / unfloat window and center on screen
-# alt - t : yabai -m window --toggle float;\
-#           yabai -m window --grid 4:4:1:1:2:2
+alt - t : yabai -m window --toggle float;\
+          yabai -m window --grid 4:4:1:1:2:2
 
 # toggle sticky(+float), topmost, picture-in-picture
-alt - p : yabai -m window --toggle sticky;\
-          yabai -m window --toggle topmost;\
-          yabai -m window --toggle pip
+# alt - p : yabai -m window --toggle sticky;\
+#           yabai -m window --toggle topmost;\
+#           yabai -m window --toggle pip

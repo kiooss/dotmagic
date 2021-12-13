@@ -62,6 +62,8 @@ yabai -m rule --add app="^Electron$" manage=off
 yabai -m rule --add app="^Parallels Desktop$" manage=off
 yabai -m rule --add app="^FortiClient$" manage=off
 yabai -m rule --add app="^TencentMeeting$" manage=off
+yabai -m rule --add app="^WeChat$" manage=off
+yabai -m rule --add app="^QQ$" manage=off
 yabai -m rule --add app="^カレンダー$" manage=off
 
 echo "yabai configuration loaded.."

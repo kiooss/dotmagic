@@ -25,6 +25,14 @@ local function clock()
   return ' ' .. os.date('%H:%M')
 end
 
+local hide_in_width = function()
+  local squeeze_width = vim.fn.winwidth(0) / 2
+  if squeeze_width > 70 then
+    return true
+  end
+  return false
+end
+
 local current_treesitter_context = function(width)
   if not packer_plugins['nvim-treesitter'] or packer_plugins['nvim-treesitter'].loaded == false then
     return ' '
@@ -65,7 +73,7 @@ end
 
 local current_function = function(width)
   -- local wwidth = winwidth()
-  if width < 50 then
+  if width < 140 then
     return ''
   end
   local ts = current_treesitter_context(width)
@@ -96,7 +104,13 @@ local function file_readonly()
 end
 
 local function get_current_file_name()
-  local file = vim.fn.expand('%:p:.')
+  local file
+  if hide_in_width() then
+    file = vim.fn.expand('%:p:.')
+  else
+    file = vim.fn.expand('%:t')
+  end
+
   if vim.fn.empty(file) == 1 then
     return ''
   end
@@ -105,7 +119,7 @@ local function get_current_file_name()
   end
   if vim.bo.modifiable then
     if vim.bo.modified then
-      return file .. '  '
+      return file .. '  '
     end
   end
   return file .. ' '
@@ -578,6 +592,7 @@ table.insert(cur_section, {
 table.insert(cur_section, {
   Clock = {
     provider = clock,
+    condition = hide_in_width,
     highlight = { colors.blue, colors.bg, 'bold' },
     separator = ' | ',
     separator_highlight = { colors.border, colors.bg },
@@ -586,7 +601,7 @@ table.insert(cur_section, {
 table.insert(cur_section, {
   GitRoot = {
     provider = GetGitRoot,
-    condition = condition.check_git_workspace,
+    condition = condition.check_git_workspace and hide_in_width,
     highlight = { colors.orange, colors.bg, 'bold' },
     separator = '| ',
     separator_highlight = { colors.border, colors.bg },
@@ -597,6 +612,7 @@ table.insert(cur_section, {
     provider = function()
       return '   '
     end,
+    condition = hide_in_width,
     highlight = { colors.red, colors.bg },
   },
 })

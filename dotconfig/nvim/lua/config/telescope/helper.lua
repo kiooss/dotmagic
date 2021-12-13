@@ -120,4 +120,8 @@ function M.lsp_code_actions()
   require('telescope.builtin').lsp_code_actions(opts)
 end
 
+function M.flutter_commands()
+  return require('telescope').extensions.flutter.commands()
+end
+
 return M

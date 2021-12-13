@@ -136,15 +136,23 @@ local function plugins(use)
   })
 
   -- comment plugin
+  -- use({
+  --   'b3nj5m1n/kommentary',
+  --   opt = true,
+  --   wants = 'nvim-ts-context-commentstring',
+  --   keys = { 'gc', '<C-_>' },
+  --   config = function()
+  --     require('config.comments')
+  --   end,
+  --   requires = 'JoosepAlviste/nvim-ts-context-commentstring',
+  -- })
   use({
-    'b3nj5m1n/kommentary',
+    'numToStr/Comment.nvim',
     opt = true,
-    wants = 'nvim-ts-context-commentstring',
     keys = { 'gc', '<C-_>' },
     config = function()
-      require('config.comments')
+      require('config.comment')
     end,
-    requires = 'JoosepAlviste/nvim-ts-context-commentstring',
   })
 
   -- better syntax parser
@@ -653,6 +661,9 @@ local function plugins(use)
       require('config.toggleterm')
     end,
   })
+
+  -- flutter
+  use({ 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' })
 end
 
 return packer.setup(config, plugins)

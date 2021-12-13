@@ -14,6 +14,7 @@ require('config.lsp.diagnostics').setup()
 -- require("config.lsp.kind").setup()
 
 local function on_attach(client, bufnr)
+  -- vim.notify(client.name .. ' attached')
   require('config.lsp.formatting').setup(client, bufnr)
   require('config.lsp.keys').setup(client, bufnr)
   -- require("config.lsp.completion").setup(client, bufnr)
@@ -46,7 +47,7 @@ local servers = {
 }
 
 if global.is_mac then
-  servers.dartls = {}
+  -- servers.dartls = {}
 end
 
 -- nvim-cmp
@@ -64,6 +65,8 @@ local options = {
 }
 require('config.lsp.null-ls').setup(options)
 require('config.lsp.install').setup(servers, options)
+
+require('config.lsp.flutter').setup(options)
 
 -- for server, config in pairs(servers) do
 --   lspconfig[server].setup(vim.tbl_deep_extend('force', {

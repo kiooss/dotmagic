@@ -78,6 +78,7 @@ util.nnoremap('<leader>fp', telescope_helper.projects)
 util.nnoremap('<leader>fr', telescope_helper.oldfiles_cwd_only)
 util.nnoremap('<leader>fv', telescope_helper.edit_neovim)
 util.nnoremap('<leader>ln', telescope_helper.notify)
+util.nnoremap('<leader>fu', telescope_helper.flutter_commands)
 
 wk.setup({
   show_help = false,

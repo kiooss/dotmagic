@@ -34,21 +34,21 @@ goto-gitroot() {
 zle -N goto-gitroot
 bindkey '^g' goto-gitroot
 
-autosuggest-accept-line() {
-  zle autosuggest-accept
-  zle accept-line
-}
-zle -N autosuggest-accept-line
-bindkey '^j' autosuggest-accept-line
+# autosuggest-accept-line() {
+#   zle autosuggest-accept
+#   zle accept-line
+# }
+# zle -N autosuggest-accept-line
+# bindkey '^j' autosuggest-accept-line
 
-git-publish() {
-  local message="$BUFFER"
-  cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")
-  BUFFER="git add -A && git commit -m '${message}' && git push"
-  zle end-of-line
-}
-zle -N git-publish
-bindkey '^x^g' git-publish
+# git-publish() {
+#   local message="$BUFFER"
+#   cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")
+#   BUFFER="git add -A && git commit -m '${message}' && git push"
+#   zle end-of-line
+# }
+# zle -N git-publish
+# bindkey '^x^g' git-publish
 
 fancy-dot() {
     local -a split

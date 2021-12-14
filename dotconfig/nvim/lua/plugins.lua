@@ -30,7 +30,7 @@ local function plugins(use)
       require('config.filetype')
     end,
   })
-  -- use({ 'sheerun/vim-polyglot' })
+  use({ 'sheerun/vim-polyglot' })
 
   use({
     'neoclide/coc.nvim',

@@ -19,7 +19,7 @@ require('nvim-treesitter.configs').setup({
     'python',
     'regex',
     'rust',
-    'ruby',
+    -- 'ruby',
     'toml',
     'tsx',
     'typescript',
@@ -30,6 +30,10 @@ require('nvim-treesitter.configs').setup({
   },
   highlight = { enable = true, use_languagetree = true },
   indent = { enable = false },
+  matchup = {
+    enable = true,
+    disable = { 'ruby' },
+  },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,

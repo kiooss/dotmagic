@@ -1670,7 +1670,7 @@
   }
 
   function prompt_git_user_name() {
-    GIT_USER=$(git config user.name)
+    GIT_USER=$(git config user.email | sed 's/@.*//')
     if [[ -z "$GIT_USER" ]]; then
     else
       p10k segment -b 2 -f '' -i '' -t "$GIT_USER"

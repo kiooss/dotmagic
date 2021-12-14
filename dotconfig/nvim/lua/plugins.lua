@@ -79,6 +79,13 @@ local function plugins(use)
   })
 
   use({
+    'kosayoda/nvim-lightbulb',
+    config = function()
+      require('config.lightbulb')
+    end,
+  })
+
+  use({
     'simrat39/symbols-outline.nvim',
     cmd = { 'SymbolsOutline' },
   })

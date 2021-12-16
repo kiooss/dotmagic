@@ -87,6 +87,10 @@ export PATH=$PATH:$GOPATH/bin
 if [[ -d $HOME/.symfony/bin ]]; then
   export PATH=$HOME/.symfony/bin:$PATH
 fi
+
+if [[ -d "$HOME/dev/flutter/.pub-cache/bin" ]]; then
+  export PATH="$PATH":"$HOME/dev/flutter/.pub-cache/bin"
+fi
 # }}}
 
 # EDITOR ENV {{{

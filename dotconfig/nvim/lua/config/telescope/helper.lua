@@ -112,10 +112,16 @@ end
 
 function M.lsp_code_actions()
   local themes = require('telescope.themes')
-  local opts = themes.get_cursor({
+  local opts = themes.get_dropdown({
     winblend = 10,
     border = true,
+    previewer = false,
+    shorten_path = false,
   })
+  -- local opts = themes.get_cursor({
+  --   winblend = 10,
+  --   border = true,
+  -- })
 
   require('telescope.builtin').lsp_code_actions(opts)
 end

@@ -137,10 +137,13 @@ cmd + alt - f : yabai -m space --layout float
 # shift + cmd - h : yabai -m window --warp east
 
 # make floating window fill screen
-shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+shift + alt - up    : yabai -m window --grid 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
-shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+shift + alt - left  : yabai -m window --grid 1:2:0:0:1:1
+
+shift + alt - right : yabai -m window --grid 1:2:1:0:1:1
+shift + alt - down  : yabai -m window --grid 8:8:1:1:6:6
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 # shift + cmd - n : yabai -m space --create && \

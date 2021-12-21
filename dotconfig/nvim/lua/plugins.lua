@@ -129,6 +129,7 @@ local function plugins(use)
       { 'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
       { 'hrsh7th/vim-vsnip-integ', after = 'nvim-cmp' },
       { 'rafamadriz/friendly-snippets', after = 'vim-vsnip' },
+      { 'Nash0x7E2/awesome-flutter-snippets', after = 'vim-vsnip' },
       { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
     },
   })

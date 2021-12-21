@@ -78,8 +78,8 @@ cmp.setup({
 
   -- You should specify your *installed* sources.
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
     { name = 'vsnip' }, -- For vsnip users.
+    { name = 'nvim_lsp' },
   }, {
     { name = 'nvim_lua' },
     { name = 'buffer' },

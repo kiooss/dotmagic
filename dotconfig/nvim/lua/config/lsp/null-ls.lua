@@ -9,54 +9,18 @@
 
 local M = {}
 local nls = require('null-ls')
-local util = require('lspconfig/util')
-local node_root_dir = util.root_pattern(
-  '.eslintrc.js',
-  '.eslintrc.cjs',
-  '.eslintrc.yaml',
-  '.eslintrc.yml',
-  '.eslintrc.json',
-  'package.json'
-)
-
--- local eslint = require('null-ls.helpers').conditional(function(utils)
---   local project_local_bin = './node_modules/.bin/eslint'
-
---   return nls.builtins.formatting.eslint.with({
---     command = utils.root_has_file(project_local_bin) and project_local_bin or 'eslint',
---     cwd = function(params)
---       return node_root_dir(params.bufname)
---     end,
---   })
--- end)
-
--- local prettier = require('null-ls.helpers').conditional(function(utils)
---   local project_local_bin = './node_modules/.bin/prettier'
-
---   return nls.builtins.formatting.prettier.with({
---     command = utils.root_has_file(project_local_bin) and project_local_bin or 'prettier',
---     cwd = function(params)
---       return node_root_dir(params.bufname)
---     end,
---   })
--- end)
 
 function M.setup(options)
-  nls.config({
+  nls.setup({
     debug = false,
-    debounce = 150,
+    debounce = 250,
     save_after_format = false,
+    on_attach = options.on_attach,
     sources = {
       -- formatters
       nls.builtins.formatting.fixjson.with({ filetypes = { 'jsonc' } }),
       nls.builtins.formatting.prettier.with({ prefer_local = 'node_modules/.bin' }),
       nls.builtins.formatting.eslint.with({ prefer_local = 'node_modules/.bin' }),
-      -- nls.builtins.formatting.prettierd,
-      -- nls.builtins.formatting.eslint_d.with({
-      --   cwd = function(params)
-      --     return node_root_dir(params.bufname)
-      --   end,
-      -- }),
       nls.builtins.formatting.stylua.with({
         extra_args = {
           '--config-path',
@@ -70,9 +34,6 @@ function M.setup(options)
       nls.builtins.formatting.sqlformat.with({
         extra_args = { '-r' },
       }),
-      -- nls.builtins.formatting.phpcsfixer.with({
-      --   command = "php-cs-fixer",
-      -- }),
 
       -- diagnostics
       nls.builtins.diagnostics.shellcheck.with({
@@ -101,8 +62,6 @@ function M.setup(options)
       nls.builtins.hover.dictionary,
     },
   })
-
-  require('lspconfig')['null-ls'].setup(options)
 end
 
 function M.has_formatter(ft)

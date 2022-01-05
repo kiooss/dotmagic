@@ -65,11 +65,11 @@ function M.setup(options)
 end
 
 function M.has_formatter(ft)
-  local formatters = require('null-ls.info').get_active_sources()['NULL_LS_FORMATTING']
-  if formatters then
-    return true
-  end
-  return false
+  local null_ls_sources = require('null-ls.sources')
+  return #vim.tbl_filter(function(source)
+    -- you could also filter by source name here
+    return null_ls_sources.is_available(source, ft, nls.methods.FORMATTING)
+  end, null_ls_sources.get({})) > 0
 end
 
 return M

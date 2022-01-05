@@ -43,7 +43,8 @@ yabai -m config mouse_follows_focus on
 # yabai -m config focus_follows_mouse autoraise
 
 # general space settings
-yabai -m config layout bsp
+# yabai -m config layout bsp
+yabai -m config layout float
 yabai -m config top_padding 8
 yabai -m config bottom_padding 8
 yabai -m config left_padding 8
@@ -77,5 +78,5 @@ yabai -m rule --add app!="^(kitty|Google Chrome)$" manage=off
 echo "yabai configuration loaded.."
 
 # kill any existing limelight process if one exists, before we launch a new one
-killall limelight &>/dev/null
-limelight &>/dev/null &
+# killall limelight &>/dev/null
+# limelight &>/dev/null &

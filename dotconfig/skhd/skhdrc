@@ -173,7 +173,6 @@ shift + alt - 3  : yabai -m display --focus 3
 # send window to monitor and follow focus
 alt - n : yabai -m window --display next; yabai -m display --focus next
 alt - p : yabai -m window --display prev; yabai -m display --focus prev
-alt - 1 : yabai -m window --display 1; yabai -m display --focus 1
 
 # toogle padding and gap on current space.
 alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap

@@ -38,7 +38,7 @@ local servers = {
   eslint = {},
   yamlls = {},
   intelephense = require('config.lsp.intelephense').config,
-  solargraph = { cmd = { 'solargraph', 'stdio' } },
+  -- solargraph = {},
   sumneko_lua = require('config.lsp.sumneko_lua').config,
   -- efm = require("config.lsp.efm").config,
   vuels = require('config.lsp.vuels').config,
@@ -46,9 +46,10 @@ local servers = {
   -- tailwindcss = {},
 }
 
-if global.is_mac then
-  -- servers.dartls = {}
-end
+-- confiict with flutter lsp.
+-- if global.is_mac then
+--   servers.dartls = {}
+-- end
 
 -- nvim-cmp
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -68,18 +69,24 @@ require('config.lsp.install').setup(servers, options)
 
 require('config.lsp.flutter').setup(options)
 
--- for server, config in pairs(servers) do
---   lspconfig[server].setup(vim.tbl_deep_extend('force', {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     flags = {
---       debounce_text_changes = 150,
---     },
---   }, config))
---   local cfg = lspconfig[server]
---   if not (cfg and cfg.cmd and vim.fn.executable(cfg.cmd[1]) == 1) then
---     vim.notify(server .. ': cmd not found: ' .. vim.inspect(cfg.cmd), 'error', {
---       title = 'LSP',
---     })
---   end
--- end
+local other_servers = {
+  solargraph = {},
+}
+
+local lspconfig = require('lspconfig')
+
+for server, config in pairs(other_servers) do
+  lspconfig[server].setup(vim.tbl_deep_extend('force', {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  }, config))
+  local cfg = lspconfig[server]
+  if not (cfg and cfg.cmd and vim.fn.executable(cfg.cmd[1]) == 1) then
+    vim.notify(server .. ': cmd not found: ' .. vim.inspect(cfg.cmd), 'error', {
+      title = 'LSP',
+    })
+  end
+end

@@ -106,6 +106,7 @@
     time                    # current time
     proxy_state
     git_user_name           # git user name
+    git_remote              # git remote
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -1674,6 +1675,14 @@
     if [[ -z "$GIT_USER" ]]; then
     else
       p10k segment -b 2 -f '' -i '' -t "$GIT_USER"
+    fi
+  }
+
+  function prompt_git_remote() {
+    GIT_REMOTE=$(git remote get-url origin)
+    if [[ -z "$GIT_REMOTE" ]]; then
+    else
+      p10k segment -b 3 -f '' -i '' -t "$GIT_REMOTE"
     fi
   }
   # add by me end

@@ -1672,16 +1672,14 @@
 
   function prompt_git_user_name() {
     GIT_USER=$(git config user.email | sed 's/@.*//')
-    if [[ -z "$GIT_USER" ]]; then
-    else
+    if [[ -n "$GIT_USER" ]]; then
       p10k segment -b 2 -f '' -i '' -t "$GIT_USER"
     fi
   }
 
   function prompt_git_remote() {
-    GIT_REMOTE=$(git remote get-url origin)
-    if [[ -z "$GIT_REMOTE" ]]; then
-    else
+    GIT_REMOTE=$(git config --get remote.origin.url)
+    if [[ -n "$GIT_REMOTE" ]]; then
       p10k segment -b 3 -f '' -i '' -t "$GIT_REMOTE"
     fi
   }

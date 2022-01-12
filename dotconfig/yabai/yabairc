@@ -79,5 +79,5 @@ yabai -m rule --add app!="^(kitty|Google Chrome)$" manage=off
 echo "yabai configuration loaded.."
 
 # kill any existing limelight process if one exists, before we launch a new one
-# killall limelight &>/dev/null
-# limelight &>/dev/null &
+killall limelight &>/dev/null
+limelight &>/dev/null &

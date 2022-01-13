@@ -1,8 +1,8 @@
 # zsh-autosuggestions {{{
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-bindkey '^ ' autosuggest-accept
+bindkey '^j' autosuggest-accept
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=118'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00fa9a,bold,underline"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # }}}
 

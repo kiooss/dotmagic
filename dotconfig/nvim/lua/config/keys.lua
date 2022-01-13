@@ -155,7 +155,7 @@ local leader = {
   },
   f = {
     name = '+file',
-    b = { '<cmd>Telescope file_browser cwd=~/workspace<cr>', 'File browser' },
+    b = { '<cmd>Telescope file_browser<cr>', 'File browser' },
     d = 'Dot Files',
     f = 'Frecency Files',
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },

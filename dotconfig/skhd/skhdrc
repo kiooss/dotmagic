@@ -92,9 +92,8 @@ alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
-alt - z : yabai -m window --focus stack.prev
-alt - c : yabai -m window --focus stack.next
-
+alt - z : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+alt - c : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
 # swap managed window
 shift + alt - x : yabai -m window --swap recent
@@ -131,7 +130,8 @@ alt - r         : yabai -m space --rotate 90
 shift + alt - r : yabai -m space --rotate 270
 
 cmd + alt - s : yabai -m space --layout stack
-cmd + alt - b : yabai -m space --layout bsp
+cmd + alt - backspace : yabai -m space --layout bsp
+cmd + alt - return : yabai -m window --toggle zoom-fullscreen
 cmd + alt - f : yabai -m space --layout float
 
 # cmd + alt - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
@@ -194,11 +194,11 @@ alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
-alt - f : yabai -m window --toggle zoom-fullscreen
+# alt - f : yabai -m window --toggle zoom-fullscreen
 # shift + alt - f : yabai -m window --toggle native-fullscreen
 
 # toggle window split type
-# shift + alt - e : yabai -m window --toggle split
+shift + alt - e : yabai -m window --toggle split
 
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float;\

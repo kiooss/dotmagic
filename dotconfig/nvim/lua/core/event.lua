@@ -111,6 +111,10 @@ function autocmd.load_autocmds()
         [[if v:event.operator is 'y' && (v:event.regname is '' || v:event.regname is '+') | execute 'OSCYankReg "' | endif]],
       },
     },
+
+    lsp = {
+      { 'CursorHold', '*', [[lua vim.diagnostic.open_float(0, {scope="cursor", focusable=false, border='rounded'})]] },
+    },
   }
 
   autocmd.nvim_create_augroups(definitions)

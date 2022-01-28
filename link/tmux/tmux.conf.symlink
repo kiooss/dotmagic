@@ -151,6 +151,8 @@ setw -g mode-keys vi
 # For those times when C-c and q are not enough.
 bind-key -T copy-mode-vi Escape send-keys -X cancel
 
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'clip' \
+
 unbind p
 bind p paste-buffer
 

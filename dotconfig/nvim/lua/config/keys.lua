@@ -191,10 +191,11 @@ local leader = {
   s = {
     name = 'search',
     b = { telescope_helper.curbuf, 'Current Buffer Fuzzy Search' },
-    g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
+    g = { telescope_helper.live_grep_with_cwd, 'Live Grep with CWD' },
     h = { '<cmd>Telescope command_history<cr>', 'Command History' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },
     r = { "<cmd>lua require('spectre').open()<CR>", 'Replace (Spectre)' },
+    t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
   },
   l = {
     name = 'list',

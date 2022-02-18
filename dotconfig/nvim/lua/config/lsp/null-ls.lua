@@ -8,35 +8,36 @@
 -- cargo install stylua
 
 local M = {}
-local nls = require('null-ls')
+local null_ls = require('null-ls')
 
 function M.setup(options)
-  nls.setup({
+  null_ls.setup({
     debug = false,
     debounce = 250,
     save_after_format = false,
     on_attach = options.on_attach,
     sources = {
       -- formatters
-      nls.builtins.formatting.fixjson.with({ filetypes = { 'jsonc' } }),
-      nls.builtins.formatting.prettier.with({ prefer_local = 'node_modules/.bin' }),
-      nls.builtins.formatting.eslint.with({ prefer_local = 'node_modules/.bin' }),
-      nls.builtins.formatting.stylua.with({
+      null_ls.builtins.formatting.fixjson.with({ filetypes = { 'jsonc' } }),
+      null_ls.builtins.formatting.prettier.with({ prefer_local = 'node_modules/.bin' }),
+      null_ls.builtins.formatting.eslint.with({ prefer_local = 'node_modules/.bin' }),
+      null_ls.builtins.formatting.stylua.with({
         extra_args = {
           '--config-path',
           vim.fn.expand('~/.config/nvim/.stylua.toml'),
           '-',
         },
       }),
-      nls.builtins.formatting.shfmt.with({
+      null_ls.builtins.formatting.shfmt.with({
         extra_args = { '-i', '2', '-ci' },
       }),
-      nls.builtins.formatting.sqlformat.with({
+      null_ls.builtins.formatting.sqlformat.with({
         extra_args = { '-r' },
       }),
+      null_ls.builtins.formatting.rubocop,
 
       -- diagnostics
-      nls.builtins.diagnostics.shellcheck.with({
+      null_ls.builtins.diagnostics.shellcheck.with({
         condition = function()
           local filename_exclude = {
             '.*%.env$',
@@ -52,14 +53,14 @@ function M.setup(options)
           return true
         end,
       }),
-      nls.builtins.diagnostics.markdownlint,
+      null_ls.builtins.diagnostics.markdownlint,
       -- nls.builtins.diagnostics.pylint,
 
       -- code_actions
-      nls.builtins.code_actions.gitsigns,
+      null_ls.builtins.code_actions.gitsigns,
 
       -- hover
-      nls.builtins.hover.dictionary,
+      null_ls.builtins.hover.dictionary,
     },
   })
 end
@@ -68,7 +69,7 @@ function M.has_formatter(ft)
   local null_ls_sources = require('null-ls.sources')
   return #vim.tbl_filter(function(source)
     -- you could also filter by source name here
-    return null_ls_sources.is_available(source, ft, nls.methods.FORMATTING)
+    return null_ls_sources.is_available(source, ft, null_ls.methods.FORMATTING)
   end, null_ls_sources.get({})) > 0
 end
 

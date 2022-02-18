@@ -1,5 +1,11 @@
 local M = {}
 
+function M.live_grep_with_cwd()
+  vim.ui.input({ prompt = 'Enter cwd: ' }, function(input)
+    require('telescope.builtin').live_grep({ cwd = input })
+  end)
+end
+
 function M.edit_neovim()
   local opts_with_preview, opts_without_preview
 

@@ -89,6 +89,9 @@ bind X kill-pane -a
 # reload config file (change file location to your the tmux.conf you want to use)
 bind r source-file ~/.tmux.conf #\; display "tmux conf reloaded!"
 
+# set default directory for new windows in this session to current directory:
+bind W attach-session -c "#{pane_current_path}"
+
 # switch panes using vi convension
 bind h select-pane -L
 bind j select-pane -D

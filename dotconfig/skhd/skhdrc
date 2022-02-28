@@ -77,9 +77,9 @@
 # ############################################################### #
 
 ## Quickly restart the yabai launch agent
-ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+ctrl + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 # ctrl + alt + cmd - s : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.skhd"
-ctrl + alt + cmd - s :
+ctrl + cmd - s :
     skhd --reload && \
     /usr/bin/env osascript <<< \
         "display notification \"Config reloaded.\" with title \"skhd\""

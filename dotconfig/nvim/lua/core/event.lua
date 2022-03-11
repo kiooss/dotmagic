@@ -31,11 +31,11 @@ function autocmd.load_autocmds()
         '*.vim',
         [[nested if &l:autoread > 0 | source <afile> | echo 'source ' . bufname('%') | endif]],
       },
-      { 'BufWritePre', '/tmp/*', 'setlocal noundofile' },
-      { 'BufWritePre', 'COMMIT_EDITMSG', 'setlocal noundofile' },
-      { 'BufWritePre', 'MERGE_MSG', 'setlocal noundofile' },
-      { 'BufWritePre', '*.tmp', 'setlocal noundofile' },
-      { 'BufWritePre', '*.bak', 'setlocal noundofile' },
+      -- { 'BufWritePre', '/tmp/*', 'setlocal noundofile' },
+      -- { 'BufWritePre', 'COMMIT_EDITMSG', 'setlocal noundofile' },
+      -- { 'BufWritePre', 'MERGE_MSG', 'setlocal noundofile' },
+      -- { 'BufWritePre', '*.tmp', 'setlocal noundofile' },
+      -- { 'BufWritePre', '*.bak', 'setlocal noundofile' },
       { 'BufWritePre', '*', [[%s/\s\+$//e]] },
       -- { "BufWritePre", "*.tsx", "lua vim.api.nvim_command('Format')" },
       -- { "BufWritePre", "*.go", "lua require('internal.golines').golines_format()" },
@@ -65,46 +65,46 @@ function autocmd.load_autocmds()
       { 'VimLeave', '*', [[if has('nvim') | wshada! | else | wviminfo! | endif]] },
       -- Check if file changed when its window is focus, more eager than 'autoread'
       { 'FocusGained', '* checktime' },
-      {
-        'BufEnter,FocusGained,VimEnter,WinEnter',
-        '*',
-        [[if v:lua.should_colorcolumn() | set winhighlight= | let &l:colorcolumn='+' . join(range(1, 254), ',+') | endif]],
-      },
-      {
-        'FocusLost,WinLeave',
-        '*',
-        [[if v:lua.should_colorcolumn() | set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn | endif]],
-      },
+      -- {
+      --   'BufEnter,FocusGained,VimEnter,WinEnter',
+      --   '*',
+      --   [[if v:lua.should_colorcolumn() | set winhighlight= | let &l:colorcolumn='+' . join(range(1, 254), ',+') | endif]],
+      -- },
+      -- {
+      --   'FocusLost,WinLeave',
+      --   '*',
+      --   [[if v:lua.should_colorcolumn() | set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn | endif]],
+      -- },
     },
 
     ft = {
-      {
-        'FileType',
-        'dashboard',
-        'set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2',
-      },
-      { 'FileType', 'crontab', 'setlocal nobackup nowritebackup' },
-      { 'FileType', 'apache', 'setlocal commentstring=#\\ %s' },
+      -- {
+      --   'FileType',
+      --   'dashboard',
+      --   'set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2',
+      -- },
+      -- { 'FileType', 'crontab', 'setlocal nobackup nowritebackup' },
+      -- { 'FileType', 'apache', 'setlocal commentstring=#\\ %s' },
     },
 
-    custom_highlight = {
-      {
-        'VimEnter',
-        '*',
-        [[
-          highlight Folded gui=bold,italic
-          highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
-          highlight NormalFloat cterm=bold gui=bold
-          highlight TablineSel cterm=bold,reverse gui=bold,reverse
-        ]],
-      },
-    },
+    -- custom_highlight = {
+    --   {
+    --     'VimEnter',
+    --     '*',
+    --     [[
+    --       highlight Folded gui=bold,italic
+    --       highlight MatchParen cterm=bold ctermfg=red ctermbg=NONE gui=bold,reverse
+    --       highlight NormalFloat cterm=bold gui=bold
+    --       highlight TablineSel cterm=bold,reverse gui=bold,reverse
+    --     ]],
+    --   },
+    -- },
 
     yank = {
-      {
-        'TextYankPost',
-        [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=500})]],
-      },
+      -- {
+      --   'TextYankPost',
+      --   [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=500})]],
+      -- },
       {
         'TextYankPost',
         '*',
@@ -112,12 +112,79 @@ function autocmd.load_autocmds()
       },
     },
 
-    lsp = {
-      { 'CursorHold', '*', [[lua vim.diagnostic.open_float(0, {scope="cursor", focusable=false, border='rounded'})]] },
-    },
+    -- lsp = {
+    --   { 'CursorHold', '*', [[lua vim.diagnostic.open_float(0, {scope="cursor", focusable=false, border='rounded'})]] },
+    -- },
   }
 
   autocmd.nvim_create_augroups(definitions)
 end
 
 autocmd.load_autocmds()
+
+-- lua api
+local group = vim.api.nvim_create_augroup('kiooss', { clear = true })
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '/tmp/*', 'COMMIT_EDITMSG', 'MERGE_MSG', '*.tmp', '*.bak' },
+  command = 'setlocal noundofile',
+  group = group,
+})
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'VimEnter', 'WinEnter' }, {
+  desc = 'Highlight on focused window',
+  callback = function()
+    if should_colorcolumn() then
+      vim.cmd([[set winhighlight= | let &l:colorcolumn='+' . join(range(1, 254), ',+')]])
+    end
+  end,
+  group = group,
+})
+
+vim.api.nvim_create_autocmd({ 'FocusLost', 'WinLeave' }, {
+  desc = 'Unhighlight on unfocused window',
+  callback = function()
+    if should_colorcolumn() then
+      vim.cmd(
+        [[set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn]]
+      )
+    end
+  end,
+  group = group,
+})
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'custom highlight',
+  callback = function()
+    -- vim.api.nvim_set_hl(0, 'Comment', { bold = true })
+  end,
+  group = group,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'dashboard' },
+  command = 'set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2',
+  group = group,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'crontab' },
+  command = 'setlocal nobackup nowritebackup',
+  group = group,
+})
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'highlight on yank',
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 500 })
+  end,
+  group = group,
+})
+
+vim.api.nvim_create_autocmd('CursorHold', {
+  desc = 'Show current line diagnostics',
+  callback = function()
+    vim.diagnostic.open_float(nil, { scope = 'cursor', focusable = false, border = 'rounded' })
+  end,
+  group = group,
+})

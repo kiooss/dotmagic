@@ -6,3 +6,4 @@ require('Comment').setup({
 local ft = require('Comment.ft')
 
 ft({ 'go', 'rust', 'dart' }, { '//%s', '/*%s*/' })
+ft({ 'apache' }, { '# %s' })

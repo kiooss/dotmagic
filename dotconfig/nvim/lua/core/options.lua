@@ -103,7 +103,7 @@ local function load_options()
     showbreak = '↪ ',
     -- TODO
     -- listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
-    listchars = 'tab:▸ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸',
+    -- listchars = 'tab:▸ ,trail:•,eol:¬,extends:❯,precedes:❮,nbsp:⦸',
     pumblend = 10,
     winblend = 10,
     autoread = true,

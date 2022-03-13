@@ -675,6 +675,8 @@ local function plugins(use)
     end,
   })
 
+  use({ 'tjdevries/cyclist.vim' })
+
   -- flutter
   use({ 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' })
 end

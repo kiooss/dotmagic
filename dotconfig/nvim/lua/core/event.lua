@@ -14,6 +14,12 @@ end
 -- lua api
 local group = vim.api.nvim_create_augroup('kiooss', { clear = true })
 
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'plugins.lua',
+  command = 'source <afile>',
+  group = group,
+})
+
 vim.api.nvim_create_autocmd({ 'WinEnter', 'BufEnter', 'InsertLeave' }, {
   command = [[if ! &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal cursorline | endif]],
   group = group,
@@ -54,7 +60,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
-  command = '%s/s+$//e',
+  command = [[%s/\s\+$//e]],
   group = group,
 })
 

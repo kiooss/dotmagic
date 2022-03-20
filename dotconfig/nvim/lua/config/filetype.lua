@@ -8,6 +8,7 @@ require('filetype').setup({
     literal = {
       -- Set the filetype of files named "MyBackupFile" to lua
       Capfile = 'ruby',
+      Appfile = 'ruby',
       skhdrc = 'conf',
     },
     complex = {

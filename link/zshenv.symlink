@@ -24,3 +24,5 @@ export NO_PROXY=localhost,127.0.0.1,::1
 if [[ -f "$HOME/.cargo/env" ]] then
   source "$HOME/.cargo/env"
 fi
+
+export Flutter_ROOT=$HOME/dev/flutter

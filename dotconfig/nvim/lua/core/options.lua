@@ -137,7 +137,8 @@ local function load_options()
     foldlevelstart = 99,
     foldnestmax = 10,
     -- foldtext="vimrc#MyFoldText()",
-    signcolumn = 'auto:4',
+    -- signcolumn = 'auto:4',
+    signcolumn = 'yes',
     conceallevel = 0,
     concealcursor = 'niv',
   }

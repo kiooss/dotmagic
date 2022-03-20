@@ -96,6 +96,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   desc = 'custom highlight',
   callback = function()
     -- vim.api.nvim_set_hl(0, 'Comment', { bold = true })
+    vim.api.nvim_set_hl(0, 'MatchParen', { bold = true, reverse = true })
   end,
   group = group,
 })

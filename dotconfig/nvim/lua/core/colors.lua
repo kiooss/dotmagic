@@ -97,10 +97,4 @@ colors.nightfly = {
   red = '#ff5874',
 }
 
-local nightfox_colors = require('nightfox.colors').load()
-colors.nightfox = vim.tbl_deep_extend('force', nightfox_colors, {
-  bg = nightfox_colors.bg_statusline,
-  border = nightfox_colors.border,
-})
-
 return colors

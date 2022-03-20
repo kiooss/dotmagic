@@ -6,7 +6,7 @@ function M.update_lightbulb()
     -- Example: {"sumneko_lua", "null-ls"}
     ignore = { 'null-ls' },
     sign = {
-      enabled = true,
+      enabled = false,
       -- Priority of the gutter sign
       priority = 10,
     },
@@ -31,11 +31,12 @@ function M.update_lightbulb()
       win_opts = {},
     },
     virtual_text = {
-      enabled = false,
+      enabled = true,
       -- Text to show at virtual text
       text = '💡',
       -- highlight mode to use for virtual text (replace, combine, blend), see :help nvim_buf_set_extmark() for reference
-      hl_mode = 'replace',
+      -- hl_mode = 'replace',
+      hl_mode = 'combine',
     },
     status_text = {
       enabled = false,

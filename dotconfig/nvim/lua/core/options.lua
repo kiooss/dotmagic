@@ -97,7 +97,7 @@ local function load_options()
     cmdheight = 1,
     cmdwinheight = 5,
     equalalways = false,
-    laststatus = 2,
+    laststatus = 3,
     display = 'lastline',
     -- showbreak = "↳  ",
     showbreak = '↪ ',

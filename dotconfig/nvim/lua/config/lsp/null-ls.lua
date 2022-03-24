@@ -16,6 +16,9 @@ function M.setup(options)
     debounce = 250,
     save_after_format = false,
     on_attach = options.on_attach,
+    should_attach = function(bufnr)
+      return not vim.api.nvim_buf_get_name(bufnr):match('__FLUTTER_DEV_LOG__')
+    end,
     sources = {
       -- formatters
       null_ls.builtins.formatting.fixjson.with({ filetypes = { 'jsonc' } }),

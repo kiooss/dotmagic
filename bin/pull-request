@@ -7,8 +7,8 @@ main() {
   local current_branch
   local project
   current_branch=$(current_branch)
-  git pull --rebase --autostash
-  # git up
+  # git pull --rebase --autostash
+  git up
 
   if [[ $current_branch =~ (.*)-develop$ ]]; then
     project=${current_branch/-develop/}

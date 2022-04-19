@@ -478,7 +478,8 @@ table.insert(cur_section, {
 table.insert(cur_section, {
   CurrentFunction = {
     provider = function()
-      return current_function(winwidth())
+      return ''
+      -- return current_function(winwidth())
     end,
     highlight = { colors.orange, colors.bg, 'bold,italic' },
   },

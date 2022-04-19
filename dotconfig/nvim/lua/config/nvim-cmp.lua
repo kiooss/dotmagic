@@ -18,17 +18,20 @@ cmp.setup({
     end,
   },
 
-  -- You must set mapping if you want.
-  mapping = {
-    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-l>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+
+  mapping = cmp.mapping.preset.insert({
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-l>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
     ['<CR>'] = cmp.mapping.confirm({
-      -- behavior = cmp.ConfirmBehavior.Insert,
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
@@ -40,24 +43,19 @@ cmp.setup({
       elseif has_words_before() then
         cmp.complete()
       else
-        -- feedkey('<Plug>(Tabout)', '')
         fallback()
       end
-    end, {
-      'i',
-      's',
-    }),
-    ['<S-Tab>'] = cmp.mapping(function()
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif vim.fn['vsnip#jumpable'](-1) == 1 then
         feedkey('<Plug>(vsnip-jump-prev)', '')
+      else
+        fallback()
       end
-    end, {
-      'i',
-      's',
-    }),
-  },
+    end, { 'i', 's' }),
+  }),
 
   formatting = {
     format = require('lspkind').cmp_format({
@@ -98,6 +96,7 @@ cmp.setup({
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' },
   },
@@ -105,6 +104,7 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = 'path' },
   }, {

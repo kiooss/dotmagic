@@ -98,50 +98,47 @@ local function plugins(use)
       vim.g.vista_default_executive = 'nvim_lsp'
     end,
   })
+  use('onsails/lspkind-nvim')
   -- LSP related plugins end
 
   -- auto completion
   use({
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require('config.snippets')
+    end,
+  })
+  use({
     'hrsh7th/nvim-cmp',
-    event = { 'InsertEnter', 'CmdlineEnter' },
     config = function()
       require('config.nvim-cmp')
     end,
-    wants = {
-      'lspkind-nvim',
-    },
-    requires = {
-      'onsails/lspkind-nvim',
-      'hrsh7th/cmp-nvim-lsp',
-      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-vsnip', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
-      { 'octaltree/cmp-look', after = 'nvim-cmp' },
-      {
-        'windwp/nvim-autopairs',
-        after = 'nvim-cmp',
-        config = function()
-          require('config.autopairs')
-        end,
-      },
-      { 'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
-      { 'hrsh7th/vim-vsnip-integ', after = 'nvim-cmp' },
-      { 'rafamadriz/friendly-snippets', after = 'vim-vsnip' },
-      { 'Nash0x7E2/awesome-flutter-snippets', after = 'vim-vsnip' },
-      { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
-    },
+  })
+  use('saadparwaiz1/cmp_luasnip')
+  use('hrsh7th/cmp-nvim-lsp')
+  use('hrsh7th/cmp-buffer')
+  use('hrsh7th/cmp-path')
+  use('hrsh7th/cmp-nvim-lua')
+  use('hrsh7th/cmp-cmdline')
+  use('octaltree/cmp-look')
+  use('ray-x/cmp-treesitter')
+  use('rafamadriz/friendly-snippets')
+  use({
+    'windwp/nvim-autopairs',
+    after = 'nvim-cmp',
+    config = function()
+      require('config.autopairs')
+    end,
   })
 
-  use({
-    'abecodes/tabout.nvim',
-    config = function()
-      require('config.tabout')
-    end,
-    wants = { 'nvim-treesitter' }, -- or require if not used so far
-    after = { 'nvim-cmp' }, -- if a completion plugin is using tabs load it before
-  })
+  -- use({
+  --   'abecodes/tabout.nvim',
+  --   config = function()
+  --     require('config.tabout')
+  --   end,
+  --   wants = { 'nvim-treesitter' }, -- or require if not used so far
+  --   after = { 'nvim-cmp' }, -- if a completion plugin is using tabs load it before
+  -- })
 
   -- comment plugin
   -- use({

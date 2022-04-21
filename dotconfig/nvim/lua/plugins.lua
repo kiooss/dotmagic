@@ -7,6 +7,7 @@ local config = {
     enable = true,
     threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
   },
+  log = { level = 'trace' }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal".
   display = {
     open_fn = function()
       local lines = vim.o.lines
@@ -109,6 +110,7 @@ local function plugins(use)
     end,
     wants = {
       'lspkind-nvim',
+      'LuaSnip',
     },
     requires = {
       'onsails/lspkind-nvim',
@@ -119,6 +121,8 @@ local function plugins(use)
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       { 'octaltree/cmp-look', after = 'nvim-cmp' },
+      { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       {
         'windwp/nvim-autopairs',
         after = 'nvim-cmp',
@@ -128,9 +132,18 @@ local function plugins(use)
       },
       { 'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
       { 'hrsh7th/vim-vsnip-integ', after = 'nvim-cmp' },
-      { 'rafamadriz/friendly-snippets', after = 'vim-vsnip' },
-      { 'Nash0x7E2/awesome-flutter-snippets', after = 'vim-vsnip' },
-      { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
+      {
+        'L3MON4D3/LuaSnip',
+        after = 'nvim-cmp',
+        wants = 'friendly-snippets',
+        config = function()
+          require('config.luasnip')
+        end,
+        requires = {
+          { 'rafamadriz/friendly-snippets', after = 'nvim-cmp' },
+          { 'Nash0x7E2/awesome-flutter-snippets', after = 'nvim-cmp' },
+        },
+      },
     },
   })
 
@@ -328,6 +341,7 @@ local function plugins(use)
     'akinsho/nvim-bufferline.lua',
     event = 'BufReadPre',
     wants = 'nvim-web-devicons',
+    branch = 'main',
     config = function()
       require('config.bufferline')
     end,
@@ -670,6 +684,7 @@ local function plugins(use)
 
   use({
     'akinsho/toggleterm.nvim',
+    branch = 'main',
     config = function()
       require('config.toggleterm')
     end,

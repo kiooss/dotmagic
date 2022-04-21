@@ -88,10 +88,10 @@ cmp.setup({
 
   experimental = {
     -- native_menu = true,
-    -- ghost_text = {
-    --   hl_group = 'LineNr',
-    -- },
-    ghost_text = false,
+    ghost_text = {
+      hl_group = 'LineNr',
+    },
+    -- ghost_text = false,
   },
 })
 

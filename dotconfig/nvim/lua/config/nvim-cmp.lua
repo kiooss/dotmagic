@@ -27,7 +27,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    -- ['<C-l>'] = cmp.mapping.complete(),
+    -- ['<C-l>'] = cmp.mapping.complete(), -- use tab to invoke
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -42,8 +42,8 @@ cmp.setup({
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif vim.fn['vsnip#available']() == 1 then
-        feedkey('<Plug>(vsnip-expand-or-jump)', '')
+        -- elseif vim.fn['vsnip#available']() == 1 then
+        --   feedkey('<Plug>(vsnip-expand-or-jump)', '')
       elseif has_words_before() then
         cmp.complete()
       else
@@ -55,8 +55,8 @@ cmp.setup({
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
         luasnip.jump(-1)
-      elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-        feedkey('<Plug>(vsnip-jump-prev)', '')
+        -- elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+        --   feedkey('<Plug>(vsnip-jump-prev)', '')
       else
         fallback()
       end

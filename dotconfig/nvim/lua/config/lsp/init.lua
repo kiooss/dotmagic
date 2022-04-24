@@ -28,6 +28,11 @@ local function on_attach(client, bufnr)
 end
 
 local servers = {
+  clangd = {
+    capabilities = {
+      offsetEncoding = { 'utf-16' },
+    },
+  },
   pyright = {},
   bashls = {},
   dockerls = {},

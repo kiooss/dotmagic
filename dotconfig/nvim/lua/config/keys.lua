@@ -140,6 +140,17 @@ local leader = {
     f = { '<cmd>FormatWrite<CR>', 'FormatWrite' },
   },
   c = {
+    b = {
+      function()
+        local src_path = vim.fn.expand('%:p:~')
+        local src_noext = vim.fn.expand('%:p:~:r')
+        local _flag = '-Wall -Wextra -std=c++11 -O2'
+        local cmd = string.format('g++ %s %s -o %s && %s', _flag, src_path, src_noext, src_noext)
+        -- require('util').float_terminal(cmd)
+        require('toggleterm').exec(cmd, 1, 12)
+      end,
+      'C++ build and run',
+    },
     v = { '<cmd>Vista!!<CR>', 'Vista' },
     o = { '<cmd>SymbolsOutline<cr>', 'Symbols Outline' },
   },

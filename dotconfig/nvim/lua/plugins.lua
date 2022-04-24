@@ -692,6 +692,15 @@ local function plugins(use)
 
   use({ 'tjdevries/cyclist.vim' })
 
+  use({
+    'michaelb/sniprun',
+    cmd = { 'SnipRun', 'SnipReset' },
+    run = 'bash ./install.sh',
+    config = function()
+      require('config.sniprun')
+    end,
+  })
+
   -- flutter
   use({ 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' })
 end

@@ -3,6 +3,8 @@ local gl = R('galaxyline')
 local fileinfo = require('galaxyline.provider_fileinfo')
 local condition = require('galaxyline.condition')
 local colors = require('core.colors')[vim.g.theme] or require('core.colors').default
+local gps = require('nvim-gps')
+
 -- local iconz = require("nvim-nonicons")
 
 local gls = gl.section
@@ -175,8 +177,8 @@ local function LspProgress()
   for _, msg in pairs(messages) do
     table.insert(status, (msg.percentage or 0) .. '% ' .. (msg.title or ''))
   end
-  -- local spinners = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
-  local spinners = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' }
+  local spinners = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
+  -- local spinners = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' }
   -- local spinners = { ' ', ' ', ' ', ' ', ' ', ' ' }
   local ms = vim.loop.hrtime() / 1000000
   local frame = math.floor(ms / 120) % #spinners
@@ -476,12 +478,22 @@ table.insert(cur_section, {
 --   },
 -- })
 table.insert(cur_section, {
-  CurrentFunction = {
+  Speparator = {
     provider = function()
-      return ''
-      -- return current_function(winwidth())
+      return ' | '
     end,
-    highlight = { colors.orange, colors.bg, 'bold,italic' },
+    highlight = { colors.border, colors.bg },
+  },
+})
+table.insert(cur_section, {
+  nvimGPS = {
+    provider = function()
+      return gps.get_location()
+    end,
+    condition = function()
+      return gps.is_available()
+    end,
+    highlight = { colors.magenta, colors.bg },
   },
 })
 
@@ -573,7 +585,7 @@ table.insert(cur_section, {
     provider = function()
       return vim.fn.line('$')
     end,
-    highlight = { colors.fg, colors.bg },
+    highlight = { colors.cyan, colors.bg },
   },
 })
 table.insert(cur_section, {

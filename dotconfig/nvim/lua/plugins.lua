@@ -181,8 +181,8 @@ local function plugins(use)
   use({
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    opt = true,
-    event = 'BufRead',
+    -- opt = true,
+    -- event = 'BufRead',
     requires = {
       { 'nvim-treesitter/playground', cmd = 'TSHighlightCapturesUnderCursor' },
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -419,6 +419,14 @@ local function plugins(use)
       require('config.galaxyline')
     end,
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+  })
+
+  use({
+    'SmiteshP/nvim-gps',
+    config = function()
+      require('config.gps')
+    end,
+    requires = 'nvim-treesitter/nvim-treesitter',
   })
 
   -- use({"npxbr/glow.nvim", cmd = "Glow"})

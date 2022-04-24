@@ -11,6 +11,8 @@ util.nnoremap('<Tab>', ':wincmd w<cr>')
 util.nnoremap('<C-p>', ':NvimTreeFindFileToggle<cr>')
 -- vsplit buffers
 util.nnoremap('<leader>-', ':vsplit<CR>:wincmd p<CR>:e#<CR>')
+
+util.nnoremap('<leader>bo', ':%bd<bar>e#<bar>bd#<cr>')
 -- Focus the current fold by closing all others
 -- util.nnoremap('<CR>', 'zMza')
 -- nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()

@@ -1,4 +1,3 @@
--- vim.g.nvim_tree_ignore = { '.git', 'node_modules' }
 vim.g.nvim_tree_auto_ignore_ft = { 'dashboard', 'startify' }
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_highlight_opened_files = 3 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
@@ -32,11 +31,16 @@ require('nvim-tree').setup({
   ignore = { '.git', 'node_modules' },
   -- disables netrw completely
   disable_netrw = true,
+  hijack_netrw = true,
   diagnotics = {
     enable = true,
   },
   -- hijack the cursor in the tree to put it at the start of the filename
   hijack_cursor = true,
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
   update_cwd = true,
   update_focused_file = {
     enable = true,
@@ -54,6 +58,11 @@ require('nvim-tree').setup({
         { key = 's', cb = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>" },
         { key = 'i', cb = ":lua require'nvim-tree'.on_keypress('split')<CR>" },
       },
+    },
+  },
+  actions = {
+    open_file = {
+      resize_window = true,
     },
   },
 })

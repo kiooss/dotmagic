@@ -104,7 +104,8 @@ local function plugins(use)
   -- auto completion
   use({
     'hrsh7th/nvim-cmp',
-    event = { 'InsertEnter', 'CmdlineEnter' },
+    -- event = { 'InsertEnter', 'CmdlineEnter' },
+    event = { 'InsertEnter' },
     config = function()
       require('config.nvim-cmp')
     end,

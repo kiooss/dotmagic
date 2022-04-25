@@ -1,86 +1,8 @@
 local wk = require('which-key')
 local util = require('util')
-
-vim.o.timeoutlen = 500
-
-util.nnoremap('-', ':edit %:h<CR>')
-
--- util.nnoremap("q", [[len(getbufinfo({'buflisted':1})) > 1 ? ":Sayonara!<cr>" : ":Sayonara<cr>"]], { expr = true })
-util.nnoremap('q', ':Sayonara<cr>')
-util.nnoremap('<Tab>', ':wincmd w<cr>')
-util.nnoremap('<C-p>', ':NvimTreeFindFileToggle<cr>')
--- vsplit buffers
-util.nnoremap('<leader>-', ':vsplit<CR>:wincmd p<CR>:e#<CR>')
-
-util.nnoremap('<leader>bo', ':%bd<bar>e#<bar>bd#<cr>')
--- Focus the current fold by closing all others
--- util.nnoremap('<CR>', 'zMza')
--- nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
-util.nnoremap('<CR>', [[{-> v:hlsearch ? ":nohlsearch\<CR>" : "\<CR>"}()]], { expr = true })
--- util.nnoremap('<ESC><ESC>', ':<C-u>set nopaste nohlsearch<bar>cclose<bar>lclose<bar>pclose<cr>', { silent = true })
-util.nnoremap('j', 'gj')
-util.nnoremap('k', 'gk')
-util.nnoremap('gj', 'j')
-util.nnoremap('gk', 'k')
-util.nnoremap('g;', 'g;zvzz')
-util.nnoremap('g,', 'g,zvzz')
--- Better x with black hole register "_
-util.nnoremap('x', [["_x]])
-util.nnoremap('Y', 'y$')
-util.nnoremap('B', '^')
-util.nnoremap('E', '$')
-util.nnoremap('g]', 'g<C-]>')
-util.nnoremap('g[', ':pop<cr>')
-
--- disable EX mode
-util.nnoremap('Q', 'q')
-
-util.nnoremap('<c-o>', '<c-o>zvzz')
-util.inoremap('jk', '<esc>')
-util.inoremap('jj', '<esc>')
-util.inoremap('j<space>', 'j')
-util.inoremap('<C-c>', '<esc>`^')
--- util.inoremap('<C-b>', '<Left>')
--- util.inoremap('<C-f>', '<Right>')
--- util.inoremap('<C-a>', '<C-o>I')
--- util.inoremap('<C-e>', '<C-o>A')
--- util.inoremap('<C-u>', '<C-g>u<C-u>')
-
-util.cnoremap('jk', '<C-c>')
-util.cnoremap('j', [[getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j']], { expr = true })
-util.cnoremap('<C-a>', '<Home>')
-util.cnoremap('<C-b>', '<Left>')
-util.cnoremap('<C-f>', '<Right>')
-util.cnoremap('<C-d>', '<Del>')
-util.cnoremap('<C-e>', '<End>')
-util.cnoremap('<C-y>', '<C-r>*')
-util.cnoremap('<C-v>', '<C-r>*')
-util.cnoremap('<C-g>', '<C-c>')
-
-util.xnoremap('s', ':s//g<Left><Left>')
-util.xnoremap('<C-l>', [[:s/^/\=(line('.')-line("'<")+1).'. '/g]])
-
--- stile select when indent in visual mode
-util.vnoremap('<', '<gv')
-util.vnoremap('>', '>gv')
-
--- TODO:
--- noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>M")
--- noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>M")
-
--- telescope mappings
 local telescope_helper = require('config.telescope.helper')
 
--- util.nnoremap('/', telescope_helper.curbuf)
-util.nnoremap('<leader><space>', telescope_helper.project_files)
-util.nnoremap('<leader>ca', telescope_helper.lsp_code_actions)
-util.nnoremap('<leader>fd', telescope_helper.dotfiles)
-util.nnoremap('<leader>ff', telescope_helper.frecency_files)
-util.nnoremap('<leader>fp', telescope_helper.projects)
-util.nnoremap('<leader>fr', telescope_helper.oldfiles_cwd_only)
-util.nnoremap('<leader>fv', telescope_helper.edit_neovim)
-util.nnoremap('<leader>ln', telescope_helper.notify)
-util.nnoremap('<leader>fu', telescope_helper.flutter_commands)
+vim.o.timeoutlen = 500
 
 wk.setup({
   show_help = false,
@@ -142,6 +64,7 @@ local leader = {
     f = { '<cmd>FormatWrite<CR>', 'FormatWrite' },
   },
   c = {
+    a = 'Code Actions',
     b = {
       function()
         local src_path = vim.fn.expand('%:p:~')
@@ -167,7 +90,7 @@ local leader = {
     q = { '<cmd>copen<cr>', 'Open Quickfix List' },
   },
   f = {
-    name = '+file',
+    name = '+file / flutter',
     b = { '<cmd>Telescope file_browser<cr>', 'File browser' },
     d = 'Dot Files',
     f = 'Frecency Files',
@@ -177,6 +100,7 @@ local leader = {
     r = 'Open Recent Files',
     t = { '<cmd>:Telescope filetypes<cr>', 'File Types' },
     w = { '<cmd>Telescope live_grep<cr>', 'Search word' },
+    u = 'Flutter Tools',
     v = 'Neovim Config',
   },
   g = {

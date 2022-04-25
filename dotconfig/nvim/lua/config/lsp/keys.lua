@@ -85,15 +85,15 @@ function M.setup(client, bufnr)
     t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Goto Type Definition' },
   }
 
-  util.nnoremap('K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  util.nnoremap('<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  util.nnoremap('[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  util.nnoremap(']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.keymap.set('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.keymap.set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  vim.keymap.set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
   -- local trigger_chars = client.resolved_capabilities.signature_help_trigger_characters
   local trigger_chars = { ',' }
   for _, c in ipairs(trigger_chars) do
-    util.inoremap(c, function()
+    vim.keymap.set('i', c, function()
       vim.defer_fn(function()
         pcall(vim.lsp.buf.signature_help)
       end, 0)

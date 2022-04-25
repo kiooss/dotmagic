@@ -69,14 +69,14 @@ local function load_core()
   require('util')
   require('core.options')
   require('core.event')
+  require('core.keymaps')
+  require('config.theme').setup(vim.g.theme)
 
   -- no need to load this immediately, since we have packer_compiled
   vim.defer_fn(function()
     require('plugins')
     -- require('core.custom')
   end, 0)
-
-  require('config.theme').setup(vim.g.theme)
 end
 
 load_core()

@@ -662,11 +662,22 @@ table.insert(cur_section, {
 cur_section = gls.short_line_right
 
 table.insert(cur_section, {
+  CWD = {
+    provider = function()
+      return ' ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':~') .. ' '
+    end,
+    highlight = { colors.fg, colors.blue },
+    separator = icons.sep.right,
+    separator_highlight = { colors.blue, colors.bg },
+  },
+})
+
+table.insert(cur_section, {
   BufferIcon = {
     provider = 'BufferIcon',
     highlight = { colors.yellow, colors.bg },
     separator = icons.sep.right,
-    separator_highlight = { colors.bg, colors.bg },
+    separator_highlight = { colors.bg, colors.blue },
   },
 })
 

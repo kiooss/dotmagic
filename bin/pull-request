@@ -26,7 +26,7 @@ current_branch() {
 }
 
 get_diff() {
-  git log --oneline --no-decorate --no-merges "$1".. | grep -aEo '#[0-9]+' | sort | uniq
+  git log --oneline --no-decorate --no-merges --perl-regexp --author="$PULL_REQUEST_AUTHOR_PATTERN" "$1".. | grep -aEo '#[0-9]+' | sort | uniq | sed -e "s|#|$REF_BASE_URL|"
 }
 
 pull_request_staging() {

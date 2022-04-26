@@ -141,8 +141,8 @@ local function plugins(use)
           require('config.luasnip')
         end,
         requires = {
-          { 'rafamadriz/friendly-snippets', after = 'nvim-cmp' },
-          { 'Nash0x7E2/awesome-flutter-snippets', after = 'nvim-cmp' },
+          { 'rafamadriz/friendly-snippets', opt = true },
+          { 'Nash0x7E2/awesome-flutter-snippets', opt = true },
         },
       },
     },

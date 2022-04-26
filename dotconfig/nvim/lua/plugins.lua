@@ -712,6 +712,13 @@ local function plugins(use)
 
   -- flutter
   use({ 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' })
+
+  use({
+    'stevearc/dressing.nvim',
+    config = function()
+      require('config.dressing')
+    end,
+  })
 end
 
 return packer.setup(config, plugins)

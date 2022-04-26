@@ -80,7 +80,7 @@ vim.g.dashboard_custom_section = {
     command = telescope_helper.oldfiles_cwd_only,
   },
   b = {
-    description = { '  Frecency files                          SPC f f' },
+    description = { '  Frecency files                          SPC f f' },
     command = telescope_helper.frecency_files,
   },
   c = {
@@ -88,23 +88,31 @@ vim.g.dashboard_custom_section = {
     command = 'Telescope marks',
   },
   d = {
-    description = { '  Find file                               SPC spc' },
+    description = { '  Find file                               SPC spc' },
     command = 'DashboardFindFile',
   },
   e = {
+    description = { '  Project                                 SPC f p ' },
+    command = 'Telescope project',
+  },
+  f = {
     description = { '  File browser                            SPC f b' },
     command = 'Telescope file_browser',
   },
-  f = {
+  g = {
     description = { '  Find word                               SPC f w' },
     command = 'DashboardFindWord',
   },
-  g = {
+  h = {
     description = { '  New file                                SPC f n' },
     command = 'enew',
   },
-  h = {
+  i = {
     description = { '  Update plugins                          SPC p s' },
     command = 'PackerSync',
+  },
+  j = {
+    description = { '  Scheme change                           SPC l b' },
+    command = 'DashboardChangeColorscheme',
   },
 }

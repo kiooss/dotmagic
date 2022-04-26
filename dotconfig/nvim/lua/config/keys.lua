@@ -137,6 +137,7 @@ local leader = {
   l = {
     name = 'list',
     a = { '<cmd>:Telescope autocommands<cr>', 'Auto Commands' },
+    b = { '<cmd>:Telescope colorscheme<cr>', 'Color Schemes' },
     c = { '<cmd>:Telescope commands<cr>', 'Commands' },
     f = { '<cmd>:Telescope filetypes<cr>', 'File Types' },
     h = { '<cmd>:Telescope help_tags<cr>', 'Help Pages' },
@@ -144,6 +145,7 @@ local leader = {
     m = { '<cmd>:Telescope man_pages<cr>', 'Man Pages' },
     n = 'Notifications',
     o = { '<cmd>:Telescope vim_options<cr>', 'Options' },
+    r = { '<cmd>:Telescope registers<cr>', 'Registers' },
     s = { '<cmd>:Telescope highlights<cr>', 'Search Highlight Groups' },
     t = { '<cmd>:Telescope builtin<cr>', 'Telescope Builtins' },
   },

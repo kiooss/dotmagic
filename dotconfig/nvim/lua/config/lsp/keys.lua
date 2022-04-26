@@ -9,9 +9,8 @@ function M.setup(client, bufnr)
 
   local keymap = {
     c = {
-      name = '+code',
       r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
-      -- a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
+      a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
       l = {
         name = '+lsp',
         i = { '<cmd>LspInfo<cr>', 'Lsp Info' },

@@ -116,22 +116,6 @@ function M.curbuf()
   require('telescope.builtin').current_buffer_fuzzy_find(opts)
 end
 
-function M.lsp_code_actions()
-  local themes = require('telescope.themes')
-  local opts = themes.get_dropdown({
-    winblend = 10,
-    border = true,
-    previewer = false,
-    shorten_path = false,
-  })
-  -- local opts = themes.get_cursor({
-  --   winblend = 10,
-  --   border = true,
-  -- })
-
-  require('telescope.builtin').lsp_code_actions(opts)
-end
-
 function M.flutter_commands()
   return require('telescope').extensions.flutter.commands()
 end

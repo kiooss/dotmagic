@@ -20,7 +20,9 @@ local leader = {
   ['z'] = { '<cmd>:qa!<cr>', 'Quit all' },
   ['`'] = { '<cmd>:e #<cr>', 'Switch to Other Buffer' },
   ['/'] = {
-    '<cmd>Telescope live_grep<cr>',
+    function()
+      require('telescope.builtin').live_grep()
+    end,
     'Search',
   },
   ['*'] = {
@@ -64,7 +66,7 @@ local leader = {
     f = { '<cmd>FormatWrite<CR>', 'FormatWrite' },
   },
   c = {
-    a = 'Code Actions',
+    name = '+code',
     b = {
       function()
         local src_path = vim.fn.expand('%:p:~')

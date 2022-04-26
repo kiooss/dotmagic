@@ -79,7 +79,6 @@ local telescope_helper = require('config.telescope.helper')
 
 -- util.nnoremap('/', telescope_helper.curbuf)
 nmap('<leader><space>', telescope_helper.project_files)
-nmap('<leader>ca', telescope_helper.lsp_code_actions)
 nmap('<leader>fd', telescope_helper.dotfiles)
 nmap('<leader>ff', telescope_helper.frecency_files)
 nmap('<leader>fp', telescope_helper.projects)

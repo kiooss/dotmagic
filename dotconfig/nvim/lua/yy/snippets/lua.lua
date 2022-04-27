@@ -1,5 +1,9 @@
-vim.cmd([[set runtimepath=$VIMRUNTIME]])
-vim.cmd([[set packpath=/tmp/nvt-min/site]])
+return {
+  parse(
+    'miniconfig',
+    [[
+vim.cmd('set runtimepath=$VIMRUNTIME')
+vim.cmd('set packpath=/tmp/nvt-min/site')
 local package_root = '/tmp/nvt-min/site/pack'
 local install_path = package_root .. '/packer/start/packer.nvim'
 local function load_plugins()
@@ -23,7 +27,7 @@ if vim.fn.isdirectory(install_path) == 0 then
 end
 load_plugins()
 require('packer').sync()
-vim.cmd([[autocmd User PackerComplete ++once echo "Ready!" | lua setup()]])
+vim.cmd('autocmd User PackerComplete ++once echo "Ready!" | lua setup()')
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 
@@ -39,3 +43,6 @@ vim.g.nvim_tree_show_icons = { folders = 0 }
 _G.setup = function()
   require('nvim-tree').setup({})
 end
+    ]]
+  ),
+}

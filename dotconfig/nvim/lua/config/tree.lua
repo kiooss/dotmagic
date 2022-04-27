@@ -28,12 +28,18 @@ vim.g.nvim_tree_special_files = {
 }
 
 require('nvim-tree').setup({
-  ignore = { '.git', 'node_modules' },
   -- disables netrw completely
   disable_netrw = true,
   hijack_netrw = true,
-  diagnotics = {
+  diagnostics = {
     enable = true,
+    show_on_dirs = true,
+    icons = {
+      hint = '',
+      info = '',
+      warning = '',
+      error = '',
+    },
   },
   -- hijack the cursor in the tree to put it at the start of the filename
   hijack_cursor = true,

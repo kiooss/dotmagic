@@ -120,4 +120,12 @@ function M.flutter_commands()
   return require('telescope').extensions.flutter.commands()
 end
 
-return M
+return setmetatable({}, {
+  __index = function(_, k)
+    if M[k] then
+      return M[k]
+    else
+      return require('telescope.builtin')[k]
+    end
+  end,
+})

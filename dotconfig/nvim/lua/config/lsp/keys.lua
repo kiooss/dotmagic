@@ -1,5 +1,5 @@
 local wk = require('which-key')
-local util = require('util')
+local telescope_helper = require('config.telescope.helper')
 
 local M = {}
 
@@ -40,22 +40,15 @@ function M.setup(client, bufnr)
     },
     e = {
       s = {
-        '<cmd>Telescope lsp_document_diagnostics<cr>',
-        'Search Document Diagnostics',
-      },
-      W = {
-        '<cmd>Telescope lsp_workspace_diagnostics<cr>',
-        'Workspace Diagnostics',
+        function()
+          require('telescope.builtin').diagnostics({ bufnr = 0 })
+        end,
+        'Diagnostics',
       },
     },
     s = {
-      s = {
-        function()
-          require('telescope.builtin').lsp_document_symbols()
-        end,
-        'LSP document symbols',
-      },
-      w = { '<cmd>Telescope lsp_workspace_symbols<cr>', 'LSP workspace symbols' },
+      s = { telescope_helper.lsp_document_symbols, 'LSP document symbols' },
+      w = { telescope_helper.lsp_workspace_symbols, 'LSP workspace symbols' },
     },
   }
 
@@ -74,19 +67,20 @@ function M.setup(client, bufnr)
   local keymap_goto = {
     name = '+goto',
     r = {
-      function()
-        require('telescope.builtin').lsp_references()
-      end,
+      telescope_helper.lsp_references,
       'References',
     },
     R = { '<cmd>Trouble lsp_references<cr>', 'Trouble References' },
-    d = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition' },
+    -- d = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition' },
+    d = { telescope_helper.lsp_definitions, 'Goto Definition' },
     D = { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Goto Declaration' },
     -- dv = { "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     -- ds = { "<Cmd>split | lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     h = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help' },
-    I = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Goto Implementation' },
-    t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Goto Type Definition' },
+    -- I = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Goto Implementation' },
+    I = { require('telescope.builtin').lsp_implementations, 'Goto Implementation' },
+    -- t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Goto Type Definition' },
+    t = { require('telescope.builtin').lsp_type_definitions, 'Goto Type Definition' },
   }
 
   vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)

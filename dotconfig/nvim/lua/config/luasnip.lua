@@ -16,6 +16,7 @@ require('luasnip.loaders.from_vscode').lazy_load() -- You can pass { paths = "./
 -- snippets is _.snippets, so we need to tell luasnip that the filetype "_"
 -- contains global snippets:
 ls.filetype_extend('all', { '_' })
+ls.filetype_extend('ruby', { 'rails' })
 
 -- load luasnip snippets
 require('luasnip.loaders.from_lua').load({ paths = '~/.config/nvim/lua/yy/snippets' })

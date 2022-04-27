@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
+# set -ex
 
 main() {
   local target=$1
@@ -48,12 +49,7 @@ pull_request_staging() {
     pr_title="${project}-ステージング反映"
   fi
 
-  if [[ -n $diff ]]; then
-    echo "These tickets are include: ${diff}"
-    hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title" -m "$diff"
-  else
-    hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title"
-  fi
+  pull_request "$diff" "$target_branch" "$pr_label" "$pr_title"
 }
 
 pull_request_production() {
@@ -75,12 +71,30 @@ pull_request_production() {
     pr_title="${project}-本番反映"
   fi
 
+  pull_request "$diff" "$target_branch" "$pr_label" "$pr_title"
+}
+
+pull_request() {
+  local diff=$1
+  local target_branch=$2
+  local pr_label=$3
+  local pr_title=$4
   if [[ -n $diff ]]; then
-    echo "These tickets are include: ${diff}"
+    echo "=== These tickets are include ==="
+    echo "$diff"
+    echo "=== end ==="
+  fi
+  if [[ -n "${DIFF_ONLY}" ]]; then
+    return 1
+  fi
+
+  echo "=== Pull request start ==="
+  if [[ -n $diff ]]; then
     hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title" -m "$diff"
   else
     hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title"
   fi
+  echo "=== Pull request end ==="
 }
 
 main "$@"

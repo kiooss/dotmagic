@@ -283,23 +283,9 @@ local function plugins(use)
   -- Fuzzy finder
   use({
     'nvim-telescope/telescope.nvim',
-    opt = true,
     config = function()
       require('config.telescope')
     end,
-    cmd = { 'Telescope' },
-    module = 'telescope',
-    wants = {
-      'plenary.nvim',
-      'popup.nvim',
-      'telescope-frecency.nvim',
-      -- 'telescope-fzy-native.nvim',
-      'telescope-fzf-native.nvim',
-      'telescope-project.nvim',
-      'telescope-file-browser.nvim',
-      'trouble.nvim',
-      'telescope-symbols.nvim',
-    },
     requires = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',

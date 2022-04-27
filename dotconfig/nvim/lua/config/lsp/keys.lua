@@ -73,7 +73,12 @@ function M.setup(client, bufnr)
 
   local keymap_goto = {
     name = '+goto',
-    r = { '<cmd>Telescope lsp_references<cr>', 'References' },
+    r = {
+      function()
+        require('telescope.builtin').lsp_references()
+      end,
+      'References',
+    },
     R = { '<cmd>Trouble lsp_references<cr>', 'Trouble References' },
     d = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition' },
     D = { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Goto Declaration' },

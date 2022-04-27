@@ -36,4 +36,6 @@ CSV.open(file, 'w', write_headers: true, headers: headers) do |writer|
 end
     ]]
   ),
+  parse('type', '# @type [$1]'),
+  parse('return', '# @return [$1]'),
 }

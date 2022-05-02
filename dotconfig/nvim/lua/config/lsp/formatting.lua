@@ -1,5 +1,7 @@
 local util = require('util')
 
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
 local M = {}
 
 -- vim.lsp.handlers["textDocument/hover"] = function(_, method, result)
@@ -17,45 +19,47 @@ function M.toggle()
   end
 end
 
-function M.format()
-  if M.autoformat then
-    vim.lsp.buf.formatting_sync(nil, 6000)
-  end
+function M.lsp_formatting_create_autocmd(bufnr)
+  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      M.lsp_formatting(bufnr)
+    end,
+  })
 end
 
-function M.setup(client, buf)
-  if client.name == 'vuels' and not client.config.settings.vetur.format.enable then
-    client.resolved_capabilities.document_formatting = false
-
+function M.lsp_formatting(bufnr)
+  if not M.autoformat then
     return
   end
 
+  vim.lsp.buf.format({
+    timetout_ms = 6000,
+    bufnr = bufnr,
+    filter = function(clients)
+      -- filter out clients that you don't want to use
+      return vim.tbl_filter(function(client)
+        return client.name ~= 'tsserver'
+      end, clients)
+    end,
+  })
+end
+
+function M.setup(client, buf)
   local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
   local nls = require('config.lsp.null-ls')
-  local efm_formatted = require('config.lsp.efm').formatted_languages
 
-  local enable = false
-  if nls.has_formatter(ft) then
-    enable = client.name == 'null-ls'
-  elseif efm_formatted[ft] then
-    enable = client.name == 'efm'
-  else
-    enable = not (client.name == 'efm' or client.name == 'null-ls')
+  if client.name == 'null-ls' and not nls.has_formatter(ft) then
+    return
   end
 
-  client.resolved_capabilities.document_formatting = enable
-  -- format on save
-  if client.resolved_capabilities.document_formatting then
-    -- vim.notify('[' .. client.name .. '] document_formatting enable.', 'info', {
-    --   title = 'LSP',
-    -- })
-    vim.cmd([[
-      augroup LspFormat
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua require("config.lsp.formatting").format()
-      augroup END
-    ]])
+  if client.name ~= 'null-ls' and not client.supports_method('textDocument/formatting') then
+    return
   end
+
+  M.lsp_formatting_create_autocmd(buf)
 end
 
 return M

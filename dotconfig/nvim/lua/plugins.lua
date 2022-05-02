@@ -81,6 +81,7 @@ local function plugins(use)
 
   use({
     'kosayoda/nvim-lightbulb',
+    disable = true,
     config = function()
       require('config.lightbulb')
     end,

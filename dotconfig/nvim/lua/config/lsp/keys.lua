@@ -105,10 +105,10 @@ function M.setup(client, bufnr)
   end
 
   if client.supports_method('textDocument/formatting') then
-    keymap.c.f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format Document' }
+    keymap.c.f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format Document' }
   elseif client.supports_method('textDocument/rangeFormatting') then
     keymap_visual.c.f = {
-      '<cmd>lua vim.lsp.buf.range_formatting()<CR>',
+      '<cmd>lua vim.lsp.buf.range_format()<CR>',
       'Format Range',
     }
   end

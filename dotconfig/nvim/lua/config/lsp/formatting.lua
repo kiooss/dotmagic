@@ -10,6 +10,8 @@ local M = {}
 
 M.autoformat = true
 
+M.excluded_clients = { tsserver = true, solargraph = true }
+
 function M.toggle()
   M.autoformat = not M.autoformat
   if M.autoformat then
@@ -41,7 +43,7 @@ function M.lsp_formatting(bufnr)
     filter = function(clients)
       -- filter out clients that you don't want to use
       return vim.tbl_filter(function(client)
-        return client.name ~= 'tsserver'
+        return M.excluded_clients[client.name] == nil
       end, clients)
     end,
   })

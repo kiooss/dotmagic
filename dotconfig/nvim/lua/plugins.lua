@@ -697,6 +697,11 @@ local function plugins(use)
     end,
   })
 
+  use({
+    'AndrewRadev/splitjoin.vim',
+    keys = { 'gS', 'gJ' },
+  })
+
   -- flutter
   use({ 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' })
 

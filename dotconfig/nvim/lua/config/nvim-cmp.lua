@@ -139,6 +139,26 @@ cmp.setup({
   },
 })
 
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'luasnip' },
+    {
+      name = 'buffer',
+      option = {
+        -- Options go into this table
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end,
+      },
+    },
+    { name = 'look', keyword_length = 2, option = { convert_case = true, loud = true } },
+  }),
+})
+
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),

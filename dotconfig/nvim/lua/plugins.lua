@@ -228,13 +228,14 @@ local function plugins(use)
   -- "folke/tokyonight.nvim",
   -- "glepnir/zephyr-nvim",
 
-  use('rose-pine/neovim')
   use('folke/tokyonight.nvim')
   use('sainnhe/everforest')
   use('ray-x/aurora')
   use('sainnhe/sonokai')
   use('bluz71/vim-nightfly-guicolors')
   use('EdenEast/nightfox.nvim')
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
+  use({ 'catppuccin/nvim', as = 'catppuccin' })
 
   -- Theme: icons
   use({

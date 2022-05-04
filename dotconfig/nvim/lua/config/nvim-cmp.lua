@@ -49,7 +49,10 @@ cmp.setup({
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, {
+      'i',
+      's',
+    }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -60,7 +63,10 @@ cmp.setup({
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, {
+      'i',
+      's',
+    }),
   }),
 
   formatting = {
@@ -77,6 +83,7 @@ cmp.setup({
         vsnip = '[vsnip]',
         luasnip = '[luasnip]',
         spell = '[spell]',
+        tmux = '[tmux]',
         -- look = '',
         -- nvim_lsp = '',
         -- nvim_lua = '',
@@ -100,6 +107,7 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'treesitter' },
     { name = 'path' },
+    { name = 'tmux' },
     { name = 'look', keyword_length = 2, option = { convert_case = true, loud = true } },
   }),
 

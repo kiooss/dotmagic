@@ -130,6 +130,7 @@ local function plugins(use)
       { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       { 'octaltree/cmp-look', after = 'nvim-cmp' },
       { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
+      { 'andersevenrud/cmp-tmux', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       {
         'windwp/nvim-autopairs',

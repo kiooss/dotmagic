@@ -111,8 +111,8 @@ function config.catppuccin()
     term_colors = false,
     styles = {
       comments = 'italic',
-      functions = 'bold,italic',
-      keywords = 'italic',
+      functions = 'italic',
+      keywords = 'bold',
       strings = 'NONE',
       variables = 'italic',
     },

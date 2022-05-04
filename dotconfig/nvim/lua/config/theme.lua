@@ -174,13 +174,19 @@ end
 function config.setup(theme)
   theme = theme:gsub('-', '_')
 
-  if theme:match('.*fox$') then
-    config.nightfox()
-  else
-    if config[theme] then
-      config[theme]()
-    end
-    vim.cmd('colorscheme ' .. theme)
+  if
+    not pcall(function()
+      if theme:match('.*fox$') then
+        config.nightfox()
+      else
+        if config[theme] then
+          config[theme]()
+        end
+        vim.cmd('colorscheme ' .. theme)
+      end
+    end)
+  then
+    print('Theme not found: ' .. theme)
   end
 end
 

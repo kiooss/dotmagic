@@ -123,6 +123,13 @@ local leader = {
   h = {
     name = '+gitsigns',
     l = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'Highlight Groups at cursor' },
+    b = 'blame line',
+    d = 'diff this',
+    D = 'diff this ~',
+    p = 'preview',
+    R = 'reset buffer',
+    S = 'stage buffer',
+    u = 'undo stage hunk',
   },
   -- u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {

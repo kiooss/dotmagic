@@ -108,51 +108,44 @@ local function plugins(use)
   })
   -- LSP related plugins end
 
+  -- snippets plugin
+  use({
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require('config.luasnip')
+    end,
+    requires = {
+      { 'rafamadriz/friendly-snippets' },
+      { 'Nash0x7E2/awesome-flutter-snippets' },
+    },
+  })
+
   -- auto completion
   use({
     'hrsh7th/nvim-cmp',
-    -- event = { 'InsertEnter', 'CmdlineEnter' },
-    event = { 'InsertEnter' },
     config = function()
       require('config.nvim-cmp')
     end,
-    wants = {
-      'lspkind-nvim',
-      'LuaSnip',
-    },
     requires = {
       'onsails/lspkind-nvim',
       'hrsh7th/cmp-nvim-lsp',
-      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-vsnip', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
-      { 'octaltree/cmp-look', after = 'nvim-cmp' },
-      { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
-      { 'andersevenrud/cmp-tmux', after = 'nvim-cmp' },
-      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-cmdline',
+      'octaltree/cmp-look',
+      'ray-x/cmp-treesitter',
+      'andersevenrud/cmp-tmux',
+      'saadparwaiz1/cmp_luasnip',
       {
         'windwp/nvim-autopairs',
-        after = 'nvim-cmp',
         config = function()
           require('config.autopairs')
         end,
       },
-      { 'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
-      { 'hrsh7th/vim-vsnip-integ', after = 'nvim-cmp' },
-      {
-        'L3MON4D3/LuaSnip',
-        after = 'nvim-cmp',
-        wants = 'friendly-snippets',
-        config = function()
-          require('config.luasnip')
-        end,
-        requires = {
-          { 'rafamadriz/friendly-snippets', opt = true },
-          { 'Nash0x7E2/awesome-flutter-snippets', opt = true },
-        },
-      },
+      -- { 'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
+      -- { 'hrsh7th/vim-vsnip-integ', after = 'nvim-cmp' },
     },
   })
 

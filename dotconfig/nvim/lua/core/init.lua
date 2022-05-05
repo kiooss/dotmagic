@@ -1,5 +1,6 @@
 local global = require('core.global')
 local vim = vim
+math.randomseed(os.time())
 
 -- Create cache dir and subs dir
 local createdir = function()
@@ -55,11 +56,19 @@ local function set_theme()
   -- vim.g.theme = 'everforest'
   -- vim.g.theme = 'rose-pine'
   -- vim.g.theme = 'tokyonight'
-  vim.g.theme = 'catppuccin'
+  -- vim.g.theme = 'catppuccin'
   -- vim.g.theme = 'aurora'
   -- vim.g.theme = 'sonokai'
   -- vim.g.theme = 'nightfly'
-  -- vim.g.theme = 'nightfox'
+  local themes = {
+    'nightfox',
+    'dayfox',
+    'dawnfox',
+    'duskfox',
+    'nordfox',
+    'terafox',
+  }
+  vim.g.theme = themes[math.random(#themes)]
 end
 
 local function load_core()

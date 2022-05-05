@@ -84,6 +84,8 @@ cmp.setup({
         luasnip = '[luasnip]',
         spell = '[spell]',
         tmux = '[tmux]',
+        cmdline = '[cmdline]',
+        cmdline_history = '[cmdline_history]',
         -- look = '',
         -- nvim_lsp = '',
         -- nvim_lua = '',
@@ -181,6 +183,7 @@ cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
     { name = 'path' },
   }, {
+    { name = 'cmdline_history', keyword_length = 3 },
     { name = 'cmdline' },
   }),
 })

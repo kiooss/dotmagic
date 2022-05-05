@@ -2,7 +2,10 @@ local vim = vim
 local gl = R('galaxyline')
 local fileinfo = require('galaxyline.provider_fileinfo')
 local condition = require('galaxyline.condition')
-local colors = require('core.colors')[vim.g.theme] or require('core.colors').default
+local ok, colors = pcall(require('core.colors')[vim.g.theme])
+if not ok then
+  colors = require('core.colors').default()
+end
 local gps = require('nvim-gps')
 
 -- local iconz = require("nvim-nonicons")
@@ -493,7 +496,7 @@ table.insert(cur_section, {
     condition = function()
       return gps.is_available()
     end,
-    highlight = { colors.magenta, colors.bg },
+    highlight = { colors.pink, colors.bg, 'italic' },
   },
 })
 

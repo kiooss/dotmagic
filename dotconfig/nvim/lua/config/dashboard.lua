@@ -52,7 +52,6 @@ local fonts = {
 --   fonts = { 'slant', 'small' }
 -- end
 
-math.randomseed(os.time())
 local header_str = vim.fn.system(
   [[figlet -d $HOME/.dotfiles/vendor/figlet-fonts -f "]] .. fonts[math.random(#fonts)] .. [[" "Yang's neovim"]]
 )

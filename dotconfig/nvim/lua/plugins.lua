@@ -39,15 +39,6 @@ local function plugins(use)
   })
   use({ 'sheerun/vim-polyglot' })
 
-  use({
-    'neoclide/coc.nvim',
-    disable = true,
-    branch = 'release',
-    config = function()
-      vim.cmd('source ~/.config/nvim/viml/plugins.config/coc.nvim.vim')
-    end,
-  })
-
   -- util
   use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
   use({ 'nvim-lua/popup.nvim', module = 'popup' })

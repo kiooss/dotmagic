@@ -62,8 +62,8 @@ local function set_theme()
   -- vim.g.theme = 'nightfly'
   local themes = {
     'nightfox',
-    'dayfox',
-    'dawnfox',
+    -- 'dayfox',
+    -- 'dawnfox',
     'duskfox',
     'nordfox',
     'terafox',

@@ -14,7 +14,7 @@ function M.setup(options)
   null_ls.setup({
     debug = false,
     debounce = 250,
-    save_after_format = false,
+    default_timeout = 10000,
     on_attach = options.on_attach,
     should_attach = function(bufnr)
       return not vim.api.nvim_buf_get_name(bufnr):match('__FLUTTER_DEV_LOG__')

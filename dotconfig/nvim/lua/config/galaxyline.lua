@@ -536,7 +536,6 @@ table.insert(cur_section, {
       function()
         return ' ' .. vim.bo.filetype .. ' '
       end,
-      LspProgress,
     },
     highlight = { colors.cyan, colors.bg, 'bold,italic' },
   },
@@ -554,7 +553,19 @@ table.insert(cur_section, {
     end,
     icon = ' ',
     highlight = { colors.green, colors.bg, 'bold,italic' },
-    separator = '|',
+    separator = '| ',
+    separator_highlight = { colors.border, colors.bg },
+  },
+})
+table.insert(cur_section, {
+  LspProgress = {
+    provider = LspProgress,
+    condition = function()
+      return #vim.lsp.get_active_clients() > 0
+    end,
+    icon = '異 ',
+    highlight = { colors.orange, colors.bg, 'bold,italic' },
+    separator = ' | ',
     separator_highlight = { colors.border, colors.bg },
   },
 })

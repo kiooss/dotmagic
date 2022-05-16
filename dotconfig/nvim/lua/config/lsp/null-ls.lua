@@ -37,7 +37,7 @@ function M.setup(options)
       null_ls.builtins.formatting.sqlformat.with({
         extra_args = { '-r' },
       }),
-      null_ls.builtins.formatting.rubocop,
+      -- null_ls.builtins.formatting.rubocop,
 
       -- diagnostics
       null_ls.builtins.diagnostics.shellcheck.with({

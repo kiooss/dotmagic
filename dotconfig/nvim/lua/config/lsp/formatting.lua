@@ -10,7 +10,9 @@ local M = {}
 
 M.autoformat = true
 
-M.excluded_clients = { tsserver = true, solargraph = true }
+M.excluded_clients = {
+  tsserver = true, --[[ solargraph = true ]]
+}
 
 function M.toggle()
   M.autoformat = not M.autoformat

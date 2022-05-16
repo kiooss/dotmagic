@@ -37,6 +37,22 @@ local function plugins(use)
       require('config.filetype')
     end,
   })
+
+  -- better syntax parser
+  use({
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      { 'nvim-treesitter/playground', cmd = 'TSHighlightCapturesUnderCursor' },
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'p00f/nvim-ts-rainbow',
+      'RRethy/nvim-treesitter-textsubjects',
+    },
+    config = function()
+      require('config.treesitter')
+    end,
+  })
+
   use({ 'sheerun/vim-polyglot' })
 
   -- util
@@ -46,15 +62,6 @@ local function plugins(use)
   -- LSP related plugins start
   use({
     'neovim/nvim-lspconfig',
-    opt = true,
-    event = { 'BufReadPre', 'InsertEnter' },
-    wants = {
-      'nvim-lsp-ts-utils',
-      'null-ls.nvim',
-      'lua-dev.nvim',
-      'schemastore.nvim',
-      'nvim-lsp-installer',
-    },
     config = function()
       require('config.lsp')
     end,
@@ -168,21 +175,6 @@ local function plugins(use)
     config = function()
       require('config.comment')
     end,
-  })
-
-  -- better syntax parser
-  use({
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    -- opt = true,
-    -- event = 'BufRead',
-    requires = {
-      { 'nvim-treesitter/playground', cmd = 'TSHighlightCapturesUnderCursor' },
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'p00f/nvim-ts-rainbow',
-      'RRethy/nvim-treesitter-textsubjects',
-    },
-    config = [[require('config.treesitter')]],
   })
 
   -- display colors

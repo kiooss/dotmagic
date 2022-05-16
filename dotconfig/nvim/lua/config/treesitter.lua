@@ -28,7 +28,7 @@ require('nvim-treesitter.configs').setup({
     -- "json",
     -- "markdown",
   },
-  highlight = { enable = true, use_languagetree = true },
+  highlight = { enable = true, additional_vim_regex_highlighting = false },
   indent = { enable = false },
   matchup = {
     enable = true,

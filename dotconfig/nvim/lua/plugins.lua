@@ -702,6 +702,14 @@ local function plugins(use)
       require('config.dressing')
     end,
   })
+
+  use({
+    'anuvyklack/pretty-fold.nvim',
+    requires = 'anuvyklack/nvim-keymap-amend', -- only for preview
+    config = function()
+      require('config.pretty-fold')
+    end,
+  })
 end
 
 return packer.setup(config, plugins)

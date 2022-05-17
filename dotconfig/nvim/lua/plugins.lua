@@ -104,6 +104,12 @@ local function plugins(use)
       vim.g.vista_default_executive = 'nvim_lsp'
     end,
   })
+  use({
+    'j-hui/fidget.nvim',
+    config = function()
+      require('config.fidget')
+    end,
+  })
   -- LSP related plugins end
 
   -- snippets plugin

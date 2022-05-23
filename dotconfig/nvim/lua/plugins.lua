@@ -710,6 +710,25 @@ local function plugins(use)
       require('config.pretty-fold')
     end,
   })
+
+  use({
+    'kkoomen/vim-doge',
+    run = function()
+      vim.fn['doge#install']()
+    end,
+    config = function()
+      require('config.vim-doge')
+    end,
+  })
+
+  use({
+    'danymat/neogen',
+    config = function()
+      require('config.neogen')
+      require('neogen').setup({})
+    end,
+    requires = 'nvim-treesitter/nvim-treesitter',
+  })
 end
 
 return packer.setup(config, plugins)

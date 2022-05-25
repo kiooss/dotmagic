@@ -25,6 +25,8 @@ cmp.setup({
   },
 
   mapping = cmp.mapping.preset.insert({
+    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     -- ['<C-l>'] = cmp.mapping.complete(), -- use tab to invoke

@@ -33,7 +33,7 @@ end
 local rubocop = function()
   return {
     exe = 'rubocop', -- might prepend `bundle exec `
-    args = { '--auto-correct', '--stdin', '%:p', '2>/dev/null', '|', "awk 'f; /^====================$/{f=1}'" },
+    args = { '--auto-correct-all', '--stdin', '%:p', '2>/dev/null', '|', "awk 'f; /^====================$/{f=1}'" },
     stdin = true,
   }
 end

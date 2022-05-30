@@ -1,31 +1,4 @@
 vim.g.nvim_tree_auto_ignore_ft = { 'dashboard', 'startify' }
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_highlight_opened_files = 3 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
-vim.g.nvim_tree_show_icons = {
-  git = 1,
-  folders = 1,
-  files = 1,
-  folder_arrows = 1,
-}
-vim.g.nvim_tree_icons = {
-  default = '',
-  symlink = '',
-  git = {
-    unstaged = '',
-    staged = '✓',
-    unmerged = '≠',
-    renamed = '≫',
-    untracked = '★',
-    deleted = '',
-  },
-}
-vim.g.nvim_tree_special_files = {
-  README = true,
-  Makefile = true,
-  MAKEFILE = true,
-  ['README.md'] = true,
-  ['readme.md'] = true,
-}
 
 require('nvim-tree').setup({
   -- disables netrw completely
@@ -70,5 +43,9 @@ require('nvim-tree').setup({
     open_file = {
       resize_window = true,
     },
+  },
+  renderer = {
+    highlight_git = true,
+    highlight_opened_files = 'all',
   },
 })

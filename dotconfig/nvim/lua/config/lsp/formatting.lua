@@ -39,16 +39,12 @@ function M.lsp_formatting(bufnr)
   if not M.autoformat then
     return
   end
-  -- vim.lsp.buf.format({ timeout_ms = 10000 })
 
   vim.lsp.buf.format({
     timeout_ms = 600000,
     bufnr = bufnr,
-    filter = function(clients)
-      -- filter out clients that you don't want to use
-      return vim.tbl_filter(function(client)
-        return M.excluded_clients[client.name] == nil
-      end, clients)
+    filter = function(client)
+      return M.excluded_clients[client.name] == nil
     end,
   })
 end

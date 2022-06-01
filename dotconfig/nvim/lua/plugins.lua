@@ -409,19 +409,14 @@ local function plugins(use)
   --   end,
   -- })
 
-  -- use(
-  --   {
-  --     "phaazon/hop.nvim",
-  --     keys = {"gh"},
-  --     cmd = {"HopWord", "HopChar1"},
-  --     config = function()
-  --       require("util").nmap("gh", "<cmd>HopWord<CR>")
-  --       -- require("util").nmap("s", "<cmd>HopChar1<CR>")
-  --       -- you can configure Hop the way you like here; see :h hop-config
-  --       require("hop").setup({})
-  --     end
-  --   }
-  -- )
+  use({
+    'phaazon/hop.nvim',
+    keys = { 'gh' },
+    cmd = { 'HopWord', 'HopChar1' },
+    config = function()
+      require('config.hop')
+    end,
+  })
 
   -- use(
   --   {

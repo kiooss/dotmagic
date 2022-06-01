@@ -113,7 +113,6 @@ cmp.setup({
     { name = 'path' },
     { name = 'tmux' },
     { name = 'look', keyword_length = 2, option = { convert_case = true, loud = true } },
-    { name = 'nvim_lsp_signature_help' },
   }),
 
   sorting = {
@@ -176,8 +175,6 @@ cmp.setup.filetype('gitcommit', {
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp_document_symbol' },
-  }, {
     { name = 'buffer' },
   }),
 })

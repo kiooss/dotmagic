@@ -137,10 +137,8 @@ local function plugins(use)
       'hrsh7th/cmp-vsnip',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-cmdline',
       'dmitmel/cmp-cmdline-history',
-      'hrsh7th/cmp-nvim-lsp-document-symbol',
       'octaltree/cmp-look',
       'ray-x/cmp-treesitter',
       'andersevenrud/cmp-tmux',
@@ -156,26 +154,7 @@ local function plugins(use)
     },
   })
 
-  -- use({
-  --   'abecodes/tabout.nvim',
-  --   config = function()
-  --     require('config.tabout')
-  --   end,
-  --   wants = { 'nvim-treesitter' }, -- or require if not used so far
-  --   after = { 'nvim-cmp' }, -- if a completion plugin is using tabs load it before
-  -- })
-
   -- comment plugin
-  -- use({
-  --   'b3nj5m1n/kommentary',
-  --   opt = true,
-  --   wants = 'nvim-ts-context-commentstring',
-  --   keys = { 'gc', '<C-_>' },
-  --   config = function()
-  --     require('config.comments')
-  --   end,
-  --   requires = 'JoosepAlviste/nvim-ts-context-commentstring',
-  -- })
   use({
     'numToStr/Comment.nvim',
     opt = true,
@@ -239,7 +218,12 @@ local function plugins(use)
   })
 
   -- Dashboard
-  use({ 'glepnir/dashboard-nvim', config = [[require('config.dashboard')]] })
+  use({
+    'glepnir/dashboard-nvim',
+    config = function()
+      require('config.dashboard')
+    end,
+  })
 
   use({
     'norcalli/nvim-terminal.lua',
@@ -327,17 +311,6 @@ local function plugins(use)
       require('config.bufferline')
     end,
   })
-
-  -- Terminal
-  -- use(
-  --   {
-  --     "akinsho/nvim-toggleterm.lua",
-  --     keys = "<M-`>",
-  --     config = function()
-  --       require("config.terminal")
-  --     end
-  --   }
-  -- )
 
   -- Smooth Scrolling
   use({
@@ -470,17 +443,6 @@ local function plugins(use)
     end,
   })
 
-  -- use(
-  --   {
-  --     "folke/persistence.nvim",
-  --     event = "BufReadPre",
-  --     module = "persistence",
-  --     config = function()
-  --       require("persistence").setup()
-  --     end
-  --   }
-  -- )
-
   use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
 
   use({ 'mbbill/undotree', cmd = 'UndotreeToggle' })
@@ -516,7 +478,6 @@ local function plugins(use)
   })
 
   -- use("DanilaMihailov/vim-tips-wiki")
-  -- use("nanotee/luv-vimdocs")
   use({
     'andymass/vim-matchup',
     event = 'CursorMoved',
@@ -565,17 +526,6 @@ local function plugins(use)
     'mattn/vim-sqlfmt',
     ft = 'sql',
   })
-
-  -- if global.is_linux then
-  --   use({
-  --     'wincent/vim-clipper',
-  --     setup = function()
-  --       vim.g.ClipperMap = 0
-  --       vim.g.ClipperAddress = '~/.clipper.sock'
-  --       vim.g.ClipperPort = 0
-  --     end,
-  --   })
-  -- end
 
   -- align
   use({ 'junegunn/vim-easy-align' })

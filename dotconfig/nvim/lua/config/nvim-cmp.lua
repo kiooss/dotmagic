@@ -112,6 +112,7 @@ cmp.setup({
     { name = 'treesitter' },
     { name = 'path' },
     { name = 'tmux' },
+    { name = 'emoji' },
     { name = 'look', keyword_length = 2, option = { convert_case = true, loud = true } },
   }),
 

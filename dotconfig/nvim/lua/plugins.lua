@@ -138,6 +138,7 @@ local function plugins(use)
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-emoji',
       'dmitmel/cmp-cmdline-history',
       'octaltree/cmp-look',
       'ray-x/cmp-treesitter',

@@ -24,7 +24,7 @@ if (( $+commands[ranger] )); then
 fi
 
 if (( $+commands[mycli] )); then
-  bindkey -s '\em' '^Umycli -u root -proot ^M'
+  bindkey -s '\em' '^Umycli -u root -proot --port=3307^M'
 fi
 
 goto-gitroot() {

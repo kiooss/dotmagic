@@ -7,7 +7,7 @@ local config = {
     enable = false,
     threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
   },
-  log = { level = 'trace' }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal".
+  log = { level = 'debug' }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal".
   display = {
     open_fn = function()
       local lines = vim.o.lines

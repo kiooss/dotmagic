@@ -55,20 +55,20 @@ end
 local function set_theme()
   -- vim.g.theme = 'everforest'
   -- vim.g.theme = 'rose-pine'
-  -- vim.g.theme = 'tokyonight'
+  vim.g.theme = 'tokyonight'
   -- vim.g.theme = 'catppuccin'
   -- vim.g.theme = 'aurora'
   -- vim.g.theme = 'sonokai'
   -- vim.g.theme = 'nightfly'
-  local themes = {
-    'nightfox',
-    -- 'dayfox',
-    -- 'dawnfox',
-    'duskfox',
-    'nordfox',
-    'terafox',
-  }
-  vim.g.theme = themes[math.random(#themes)]
+  -- local themes = {
+  --   'nightfox',
+  --   -- 'dayfox',
+  --   -- 'dawnfox',
+  --   'duskfox',
+  --   'nordfox',
+  --   'terafox',
+  -- }
+  -- vim.g.theme = themes[math.random(#themes)]
 end
 
 local function load_core()

@@ -602,7 +602,12 @@ local function plugins(use)
   })
 
   -- copy text to the system clipboard from anywhere
-  use({ 'ojroques/vim-oscyank' })
+  use({
+    'ojroques/vim-oscyank',
+    config = function()
+      vim.g.oscyank_term = 'default'
+    end,
+  })
 
   -- Syntax plugins
   use({ 'lumiliet/vim-twig', ft = 'twig' })
@@ -612,6 +617,7 @@ local function plugins(use)
 
   use({
     'github/copilot.vim',
+    disable = true,
     config = function()
       require('config.copilot')
     end,

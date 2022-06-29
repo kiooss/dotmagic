@@ -1,6 +1,6 @@
 function proxy-on() {
   local HOST=${MY_PROXY_HOST:-localhost}
-  export https_proxy=http://$HOST:7890 http_proxy=http://$HOST:7890 all_proxy=socks5://$HOST:7891
+  export https_proxy=http://$HOST:7890 http_proxy=http://$HOST:7890 all_proxy=socks5://$HOST:7890
   echo "on" > ~/.cache/proxy_state
 }
 

@@ -17,9 +17,9 @@ end
 
 dashboard.custom_header = function()
   local fonts = {
-    'DOS Rebel',
+    -- 'DOS Rebel',
     -- "NScript",
-    '3d',
+    -- '3d',
     'ANSI Shadow',
     -- 'Bloody',
     'Elite',
@@ -41,7 +41,7 @@ end
 dashboard.custom_center = {
   {
     icon = '  ',
-    desc = f('Recently opened files (cwd only)'),
+    desc = f('Recently opened files'),
     shortcut = 'SPC f r',
     action = telescope_helper.oldfiles_cwd_only,
   },

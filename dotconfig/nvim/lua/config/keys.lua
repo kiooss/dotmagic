@@ -25,6 +25,12 @@ local leader = {
     end,
     'Search',
   },
+  ['.'] = {
+    function()
+      require('telescope.builtin').resume()
+    end,
+    'Resume Telescope',
+  },
   ['*'] = {
     function()
       require('telescope.builtin').grep_string()

@@ -6,7 +6,7 @@ local function jump_to_last_position()
   local ft = vim.api.nvim_get_option_value('filetype', {})
   local in_range = last_curpos >= 1 and last_curpos <= last_line
   local is_valid_filetype = ft ~= 'commit' and ft ~= 'rebase' and ft ~= 'gitcommit'
-  if in_range and is_valid_filetype then
+  if in_range and is_valid_filetype and vim.api.nvim_buf_get_name(0) ~= '' then
     vim.cmd([[ normal! g`" ]])
   end
 end

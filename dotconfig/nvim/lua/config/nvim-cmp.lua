@@ -110,6 +110,7 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'buffer' },
     { name = 'treesitter' },
+    { name = 'nvim_lsp_signature_help' },
     { name = 'path' },
     { name = 'tmux' },
     { name = 'emoji' },

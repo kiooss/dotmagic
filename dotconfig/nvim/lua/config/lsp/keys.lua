@@ -89,20 +89,20 @@ function M.setup(client, bufnr)
   vim.keymap.set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
   -- local trigger_chars = client.resolved_capabilities.signature_help_trigger_characters
-  local trigger_chars = { ',' }
-  for _, c in ipairs(trigger_chars) do
-    vim.keymap.set('i', c, function()
-      vim.defer_fn(function()
-        pcall(vim.lsp.buf.signature_help)
-      end, 0)
-      return c
-    end, {
-      noremap = true,
-      silent = true,
-      buffer = bufnr,
-      expr = true,
-    })
-  end
+  -- -- local trigger_chars = { ',' }
+  -- for _, c in ipairs(trigger_chars) do
+  --   vim.keymap.set('i', c, function()
+  --     vim.defer_fn(function()
+  --       pcall(vim.lsp.buf.signature_help)
+  --     end, 0)
+  --     return c
+  --   end, {
+  --     noremap = true,
+  --     silent = true,
+  --     buffer = bufnr,
+  --     expr = true,
+  --   })
+  -- end
 
   if client.supports_method('textDocument/formatting') then
     keymap.c.f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format Document' }

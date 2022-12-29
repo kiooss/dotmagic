@@ -11,6 +11,8 @@ return {
   'editorconfig/editorconfig-vim',
   'AndrewRadev/switch.vim',
 
+  { 'rhysd/committia.vim', lazy = false },
+
   -- additional text objects
   { 'wellle/targets.vim', lazy = false },
   { 'kana/vim-textobj-user', lazy = false, priority = 99 },
@@ -145,11 +147,6 @@ return {
   {
     'pechorin/any-jump.vim',
     cmd = { 'AnyJump', 'AnyJumpVisual' },
-  },
-
-  {
-    'rhysd/committia.vim',
-    ft = 'gitcommit',
   },
 
   { 'mhinz/vim-sayonara', cmd = { 'Sayonara' } },

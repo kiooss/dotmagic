@@ -92,8 +92,8 @@ M.config = function()
     {
       icon = '  ',
       desc = f('Update plugins'),
-      shortcut = 'SPC p s',
-      action = 'PackerSync',
+      shortcut = 'SPC   m',
+      action = 'lazy',
     },
     {
       icon = '  ',

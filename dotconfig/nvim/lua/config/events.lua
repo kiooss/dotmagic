@@ -121,10 +121,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = group,
 })
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-  command = [[if v:event.operator is 'y' && (v:event.regname is '' || v:event.regname is '+') | execute 'OSCYankReg "' | endif]],
-  group = group,
-})
+-- vim.api.nvim_create_autocmd('TextYankPost', {
+--   command = [[if v:event.operator is 'y' && (v:event.regname is '' || v:event.regname is '+') | execute 'OSCYankReg "' | endif]],
+--   group = group,
+-- })
 
 vim.api.nvim_create_autocmd('CursorHold', {
   desc = 'Show current line diagnostics',

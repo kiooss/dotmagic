@@ -2,8 +2,18 @@
 --  init.lua --- Lua Config Entry file for neovim
 --  => Yang Yang
 -- =============================================================================
-local ok, err = pcall(require, 'core')
+require('util.debug')
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
-if not ok then
-  error('Error loading core' .. '\n\n' .. err)
-end
+require('config.lazy')
+require('config.options')
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'VeryLazy',
+  callback = function()
+    require('util').version()
+    require('config.events')
+    require('config.mappings')
+  end,
+})

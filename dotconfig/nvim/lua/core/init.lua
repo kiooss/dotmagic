@@ -76,17 +76,21 @@ local function load_core()
   disable_distribution_plugins()
   leader_map()
   set_theme()
-  require('util')
+  local util = require('util')
+  local require = util.require
+
   require('core.options')
+  require('core.lazy')
+
   require('core.event')
   require('core.keymaps')
-  require('config.theme').setup(vim.g.theme)
+  -- require('config.theme').setup(vim.g.theme)
 
   -- no need to load this immediately, since we have packer_compiled
-  vim.defer_fn(function()
-    require('plugins')
-    -- require('core.custom')
-  end, 0)
+  -- vim.defer_fn(function()
+  --   require('plugins')
+  --   -- require('core.custom')
+  -- end, 0)
 end
 
 load_core()

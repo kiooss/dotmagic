@@ -1,9 +1,4 @@
 -- selene: allow(global_usage)
-_G.dump = function(...)
-  print(vim.inspect(...))
-end
-
--- selene: allow(global_usage)
 _G.profile = function(cmd, times)
   times = times or 100
   local args = {}
@@ -45,11 +40,6 @@ _G.should_colorcolumn = function()
   return true
 end
 
-_G.P = function(v)
-  print(vim.inspect(v))
-  return v
-end
-
 -- Debug Notification
 -- (value, context_message)
 _G.DN = function(v, cm)
@@ -70,6 +60,26 @@ _G.R = function(name)
 end
 
 local M = {}
+
+function M.require(mod)
+  local ok, ret = M.try(require, mod)
+  return ok and ret
+end
+
+function M.try(fn, ...)
+  local args = { ... }
+
+  return xpcall(function()
+    return fn(unpack(args))
+  end, function(err)
+    local lines = {}
+    table.insert(lines, err)
+    table.insert(lines, debug.traceback('', 3))
+
+    M.error(table.concat(lines, '\n'))
+    return err
+  end)
+end
 
 function M.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -158,6 +168,17 @@ function M.lsp_config()
     }
   end
   dump(ret)
+end
+
+function M.version()
+  local v = vim.version()
+  if v and not v.prerelease then
+    vim.notify(
+      ('Neovim v%d.%d.%d'):format(v.major, v.minor, v.patch),
+      vim.log.levels.WARN,
+      { title = 'Neovim: not running nightly!' }
+    )
+  end
 end
 
 return M

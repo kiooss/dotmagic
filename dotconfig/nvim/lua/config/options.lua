@@ -4,11 +4,20 @@ vim.opt.fileencodings = 'ucs-bom,utf-8,euc-jp,cp932,latin1'
 vim.o.formatoptions = 'jcroqlnt' -- tcqj
 vim.opt.clipboard = 'unnamedplus' -- sync with system clipboard
 vim.opt.mouse = 'a' -- enable mouse mode
+vim.opt.fileformat = 'unix'
+vim.opt.fileformats = 'unix,mac,dos'
+vim.opt.virtualedit = 'block'
+vim.opt.sessionoptions = 'curdir,help,tabpages,winsize'
+vim.opt.grepprg = 'rg --hidden --vimgrep --smart-case --'
+vim.opt.grepformat = '%f:%l:%c:%m'
+vim.opt.switchbuf = 'useopen'
 
 vim.opt.termguicolors = true -- True color support
 vim.opt.autowrite = true -- enable auto write
+vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.hidden = true -- Enable modified buffers in background
 vim.opt.number = true -- Print line number
+vim.opt.list = true -- Show some invisible characters (tabs...
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.relativenumber = true -- Relative line numbers
@@ -26,6 +35,13 @@ vim.opt.smartcase = true -- Don't ignore case with capitals
 vim.opt.smartindent = true -- Insert indents automatically
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
+vim.opt.wildignorecase = true
+vim.opt.shiftround = true
+vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
+vim.opt.redrawtime = 1500
+vim.opt.ignorecase = true -- ingore case in search patterns.
+vim.opt.infercase = true
+vim.opt.showfulltag = true
 
 vim.opt.textwidth = 80
 vim.opt.autoindent = true
@@ -35,9 +51,13 @@ vim.opt.breakindentopt = 'shift:2,min:20'
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = 'niv'
 
+vim.opt.backup = true
+vim.opt.swapfile = false
+vim.opt.history = 2000
+
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
-vim.synmaxcol = 2500
+vim.opt.synmaxcol = 2500
 
 vim.opt.wildmode = 'longest:full,full' -- Command-line completion mode
 vim.opt.completeopt = 'menu,menuone,noselect'
@@ -49,88 +69,34 @@ vim.opt.foldnestmax = 10
 
 vim.opt.ttimeoutlen = 0
 
-local function load_options()
-  local global_local = {
-    errorbells = true,
-    visualbell = true,
-    fileformat = 'unix',
-    fileformats = 'unix,mac,dos',
-    virtualedit = 'block',
-    viewoptions = 'folds,cursor,curdir,slash,unix',
-    sessionoptions = 'curdir,help,tabpages,winsize',
-    -- wildmode = 'list:longest,full',
-    wildignorecase = true,
-    wildignore = '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**',
-    backup = false,
-    writebackup = false,
-    swapfile = false,
-    history = 2000,
-    -- TODO
-    shada = "!,'300,<50,@100,s10,h",
-    backupskip = '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim',
-    shiftround = true,
-    updatetime = 100,
-    redrawtime = 1500,
-    ignorecase = true,
-    infercase = true,
-    incsearch = true,
-    wrapscan = true,
-    complete = '.,w,b,k',
-    inccommand = 'nosplit',
-    grepformat = '%f:%l:%c:%m',
-    grepprg = 'rg --hidden --vimgrep --smart-case --',
-    breakat = [[\ \	;:,!?]],
-    startofline = false,
-    -- whichwrap = "h,l,<,>,[,],~",
-    -- TODO
-    -- set switchbuf=useopen,usetab    " Jump to the first open window in any tab
-    -- set switchbuf+=vsplit           " Switch buffer behavior to vsplit
-    switchbuf = 'useopen',
-    backspace = 'indent,eol,start',
-    diffopt = 'filler,iwhite,internal,algorithm:patience',
-    showfulltag = true,
-    -- TODO
-    -- completeopt = 'menuone,noselect',
-    jumpoptions = 'stack',
-    showmode = false,
-    shortmess = 'aoOTIcF',
-    scrolloff = 2,
-    sidescrolloff = 5,
-    foldlevelstart = 99,
-    ruler = true,
-    cursorline = true,
-    cursorcolumn = false,
-    list = true,
-    showtabline = 2,
-    winwidth = 30,
-    winminwidth = 10,
-    pumheight = 15,
-    helpheight = 12,
-    previewheight = 12,
-    -- showcmd = false,
-    showcmd = true,
-    cmdheight = 1,
-    cmdwinheight = 5,
-    equalalways = false,
-    -- laststatus = 3,
-    display = 'lastline',
-    showbreak = '↪ ',
-    pumblend = 10,
-    winblend = 10,
-    modeline = true,
-    report = 0,
-    path = '.,**',
-    matchtime = 2,
-    -- title = true,
-    -- titlestring = 'VIM:  %f',
-  }
+vim.opt.errorbells = true
+vim.opt.visualbell = true
+vim.opt.equalalways = false
 
-  for name, value in pairs(global_local) do
-    vim.o[name] = value
-  end
-end
+vim.opt.pumblend = 10 -- Popup blend
+vim.opt.winblend = 10 -- Floating window blend
+vim.opt.scrolloff = 4 -- Lines of context
+vim.opt.sidescrolloff = 8 -- Columns of context
+vim.opt.showtabline = 2 -- Always show tabline
+vim.opt.pumheight = 15 -- Maximum number of entries in a popup
+vim.opt.helpheight = 12
+vim.opt.previewheight = 12
+vim.opt.winwidth = 30
+vim.opt.winminwidth = 10
+vim.opt.report = 0 -- Always report changed lines.
+vim.opt.matchtime = 2
+vim.opt.showbreak = '↪ '
+vim.opt.jumpoptions = 'stack'
+vim.opt.shada = "!,'300,<50,@100,s10,h"
+vim.opt.backupskip = '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim'
+vim.opt.breakat = [[\ \	;:,!?]]
+vim.opt.complete = '.,w,b,k'
+vim.opt.diffopt = 'filler,iwhite,internal,algorithm:patience'
+vim.opt.shortmess = 'aoOTIcF'
+-- vim.opt.path = '.,**'
 
-load_options()
+vim.o.wildignore =
+  '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**'
 
 vim.g.markdown_recommended_style = 0
 

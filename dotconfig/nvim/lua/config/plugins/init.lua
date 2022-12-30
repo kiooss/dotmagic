@@ -8,9 +8,9 @@ return {
   'windwp/nvim-spectre',
   'folke/twilight.nvim',
   'folke/which-key.nvim',
-  'editorconfig/editorconfig-vim',
-  'AndrewRadev/switch.vim',
 
+  { 'editorconfig/editorconfig-vim', event = 'VeryLazy' },
+  { 'AndrewRadev/switch.vim', keys = { 'gs' } },
   { 'rhysd/committia.vim', lazy = false },
 
   -- additional text objects
@@ -48,7 +48,7 @@ return {
       require('styler').setup({
         themes = {
           markdown = { colorscheme = 'tokyonight-storm' },
-          help = { colorscheme = 'oxocarbon', background = 'dark' },
+          -- help = { colorscheme = 'oxocarbon', background = 'dark' },
           -- noice = { colorscheme = "gruvbox", background = "dark" },
         },
       })

@@ -11,6 +11,29 @@ local function jump_to_last_position()
   end
 end
 
+local function should_colorcolumn()
+  local filetype_exclude = {
+    'diff',
+    'packer',
+    'fugitiveblame',
+    'undotree',
+    'nerdtree',
+    'qf',
+    'list',
+    'dashboard',
+    'startify',
+    'DiffviewFiles',
+  }
+
+  for _, ft in ipairs(filetype_exclude) do
+    if ft == vim.bo.filetype then
+      return false
+    end
+  end
+
+  return true
+end
+
 -- lua api
 local group = vim.api.nvim_create_augroup('kiooss', { clear = true })
 

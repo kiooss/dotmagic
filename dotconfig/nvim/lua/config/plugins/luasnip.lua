@@ -11,7 +11,6 @@ local M = {
 }
 
 function M.config()
-  local util = require('util')
   local luasnip = require('luasnip')
   require('neogen')
 
@@ -19,34 +18,28 @@ function M.config()
     history = true,
     enable_autosnippets = true,
     -- Update more often, :h events for more info.
-    -- updateevents = "TextChanged,TextChangedI",
+    updateevents = 'TextChanged,TextChangedI',
   })
 
-  --- <tab> to jump to next snippet's placeholder
-  local function on_tab()
-    return luasnip.jump(1) and '' or util.t('<Tab>')
-  end
+  luasnip.filetype_extend('all', { '_' })
+  luasnip.filetype_extend('ruby', { 'rails' })
 
-  --- <s-tab> to jump to next snippet's placeholder
-  local function on_s_tab()
-    return luasnip.jump(-1) and '' or util.t('<S-Tab>')
-  end
+  require('luasnip.loaders.from_lua').load({ paths = '~/.config/nvim/lua/yy/snippets' })
 
-  -- vim.keymap.set("i", "<Tab>", on_tab, { expr = true })
-  -- vim.keymap.set("s", "<Tab>", on_tab, { expr = true })
-  -- vim.keymap.set("i", "<S-Tab>", on_s_tab, { expr = true })
-  -- vim.keymap.set("s", "<S-Tab>", on_s_tab, { expr = true })
+  -- keymaps
+  -- <c-l> is selecting within a list of options.
+  -- This is useful for choice nodes (introduced in the forthcoming episode 2)
+  vim.keymap.set('i', '<c-l>', function()
+    if luasnip.choice_active() then
+      luasnip.change_choice(1)
+    end
+  end)
 
-  vim.cmd([[
-" press <Tab> to expand or jump in a snippet. These can also be mapped separately
-" via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-" -1 for jumping backwards.
-inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+  vim.keymap.set('i', '<c-u>', require('luasnip.extras.select_choice'))
 
-snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-]])
+  vim.keymap.set('n', '<leader>se', function()
+    require('luasnip.loaders.from_lua').edit_snippet_files()
+  end)
 end
 
 return M

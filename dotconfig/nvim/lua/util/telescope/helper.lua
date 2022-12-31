@@ -88,6 +88,7 @@ function M.project_files(opts)
 
   opts.prompt_title = ' Git Files'
   opts.prompt_prefix = '  '
+  opts.show_untracked = true
   opts.results_title = 'Project (' .. _git_pwd .. ') Files Results'
 
   require('telescope.builtin').git_files(opts)

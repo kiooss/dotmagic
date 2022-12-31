@@ -149,6 +149,14 @@ return {
     cmd = { 'AnyJump', 'AnyJumpVisual' },
   },
 
+  {
+    'Wansmer/treesj',
+    keys = {
+      { 'J', '<cmd>TSJToggle<cr>' },
+    },
+    config = { use_default_keymaps = false },
+  },
+
   { 'mhinz/vim-sayonara', cmd = { 'Sayonara' } },
 
   {

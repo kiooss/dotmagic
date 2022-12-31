@@ -276,7 +276,7 @@ local leader = {
     s = { telescope_helper.buffers, 'Buffers' },
     t = { telescope_helper.builtin, 'Telescope Builtins' },
   },
-  m = { name = '+coc' },
+  -- m = { name = '+coc' },
   -- o = {
   --   name = "+open",
   --   p = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },

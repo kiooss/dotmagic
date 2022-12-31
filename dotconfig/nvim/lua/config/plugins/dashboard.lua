@@ -91,8 +91,8 @@ M.config = function()
     },
     {
       icon = '  ',
-      desc = f('Update plugins'),
-      shortcut = 'SPC   m',
+      desc = f('Manage plugins'),
+      shortcut = 'SPC l y',
       action = 'lazy',
     },
     {

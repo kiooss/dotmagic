@@ -105,7 +105,7 @@ function M.config()
         --   end,
         -- },
       },
-      lualine_y = { 'location' },
+      lualine_y = { 'encoding', 'fileformat', 'filetype', 'location', 'progress' },
       lualine_z = { { clock, separator = { right = '' } } },
     },
     inactive_sections = {

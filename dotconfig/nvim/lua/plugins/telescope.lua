@@ -121,7 +121,7 @@ end
 
 function M.init()
   -- vim.keymap.set('n', '<leader><space>', function()
-  --   require('config.plugins.telescope').project_files()
+  --   require('plugins.telescope').project_files()
   -- end, { desc = 'Find File' })
 
   -- vim.keymap.set('n', '<leader>fd', function()

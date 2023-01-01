@@ -4,27 +4,27 @@ if use_dev then
   -- use the local project
   vim.opt.runtimepath:prepend(vim.fn.expand('~/projects/lazy.nvim'))
 else
-  -- bootstrap from github
   local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
   if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-      'git',
-      'clone',
-      '--filter=blob:none',
-      '--single-branch',
-      'git@github.com:folke/lazy.nvim.git',
-      lazypath,
-    })
+    vim.fn.system({ 'git', 'clone', '--filter=blob:none', 'https://github.com/folke/lazy.nvim.git', lazypath })
+    vim.fn.system({ 'git', '-C', lazypath, 'checkout', 'tags/stable' }) -- last stable release
   end
-  vim.opt.runtimepath:prepend(lazypath)
+  vim.opt.rtp:prepend(lazypath)
 end
 
--- load lazy
-require('lazy').setup('config.plugins', {
+require('lazy').setup('plugins', {
   defaults = { lazy = true },
+  -- dev = { patterns = jit.os:find('Windows') and {} or { 'folke' } },
   install = { colorscheme = { 'tokyonight', 'habamax' } },
   checker = { enabled = true },
+  diff = {
+    cmd = 'terminal_git',
+  },
   performance = {
+    cache = {
+      enabled = true,
+      -- disable_events = {},
+    },
     rtp = {
       disabled_plugins = {
         'gzip',
@@ -35,7 +35,15 @@ require('lazy').setup('config.plugins', {
         'tohtml',
         'tutor',
         'zipPlugin',
+        'nvim-treesitter-textobjects',
       },
+    },
+  },
+  ui = {
+    custom_keys = {
+      ['<localleader>d'] = function(plugin)
+        dd(plugin)
+      end,
     },
   },
   -- debug = true,

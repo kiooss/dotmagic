@@ -8,7 +8,7 @@ _G.profile = function(cmd, times, flush)
     end
     cmd()
   end
-  print(((vim.loop.hrtime() - start) / 1000000 / times) .. 'ms')
+  print(((vim.loop.hrtime() - start) / 1000000 / times) .. "ms")
 end
 
 local M = {}
@@ -26,25 +26,25 @@ function M.try(fn, ...)
   end, function(err)
     local lines = {}
     table.insert(lines, err)
-    table.insert(lines, debug.traceback('', 3))
+    table.insert(lines, debug.traceback("", 3))
 
-    M.error(table.concat(lines, '\n'))
+    M.error(table.concat(lines, "\n"))
     return err
   end)
 end
 
 function M.markdown(msg, opts)
-  opts = vim.tbl_deep_extend('force', {
-    title = 'Debug',
+  opts = vim.tbl_deep_extend("force", {
+    title = "Debug",
     on_open = function(win)
       vim.wo[win].conceallevel = 3
-      vim.wo[win].concealcursor = ''
+      vim.wo[win].concealcursor = ""
       vim.wo[win].spell = false
       local buf = vim.api.nvim_win_get_buf(win)
-      vim.treesitter.start(buf, 'markdown')
+      vim.treesitter.start(buf, "markdown")
     end,
   }, opts or {})
-  require('notify').notify(msg, vim.log.levels.INFO, opts)
+  require("notify").notify(msg, vim.log.levels.INFO, opts)
 end
 
 function M.debug_pcall()
@@ -53,10 +53,10 @@ function M.debug_pcall()
     return xpcall(fn and function()
       return fn(unpack(args))
     end, function(err)
-      if err:find('DevIcon') or err:find('mason') or err:find('Invalid highlight') then
+      if err:find("DevIcon") or err:find("mason") or err:find("Invalid highlight") then
         return err
       end
-      vim.api.nvim_echo({ { err, 'ErrorMsg' }, { debug.traceback('', 3), 'Normal' } }, true, {})
+      vim.api.nvim_echo({ { err, "ErrorMsg" }, { debug.traceback("", 3), "Normal" } }, true, {})
       return err
     end)
   end
@@ -67,96 +67,43 @@ function M.t(str)
 end
 
 function M.warn(msg, name)
-  vim.notify(msg, vim.log.levels.WARN, { title = name or 'init.lua' })
+  vim.notify(msg, vim.log.levels.WARN, { title = name or "init.lua" })
 end
 
 function M.error(msg, name)
-  vim.notify(msg, vim.log.levels.ERROR, { title = name or 'init.lua' })
+  vim.notify(msg, vim.log.levels.ERROR, { title = name or "init.lua" })
 end
 
 function M.info(msg, name)
-  vim.notify(msg, vim.log.levels.INFO, { title = name or 'init.lua' })
+  vim.notify(msg, vim.log.levels.INFO, { title = name or "init.lua" })
 end
 
 function M.toggle(option, silent)
   local info = vim.api.nvim_get_option_info(option)
-  local scopes = { buf = 'bo', win = 'wo', global = 'o' }
+  local scopes = { buf = "bo", win = "wo", global = "go" }
   local scope = scopes[info.scope]
   local options = vim[scope]
   options[option] = not options[option]
   if silent ~= true then
     if options[option] then
-      M.info('enabled vim.' .. scope .. '.' .. option, 'Toggle')
+      M.info("enabled vim." .. scope .. "." .. option, "Toggle")
     else
-      M.warn('disabled vim.' .. scope .. '.' .. option, 'Toggle')
+      M.warn("disabled vim." .. scope .. "." .. option, "Toggle")
     end
   end
 end
 
----@param fn fun(buf: buffer, win: window)
-function M.float(fn, opts)
-  local buf = vim.api.nvim_create_buf(false, true)
-  local vpad = 4
-  local hpad = 10
-
-  opts = vim.tbl_deep_extend('force', {
-    relative = 'editor',
-    width = vim.o.columns - hpad * 2,
-    height = vim.o.lines - vpad * 2,
-    row = vpad,
-    col = hpad,
-    style = 'minimal',
-    border = 'rounded',
-    noautocmd = true,
-  }, opts or {})
-
-  local enter = opts.enter == nil and true or opts.enter
-  local win = vim.api.nvim_open_win(buf, enter, opts)
-
-  local function close()
-    if vim.api.nvim_buf_is_valid(buf) then
-      vim.api.nvim_buf_delete(buf, { force = true })
-    end
-    if vim.api.nvim_win_is_valid(win) then
-      vim.api.nvim_win_close(win, true)
-    end
-    vim.cmd([[checktime]])
-  end
-
-  vim.keymap.set('n', '<ESC>', close, { buffer = buf, nowait = true })
-  vim.keymap.set('n', 'q', close, { buffer = buf, nowait = true })
-  vim.api.nvim_create_autocmd({ 'BufDelete', 'BufLeave', 'BufHidden' }, {
-    once = true,
-    buffer = buf,
-    callback = close,
+function M.lazygit(cwd)
+  require("lazy.util").open_cmd({ "lazygit" }, {
+    cwd = cwd,
+    terminal = true,
+    close_on_exit = true,
+    enter = true,
+    float = {
+      size = { width = 0.9, height = 0.9 },
+      margin = { top = 0, right = 0, bottom = 0, left = 0 },
+    },
   })
-  fn(buf, win)
-end
-
-function M.float_cmd(cmd, opts)
-  M.float(function(buf)
-    local output = vim.api.nvim_exec(cmd, true)
-    local lines = vim.split(output, '\n')
-    vim.api.nvim_buf_set_lines(buf, 0, -1, true, lines)
-  end, opts)
-end
-
-function M.float_terminal(cmd, opts)
-  -- require("lazy.util").open_cmd(cmd, {
-  --   terminal = true,
-  --   close_on_exit = true,
-  --   enter = true,
-  -- })
-  M.float(function(buf, win)
-    vim.fn.termopen(cmd)
-    local autocmd = {
-      'autocmd! TermClose <buffer> lua vim.cmd[[checktime]];',
-      string.format('vim.api.nvim_win_close(%d, {force = true});', win),
-      string.format('vim.api.nvim_buf_delete(%d, {force = true});', buf),
-    }
-    vim.cmd(table.concat(autocmd, ' '))
-    vim.cmd([[startinsert]])
-  end, opts)
 end
 
 function M.exists(fname)
@@ -165,23 +112,23 @@ function M.exists(fname)
 end
 
 function M.fqn(fname)
-  fname = vim.fn.fnamemodify(fname, ':p')
+  fname = vim.fn.fnamemodify(fname, ":p")
   return vim.loop.fs_realpath(fname) or fname
 end
 
 function M.clipman()
-  local file = M.fqn('~/.local/share/clipman.json')
+  local file = M.fqn("~/.local/share/clipman.json")
   if M.exists(file) then
     local f = io.open(file)
     if not f then
       return
     end
-    local data = f:read('*a')
+    local data = f:read("*a")
     f:close()
 
     -- allow empty files
     data = vim.trim(data)
-    if data ~= '' then
+    if data ~= "" then
       local ok, json = pcall(vim.fn.json_decode, data)
       if ok and json then
         local items = {}
@@ -189,14 +136,14 @@ function M.clipman()
           items[#items + 1] = json[i]
         end
         vim.ui.select(items, {
-          prompt = 'Clipman',
+          prompt = "Clipman",
         }, function(choice)
           if choice then
             vim.api.nvim_paste(choice, true, 1)
           end
         end)
       else
-        vim.notify(('failed to load clipman from %s'):format(file), vim.log.levels.ERROR)
+        vim.notify(("failed to load clipman from %s"):format(file), vim.log.levels.ERROR)
       end
     end
   end
@@ -219,7 +166,7 @@ function M.throttle(ms, fn)
   return function(...)
     if not running then
       local argv = { ... }
-      local argc = select('#', ...)
+      local argc = select("#", ...)
 
       timer:start(ms, 0, function()
         running = false
@@ -230,19 +177,50 @@ function M.throttle(ms, fn)
   end
 end
 
+---@return string
+function M.get_root()
+  local path = vim.loop.fs_realpath(vim.api.nvim_buf_get_name(0))
+  ---@type string[]
+  local roots = {}
+  if path ~= "" then
+    for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+      local workspace = client.config.workspace_folders
+      local paths = workspace and vim.tbl_map(function(ws)
+        return vim.uri_to_fname(ws.uri)
+      end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
+      for _, p in ipairs(paths) do
+        local r = vim.loop.fs_realpath(p)
+        if path:find(r, 1, true) then
+          roots[#roots + 1] = r
+        end
+      end
+    end
+  end
+  ---@type string?
+  local root = roots[1]
+  if not root then
+    path = path == "" and vim.loop.cwd() or vim.fs.dirname(path)
+    ---@type string?
+    root = vim.fs.find({ ".git" }, { path = path, upward = true })[1]
+    root = root and vim.fs.dirname(root) or vim.loop.cwd()
+  end
+  ---@cast root string
+  return root
+end
+
 function M.test(is_file)
-  local file = is_file and vim.fn.expand('%:p') or './tests'
-  local init = vim.fn.glob('tests/*init*')
-  require('plenary.test_harness').test_directory(file, { minimal_init = init })
+  local file = is_file and vim.fn.expand("%:p") or "./tests"
+  local init = vim.fn.glob("tests/*init*")
+  require("plenary.test_harness").test_directory(file, { minimal_init = init })
 end
 
 function M.version()
   local v = vim.version()
   if v and not v.prerelease then
     vim.notify(
-      ('Neovim v%d.%d.%d'):format(v.major, v.minor, v.patch),
+      ("Neovim v%d.%d.%d"):format(v.major, v.minor, v.patch),
       vim.log.levels.WARN,
-      { title = 'Neovim: not running nightly!' }
+      { title = "Neovim: not running nightly!" }
     )
   end
 end

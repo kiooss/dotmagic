@@ -69,7 +69,7 @@ return {
   -- {
   --   'nathom/filetype.nvim',
   --   config = function()
-  --     require('config.plugins.filetype')
+  --     require('plugins.filetype')
   --   end,
   -- },
 

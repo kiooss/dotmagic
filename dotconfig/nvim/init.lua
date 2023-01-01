@@ -1,19 +1,23 @@
 -- =============================================================================
 --  init.lua --- Lua Config Entry file for neovim
---  => Yang Yang
 -- =============================================================================
-require('util.debug')
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 
-require('config.lazy')
-require('config.options')
+local debug = require("util.debug")
 
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'VeryLazy',
+if vim.env.VIMCONFIG then
+  return debug.switch(vim.env.VIMCONFIG)
+end
+
+require("config.options")
+require("config.lazy")
+
+-- require("util.dashboard").setup()
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
   callback = function()
-    require('util').version()
-    require('config.events')
-    require('config.mappings')
+    require("util").version()
+    require("config.autocmds")
+    require("config.keymaps")
   end,
 })

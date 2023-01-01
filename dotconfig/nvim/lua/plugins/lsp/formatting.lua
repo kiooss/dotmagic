@@ -46,7 +46,7 @@ end
 
 function M.setup(client, buf)
   local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
-  local nls = require('config.plugins.null-ls')
+  local nls = require('plugins.null-ls')
 
   if client.name == 'null-ls' and not nls.has_formatter(ft) then
     return

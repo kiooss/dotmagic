@@ -136,7 +136,7 @@ function M.config()
     },
 
     -- formatting = {
-    --   format = require('config.plugins.lsp.kind').cmp_format(),
+    --   format = require('plugins.lsp.kind').cmp_format(),
     -- },
     -- documentation = {
     --   border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },

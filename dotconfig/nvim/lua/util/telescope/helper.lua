@@ -86,7 +86,7 @@ function M.project_files(opts)
     return
   end
 
-  opts.prompt_title = ' Git Files'
+  opts.prompt_title = ' Git Files (' .. _git_pwd .. ')'
   opts.prompt_prefix = '  '
   opts.show_untracked = true
   opts.results_title = 'Project (' .. _git_pwd .. ') Files Results'

@@ -11,19 +11,19 @@ local M = {
   },
 }
 
-function M.project_files(opts)
-  opts = opts or {}
-  opts.show_untracked = true
-  if vim.loop.fs_stat('.git') then
-    require('telescope.builtin').git_files(opts)
-  else
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      opts.cwd = client.config.root_dir
-    end
-    require('telescope.builtin').find_files(opts)
-  end
-end
+-- function M.project_files(opts)
+--   opts = opts or {}
+--   opts.show_untracked = true
+--   if vim.loop.fs_stat('.git') then
+--     require('telescope.builtin').git_files(opts)
+--   else
+--     local client = vim.lsp.get_active_clients()[1]
+--     if client then
+--       opts.cwd = client.config.root_dir
+--     end
+--     require('telescope.builtin').find_files(opts)
+--   end
+-- end
 
 function M.config()
   local actions = require('telescope.actions')
@@ -49,7 +49,6 @@ function M.config()
           ['<C-h>'] = actions.which_key,
         },
       },
-      -- mappings = { i = { ["<esc>"] = actions.close } },
       -- vimgrep_arguments = {
       --   'rg',
       --   '--color=never',

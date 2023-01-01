@@ -15,6 +15,7 @@
   "cyclist.vim": { "branch": "master", "commit": "d611ea3a21365f90d512dd024874e070e864309e" },
   "dashboard-nvim": { "branch": "master", "commit": "e517188dab55493fb9034b4d4f1a508ccacfcd45" },
   "diffview.nvim": { "branch": "main", "commit": "18f83302f71889b39403919b8be00d7244d1fcfc" },
+  "dressing.nvim": { "branch": "master", "commit": "4436d6f41e2f6b8ada57588acd1a9f8b3d21453c" },
   "drop.nvim": { "branch": "main", "commit": "30e09ff92ea284e0ab17dbec38ff16dbf5d9122a" },
   "editorconfig-vim": { "branch": "master", "commit": "30ddc057f71287c3ac2beca876e7ae6d5abe26a0" },
   "friendly-snippets": { "branch": "main", "commit": "1a6a02350568d6830bcfa167c72f9b6e75e454ae" },

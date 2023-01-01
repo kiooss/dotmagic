@@ -15,15 +15,16 @@ function M.setup(client, buffer)
           o = { "<cmd>:TypescriptOrganizeImports<CR>", "Organize Imports" },
           R = { "<cmd>:TypescriptRenameFile<CR>", "Rename File" },
         },
-        r = {
-          function()
-            require("inc_rename")
-            return ":IncRename " .. vim.fn.expand("<cword>")
-          end,
-          "Rename",
-          cond = cap.renameProvider,
-          expr = true,
-        },
+        r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+        -- r = {
+        --   function()
+        --     require("inc_rename")
+        --     return ":IncRename " .. vim.fn.expand("<cword>")
+        --   end,
+        --   "Rename",
+        --   cond = cap.renameProvider,
+        --   expr = true,
+        -- },
         a = {
           { vim.lsp.buf.code_action, "Code Action" },
           { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },

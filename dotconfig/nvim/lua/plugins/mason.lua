@@ -1,23 +1,23 @@
 local M = {
-  'williamboman/mason.nvim',
+  "williamboman/mason.nvim",
 }
 
 M.tools = {
   -- "prettierd",
-  'stylua',
-  'selene',
-  'luacheck',
+  "stylua",
+  "selene",
+  -- 'luacheck',
   -- "eslint_d",
-  'shellcheck',
+  "shellcheck",
   -- "deno",
-  'shfmt',
+  "shfmt",
   -- "black",
   -- "isort",
   -- "flake8",
 }
 
 function M.check()
-  local mr = require('mason-registry')
+  local mr = require("mason-registry")
   for _, tool in ipairs(M.tools) do
     local p = mr.get_package(tool)
     if not p:is_installed() then
@@ -27,9 +27,9 @@ function M.check()
 end
 
 function M.config()
-  require('mason').setup()
+  require("mason").setup()
   M.check()
-  require('mason-lspconfig').setup({
+  require("mason-lspconfig").setup({
     automatic_installation = true,
   })
 end

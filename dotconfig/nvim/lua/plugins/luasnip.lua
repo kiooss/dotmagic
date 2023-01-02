@@ -35,7 +35,7 @@ function M.config()
     end
   end)
 
-  vim.keymap.set("i", "<c-u>", require("luasnip.extras.select_choice"))
+  -- vim.keymap.set("i", "<c-u>", require("luasnip.extras.select_choice"))
 
   vim.keymap.set("n", "<leader>se", function()
     require("luasnip.loaders.from_lua").edit_snippet_files()

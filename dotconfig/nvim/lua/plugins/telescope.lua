@@ -1,13 +1,14 @@
 local M = {
-  'nvim-telescope/telescope.nvim',
-  cmd = { 'Telescope' },
+  "nvim-telescope/telescope.nvim",
+  cmd = { "Telescope" },
 
   dependencies = {
-    { 'nvim-telescope/telescope-file-browser.nvim' },
-    { 'nvim-telescope/telescope-z.nvim' },
+    { "nvim-telescope/telescope-file-browser.nvim" },
+    { "nvim-telescope/telescope-z.nvim" },
     -- { "nvim-telescope/telescope-project.nvim" },
-    { 'nvim-telescope/telescope-symbols.nvim' },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
+    { "nvim-telescope/telescope-symbols.nvim" },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
 }
 
@@ -26,11 +27,13 @@ local M = {
 -- end
 
 function M.config()
-  local actions = require('telescope.actions')
-  local trouble = require('trouble.providers.telescope')
+  local actions = require("telescope.actions")
+  local trouble = require("trouble.providers.telescope")
 
-  local telescope = require('telescope')
+  local telescope = require("telescope")
   local borderless = true
+  local lga_actions = require("telescope-live-grep-args.actions")
+
   telescope.setup({
     defaults = {
       -- layout_strategy = 'horizontal',
@@ -40,13 +43,14 @@ function M.config()
       -- sorting_strategy = 'ascending',
       mappings = {
         i = {
-          ['<c-t>'] = trouble.open_with_trouble,
-          ['<c-j>'] = actions.move_selection_next,
-          ['<c-k>'] = actions.move_selection_previous,
-          ['<C-Down>'] = require('telescope.actions').cycle_history_next,
-          ['<C-Up>'] = require('telescope.actions').cycle_history_prev,
-          ['<esc>'] = actions.close,
-          ['<C-h>'] = actions.which_key,
+          ["<C-u>"] = false, -- Mapping <C-u> to clear prompt
+          ["<c-t>"] = trouble.open_with_trouble,
+          ["<c-j>"] = actions.move_selection_next,
+          ["<c-k>"] = actions.move_selection_previous,
+          ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+          ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+          ["<esc>"] = actions.close,
+          ["<C-h>"] = actions.which_key,
         },
       },
       -- vimgrep_arguments = {
@@ -59,8 +63,8 @@ function M.config()
       --   '--smart-case'
       -- },
       -- prompt_position = "bottom",
-      prompt_prefix = ' ',
-      selection_caret = ' ',
+      prompt_prefix = " ",
+      selection_caret = " ",
       -- entry_prefix = "  ",
       -- initial_mode = "insert",
       -- selection_strategy = "reset",
@@ -100,20 +104,35 @@ function M.config()
         fuzzy = true, -- false will only do exact matching
         override_generic_sorter = true, -- override the generic sorter
         override_file_sorter = true, -- override the file sorter
-        case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
         -- the default case_mode is "smart_case"
       },
       frecency = {
         show_scores = true,
-        default_workspace = 'CWD',
+        default_workspace = "CWD",
+      },
+      live_grep_args = {
+        auto_quoting = true, -- enable/disable auto-quoting
+        -- define mappings, e.g.
+        mappings = { -- extend mappings
+          i = {
+            ["<C-q>"] = lga_actions.quote_prompt(),
+            ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+          },
+        },
+        -- ... also accepts theme settings, for example:
+        -- theme = "dropdown", -- use dropdown theme
+        -- theme = { }, -- use own theme spec
+        -- layout_config = { mirror=true }, -- mirror preview pane
       },
     },
   })
 
   -- telescope.load_extension("frecency")
-  telescope.load_extension('fzf')
+  telescope.load_extension("fzf")
   -- telescope.load_extension('z')
-  telescope.load_extension('file_browser')
+  telescope.load_extension("file_browser")
+  telescope.load_extension("live_grep_args")
   -- telescope.load_extension('notify')
   -- telescope.load_extension("project")
   -- telescope.load_extension('flutter')

@@ -135,7 +135,8 @@ local leader = {
   ["-"] = { "<cmd>:vsplit<CR>:wincmd p<CR>:e#<CR>", "Vsplit buffers" },
   ["/"] = {
     function()
-      require("telescope.builtin").live_grep()
+      -- require("telescope.builtin").live_grep()
+      require("telescope").extensions.live_grep_args.live_grep_args()
     end,
     "Search",
   },

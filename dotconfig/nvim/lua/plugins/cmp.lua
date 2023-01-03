@@ -1,30 +1,30 @@
 local M = {
-  'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
+  "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-emoji',
-    'hrsh7th/cmp-cmdline',
-    'dmitmel/cmp-cmdline-history',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lua',
-    'saadparwaiz1/cmp_luasnip',
-    'onsails/lspkind.nvim',
-    'octaltree/cmp-look',
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-emoji",
+    "hrsh7th/cmp-cmdline",
+    "dmitmel/cmp-cmdline-history",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-nvim-lua",
+    "saadparwaiz1/cmp_luasnip",
+    "onsails/lspkind.nvim",
+    "octaltree/cmp-look",
   },
 }
 
 function M.config()
-  vim.o.completeopt = 'menuone,noselect'
+  vim.o.completeopt = "menuone,noselect"
 
   -- Setup nvim-cmp.
-  local cmp = require('cmp')
-  local luasnip = require('luasnip')
+  local cmp = require("cmp")
+  local luasnip = require("luasnip")
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
   local feedkey = function(key, mode)
@@ -33,7 +33,7 @@ function M.config()
 
   cmp.setup({
     completion = {
-      completeopt = 'menu,menuone,noinsert',
+      completeopt = "menu,menuone,noinsert",
     },
 
     window = {
@@ -43,25 +43,39 @@ function M.config()
 
     snippet = {
       expand = function(args)
-        require('luasnip').lsp_expand(args.body)
+        require("luasnip").lsp_expand(args.body)
       end,
     },
 
     mapping = cmp.mapping.preset.insert({
-      ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-e>'] = cmp.mapping({
+      ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ['<CR>'] = cmp.mapping.confirm({
+      ["<C-y>"] = cmp.mapping(
+        cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
+        }),
+        { "i", "c" }
+      ),
+      ["<M-y>"] = cmp.mapping(
+        cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        }),
+        { "i", "c" }
+      ),
+      ["<CR>"] = cmp.mapping.confirm({
         -- default is cmp.CompeConfirmBehavior.Insert
-        behavior = cmp.ConfirmBehavior.Replace,
+        behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       }),
-      ['<Tab>'] = cmp.mapping(function(fallback)
+      ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -74,10 +88,10 @@ function M.config()
           fallback()
         end
       end, {
-        'i',
-        's',
+        "i",
+        "s",
       }),
-      ['<S-Tab>'] = cmp.mapping(function(fallback)
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -88,40 +102,40 @@ function M.config()
           fallback()
         end
       end, {
-        'i',
-        's',
+        "i",
+        "s",
       }),
     }),
 
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-      { name = 'nvim_lua' },
-      { name = 'buffer' },
-      { name = 'treesitter' },
-      { name = 'path' },
-      { name = 'tmux' },
-      { name = 'emoji' },
-      { name = 'look', keyword_length = 2, option = { convert_case = true, loud = true } },
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+      { name = "nvim_lua" },
+      { name = "buffer" },
+      { name = "treesitter" },
+      { name = "path" },
+      { name = "tmux" },
+      { name = "emoji" },
+      { name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
     }),
 
     formatting = {
-      format = require('lspkind').cmp_format({
+      format = require("lspkind").cmp_format({
         with_text = true,
         menu = {
-          look = '[look]',
-          nvim_lsp = '[LSP]',
-          nvim_lua = '[api]',
-          treesitter = '[treesitter]',
-          path = '[path]',
-          buffer = '[buffer]',
-          zsh = '[zsh]',
-          vsnip = '[vsnip]',
-          luasnip = '[luasnip]',
-          spell = '[spell]',
-          tmux = '[tmux]',
-          cmdline = '[cmdline]',
-          cmdline_history = '[cmdline_history]',
+          look = "[look]",
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[api]",
+          treesitter = "[treesitter]",
+          path = "[path]",
+          buffer = "[buffer]",
+          zsh = "[zsh]",
+          vsnip = "[vsnip]",
+          luasnip = "[luasnip]",
+          spell = "[spell]",
+          tmux = "[tmux]",
+          cmdline = "[cmdline]",
+          cmdline_history = "[cmdline_history]",
           -- look = '',
           -- nvim_lsp = '',
           -- nvim_lua = '',
@@ -144,7 +158,7 @@ function M.config()
     -- },
     experimental = {
       ghost_text = {
-        hl_group = 'LspCodeLens',
+        hl_group = "LspCodeLens",
       },
     },
     -- sorting = {
@@ -160,11 +174,11 @@ function M.config()
     -- },
   })
 
-  cmp.setup.filetype('gitcommit', {
+  cmp.setup.filetype("gitcommit", {
     sources = cmp.config.sources({
-      { name = 'luasnip' },
+      { name = "luasnip" },
       {
-        name = 'buffer',
+        name = "buffer",
         option = {
           -- Options go into this table
           get_bufnrs = function()
@@ -176,26 +190,26 @@ function M.config()
           end,
         },
       },
-      { name = 'look', keyword_length = 2, option = { convert_case = true, loud = true } },
+      { name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
     }),
   })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
+  cmp.setup.cmdline("/", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'buffer' },
+      { name = "buffer" },
     }),
   })
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
+  cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path' },
+      { name = "path" },
     }, {
       -- { name = 'cmdline_history', keyword_length = 3 },
-      { name = 'cmdline' },
+      { name = "cmdline" },
     }),
   })
 end

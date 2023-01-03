@@ -1,35 +1,40 @@
 local M = {
-  'neovim/nvim-lspconfig',
-  name = 'lsp',
-  event = 'BufReadPre',
-  dependencies = { 'hrsh7th/cmp-nvim-lsp' },
+  "neovim/nvim-lspconfig",
+  name = "lsp",
+  event = "BufReadPre",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    {
+      "folke/neodev.nvim",
+      config = {
+        debug = true,
+        experimental = {
+          pathStrict = true,
+        },
+        library = {
+          runtime = "~/projects/neovim/runtime/",
+        },
+      },
+    },
+  },
 }
 
 function M.config()
-  require('neodev').setup({
-    debug = true,
-    experimental = {
-      pathStrict = true,
-    },
-    library = {
-      runtime = '~/projects/neovim/runtime/',
-    },
-  })
-  require('mason')
-  require('plugins.lsp.diagnostics').setup()
+  require("mason")
+  require("plugins.lsp.diagnostics").setup()
   -- require("neoconf").setup()
 
   local function on_attach(client, bufnr)
-    require('nvim-navic').attach(client, bufnr)
-    require('plugins.lsp.formatting').setup(client, bufnr)
-    require('plugins.lsp.keys').setup(client, bufnr)
+    require("nvim-navic").attach(client, bufnr)
+    require("plugins.lsp.formatting").setup(client, bufnr)
+    require("plugins.lsp.keys").setup(client, bufnr)
   end
 
   ---@type lspconfig.options
   local servers = {
     clangd = {
       capabilities = {
-        offsetEncoding = { 'utf-16' },
+        offsetEncoding = { "utf-16" },
       },
     },
     bashls = {},
@@ -44,7 +49,7 @@ function M.config()
           format = {
             enable = true,
           },
-          schemas = require('schemastore').json.schemas(),
+          schemas = require("schemastore").json.schemas(),
           validate = { enable = true },
         },
       },
@@ -75,41 +80,41 @@ function M.config()
           },
           completion = {
             workspaceWord = true,
-            callSnippet = 'Both',
+            callSnippet = "Both",
           },
           misc = {
             parameters = {
-              '--log-level=trace',
+              "--log-level=trace",
             },
           },
           diagnostics = {
             -- enable = false,
             groupSeverity = {
-              strong = 'Warning',
-              strict = 'Warning',
+              strong = "Warning",
+              strict = "Warning",
             },
             groupFileStatus = {
-              ['ambiguity'] = 'Opened',
-              ['await'] = 'Opened',
-              ['codestyle'] = 'None',
-              ['duplicate'] = 'Opened',
-              ['global'] = 'Opened',
-              ['luadoc'] = 'Opened',
-              ['redefined'] = 'Opened',
-              ['strict'] = 'Opened',
-              ['strong'] = 'Opened',
-              ['type-check'] = 'Opened',
-              ['unbalanced'] = 'Opened',
-              ['unused'] = 'Opened',
+              ["ambiguity"] = "Opened",
+              ["await"] = "Opened",
+              ["codestyle"] = "None",
+              ["duplicate"] = "Opened",
+              ["global"] = "Opened",
+              ["luadoc"] = "Opened",
+              ["redefined"] = "Opened",
+              ["strict"] = "Opened",
+              ["strong"] = "Opened",
+              ["type-check"] = "Opened",
+              ["unbalanced"] = "Opened",
+              ["unused"] = "Opened",
             },
-            unusedLocalExclude = { '_*' },
+            unusedLocalExclude = { "_*" },
           },
           format = {
             enable = false,
             defaultConfig = {
-              indent_style = 'space',
-              indent_size = '2',
-              continuation_indent_size = '2',
+              indent_style = "space",
+              indent_size = "2",
+              continuation_indent_size = "2",
             },
           },
         },
@@ -122,7 +127,7 @@ function M.config()
   }
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
@@ -138,15 +143,15 @@ function M.config()
   }
 
   for server, opts in pairs(servers) do
-    opts = vim.tbl_deep_extend('force', {}, options, opts or {})
-    if server == 'tsserver' then
-      require('typescript').setup({ server = opts })
+    opts = vim.tbl_deep_extend("force", {}, options, opts or {})
+    if server == "tsserver" then
+      require("typescript").setup({ server = opts })
     else
-      require('lspconfig')[server].setup(opts)
+      require("lspconfig")[server].setup(opts)
     end
   end
 
-  require('plugins.null-ls').setup(options)
+  require("plugins.null-ls").setup(options)
 end
 
 return M

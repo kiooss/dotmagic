@@ -199,8 +199,7 @@ local leader = {
       end,
       "C++ build and run",
     },
-    v = { "<cmd>Vista!!<CR>", "Vista" },
-    o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
+    -- v = { "<cmd>Vista!!<CR>", "Vista" },
   },
   e = {
     name = "+errors",

@@ -1,10 +1,10 @@
 local M = {
-  'akinsho/nvim-bufferline.lua',
-  event = 'BufAdd',
+  "akinsho/nvim-bufferline.lua",
+  event = "BufAdd",
 }
 
 function M.config()
-  local signs = require('plugins.lsp.diagnostics').signs
+  local signs = require("plugins.lsp.diagnostics").signs
 
   signs = {
     error = signs.Error,
@@ -14,21 +14,21 @@ function M.config()
   }
 
   local severities = {
-    'error',
-    'warning',
+    "error",
+    "warning",
     -- "info",
     -- "hint",
   }
 
-  require('bufferline').setup({
+  require("bufferline").setup({
     options = {
-      modified_icon = '',
+      modified_icon = "",
       numbers = function(opts)
-        return string.format('%s', opts.raise(opts.ordinal))
+        return string.format("%s", opts.raise(opts.ordinal))
       end,
-      show_close_icon = false,
-      diagnostics = 'nvim_lsp',
-      separator_style = 'thin',
+      show_buffer_close_icons = false,
+      diagnostics = "nvim_lsp",
+      separator_style = "slant",
       diagnostics_indicator = function(_, _, diag)
         local s = {}
         for _, severity in ipairs(severities) do
@@ -36,9 +36,16 @@ function M.config()
             table.insert(s, signs[severity] .. diag[severity])
           end
         end
-        return table.concat(s, ' ')
+        return table.concat(s, " ")
       end,
-      offsets = { { filetype = 'NvimTree', text = ' File Explorer', text_align = 'left' } },
+      offsets = {
+        {
+          filetype = "NvimTree",
+          highlight = "Directory",
+          text = " File Explorer",
+          text_align = "left",
+        },
+      },
     },
   })
 end
@@ -49,7 +56,7 @@ function M.init()
   --   vim.keymap.set("n", "[b", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Previous Buffer" })
   --   vim.keymap.set("n", "]b", "<cmd>:BufferLineCycleNext<CR>", { desc = "Next Buffer" })
   for i = 1, 9 do
-    vim.keymap.set('n', '<leader>' .. i, [[<Cmd>BufferLineGoToBuffer ]] .. i .. [[<CR>]], { desc = 'Goto Buffer' .. i })
+    vim.keymap.set("n", "<leader>" .. i, [[<Cmd>BufferLineGoToBuffer ]] .. i .. [[<CR>]], { desc = "Goto Buffer" .. i })
   end
 end
 

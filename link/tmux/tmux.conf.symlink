@@ -109,10 +109,10 @@ bind l select-pane -R
 
 # -n (alias for -T root, The root table is used for keys pressed without the
 # prefix key)
-bind -n M-h select-pane -L
-bind -n M-j select-pane -D
-bind -n M-k select-pane -U
-bind -n M-l select-pane -R
+# bind -n M-h select-pane -L
+# bind -n M-j select-pane -D
+# bind -n M-k select-pane -U
+# bind -n M-l select-pane -R
 
 bind e set-window-option synchronize-panes
 bind m set-option mouse
@@ -123,10 +123,10 @@ bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+
 
 # Resize pane shortcuts using arrow keys without prefix
-bind -n M-Left resize-pane -L 2
-bind -n M-Right resize-pane -R 2
-bind -n M-Up resize-pane -U 2
-bind -n M-Down resize-pane -D 2
+# bind -n M-Left resize-pane -L 2
+# bind -n M-Right resize-pane -R 2
+# bind -n M-Up resize-pane -U 2
+# bind -n M-Down resize-pane -D 2
 
 bind -n M-1 select-window -t :1
 bind -n M-2 select-window -t :2

@@ -23,10 +23,6 @@ return {
 
   { "folke/neoconf.nvim", cmd = "Neoconf" },
 
-  { "shaunsingh/oxocarbon.nvim", lazy = false, enabled = true },
-
-  { "ellisonleao/gruvbox.nvim", lazy = false },
-
   { "tjdevries/cyclist.vim", lazy = false },
 
   {

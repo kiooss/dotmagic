@@ -1,24 +1,24 @@
-local use_dev = false
-
-if use_dev then
-  -- use the local project
-  vim.opt.runtimepath:prepend(vim.fn.expand('~/projects/lazy.nvim'))
-else
-  local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-  if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({ 'git', 'clone', '--filter=blob:none', 'https://github.com/folke/lazy.nvim.git', lazypath })
-    vim.fn.system({ 'git', '-C', lazypath, 'checkout', 'tags/stable' }) -- last stable release
-  end
-  vim.opt.rtp:prepend(lazypath)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  -- bootstrap lazy.nvim
+  -- stylua: ignore
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require('lazy').setup('plugins', {
-  defaults = { lazy = true },
-  -- dev = { patterns = jit.os:find('Windows') and {} or { 'folke' } },
-  install = { colorscheme = { 'tokyonight', 'habamax' } },
+require("lazy").setup({
+  spec = {
+    { "folke/LazyVim", import = "lazyvim.plugins" },
+    { import = "plugins" },
+  },
+  defaults = {
+    lazy = true, -- every plugin is lazy-loaded by default
+    version = "*", -- try installing the latest stable version for plugins that support semver
+  },
+  install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true },
   diff = {
-    cmd = 'terminal_git',
+    cmd = "terminal_git",
   },
   performance = {
     cache = {
@@ -27,25 +27,22 @@ require('lazy').setup('plugins', {
     },
     rtp = {
       disabled_plugins = {
-        'gzip',
-        'matchit',
-        'matchparen',
-        'netrwPlugin',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
-        'nvim-treesitter-textobjects',
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
       },
     },
   },
   ui = {
     custom_keys = {
-      ['<localleader>d'] = function(plugin)
+      ["<localleader>d"] = function(plugin)
         dd(plugin)
       end,
     },
   },
-  -- debug = true,
 })
-vim.keymap.set('n', '<leader>ly', '<cmd>:Lazy<cr>')

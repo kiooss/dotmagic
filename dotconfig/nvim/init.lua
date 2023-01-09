@@ -2,11 +2,11 @@
 --  init.lua --- Lua Config Entry file for neovim
 -- =============================================================================
 
-local debug = require("util.debug")
-
-if vim.env.VIMCONFIG then
-  return debug.switch(vim.env.VIMCONFIG)
-end
+-- local debug = require("util.debug")
+--
+-- if vim.env.VIMCONFIG then
+--   return debug.switch(vim.env.VIMCONFIG)
+-- end
 
 require("config.lazy")
 

@@ -111,36 +111,6 @@ xmap("<C-l>", [[:s/^/\=(line('.')-line("'<")+1).'. '/g]])
 -- vmap("<", "<gv")
 -- vmap(">", ">gv")
 
--- better up/down
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
--- Move to window using the <meta> movement keys
-vim.keymap.set("n", "<A-down>", "<C-w>j")
-vim.keymap.set("n", "<A-up>", "<C-w>k")
-vim.keymap.set("n", "<A-left>", "<C-w>h")
-vim.keymap.set("n", "<A-right>", "<C-w>l")
-
--- Move Lines
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
-vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
-
--- Add undo break-points
-vim.keymap.set("i", ",", ",<c-g>u")
-vim.keymap.set("i", ".", ".<c-g>u")
-vim.keymap.set("i", ";", ";<c-g>u")
-
--- save in insert mode
-vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
-
--- better indenting
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
-
 local leader = {
   [" "] = { telescope_helper.project_files, "Find File" },
   ["j"] = { "<cmd>:AnyJump<cr>", "AnyJump" },

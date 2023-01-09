@@ -1,40 +1,10 @@
 return {
-  "b0o/SchemaStore.nvim",
   "jose-elias-alvarez/typescript.nvim",
-  "MunifTanjim/nui.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "nvim-lua/plenary.nvim",
-  "windwp/nvim-spectre",
   "folke/twilight.nvim",
-  "folke/which-key.nvim",
 
   { "editorconfig/editorconfig-vim", event = "VeryLazy" },
   { "AndrewRadev/switch.vim", keys = { "gs" } },
   { "rhysd/committia.vim", lazy = false },
-
-  -- additional text objects
-  { "wellle/targets.vim", lazy = false },
-  { "kana/vim-textobj-user", lazy = false, priority = 99 },
-  { "kana/vim-textobj-entire", lazy = false },
-  { "kana/vim-textobj-function", lazy = false },
-  { "rhysd/vim-textobj-anyblock", lazy = false },
-  { "nelstrom/vim-textobj-rubyblock", lazy = false },
-  { "thalesmello/vim-textobj-methodcall", lazy = false },
-
-  { "folke/neoconf.nvim", cmd = "Neoconf" },
-
-  { "tjdevries/cyclist.vim", lazy = false },
-
-  {
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    config = function()
-      require("trouble").setup({
-        auto_open = false,
-        use_diagnostic_signs = true, -- en
-      })
-    end,
-  },
 
   {
     "folke/styler.nvim",
@@ -43,8 +13,8 @@ return {
       require("styler").setup({
         themes = {
           markdown = { colorscheme = "tokyonight-storm" },
-          -- help = { colorscheme = 'oxocarbon', background = 'dark' },
-          -- noice = { colorscheme = "gruvbox", background = "dark" },
+          help = { colorscheme = "oxocarbon", background = "dark" },
+          noice = { colorscheme = "gruvbox", background = "dark" },
         },
       })
     end,
@@ -90,13 +60,6 @@ return {
     config = {},
   },
 
-  -- {
-  --   'nathom/filetype.nvim',
-  --   config = function()
-  --     require('plugins.filetype')
-  --   end,
-  -- },
-
   {
     "ruanyl/vim-gh-line",
     keys = { "<leader>gm" },
@@ -140,16 +103,9 @@ return {
   },
 
   {
-    "SmiteshP/nvim-navic",
-    config = function()
-      vim.g.navic_silence = true
-      require("nvim-navic").setup({ separator = " ", highlight = true, depth_limit = 5 })
-    end,
-  },
-
-  {
     "andymass/vim-matchup",
     event = "BufReadPost",
+    enabled = false,
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
     end,
@@ -174,22 +130,6 @@ return {
   },
 
   { "mhinz/vim-sayonara", cmd = { "Sayonara" } },
-
-  {
-    "stevearc/dressing.nvim",
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
-  },
 
   {
     "vimwiki/vimwiki",

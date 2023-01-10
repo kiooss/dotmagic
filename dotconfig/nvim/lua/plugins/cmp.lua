@@ -16,8 +16,6 @@ local M = {
 }
 
 function M.config()
-  vim.o.completeopt = "menuone,noselect"
-
   -- Setup nvim-cmp.
   local cmp = require("cmp")
   local luasnip = require("luasnip")

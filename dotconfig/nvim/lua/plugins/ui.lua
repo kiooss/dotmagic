@@ -8,6 +8,7 @@ return {
     event = "BufAdd",
     opts = {
       options = {
+        always_show_bufferline = true,
         modified_icon = "",
         numbers = function(opts)
           return string.format("%s", opts.raise(opts.ordinal))
@@ -85,6 +86,18 @@ return {
         "catch_clause",
         "import_statement",
         "operation_type",
+      },
+    },
+  },
+
+  -- style windows with different colorschemes
+  {
+    "folke/styler.nvim",
+    event = "VeryLazy",
+    config = {
+      themes = {
+        markdown = { colorscheme = "tokyonight-storm" },
+        help = { colorscheme = "oxocarbon", background = "dark" },
       },
     },
   },

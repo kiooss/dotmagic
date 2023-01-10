@@ -28,6 +28,9 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = "NvimTreeFindFileToggle",
+    keys = {
+      { "<c-p>", "<cmd>NvimTreeFindFileToggle<CR>", desc = "NvimTreeFindFileToggle" },
+    },
     config = function()
       vim.g.nvim_tree_auto_ignore_ft = { "dashboard", "startify" }
 

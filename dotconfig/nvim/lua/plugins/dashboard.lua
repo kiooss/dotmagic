@@ -1,5 +1,6 @@
 local M = {
   "glepnir/dashboard-nvim",
+  enabled = false,
   lazy = false,
 }
 

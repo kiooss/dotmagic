@@ -13,6 +13,7 @@ end
 
 local function should_colorcolumn()
   local filetype_exclude = {
+    "alpha",
     "diff",
     "packer",
     "fugitiveblame",
@@ -37,15 +38,15 @@ end
 -- lua api
 local group = vim.api.nvim_create_augroup("kiooss", { clear = true })
 
-vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "InsertLeave" }, {
-  command = [[if ! &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal cursorline | endif]],
-  group = group,
-})
-
-vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave", "InsertEnter" }, {
-  command = [[if &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal nocursorline | endif]],
-  group = group,
-})
+-- vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "InsertLeave" }, {
+--   command = [[if ! &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal cursorline | endif]],
+--   group = group,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave", "InsertEnter" }, {
+--   command = [[if &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal nocursorline | endif]],
+--   group = group,
+-- })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
   desc = "Jump to last position",
@@ -149,6 +150,26 @@ vim.api.nvim_create_autocmd("CursorHold", {
     vim.diagnostic.open_float(nil, { scope = "cursor", focusable = false, border = "rounded" })
   end,
   group = group,
+})
+
+-- show cursor line only in active window
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+  callback = function()
+    local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
+    if ok and cl then
+      vim.wo.cursorline = true
+      vim.api.nvim_win_del_var(0, "auto-cursorline")
+    end
+  end,
+})
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+  callback = function()
+    local cl = vim.wo.cursorline
+    if cl then
+      vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
+      vim.wo.cursorline = false
+    end
+  end,
 })
 
 -- create directories when needed, when saving a file

@@ -1,6 +1,6 @@
 return {
   -- dashboard
-  { "goolord/alpha-nvim", enabled = false },
+  { "goolord/alpha-nvim", enabled = true },
 
   -- bufferline
   {
@@ -42,6 +42,13 @@ return {
         },
       },
     },
+    init = function()
+      for i = 1, 9 do
+        vim.keymap.set("n", "<leader>" .. i, function()
+          require("bufferline").go_to_buffer(i, true)
+        end, { desc = "Buffer " .. i, silent = true })
+      end
+    end,
   },
 
   -- indent-blankline

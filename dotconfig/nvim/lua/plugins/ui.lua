@@ -5,7 +5,6 @@ return {
   -- bufferline
   {
     "akinsho/nvim-bufferline.lua",
-    event = "BufAdd",
     opts = {
       options = {
         always_show_bufferline = true,

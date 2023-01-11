@@ -1,18 +1,6 @@
 return {
   { "editorconfig/editorconfig-vim", event = "VeryLazy" },
-  { "AndrewRadev/switch.vim", keys = { "gs" } },
   { "rhysd/committia.vim", lazy = false },
-
-  {
-    "ruanyl/vim-gh-line",
-    keys = { "<leader>gm" },
-    config = function()
-      vim.g.gh_trace = 1
-      vim.g.gh_open_command = "echo "
-      vim.g.gh_use_canonical = 0
-      vim.g.gh_line_blame_map = "<leader>gm"
-    end,
-  },
 
   {
     "andymass/vim-matchup",

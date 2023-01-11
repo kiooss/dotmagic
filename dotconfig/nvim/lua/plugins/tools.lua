@@ -39,4 +39,10 @@ return {
       vim.g.oscyank_term = "default"
     end,
   },
+
+  {
+    "ruifm/gitlinker.nvim",
+    keys = { { "<leader>gy", desc = "github permalink" } },
+    config = true,
+  },
 }

@@ -15,8 +15,7 @@ return {
       updateevents = "TextChanged,TextChangedI",
     },
     -- stylua: ignore
-    keys = {
-    },
+    keys = false,
     config = function(_, opts)
       local luasnip = require("luasnip")
       require("neogen")

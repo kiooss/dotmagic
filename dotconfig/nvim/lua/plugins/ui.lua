@@ -122,7 +122,7 @@ return {
   {
     "folke/styler.nvim",
     event = "VeryLazy",
-    config = {
+    opts = {
       themes = {
         markdown = { colorscheme = "tokyonight-storm" },
         help = { colorscheme = "oxocarbon", background = "dark" },

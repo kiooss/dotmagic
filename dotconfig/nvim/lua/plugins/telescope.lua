@@ -38,19 +38,17 @@ return {
       desc = "Find Plugin File",
     },
   },
-  config = function(plugin)
+  opts = function()
     local actions = require("telescope.actions")
     local trouble = require("trouble.providers.telescope")
-
-    local telescope = require("telescope")
     local borderless = true
     local lga_actions = require("telescope-live-grep-args.actions")
 
-    telescope.setup({
+    return {
       defaults = {
-        -- layout_strategy = 'horizontal',
+        -- layout_strategy = "horizontal",
         -- layout_config = {
-        --   prompt_position = 'top',
+        --   prompt_position = "top",
         -- },
         -- sorting_strategy = 'ascending',
         mappings = {
@@ -74,7 +72,6 @@ return {
         --   '--column',
         --   '--smart-case'
         -- },
-        -- prompt_position = "bottom",
         prompt_prefix = " ",
         selection_caret = " ",
         -- entry_prefix = "  ",
@@ -119,10 +116,10 @@ return {
           case_mode = "smart_case", -- or "ignore_case" or "respect_case"
           -- the default case_mode is "smart_case"
         },
-        frecency = {
-          show_scores = true,
-          default_workspace = "CWD",
-        },
+        -- frecency = {
+        --   show_scores = true,
+        --   default_workspace = "CWD",
+        -- },
         live_grep_args = {
           auto_quoting = true, -- enable/disable auto-quoting
           -- define mappings, e.g.
@@ -138,22 +135,13 @@ return {
           -- layout_config = { mirror=true }, -- mirror preview pane
         },
       },
-    })
-
-    -- telescope.load_extension("frecency")
+    }
+  end,
+  config = function(_, opts)
+    local telescope = require("telescope")
+    telescope.setup(opts)
     telescope.load_extension("fzf")
-    -- telescope.load_extension('z')
     telescope.load_extension("file_browser")
     telescope.load_extension("live_grep_args")
-    -- local telescope = require("telescope")
-    -- telescope.setup(vim.tbl_deep_extend("force", plugin._.super.config, {
-    --   defaults = {
-    --     layout_strategy = "horizontal",
-    --     layout_config = { prompt_position = "top" },
-    --     sorting_strategy = "ascending",
-    --     winblend = 0,
-    --   },
-    -- }))
-    -- telescope.load_extension("fzf")
   end,
 }

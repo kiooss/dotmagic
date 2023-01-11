@@ -118,13 +118,13 @@ return {
   },
 
   -- additional text objects
-  { "wellle/targets.vim", lazy = false },
+  { "wellle/targets.vim", event = "VeryLazy" },
   { "kana/vim-textobj-user", lazy = false, priority = 99 },
-  { "kana/vim-textobj-entire", lazy = false },
-  { "kana/vim-textobj-function", lazy = false },
-  { "rhysd/vim-textobj-anyblock", lazy = false },
-  { "nelstrom/vim-textobj-rubyblock", lazy = false },
-  { "thalesmello/vim-textobj-methodcall", lazy = false },
+  { "kana/vim-textobj-entire", event = "VeryLazy" },
+  { "kana/vim-textobj-function", event = "VeryLazy" },
+  { "rhysd/vim-textobj-anyblock", event = "VeryLazy" },
+  { "nelstrom/vim-textobj-rubyblock", event = "VeryLazy" },
+  { "thalesmello/vim-textobj-methodcall", event = "VeryLazy" },
 
   { "tjdevries/cyclist.vim", lazy = false },
 }

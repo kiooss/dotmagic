@@ -31,4 +31,12 @@ return {
       },
     },
   },
+
+  {
+    "ojroques/vim-oscyank",
+    cmd = { "OSCYank", "OSCYankReg" },
+    init = function()
+      vim.g.oscyank_term = "default"
+    end,
+  },
 }

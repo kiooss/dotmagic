@@ -13,22 +13,6 @@ return {
     },
   },
 
-  -- tools
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        -- "prettierd",
-        "stylua",
-        "selene",
-        "luacheck",
-        -- "eslint_d",
-        "shellcheck",
-        "shfmt",
-      },
-    },
-  },
-
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
@@ -122,9 +106,8 @@ return {
     config = function()
       local nls = require("null-ls")
       nls.setup({
-        debounce = 150,
+        -- debounce = 150,
         default_timeout = 10000,
-        save_after_format = false,
         -- should_attach = function(bufnr)
         --   return not vim.api.nvim_buf_get_name(bufnr):match("__FLUTTER_DEV_LOG__")
         -- end,
@@ -177,5 +160,20 @@ return {
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
       })
     end,
+  },
+
+  -- cmdline tools and lsp servers
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "fixjson",
+        "prettier",
+        "rubocop",
+        "stylua",
+        "shellcheck",
+        "shfmt",
+      },
+    },
   },
 }

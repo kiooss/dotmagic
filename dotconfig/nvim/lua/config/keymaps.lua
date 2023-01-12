@@ -1,3 +1,5 @@
+local util = require("util")
+
 vim.keymap.set("n", "<Tab>", "<cmd>wincmd w<CR>", { desc = "Switch window" })
 
 vim.keymap.del("n", "<leader>w-")
@@ -27,3 +29,6 @@ vim.keymap.set("c", "j", [[getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" :
 
 vim.keymap.set("x", "s", ":s//g<Left><Left>")
 vim.keymap.set("x", "<C-l>", [[:s/^/\=(line('.')-line("'<")+1).'. '/g]])
+
+-- run lua
+vim.keymap.set("n", "<leader>cR", util.runlua, { desc = "Run Lua" })

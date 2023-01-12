@@ -53,7 +53,6 @@ return {
   -- indent-blankline
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
     opts = {
       buftype_exclude = { "terminal", "nofile" },
       filetype_exclude = {
@@ -99,7 +98,6 @@ return {
   -- noicer ui
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
     opts = {
       lsp = {
         override = {

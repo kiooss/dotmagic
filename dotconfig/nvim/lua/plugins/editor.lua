@@ -2,27 +2,7 @@ return {
   -- file explorer
   {
     "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
     enabled = false,
-    keys = {
-      {
-        "<leader>ft",
-        function()
-          require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
-        end,
-        desc = "NeoTree (root dir)",
-      },
-      { "<leader>fT", "<cmd>Neotree toggle<CR>", desc = "NeoTree (cwd)" },
-    },
-    init = function()
-      vim.g.neo_tree_remove_legacy_commands = 1
-    end,
-    opts = {
-      filesystem = {
-        follow_current_file = true,
-        hijack_netrw_behavior = "open_current",
-      },
-    },
   },
 
   {
@@ -121,6 +101,24 @@ return {
   --     -- })
   --   end,
   -- },
+
+  -- git signs
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "▋" },
+        change = { text = "▋" },
+        delete = { text = "契" },
+        topdelete = { text = "契" },
+        changedelete = { text = "" },
+        untracked = { text = "▋" },
+      },
+      numhl = true,
+      linehl = true,
+      current_line_blame = true,
+    },
+  },
 
   -- additional text objects
   { "wellle/targets.vim", event = "VeryLazy" },

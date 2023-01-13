@@ -11,6 +11,9 @@ vim.keymap.set("n", "<leader>w", "<cmd>update<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>z", "<cmd>qa!<CR>", { desc = "Quit All!" })
 vim.keymap.set("n", "<leader>-", "<cmd>:vsplit<CR>:wincmd p<CR>:e#<CR>", { desc = "Vsplit buffers" })
 
+vim.keymap.set("n", "<leader>aa", "<cmd>Glcd<cr>", { desc = "change dir for window to file's git working dir" })
+vim.keymap.set("n", "<leader>ab", "<cmd>lcd %:p:h<cr>", { desc = "change dir for window to file's dir" })
+
 vim.keymap.set("n", "B", "^")
 vim.keymap.set("n", "E", "$")
 vim.keymap.set("n", "x", [["_x]]) -- Better x with black hole register "_

@@ -35,3 +35,11 @@ vim.keymap.set("x", "<C-l>", [[:s/^/\=(line('.')-line("'<")+1).'. '/g]])
 
 -- run lua
 vim.keymap.set("n", "<leader>cR", util.runlua, { desc = "Run Lua" })
+
+if require("lazyvim.util").has("nvim-bufferline.lua") then
+  for i = 1, 9 do
+    vim.keymap.set("n", "<leader>" .. i, function()
+      require("bufferline").go_to_buffer(i, true)
+    end, { desc = "Buffer " .. i, silent = true })
+  end
+end

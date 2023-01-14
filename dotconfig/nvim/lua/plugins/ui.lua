@@ -7,7 +7,7 @@ return {
     "akinsho/nvim-bufferline.lua",
     opts = {
       options = {
-        always_show_bufferline = true,
+        always_show_bjufferline = true,
         modified_icon = "",
         numbers = function(opts)
           return string.format("%s", opts.raise(opts.ordinal))
@@ -25,13 +25,6 @@ return {
         },
       },
     },
-    init = function()
-      for i = 1, 9 do
-        vim.keymap.set("n", "<leader>" .. i, function()
-          require("bufferline").go_to_buffer(i, true)
-        end, { desc = "Buffer " .. i, silent = true })
-      end
-    end,
   },
 
   -- indent-blankline

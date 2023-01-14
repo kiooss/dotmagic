@@ -17,6 +17,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      format = { timeout_ms = 10000 },
+
       ---@type lspconfig.options
       servers = {
         bashls = {},

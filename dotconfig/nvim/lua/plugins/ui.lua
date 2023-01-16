@@ -96,10 +96,12 @@ return {
   {
     "folke/styler.nvim",
     event = "VeryLazy",
+    enabled = false,
     opts = {
       themes = {
         markdown = { colorscheme = "tokyonight-storm" },
         help = { colorscheme = "oxocarbon", background = "dark" },
+        noice = { colorscheme = "gruvbox", background = "dark" },
       },
     },
   },

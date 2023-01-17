@@ -14,8 +14,9 @@ return {
       enable_autosnippets = true,
       updateevents = "TextChanged,TextChangedI",
     },
-    -- stylua: ignore
-    keys = false,
+    keys = function()
+      return {}
+    end,
     config = function(_, opts)
       local luasnip = require("luasnip")
       require("neogen")

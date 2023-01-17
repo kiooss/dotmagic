@@ -140,8 +140,10 @@ bind -n M-8 select-window -t :8
 # swap the current window to first and selected it.
 bind-key -n M-0 swap-window -t 1\; select-window -t 1
 
-bind-key -n C-S-Left swap-window -t -1
-bind-key -n C-S-Right swap-window -t +1
+# bind-key -n C-S-Left swap-window -t -1
+# bind-key -n C-S-Right swap-window -t +1
+bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
+bind-key -n C-S-Right swap-window -t +1\; select-window -t +1
 
 # Enable mouse mode (tmux 2.1 and above)
 set-window-option -g mouse on

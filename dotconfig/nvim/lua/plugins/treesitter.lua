@@ -59,8 +59,6 @@ return {
         "yaml",
         "json",
       },
-      indent = { enable = false },
-      context_commentstring = { enable = true, enable_autocmd = false },
       incremental_selection = {
         enable = true,
         keymaps = {

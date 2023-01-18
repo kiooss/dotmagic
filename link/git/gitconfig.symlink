@@ -179,6 +179,8 @@
 	stash-all = stash save --include-untracked
 	preset = !git diff -p -R | grep -E '^(diff|(old|new) mode)' | git apply
 
+	utccommit = !git commit --date="$(date --utc +%Y-%m-%dT%H:%M:%S%z)"
+	shcommit = !git commit --date="$(TZ=Asia/Shanghai date +%Y-%m-%dT%H:%M:%S%z)"
 
 [diff]
 	tool = vimdiff

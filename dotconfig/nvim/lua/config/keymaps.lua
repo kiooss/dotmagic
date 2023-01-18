@@ -30,7 +30,7 @@ vim.keymap.set("i", "<C-c>", "<esc>`^")
 vim.keymap.set("c", "jk", "<C-c>")
 vim.keymap.set("c", "j", [[getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j']], { expr = true })
 
-vim.keymap.set("x", "s", ":s//g<Left><Left>")
+vim.keymap.set("x", "s", ":s//g<Left><Left>", { silent = false })
 vim.keymap.set("x", "<C-l>", [[:s/^/\=(line('.')-line("'<")+1).'. '/g]])
 
 -- run lua

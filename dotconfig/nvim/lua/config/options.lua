@@ -1,7 +1,6 @@
 local indent = 4
 local opt = vim.opt
 
--- opt.complete = ".,w,b,k"
 opt.autoindent = true
 opt.autowrite = true -- enable auto write
 opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
@@ -75,3 +74,18 @@ if vim.fn.has("nvim-0.8") == 1 then
   vim.opt.cmdheight = 0
   vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 end
+
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.foldcolumn = "1"
+
+require("util.status")

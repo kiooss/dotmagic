@@ -26,7 +26,7 @@ local function get_lsp_client()
   if next(lsp_client_names) == nil then
     return msg
   else
-    return table.concat(lsp_client_names, " ")
+    return " " .. table.concat(lsp_client_names, " ")
   end
 end
 
@@ -156,7 +156,7 @@ function M.config()
     --   lualine_y = {},
     --   lualine_z = {},
     -- },
-    extensions = { "nvim-tree" },
+    -- extensions = { "nvim-tree" },
   })
 end
 

@@ -52,6 +52,7 @@ return {
         "sql",
         "toml",
         "tsx",
+        "twig",
         "typescript",
         "vhs",
         "vim",

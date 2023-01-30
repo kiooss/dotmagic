@@ -38,7 +38,6 @@ return {
         "java",
         "javascript",
         "jsdoc",
-        "jsonc",
         "lua",
         "markdown",
         "markdown_inline",
@@ -58,7 +57,6 @@ return {
         "vim",
         "vue",
         "yaml",
-        "json",
       },
       incremental_selection = {
         enable = true,

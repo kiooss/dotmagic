@@ -79,7 +79,7 @@ vim.opt.fillchars = {
   foldopen = "",
   foldclose = "",
   fold = " ",
-  foldsep = " ",
+  -- foldsep = " ",
   diff = "╱",
   eob = " ",
 }
@@ -88,4 +88,4 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.foldcolumn = "1"
 
-require("util.status")
+-- require("util.status")

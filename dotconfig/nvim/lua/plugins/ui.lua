@@ -28,7 +28,7 @@ return {
 
   -- bufferline
   {
-    "akinsho/nvim-bufferline.lua",
+    "akinsho/bufferline.nvim",
     opts = {
       options = {
         always_show_bufferline = true,

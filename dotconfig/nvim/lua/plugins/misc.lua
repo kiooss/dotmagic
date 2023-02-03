@@ -25,6 +25,7 @@ return {
 
   {
     "mhinz/vim-sayonara",
+    enabled = false,
     cmd = { "Sayonara" },
     keys = { { "q", "<cmd>Sayonara<CR>", desc = "Sayonara" } },
   },

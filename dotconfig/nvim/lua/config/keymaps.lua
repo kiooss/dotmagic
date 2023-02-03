@@ -2,12 +2,12 @@ local util = require("util")
 
 vim.keymap.set("n", "<Tab>", "<cmd>wincmd w<CR>", { desc = "Switch window" })
 
-vim.keymap.del("n", "<leader>w-")
-vim.keymap.del("n", "<leader>w|")
-vim.keymap.del("n", "<leader>wd")
-vim.keymap.del("n", "<leader>ww")
+-- vim.keymap.del("n", "<leader>w-")
+-- vim.keymap.del("n", "<leader>w|")
+-- vim.keymap.del("n", "<leader>wd")
+-- vim.keymap.del("n", "<leader>ww")
 vim.keymap.set("n", "<leader>e", "<cmd>x<CR>", { desc = "Save and Quit" })
-vim.keymap.set("n", "<leader>w", "<cmd>update<CR>", { desc = "Save" })
+-- vim.keymap.set("n", "<leader>w", "<cmd>update<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>z", "<cmd>qa!<CR>", { desc = "Quit All!" })
 vim.keymap.set("n", "<leader>-", "<cmd>:vsplit<CR>:wincmd p<CR>:e#<CR>", { desc = "Vsplit buffers" })
 

@@ -59,6 +59,7 @@ return {
     config = function()
       local nls = require("null-ls")
       nls.setup({
+        -- debug = true,
         -- debounce = 150,
         default_timeout = 10000,
         -- should_attach = function(bufnr)

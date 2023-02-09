@@ -182,6 +182,8 @@
 	utccommit = !git commit --date="$(date --utc +%Y-%m-%dT%H:%M:%S%z)"
 	shcommit = !git commit --date="$(TZ=Asia/Shanghai date +%Y-%m-%dT%H:%M:%S%z)"
 
+	ups = !~/.gem/ruby/3.0.0/bin/git-up
+
 [diff]
 	tool = vimdiff
 	mnemonicprefix = true

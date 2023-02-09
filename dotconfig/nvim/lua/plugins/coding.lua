@@ -113,4 +113,48 @@ return {
       })
     end,
   },
+
+  -- copilot
+  {
+    "zbirenbaum/copilot.lua",
+    enabled = true,
+    event = "VeryLazy",
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        debounce = 75,
+        keymap = {
+          accept = "<C-j>",
+          accept_word = false,
+          accept_line = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+      },
+      filetypes = {
+        sh = function()
+          if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
+            -- disable for .env files
+            return false
+          end
+          return true
+        end,
+      },
+    },
+  },
+
+  {
+    "github/copilot.vim",
+    enabled = false,
+    event = "VeryLazy",
+    init = function()
+      vim.g.copilot_no_tab_map = 1
+      vim.g.copilot_filetypes = {
+        spectre_panel = false,
+      }
+      vim.keymap.set("i", "<c-j>", 'copilot#Accept("<CR>")', { expr = true })
+    end,
+  },
 }

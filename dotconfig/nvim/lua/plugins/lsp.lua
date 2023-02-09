@@ -49,6 +49,7 @@ return {
         solargraph = {},
         vimls = {},
         vuels = {},
+        tailwindcss = {},
       },
     },
   },
@@ -59,7 +60,7 @@ return {
     config = function()
       local nls = require("null-ls")
       nls.setup({
-        -- debug = true,
+        debug = true,
         -- debounce = 150,
         default_timeout = 10000,
         -- should_attach = function(bufnr)
@@ -84,6 +85,7 @@ return {
             extra_args = { "-r" },
           }),
           nls.builtins.formatting.rubocop,
+          nls.builtins.formatting.erb_format,
 
           -- diagnostics
           nls.builtins.diagnostics.shellcheck.with({
@@ -103,7 +105,7 @@ return {
             end,
           }),
           nls.builtins.diagnostics.markdownlint,
-          -- nls.builtins.diagnostics.pylint,
+          nls.builtins.diagnostics.rubocop,
 
           -- code_actions
           nls.builtins.code_actions.gitsigns,
@@ -122,8 +124,8 @@ return {
     opts = {
       ensure_installed = {
         "fixjson",
-        "prettier",
-        "rubocop",
+        -- "prettier",
+        -- "rubocop",
         "stylua",
         "shellcheck",
         "shfmt",

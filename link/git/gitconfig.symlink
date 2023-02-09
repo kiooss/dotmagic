@@ -92,7 +92,7 @@
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	lm = log --pretty=format:'%s%n   by %C(yellow)%an%Creset (%ad)%n %n%b' --date=local
-	cc = clean -i
+	cc = clean -fdi
 	wc = whatchanged
 	logd = log --all --full-history
 	noffmerge = merge --no-ff --log --verbose

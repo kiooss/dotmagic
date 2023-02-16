@@ -56,7 +56,7 @@ local.properties
 .notags
 .tern-project
 
-.solargraph.yml
+# .solargraph.yml
 
 .phpbrewrc
 

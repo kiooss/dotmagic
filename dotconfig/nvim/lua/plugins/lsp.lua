@@ -46,7 +46,9 @@ return {
         --   },
         -- },
         yamlls = {},
-        solargraph = {},
+        solargraph = {
+          mason = false, -- set to false if you don't want this server to be installed with mason
+        },
         vimls = {},
         vuels = {},
         tailwindcss = {},

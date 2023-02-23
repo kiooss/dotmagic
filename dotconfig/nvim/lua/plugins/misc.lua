@@ -1,5 +1,5 @@
 return {
-  { "editorconfig/editorconfig-vim", event = "VeryLazy" },
+  -- { "editorconfig/editorconfig-vim", event = "VeryLazy" },
   { "rhysd/committia.vim", lazy = false },
 
   {
@@ -46,5 +46,10 @@ return {
       vim.g.vimwiki_map_prefix = "<F12>"
       vim.g.vimwiki_table_mappings = 0
     end,
+  },
+
+  {
+    "tpope/vim-bundler",
+    lazy = false,
   },
 }

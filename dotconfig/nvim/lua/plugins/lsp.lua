@@ -87,6 +87,7 @@ return {
             extra_args = { "-r" },
           }),
           nls.builtins.formatting.rubocop,
+          -- nls.builtins.formatting.erb_lint,
           nls.builtins.formatting.erb_format.with({
             condition = function()
               local full_name = vim.api.nvim_buf_get_name(0)
@@ -95,6 +96,7 @@ return {
           }),
 
           -- diagnostics
+          -- nls.builtins.diagnostics.erb_lint,
           nls.builtins.diagnostics.shellcheck.with({
             condition = function()
               local filename_exclude = {

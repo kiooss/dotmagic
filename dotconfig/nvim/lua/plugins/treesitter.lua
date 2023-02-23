@@ -90,20 +90,6 @@ return {
           show_help = "?",
         },
       },
-      textobjects = {
-        select = {
-          enable = false,
-        },
-        move = {
-          enable = false,
-        },
-        lsp_interop = {
-          enable = false,
-        },
-      },
     },
-    -- config = function()
-    --   require("nvim-treesitter.configs").setup()
-    -- end,
   },
 }

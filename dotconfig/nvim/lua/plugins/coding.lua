@@ -117,7 +117,7 @@ return {
   -- copilot
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    enabled = false,
     event = "VeryLazy",
     opts = {
       suggestion = {
@@ -147,7 +147,7 @@ return {
 
   {
     "github/copilot.vim",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     init = function()
       vim.g.copilot_no_tab_map = 1

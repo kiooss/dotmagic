@@ -17,6 +17,7 @@ vim.keymap.set("n", "<leader>ab", "<cmd>lcd %:p:h<cr>", { desc = "change dir for
 vim.keymap.set("n", "B", "^")
 vim.keymap.set("n", "E", "$")
 vim.keymap.set("n", "x", [["_x]]) -- Better x with black hole register "_
+vim.keymap.set("n", "c", [["_c]]) -- Better c with black hole register "_
 vim.keymap.set("n", "Y", "y$")
 vim.keymap.set("n", "Q", "q") -- disable Ex mode
 vim.keymap.set("n", "g;", "g;zvzz")

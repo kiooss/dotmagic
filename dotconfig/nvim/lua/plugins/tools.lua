@@ -32,13 +32,13 @@ return {
     },
   },
 
-  {
-    "ojroques/vim-oscyank",
-    cmd = { "OSCYank", "OSCYankReg" },
-    init = function()
-      vim.g.oscyank_term = "default"
-    end,
-  },
+  -- {
+  --   "ojroques/vim-oscyank",
+  --   cmd = { "OSCYank", "OSCYankRegister" },
+  --   init = function()
+  --     vim.g.oscyank_term = "default"
+  --   end,
+  -- },
 
   {
     "ruifm/gitlinker.nvim",

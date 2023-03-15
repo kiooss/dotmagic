@@ -84,7 +84,6 @@
   "vim-bundler": { "branch": "master", "commit": "5b2c2bae7eb84c70a3830dcf4f00394226a18450" },
   "vim-illuminate": { "branch": "master", "commit": "49062ab1dd8fec91833a69f0a1344223dd59d643" },
   "vim-matchup": { "branch": "master", "commit": "fef9f334e64f024ac49eda92ef6274e826fe2de9" },
-  "vim-oscyank": { "branch": "main", "commit": "ffe827a27dae98aa826e2295336c650c9a434da0" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-startuptime": { "branch": "master", "commit": "6580cf539c33a212f4f5542068a3b4dd2b3ad834" },
   "vim-textobj-anyblock": { "branch": "master", "commit": "a8517f7a7a2fc210a5ef774857b0b5aa66d1c1ea" },

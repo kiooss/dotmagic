@@ -93,6 +93,7 @@ return {
               local full_name = vim.api.nvim_buf_get_name(0)
               return not string.match(full_name, ".*%.text%.erb$")
             end,
+            extra_args = { "--print-width", "120" },
           }),
 
           -- diagnostics

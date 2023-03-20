@@ -17,7 +17,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      format = { timeout_ms = 10000 },
+      format = { timeout_ms = 60000 },
 
       ---@type lspconfig.options
       servers = {
@@ -59,87 +59,151 @@ return {
   -- null-ls
   {
     "jose-elias-alvarez/null-ls.nvim",
-    config = function()
+    opts = function(_, opts)
       local nls = require("null-ls")
-      nls.setup({
-        -- debug = true,
+      vim.list_extend(opts, {
+        debug = true,
         -- debounce = 150,
-        default_timeout = 10000,
-        -- should_attach = function(bufnr)
-        --   return not vim.api.nvim_buf_get_name(bufnr):match("__FLUTTER_DEV_LOG__")
-        -- end,
-        sources = {
-          -- formatters
-          nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
-          nls.builtins.formatting.prettier.with({ prefer_local = "node_modules/.bin" }),
-          nls.builtins.formatting.eslint.with({ prefer_local = "node_modules/.bin" }),
-          nls.builtins.formatting.stylua.with({
-            extra_args = {
-              "--config-path",
-              vim.fn.expand("~/.config/nvim/.stylua.toml"),
-              "-",
-            },
-          }),
-          nls.builtins.formatting.shfmt.with({
-            extra_args = { "-i", "2", "-ci" },
-          }),
-          nls.builtins.formatting.sqlformat.with({
-            extra_args = { "-r" },
-          }),
-          nls.builtins.formatting.rubocop,
-          -- nls.builtins.formatting.erb_lint,
-          nls.builtins.formatting.erb_format.with({
-            condition = function()
-              local full_name = vim.api.nvim_buf_get_name(0)
-              return not string.match(full_name, ".*%.text%.erb$")
-            end,
-            extra_args = { "--print-width", "120" },
-          }),
-
-          -- diagnostics
-          -- nls.builtins.diagnostics.erb_lint,
-          nls.builtins.diagnostics.shellcheck.with({
-            condition = function()
-              local filename_exclude = {
-                ".*%.env$",
-                ".*%.env%..*$",
-              }
-              local full_name = vim.api.nvim_buf_get_name(0)
-              for _, pattern in ipairs(filename_exclude) do
-                if string.match(full_name, pattern) then
-                  return false
-                end
-              end
-
-              return true
-            end,
-          }),
-          nls.builtins.diagnostics.markdownlint,
-          nls.builtins.diagnostics.rubocop,
-
-          -- code_actions
-          nls.builtins.code_actions.gitsigns,
-
-          -- hover
-          nls.builtins.hover.dictionary,
-        },
+        default_timeout = 60000,
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
       })
+      vim.list_extend(opts.sources, {
+        -- formatters
+        nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
+        nls.builtins.formatting.prettier.with({ prefer_local = "node_modules/.bin" }),
+        nls.builtins.formatting.eslint.with({ prefer_local = "node_modules/.bin" }),
+        nls.builtins.formatting.stylua.with({
+          extra_args = {
+            "--config-path",
+            vim.fn.expand("~/.config/nvim/.stylua.toml"),
+            "-",
+          },
+        }),
+        nls.builtins.formatting.shfmt.with({
+          extra_args = { "-i", "2", "-ci" },
+        }),
+        nls.builtins.formatting.sqlformat.with({
+          extra_args = { "-r" },
+        }),
+        nls.builtins.formatting.rubocop,
+        -- nls.builtins.formatting.erb_lint,
+        nls.builtins.formatting.erb_format.with({
+          condition = function()
+            local full_name = vim.api.nvim_buf_get_name(0)
+            return not string.match(full_name, ".*%.text%.erb$")
+          end,
+          extra_args = { "--print-width", "120" },
+        }),
+
+        -- diagnostics
+        -- nls.builtins.diagnostics.erb_lint,
+        nls.builtins.diagnostics.shellcheck.with({
+          condition = function()
+            local filename_exclude = {
+              ".*%.env$",
+              ".*%.env%..*$",
+            }
+            local full_name = vim.api.nvim_buf_get_name(0)
+            for _, pattern in ipairs(filename_exclude) do
+              if string.match(full_name, pattern) then
+                return false
+              end
+            end
+
+            return true
+          end,
+        }),
+        nls.builtins.diagnostics.markdownlint,
+        nls.builtins.diagnostics.rubocop,
+
+        -- code_actions
+        nls.builtins.code_actions.gitsigns,
+
+        -- hover
+        nls.builtins.hover.dictionary,
+      })
     end,
+    -- config = function()
+    --   local nls = require("null-ls")
+    --   nls.setup({
+    --     debug = true,
+    --     -- debounce = 150,
+    --     default_timeout = 60000,
+    --     -- should_attach = function(bufnr)
+    --     --   return not vim.api.nvim_buf_get_name(bufnr):match("__FLUTTER_DEV_LOG__")
+    --     -- end,
+    --     sources = {
+    --       -- formatters
+    --       nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
+    --       nls.builtins.formatting.prettier.with({ prefer_local = "node_modules/.bin" }),
+    --       nls.builtins.formatting.eslint.with({ prefer_local = "node_modules/.bin" }),
+    --       nls.builtins.formatting.stylua.with({
+    --         extra_args = {
+    --           "--config-path",
+    --           vim.fn.expand("~/.config/nvim/.stylua.toml"),
+    --           "-",
+    --         },
+    --       }),
+    --       nls.builtins.formatting.shfmt.with({
+    --         extra_args = { "-i", "2", "-ci" },
+    --       }),
+    --       nls.builtins.formatting.sqlformat.with({
+    --         extra_args = { "-r" },
+    --       }),
+    --       nls.builtins.formatting.rubocop,
+    --       -- nls.builtins.formatting.erb_lint,
+    --       nls.builtins.formatting.erb_format.with({
+    --         condition = function()
+    --           local full_name = vim.api.nvim_buf_get_name(0)
+    --           return not string.match(full_name, ".*%.text%.erb$")
+    --         end,
+    --         extra_args = { "--print-width", "120" },
+    --       }),
+    --
+    --       -- diagnostics
+    --       -- nls.builtins.diagnostics.erb_lint,
+    --       nls.builtins.diagnostics.shellcheck.with({
+    --         condition = function()
+    --           local filename_exclude = {
+    --             ".*%.env$",
+    --             ".*%.env%..*$",
+    --           }
+    --           local full_name = vim.api.nvim_buf_get_name(0)
+    --           for _, pattern in ipairs(filename_exclude) do
+    --             if string.match(full_name, pattern) then
+    --               return false
+    --             end
+    --           end
+    --
+    --           return true
+    --         end,
+    --       }),
+    --       nls.builtins.diagnostics.markdownlint,
+    --       nls.builtins.diagnostics.rubocop,
+    --
+    --       -- code_actions
+    --       nls.builtins.code_actions.gitsigns,
+    --
+    --       -- hover
+    --       nls.builtins.hover.dictionary,
+    --     },
+    --     root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
+    --   })
+    -- end,
   },
 
   -- cmdline tools and lsp servers
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "fixjson",
         -- "prettier",
         -- "rubocop",
         "stylua",
         "shellcheck",
         "shfmt",
-      },
-    },
+      })
+    end,
   },
 }

@@ -128,7 +128,7 @@ function M.config()
         --   end,
         -- },
       },
-      lualine_y = { "encoding", "fileformat", "filetype", { get_lsp_client }, "location", "progress" },
+      lualine_y = { "encoding", "fileformat", "filetype", { get_lsp_client }, "location", "%L", "progress" },
       lualine_z = { { clock, separator = { right = "" } } },
     },
     inactive_sections = {

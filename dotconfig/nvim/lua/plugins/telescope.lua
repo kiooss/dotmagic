@@ -15,13 +15,6 @@ return {
       desc = "Searches string",
     },
     {
-      "<leader>fg",
-      function()
-        require("telescope.builtin").git_status()
-      end,
-      desc = "Find files git status",
-    },
-    {
       "<leader>*",
       function()
         require("telescope.builtin").grep_string()

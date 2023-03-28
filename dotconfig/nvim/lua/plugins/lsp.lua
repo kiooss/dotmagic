@@ -77,8 +77,22 @@ return {
         -- formatters
         nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
         nls.builtins.formatting.prettier.with({ prefer_local = "node_modules/.bin" }),
-        nls.builtins.formatting.eslint.with({ prefer_local = "node_modules/.bin" }),
+        nls.builtins.formatting.eslint.with({
+          prefer_local = "node_modules/.bin",
+          condition = function(utils)
+            return utils.root_has_file({
+              ".eslintrc.js",
+              ".eslintrc.cjs",
+              ".eslintrc.yaml",
+              ".eslintrc.yml",
+              ".eslintrc.json",
+            })
+          end,
+        }),
         nls.builtins.formatting.stylua.with({
+          condition = function(utils)
+            return utils.root_has_file({ "stylua.toml", ".stylua.toml" })
+          end,
           extra_args = {
             "--config-path",
             vim.fn.expand("~/.config/nvim/.stylua.toml"),
@@ -93,13 +107,14 @@ return {
         }),
         nls.builtins.formatting.rubocop,
         -- nls.builtins.formatting.erb_lint,
-        nls.builtins.formatting.erb_format.with({
-          condition = function()
-            local full_name = vim.api.nvim_buf_get_name(0)
-            return not string.match(full_name, ".*%.text%.erb$")
-          end,
-          extra_args = { "--print-width", "120" },
-        }),
+        -- nls.builtins.formatting.erb_format.with({
+        --   condition = function()
+        --     local full_name = vim.api.nvim_buf_get_name(0)
+        --     return not string.match(full_name, ".*%.text%.erb$")
+        --   end,
+        --   extra_args = { "--print-width", "120" },
+        -- }),
+        nls.builtins.formatting.htmlbeautifier,
 
         -- diagnostics
         -- nls.builtins.diagnostics.erb_lint,

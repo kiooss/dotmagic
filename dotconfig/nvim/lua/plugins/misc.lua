@@ -52,4 +52,9 @@ return {
     "tpope/vim-bundler",
     lazy = false,
   },
+
+  -- {
+  --   "tpope/vim-rails",
+  --   lazy = false,
+  -- },
 }

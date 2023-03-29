@@ -67,7 +67,12 @@ pull_request_production() {
   local pr_title
 
   if [[ -z $project ]]; then
-    target_branch="master"
+    if git show-ref --quiet refs/heads/main; then
+      target_branch="main"
+    else
+      target_branch="master"
+    fi
+
     diff=$(get_diff "$target_branch")
     pr_label="production-release"
     pr_title="本番反映"

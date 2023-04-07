@@ -105,7 +105,12 @@ return {
         nls.builtins.formatting.sqlformat.with({
           extra_args = { "-r" },
         }),
-        nls.builtins.formatting.rubocop,
+        nls.builtins.formatting.rubocop.with({
+          extra_args = { "--server" },
+          condition = function(utils)
+            return utils.root_has_file({ ".rubocop.yml" })
+          end,
+        }),
         -- nls.builtins.formatting.erb_lint,
         -- nls.builtins.formatting.erb_format.with({
         --   condition = function()

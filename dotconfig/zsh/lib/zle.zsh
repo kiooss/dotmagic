@@ -30,6 +30,7 @@ fi
 goto-gitroot() {
   cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")
   VISUAL=true zle edit-command-line
+  zle accept-line
 }
 zle -N goto-gitroot
 bindkey '^g' goto-gitroot

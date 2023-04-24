@@ -45,6 +45,7 @@ return {
       desc = "Find Plugin File",
     },
     { "<leader>gb", "<cmd>Telescope git_bcommits<CR>", desc = "buffer commits" },
+    { "<M-b>", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
   },
   opts = function()
     local actions = require("telescope.actions")

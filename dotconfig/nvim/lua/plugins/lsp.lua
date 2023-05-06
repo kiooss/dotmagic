@@ -119,7 +119,12 @@ return {
         --   end,
         --   extra_args = { "--print-width", "120" },
         -- }),
-        nls.builtins.formatting.htmlbeautifier,
+        nls.builtins.formatting.htmlbeautifier.with({
+          runtime_condition = function()
+            local full_name = vim.api.nvim_buf_get_name(0)
+            return not string.match(full_name, ".*%.text%.erb$")
+          end,
+        }),
 
         -- diagnostics
         -- nls.builtins.diagnostics.erb_lint,

@@ -45,4 +45,9 @@ return {
     keys = { { "<leader>gy", desc = "github permalink" } },
     config = true,
   },
+  {
+    "jackMort/ChatGPT.nvim",
+    cmd = { "ChatGPTActAs", "ChatGPT", "ChatGPTEditWithInstructions" },
+    opts = {},
+  },
 }

@@ -57,7 +57,7 @@ return {
         },
         vimls = {},
         vuels = {},
-        tailwindcss = {},
+        -- tailwindcss = {},
       },
     },
   },

@@ -15,108 +15,77 @@ return {
     "hrsh7th/cmp-emoji",
     "hrsh7th/cmp-cmdline",
     "dmitmel/cmp-cmdline-history",
-    "hrsh7th/cmp-nvim-lua",
-    "onsails/lspkind.nvim",
     "octaltree/cmp-look",
   },
-  opts = function()
+  ---@param opts cmp.ConfigSchema
+  opts = function(_, opts)
     local cmp = require("cmp")
     local luasnip = require("luasnip")
-
-    return {
-      window = {
-        -- completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-      },
-      mapping = cmp.mapping.preset.insert({
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping({
-          i = cmp.mapping.abort(),
-          c = cmp.mapping.close(),
-        }),
-        ["<C-y>"] = cmp.mapping(
-          cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          }),
-          { "i", "c" }
-        ),
-        ["<M-y>"] = cmp.mapping(
-          cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          }),
-          { "i", "c" }
-        ),
-        ["<CR>"] = cmp.mapping.confirm({
-          -- default is cmp.CompeConfirmBehavior.Insert
+    local sources = {
+      { name = "nvim_lua" },
+      { name = "treesitter" },
+      { name = "tmux" },
+      { name = "emoji" },
+      { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
+    }
+    opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
+    opts.mapping = cmp.mapping.preset.insert({
+      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-e>"] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ["<C-y>"] = cmp.mapping(
+        cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Insert,
           select = true,
         }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+        { "i", "c" }
+      ),
+      ["<M-y>"] = cmp.mapping(
+        cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        }),
+        { "i", "c" }
+      ),
+      ["<CR>"] = cmp.mapping.confirm({
+        -- default is cmp.CompeConfirmBehavior.Insert
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      }),
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
           -- elseif vim.fn['vsnip#available']() == 1 then
           --   feedkey('<Plug>(vsnip-expand-or-jump)', '')
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, {
+        "i",
+        "s",
+      }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
           -- elseif vim.fn['vsnip#jumpable'](-1) == 1 then
           --   feedkey('<Plug>(vsnip-jump-prev)', '')
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
+        else
+          fallback()
+        end
+      end, {
+        "i",
+        "s",
       }),
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "nvim_lua" },
-        { name = "buffer" },
-        { name = "treesitter" },
-        { name = "path" },
-        { name = "tmux" },
-        { name = "emoji" },
-        { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
-      }),
-      formatting = {
-        format = require("lspkind").cmp_format({
-          with_text = true,
-          menu = {
-            look = "[look]",
-            nvim_lsp = "[LSP]",
-            nvim_lua = "[neovim Lua API]",
-            treesitter = "[treesitter]",
-            path = "[path]",
-            buffer = "[buffer]",
-            zsh = "[zsh]",
-            vsnip = "[vsnip]",
-            luasnip = "[luasnip]",
-            spell = "[spell]",
-            tmux = "[tmux]",
-            cmdline = "[cmdline]",
-            cmdline_history = "[cmdline_history]",
-          },
-        }),
-      },
-    }
+    })
   end,
   config = function(_, opts)
     local cmp = require("cmp")

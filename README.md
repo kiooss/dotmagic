@@ -54,6 +54,7 @@ Note: the configuration is always WIP state.
 
 ## Zsh
 
+https://github.com/robbyrussell/oh-my-zsh
 My own config plus [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh).
 Oh-my-zsh is optional, but it does a lot things for me and worked well, so I add
 it to my config.
@@ -65,4 +66,3 @@ Tmux is awesome, it saves me a lot of time since I decided to use it.
 ## License
 
 [MIT](license)
-

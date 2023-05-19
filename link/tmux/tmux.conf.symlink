@@ -158,10 +158,13 @@ bind-key a send-prefix
 
 setw -g mode-keys vi
 
+
+# Clipper.
+bind-key y run-shell "tmux save-buffer - | clip"
+
 # For those times when C-c and q are not enough.
 bind-key -T copy-mode-vi Escape send-keys -X cancel
-
-bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'clip' \
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "clip"
 
 unbind p
 bind p paste-buffer

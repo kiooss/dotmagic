@@ -89,7 +89,7 @@ unbind %
 bind X kill-pane -a
 
 # reload config file (change file location to your the tmux.conf you want to use)
-bind r source-file ~/.tmux.conf #\; display "tmux conf reloaded!"
+bind r source-file ~/.tmux.conf \; display "tmux conf reloaded!"
 
 # set default directory for new windows in this session to current directory:
 bind W attach-session -c "#{pane_current_path}"
@@ -158,13 +158,11 @@ bind-key a send-prefix
 
 setw -g mode-keys vi
 
-
-# Clipper.
-bind-key y run-shell "tmux save-buffer - | clip"
-
 # For those times when C-c and q are not enough.
 bind-key -T copy-mode-vi Escape send-keys -X cancel
 bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "clip"
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection
 
 unbind p
 bind p paste-buffer
@@ -195,7 +193,7 @@ set -g visual-activity off
 # source ~/.tmux.tmuxtheme
 
 # tpm config.
-set -g @base16-statusline 'main'
+# set -g @base16-statusline 'main'
 
 set -g @prefix_highlight_bg black
 set -g @prefix_highlight_fg red

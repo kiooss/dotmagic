@@ -33,7 +33,6 @@ return {
         "gitignore",
         "go",
         "graphql",
-        "help",
         "html",
         "http",
         "java",

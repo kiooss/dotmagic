@@ -62,4 +62,8 @@ return {
   --   "tpope/vim-rails",
   --   lazy = false,
   -- },
+  {
+    "fladson/vim-kitty",
+    lazy = false,
+  },
 }

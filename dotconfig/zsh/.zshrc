@@ -64,13 +64,7 @@ export PATH="$DOTFILES/bin:$PATH"
 [[ -d "$HOME/dev/flutter/bin" ]] && export PATH="$HOME/dev/flutter/bin:$PATH"
 # [[ -d "$HOME/venv/py3/bin/" ]] && export PATH="$HOME/venv/py3/bin/:$PATH"
 # rbenv
-# export PATH="$DOTFILES/vendor/rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
-# pyenv
-# export PATH="$HOME/.pyenv/bin:$PATH"
-
-export N_PREFIX=$HOME/.n
-export PATH=$N_PREFIX/bin:$PATH
 
 # Add android tools
 if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
@@ -345,6 +339,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ## https://wiki.archlinux.org/title/zsh#Persistent_rehash {{{
 if type pacman &>/dev/null; then

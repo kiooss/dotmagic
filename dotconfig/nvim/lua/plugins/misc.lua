@@ -75,4 +75,11 @@ return {
     "fladson/vim-kitty",
     lazy = false,
   },
+
+  {
+    "beauwilliams/focus.nvim",
+    enabled = false,
+    lazy = false,
+    config = true,
+  },
 }

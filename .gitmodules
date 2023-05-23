@@ -10,10 +10,6 @@
 	path = zsh/omz_custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
   branch = master
-[submodule "zsh/base16-shell"]
-	path = zsh/base16-shell
-	url = https://github.com/chriskempson/base16-shell
-  branch = master
 [submodule "vendor/git-when-merged"]
 	path = vendor/git-when-merged
 	url = https://github.com/mhagger/git-when-merged.git

@@ -189,9 +189,6 @@ set -g visual-activity off
 # setw -g monitor-activity on
 # set -g visual-activity on
 
-# theme config.
-# source ~/.tmux.tmuxtheme
-
 # tpm config.
 # set -g @base16-statusline 'main'
 

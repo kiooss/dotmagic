@@ -125,6 +125,7 @@ return {
             return not string.match(full_name, ".*%.text%.erb$")
           end,
         }),
+        nls.builtins.formatting.shellharden,
 
         -- diagnostics
         -- nls.builtins.diagnostics.erb_lint,
@@ -233,6 +234,7 @@ return {
         -- "rubocop",
         "stylua",
         "shellcheck",
+        "shellharden",
         "shfmt",
       })
     end,

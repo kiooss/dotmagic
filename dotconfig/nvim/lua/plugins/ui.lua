@@ -99,6 +99,7 @@ return {
   -- noicer ui
   {
     "folke/noice.nvim",
+    lazy = false,
     opts = {
       lsp = {
         override = {

@@ -1,2 +1,0 @@
-#!/bin/sh
-printf '%s %s' $(date +%Y%m%d) $(date +%w | sed 's/0/#[fg=red]㈰/g; s/1/㈪/g; s/2/㈫/g; s/3/㈬/g; s/4/㈭/g; s/5/㈮/g; s/6/#[fg=red]㈯/g; ')

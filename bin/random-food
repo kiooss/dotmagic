@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-FOOD=(🍺 🍸 🍹 🍷 🍕 🍔 🍟 🍗 🍖 🍝 🍤 🍣 🍥 🍜 🍡 🍞 🍩 🍦 🍨 🍰 🍪 🍫 🍬 🍭 🍎 🍏 🍊 🍋 🍒 🍇 🍉 🍓 🍑 🍌 🍐 🍍 🍆 🍅)
-echo -n "$FOOD[$RANDOM%$#FOOD+1]"

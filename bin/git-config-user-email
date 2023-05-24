@@ -13,7 +13,7 @@ if [[ $PROJECT_TYPE == 'work' ]]; then
   fi
   email=$WORK_EMAIL
 else
-  remote=`git remote -v | awk '/\(push\)$/ {print $2}' | cut -d ':' -f 1`
+  remote=$(git remote -v | awk '/\(push\)$/ {print $2}' | cut -d ':' -f 1)
 
   # work email
   if [[ $remote == 'git' ]]; then

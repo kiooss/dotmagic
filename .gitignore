@@ -1,10 +1,8 @@
 .netrwhist
 npm-debug.log
 
-packer_compiled.lua
-packer_compiled.vim
-
 node_modules/
 
 /dotconfig/kitty/theme.conf
 /dotconfig/zsh/.zcompdump*
+/dotconfig/nvim/.luarc.json

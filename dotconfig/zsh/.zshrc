@@ -55,6 +55,7 @@ typeset -U path cdpath fpath manpath
 
 # PATH config {{{
 # export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 # adding path directory for custom scripts
 export PATH="$DOTFILES/bin:$PATH"
 # check for custom bin directory and add to path

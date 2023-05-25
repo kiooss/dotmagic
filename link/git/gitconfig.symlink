@@ -9,6 +9,7 @@
 
 [include]
 	path = ~/workspace/delta/themes.gitconfig
+	; path = ~/.local/share/nvim/lazy/tokyonight.nvim/extras/delta/tokyonight_moon.gitconfig
 
 [github]
 	user = kiooss
@@ -37,6 +38,7 @@
 	diffFilter = delta --color-only
 
 [delta]
+	navigate = true    # use n and N to move between diff sections
 	features = side-by-side line-numbers decorations
 	; features = line-numbers decorations
 	whitespace-error-style = 22 reverse
@@ -268,3 +270,5 @@
 	defaultBranch = main
 [pull]
 	rebase = true
+[rebase]
+	autoStash = true

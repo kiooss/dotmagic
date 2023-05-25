@@ -36,9 +36,9 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 zstyle ':completion:*' verbose yes
 
 # zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:descriptions' format '%F{yellow}留%f%F{green}%d%f'
-zstyle ':completion:*:messages' format '%F{yellow}留%f%F{green}%d%f'
-zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:descriptions' format '%F{yellow}🌟%f%F{green}%d%f'
+zstyle ':completion:*:messages' format '%F{yellow}✨%f%F{green}%d%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- 😵 no matches found --%f'
 
 # Grouping Results
 zstyle ':completion:*' group-name ''

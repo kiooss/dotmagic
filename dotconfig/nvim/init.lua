@@ -4,7 +4,7 @@
 if vim.loader then
   vim.loader.enable()
   vim.schedule(function()
-    vim.notify("nvim cache is enabled")
+    vim.notify("nvim loader is enabled")
   end)
 end
 

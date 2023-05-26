@@ -30,12 +30,9 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 # export is important if you want to use DOTFILES env in sub shell.
 export DOTFILES="$HOME/.dotfiles"
-# whether use patched font (for shell, tmux, and vim)
-export ENABLE_PATCHED_FONT=true
 
 ZSH_CUSTOM="$DOTFILES/zsh/omz_custom"
 # ZSH_THEME=""
-# ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Remove duplicates in the following arrays.

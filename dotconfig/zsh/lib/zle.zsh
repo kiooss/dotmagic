@@ -23,10 +23,6 @@ if (( $+commands[ranger] )); then
   bindkey '^o' ranger-cd
 fi
 
-if (( $+commands[mycli] )); then
-  bindkey -s '\em' '^Umycli -u root -proot --port=3307^M'
-fi
-
 goto-gitroot() {
   cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")
   VISUAL=true zle edit-command-line

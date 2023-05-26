@@ -26,7 +26,7 @@ return {
       { name = "treesitter" },
       { name = "tmux" },
       { name = "emoji" },
-      { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
+      -- { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
     }
     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
     opts.mapping = cmp.mapping.preset.insert({
@@ -107,7 +107,7 @@ return {
             end,
           },
         },
-        { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
+        -- { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
       }),
     })
 

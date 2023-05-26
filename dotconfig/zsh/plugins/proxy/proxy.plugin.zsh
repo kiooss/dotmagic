@@ -9,6 +9,14 @@ function proxy-off() {
   echo "off" > ~/.cache/proxy_state
 }
 
+function proxy-toggle() {
+  if [[ -z "$all_proxy" ]]; then
+    proxy-on && echo "proxy on: $all_proxy"
+  else
+    proxy-off && echo "Proxy off"
+  fi
+}
+
 function proxy-state() {
   if [[ -z "$all_proxy" ]]; then
     echo -n ""
@@ -20,3 +28,7 @@ function proxy-state() {
 if [[ -f ~/.cache/proxy_state && `cat ~/.cache/proxy_state` == 'on' ]]; then
   proxy-on
 fi
+
+# zle -N proxy-toggle
+# Defined shortcut keys:
+bindkey -s "\et" '^Uproxy-toggle^M'

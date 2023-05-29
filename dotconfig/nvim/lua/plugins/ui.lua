@@ -121,12 +121,10 @@ return {
   {
     "folke/styler.nvim",
     event = "VeryLazy",
-    enabled = false,
     opts = {
       themes = {
-        markdown = { colorscheme = "tokyonight-storm" },
-        help = { colorscheme = "oxocarbon", background = "dark" },
-        noice = { colorscheme = "gruvbox", background = "dark" },
+        markdown = { colorscheme = "catppuccin" },
+        help = { colorscheme = "catppuccin", background = "dark" },
       },
     },
   },
@@ -139,6 +137,15 @@ return {
       math.randomseed(os.time())
       local theme = ({ "stars", "snow", "xmas" })[math.random(1, 3)]
       require("drop").setup({ theme = theme })
+    end,
+  },
+
+  {
+    "echasnovski/mini.hipatterns",
+    opts = function(_, opts)
+      vim.list_extend(opts.tailwind.ft, {
+        "eruby",
+      })
     end,
   },
 }

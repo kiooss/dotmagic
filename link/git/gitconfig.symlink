@@ -20,30 +20,19 @@
 	# pager =  "nkf -w | LESSCHARSET=utf-8 less"
 	quotepath = false
 	attributesfile = ~/.gitattributes
-
-# [pager]
-	# log = diff-so-fancy | $(git config --get core.pager)
-	# diff = diff-so-fancy | $(git config --get core.pager)
-	# show = diff-so-fancy | $(git config --get core.pager)
-
-[pager]
-	diff = delta
-	log = delta
-	reflog = delta
-	show = delta
-	blame = delta
-    grep = delta
+	pager = delta
 
 [interactive]
 	diffFilter = delta --color-only
 
 [delta]
+	features = decorations
 	navigate = true    # use n and N to move between diff sections
-	features = side-by-side line-numbers decorations
-	; features = line-numbers decorations
-	whitespace-error-style = 22 reverse
+	side-by-side = true
+	line-numbers = true
 
 [delta "decorations"]
+	whitespace-error-style = 22 reverse
 	commit-decoration-style = bold yellow box ul
 	file-style = bold yellow ul
 	file-decoration-style = none
@@ -59,8 +48,14 @@
 	date = iso # show iso format date in log
 	decorate = true
 
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
 [push]
 	default = current
+[rebase]
+	autoStash = true
 
 [branch]
 	autosetupmerge = true
@@ -71,11 +66,49 @@
 
 [commit]
 	template = ~/.dotfiles/link/git/commit.tpl
-#
+
+[diff]
+	tool = vimdiff
+	mnemonicprefix = true
+	colorMoved = default
+
+[difftool]
+	prompt = false
+
+[diff "nkf"]
+	textconv = nkf
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+
+[rerere]
+	enabled = true
+
+[credential]
+	helper = cache --timeout=3600
+
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+
+[mergetool]
+	prompt = false
+
+[merge "railsschema"]
+	name = newer Rails schema version
+	driver = "ruby -e '\n\
+		system %(git), %(merge-file), %(--marker-size=%L), %(%A), %(%O), %(%B)\n\
+		b = File.read(%(%A))\n\
+		b.sub!(/^<+ .*\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n=+\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n>+ .*/) do\n\
+		%(ActiveRecord::Schema.define(:version => #{[$1, $2].max}) do)\n\
+		end\n\
+		File.open(%(%A), %(w)) {|f| f.write(b)}\n\
+		exit 1 if b.include?(%(<)*%L)'"
+
 # Aliases
-#
 [alias]
-# list all aliases
+	# list all aliases
 	la = "!git config -l | grep alias | cut -c 7-"
 	cm = commit -a -v
 	cma = commit --amend
@@ -98,107 +131,76 @@
 	wc = whatchanged
 	logd = log --all --full-history
 	noffmerge = merge --no-ff --log --verbose
-# Show files ignored by git:
+	# Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
-# unmerged commit with master
+	# unmerged commit with master
 	notinmaster = log --no-merges --pretty='%C(yellow)%h%d %Creset%an %Cgreen%ar:%Creset %s' --graph master..
 	notin = log --no-merges --pretty='%C(yellow)%h%d %Creset%an %Cgreen%ar:%Creset %s' --graph
 	out = "!git fetch; git cherry origin/HEAD -v"
-#dp = diff --stat origin/master HEAD
+	#dp = diff --stat origin/master HEAD
 	dp = "!DIFF_PREVIEW1=$(git diff --stat origin/master HEAD);"
 	delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 	diff-ignore-space = diff --ignore-space-at-eol -b -w --ignore-blank-lines
-
-# order files by number of commits, ascending
+	# order files by number of commits, ascending
 	churn = "!f() { git log --all -M -C --name-only --format='format:' \"$@\" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print \"count\tfile\"} {print $1 \"\t\" $2}' | sort -g; }; f"
-
-# show all deleted files in the repo
+	# show all deleted files in the repo
 	deleted = "!git log --diff-filter=D --summary | grep delete"
-
-# current branch
+	# current branch
 	cbr = rev-parse --abbrev-ref HEAD
-
-# show number of commits per contributer, sorted
+	# show number of commits per contributer, sorted
 	count = shortlog -sn
-
 	undo = reset --soft HEAD~1
 	amend = commit -a --amend
-
 	cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
-
-# rebase the current branch with changes from upstream remote
+	# rebase the current branch with changes from upstream remote
 	update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
-
-# tag aliases
-# show the last tag
+	# tag aliases
+	# show the last tag
 	lt = describe --tags --abbrev=0
-
-# assume aliases
+	# assume aliases
 	assume = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
 	assumed = "!git ls-files -v | grep ^h | cut -c 3-"
 	unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
-
 	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD'  ]]; then export $VAR='$NEW'; fi\" $@;  }; f "
-
-# git branch --merged | egrep -v "(^\*|master|dev|devlopment|staging)" | xargs git branch -d
-
+	# git branch --merged | egrep -v "(^\*|master|dev|devlopment|staging)" | xargs git branch -d
 	delete-both-branch = "!f() { VAR=$1; git branch -d \"$VAR\" && git push origin \":$VAR\"; }; f"
-
-# find email in source
+	# find email in source
 	grepemail = grep -E '\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\\b'
-
 	submodule-init = submodule update --init --recursive
 	submodule-update = "!git submodule sync && git pull --recurse-submodules && git submodule update --remote"
-
 	personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@gmail.com'"
-
 	sync-submodules = "!git submodule sync && git pull --recurse-submodules && git submodule update --remote"
-
-# show the log with deleted files
-# git deleted                         # find a deleted file and its commit
-# git checkout <commit>~1 <filename>  # restore the deleted file
+	# show the log with deleted files
+	# git deleted                         # find a deleted file and its commit
+	# git checkout <commit>~1 <filename>  # restore the deleted file
 	deleted = log --diff-filter=D --summary
-
-### hub
-# show pr list
+	### hub
+	# show pr list
 	prlist = pr list --format='%t [%H → %B] | %U%n'
-
-# fzf primitives
+	# fzf primitives
 	fzf = "!f() { fzf --height=100% --ansi --preview='git fzf-pre {}' -q \"$1\" | cut -d' ' -f1; }; f"
 	fzf-pre = "!f() { git show --stat --color $(echo $1 | cut -d ' ' -f1); }; f "
-# interactively select commits
+	# interactively select commits
 	sel = "!f() { git log --oneline --color | git fzf $1; }; f"
 	rsel = "!f() { git log -g --oneline --color |  git fzf $1; }; f"
 	sel-ref = "!f() { git show-ref --abbrev | git fzf $1; }; f"
-# quick and easy autosquash commits
+	# quick and easy autosquash commits
 	squash = "!f() { git commit --squash=$(git sel $1); }; f"
 	fixup = "!f() { git commit --fixup=$(git sel $1); }; f"
-# quick and easy branch tracking
+	# quick and easy branch tracking
 	track = "!f() { git branch -u $(git branch -r --format '%(refname:short)' | git fzf $1); }; f"
-# misc aliases
+	# misc aliases
 	prune = fetch --prune
 	stash-all = stash save --include-untracked
 	preset = !git diff -p -R | grep -E '^(diff|(old|new) mode)' | git apply
-
 	utccommit = !git commit --date="$(date --utc +%Y-%m-%dT%H:%M:%S%z)"
 	shcommit = !git commit --date="$(TZ=Asia/Shanghai date +%Y-%m-%dT%H:%M:%S%z)"
-
 	ups = !~/.gem/ruby/3.0.0/bin/git-up
-
-[diff]
-	tool = vimdiff
-	mnemonicprefix = true
-[difftool]
-	prompt = false
-
-[diff "nkf"]
-	textconv = nkf
 
 #
 # Colors
 #
-
 # git colors: normal, black, red, green, yellow, blue, magenta, cyan, or white.
 # git formats: bold, dim, ul (underline), blink, and reverse (swap foreground and background).
 [color]
@@ -234,41 +236,3 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
-
-
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
-
-[rerere]
-	enabled = true
-
-[credential]
-	helper = cache --timeout=3600
-
-[merge]
-	tool = vimdiff
-	conflictstyle = diff3
-
-[mergetool]
-	prompt = false
-
-[merge "railsschema"]
-	name = newer Rails schema version
-	driver = "ruby -e '\n\
-		system %(git), %(merge-file), %(--marker-size=%L), %(%A), %(%O), %(%B)\n\
-		b = File.read(%(%A))\n\
-		b.sub!(/^<+ .*\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n=+\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n>+ .*/) do\n\
-		%(ActiveRecord::Schema.define(:version => #{[$1, $2].max}) do)\n\
-		end\n\
-		File.open(%(%A), %(w)) {|f| f.write(b)}\n\
-		exit 1 if b.include?(%(<)*%L)'"
-
-[diff-so-fancy]
-	stripLeadingSymbols = false
-[init]
-	defaultBranch = main
-[pull]
-	rebase = true
-[rebase]
-	autoStash = true

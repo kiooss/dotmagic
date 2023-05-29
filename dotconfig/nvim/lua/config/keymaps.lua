@@ -34,6 +34,9 @@ vim.keymap.set("c", "j", [[getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" :
 vim.keymap.set("x", "s", ":s//g<Left><Left>", { silent = false })
 vim.keymap.set("x", "<C-l>", [[:s/^/\=(line('.')-line("'<")+1).'. '/g]])
 
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
 -- run lua
 vim.keymap.set("n", "<leader>cR", util.runlua, { desc = "Run Lua" })
 

@@ -7,7 +7,7 @@
 # $2: default value
 tmux_get() {
   local value="$(tmux show -gqv "$1")"
-  [ -n "$value" ] && echo "$value" || echo "$2"
+  [ "$value" != "" ] && echo "$value" || echo "$2"
 }
 
 # $1: option
@@ -136,7 +136,7 @@ tmux_set status-right "$RS"
 
 # Window status
 tmux_set window-status-format " #I:#W#F "
-tmux_set window-status-current-format "#[fg=$BG,bg=$G06]$right_arrow_icon#[fg=$TC,italics] #I:#W#F #[fg=$G06,bg=$BG,nobold]$right_arrow_icon"
+tmux_set window-status-current-format "#[fg=$BG,bg=$G06]$right_arrow_icon#[fg=$TC,bold] #I:#W#F #[fg=$G06,bg=$BG,nobold]$right_arrow_icon"
 
 # Window separator
 tmux_set window-status-separator ""
@@ -145,7 +145,7 @@ tmux_set window-status-separator ""
 tmux_set status-justify centre
 
 # Current window status
-tmux_set window-status-current-statys "fg=$TC,bg=$BG"
+tmux_set window-status-current-style "fg=$TC,bg=$BG"
 
 # Pane border
 tmux_set pane-border-style "fg=$G07,bg=default"

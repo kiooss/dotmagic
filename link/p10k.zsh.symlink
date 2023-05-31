@@ -1687,7 +1687,7 @@
   function prompt_git_remote() {
     GIT_REMOTE=$(git config --get remote.origin.url)
     if [[ -n "$GIT_REMOTE" ]]; then
-      p10k segment -b 3 -f '' -i '' -t "$GIT_REMOTE"
+      p10k segment -b 3 -f '' -i '' -t "$GIT_REMOTE"
     fi
   }
   #! add by me end

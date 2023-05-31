@@ -158,7 +158,7 @@ plugins=(
   npm
   systemadmin
   # ssh-agent
-  tmuxinator
+  # tmuxinator
   # themes
   # z
   zsh-autosuggestions
@@ -326,9 +326,6 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
-# Created by `userpath` on 2020-12-07 03:12:21
-export PATH="$PATH:/Users/yang/Library/Python/3.9/bin"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"

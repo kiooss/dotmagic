@@ -1065,8 +1065,8 @@
 
   ##############################[ node_version: node.js version ]###############################
   # Node version color.
-  typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=7
-  typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=2
+  typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=0
+  typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=36
   # Show node version only when in a directory tree containing package.json.
   typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
   # Custom icon.
@@ -1673,14 +1673,14 @@
   function prompt_proxy_state() {
     if [[ -z "$all_proxy" ]]; then
     else
-      p10k segment -b 1 -f 3 -i '' -t 'on'
+      p10k segment -b 17 -f 15 -i '' -t '%Bon%b'
     fi
   }
 
   function prompt_git_user_name() {
     GIT_USER=$(git config user.email | sed 's/@.*//')
     if [[ -n "$GIT_USER" ]]; then
-      p10k segment -b 2 -f '' -i '' -t "$GIT_USER"
+      p10k segment -b 2 -f '' -i '' -t "%B$GIT_USER%b"
     fi
   }
 

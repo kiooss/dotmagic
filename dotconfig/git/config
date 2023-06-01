@@ -15,12 +15,12 @@
 	user = kiooss
 
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git/.gitignore_global
+	attributesfile = ~/.config/git/.gitattributes
+	quotepath = false
+	pager = delta
 	# pager = diff-so-fancy | less --tabs=4 -RFX
 	# pager =  "nkf -w | LESSCHARSET=utf-8 less"
-	quotepath = false
-	attributesfile = ~/.gitattributes
-	pager = delta
 
 [interactive]
 	diffFilter = delta --color-only
@@ -65,7 +65,7 @@
 	linenumber = true
 
 [commit]
-	template = ~/.dotfiles/link/git/commit.tpl
+	template = ~/.config/git/commit.tpl
 
 [diff]
 	tool = vimdiff

@@ -24,3 +24,12 @@ bindkey '^Q' push-line-or-edit
 if (( $+commands[mycli] )); then
   bindkey -s '\em' '^Umycli -u root -proot --port=3307^M'
 fi
+
+if (( $+commands[tn] )); then
+  # bindkey -s '\ej' '^Utn^M'
+  select-tmux-session() {
+    tn
+  }
+  zle -N select-tmux-session
+  bindkey '\ej' select-tmux-session
+fi

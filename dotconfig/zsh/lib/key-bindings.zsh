@@ -26,10 +26,5 @@ if (( $+commands[mycli] )); then
 fi
 
 if (( $+commands[tn] )); then
-  # bindkey -s '\ej' '^Utn^M'
-  select-tmux-session() {
-    tn
-  }
-  zle -N select-tmux-session
-  bindkey '\ej' select-tmux-session
+  bindkey -s '\ej' '^Utn^M'
 fi

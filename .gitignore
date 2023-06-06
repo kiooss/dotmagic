@@ -6,3 +6,4 @@ node_modules/
 /dotconfig/kitty/theme.conf
 /dotconfig/zsh/.zcompdump*
 /dotconfig/nvim/.luarc.json
+/dotconfig/lazygit/state.yml

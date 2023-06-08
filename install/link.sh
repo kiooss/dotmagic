@@ -1,64 +1,55 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+link_config() {
+  config="$1"
+  link_name="$2"
+  echo "-> config: $config link_name: $link_name"
+  if [ -e "$link_name" ]; then
+    if ! [ "$link_name" -ef "$config" ]; then
+      if [ "$force" = "force" ]; then
+        echo "${link_name} already exists, backup it and do link staff."
+        mv "$link_name" "$BACKUP_DIR/"
+        echo "Linking $config to $link_name"
+        ln -sf "$config" "$link_name"
+      else
+        echo "~${link_name} already exists, skip."
+      fi
+    else
+      echo "~${link_name} already linked."
+    fi
+  else
+    echo "Linking $config to $link_name"
+    ln -sf "$config" "$link_name"
+  fi
+}
 
 DOTFILES=$HOME/.dotfiles
 BACKUP_DIR=$HOME/.backup
 
 [ ! -d "$BACKUP_DIR" ] && mkdir -p "$BACKUP_DIR"
 
-. "$DOTFILES/install/util.sh"
-
 force="$1"
+[ "$force" = "force" ] && echo "!!!Run in force mode, be careful."
 
-e_header "Linking files into home directory."
-[ "$force" = "force" ] && e_info "Run in force mode, be careful."
+printf "\n===Linking files into home directory.===\n"
 
-linkables=$( find -H "$DOTFILES/link" -maxdepth 3 -name '*.symlink' )
-
-for file in $linkables ; do
-  target="$HOME/.$(basename $file '.symlink')"
-  e_info "Target: ${target}"
-  if [ -e "$target" ]; then
-    if ! [ "$target" -ef "$file" ]; then
-      if [ "$force" = "force" ]; then
-        e_error "${target} already exists, backup it and do link staff."
-        mv "$target" "$BACKUP_DIR/"
-        e_success "Linking $file to $target"
-        ln -sf "$file" "$target"
-      else
-        e_error "${target} already exists, skip."
-      fi
-    else
-      echo 'Already linked.'
-    fi
-  else
-    e_success "Linking $file to $target"
-    ln -sf "$file" "$target"
-  fi
+find -H "$DOTFILES/link" -maxdepth 3 -name '*.symlink' -print0 | while read -r -d $'\0' config; do
+  link_name="$HOME/.$(basename "$config" '.symlink')"
+  link_config "$config" "$link_name"
 done
 
-e_header "Linking files into ~/.config directory."
+printf "\n===Linking files into ~/.config directory.===\n"
 
-linkables=$( find -H "$DOTFILES/dotconfig" -maxdepth 1 -mindepth 1 -type d )
-for file in $linkables ; do
-  target="$HOME/.config/$(basename $file)"
-  e_info "Target: ${target}"
-  if [ -e "$target" ]; then
-    if ! [ "$target" -ef "$file" ]; then
-      if [ "$force" = "force" ]; then
-        e_error "${target} already exists, backup it and do link staff."
-        mv "$target" "$BACKUP_DIR/"
-        e_success "Linking $file to $target"
-        ln -sf "$file" "$target"
-      else
-        e_error "${target} already exists, skip."
-      fi
-    else
-      echo 'Already linked.'
-    fi
-  else
-    e_success "Linking $file to $target"
-    ln -sf "$file" "$target"
-  fi
+find -H "$DOTFILES/dotconfig" -maxdepth 1 -mindepth 1 -type d -print0 | while read -r -d $'\0' config; do
+  link_name="$HOME/.config/$(basename "$config")"
+  link_config "$config" "$link_name"
 done
 
-e_success "done."
+if [ "$(uname -s)" == "Darwin" ]; then
+  find -H "$DOTFILES/config.mac/" -maxdepth 1 -mindepth 1 -type d -print0 | while read -r -d $'\0' config; do
+    link_name="$HOME/.config/$(basename "$config")"
+    link_config "$config" "$link_name"
+  done
+fi
+
+echo "done."

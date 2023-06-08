@@ -126,6 +126,25 @@
                             },
                             {
                                 "from": {
+                                    "key_code": "b",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_shift"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open '/Applications/Google Chrome.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
                                     "key_code": "d",
                                     "modifiers": {
                                         "mandatory": [
@@ -195,7 +214,26 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open '/Applications/Google Chrome.app'"
+                                        "shell_command": "open https://github.com/"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_shift"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open '/Applications/Microsoft PowerPoint.app'"
                                     }
                                 ],
                                 "type": "basic"
@@ -272,6 +310,25 @@
                                 "to": [
                                     {
                                         "shell_command": "open '/Applications/WeChat.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_shift"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open '/Applications/Microsoft Excel.app'"
                                     }
                                 ],
                                 "type": "basic"

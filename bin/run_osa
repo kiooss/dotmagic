@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+SRC="${1:-$PWD}"
+
+main_script="$SRC/main.scpt"
+exit_script="$SRC/on_exit.scpt"
+
+if [ ! -e "$main_script" ]; then
+  echo "❗️ main.scpt not found!"
+  exit 1
+fi
+
+on_exit() {
+  echo "✨ on_exit"
+  osascript "$exit_script"
+  exit 0
+}
+
+if [ -e "$exit_script" ]; then
+  trap on_exit INT
+fi
+
+osascript "$main_script"

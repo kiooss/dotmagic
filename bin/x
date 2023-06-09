@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+# Default values
+auto=false
+start=false
+stop=false
+
+# set start and stop from options
+while getopts "d:sta" opt; do
+  case $opt in
+    a)
+      auto=true
+      ;;
+    d)
+      SRC="$OPTARG"
+      ;;
+    s)
+      start=true
+      ;;
+    t)
+      stop=true
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+main_script="$SRC/main.scpt"
+exit_script="$SRC/on_exit.scpt"
+
+if [ ! -e "$main_script" ]; then
+  echo "❗️ main.scpt not found!"
+  exit 1
+fi
+
+if [ ! -e "$exit_script" ]; then
+  echo "❗️ on_exit.scpt not found!"
+  exit 1
+fi
+
+if [ "$start" = true ] && [ "$stop" = true ]; then
+  echo "❗️ can't start and stop at the same time!"
+  exit 1
+fi
+
+if [ "$auto" = true ]; then
+  if [ -e "$SRC/x.pid" ]; then
+    if ps -p "$(cat "$SRC/x.pid")" >/dev/null 2>&1; then
+      start=false
+      stop=true
+    else
+      echo "❗️ x.pid found but process not running! removing..."
+      rm "$SRC/x.pid"
+      start=true
+      stop=false
+    fi
+  else
+    start=true
+    stop=false
+  fi
+fi
+
+if [ "$start" = true ]; then
+  echo "🏓 starting..."
+  nohup osascript "$main_script" >/dev/null 2>"$SRC/error" &
+  echo $! >"$SRC/x.pid"
+  echo "✨ main.scpt started successfully!"
+fi
+
+if [ "$stop" = true ]; then
+  if [ ! -e "$SRC/x.pid" ]; then
+    echo "❗️ x.pid not found!"
+    exit 1
+  fi
+
+  echo "🏓 stopping..."
+  kill "$(cat "$SRC/x.pid")" && rm "$SRC/x.pid"
+  osascript "$exit_script"
+  echo "✨ stopped"
+fi

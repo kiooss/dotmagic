@@ -82,4 +82,9 @@ return {
     lazy = false,
     config = true,
   },
+
+  {
+    "mityu/vim-applescript",
+    lazy = false,
+  },
 }

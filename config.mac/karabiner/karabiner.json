@@ -332,6 +332,25 @@
                                     }
                                 ],
                                 "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "z",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_shift"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "~/.dotfiles/bin/x -d ~/workspace/osascript -a"
+                                    }
+                                ],
+                                "type": "basic"
                             }
                         ]
                     },

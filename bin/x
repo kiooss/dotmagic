@@ -63,7 +63,8 @@ fi
 
 if [ "$start" = true ]; then
   echo "🏓 starting..."
-  nohup osascript "$main_script" >/dev/null 2>"$SRC/error" &
+  # nohup osascript "$main_script" >/dev/null 2>"$SRC/error" &
+  nohup osascript "$main_script" >>"$SRC/log/x.log" &
   echo $! >"$SRC/x.pid"
   echo "✨ main.scpt started successfully!"
 fi

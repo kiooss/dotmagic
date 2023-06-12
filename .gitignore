@@ -8,3 +8,4 @@ node_modules/
 /dotconfig/zsh/.zsh_sessions
 /dotconfig/nvim/.luarc.json
 /dotconfig/lazygit/state.yml
+/dotconfig/tmux/plugins

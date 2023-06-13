@@ -88,27 +88,27 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "VimEnter", "WinEnter" }, {
-  desc = "Highlight on focused window",
-  callback = function()
-    if should_colorcolumn() then
-      vim.cmd([[set winhighlight= | let &l:colorcolumn='+' . join(range(1, 254), ',+')]])
-    end
-  end,
-  group = group,
-})
-
-vim.api.nvim_create_autocmd({ "FocusLost", "WinLeave" }, {
-  desc = "Unhighlight on unfocused window",
-  callback = function()
-    if should_colorcolumn() then
-      vim.cmd(
-        [[set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn]]
-      )
-    end
-  end,
-  group = group,
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "VimEnter", "WinEnter" }, {
+--   desc = "Highlight on focused window",
+--   callback = function()
+--     if should_colorcolumn() then
+--       vim.cmd([[set winhighlight= | let &l:colorcolumn='+' . join(range(1, 254), ',+')]])
+--     end
+--   end,
+--   group = group,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "FocusLost", "WinLeave" }, {
+--   desc = "Unhighlight on unfocused window",
+--   callback = function()
+--     if should_colorcolumn() then
+--       vim.cmd(
+--         [[set winhighlight=CursorLineNr:LineNr,IncSearch:ColorColumn,Normal:ColorColumn,NormalNC:ColorColumn,SignColumn:ColorColumn]]
+--       )
+--     end
+--   end,
+--   group = group,
+-- })
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   desc = "custom highlight",

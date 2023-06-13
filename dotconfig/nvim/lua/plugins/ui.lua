@@ -1,4 +1,10 @@
 return {
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      background_colour = "#000000",
+    },
+  },
 
   -- floating winbar
   {
@@ -38,7 +44,8 @@ return {
         end,
         show_close_icon = false,
         show_buffer_close_icons = false,
-        separator_style = "slant",
+        separator_style = "thin",
+        -- separator_style = "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
         offsets = {
           {
             filetype = "NvimTree",

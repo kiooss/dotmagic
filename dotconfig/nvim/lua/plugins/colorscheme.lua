@@ -7,7 +7,9 @@ return {
     priority = 1000,
     opts = function()
       return {
-        style = "moon",
+        -- style = "moon",
+        style = "storm",
+        transparent = true,
         lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold
         sidebars = {
           "qf",

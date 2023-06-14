@@ -1,4 +1,4 @@
-local indent = 4
+local indent = 2
 local opt = vim.opt
 
 opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"

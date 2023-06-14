@@ -29,6 +29,11 @@ done
 main_script="$SRC/main.scpt"
 exit_script="$SRC/on_exit.scpt"
 
+# create log dir if not exists
+if [ ! -d "$SRC/log" ]; then
+  mkdir "$SRC/log"
+fi
+
 if [ ! -e "$main_script" ]; then
   echo "❗️ main.scpt not found!"
   exit 1
@@ -63,7 +68,7 @@ fi
 
 if [ "$start" = true ]; then
   echo "🏓 starting..."
-  nohup osascript "$main_script" >/dev/null 2>"$SRC/error" &
+  nohup osascript "$main_script" >>"$SRC/log/x.log" 2>&1 &
   echo $! >"$SRC/x.pid"
   echo "✨ main.scpt started successfully!"
 fi
@@ -76,6 +81,6 @@ if [ "$stop" = true ]; then
 
   echo "🏓 stopping..."
   kill "$(cat "$SRC/x.pid")" && rm "$SRC/x.pid"
-  osascript "$exit_script"
+  osascript "$exit_script" >>"$SRC/log/x.log" 2>&1
   echo "✨ stopped"
 fi

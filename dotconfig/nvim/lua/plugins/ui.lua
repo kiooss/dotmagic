@@ -37,6 +37,9 @@ return {
     "akinsho/bufferline.nvim",
     opts = {
       options = {
+        indicator = {
+          style = "underline",
+        },
         -- always_show_bufferline = true,
         modified_icon = "",
         numbers = function(opts)
@@ -44,7 +47,8 @@ return {
         end,
         show_close_icon = false,
         show_buffer_close_icons = false,
-        separator_style = "thin",
+        separator_style = { "", "" },
+        -- separator_style = "thin",
         -- separator_style = "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
         offsets = {
           {

@@ -1,37 +1,11 @@
-hs.window.animationDuration = 0
-
 local mod = { "cmd", "alt" }
+local log = hs.logger.new("debug")
+
 local hyper = require("hyper")
+local vm = require("vm")
+local local_config = require("local_config")
 
--- Hide all other applications
-local function hideOtherApps()
-  local activeApp = hs.application.frontmostApplication()
-  local apps = hs.application.runningApplications()
-
-  for _, app in ipairs(apps) do
-    if app ~= activeApp then
-      app:hide()
-    end
-  end
-end
-
-hyper:bind({}, "h", hideOtherApps)
-
--- Bind a hotkey to trigger the hideOtherApps function
-hs.hotkey.bind(mod, "h", hideOtherApps)
-
-local appMappings = {
-  { "b", "Google Chrome" },
-  { "e", "CotEditor" },
-  { "f", "Finder" },
-  { "s", "Slack" },
-  { "t", "kitty" },
-}
-
-for i, km in ipairs(appMappings) do
-  hyper.bindApp({}, km[1], km[2])
-end
-
+hs.window.animationDuration = 0
 hs.loadSpoon("SpoonInstall")
 spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
 spoon.SpoonInstall:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
@@ -43,6 +17,46 @@ spoon.SpoonInstall:andUse("AClock", {
     end)
   end,
 })
+
+hyper:bind({}, "h", vm.hideOtherApps)
+hyper:bind({}, "d", function()
+  hs.alert.show(vm.getCurrentAppName())
+end)
+
+local appMappings = {
+  { "b", "Google Chrome" },
+  { "c", "Google Chrome" },
+  { "e", "CotEditor" },
+  { "f", "Finder" },
+  { "s", "Slack" },
+  { "t", "kitty" },
+  { "p", "Microsoft PowerPoint" },
+  { "x", "Microsoft Excel" },
+}
+
+for i, km in ipairs(appMappings) do
+  hyper.bindApp({}, km[1], km[2])
+end
+
+local function openUrlWithClipboardContents(url)
+  url = url .. hs.pasteboard.getContents()
+  hs.alert.show(string.format("open website: %s", url))
+  hs.urlevent.openURL(url)
+end
+
+hs.hotkey.bind({ "ctrl", "cmd" }, "1", "open redmine", function()
+  openUrlWithClipboardContents(local_config.urls.redmine)
+end)
+
+hs.hotkey.bind({ "ctrl", "cmd" }, "2", "search in google", function()
+  openUrlWithClipboardContents("https://www.google.com/search?q=")
+end)
+
+hs.hotkey.bind({ "ctrl", "cmd" }, "3", "open github", function()
+  local url = "https://github.com/"
+  hs.alert.show(string.format("open website: %s", url))
+  hs.urlevent.openURL(url)
+end)
 
 --
 hs.alert.show("Hammerspoon Loaded!")

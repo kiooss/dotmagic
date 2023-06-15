@@ -1,23 +1,19 @@
 local hyper = hs.hotkey.modal.new({}, nil)
 
-local log = hs.logger.new("hammerspoon", "debug")
+local log = hs.logger.new("Hyper", "debug")
 
-local function enterHyperMode()
-  hyper.triggered = false
+hyper.pressed = function()
   hyper:enter()
 end
 
-local function exitHyperMode()
+hyper.released = function()
   hyper:exit()
-  if not hyper.triggered then
-    hs.eventtap.keyStroke({}, "ESCAPE")
-  end
 end
 
 -- Bind the Hyper key
 -- Set the key you want to be HYPER to F18 in karabiner or keyboard
 -- Bind the Hyper key to the hammerspoon modal
-hs.hotkey.bind({}, "F18", enterHyperMode, exitHyperMode)
+hs.hotkey.bind({}, "F18", hyper.pressed, hyper.released)
 
 hyper.bindApp = function(mods, key, app)
   local fn
@@ -27,7 +23,8 @@ hyper.bindApp = function(mods, key, app)
   else
     fn = function()
       log.i("launch app: ", app)
-      hs.application.launchOrFocus(app)
+      local ret = hs.application.launchOrFocus(app)
+      log.i(ret)
     end
   end
 

@@ -3,6 +3,8 @@ npm-debug.log
 
 node_modules/
 
+hammerspoon/local_config.lua
+
 /dotconfig/kitty/theme.conf
 /dotconfig/zsh/.zcompdump*
 /dotconfig/zsh/.zsh_sessions

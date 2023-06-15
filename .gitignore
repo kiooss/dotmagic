@@ -9,6 +9,7 @@ hammerspoon/local_config.lua
 /dotconfig/zsh/.zcompdump*
 /dotconfig/zsh/.zsh_sessions
 /dotconfig/nvim/.luarc.json
+/dotconfig/nvim/lazy-lock.json
 /dotconfig/lazygit/state.yml
 /dotconfig/tmux/plugins
 /config.mac/karabiner/automatic_backups

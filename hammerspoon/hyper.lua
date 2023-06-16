@@ -1,3 +1,4 @@
+-- Create a new modal keybinding mode
 local hyper = hs.hotkey.modal.new({}, nil)
 
 local log = hs.logger.new("Hyper", "debug")
@@ -24,7 +25,9 @@ hyper.bindApp = function(mods, key, app)
     fn = function()
       log.i("launch app: ", app)
       local ret = hs.application.launchOrFocus(app)
-      log.i(ret)
+      if not ret then
+        hs.alert.show("Launch app: " .. app .. " failed!")
+      end
     end
   end
 

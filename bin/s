@@ -1,0 +1,61 @@
+#!/bin/sh
+
+if [ "$TMUX" = "" ]; then
+  echo 'Not in tmux'
+  exit 1
+fi
+
+if [ -f Gemfile.lock ]; then
+  tmux rename-window 'Rails DEV'
+  # tmux split-window -h
+  # tmux split-window
+  tmux send-keys -t =.1 "rails s -p 3002 -b 0.0.0.0" ENTER
+
+  if [ -f config/tailwind.config.js ]; then
+    tmux split-window -h
+    tmux send-keys -t =.2 "rails tailwindcss:watch" ENTER
+  fi
+
+  exit 0
+fi
+
+tmux rename-window ''
+
+if [ -f package-lock.json ]; then
+  echo 'npm run dev'
+  npm run dev
+  exit 0
+fi
+
+if [ -f yarn.lock ]; then
+  echo 'yarn dev'
+  yarn dev
+  exit 0
+fi
+
+if [ -f pnpm-lock.yaml ]; then
+  echo 'pnpm run dev'
+  pnpm run dev
+  exit 0
+fi
+
+BASE_NAME="$(basename "$PWD")"
+
+cd ..
+if [ -f pnpm-lock.yaml ]; then
+  cd "$BASE_NAME" || exit
+  pnpm run dev
+  exit 0
+fi
+
+PARENT_BASE_NAME="$(basename "$PWD")"
+
+cd ..
+if [ -f pnpm-lock.yaml ]; then
+  cd "$PARENT_BASE_NAME" || exit
+  cd "$BASE_NAME" || exit
+  pnpm run dev
+  exit 0
+fi
+
+echo ' Node package not detected'

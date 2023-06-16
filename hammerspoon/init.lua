@@ -1,10 +1,11 @@
 hs.window.animationDuration = 0
 
--- local log = hs.logger.new("Hammerspoon", "debug")
+local log = hs.logger.new("Hammerspoon", "debug")
 
 local hyper = require("hyper")
 local wm = require("wm")
 local local_config = require("local_config")
+require("input_methods")
 
 local hyperCmdMappings = {
   c = function()
@@ -24,9 +25,14 @@ end
 
 -- window manage
 hyper:bind({}, "h", wm.moveOtherAppToNextScreen)
--- hyper:bind({ "cmd" }, "d", function()
---   hs.alert.show(wm.getCurrentAppName())
--- end)
+
+hyper:bind({}, "q", function()
+  hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
+end)
+hs.hotkey.bind({ "cmd", "alt" }, "p", function()
+  -- log.d(hs.keycodes.currentSourceID())
+  hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
+end)
 
 -- app laucher
 local appMappings = {

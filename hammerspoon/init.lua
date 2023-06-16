@@ -45,6 +45,9 @@ local appMappings = {
   p = "Microsoft PowerPoint",
   w = "WeChat",
   x = "Microsoft Excel",
+  z = function()
+    hs.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
+  end,
 }
 
 for key, item in pairs(appMappings) do

@@ -1,7 +1,5 @@
 hs.window.animationDuration = 0
 
-local log = hs.logger.new("Hammerspoon", "debug")
-
 local hyper = require("hyper")
 local wm = require("wm")
 local local_config = require("local_config")
@@ -56,32 +54,43 @@ end
 
 -- open url
 local function openUrl(url, withClipboardContents)
+  local hsHttp = require("hs.http")
+
   if withClipboardContents then
-    url = url .. hs.pasteboard.getContents()
+    local str = hs.pasteboard.getContents()
+    if #str > 200 then
+      hs.alert.show("Too many content in clipboard!")
+      return
+    else
+      url = url .. hsHttp.encodeForQuery(hs.pasteboard.getContents())
+    end
   end
   hs.alert.show(string.format("open website: %s", url))
   hs.urlevent.openURL(url)
 end
 
-hs.hotkey.bind({ "ctrl", "cmd" }, "1", "open redmine", function()
+hs.hotkey.bind({ "ctrl", "shift" }, "1", "open redmine", function()
   openUrl(local_config.urls.redmine, true)
 end)
 
-hs.hotkey.bind({ "ctrl", "cmd" }, "2", "search in google", function()
+hs.hotkey.bind({ "ctrl", "shift" }, "2", "search in google", function()
   openUrl("https://www.google.com/search?q=", true)
 end)
 
-hs.hotkey.bind({ "ctrl", "cmd" }, "3", "open github", function()
+hs.hotkey.bind({ "ctrl", "shift" }, "3", "open github", function()
   openUrl("https://github.com")
 end)
 
 -- Reacting to application events
 -- local function applicationWatcher(appName, eventType, appObject)
+--   hs.alert.show(appName)
 --   if eventType == hs.application.watcher.activated then
 --     if appName == "Finder" then
 --       hs.alert.show("Finder")
 --       -- Bring all Finder windows forward when one gets activated
 --       appObject:selectMenuItem({ "Window", "Bring All to Front" })
+--     elseif appName == "kitty" then
+--       hs.alert.show("Finder")
 --     end
 --   end
 -- end

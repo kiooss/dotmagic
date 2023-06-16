@@ -109,6 +109,8 @@ spoon.SpoonInstall:andUse("AClock", {
     end)
   end,
 })
+-- spoon.SpoonInstall:andUse("Emojis")
+-- spoon.Emojis:bindHotkeys({ toggle = { hyper, "f1" } })
 
 --
 hs.alert.show("Hammerspoon Loaded!")

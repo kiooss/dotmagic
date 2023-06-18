@@ -6,6 +6,7 @@ local local_config = require("local_config")
 require("input_methods")
 
 local hyperCmdMappings = {
+  a = wm.showAllVisibleWindows,
   c = function()
     hs.toggleConsole()
   end,
@@ -15,6 +16,9 @@ local hyperCmdMappings = {
   r = function()
     hs.reload()
   end,
+  s = function()
+    hs.caffeinate.systemSleep()
+  end,
 }
 
 for key, item in pairs(hyperCmdMappings) do
@@ -23,6 +27,24 @@ end
 
 -- window manage
 hyper:bind({}, "h", wm.moveOtherAppToNextScreen)
+hyper:bind({}, "n", wm.moveToNextScreen)
+hyper:bind({}, "return", function()
+  wm.maximizeWindowWithMargin()
+end)
+hyper:bind({}, "a", wm.applyLayout)
+hyper:bind({}, "left", function()
+  wm.resize("leftHalf")
+end)
+hyper:bind({}, "right", function()
+  wm.resize("rightHalf")
+end)
+hyper:bind({}, "up", function()
+  wm.resize("topHalf")
+end)
+hyper:bind({}, "down", function()
+  wm.resize("bottomHalf")
+end)
+-- hyper:bind({ "cmd" }, "b", wm.applyBspLayout)
 
 hyper:bind({}, "q", function()
   hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
@@ -38,6 +60,7 @@ local appMappings = {
   c = "Google Chrome",
   e = "CotEditor",
   f = "Finder",
+  g = "Google Chrome",
   s = "Slack",
   t = "kitty",
   p = "Microsoft PowerPoint",
@@ -96,6 +119,9 @@ end)
 -- end
 -- local appWatcher = hs.application.watcher.new(applicationWatcher)
 -- appWatcher:start()
+
+-- hs.window.highlight.ui.overlay = true
+-- hs.window.highlight.start()
 
 -- loadSpoon
 hs.loadSpoon("SpoonInstall")

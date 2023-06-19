@@ -5,6 +5,8 @@ local wm = require("wm")
 local local_config = require("local_config")
 require("input_methods")
 require("audio_device")
+require("clipboard")
+require("url_bookmarks")
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,

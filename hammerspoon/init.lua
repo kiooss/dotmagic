@@ -4,6 +4,7 @@ local hyper = require("hyper")
 local wm = require("wm")
 local local_config = require("local_config")
 require("input_methods")
+require("audio_device")
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
@@ -147,7 +148,7 @@ Install:andUse("AClock", {
 })
 Install:andUse("KSheet", {
   hotkeys = {
-    toggle = { hyper, "/" },
+    toggle = { { "cmd", "ctrl" }, "/" },
   },
 })
 -- Install:andUse("Emojis", {

@@ -1,4 +1,4 @@
-local log = hs.logger.new("util", "debug")
+local log = hs.logger.new("󰣪 debug", "debug")
 local inspect = hs.inspect.inspect
 
 return {

@@ -99,9 +99,13 @@ M.applyLayout = function()
   end
   local layout = {
     -- { "kitty", nil, currentScreen, hs.layout.maximized, nil, nil },
-    { "kitty", nil, mainScreen, nil, adjustMargin, nil },
     { "Google Chrome", nil, subScreen, nil, adjustMargin, nil },
+    { "kitty", nil, mainScreen, nil, adjustMargin, nil },
   }
+  for _, item in ipairs(layout) do
+    hs.application.launchOrFocus(item[1])
+  end
+
   hs.layout.apply(layout)
 end
 

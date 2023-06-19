@@ -11,13 +11,21 @@ local hyperCmdMappings = {
     hs.toggleConsole()
   end,
   d = function()
-    hs.alert.show(wm.getCurrentAppName())
+    hs.alert.show("FocusedWindow: " .. wm.getCurrentAppName())
+    hs.alert.show("FrontMostApp: " .. hs.application.frontmostApplication():name())
+    -- local frontmostApplication = hs.application.frontmostApplication()
+  end,
+  q = function()
+    hs.notify.withdrawAll()
   end,
   r = function()
     hs.reload()
   end,
   s = function()
     hs.caffeinate.systemSleep()
+  end,
+  z = function()
+    hs.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
   end,
 }
 
@@ -27,10 +35,8 @@ end
 
 -- window manage
 hyper:bind({}, "h", wm.moveOtherAppToNextScreen)
-hyper:bind({}, "n", wm.moveToNextScreen)
-hyper:bind({}, "return", function()
-  wm.maximizeWindowWithMargin()
-end)
+hyper:bind({}, "tab", wm.moveToNextScreen)
+hyper:bind({}, "return", wm.maximizeWindowWithMargin)
 hyper:bind({}, "a", wm.applyLayout)
 hyper:bind({}, "left", function()
   wm.resize("leftHalf")
@@ -49,32 +55,34 @@ end)
 hyper:bind({}, "q", function()
   hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
 end)
-hs.hotkey.bind({ "cmd", "alt" }, "p", function()
+hs.hotkey.bind({ "cmd" }, "p", function()
   -- log.d(hs.keycodes.currentSourceID())
   hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
 end)
 
 -- app laucher
 local appMappings = {
-  b = "Google Chrome",
-  c = "Google Chrome",
-  e = "CotEditor",
+  b = "Safari",
+  c = "Calendar",
+  -- e = "CotEditor",
+  e = "Microsoft Edge",
   f = "Finder",
   g = "Google Chrome",
+  m = "Microsoft Edge",
+  p = "Microsoft PowerPoint",
   s = "Slack",
   t = "kitty",
-  p = "Microsoft PowerPoint",
+  v = "FortiClient",
   w = "WeChat",
   x = "Microsoft Excel",
-  z = function()
-    hs.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
-  end,
+  [","] = "System Preferences",
 }
 
 for key, item in pairs(appMappings) do
   hyper.bindApp({}, key, item)
 end
 
+-- hyper.bindApp({}, ",", "System Preferences")
 -- open url
 local function openUrl(url, withClipboardContents)
   local hsHttp = require("hs.http")
@@ -125,18 +133,50 @@ end)
 
 -- loadSpoon
 hs.loadSpoon("SpoonInstall")
-spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
-spoon.SpoonInstall:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
-spoon.SpoonInstall:andUse("AClock", {
+local Install = spoon.SpoonInstall
+
+Install:andUse("ReloadConfiguration", { start = true })
+Install:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
+Install:andUse("AClock", {
   config = { showDuration = 3 },
   fn = function(clock)
-    hyper:bind({}, "1", function()
+    hs.hotkey.bind({}, "f12", nil, function()
       clock:toggleShow()
     end)
   end,
 })
--- spoon.SpoonInstall:andUse("Emojis")
--- spoon.Emojis:bindHotkeys({ toggle = { hyper, "f1" } })
+Install:andUse("KSheet", {
+  hotkeys = {
+    toggle = { hyper, "/" },
+  },
+})
+-- Install:andUse("Emojis", {
+--   disable = true,
+--   hotkeys = {
+--     toggle = { { "cmd", "ctrl" }, "e" },
+--   },
+-- })
+-- Install:andUse("DeepLTranslate", {
+--   disable = true,
+--   config = {
+--     -- popup_style = wm.utility | wm.HUD | wm.titled | wm.closable | wm.resizable,
+--   },
+--   hotkeys = {
+--     -- translate = { { "cmd", "ctrl" }, "e" },
+--     translate = { { "cmd", "ctrl" }, "e" },
+--   },
+-- })
+
+Install:andUse("ColorPicker", {
+  disable = false,
+  hotkeys = {
+    show = { { "cmd", "ctrl" }, "c" },
+  },
+  config = {
+    show_in_menubar = false,
+  },
+  start = true,
+})
 
 --
 hs.alert.show("Hammerspoon Loaded!")

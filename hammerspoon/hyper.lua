@@ -1,8 +1,6 @@
 -- Create a new modal keybinding mode
 local hyper = hs.hotkey.modal.new({}, nil)
 
-local log = hs.logger.new("Hyper", "debug")
-
 hyper.pressed = function()
   hyper:enter()
 end
@@ -17,21 +15,12 @@ end
 hs.hotkey.bind({}, "F18", hyper.pressed, hyper.released)
 
 hyper.bindApp = function(mods, key, app)
-  local fn
-
-  if type(app) == "function" then
-    fn = app
-  else
-    fn = function()
-      log.i("launch app: ", app)
-      local ret = hs.application.launchOrFocus(app)
-      if not ret then
-        hs.alert.show("Launch app: " .. app .. " failed!")
-      end
+  hyper:bind(mods, key, "Launch " .. app, function()
+    local ret = hs.application.launchOrFocus(app)
+    if not ret then
+      hs.alert.show("Launch app: " .. app .. " failed!")
     end
-  end
-
-  hyper:bind(mods, key, fn)
+  end)
 end
 
 return hyper

@@ -1,6 +1,6 @@
 local M = {}
 
-local margin = 10
+local margin = 6
 
 M.addMargin = function(frame)
   frame.x = frame.x + margin

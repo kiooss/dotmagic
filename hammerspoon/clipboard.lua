@@ -33,8 +33,20 @@ function obj:init()
     chooser:show()
   end)
 
-  hs.hotkey.bind({ "cmd", "shift" }, "d", "Clear clipboard history", function()
-    self:clearHistory()
+  local actionChooser = hs.chooser.new(function(choice)
+    if choice then
+      if choice.action == "clear" then
+        self:clearHistory()
+      end
+    end
+  end)
+
+  hs.hotkey.bind({ "cmd" }, "f11", function()
+    actionChooser:placeholderText("Clipboard history action")
+    actionChooser:choices({
+      { text = "Clear all histories", action = "clear" },
+    })
+    actionChooser:show()
   end)
 end
 
@@ -62,7 +74,10 @@ end
 function obj:clearHistory()
   local db = self:db()
   local sql = "DELETE FROM history"
-  db:exec(sql)
+  if db:exec(sql) == hs.sqlite3.OK then
+    hs.alert.show("All clipboard history deleted!")
+  end
+  db:close()
 end
 
 function obj:incrementText(text)
@@ -75,7 +90,6 @@ function obj:incrementText(text)
   -- Check the result
   if stmt:step() == hs.sqlite3.DONE then
     if db:changes() ~= 0 then
-      util.d("Already exists.")
       exists = true
     end
   else

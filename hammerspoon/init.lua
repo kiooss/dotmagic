@@ -5,8 +5,10 @@ local wm = require("wm")
 local local_config = require("local_config")
 require("input_methods")
 require("audio_device")
-require("clipboard")
 require("url_bookmarks")
+
+local clipboard = require("clipboard")
+clipboard:init()
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
@@ -58,7 +60,7 @@ end)
 hyper:bind({}, "q", function()
   hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
 end)
-hs.hotkey.bind({ "cmd" }, "p", function()
+hs.hotkey.bind({ "cmd", "shift" }, "p", function()
   -- log.d(hs.keycodes.currentSourceID())
   hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
 end)

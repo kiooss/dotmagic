@@ -4,8 +4,10 @@ local hyper = require("hyper")
 local wm = require("wm")
 local local_config = require("local_config")
 require("input_methods")
-require("audio_device")
 require("url_bookmarks")
+
+local audioDevice = require("audio_device")
+audioDevice:init()
 
 local clipboard = require("clipboard")
 clipboard:init()

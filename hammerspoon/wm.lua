@@ -16,6 +16,44 @@ M.maximizeWindowWithMargin = function()
   end
 end
 
+M.maximizeAllWindowWithMargin = function()
+  local allWindows = hs.window.orderedWindows()
+  for _, window in ipairs(allWindows) do
+    util.d(window)
+    util.d("Application: " .. window:application():name())
+    local screen = window:screen()
+    local frame = screen:frame()
+
+    window:setFrame(wm_helper.addMargin(frame))
+  end
+end
+
+M.moveWindowToSpace = function()
+  --
+  hs.alert.show("moveWindowToSpace")
+
+  local apps = {
+    { "net.kovidgoyal.kitty", 1 },
+    { "com.google.Chrome", 3 },
+    { "com.tinyspeck.slackmacgap", 4 },
+  }
+  for _, item in ipairs(apps) do
+    local bundleID = item[1]
+    local app = hs.application.get(bundleID)
+    if app ~= nil then
+      for _, window in ipairs(app:allWindows()) do
+        util.d(window)
+        if not hs.spaces.moveWindowToSpace(window, item[2]) then
+          hs.alert.show(string.format("Move app: %s to space %s failed.", app:name(), item[2]))
+        end
+      end
+    else
+      hs.alert.show("App: " .. bundleID .. " is not running.")
+    end
+  end
+  hs.spaces.gotoSpace(1)
+end
+
 M.resize = function(position)
   local focusedWindow = hsWindow.frontmostWindow()
   if focusedWindow then
@@ -46,6 +84,7 @@ M.getCurrentAppName = function()
   local window = hs.window.focusedWindow()
   if window then
     local app = window:application()
+    util.d("App name: is " .. app:name() .. " bundle id: " .. app:bundleID())
     return "App name: is " .. app:name() .. " bundle id: " .. app:bundleID()
   end
   return nil
@@ -76,6 +115,8 @@ end
 M.moveToNextScreen = function()
   local currentScreen = hs.screen.mainScreen()
   local nextScreen = currentScreen:next()
+  util.d(currentScreen)
+  util.d(nextScreen)
   -- local frontmostApplication = hs.application.frontmostApplication()
   -- local frontmostApplicationWindow = frontmostApplication:focusedWindow()
   -- util.d(frontmostApplicationWindow)
@@ -86,7 +127,7 @@ M.moveToNextScreen = function()
   end
 end
 
-M.applyLayout = function()
+M.launchApps = function()
   -- local currentScreen = hs.screen.mainScreen()
   -- local nextScreen = currentScreen:next()
   local mainScreen = "PHL 27E1N8900"
@@ -101,6 +142,7 @@ M.applyLayout = function()
     -- { "kitty", nil, currentScreen, hs.layout.maximized, nil, nil },
     { "Google Chrome", nil, subScreen, nil, adjustMargin, nil },
     { "kitty", nil, mainScreen, nil, adjustMargin, nil },
+    { "Slack", nil, mainScreen, nil, adjustMargin, nil },
   }
   for _, item in ipairs(layout) do
     hs.application.launchOrFocus(item[1])

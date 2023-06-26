@@ -1,5 +1,6 @@
 hs.window.animationDuration = 0
 
+local util = require("util")
 local hyper = require("hyper")
 local wm = require("wm")
 local local_config = require("local_config")
@@ -17,10 +18,17 @@ local hyperCmdMappings = {
   c = function()
     hs.toggleConsole()
   end,
-  d = function()
+  d = function() -- d for debug
     hs.alert.show("FocusedWindow: " .. wm.getCurrentAppName())
     hs.alert.show("FrontMostApp: " .. hs.application.frontmostApplication():name())
     -- local frontmostApplication = hs.application.frontmostApplication()
+    local allWindows = hs.window.orderedWindows()
+
+    for _, window in ipairs(allWindows) do
+      util.d(window)
+      util.d("Application: " .. window:application():name())
+    end
+    util.d(hs.spaces.allSpaces())
   end,
   q = function()
     hs.notify.withdrawAll()
@@ -40,24 +48,22 @@ for key, item in pairs(hyperCmdMappings) do
   hyper:bind({ "cmd" }, key, item)
 end
 
--- window manage
-hyper:bind({}, "h", wm.moveOtherAppToNextScreen)
-hyper:bind({}, "tab", wm.moveToNextScreen)
-hyper:bind({}, "return", wm.maximizeWindowWithMargin)
-hyper:bind({}, "a", wm.applyLayout)
-hyper:bind({}, "left", function()
-  wm.resize("leftHalf")
-end)
-hyper:bind({}, "right", function()
-  wm.resize("rightHalf")
-end)
-hyper:bind({}, "up", function()
-  wm.resize("topHalf")
-end)
-hyper:bind({}, "down", function()
-  wm.resize("bottomHalf")
-end)
--- hyper:bind({ "cmd" }, "b", wm.applyBspLayout)
+local bindings = {
+  { "h", "moveOtherAppToNextScreen", wm.moveOtherAppToNextScreen },
+  { "f1", "Launch apps", wm.launchApps },
+  { "f2", "Move window to space", wm.moveWindowToSpace },
+  { "left", "Move window to left half", hs.fnutils.partial(wm.resize, "leftHalf") },
+  { "right", "Move window to right half", hs.fnutils.partial(wm.resize, "rightHalf") },
+  { "up", "Move window to top half", hs.fnutils.partial(wm.resize, "topHalf") },
+  { "down", "Move window to bottom half", hs.fnutils.partial(wm.resize, "bottomHalf") },
+  { "return", "Maximize window with margin", wm.maximizeWindowWithMargin },
+  { "space", "Maximize all window with margin", wm.maximizeAllWindowWithMargin },
+  { "tab", "Move to next screen", wm.moveToNextScreen },
+}
+
+for _, v in ipairs(bindings) do
+  hyper:bind({}, v[1], v[2], v[3])
+end
 
 hyper:bind({}, "q", function()
   hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
@@ -71,7 +77,6 @@ end)
 local appMappings = {
   b = "Safari",
   c = "Calendar",
-  -- e = "CotEditor",
   e = "Microsoft Edge",
   f = "Finder",
   g = "Google Chrome",

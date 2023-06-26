@@ -28,7 +28,7 @@ return function(opts)
     install = { colorscheme = { "tokyonight", "habamax" } },
     checker = {
       enabled = true,
-      frequency = 3600 * 24, -- check for updates every day
+      frequency = 3600 * 24 * 7, -- check for updates every week
     },
     diff = {
       cmd = "terminal_git",

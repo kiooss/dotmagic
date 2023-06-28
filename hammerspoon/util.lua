@@ -1,4 +1,4 @@
-local log = hs.logger.new("󰣪 debug", "debug")
+local log = hs.logger.new("💥 debug", "debug")
 local inspect = hs.inspect.inspect
 
 local M = {}
@@ -8,6 +8,15 @@ M.d = function(obj)
     log.d(inspect(obj))
   else
     log.d(obj)
+  end
+end
+
+M.execute = function(cmd)
+  local output, status = hs.execute(cmd .. " 2>&1")
+  if not status then
+    local message = string.format("Execute cmd: %s failed.\nOutput: %s", cmd, output)
+    hs.alert.show(message)
+    M.d(message)
   end
 end
 

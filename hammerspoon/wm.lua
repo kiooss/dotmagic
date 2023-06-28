@@ -127,6 +127,37 @@ M.moveToNextScreen = function()
   end
 end
 
+-- Function to switch focus to the next window
+M.switchToNextWindow = function()
+  -- Get all windows
+  local windows = hs.window.orderedWindows()
+  util.d(windows)
+
+  -- Get the currently focused window
+  local focusedWindow = hs.window.focusedWindow()
+
+  -- Find the index of the focused window in the list
+  local focusedIndex = nil
+  for i, window in ipairs(windows) do
+    if window == focusedWindow then
+      focusedIndex = i
+      break
+    end
+  end
+
+  -- Determine the index of the next window
+  local nextIndex = focusedIndex and focusedIndex + 1 or 1
+  if nextIndex > #windows then
+    nextIndex = 1
+  end
+
+  -- Focus the next window
+  local nextWindow = windows[nextIndex]
+  if nextWindow then
+    nextWindow:focus()
+  end
+end
+
 M.launchApps = function()
   -- local currentScreen = hs.screen.mainScreen()
   -- local nextScreen = currentScreen:next()

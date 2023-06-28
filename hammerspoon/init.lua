@@ -22,9 +22,12 @@ local hyperCmdMappings = {
     hs.alert.show("FocusedWindow: " .. wm.getCurrentAppName())
     hs.alert.show("FrontMostApp: " .. hs.application.frontmostApplication():name())
     -- local frontmostApplication = hs.application.frontmostApplication()
+    -- A list of hs.window objects representing all visible windows, ordered from front to back
     local allWindows = hs.window.orderedWindows()
 
-    for _, window in ipairs(allWindows) do
+    util.d("=== ordered windows ===")
+    for index, window in ipairs(allWindows) do
+      util.d(index)
       util.d(window)
       util.d("Application: " .. window:application():name())
     end
@@ -39,8 +42,11 @@ local hyperCmdMappings = {
   s = function()
     hs.caffeinate.systemSleep()
   end,
+  y = function()
+    util.execute("/usr/local/bin/yabai --restart-service")
+  end,
   z = function()
-    hs.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
+    util.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
   end,
 }
 
@@ -49,16 +55,17 @@ for key, item in pairs(hyperCmdMappings) do
 end
 
 local bindings = {
-  { "h", "moveOtherAppToNextScreen", wm.moveOtherAppToNextScreen },
+  -- { "h", "moveOtherAppToNextScreen", wm.moveOtherAppToNextScreen },
   { "f1", "Launch apps", wm.launchApps },
   { "f2", "Move window to space", wm.moveWindowToSpace },
+  { "f3", "Move to next screen", wm.moveToNextScreen },
   { "left", "Move window to left half", hs.fnutils.partial(wm.resize, "leftHalf") },
   { "right", "Move window to right half", hs.fnutils.partial(wm.resize, "rightHalf") },
   { "up", "Move window to top half", hs.fnutils.partial(wm.resize, "topHalf") },
   { "down", "Move window to bottom half", hs.fnutils.partial(wm.resize, "bottomHalf") },
   { "return", "Maximize window with margin", wm.maximizeWindowWithMargin },
   { "space", "Maximize all window with margin", wm.maximizeAllWindowWithMargin },
-  { "tab", "Move to next screen", wm.moveToNextScreen },
+  { "tab", "Switch To Next Window", wm.switchToNextWindow },
 }
 
 for _, v in ipairs(bindings) do
@@ -161,6 +168,14 @@ Install:andUse("KSheet", {
   hotkeys = {
     toggle = { { "cmd", "ctrl" }, "/" },
   },
+})
+-- TODO: see how to write a webview.
+Install:andUse("HSKeybindings", {
+  fn = function(hsKeybindings)
+    hs.hotkey.bind({}, "f10", nil, function()
+      hsKeybindings:hide()
+    end)
+  end,
 })
 -- Install:andUse("Emojis", {
 --   disable = true,

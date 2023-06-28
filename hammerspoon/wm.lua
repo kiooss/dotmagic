@@ -2,8 +2,6 @@ local M = {}
 local util = require("util")
 local wm_helper = require("wm_helper")
 local hsWindow = require("hs.window")
--- local hsScreen = require("hs.screen")
--- local hsLayout = require("hs.layout")
 
 -- Function to maximize the frontmost window with a margin
 M.maximizeWindowWithMargin = function()
@@ -34,17 +32,23 @@ M.moveWindowToSpace = function()
 
   local apps = {
     { "net.kovidgoyal.kitty", 1 },
-    { "com.google.Chrome", 3 },
-    { "com.tinyspeck.slackmacgap", 4 },
-    { "com.tencent.xinWeChat", 5 },
+    { "com.google.Chrome", 2 },
+    { "com.tinyspeck.slackmacgap", 3 },
+    { "com.tencent.xinWeChat", 4 },
   }
+  local spaceIds = wm_helper.getSpacesOfPrimaryScreen()
+  util.d(spaceIds)
   for _, item in ipairs(apps) do
     local bundleID = item[1]
     local app = hs.application.get(bundleID)
     if app ~= nil then
       for _, window in ipairs(app:allWindows()) do
         util.d(window)
-        if not hs.spaces.moveWindowToSpace(window, item[2]) then
+        if hs.spaces.moveWindowToSpace(window, spaceIds[item[2]]) then
+          if window:isMinimized() then
+            window:unminimize()
+          end
+        else
           hs.alert.show(string.format("Move app: %s to space %s failed.", app:name(), item[2]))
         end
       end

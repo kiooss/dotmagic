@@ -14,11 +14,10 @@ end
 function obj:init()
   self:initDatabase()
 
-  -- NOTE: must be global variable to avoid GC.
-  PasteboardWatcher = hs.pasteboard.watcher.new(function(v)
+  self.pasteboardWatcher = hs.pasteboard.watcher.new(function(v)
     self:storeText(v)
   end)
-  PasteboardWatcher:start()
+  self.pasteboardWatcher:start()
 
   local chooser = hs.chooser.new(function(choice)
     if choice then

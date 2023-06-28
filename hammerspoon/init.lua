@@ -3,15 +3,22 @@ hs.window.animationDuration = 0
 local util = require("util")
 local hyper = require("hyper")
 local wm = require("wm")
-local local_config = require("local_config")
+local localConfig = require("local_config")
 require("input_methods")
 require("url_bookmarks")
+
+local weather = require("weather")
+weather:init(localConfig.weatherApiKey, localConfig.city)
 
 local audioDevice = require("audio_device")
 audioDevice:init()
 
 local clipboard = require("clipboard")
 clipboard:init()
+
+local function yabai(...)
+  util.run("/usr/local/bin/yabai", ...)
+end
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
@@ -43,7 +50,7 @@ local hyperCmdMappings = {
     hs.caffeinate.systemSleep()
   end,
   y = function()
-    util.execute("/usr/local/bin/yabai --restart-service")
+    yabai("--restart-service")
   end,
   z = function()
     util.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
@@ -61,10 +68,8 @@ local function switchWindow()
 end
 
 local hyperMappings = {
-  -- { "h", "moveOtherAppToNextScreen", wm.moveOtherAppToNextScreen },
   { "f1", "Launch apps", wm.launchApps },
   { "f2", "Move window to space", wm.moveWindowToSpace },
-  { "f3", "Move to next screen", wm.moveToNextScreen },
   { "left", "Move window to left half", hs.fnutils.partial(wm.resize, "leftHalf") },
   { "right", "Move window to right half", hs.fnutils.partial(wm.resize, "rightHalf") },
   { "up", "Move window to top half", hs.fnutils.partial(wm.resize, "topHalf") },
@@ -81,16 +86,23 @@ for _, v in ipairs(hyperMappings) do
   hyper:bind({}, v[1], v[2], v[3])
 end
 
-hyper:bind({}, "q", function()
-  hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
-end)
-hs.hotkey.bind({ "cmd", "shift" }, "p", function()
-  -- log.d(hs.keycodes.currentSourceID())
-  hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
-end)
-
 -- cmd + shift bindings
 local cmdShiftMappings = {
+  {
+    "=",
+    "Balance out all windows",
+    function()
+      yabai("-m", "space", "--balance")
+    end,
+  },
+  {
+    "\\",
+    "Rotate the window tree clock-wise",
+    function()
+      yabai("-m", "space", "--rotate", "90")
+    end,
+  },
+  { ";", "Move to next screen", wm.moveToNextScreen },
   {
     "h",
     "focusWindowWest",
@@ -117,6 +129,13 @@ local cmdShiftMappings = {
     "focusWindowNorth",
     function()
       hs.window.focusedWindow():focusWindowNorth()
+    end,
+  },
+  {
+    "p",
+    "Switch to pinyin",
+    function()
+      hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
     end,
   },
 }
@@ -165,7 +184,7 @@ local function openUrl(url, withClipboardContents)
 end
 
 hs.hotkey.bind({ "ctrl", "shift" }, "1", "open redmine", function()
-  openUrl(local_config.urls.redmine, true)
+  openUrl(localConfig.urls.redmine, true)
 end)
 
 hs.hotkey.bind({ "ctrl", "shift" }, "2", "search in google", function()
@@ -251,4 +270,5 @@ Install:andUse("ColorPicker", {
 })
 
 --
-hs.alert.show("Hammerspoon Loaded!")
+-- hs.alert.show("Hammerspoon Loaded!")
+require("speaker")

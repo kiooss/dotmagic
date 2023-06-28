@@ -44,6 +44,16 @@ M.mark = function(str, window)
   canvas:show()
 end
 
+M.run = function(cmd, ...)
+  -- Runs in background very fast
+  hs.task
+    .new(cmd, nil, function(ud, ...)
+      print("stream", hs.inspect(table.pack(...)))
+      return true
+    end, { ... })
+    :start()
+end
+
 M.split = function(input, delimiter)
   input = tostring(input)
   delimiter = tostring(delimiter)

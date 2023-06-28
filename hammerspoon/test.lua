@@ -1,0 +1,5 @@
+-- local allWindows = hs.window.orderedWindows()
+--
+-- for index, window in ipairs(allWindows) do
+--   require("util").mark(index, window)
+-- end

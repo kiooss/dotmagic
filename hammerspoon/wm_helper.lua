@@ -43,4 +43,12 @@ M.bottomHalf = function(winFrame, screenFrame)
   return winFrame
 end
 
+M.getSpacesOfPrimaryScreen = function()
+  local primaryScreen = hs.screen.primaryScreen()
+  local uuid = primaryScreen:getUUID()
+  local spaces = hs.spaces.allSpaces()
+
+  return spaces[uuid]
+end
+
 return M

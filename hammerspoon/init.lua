@@ -233,14 +233,6 @@ Install:andUse("KSheet", {
     toggle = { { "cmd", "ctrl" }, "/" },
   },
 })
--- TODO: see how to write a webview.
-Install:andUse("HSKeybindings", {
-  fn = function(hsKeybindings)
-    hs.hotkey.bind({}, "f10", nil, function()
-      hsKeybindings:hide()
-    end)
-  end,
-})
 -- Install:andUse("Emojis", {
 --   disable = true,
 --   hotkeys = {

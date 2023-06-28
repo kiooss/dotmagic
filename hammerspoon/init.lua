@@ -269,6 +269,17 @@ Install:andUse("ColorPicker", {
   start = true,
 })
 
+local cheatsheet = require("cheatsheet")
+cheatsheet:init({
+  hyperMappings = hyperMappings,
+  cmdShiftMappings = cmdShiftMappings,
+  appMappings = appMappings,
+})
+
+hyper:bind({}, "/", nil, function()
+  cheatsheet:toggle()
+end)
+
 --
 -- hs.alert.show("Hammerspoon Loaded!")
 require("speaker")

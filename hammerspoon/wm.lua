@@ -36,6 +36,7 @@ M.moveWindowToSpace = function()
     { "net.kovidgoyal.kitty", 1 },
     { "com.google.Chrome", 3 },
     { "com.tinyspeck.slackmacgap", 4 },
+    { "com.tencent.xinWeChat", 5 },
   }
   for _, item in ipairs(apps) do
     local bundleID = item[1]
@@ -127,6 +128,14 @@ M.moveToNextScreen = function()
   end
 end
 
+M.switchWindow = function(index)
+  local windows = hs.window.orderedWindows()
+
+  if windows[index] ~= nil then
+    windows[index]:focus()
+  end
+end
+
 -- Function to switch focus to the next window
 M.switchToNextWindow = function()
   -- Get all windows
@@ -137,14 +146,15 @@ M.switchToNextWindow = function()
   local focusedWindow = hs.window.focusedWindow()
 
   -- Find the index of the focused window in the list
-  local focusedIndex = nil
-  for i, window in ipairs(windows) do
-    if window == focusedWindow then
-      focusedIndex = i
-      break
-    end
-  end
+  -- local focusedIndex = nil
+  -- for i, window in ipairs(windows) do
+  --   if window == focusedWindow then
+  --     focusedIndex = i
+  --     break
+  --   end
+  -- end
 
+  local focusedIndex = 1
   -- Determine the index of the next window
   local nextIndex = focusedIndex and focusedIndex + 1 or 1
   if nextIndex > #windows then
@@ -179,7 +189,7 @@ M.launchApps = function()
     hs.application.launchOrFocus(item[1])
   end
 
-  hs.layout.apply(layout)
+  -- hs.layout.apply(layout)
 end
 
 -- M.applyBspLayout = function()

@@ -27,9 +27,8 @@ local hyperCmdMappings = {
 
     util.d("=== ordered windows ===")
     for index, window in ipairs(allWindows) do
-      util.d(index)
+      util.d(index .. ": Application: " .. window:application():name())
       util.d(window)
-      util.d("Application: " .. window:application():name())
     end
     util.d(hs.spaces.allSpaces())
   end,
@@ -37,7 +36,8 @@ local hyperCmdMappings = {
     hs.notify.withdrawAll()
   end,
   r = function()
-    hs.reload()
+    -- hs.reload()
+    require("test")
   end,
   s = function()
     hs.caffeinate.systemSleep()
@@ -54,7 +54,13 @@ for key, item in pairs(hyperCmdMappings) do
   hyper:bind({ "cmd" }, key, item)
 end
 
-local bindings = {
+local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
+
+local function switchWindow()
+  switcher:next()
+end
+
+local hyperMappings = {
   -- { "h", "moveOtherAppToNextScreen", wm.moveOtherAppToNextScreen },
   { "f1", "Launch apps", wm.launchApps },
   { "f2", "Move window to space", wm.moveWindowToSpace },
@@ -65,10 +71,13 @@ local bindings = {
   { "down", "Move window to bottom half", hs.fnutils.partial(wm.resize, "bottomHalf") },
   { "return", "Maximize window with margin", wm.maximizeWindowWithMargin },
   { "space", "Maximize all window with margin", wm.maximizeAllWindowWithMargin },
-  { "tab", "Switch To Next Window", wm.switchToNextWindow },
+  { "tab", "Switch To Next Window", switchWindow },
+  { "1", "Launch apps", hs.fnutils.partial(wm.switchWindow, 1) },
+  { "2", "Launch apps", hs.fnutils.partial(wm.switchWindow, 2) },
+  { "3", "Launch apps", hs.fnutils.partial(wm.switchWindow, 3) },
 }
 
-for _, v in ipairs(bindings) do
+for _, v in ipairs(hyperMappings) do
   hyper:bind({}, v[1], v[2], v[3])
 end
 
@@ -79,6 +88,42 @@ hs.hotkey.bind({ "cmd", "shift" }, "p", function()
   -- log.d(hs.keycodes.currentSourceID())
   hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
 end)
+
+-- cmd + shift bindings
+local cmdShiftMappings = {
+  {
+    "h",
+    "focusWindowWest",
+    function()
+      hs.window.focusedWindow():focusWindowWest()
+    end,
+  },
+  {
+    "l",
+    "focusWindowEast",
+    function()
+      hs.window.focusedWindow():focusWindowEast()
+    end,
+  },
+  {
+    "j",
+    "focusWindowSouth",
+    function()
+      hs.window.focusedWindow():focusWindowSouth()
+    end,
+  },
+  {
+    "k",
+    "focusWindowNorth",
+    function()
+      hs.window.focusedWindow():focusWindowNorth()
+    end,
+  },
+}
+
+for _, v in ipairs(cmdShiftMappings) do
+  hs.hotkey.bind({ "cmd", "shift" }, v[1], v[2], v[3])
+end
 
 -- app laucher
 local appMappings = {

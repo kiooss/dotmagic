@@ -1,14 +1,33 @@
 local util = require("util")
 local obj = {}
 
-function obj:init(apiKey, city)
-  self.urlApi =
-    string.format("https://api.weatherapi.com/v1/forecast.json?key=%s&q=%s&days=3&aqi=yes&alerts=yes", apiKey, city)
+obj.apiBaseUrl = "https://api.weatherapi.com/v1/forecast.json"
+
+function obj:getLocation(fn)
+  obj.getLocationTimer = hs.timer.delayed
+    .new(1, function()
+      local location = hs.location.get()
+      if location then
+        fn(location)
+      else
+        hs.alert.show("Get location failed!")
+        self.menubar:setTitle("💢Geting location failed")
+      end
+    end)
+    :start()
+end
+
+function obj:init(apiKey)
   self.menubar = hs.menubar.new()
-  self.menubar:setTitle("⌛")
-  self:getWeather()
-  self.timer = hs.timer.doEvery(3600, function()
+  self.menubar:setTitle("⌛Geting location...")
+  self:getLocation(function(location)
+    local query = string.format("%.4f,%.4f", location.latitude, location.longitude)
+    self.urlApi = string.format("%s?key=%s&q=%s&days=3&aqi=yes&alerts=yes", self.apiBaseUrl, apiKey, query)
+    -- util.d(self.urlApi)
     self:getWeather()
+    self.timer = hs.timer.doEvery(3600, function()
+      self:getWeather()
+    end)
   end)
 end
 
@@ -18,8 +37,10 @@ function obj:updateMenubar(menuData)
 end
 
 function obj:getWeather()
-  hs.http.doAsyncRequest(self.urlApi, "GET", nil, nil, function(code, body, htable)
+  self.menubar:setTitle("⌛Geting weather...")
+  hs.http.doAsyncRequest(self.urlApi, "GET", nil, nil, function(code, body, _headers)
     if code ~= 200 then
+      self.menubar:setTitle("💢Geting weather failed")
       hs.alert.show("get weather error:" .. code)
       return
     end
@@ -30,12 +51,14 @@ function obj:getWeather()
     self.menubar:setIcon(icon)
     self.menubar:setTitle(json.current.temp_c)
     local titlestr = string.format(
-      "现在 🌡️%s°C (体感: %s°C) 💧湿度: %s%% 💨%s kph 🌞紫外线: %s",
+      "现在 🌡️%s°C (体感: %s°C) 💧湿度: %s%% 💨%s kph (%s) 🌞紫外线: %s 📍%s",
       currentData.temp_c,
       currentData.feelslike_c,
       currentData.humidity,
       currentData.wind_kph,
-      currentData.uv
+      currentData.wind_dir,
+      currentData.uv,
+      json.location.name .. " " .. json.location.region
     )
     table.insert(menuData, {
       title = titlestr,

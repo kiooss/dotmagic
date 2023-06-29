@@ -1,5 +1,11 @@
 hs.window.animationDuration = 0
 
+if hs.location.servicesEnabled() then
+  hs.location.get()
+else
+  hs.alert.show("Location Services are not enabled")
+end
+
 local util = require("util")
 local hyper = require("hyper")
 local wm = require("wm")
@@ -8,7 +14,7 @@ require("input_methods")
 require("url_bookmarks")
 
 local weather = require("weather")
-weather:init(localConfig.weatherApiKey, localConfig.city)
+weather:init(localConfig.weatherApiKey)
 
 local audioDevice = require("audio_device")
 audioDevice:init()
@@ -275,3 +281,4 @@ end)
 --
 -- hs.alert.show("Hammerspoon Loaded!")
 require("speaker")
+-- util.d("Location get: ", hs.location.get())

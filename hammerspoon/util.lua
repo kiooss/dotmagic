@@ -3,11 +3,13 @@ local inspect = hs.inspect.inspect
 
 local M = {}
 
-M.d = function(obj)
-  if type(obj) == "table" then
-    log.d(inspect(obj))
-  else
-    log.d(obj)
+M.d = function(...)
+  for _, obj in ipairs({ ... }) do
+    if type(obj) == "table" then
+      log.d(inspect(obj))
+    else
+      log.d(obj)
+    end
   end
 end
 

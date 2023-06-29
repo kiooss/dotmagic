@@ -27,8 +27,8 @@ end
 local function generateAppMappings(mappings)
   local html = "<h2>Lauch App Mappings</h2><table><tr><th>Key</th><th>Desc</th></tr>"
 
-  for k, v in pairs(mappings) do
-    html = html .. string.format("<tr><td>⚡️ %s</td><td>%s</td></tr>", k, v)
+  for _, v in ipairs(mappings) do
+    html = html .. string.format("<tr><td>⚡️ %s</td><td>%s</td></tr>", table.unpack(v))
   end
 
   html = html .. "</table>"

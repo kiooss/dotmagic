@@ -146,23 +146,23 @@ end
 
 -- app laucher
 local appMappings = {
-  b = "Safari",
-  c = "Calendar",
-  e = "Microsoft Edge",
-  f = "Finder",
-  g = "Google Chrome",
-  m = "Microsoft Edge",
-  p = "Microsoft PowerPoint",
-  s = "Slack",
-  t = "kitty",
-  v = "FortiClient",
-  w = "WeChat",
-  x = "Microsoft Excel",
-  [","] = "System Preferences",
+  { "b", "Safari" },
+  { "c", "Calendar" },
+  { "e", "Microsoft Edge" },
+  { "f", "Finder" },
+  { "g", "Google Chrome" },
+  { "m", "Microsoft Edge" },
+  { "p", "Microsoft PowerPoint" },
+  { "s", "Slack" },
+  { "t", "kitty" },
+  { "v", "FortiClient" },
+  { "w", "WeChat" },
+  { "x", "Microsoft Excel" },
+  { ",", "System Preferences" },
 }
 
-for key, item in pairs(appMappings) do
-  hyper.bindApp({}, key, item)
+for _, v in ipairs(appMappings) do
+  hyper.bindApp({}, table.unpack(v))
 end
 
 -- hyper.bindApp({}, ",", "System Preferences")

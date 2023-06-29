@@ -82,7 +82,7 @@ function obj.buildSubMenu(data)
       will_rain = "☔️"
     end
     local menuTitle = string.format(
-      "%s 🌡️%s°C (体感: %s°C %s) 💧湿度: %s%% 🌞紫外线: %s %s",
+      "%s 🌡️%s°C (体感: %s°C %s) 💧%s%% 🌞紫外线: %s %s",
       v.time,
       v.temp_c,
       v.feelslike_c,
@@ -92,7 +92,11 @@ function obj.buildSubMenu(data)
       will_rain
     )
     local icon = hs.image.imageFromURL("https:" .. v.condition.icon):size({ w = 32, h = 32 })
-    table.insert(subMenu, { title = menuTitle, image = icon })
+    local checked = v.time == os.date("%Y-%m-%d %H:00")
+    if checked then
+      table.insert(subMenu, { title = "-" })
+    end
+    table.insert(subMenu, { title = menuTitle, image = icon, checked = checked })
   end
 
   return subMenu

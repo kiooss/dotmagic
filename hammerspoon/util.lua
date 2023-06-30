@@ -23,6 +23,10 @@ M.d = function(...)
   end
 end
 
+M.iMessage = function(message)
+  hs.messages.iMessage(require("local_config").iMessageTarget, message)
+end
+
 M.execute = function(cmd)
   local output, status = hs.execute(cmd .. " 2>&1")
   if not status then

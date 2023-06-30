@@ -37,7 +37,7 @@ function obj:updateMenubar(json)
   local currentData = json.current
   local icon = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 24, h = 24 })
 
-  local titlestr = string.format(
+  local title = string.format(
     "现在 🌡️%s°C (体感: %s°C) 💧湿度: %s%% 🪁epa: %s 💨%s kph (%s) 🌞紫外线: %s 📍%s (%s)",
     currentData.temp_c,
     currentData.feelslike_c,
@@ -49,8 +49,9 @@ function obj:updateMenubar(json)
     json.location.name .. " " .. json.location.region,
     currentData.condition.text
   )
+  util.iMessage(os.date("%Y/%m/%d %H:%M") .. " " .. title)
   table.insert(menuData, {
-    title = titlestr,
+    title = title,
     image = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 40, h = 40 }),
   })
   table.insert(menuData, { title = "-" })

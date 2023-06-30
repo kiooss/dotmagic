@@ -83,8 +83,6 @@ yabai -m rule --add app="^Parallels Desktop$" manage=off
 yabai -m rule --add app="^FortiClient$" manage=off
 yabai -m rule --add app="^TencentMeeting$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
-yabai -m rule --add app="^カレンダー$" manage=off
-# yabai -m rule --add app="^Slack$" manage=off
 yabai -m rule --add app="^Karabiner.*$" manage=off
 yabai -m rule --add app="^アクティビティモニタ$" manage=off
 

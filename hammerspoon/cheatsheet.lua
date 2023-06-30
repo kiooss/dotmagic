@@ -42,6 +42,9 @@ local function generateHtml(mappings)
 <html>
 <head>
   <style>
+  body {
+    background-color: #ECF0F1;
+  }
   main {
     display: flex;
   }
@@ -52,10 +55,9 @@ local function generateHtml(mappings)
     border-collapse: collapse;
     width: 100%;
   }
-
   th, td {
     border: 1px solid black;
-    padding: 8px;
+    padding: 2px 8px;
     text-align: left;
   }
   th {

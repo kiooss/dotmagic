@@ -12,14 +12,13 @@ local wm = require("wm")
 local localConfig = require("local_config")
 require("input_methods")
 require("url_bookmarks")
-
+local cheatsheet = require("cheatsheet")
 local weather = require("weather")
-weather:init(localConfig.weatherApiKey)
-
 local audioDevice = require("audio_device")
-audioDevice:init()
-
 local clipboard = require("clipboard")
+
+weather:init(localConfig.weatherApiKey)
+audioDevice:init()
 clipboard:init()
 
 local function yabai(...)
@@ -69,27 +68,25 @@ end
 
 local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
 
-local function switchWindow()
-  switcher:next()
-end
-
 local hyperMappings = {
   { "f1", "Launch apps", wm.launchApps },
   { "f2", "Move window to space", wm.moveWindowToSpace },
+  { "f3", "Broadcast current weather", hs.fnutils.partial(weather.sayCurrentWeather, weather) },
   { "left", "Move window to left half", hs.fnutils.partial(wm.resize, "leftHalf") },
   { "right", "Move window to right half", hs.fnutils.partial(wm.resize, "rightHalf") },
   { "up", "Move window to top half", hs.fnutils.partial(wm.resize, "topHalf") },
   { "down", "Move window to bottom half", hs.fnutils.partial(wm.resize, "bottomHalf") },
   { "return", "Maximize window with margin", wm.maximizeWindowWithMargin },
   { "space", "Maximize all window with margin", wm.maximizeAllWindowWithMargin },
-  { "tab", "Switch To Next Window", switchWindow },
+  { "tab", "Switch To Next Window", hs.fnutils.partial(switcher.next, switcher) },
   { "1", "Launch apps", hs.fnutils.partial(wm.switchWindow, 1) },
   { "2", "Launch apps", hs.fnutils.partial(wm.switchWindow, 2) },
   { "3", "Launch apps", hs.fnutils.partial(wm.switchWindow, 3) },
+  { "/", "Show cheatsheet", hs.fnutils.partial(cheatsheet.toggle, cheatsheet) },
 }
 
 for _, v in ipairs(hyperMappings) do
-  hyper:bind({}, v[1], v[2], v[3])
+  hyper:bind({}, table.unpack(v))
 end
 
 -- cmd + shift bindings
@@ -147,7 +144,7 @@ local cmdShiftMappings = {
 }
 
 for _, v in ipairs(cmdShiftMappings) do
-  hs.hotkey.bind({ "cmd", "shift" }, v[1], v[2], v[3])
+  hs.hotkey.bind({ "cmd", "shift" }, table.unpack(v))
 end
 
 -- app laucher
@@ -267,7 +264,6 @@ Install:andUse("ColorPicker", {
   start = true,
 })
 
-local cheatsheet = require("cheatsheet")
 cheatsheet:init({
   hyperMappings = hyperMappings,
   cmdShiftMappings = cmdShiftMappings,

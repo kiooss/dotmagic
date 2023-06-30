@@ -2,6 +2,7 @@ local util = require("util")
 local obj = {}
 
 obj.apiBaseUrl = "https://api.weatherapi.com/v1/forecast.json"
+obj.currentWeather = nil
 
 function obj:getLocation(fn)
   obj.getLocationTimer = hs.timer.delayed
@@ -31,9 +32,61 @@ function obj:init(apiKey)
   end)
 end
 
-function obj:updateMenubar(menuData)
-  self.menubar:setTooltip("Weather Info")
+function obj:updateMenubar(json)
+  local menuData = {}
+  local currentData = json.current
+  local icon = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 24, h = 24 })
+
+  local titlestr = string.format(
+    "现在 🌡️%s°C (体感: %s°C) 💧湿度: %s%% 🪁epa: %s 💨%s kph (%s) 🌞紫外线: %s 📍%s (%s)",
+    currentData.temp_c,
+    currentData.feelslike_c,
+    currentData.humidity,
+    currentData.air_quality["us-epa-index"],
+    currentData.wind_kph,
+    currentData.wind_dir,
+    currentData.uv,
+    json.location.name .. " " .. json.location.region,
+    currentData.condition.text
+  )
+  table.insert(menuData, {
+    title = titlestr,
+    image = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 40, h = 40 }),
+  })
+  table.insert(menuData, { title = "-" })
+
+  local forecastData = json.forecast.forecastday
+  -- util.d(forecastData)
+
+  for k, v in pairs(forecastData) do
+    local menuTitle = string.format(
+      "%s 🌡️%s°C ~ %s°C 💧湿度: %s%% ☔️降雨概率: %s%% 🌞紫外线: %s 🌇%s %s",
+      v.date,
+      v.day.mintemp_c,
+      v.day.maxtemp_c,
+      v.day.avghumidity,
+      v.day.daily_chance_of_rain,
+      v.day.uv,
+      v.astro.sunset,
+      v.day.condition.text
+    )
+    table.insert(menuData, {
+      title = menuTitle,
+      image = hs.image.imageFromURL("https:" .. v.day.condition.icon):size({ w = 32, h = 32 }),
+      menu = obj.buildSubMenu(v.hour),
+    })
+  end
+  table.insert(menuData, { title = "-" })
+  table.insert(menuData, {
+    title = "Last updated: " .. currentData.last_updated .. " | Last fetch: " .. os.date("%Y/%m/%d %H:%M:%S"),
+    disabled = true,
+  })
+
+  self.menubar:setIcon(icon)
+  self.menubar:setTitle(json.current.temp_c)
+  self.menubar:setTooltip(json.current.condition.text)
   self.menubar:setMenu(menuData)
+  self.currentWeather = json.current
 end
 
 function obj:getWeather()
@@ -44,52 +97,7 @@ function obj:getWeather()
       hs.alert.show("get weather error:" .. code)
       return
     end
-    local menuData = {}
-    local json = hs.json.decode(body)
-    local currentData = json.current
-    local icon = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 24, h = 24 })
-    self.menubar:setIcon(icon)
-    self.menubar:setTitle(json.current.temp_c)
-    local titlestr = string.format(
-      "现在 🌡️%s°C (体感: %s°C) 💧湿度: %s%% 💨%s kph (%s) 🌞紫外线: %s 📍%s",
-      currentData.temp_c,
-      currentData.feelslike_c,
-      currentData.humidity,
-      currentData.wind_kph,
-      currentData.wind_dir,
-      currentData.uv,
-      json.location.name .. " " .. json.location.region
-    )
-    table.insert(menuData, {
-      title = titlestr,
-      image = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 40, h = 40 }),
-    })
-    table.insert(menuData, { title = "-" })
-
-    local forecastData = json.forecast.forecastday
-    -- util.d(forecastData)
-
-    for k, v in pairs(forecastData) do
-      local menuTitle = string.format(
-        "%s 🌡️%s°C ~ %s°C 💧湿度: %s%% ☔️降雨概率: %s%% 🌞紫外线: %s 🌇%s",
-        v.date,
-        v.day.mintemp_c,
-        v.day.maxtemp_c,
-        v.day.avghumidity,
-        v.day.daily_chance_of_rain,
-        v.day.uv,
-        v.astro.sunset
-      )
-      table.insert(menuData, {
-        title = menuTitle,
-        image = hs.image.imageFromURL("https:" .. v.day.condition.icon):size({ w = 32, h = 32 }),
-        menu = obj.buildSubMenu(v.hour),
-      })
-    end
-    table.insert(menuData, { title = "-" })
-    table.insert(menuData, { title = "Last updated: " .. os.date("%Y/%m/%d %H:%M:%S") })
-
-    self:updateMenubar(menuData)
+    self:updateMenubar(hs.json.decode(body))
   end)
 end
 
@@ -105,14 +113,15 @@ function obj.buildSubMenu(data)
       will_rain = "☔️"
     end
     local menuTitle = string.format(
-      "%s 🌡️%s°C (体感: %s°C %s) 💧%s%% 🌞紫外线: %s %s",
-      v.time,
+      "%s 🌡️%s°C (体感: %s°C %s) 💧%s%% 🌞紫外线: %s %s %s",
+      string.sub(v.time, 11),
       v.temp_c,
       v.feelslike_c,
       hot,
       v.humidity,
       v.uv,
-      will_rain
+      will_rain,
+      v.condition.text
     )
     local icon = hs.image.imageFromURL("https:" .. v.condition.icon):size({ w = 32, h = 32 })
     local checked = v.time == os.date("%Y-%m-%d %H:00")
@@ -123,6 +132,18 @@ function obj.buildSubMenu(data)
   end
 
   return subMenu
+end
+
+function obj:sayCurrentWeather()
+  if not self.currentWeather then
+    return
+  end
+  local msg = string.format(
+    "Current weather is %s, feels like %s °C",
+    self.currentWeather.condition.text,
+    self.currentWeather.feelslike_c
+  )
+  util.say(msg)
 end
 
 return obj

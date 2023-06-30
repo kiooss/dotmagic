@@ -1,5 +1,6 @@
 local log = hs.logger.new("💥 debug", "debug")
-local speaker = hs.speech.new("Alex")
+-- say -v '?'
+local speaker = hs.speech.new("Samantha")
 local inspect = hs.inspect.inspect
 
 local M = {}

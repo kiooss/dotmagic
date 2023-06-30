@@ -3,3 +3,9 @@
 -- for index, window in ipairs(allWindows) do
 --   require("util").mark(index, window)
 -- end
+
+local sounds = hs.sound.systemSounds()
+
+for _, name in ipairs(sounds) do
+  hs.sound.getByName(name):play()
+end

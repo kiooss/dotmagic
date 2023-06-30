@@ -16,10 +16,12 @@ local cheatsheet = require("cheatsheet")
 local weather = require("weather")
 local audioDevice = require("audio_device")
 local clipboard = require("clipboard")
+local clock = require("clock")
 
 weather:init(localConfig.weatherApiKey)
 audioDevice:init()
 clipboard:init()
+clock:init()
 
 local function yabai(...)
   util.run("/usr/local/bin/yabai", ...)

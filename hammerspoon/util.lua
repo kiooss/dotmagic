@@ -2,6 +2,7 @@ local log = hs.logger.new("💥 debug", "debug")
 -- say -v '?'
 local speaker = hs.speech.new("Samantha")
 local inspect = hs.inspect.inspect
+P = hs.inspect.inspect
 
 local M = {}
 

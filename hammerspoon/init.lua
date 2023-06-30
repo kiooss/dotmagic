@@ -66,23 +66,25 @@ for key, item in pairs(hyperCmdMappings) do
   hyper:bind({ "cmd" }, key, item)
 end
 
+local partial = hs.fnutils.partial
 local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
 
 local hyperMappings = {
   { "f1", "Launch apps", wm.launchApps },
   { "f2", "Move window to space", wm.moveWindowToSpace },
-  { "f3", "Broadcast current weather", hs.fnutils.partial(weather.sayCurrentWeather, weather) },
-  { "left", "Move window to left half", hs.fnutils.partial(wm.resize, "leftHalf") },
-  { "right", "Move window to right half", hs.fnutils.partial(wm.resize, "rightHalf") },
-  { "up", "Move window to top half", hs.fnutils.partial(wm.resize, "topHalf") },
-  { "down", "Move window to bottom half", hs.fnutils.partial(wm.resize, "bottomHalf") },
+  { "f3", "Broadcast current weather", partial(weather.sayCurrentWeather, weather) },
+  { "f12", "Audio Device Chooser", partial(audioDevice.show, audioDevice) },
+  { "left", "Move window to left half", partial(wm.resize, "leftHalf") },
+  { "right", "Move window to right half", partial(wm.resize, "rightHalf") },
+  { "up", "Move window to top half", partial(wm.resize, "topHalf") },
+  { "down", "Move window to bottom half", partial(wm.resize, "bottomHalf") },
   { "return", "Maximize window with margin", wm.maximizeWindowWithMargin },
   { "space", "Maximize all window with margin", wm.maximizeAllWindowWithMargin },
-  { "tab", "Switch To Next Window", hs.fnutils.partial(switcher.next, switcher) },
-  { "1", "Launch apps", hs.fnutils.partial(wm.switchWindow, 1) },
-  { "2", "Launch apps", hs.fnutils.partial(wm.switchWindow, 2) },
-  { "3", "Launch apps", hs.fnutils.partial(wm.switchWindow, 3) },
-  { "/", "Show cheatsheet", hs.fnutils.partial(cheatsheet.toggle, cheatsheet) },
+  { "tab", "Switch To Next Window", partial(switcher.next, switcher) },
+  { "1", "Launch apps", partial(wm.switchWindow, 1) },
+  { "2", "Launch apps", partial(wm.switchWindow, 2) },
+  { "3", "Launch apps", partial(wm.switchWindow, 3) },
+  { "/", "Show cheatsheet", partial(cheatsheet.toggle, cheatsheet) },
 }
 
 for _, v in ipairs(hyperMappings) do

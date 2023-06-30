@@ -1,6 +1,7 @@
 local util = require("util")
 
 local obj = {}
+obj.audioChooser = nil
 
 function obj.getAudioChoices()
   local choices = {}
@@ -19,7 +20,7 @@ function obj.getAudioChoices()
 end
 
 function obj:init()
-  local audioChooser = hs.chooser.new(function(choice)
+  self.audioChooser = hs.chooser.new(function(choice)
     if not choice then
       hs.alert.show("Nothing chosen")
       return
@@ -34,12 +35,12 @@ function obj:init()
       hs.alert.show("Audio output device is now: " .. name)
     end
   end)
+end
 
-  hs.hotkey.bind({ "cmd" }, "f12", function()
-    audioChooser:choices(obj.getAudioChoices())
-    audioChooser:placeholderText("Select audio output device")
-    audioChooser:show()
-  end)
+function obj:show()
+  self.audioChooser:choices(obj.getAudioChoices())
+  self.audioChooser:placeholderText("Select audio output device")
+  self.audioChooser:show()
 end
 
 return obj

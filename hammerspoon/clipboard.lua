@@ -113,10 +113,10 @@ function obj:storeText(text)
     return
   end
 
-  hs.console.printStyledtext(hs.pasteboard.readStyledText())
+  -- hs.console.printStyledtext(hs.pasteboard.readStyledText())
 
   if string.len(string.gsub(text, "[ \r\n]+", "")) == 0 then
-    util.d("Empty text!")
+    -- util.d("Empty text!")
     return
   end
 
@@ -126,7 +126,7 @@ function obj:storeText(text)
   end
 
   local appBundleId = util.getFocusedBundleId()
-  util.d(string.format("General Pasteboard Contents: %s, From: %s", text, appBundleId))
+  -- util.d(string.format("General Pasteboard Contents: %s, From: %s", text, appBundleId))
 
   local db = self:db()
   local sql =
@@ -134,9 +134,7 @@ function obj:storeText(text)
   local stmt = db:prepare(sql)
   stmt:bind_values(text, appBundleId)
 
-  if stmt:step() == hs.sqlite3.DONE then
-    util.d("Insert successful.")
-  else
+  if not stmt:step() == hs.sqlite3.DONE then
     hs.alert.show("Insert clipboard database failed!")
   end
 

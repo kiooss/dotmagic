@@ -35,6 +35,7 @@ M.moveWindowToSpace = function()
     { "com.google.Chrome", 2 },
     { "com.tinyspeck.slackmacgap", 3 },
     { "com.tencent.xinWeChat", 4 },
+    { "com.microsoft.Excel", 5 },
   }
   local spaceIds = wm_helper.getSpacesOfPrimaryScreen()
   util.d(spaceIds)

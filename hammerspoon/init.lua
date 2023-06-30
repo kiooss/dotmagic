@@ -27,9 +27,7 @@ end
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
-  c = function()
-    hs.toggleConsole()
-  end,
+  c = hs.toggleConsole,
   d = function() -- d for debug
     hs.alert.show("FocusedWindow: " .. wm.getCurrentAppName())
     hs.alert.show("FrontMostApp: " .. hs.application.frontmostApplication():name())
@@ -103,6 +101,13 @@ local cmdShiftMappings = {
     "Rotate the window tree clock-wise",
     function()
       yabai("-m", "space", "--rotate", "90")
+    end,
+  },
+  {
+    "return",
+    "Zoom fullscreen",
+    function()
+      yabai("-m", "window", "--toggle", "zoom-fullscreen")
     end,
   },
   { ";", "Move to next screen", wm.moveToNextScreen },
@@ -198,25 +203,6 @@ hs.hotkey.bind({ "ctrl", "shift" }, "3", "open github", function()
   openUrl("https://github.com")
 end)
 
--- Reacting to application events
--- local function applicationWatcher(appName, eventType, appObject)
---   hs.alert.show(appName)
---   if eventType == hs.application.watcher.activated then
---     if appName == "Finder" then
---       hs.alert.show("Finder")
---       -- Bring all Finder windows forward when one gets activated
---       appObject:selectMenuItem({ "Window", "Bring All to Front" })
---     elseif appName == "kitty" then
---       hs.alert.show("Finder")
---     end
---   end
--- end
--- local appWatcher = hs.application.watcher.new(applicationWatcher)
--- appWatcher:start()
-
--- hs.window.highlight.ui.overlay = true
--- hs.window.highlight.start()
-
 -- loadSpoon
 hs.loadSpoon("SpoonInstall")
 local Install = spoon.SpoonInstall
@@ -269,10 +255,6 @@ cheatsheet:init({
   cmdShiftMappings = cmdShiftMappings,
   appMappings = appMappings,
 })
-
-hyper:bind({}, "/", nil, function()
-  cheatsheet:toggle()
-end)
 
 --
 hs.alert.show("Hammerspoon Loaded!")

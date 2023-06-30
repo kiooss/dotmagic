@@ -19,8 +19,19 @@ local clock = require("clock")
 local vpnWatcher = require("vpn_watcher")
 local cheatsheet = require("cheatsheet")
 
+local partial = hs.fnutils.partial
+local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
+
 local function yabai(...)
   util.run("/usr/local/bin/yabai", ...)
+end
+
+local cmdMappings = {
+  { "f11", "Action Chooser", partial(clipboard.showActionChooser, clipboard) },
+  { "f12", "Audio Device Chooser", partial(audioDevice.show, audioDevice) },
+}
+for _, v in ipairs(cmdMappings) do
+  hs.hotkey.bind({ "cmd" }, table.unpack(v))
 end
 
 local hyperCmdMappings = {
@@ -62,14 +73,10 @@ for key, item in pairs(hyperCmdMappings) do
   hyper:bind({ "cmd" }, key, item)
 end
 
-local partial = hs.fnutils.partial
-local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
-
 local hyperMappings = {
   { "f1", "Launch apps", wm.launchApps },
   { "f2", "Move window to space", wm.moveWindowToSpace },
   { "f3", "Broadcast current weather", partial(weather.sayCurrentWeather, weather) },
-  { "f12", "Audio Device Chooser", partial(audioDevice.show, audioDevice) },
   { "left", "Move window to left half", partial(wm.resize, "leftHalf") },
   { "right", "Move window to right half", partial(wm.resize, "rightHalf") },
   { "up", "Move window to top half", partial(wm.resize, "topHalf") },
@@ -146,6 +153,7 @@ local cmdShiftMappings = {
       hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
     end,
   },
+  { "v", "Show clipboard history", partial(clipboard.show, clipboard) },
 }
 
 for _, v in ipairs(cmdShiftMappings) do

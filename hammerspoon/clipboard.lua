@@ -19,34 +19,35 @@ function obj:init()
   end)
   self.pasteboardWatcher:start()
 
-  local chooser = hs.chooser.new(function(choice)
+  self.chooser = hs.chooser.new(function(choice)
     if choice then
       hs.pasteboard.setContents(choice.raw)
       hs.eventtap.keyStroke({ "cmd" }, "v")
     end
   end)
+  self.chooser:placeholderText("Search clipboard history")
 
-  hs.hotkey.bind({ "cmd", "shift" }, "v", function()
-    chooser:placeholderText("Search clipboard history")
-    chooser:choices(self:getChoices())
-    chooser:show()
-  end)
-
-  local actionChooser = hs.chooser.new(function(choice)
+  self.actionChooser = hs.chooser.new(function(choice)
     if choice then
       if choice.action == "clear" then
         self:clearHistory()
       end
     end
   end)
+  self.actionChooser:placeholderText("Clipboard history action")
+  self.actionChooser:choices({
+    { text = "Clear all histories", action = "clear" },
+  })
+end
 
-  hs.hotkey.bind({ "cmd" }, "f11", function()
-    actionChooser:placeholderText("Clipboard history action")
-    actionChooser:choices({
-      { text = "Clear all histories", action = "clear" },
-    })
-    actionChooser:show()
-  end)
+function obj:show()
+  self.chooser:query(nil)
+  self.chooser:choices(self:getChoices())
+  self.chooser:show()
+end
+
+function obj:showActionChooser()
+  self.actionChooser:show()
 end
 
 function obj:initDatabase()

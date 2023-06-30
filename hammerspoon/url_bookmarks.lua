@@ -25,6 +25,7 @@ function obj:init()
 end
 
 function obj:show()
+  self.urlChooser:query(nil)
   self.urlChooser:show()
 end
 

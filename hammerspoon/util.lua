@@ -1,8 +1,11 @@
-local log = hs.logger.new("💥 debug", "debug")
+-- loglevel - (optional) can be 'nothing', 'error', 'warning', 'info', 'debug', or 'verbose',
+-- or a corresponding number between 0 and 5; uses hs.logger.defaultLogLevel if omitted
+hs.logger.defaultLogLevel = "warning"
+local log = hs.logger.new("💥💥", "debug")
 -- say -v '?'
 local speaker = hs.speech.new("Samantha")
 local inspect = hs.inspect.inspect
-P = hs.inspect.inspect
+D = hs.inspect.inspect
 
 local M = {}
 
@@ -29,27 +32,27 @@ M.execute = function(cmd)
   end
 end
 
-M.mark = function(str, window)
-  local width = 320
-  local height = 230
-  local canvas = hs.canvas.new({ x = 100, y = 100, h = 200, w = 200 })
+M.mark = function(str)
+  local width = 200
+  local height = 100
+  local canvas = hs.canvas.new({ x = 0, y = 0, h = 0, w = 0 })
   canvas[1] = {
     type = "text",
     text = str,
     textFont = "Impact",
-    textSize = 135,
+    textSize = 80,
     textColor = { hex = "#1891C3" },
-    textAlignment = "center",
+    textAlignment = "right",
   }
-  -- local mainScreen = hs.screen.primaryScreen()
-  -- local mainRes = mainScreen:fullFrame()
-  local windowFrame = window:frame()
+  local mainScreen = hs.screen.primaryScreen()
+  local mainRes = mainScreen:fullFrame()
   canvas:frame({
-    x = (windowFrame.w - width) / 2,
-    y = (windowFrame.h - height) / 2,
+    x = mainRes.w - width - 20,
+    y = 25,
     w = width,
     h = height,
   })
+  canvas:alpha(0.8)
   canvas:show()
 end
 

@@ -17,15 +17,21 @@ local weather = require("weather")
 local audioDevice = require("audio_device")
 local clipboard = require("clipboard")
 local clock = require("clock")
+local vpnWatcher = require("vpn_watcher")
+
+local function yabai(...)
+  util.run("/usr/local/bin/yabai", ...)
+end
 
 weather:init(localConfig.weatherApiKey)
 audioDevice:init()
 clipboard:init()
 clock:init()
-
-local function yabai(...)
-  util.run("/usr/local/bin/yabai", ...)
-end
+vpnWatcher:init(function()
+  yabai("-m", "config", "active_window_border_color", "0xff00ff00")
+end, function()
+  yabai("-m", "config", "active_window_border_color", "0xff35F1F7")
+end)
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
@@ -262,5 +268,5 @@ cheatsheet:init({
 
 --
 hs.alert.show("Hammerspoon Loaded!")
-util.say("Hammerspoon is online")
+-- util.say("Hammerspoon is online")
 hs.notify.new({ title = "Hammerspoon launch", informativeText = "Boss, at your service" }):send()

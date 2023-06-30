@@ -121,7 +121,7 @@ function obj:storeText(text)
   end
 
   if self:incrementText(text) == true then
-    util.d("Already exists: " .. text)
+    -- util.d("Already exists: " .. text)
     return
   end
 

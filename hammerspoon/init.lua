@@ -10,28 +10,18 @@ local util = require("util")
 local hyper = require("hyper")
 local wm = require("wm")
 local localConfig = require("local_config")
-require("input_methods")
-require("url_bookmarks")
-local cheatsheet = require("cheatsheet")
+local ime = require("ime")
+local urlBookmarks = require("url_bookmarks")
 local weather = require("weather")
 local audioDevice = require("audio_device")
 local clipboard = require("clipboard")
 local clock = require("clock")
 local vpnWatcher = require("vpn_watcher")
+local cheatsheet = require("cheatsheet")
 
 local function yabai(...)
   util.run("/usr/local/bin/yabai", ...)
 end
-
-weather:init(localConfig.weatherApiKey)
-audioDevice:init()
-clipboard:init()
-clock:init()
-vpnWatcher:init(function()
-  yabai("-m", "config", "active_window_border_color", "0xff00ff00")
-end, function()
-  yabai("-m", "config", "active_window_border_color", "0xff35F1F7")
-end)
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
@@ -213,6 +203,10 @@ hs.hotkey.bind({ "ctrl", "shift" }, "3", "open github", function()
   openUrl("https://github.com")
 end)
 
+hs.hotkey.bind({ "cmd" }, "\\", function()
+  urlBookmarks:show()
+end)
+
 -- loadSpoon
 hs.loadSpoon("SpoonInstall")
 local Install = spoon.SpoonInstall
@@ -260,6 +254,17 @@ Install:andUse("ColorPicker", {
   start = true,
 })
 
+ime:init()
+urlBookmarks:init()
+weather:init(localConfig.weatherApiKey)
+audioDevice:init()
+clipboard:init()
+clock:init()
+vpnWatcher:init(function()
+  yabai("-m", "config", "active_window_border_color", "0xff00ff00")
+end, function()
+  yabai("-m", "config", "active_window_border_color", "0xff35F1F7")
+end)
 cheatsheet:init({
   hyperMappings = hyperMappings,
   cmdShiftMappings = cmdShiftMappings,
@@ -268,5 +273,5 @@ cheatsheet:init({
 
 --
 hs.alert.show("Hammerspoon Loaded!")
--- util.say("Hammerspoon is online")
+util.say("Hammerspoon is online")
 hs.notify.new({ title = "Hammerspoon launch", informativeText = "Boss, at your service" }):send()

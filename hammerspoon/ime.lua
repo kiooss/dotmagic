@@ -1,3 +1,5 @@
+local obj = {}
+
 local function Chinese()
   hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
 end
@@ -19,8 +21,12 @@ local function set_app_input_method(app_name, set_input_method_function, event)
   end)
 end
 
-set_app_input_method("Slack", Japanese)
-set_app_input_method("kitty", English)
--- set_app_input_method("Google Chrome", English)
--- set_app_input_method("WeChat", Chinese)
--- set_app_input_method("Telegram", English)
+function obj:init()
+  set_app_input_method("Slack", Japanese)
+  set_app_input_method("kitty", English)
+  -- set_app_input_method("Google Chrome", English)
+  set_app_input_method("微信", Chinese)
+  -- set_app_input_method("Telegram", English)
+end
+
+return obj

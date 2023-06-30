@@ -279,6 +279,6 @@ hyper:bind({}, "/", nil, function()
 end)
 
 --
--- hs.alert.show("Hammerspoon Loaded!")
-require("speaker")
--- util.d("Location get: ", hs.location.get())
+hs.alert.show("Hammerspoon Loaded!")
+util.say("Hammerspoon is online")
+hs.notify.new({ title = "Hammerspoon launch", informativeText = "Boss, at your service" }):send()

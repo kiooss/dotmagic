@@ -1,7 +1,12 @@
 local log = hs.logger.new("💥 debug", "debug")
+local speaker = hs.speech.new("Alex")
 local inspect = hs.inspect.inspect
 
 local M = {}
+
+M.say = function(message)
+  speaker:speak(message)
+end
 
 M.d = function(...)
   for _, obj in ipairs({ ... }) do

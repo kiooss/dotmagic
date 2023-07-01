@@ -84,7 +84,37 @@ function obj:updateMenubar(json)
   })
 
   self.menubar:setIcon(icon)
-  self.menubar:setTitle(json.current.temp_c)
+  local colorHex = "#0096FA"
+  if json.current.feelslike_c > 35 then
+    colorHex = "#EC1F0A"
+  end
+  local styledTitle = hs.styledtext.new(json.current.temp_c .. "  ", {
+    font = {
+      name = "Impact",
+      -- size = 9.0,
+    },
+    color = { hex = "#0AECD1" },
+    paragraphStyle = {
+      -- lineSpacing = 5,
+      -- alignment = "center",
+      alignment = "left",
+      maximumLineHeight = 18,
+    },
+  })
+  local styledTitle2 = hs.styledtext.new(json.current.feelslike_c, {
+    font = {
+      name = "Impact",
+      size = 12.0,
+    },
+    color = { hex = colorHex },
+    paragraphStyle = {
+      -- lineSpacing = 5,
+      -- alignment = "center",
+      alignment = "left",
+      maximumLineHeight = 18,
+    },
+  })
+  self.menubar:setTitle(styledTitle .. styledTitle2)
   self.menubar:setTooltip(json.current.condition.text)
   self.menubar:setMenu(menuData)
   self.currentWeather = json.current

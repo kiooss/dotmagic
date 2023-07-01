@@ -17,7 +17,7 @@ local function runJob()
 end
 
 function obj:init()
-  for h = 8, 20 do
+  for h = 7, 21 do
     table.insert(self.timerHolder, hs.timer.doAt(h .. ":00", "1d", runJob))
     table.insert(self.timerHolder, hs.timer.doAt(h .. ":30", "1d", runJob))
   end

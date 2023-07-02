@@ -49,7 +49,7 @@ function obj:updateMenubar(json)
     json.location.name .. " " .. json.location.region,
     currentData.condition.text
   )
-  util.iMessage(os.date("%Y/%m/%d %H:%M") .. " " .. title)
+  -- util.iMessage(os.date("%Y/%m/%d %H:%M") .. " " .. title)
   table.insert(menuData, {
     title = title,
     image = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 40, h = 40 }),
@@ -91,7 +91,7 @@ function obj:updateMenubar(json)
   local styledTitle = hs.styledtext.new(json.current.temp_c .. "  ", {
     font = {
       name = "Impact",
-      -- size = 9.0,
+      size = 12.0,
     },
     color = { hex = "#0AECD1" },
     paragraphStyle = {
@@ -104,7 +104,7 @@ function obj:updateMenubar(json)
   local styledTitle2 = hs.styledtext.new(json.current.feelslike_c, {
     font = {
       name = "Impact",
-      size = 12.0,
+      -- size = 12.0,
     },
     color = { hex = colorHex },
     paragraphStyle = {
@@ -155,11 +155,17 @@ function obj.buildSubMenu(data)
       v.condition.text
     )
     local icon = hs.image.imageFromURL("https:" .. v.condition.icon):size({ w = 32, h = 32 })
-    local checked = v.time == os.date("%Y-%m-%d %H:00")
-    if checked then
+    local currentHour = v.time == os.date("%Y-%m-%d %H:00")
+    if currentHour then
       table.insert(subMenu, { title = "-" })
+      menuTitle = hs.styledtext.new(menuTitle, {
+        font = {
+          size = 16,
+        },
+        color = { hex = "#23B3F6" },
+      })
     end
-    table.insert(subMenu, { title = menuTitle, image = icon, checked = checked })
+    table.insert(subMenu, { title = menuTitle, image = icon })
   end
 
   return subMenu

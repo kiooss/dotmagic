@@ -3,6 +3,7 @@ local obj = {}
 
 obj.apiBaseUrl = "https://api.weatherapi.com/v1/forecast.json"
 obj.currentWeather = nil
+obj.chanceOfRainNextHour = nil
 
 function obj:getLocation(fn)
   obj.getLocationTimer = hs.timer.delayed
@@ -24,7 +25,7 @@ function obj:init(apiKey)
   self:getLocation(function(location)
     local query = string.format("%.4f,%.4f", location.latitude, location.longitude)
     self.urlApi = string.format("%s?key=%s&q=%s&days=3&aqi=yes&alerts=yes", self.apiBaseUrl, apiKey, query)
-    -- util.d(self.urlApi)
+    util.d(self.urlApi)
     self:getWeather()
     self.getWeatherTimer = hs.timer.doEvery(3600, function()
       self:getWeather()
@@ -74,7 +75,7 @@ function obj:updateMenubar(json)
     table.insert(menuData, {
       title = menuTitle,
       image = hs.image.imageFromURL("https:" .. v.day.condition.icon):size({ w = 32, h = 32 }),
-      menu = obj.buildSubMenu(v.hour),
+      menu = self:buildSubMenu(v.hour),
     })
   end
   table.insert(menuData, { title = "-" })
@@ -101,20 +102,33 @@ function obj:updateMenubar(json)
       maximumLineHeight = 18,
     },
   })
-  local styledTitle2 = hs.styledtext.new(json.current.feelslike_c, {
-    font = {
-      name = "Impact",
-      -- size = 12.0,
-    },
-    color = { hex = colorHex },
-    paragraphStyle = {
-      -- lineSpacing = 5,
-      -- alignment = "center",
-      alignment = "left",
-      maximumLineHeight = 18,
-    },
-  })
-  self.menubar:setTitle(styledTitle .. styledTitle2)
+  styledTitle = styledTitle
+    .. hs.styledtext.new(json.current.feelslike_c, {
+      font = {
+        name = "Impact",
+        -- size = 12.0,
+      },
+      color = { hex = colorHex },
+      paragraphStyle = {
+        -- lineSpacing = 5,
+        -- alignment = "center",
+        alignment = "left",
+        maximumLineHeight = 18,
+      },
+    })
+
+  if self.chanceOfRainNextHour then
+    styledTitle = styledTitle
+      .. hs.styledtext.new(" " .. self.chanceOfRainNextHour .. "%", {
+        font = {
+          name = "Input Mono",
+          -- size = 12.0,
+        },
+        color = { hex = "#16A8EC" },
+      })
+  end
+
+  self.menubar:setTitle(styledTitle)
   self.menubar:setTooltip(json.current.condition.text)
   self.menubar:setMenu(menuData)
   self.currentWeather = json.current
@@ -132,10 +146,20 @@ function obj:getWeather()
   end)
 end
 
-function obj.buildSubMenu(data)
+function obj:buildSubMenu(data)
   local subMenu = {}
-  for _, v in pairs(data) do
-    local will_rain = ""
+  local currentHourIndex = nil
+  for i, v in pairs(data) do
+    if currentHourIndex and i == currentHourIndex + 1 then
+      -- check will_rain
+      if v.chance_of_rain >= 70 then
+        util.say("It's going to rain for the next hour")
+        self.chanceOfRainNextHour = v.chance_of_rain
+      else
+        self.chanceOfRainNextHour = false
+      end
+    end
+    local will_rain = "☀️"
     local hot = ""
     if v.feelslike_c > 35 then
       hot = "🔥"
@@ -144,14 +168,15 @@ function obj.buildSubMenu(data)
       will_rain = "☔️"
     end
     local menuTitle = string.format(
-      "%s 🌡️%s°C (体感: %s°C %s) 💧%s%% 🌞紫外线: %s %s %s",
+      "%s %s %s%% 🌡️%s°C (体感: %s°C %s) 💧%s%% 🌞紫外线: %s %s",
       string.sub(v.time, 11),
+      will_rain,
+      v.chance_of_rain,
       v.temp_c,
       v.feelslike_c,
       hot,
       v.humidity,
       v.uv,
-      will_rain,
       v.condition.text
     )
     local icon = hs.image.imageFromURL("https:" .. v.condition.icon):size({ w = 32, h = 32 })
@@ -159,11 +184,9 @@ function obj.buildSubMenu(data)
     if currentHour then
       table.insert(subMenu, { title = "-" })
       menuTitle = hs.styledtext.new(menuTitle, {
-        font = {
-          size = 16,
-        },
         color = { hex = "#23B3F6" },
       })
+      currentHourIndex = i
     end
     table.insert(subMenu, { title = menuTitle, image = icon })
   end

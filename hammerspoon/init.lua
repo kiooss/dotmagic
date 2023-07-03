@@ -18,6 +18,8 @@ local clipboard = require("clipboard")
 local clock = require("clock")
 local vpnWatcher = require("vpn_watcher")
 local cheatsheet = require("cheatsheet")
+local caffeine = require("caffeine")
+require("application_watcher")
 
 local partial = hs.fnutils.partial
 local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
@@ -108,6 +110,13 @@ local cmdShiftMappings = {
     "Rotate the window tree clock-wise",
     function()
       yabai("-m", "space", "--rotate", "90")
+    end,
+  },
+  {
+    "delete", -- backspace
+    "Yabai toggle space padding",
+    function()
+      yabai("-m", "space", "--toggle", "padding")
     end,
   },
   {
@@ -273,6 +282,7 @@ vpnWatcher:init(function()
 end, function()
   yabai("-m", "config", "active_window_border_color", "0xff35F1F7")
 end)
+caffeine:init()
 cheatsheet:init({
   hyperMappings = hyperMappings,
   cmdShiftMappings = cmdShiftMappings,

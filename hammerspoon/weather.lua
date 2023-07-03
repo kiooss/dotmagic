@@ -91,7 +91,7 @@ function obj:updateMenubar(json)
   local styledTitle = hs.styledtext.new(json.current.temp_c .. "  ", {
     font = {
       name = "Impact",
-      size = 12.0,
+      -- size = 12.0,
     },
     color = { hex = "#0AECD1" },
     paragraphStyle = {

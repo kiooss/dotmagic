@@ -23,4 +23,6 @@ hyper.bindApp = function(mods, key, app)
   end)
 end
 
+hyper:bind({}, "escape", hyper.released)
+
 return hyper

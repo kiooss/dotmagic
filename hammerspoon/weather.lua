@@ -5,6 +5,14 @@ obj.apiBaseUrl = "https://api.weatherapi.com/v1/forecast.json"
 obj.currentWeather = nil
 obj.chanceOfRainNextHour = nil
 
+local function styledText(text)
+  return hs.styledtext.new(text, {
+    font = {
+      name = "Input Mono",
+    },
+  })
+end
+
 function obj:getLocation(fn)
   obj.getLocationTimer = hs.timer.delayed
     .new(1, function()
@@ -39,7 +47,7 @@ function obj:updateMenubar(json)
   local icon = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 24, h = 24 })
 
   local title = string.format(
-    "现在 🌡️%s°C (体感: %s°C) 💧湿度: %s%% 🪁epa: %s 💨%s kph (%s) 🌞紫外线: %s 📍%s (%s)",
+    "现在 🌡️%s°C (%s°C) 💧 %s%% 🪁 %s 💨%s kph (%s) 🌞 %s \n📍%s (%s)",
     currentData.temp_c,
     currentData.feelslike_c,
     currentData.humidity,
@@ -52,7 +60,7 @@ function obj:updateMenubar(json)
   )
   -- util.iMessage(os.date("%Y/%m/%d %H:%M") .. " " .. title)
   table.insert(menuData, {
-    title = title,
+    title = styledText(title),
     image = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 40, h = 40 }),
   })
   table.insert(menuData, { title = "-" })
@@ -62,18 +70,17 @@ function obj:updateMenubar(json)
 
   for k, v in pairs(forecastData) do
     local menuTitle = string.format(
-      "%s 🌡️%s°C ~ %s°C 💧湿度: %s%% ☔️降雨概率: %s%% 🌞紫外线: %s 🌇%s %s",
+      "%s 🌡️%s°C ~ %s°C 💧 %s%% ☔️ %s%% 🌞 %s 🌇 %s",
       v.date,
       v.day.mintemp_c,
       v.day.maxtemp_c,
       v.day.avghumidity,
       v.day.daily_chance_of_rain,
       v.day.uv,
-      v.astro.sunset,
-      v.day.condition.text
+      v.astro.sunset
     )
     table.insert(menuData, {
-      title = menuTitle,
+      title = styledText(menuTitle) .. "\n" .. styledText(v.day.condition.text),
       image = hs.image.imageFromURL("https:" .. v.day.condition.icon):size({ w = 32, h = 32 }),
       menu = self:buildSubMenu(v.hour),
     })
@@ -162,13 +169,13 @@ function obj:buildSubMenu(data)
     local will_rain = "☀️"
     local hot = ""
     if v.feelslike_c > 35 then
-      hot = "🔥"
+      hot = " 🔥"
     end
     if v.will_it_rain == 1 then
       will_rain = "☔️"
     end
     local menuTitle = string.format(
-      "%s %s %s%% 🌡️%s°C (体感: %s°C %s) 💧%s%% 🌞紫外线: %s %s",
+      "%s %s %s%% 🌡️ %s°C (%s°C%s) 💧%s%% 🌞 %s %s",
       string.sub(v.time, 11),
       will_rain,
       v.chance_of_rain,
@@ -183,9 +190,6 @@ function obj:buildSubMenu(data)
     local currentHour = v.time == os.date("%Y-%m-%d %H:00")
     if currentHour then
       table.insert(subMenu, { title = "-" })
-      menuTitle = hs.styledtext.new(menuTitle, {
-        color = { hex = "#23B3F6" },
-      })
       currentHourIndex = i
     end
     table.insert(subMenu, { title = menuTitle, image = icon })

@@ -18,4 +18,5 @@ local util = require("util")
 --   end)
 --   :start()
 
-util.mark("VPN")
+-- hs.eventtap.keyStrokes("a") -- util.mark("VPN")
+-- hs.eventtap.keyStrokes("😀") -- util.mark("VPN")

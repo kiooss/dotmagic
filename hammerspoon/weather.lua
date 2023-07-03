@@ -22,6 +22,19 @@ local function styledTextImpact(text, colorHex)
   })
 end
 
+local function epaColor(index)
+  local dict = {
+    "#68E143",
+    "#FFFF54",
+    "#EF8532",
+    "#EA3323",
+    "#854493",
+    "#731425",
+  }
+
+  return dict[index]
+end
+
 function obj:getLocation(fn)
   obj.getLocationTimer = hs.timer.delayed
     .new(1, function()
@@ -54,13 +67,14 @@ function obj:updateMenubar(json)
   local menuData = {}
   local currentData = json.current
   local icon = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 24, h = 24 })
+  local epa = currentData.air_quality["us-epa-index"]
 
   local title = string.format(
-    "现在 🌡️%s°C (%s°C) 💧 %s%% 🪁 %s 💨%s kph (%s) 🏖️ %s \n📍%s (%s)",
+    "现在 🌡️%s°C (%s°C) 💧 %s%% 🌸 %s 💨 %s kph (%s) 🏖️ %s \n📍%s (%s)",
     currentData.temp_c,
     currentData.feelslike_c,
     currentData.humidity,
-    currentData.air_quality["us-epa-index"],
+    epa,
     currentData.wind_kph,
     currentData.wind_dir,
     currentData.uv,
@@ -108,10 +122,10 @@ function obj:updateMenubar(json)
 
   local styledTitle = styledTextImpact(currentData.temp_c, "#0AECD1")
   styledTitle = styledTitle .. styledTextImpact(" " .. currentData.feelslike_c, colorHex)
-  styledTitle = styledTitle .. styledTextImpact("  " .. currentData.air_quality["us-epa-index"], "#1122aa")
+  styledTitle = styledTitle .. styledTextImpact("  " .. epa, epaColor(epa))
 
   if self.chanceOfRainNextHour then
-    styledTitle = styledTitle .. styledTextImpact(self.chanceOfRainNextHour, "#16A8EC")
+    styledTitle = styledTitle .. styledTextImpact("  " .. self.chanceOfRainNextHour .. "%", "#16A8EC")
   end
 
   self.menubar:setTitle(styledTitle)

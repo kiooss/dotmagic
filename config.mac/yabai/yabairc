@@ -85,6 +85,8 @@ yabai -m rule --add app="^TencentMeeting$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
 yabai -m rule --add app="^Karabiner.*$" manage=off
 yabai -m rule --add app="^アクティビティモニタ$" manage=off
+# show digital colour meter topmost and on all spaces
+yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
 
 # float every app except for belows.
 # yabai -m rule --add app!="^(kitty|Google Chrome)$" manage=off

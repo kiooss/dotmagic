@@ -102,4 +102,21 @@ M.getFocusedBundleId = function()
   return hs.application.frontmostApplication():bundleID()
 end
 
+M.sendSlackMessage = function(message)
+  local url = "https://slack.com/api/chat.postMessage"
+  local config = require("local_config").slack
+  local data = hs.json.encode({
+    channel = config.channel,
+    text = message,
+  })
+  print(data)
+  local headers = {
+    ["Content-type"] = "application/json",
+    Authorization = "Bearer " .. config.token,
+  }
+  hs.http.asyncPost(url, data, headers, function(code, body, headers)
+    print(code, body)
+  end)
+end
+
 return M

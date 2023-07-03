@@ -1,3 +1,4 @@
+local util = require("util")
 local obj = {}
 local c = hs.caffeinate
 
@@ -15,6 +16,14 @@ function obj:init()
     self:setCaffeineDisplay()
   end)
   self:setCaffeineDisplay()
+
+  self.watcher = hs.caffeinate.watcher
+    .new(function(event)
+      if event == hs.caffeinate.watcher.systemWillSleep then
+        util.sendSlackMessage("systemWillSleep")
+      end
+    end)
+    :start()
 end
 
 function obj:setCaffeineDisplay()

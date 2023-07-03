@@ -35,7 +35,7 @@ function obj:init(apiKey)
     self.urlApi = string.format("%s?key=%s&q=%s&days=3&aqi=yes&alerts=yes", self.apiBaseUrl, apiKey, query)
     util.d(self.urlApi)
     self:getWeather()
-    self.getWeatherTimer = hs.timer.doEvery(3600, function()
+    self.getWeatherTimer = hs.timer.doEvery(1800, function()
       self:getWeather()
     end)
   end)
@@ -58,7 +58,7 @@ function obj:updateMenubar(json)
     json.location.name .. " " .. json.location.region,
     currentData.condition.text
   )
-  -- util.iMessage(os.date("%Y/%m/%d %H:%M") .. " " .. title)
+  util.sendSlackMessage(os.date("%Y/%m/%d %H:%M") .. " " .. title)
   table.insert(menuData, {
     title = styledText(title),
     image = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 40, h = 40 }),

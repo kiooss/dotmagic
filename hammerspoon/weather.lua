@@ -13,6 +13,15 @@ local function styledText(text)
   })
 end
 
+local function styledTextImpact(text, colorHex)
+  return hs.styledtext.new(text, {
+    font = {
+      name = "Impact",
+    },
+    color = { hex = colorHex },
+  })
+end
+
 function obj:getLocation(fn)
   obj.getLocationTimer = hs.timer.delayed
     .new(1, function()
@@ -47,7 +56,7 @@ function obj:updateMenubar(json)
   local icon = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 24, h = 24 })
 
   local title = string.format(
-    "现在 🌡️%s°C (%s°C) 💧 %s%% 🪁 %s 💨%s kph (%s) 🌞 %s \n📍%s (%s)",
+    "现在 🌡️%s°C (%s°C) 💧 %s%% 🪁 %s 💨%s kph (%s) 🏖️ %s \n📍%s (%s)",
     currentData.temp_c,
     currentData.feelslike_c,
     currentData.humidity,
@@ -70,7 +79,7 @@ function obj:updateMenubar(json)
 
   for k, v in pairs(forecastData) do
     local menuTitle = string.format(
-      "%s 🌡️%s°C ~ %s°C 💧 %s%% ☔️ %s%% 🌞 %s 🌇 %s",
+      "%s 🌡️%s°C ~ %s°C 💧 %s%% ☔️ %s%% 🏖️ %s 🌇 %s",
       v.date,
       v.day.mintemp_c,
       v.day.maxtemp_c,
@@ -96,43 +105,13 @@ function obj:updateMenubar(json)
   if json.current.feelslike_c > 35 then
     colorHex = "#EC1F0A"
   end
-  local styledTitle = hs.styledtext.new(json.current.temp_c .. "  ", {
-    font = {
-      name = "Impact",
-      -- size = 12.0,
-    },
-    color = { hex = "#0AECD1" },
-    paragraphStyle = {
-      -- lineSpacing = 5,
-      -- alignment = "center",
-      alignment = "left",
-      maximumLineHeight = 18,
-    },
-  })
-  styledTitle = styledTitle
-    .. hs.styledtext.new(json.current.feelslike_c, {
-      font = {
-        name = "Impact",
-        -- size = 12.0,
-      },
-      color = { hex = colorHex },
-      paragraphStyle = {
-        -- lineSpacing = 5,
-        -- alignment = "center",
-        alignment = "left",
-        maximumLineHeight = 18,
-      },
-    })
+
+  local styledTitle = styledTextImpact(currentData.temp_c, "#0AECD1")
+  styledTitle = styledTitle .. styledTextImpact(" " .. currentData.feelslike_c, colorHex)
+  styledTitle = styledTitle .. styledTextImpact("  " .. currentData.air_quality["us-epa-index"], "#1122aa")
 
   if self.chanceOfRainNextHour then
-    styledTitle = styledTitle
-      .. hs.styledtext.new(" " .. self.chanceOfRainNextHour .. "%", {
-        font = {
-          name = "Input Mono",
-          -- size = 12.0,
-        },
-        color = { hex = "#16A8EC" },
-      })
+    styledTitle = styledTitle .. styledTextImpact(self.chanceOfRainNextHour, "#16A8EC")
   end
 
   self.menubar:setTitle(styledTitle)
@@ -175,7 +154,7 @@ function obj:buildSubMenu(data)
       will_rain = "☔️"
     end
     local menuTitle = string.format(
-      "%s %s %s%% 🌡️ %s°C (%s°C%s) 💧%s%% 🌞 %s %s",
+      "%s %s %s%% 🌡️ %s°C (%s°C%s) 💧%s%% 🏖️ %s %s",
       string.sub(v.time, 11),
       will_rain,
       v.chance_of_rain,

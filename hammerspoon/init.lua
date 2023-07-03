@@ -1,5 +1,3 @@
-hs.window.animationDuration = 0
-
 if hs.location.servicesEnabled() then
   hs.location.get()
 else
@@ -243,12 +241,11 @@ Install:andUse("KSheet", {
     toggle = { { "cmd", "ctrl" }, "/" },
   },
 })
--- Install:andUse("Emojis", {
---   disable = true,
---   hotkeys = {
---     toggle = { { "cmd", "ctrl" }, "e" },
---   },
--- })
+Install:andUse("Emojis", {
+  hotkeys = {
+    toggle = { { "cmd", "ctrl" }, "e" },
+  },
+})
 -- Install:andUse("DeepLTranslate", {
 --   disable = true,
 --   config = {
@@ -260,16 +257,16 @@ Install:andUse("KSheet", {
 --   },
 -- })
 
-Install:andUse("ColorPicker", {
-  disable = false,
-  hotkeys = {
-    show = { { "cmd", "ctrl" }, "c" },
-  },
-  config = {
-    show_in_menubar = false,
-  },
-  start = true,
-})
+-- Install:andUse("ColorPicker", {
+--   disable = false,
+--   hotkeys = {
+--     show = { { "cmd", "ctrl" }, "c" },
+--   },
+--   config = {
+--     show_in_menubar = false,
+--   },
+--   start = true,
+-- })
 
 ime:init()
 urlBookmarks:init()

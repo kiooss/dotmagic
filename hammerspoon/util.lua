@@ -1,3 +1,11 @@
+hs.alert.defaultStyle.strokeColor = { white = 1, alpha = 0 }
+hs.alert.defaultStyle.fillColor = { white = 0.05, alpha = 0.75 }
+hs.alert.defaultStyle.radius = 5
+hs.alert.defaultStyle.fadeOutDuration = 0.5
+hs.alert.defaultStyle.textFont = "Input Mono"
+
+hs.window.animationDuration = 0
+
 -- loglevel - (optional) can be 'nothing', 'error', 'warning', 'info', 'debug', or 'verbose',
 -- or a corresponding number between 0 and 5; uses hs.logger.defaultLogLevel if omitted
 hs.logger.defaultLogLevel = "warning"

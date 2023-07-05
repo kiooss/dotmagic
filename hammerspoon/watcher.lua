@@ -10,7 +10,7 @@ function obj:getSlackStatus()
   slack:users_getPresence(config.slack.uid, function(res)
     self.watchable.slack_status = res.presence
     local currentMinutes = tonumber(os.date("%M"))
-    if currentMinutes % 5 == 0 then
+    if currentMinutes % 30 == 0 then
       slack:chat_postMessage(
         config.slack.channel,
         string.format("*%s* Presence: *%s* idleTime: %d seconds", os.date("%H:%M:%S"), res.presence, hs.host.idleTime())

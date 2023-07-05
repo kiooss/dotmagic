@@ -19,6 +19,7 @@ local cheatsheet = require("cheatsheet")
 local caffeine = require("caffeine")
 require("application_watcher")
 local watcher = require("watcher")
+-- local event = require("event")
 
 local partial = hs.fnutils.partial
 local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
@@ -235,7 +236,7 @@ Install:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
 Install:andUse("AClock", {
   config = { showDuration = 3 },
   fn = function(clock)
-    hs.hotkey.bind({}, "f12", nil, function()
+    hs.hotkey.bind({ "cmd", "shift" }, "t", nil, function()
       clock:toggleShow()
     end)
   end,
@@ -290,6 +291,7 @@ cheatsheet:init({
   appMappings = appMappings,
 })
 watcher:init()
+-- event:init()
 
 --
 hs.alert.show("Hammerspoon Loaded!")

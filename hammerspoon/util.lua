@@ -4,6 +4,9 @@ hs.alert.defaultStyle.radius = 5
 hs.alert.defaultStyle.fadeOutDuration = 0.5
 hs.alert.defaultStyle.textFont = "Input Mono"
 
+hs.hints.fontName = "Input Mono"
+hs.hints.fontSize = 24.0
+
 hs.window.animationDuration = 0
 
 -- loglevel - (optional) can be 'nothing', 'error', 'warning', 'info', 'debug', or 'verbose',

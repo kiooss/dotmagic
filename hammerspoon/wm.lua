@@ -31,8 +31,8 @@ M.moveWindowToSpace = function()
   hs.alert.show("moveWindowToSpace")
 
   local apps = {
-    { "net.kovidgoyal.kitty", 1 },
-    { "com.google.Chrome", 2 },
+    { "com.google.Chrome", 1 },
+    { "net.kovidgoyal.kitty", 2 },
     { "com.tinyspeck.slackmacgap", 3 },
     { "com.tencent.xinWeChat", 4 },
     { "com.microsoft.Excel", 5 },

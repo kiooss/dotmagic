@@ -1,8 +1,10 @@
 local util = require("util")
+local config = require("local_config")
+local slack = require("slack")
+
 local obj = {}
 local c = hs.caffeinate
-
-local sleepType = "systemIdle"
+local sleepType = "displayIdle"
 
 -- sleepType - A string containing the type of sleep to be configured. The value should be one of:
 -- displayIdle - Controls whether the screen will be allowed to sleep (and also the system) if the user is idle.
@@ -10,6 +12,7 @@ local sleepType = "systemIdle"
 -- system - Controls whether the system will be allowed to sleep for any reason.
 
 function obj:init()
+  slack:init(config.slack.token)
   self.caffeine = hs.menubar.new()
   self.caffeine:setClickCallback(function()
     c.toggle(sleepType)
@@ -20,7 +23,7 @@ function obj:init()
   self.watcher = hs.caffeinate.watcher
     .new(function(event)
       if event == hs.caffeinate.watcher.systemWillSleep then
-        util.sendSlackMessage("systemWillSleep")
+        slack:chat_postMessage(config.slack.channel, "Mac: system Will Sleep")
       end
     end)
     :start()
@@ -38,7 +41,7 @@ function obj:setCaffeineDisplay()
   end
 
   local tooltip = string.format(
-    "Prevent sleep \n displayIdle: %s systemIdle: %s system: %s",
+    "Prevent sleep\ndisplayIdle: %s\nsystemIdle: %s\nsystem: %s",
     c.get("displayIdle"),
     c.get("systemIdle"),
     c.get("system")

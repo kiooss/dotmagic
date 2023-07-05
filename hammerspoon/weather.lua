@@ -9,6 +9,7 @@ local function styledText(text)
   return hs.styledtext.new(text, {
     font = {
       name = "Input Mono",
+      size = 12.0,
     },
   })
 end
@@ -57,9 +58,21 @@ function obj:init(apiKey)
     self.urlApi = string.format("%s?key=%s&q=%s&days=3&aqi=yes&alerts=yes", self.apiBaseUrl, apiKey, query)
     util.d(self.urlApi)
     self:getWeather()
-    self.getWeatherTimer = hs.timer.doEvery(1800, function()
+    self.getWeatherTimer = hs.timer.doEvery(3600, function()
       self:getWeather()
     end)
+  end)
+end
+
+function obj:getWeather()
+  self.menubar:setTitle("⌛Geting weather...")
+  hs.http.doAsyncRequest(self.urlApi, "GET", nil, nil, function(code, body, _headers)
+    if code ~= 200 then
+      self.menubar:setTitle("💢Geting weather failed")
+      hs.alert.show("get weather error:" .. code)
+      return
+    end
+    self:updateMenubar(hs.json.decode(body))
   end)
 end
 
@@ -81,7 +94,7 @@ function obj:updateMenubar(json)
     json.location.name .. " " .. json.location.region,
     currentData.condition.text
   )
-  util.sendSlackMessage(os.date("%Y/%m/%d %H:%M") .. " " .. title)
+  -- util.sendSlackMessage(os.date("%Y/%m/%d %H:%M") .. " " .. title)
   table.insert(menuData, {
     title = styledText(title),
     image = hs.image.imageFromURL("https:" .. currentData.condition.icon):size({ w = 40, h = 40 }),
@@ -93,7 +106,7 @@ function obj:updateMenubar(json)
 
   for k, v in pairs(forecastData) do
     local menuTitle = string.format(
-      "%s 🌡️%s°C ~ %s°C 💧 %s%% ☔️ %s%% 🏖️ %s 🌇 %s",
+      "%s 🌡️%s°C ~ %s°C 💧 %s%% ☔️ %2s%% 🏖️ %s 🌇 %s",
       v.date,
       v.day.mintemp_c,
       v.day.maxtemp_c,
@@ -134,18 +147,6 @@ function obj:updateMenubar(json)
   self.currentWeather = json.current
 end
 
-function obj:getWeather()
-  self.menubar:setTitle("⌛Geting weather...")
-  hs.http.doAsyncRequest(self.urlApi, "GET", nil, nil, function(code, body, _headers)
-    if code ~= 200 then
-      self.menubar:setTitle("💢Geting weather failed")
-      hs.alert.show("get weather error:" .. code)
-      return
-    end
-    self:updateMenubar(hs.json.decode(body))
-  end)
-end
-
 function obj:buildSubMenu(data)
   local subMenu = {}
   local currentHourIndex = nil
@@ -168,7 +169,7 @@ function obj:buildSubMenu(data)
       will_rain = "☔️"
     end
     local menuTitle = string.format(
-      "%s %s %s%% 🌡️ %s°C (%s°C%s) 💧%s%% 🏖️ %s %s",
+      "%s %s %2s%% 🌡️ %s°C (%s°C%s) 💧%s%% 🏖️ %s %s",
       string.sub(v.time, 11),
       will_rain,
       v.chance_of_rain,
@@ -185,7 +186,7 @@ function obj:buildSubMenu(data)
       table.insert(subMenu, { title = "-" })
       currentHourIndex = i
     end
-    table.insert(subMenu, { title = menuTitle, image = icon })
+    table.insert(subMenu, { title = styledText(menuTitle), image = icon })
   end
 
   return subMenu

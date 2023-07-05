@@ -18,6 +18,7 @@ local vpnWatcher = require("vpn_watcher")
 local cheatsheet = require("cheatsheet")
 local caffeine = require("caffeine")
 require("application_watcher")
+local watcher = require("watcher")
 
 local partial = hs.fnutils.partial
 local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
@@ -30,9 +31,12 @@ local cmdMappings = {
   { "f11", "Action Chooser", partial(clipboard.showActionChooser, clipboard) },
   { "f12", "Audio Device Chooser", partial(audioDevice.show, audioDevice) },
 }
+
 for _, v in ipairs(cmdMappings) do
   hs.hotkey.bind({ "cmd" }, table.unpack(v))
 end
+
+hs.hotkey.bind({ "alt" }, "tab", hs.hints.windowHints)
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
@@ -84,9 +88,9 @@ local hyperMappings = {
   { "return", "Maximize window with margin", wm.maximizeWindowWithMargin },
   { "space", "Maximize all window with margin", wm.maximizeAllWindowWithMargin },
   { "tab", "Switch To Next Window", partial(switcher.next, switcher) },
-  { "1", "Launch apps", partial(wm.switchWindow, 1) },
-  { "2", "Launch apps", partial(wm.switchWindow, 2) },
-  { "3", "Launch apps", partial(wm.switchWindow, 3) },
+  -- { "1", "Launch apps", partial(wm.switchWindow, 1) },
+  -- { "2", "Launch apps", partial(wm.switchWindow, 2) },
+  -- { "3", "Launch apps", partial(wm.switchWindow, 3) },
   { "/", "Show cheatsheet", partial(cheatsheet.toggle, cheatsheet) },
 }
 
@@ -285,6 +289,7 @@ cheatsheet:init({
   cmdShiftMappings = cmdShiftMappings,
   appMappings = appMappings,
 })
+watcher:init()
 
 --
 hs.alert.show("Hammerspoon Loaded!")

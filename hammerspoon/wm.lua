@@ -31,11 +31,11 @@ M.moveWindowToSpace = function()
   hs.alert.show("moveWindowToSpace")
 
   local apps = {
-    { "com.google.Chrome", 1 },
     { "net.kovidgoyal.kitty", 2 },
-    { "com.tinyspeck.slackmacgap", 3 },
-    { "com.tencent.xinWeChat", 4 },
-    { "com.microsoft.Excel", 5 },
+    { "com.google.Chrome", 3 },
+    { "com.tinyspeck.slackmacgap", 4 },
+    { "com.tencent.xinWeChat", 5 },
+    { "com.microsoft.Excel", 6 },
   }
   local spaceIds = wm_helper.getSpacesOfPrimaryScreen()
   util.d(spaceIds)
@@ -43,7 +43,9 @@ M.moveWindowToSpace = function()
     local bundleID = item[1]
     local app = hs.application.get(bundleID)
     if app ~= nil then
-      for _, window in ipairs(app:allWindows()) do
+      -- util.d(string.format("Move app: %s to space %s.", app:name(), item[2]))
+      local wf = hs.window.filter.new(false):setAppFilter(app:name())
+      for _, window in ipairs(wf:getWindows()) do
         util.d(window)
         if hs.spaces.moveWindowToSpace(window, spaceIds[item[2]]) then
           if window:isMinimized() then

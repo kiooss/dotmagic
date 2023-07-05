@@ -5,7 +5,7 @@ local util = require("util")
 
 obj.interval = 60
 
-function obj:get_slack_status()
+function obj:getSlackStatus()
   -- local currentHour = tonumber(os.date("%H"))
   slack:users_getPresence(config.slack.uid, function(res)
     self.watchable.slack_status = res.presence
@@ -13,20 +13,26 @@ function obj:get_slack_status()
     if currentMinutes % 5 == 0 then
       slack:chat_postMessage(
         config.slack.channel,
-        string.format("*%s* Presence: *%s*", os.date("%H:%M:%S"), res.presence)
+        string.format("*%s* Presence: *%s* idleTime: %d seconds", os.date("%H:%M:%S"), res.presence, hs.host.idleTime())
       )
     end
   end)
+end
+
+function obj:checkIdleTime()
+  local seconds = hs.host.idleTime()
+  util.d("idleTime: " .. seconds)
 end
 
 function obj:init()
   slack:init(config.slack.token)
   self.watchable = hs.watchable.new("status")
 
-  self:get_slack_status()
+  self:getSlackStatus()
   obj.timer = hs.timer
     .doEvery(self.interval, function()
-      self:get_slack_status()
+      self:getSlackStatus()
+      self:checkIdleTime()
     end)
     :start()
 
@@ -36,7 +42,8 @@ function obj:init()
       if newValue == "active" then
         icon = "✅"
       end
-      local message = string.format("%s Slack status changed, now is *%s*", icon, newValue)
+      local message =
+        string.format("%s Slack status changed, now is *%s* (idleTime: %d seconds)", icon, newValue, hs.host.idleTime())
       util.d(message)
       hs.notify.new({ title = "Hammerspoon watcher", informativeText = message }):send()
       slack:chat_postMessage(config.slack.channel, message)

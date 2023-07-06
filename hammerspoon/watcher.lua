@@ -13,19 +13,22 @@ function obj:getSlackStatus()
   -- local currentHour = tonumber(os.date("%H"))
   slack:users_getPresence(config.slack.uid, function(res)
     self.watchable.slack_status = res.presence
-    local currentMinutes = tonumber(os.date("%M"))
-    if currentMinutes % 30 == 0 then
-      slack:chat_postMessage(
-        config.slack.channel,
-        string.format("*%s* Presence: *%s* idleTime: %d seconds", os.date("%H:%M:%S"), res.presence, hs.host.idleTime())
-      )
-    end
+    -- local currentMinutes = tonumber(os.date("%M"))
+    -- if currentMinutes % 30 == 0 then
+    --   slack:chat_postMessage(
+    --     config.slack.channel,
+    --     string.format("*%s* Presence: *%s* idleTime: %d seconds", os.date("%H:%M:%S"), res.presence, hs.host.idleTime())
+    --   )
+    -- end
   end)
 end
 
 function obj:checkIdleTime()
   local seconds = hs.host.idleTime()
-  util.d("idleTime: " .. seconds)
+  if seconds >= 600 then
+    obj.id = hs.caffeinate.declareUserActivity(obj.id)
+    util.d(string.format("declare user activity (idleTime: %d seconds)", seconds))
+  end
 end
 
 function obj:init()

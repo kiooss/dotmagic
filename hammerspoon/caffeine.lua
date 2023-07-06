@@ -27,7 +27,7 @@ function obj:init()
   self.watcher = hs.caffeinate.watcher
     .new(function(event)
       if event == hs.caffeinate.watcher.systemWillSleep then
-        slack:chat_postMessage(config.slack.channel, "Mac: system Will Sleep")
+        slack:chat_postMessage(config.slack.channel, "Mac: system Will Sleep, (IdleTime: " .. hs.host.idleTime() .. ")")
         -- local hour = tonumber(os.date("%H"))
         -- local day = tonumber(os.date("%w"))
         -- if day < 1 or day > 5 then

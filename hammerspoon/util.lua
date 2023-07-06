@@ -7,12 +7,14 @@ hs.alert.defaultStyle.textFont = "Input Mono"
 hs.hints.fontName = "Input Mono"
 hs.hints.fontSize = 24.0
 
-hs.window.animationDuration = 0
+hs.window.animationDuration = 0.1
+
+hs.console.consoleFont("Input Mono")
 
 -- loglevel - (optional) can be 'nothing', 'error', 'warning', 'info', 'debug', or 'verbose',
 -- or a corresponding number between 0 and 5; uses hs.logger.defaultLogLevel if omitted
 hs.logger.defaultLogLevel = "warning"
-local log = hs.logger.new("💥💥", "debug")
+local log = hs.logger.new("🛠", "debug")
 -- say -v '?'
 local speaker = hs.speech.new("Samantha")
 local inspect = hs.inspect.inspect

@@ -122,4 +122,24 @@ M.sendSlackMessage = function(message)
   end)
 end
 
+M.britnessUp = function()
+  hs.osascript.applescript([[
+    tell application "System Events"
+        repeat 16 times
+            key code 144
+        end repeat
+    end tell
+  ]])
+end
+
+M.britnessDown = function()
+  hs.osascript.applescript([[
+    tell application "System Events"
+        repeat 14 times
+            key code 145
+        end repeat
+    end tell
+  ]])
+end
+
 return M

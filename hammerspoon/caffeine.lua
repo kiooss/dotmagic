@@ -1,3 +1,5 @@
+print("Loading caffeine")
+
 local util = require("util")
 local config = require("local_config")
 local slack = require("slack")
@@ -5,6 +7,8 @@ local slack = require("slack")
 local obj = {}
 local c = hs.caffeinate
 local sleepType = "displayIdle"
+
+obj.id = nil
 
 -- sleepType - A string containing the type of sleep to be configured. The value should be one of:
 -- displayIdle - Controls whether the screen will be allowed to sleep (and also the system) if the user is idle.
@@ -24,6 +28,20 @@ function obj:init()
     .new(function(event)
       if event == hs.caffeinate.watcher.systemWillSleep then
         slack:chat_postMessage(config.slack.channel, "Mac: system Will Sleep")
+        -- local hour = tonumber(os.date("%H"))
+        -- local day = tonumber(os.date("%w"))
+        -- if day < 1 or day > 5 then
+        --   print("Ignoring, it's the weekend")
+        --   return
+        -- end
+        --
+        -- if hour > 22 or hour < 8 then
+        --   print("Ignoring, it's not working hours")
+        --   return
+        -- end
+        --
+        -- print("System will sleep, declaring user activity")
+        -- obj.id = hs.caffeinate.declareUserActivity(obj.id)
       end
     end)
     :start()

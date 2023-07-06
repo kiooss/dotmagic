@@ -1,9 +1,13 @@
+print("Loading watcher")
+
 local obj = {}
 local config = require("local_config")
 local slack = require("slack")
 local util = require("util")
 
 obj.interval = 60
+obj.id = nil
+obj.britnessDown = false
 
 function obj:getSlackStatus()
   -- local currentHour = tonumber(os.date("%H"))
@@ -49,8 +53,13 @@ function obj:init()
       slack:chat_postMessage(config.slack.channel, message)
 
       if newValue == "away" then
-        slack:chat_postMessage(config.slack.channel, "Enter x mode~")
-        util.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
+        util.britnessDown()
+        obj.britnessDown = true
+        obj.id = hs.caffeinate.declareUserActivity(obj.id)
+      else
+        if obj.britnessDown then
+          util.britnessUp()
+        end
       end
     end
   end)

@@ -22,8 +22,6 @@ D = hs.inspect.inspect
 
 local M = {}
 
-M.isBritnessDown = false
-
 M.say = function(message)
   speaker:speak(message)
 end
@@ -120,20 +118,17 @@ M.isWorkingHours = function()
   return true
 end
 
-M.britnessUp = function()
-  if M.isBritnessDown then
-    hs.osascript.applescript([[
+M.brightnessUp = function()
+  hs.osascript.applescript([[
     tell application "System Events"
         repeat 16 times
             key code 144
         end repeat
     end tell
   ]])
-    M.isBritnessDown = false
-  end
 end
 
-M.britnessDown = function()
+M.brightnessDown = function()
   hs.osascript.applescript([[
     tell application "System Events"
         repeat 14 times
@@ -141,7 +136,6 @@ M.britnessDown = function()
         end repeat
     end tell
   ]])
-  M.isBritnessDown = true
 end
 
 return M

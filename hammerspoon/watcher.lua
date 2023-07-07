@@ -61,9 +61,9 @@ function obj:init()
       slack:chat_postMessage(config.slack.channel, message)
 
       if newValue == "away" then
-        util.britnessDown()
+        util.brightnessDown()
       else
-        util.britnessUp()
+        util.brightnessUp()
       end
     end
   end)

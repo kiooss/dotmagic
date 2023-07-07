@@ -144,6 +144,13 @@ local cmdShiftMappings = {
       yabai("-m", "window", "--toggle", "zoom-fullscreen")
     end,
   },
+  {
+    "f",
+    "Toggle whether the focused window should be tiled",
+    function()
+      yabai("-m", "window", "--toggle", "float")
+    end,
+  },
   { ";", "Move to next screen", wm.moveToNextScreen },
   {
     "h",
@@ -186,6 +193,8 @@ local cmdShiftMappings = {
 for _, v in ipairs(cmdShiftMappings) do
   hs.hotkey.bind({ "cmd", "shift" }, table.unpack(v))
 end
+
+hs.hotkey.bind({}, "f6", "Swap with window under cursor", partial(yabai, "-m", "window", "--swap", "mouse"))
 
 -- app laucher
 local appMappings = {

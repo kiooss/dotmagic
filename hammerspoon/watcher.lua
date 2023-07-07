@@ -30,11 +30,9 @@ end
 function obj:checkIdleTime()
   local seconds = hs.host.idleTime()
   util.d(string.format("idleTime: %d seconds", seconds))
-  if seconds >= 600 then
+  if util.isWorkingHours() and seconds >= 600 then
     hs.eventtap.keyStroke({}, "escape")
-    util.d(string.format("idleTime after: %d seconds", hs.host.idleTime()))
-    -- obj.id = hs.caffeinate.declareUserActivity(obj.id)
-    -- util.d(string.format("declare user activity (idleTime: %d seconds)", seconds))
+    util.d(string.format("idleTime after keyStroke: %d seconds", hs.host.idleTime()))
   end
 end
 
@@ -64,7 +62,6 @@ function obj:init()
 
       if newValue == "away" then
         util.britnessDown()
-        -- obj.id = hs.caffeinate.declareUserActivity(obj.id)
       else
         util.britnessUp()
       end

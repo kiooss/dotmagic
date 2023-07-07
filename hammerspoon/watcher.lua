@@ -7,27 +7,34 @@ local util = require("util")
 
 obj.interval = 60
 obj.id = nil
-obj.britnessDown = false
 
 function obj:getSlackStatus()
   -- local currentHour = tonumber(os.date("%H"))
   slack:users_getPresence(config.slack.uid, function(res)
     self.watchable.slack_status = res.presence
-    -- local currentMinutes = tonumber(os.date("%M"))
-    -- if currentMinutes % 30 == 0 then
-    --   slack:chat_postMessage(
-    --     config.slack.channel,
-    --     string.format("*%s* Presence: *%s* idleTime: %d seconds", os.date("%H:%M:%S"), res.presence, hs.host.idleTime())
-    --   )
-    -- end
+    local currentMinutes = tonumber(os.date("%M"))
+    if util.isWorkingHours() and currentMinutes % 5 == 0 and res.presence == "away" then
+      slack:chat_postMessage(
+        config.slack.channel,
+        string.format(
+          "*%s* ‼️P presence: *%s* idleTime: %d seconds",
+          os.date("%H:%M:%S"),
+          res.presence,
+          hs.host.idleTime()
+        )
+      )
+    end
   end)
 end
 
 function obj:checkIdleTime()
   local seconds = hs.host.idleTime()
+  util.d(string.format("idleTime: %d seconds", seconds))
   if seconds >= 600 then
-    obj.id = hs.caffeinate.declareUserActivity(obj.id)
-    util.d(string.format("declare user activity (idleTime: %d seconds)", seconds))
+    hs.eventtap.keyStroke({}, "escape")
+    util.d(string.format("idleTime after: %d seconds", hs.host.idleTime()))
+    -- obj.id = hs.caffeinate.declareUserActivity(obj.id)
+    -- util.d(string.format("declare user activity (idleTime: %d seconds)", seconds))
   end
 end
 
@@ -57,12 +64,9 @@ function obj:init()
 
       if newValue == "away" then
         util.britnessDown()
-        obj.britnessDown = true
-        obj.id = hs.caffeinate.declareUserActivity(obj.id)
+        -- obj.id = hs.caffeinate.declareUserActivity(obj.id)
       else
-        if obj.britnessDown then
-          util.britnessUp()
-        end
+        util.britnessUp()
       end
     end
   end)

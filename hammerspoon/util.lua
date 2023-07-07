@@ -22,6 +22,8 @@ D = hs.inspect.inspect
 
 local M = {}
 
+M.isBritnessDown = false
+
 M.say = function(message)
   speaker:speak(message)
 end
@@ -83,26 +85,6 @@ M.run = function(cmd, ...)
     :start()
 end
 
-M.split = function(input, delimiter)
-  input = tostring(input)
-  delimiter = tostring(delimiter)
-  if delimiter == "" then
-    return false
-  end
-  local pos, arr = 0, {}
-  -- for each divider found
-  for st, sp in
-    function()
-      return string.find(input, delimiter, pos, true)
-    end
-  do
-    table.insert(arr, string.sub(input, pos, st - 1))
-    pos = sp + 1
-  end
-  table.insert(arr, string.sub(input, pos))
-  return arr
-end
-
 M.getFocusedBundleId = function()
   return hs.application.frontmostApplication():bundleID()
 end
@@ -124,14 +106,31 @@ M.sendSlackMessage = function(message)
   end)
 end
 
+M.isWorkingHours = function()
+  local wday = tonumber(os.date("%w"))
+  if wday < 1 or wday > 5 then
+    return false
+  end
+
+  local hour = tonumber(os.date("%H"))
+  if hour > 20 and hour < 9 then
+    return false
+  end
+
+  return true
+end
+
 M.britnessUp = function()
-  hs.osascript.applescript([[
+  if M.isBritnessDown then
+    hs.osascript.applescript([[
     tell application "System Events"
         repeat 16 times
             key code 144
         end repeat
     end tell
   ]])
+    M.isBritnessDown = false
+  end
 end
 
 M.britnessDown = function()
@@ -142,6 +141,7 @@ M.britnessDown = function()
         end repeat
     end tell
   ]])
+  M.isBritnessDown = true
 end
 
 return M

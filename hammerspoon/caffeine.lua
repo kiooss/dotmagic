@@ -26,22 +26,18 @@ function obj:init()
 
   self.watcher = hs.caffeinate.watcher
     .new(function(event)
-      if event == hs.caffeinate.watcher.systemWillSleep then
-        slack:chat_postMessage(config.slack.channel, "Mac: system Will Sleep, (IdleTime: " .. hs.host.idleTime() .. ")")
-        -- local hour = tonumber(os.date("%H"))
-        -- local day = tonumber(os.date("%w"))
-        -- if day < 1 or day > 5 then
-        --   print("Ignoring, it's the weekend")
-        --   return
-        -- end
-        --
-        -- if hour > 22 or hour < 8 then
-        --   print("Ignoring, it's not working hours")
-        --   return
-        -- end
-        --
-        -- print("System will sleep, declaring user activity")
-        -- obj.id = hs.caffeinate.declareUserActivity(obj.id)
+      util.d("caffeinate event: " .. event)
+      local events = {
+        [hs.caffeinate.watcher.systemWillSleep] = "systemWillSleep",
+        [hs.caffeinate.watcher.systemDidWake] = "systemDidWake",
+        [hs.caffeinate.watcher.screensDidSleep] = "screensDidSleep",
+        [hs.caffeinate.watcher.screensDidWake] = "screensDidWake",
+      }
+
+      if events[event] ~= nil then
+        local message = string.format("💻 %s, (IdleTime: %d seconds)", events[event], hs.host.idleTime())
+        util.d(message)
+        slack:chat_postMessage(config.slack.channel, message)
       end
     end)
     :start()

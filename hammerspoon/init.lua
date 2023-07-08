@@ -53,6 +53,9 @@ for _, v in ipairs(cmdMappings) do
 end
 
 hs.hotkey.bind({ "alt" }, "tab", hs.hints.windowHints)
+hs.hotkey.bind({ "alt" }, "\\", "yabai focus recent", function()
+  yabai("-m", "window", "--focus", "recent")
+end)
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
@@ -261,9 +264,9 @@ Install:andUse("ReloadConfiguration", { start = true })
 Install:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
 Install:andUse("AClock", {
   config = { showDuration = 3 },
-  fn = function(clock)
+  fn = function(s)
     hs.hotkey.bind({ "cmd", "shift" }, "t", nil, function()
-      clock:toggleShow()
+      s:toggleShow()
     end)
   end,
 })

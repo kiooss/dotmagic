@@ -65,8 +65,8 @@ function obj:init()
         "%s Slack status changed, now is *%s* \nidleTime: *%s*\n%s time: *%s*",
         icon,
         newValue,
-        oldValue,
         util.secondsToClock(hs.host.idleTime()),
+        oldValue,
         util.secondsToClock(elapsedTime)
       )
       util.d(message)

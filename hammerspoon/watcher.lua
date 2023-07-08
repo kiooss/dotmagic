@@ -7,6 +7,7 @@ local util = require("util")
 
 obj.interval = 60
 obj.id = nil
+obj.lastChangedAt = nil
 
 function obj:getSlackStatus()
   -- local currentHour = tonumber(os.date("%H"))
@@ -54,8 +55,19 @@ function obj:init()
       if newValue == "active" then
         icon = "✅"
       end
-      local message =
-        string.format("%s Slack status changed, now is *%s* (idleTime: %d seconds)", icon, newValue, hs.host.idleTime())
+
+      local elapsedTime = 0
+      if self.lastChangedAt ~= nil then
+        elapsedTime = os.time() - self.lastChangedAt
+      end
+
+      local message = string.format(
+        "%s Slack status changed, now is *%s* \nidleTime: *%s*\nprevious status elapsed time: *%s*",
+        icon,
+        newValue,
+        util.secondsToClock(hs.host.idleTime()),
+        util.secondsToClock(elapsedTime)
+      )
       util.d(message)
       hs.notify.new({ title = "Hammerspoon watcher", informativeText = message }):send()
       slack:chat_postMessage(config.slack.channel, message)
@@ -65,6 +77,8 @@ function obj:init()
       else
         util.brightnessUp()
       end
+
+      self.lastChangedAt = os.time()
     end
   end)
 end

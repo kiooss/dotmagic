@@ -119,13 +119,17 @@ M.isWorkingHours = function()
 end
 
 M.brightnessUp = function()
-  hs.osascript.applescript([[
+  M.d("brightnessUp")
+  hs.timer.doAfter(0.1, function()
+    local result = hs.osascript.applescript([[
     tell application "System Events"
         repeat 16 times
             key code 144
         end repeat
     end tell
   ]])
+    M.d(result)
+  end)
 end
 
 M.brightnessDown = function()
@@ -136,6 +140,18 @@ M.brightnessDown = function()
         end repeat
     end tell
   ]])
+end
+
+M.secondsToClock = function(seconds)
+  -- local days = math.floor(seconds / 86400)
+  -- seconds = seconds - days * 86400
+  local hours = math.floor(seconds / 3600)
+  seconds = seconds - hours * 3600
+  local minutes = math.floor(seconds / 60)
+  seconds = seconds - minutes * 60
+
+  -- return string.format("%d days, %d hours, %d minutes, %d seconds.", days, hours, minutes, seconds)
+  return string.format("%d hours, %d minutes, %d seconds", hours, minutes, seconds)
 end
 
 return M

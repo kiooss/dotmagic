@@ -107,7 +107,6 @@ local hyperMappings = {
   -- { "1", "Launch apps", partial(wm.switchWindow, 1) },
   -- { "2", "Launch apps", partial(wm.switchWindow, 2) },
   -- { "3", "Launch apps", partial(wm.switchWindow, 3) },
-  { "z", "Display brightness up", util.brightnessUp },
   { "/", "Show cheatsheet", partial(cheatsheet.toggle, cheatsheet) },
 }
 

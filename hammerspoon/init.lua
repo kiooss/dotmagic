@@ -108,6 +108,8 @@ local hyperMappings = {
   -- { "2", "Launch apps", partial(wm.switchWindow, 2) },
   -- { "3", "Launch apps", partial(wm.switchWindow, 3) },
   { "/", "Show cheatsheet", partial(cheatsheet.toggle, cheatsheet) },
+  { "pageup", "Volume up", util.volumeUp }, -- only native devices
+  { "pagedown", "Volume down", util.volumeDown },
 }
 
 for _, v in ipairs(hyperMappings) do

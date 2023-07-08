@@ -154,4 +154,18 @@ M.secondsToClock = function(seconds)
   return string.format("%d hours, %d minutes, %d seconds", hours, minutes, seconds)
 end
 
+M.volumeUp = function()
+  local device = hs.audiodevice.current()
+  if device.volume < 100 then
+    device.device:setOutputVolume(device.volume + 1)
+  end
+end
+
+M.volumeDown = function()
+  local device = hs.audiodevice.current()
+  if device.volume > 0 then
+    device.device:setOutputVolume(device.volume - 1)
+  end
+end
+
 return M

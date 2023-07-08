@@ -62,9 +62,10 @@ function obj:init()
       end
 
       local message = string.format(
-        "%s Slack status changed, now is *%s* \nidleTime: *%s*\nprevious status elapsed time: *%s*",
+        "%s Slack status changed, now is *%s* \nidleTime: *%s*\n%s time: *%s*",
         icon,
         newValue,
+        oldValue,
         util.secondsToClock(hs.host.idleTime()),
         util.secondsToClock(elapsedTime)
       )

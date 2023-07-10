@@ -35,6 +35,8 @@ local caffeine = require("caffeine")
 require("application_watcher")
 local watcher = require("watcher")
 -- local event = require("event")
+local clippy = require("clippy")
+clippy:init():start()
 
 local partial = hs.fnutils.partial
 local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only

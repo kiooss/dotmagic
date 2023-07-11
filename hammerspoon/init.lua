@@ -38,6 +38,9 @@ local watcher = require("watcher")
 local clippy = require("clippy")
 clippy:init():start()
 
+-- local privateTask = require("private")
+-- privateTask:init()
+
 local partial = hs.fnutils.partial
 local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
 

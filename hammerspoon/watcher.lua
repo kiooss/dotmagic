@@ -18,7 +18,7 @@ function obj:getSlackStatus()
       slack:chat_postMessage(
         config.slack.channel,
         string.format(
-          "*%s* ‼️P presence: *%s* idleTime: %d seconds",
+          "*%s* ‼️ presence: *%s* idleTime: %d seconds",
           os.date("%H:%M:%S"),
           res.presence,
           hs.host.idleTime()

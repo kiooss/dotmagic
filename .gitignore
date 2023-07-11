@@ -4,6 +4,7 @@ npm-debug.log
 node_modules/
 
 hammerspoon/local_config.lua
+hammerspoon/private.lua
 
 /dotconfig/kitty/theme.conf
 /dotconfig/zsh/.zcompdump*

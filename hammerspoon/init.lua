@@ -38,6 +38,9 @@ local watcher = require("watcher")
 local clippy = require("clippy")
 clippy:init():start()
 
+local brewWatcher = require("brew_watcher")
+brewWatcher:init()
+
 -- local privateTask = require("private")
 -- privateTask:init()
 

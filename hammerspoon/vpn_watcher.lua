@@ -4,7 +4,7 @@ obj.vpnConnected = false
 
 function obj:init(fnConnected, fnUnconnected)
   obj.vpnConnected = hs.fnutils.contains(hs.network.interfaces(), "ppp0")
-  self.timer = hs.timer.doEvery(2, function()
+  self.timer = hs.timer.doEvery(5, function()
     self:checkVpnConnected(fnConnected, fnUnconnected)
   end)
 end

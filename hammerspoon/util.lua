@@ -111,7 +111,7 @@ M.isWorkingHours = function()
   end
 
   local hour = tonumber(os.date("%H"))
-  if hour > 18 and hour < 9 then
+  if hour > 18 or hour < 9 then
     return false
   end
 

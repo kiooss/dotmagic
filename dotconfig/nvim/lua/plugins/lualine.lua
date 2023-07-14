@@ -26,7 +26,7 @@ return {
     opts.sections.lualine_y = { "encoding", "fileformat", "filetype", { get_lsp_client }, "location", "%L", "progress" }
     opts.sections.lualine_z = {
       function()
-        return vim.fn["codeium#GetStatusString"]()
+        return " " .. vim.fn["codeium#GetStatusString"]()
       end,
       function()
         return " " .. os.date("%R")

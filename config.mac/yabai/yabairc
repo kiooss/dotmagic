@@ -34,7 +34,7 @@ yabai -m config \
   insert_feedback_color 0xffd75f5f \
   active_window_border_color 0xff35F1F7 \
   normal_window_border_color 0xff555555 \
-  window_border_width 2 \
+  window_border_width 4 \
   window_border_radius 12 \
   window_border_blur off \
   window_border_hidpi on \
@@ -83,6 +83,7 @@ yabai -m rule --add app="^Parallels Desktop$" manage=off
 yabai -m rule --add app="^FortiClient$" manage=off
 yabai -m rule --add app="^TencentMeeting$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
+yabai -m rule --add app="^Infuse$" manage=off
 yabai -m rule --add app="^Karabiner.*$" manage=off
 yabai -m rule --add app="^アクティビティモニタ$" manage=off
 # show digital colour meter topmost and on all spaces

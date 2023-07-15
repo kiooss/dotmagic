@@ -73,11 +73,12 @@ function obj:init()
       hs.notify.new({ title = "Hammerspoon watcher", informativeText = message }):send()
       slack:chat_postMessage(config.slack.channel, message)
 
-      if newValue == "away" then
-        util.brightnessDown()
-      else
-        util.brightnessUp()
-      end
+      hs.eventtap.keyStroke({}, "escape")
+      -- if newValue == "away" then
+      --   -- util.brightnessDown()
+      -- else
+      --   -- util.brightnessUp()
+      -- end
 
       self.lastChangedAt = os.time()
     end

@@ -32,8 +32,11 @@ function obj:checkIdleTime()
   local seconds = hs.host.idleTime()
   util.d(string.format("idleTime: %d seconds", seconds))
   if util.isWorkingHours() and seconds >= 600 then
+    slack:chat_postMessage(config.slack.channel, "keyStroke: escape")
     hs.eventtap.keyStroke({}, "escape")
-    util.d(string.format("idleTime after keyStroke: %d seconds", hs.host.idleTime()))
+    local message = string.format("idleTime after keyStroke: %d seconds", hs.host.idleTime())
+    util.d(message)
+    slack:chat_postMessage(config.slack.channel, message)
   end
 end
 
@@ -73,7 +76,7 @@ function obj:init()
       hs.notify.new({ title = "Hammerspoon watcher", informativeText = message }):send()
       slack:chat_postMessage(config.slack.channel, message)
 
-      hs.eventtap.keyStroke({}, "escape")
+      -- hs.eventtap.keyStroke({}, "home")
       -- if newValue == "away" then
       --   -- util.brightnessDown()
       -- else

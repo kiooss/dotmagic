@@ -332,7 +332,7 @@ watcher:init()
 
 --
 hs.alert.show("Hammerspoon Loaded!")
--- util.say("Hammerspoon is online")
+util.say("Hammerspoon is online")
 hs.notify.new({ title = "Hammerspoon launch", informativeText = "Boss, at your service" }):send()
 
 print("=> Hammerspoon Loaded!")

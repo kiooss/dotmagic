@@ -22,7 +22,6 @@ return function(opts)
       { import = "lazyvim.plugins.extras.lang.tailwind" },
       { import = "lazyvim.plugins.extras.ui.mini-animate" },
       { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-      { import = "lazyvim.plugins.extras.editor.flash" },
       { import = "plugins" },
     },
     defaults = { lazy = true },

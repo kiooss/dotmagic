@@ -15,6 +15,7 @@ function obj:getSlackStatus()
     self.watchable.slack_status = res.presence
     local currentMinutes = tonumber(os.date("%M"))
     if util.isWorkingHours() and currentMinutes % 5 == 0 and res.presence == "away" then
+      util.say("Slack is away")
       slack:chat_postMessage(
         config.slack.channel,
         string.format(
@@ -32,11 +33,11 @@ function obj:checkIdleTime()
   local seconds = hs.host.idleTime()
   util.d(string.format("idleTime: %d seconds", seconds))
   if util.isWorkingHours() and seconds >= 600 then
-    slack:chat_postMessage(config.slack.channel, "keyStroke: escape")
-    hs.eventtap.keyStroke({}, "escape")
+    -- slack:chat_postMessage(config.slack.channel, "keyStroke: escape")
+    -- hs.eventtap.keyStroke({}, "escape")
     local message = string.format("idleTime after keyStroke: %d seconds", hs.host.idleTime())
     util.d(message)
-    slack:chat_postMessage(config.slack.channel, message)
+    -- slack:chat_postMessage(config.slack.channel, message)
   end
 end
 

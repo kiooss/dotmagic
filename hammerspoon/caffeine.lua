@@ -39,6 +39,10 @@ function obj:init()
         util.d(message)
         slack:chat_postMessage(config.slack.channel, message)
       end
+
+      if event == hs.caffeinate.watcher.systemDidWake then
+        hs.reload()
+      end
     end)
     :start()
 end

@@ -5,11 +5,14 @@ if [ "$TMUX" = "" ]; then
   exit 1
 fi
 
+# default port is 3000 if first argument is not passed
+PORT=${1:-3000}
+
 if [ -f Gemfile.lock ]; then
   tmux rename-window 'Rails DEV'
   # tmux split-window -h
   # tmux split-window
-  tmux send-keys -t =.1 "rails s -p 3002 -b 0.0.0.0" ENTER
+  tmux send-keys -t =.1 "rails s -p $PORT -b 0.0.0.0" ENTER
 
   if [ -f config/tailwind.config.js ]; then
     tmux split-window -h

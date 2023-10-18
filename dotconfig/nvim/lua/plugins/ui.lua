@@ -30,7 +30,7 @@ return {
   },
 
   -- dashboard
-  { "goolord/alpha-nvim", enabled = true },
+  -- { "goolord/alpha-nvim", enabled = true },
 
   -- bufferline
   {

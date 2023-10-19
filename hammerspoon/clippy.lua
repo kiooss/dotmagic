@@ -16,13 +16,12 @@ function obj.imageToClipboard(files, flagTables)
     print("DEBUG: Clippy pathwatcher debounced")
     return
   end
-  -- util.d(files)
-  -- util.d(flagTables)
+  util.d(files)
+  util.d(flagTables)
 
-  if #files ~= 2 then
-    return
-  end
-
+  -- if #files ~= 2 then
+  --   return
+  -- end
   local filePath = files[2]
 
   obj.newScreenshot = hs.image.imageFromPath(filePath)

@@ -86,8 +86,8 @@ local hyperCmdMappings = {
     hs.notify.withdrawAll()
   end,
   r = function()
-    -- hs.reload()
-    require("test")
+    hs.reload()
+    -- require("test")
   end,
   s = function()
     hs.caffeinate.systemSleep()
@@ -317,9 +317,9 @@ audioDevice:init()
 clipboard:init()
 clock:init()
 vpnWatcher:init(function()
-  yabai("-m", "config", "active_window_border_color", "0xffF50F0F")
+  util.say("vpn Connected, my boss!")
 end, function()
-  yabai("-m", "config", "active_window_border_color", "0xff35F1F7")
+  util.say("vpn disconnected, my boss!")
 end)
 caffeine:init()
 cheatsheet:init({

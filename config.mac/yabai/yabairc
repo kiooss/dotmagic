@@ -46,14 +46,6 @@ yabai -m config \
   mouse_action2 resize \
   mouse_drop_action swap
 
-# Override default layout for some space only
-# yabai -m config --space 8 layout float
-PADDING2=50
-yabai -m config --space 8 top_padding "$PADDING2" \
-  bottom_padding "$PADDING2" \
-  left_padding "$PADDING2" \
-  right_padding "$PADDING2"
-
 # Mouse
 # yabai -m config mouse_modifier ctrl
 # yabai -m config mouse_action1 move

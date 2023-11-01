@@ -15,7 +15,7 @@ function obj:getSlackStatus()
     self.watchable.slack_status = res.presence
     local currentMinutes = tonumber(os.date("%M"))
     if util.isWorkingHours() and currentMinutes % 5 == 0 and res.presence == "away" then
-      util.say("Slack is away")
+      -- util.say("Slack is away")
       slack:chat_postMessage(
         config.slack.channel,
         string.format(

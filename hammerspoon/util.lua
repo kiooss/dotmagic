@@ -23,6 +23,9 @@ D = hs.inspect.inspect
 local M = {}
 
 M.say = function(message)
+  if hs.audiodevice.defaultOutputDevice():name() == "外部ヘッドフォン" then
+    return
+  end
   speaker:speak(message)
 end
 

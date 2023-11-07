@@ -327,7 +327,7 @@ cheatsheet:init({
   cmdShiftMappings = cmdShiftMappings,
   appMappings = appMappings,
 })
-watcher:init()
+-- watcher:init()
 -- event:init()
 
 --

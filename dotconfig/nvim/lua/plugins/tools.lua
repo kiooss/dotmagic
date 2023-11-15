@@ -67,6 +67,41 @@ return {
     opts = {},
   },
 
+  { "akinsho/toggleterm.nvim", version = "*", cmd = { "ToggleTerm", "TermExec" }, config = true },
+
+  {
+    "CRAG666/code_runner.nvim",
+    cmd = { "RunCode" },
+    keys = { { "<leader>rc", "<cmd>RunCode<cr>", desc = "run code file" } },
+    opts = {
+      mode = "term",
+      term = { size = 40 },
+      startinsert = true,
+      filetype = {
+        java = {
+          "cd $dir &&",
+          "javac $fileName &&",
+          "java $fileNameWithoutExt",
+        },
+        python = "python3 -u",
+        typescript = "deno run",
+        rust = {
+          "cd $dir &&",
+          "rustc $fileName &&",
+          "$dir/$fileNameWithoutExt",
+        },
+        ruby = "ruby $file",
+        c = "gcc --std=c11 -g -Wall $file && $dir/a.out",
+        -- cpp = "g++ --std=c++14 -g -Wall $fileName && $dir/a.out",
+        cpp = {
+          "cd $dir &&",
+          "g++ --std=c++14 -g -Wall -Wextra -O2 $fileName -o $fileNameWithoutExt &&",
+          "$dir/$fileNameWithoutExt",
+        },
+      },
+    },
+  },
+
   {
     "Vigemus/iron.nvim",
     keys = {

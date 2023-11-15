@@ -47,3 +47,13 @@ if require("lazyvim.util").has("bufferline.nvim") then
     end, { desc = "Buffer " .. i, silent = true })
   end
 end
+
+if vim.lsp.inlay_hint then
+  vim.keymap.set("n", "<leader>uh", function()
+    if vim.lsp.inlay_hint.is_enabled() then
+      vim.lsp.inlay_hint.enable(0, false)
+    else
+      vim.lsp.inlay_hint.enable(0, true)
+    end
+  end, { desc = "Toggle Inlay Hints" })
+end

@@ -17,4 +17,24 @@ int main() {
 }
     ]]
   ),
+  parse(
+    {
+      trig = "freopen",
+      desc = "Redirect stdin and stdout",
+    },
+    [[
+freopen("${1:test}.in", "r", stdin);
+freopen("${2:test}.out", "w", stdout);
+    ]]
+  ),
+  parse(
+    {
+      trig = "fclose",
+      desc = "Close stdin and stdout",
+    },
+    [[
+fclose(stdin);
+fclose(stdout);
+    ]]
+  ),
 }

@@ -37,4 +37,30 @@ fclose(stdin);
 fclose(stdout);
     ]]
   ),
+  parse(
+    {
+      trig = "unique",
+      desc = "Remove duplicates, get unique elements",
+    },
+    [[
+    std::sort(a.begin(), a.end());
+    a.erase(std::unique(a.begin(), a.end()), a.end());
+    ]]
+  ),
+  parse(
+    {
+      trig = "next_permutation",
+      desc = "Get all permutations",
+    },
+    [[
+      std::sort(a.begin(), a.end());
+      do {
+        for (auto i : a) {
+          cout << i << " ";
+        }
+        cout << endl;
+
+      } while (std::next_permutation(a.begin(), a.end()));
+    ]]
+  ),
 }

@@ -145,25 +145,6 @@
               },
               {
                 "from": {
-                  "key_code": "c",
-                  "modifiers": {
-                    "mandatory": [
-                      "right_shift"
-                    ],
-                    "optional": [
-                      "caps_lock"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "open https://www.google.com/search?q=$(pbpaste)"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "from": {
                   "key_code": "d",
                   "modifiers": {
                     "mandatory": [
@@ -233,7 +214,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open https://github.com/"
+                    "shell_command": "~/.dotfiles/bin/google"
                   }
                 ],
                 "type": "basic"

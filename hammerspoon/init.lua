@@ -248,17 +248,17 @@ local function openUrl(url, withClipboardContents)
   hs.urlevent.openURL(url)
 end
 
-hs.hotkey.bind({ "ctrl", "shift" }, "1", "open redmine", function()
-  openUrl(localConfig.urls.redmine, true)
-end)
-
-hs.hotkey.bind({ "ctrl", "shift" }, "2", "search in google", function()
-  openUrl("https://www.google.com/search?q=", true)
-end)
-
-hs.hotkey.bind({ "ctrl", "shift" }, "3", "open github", function()
-  openUrl("https://github.com")
-end)
+-- hs.hotkey.bind({ "ctrl", "shift" }, "1", "open redmine", function()
+--   openUrl(localConfig.urls.redmine, true)
+-- end)
+--
+-- hs.hotkey.bind({ "ctrl", "shift" }, "2", "search in google", function()
+--   openUrl("https://www.google.com/search?q=", true)
+-- end)
+--
+-- hs.hotkey.bind({ "ctrl", "shift" }, "3", "open github", function()
+--   openUrl("https://github.com")
+-- end)
 
 hs.hotkey.bind({ "cmd" }, "\\", function()
   urlBookmarks:show()
@@ -270,14 +270,14 @@ local Install = spoon.SpoonInstall
 
 Install:andUse("ReloadConfiguration", { start = true })
 Install:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
-Install:andUse("AClock", {
-  config = { showDuration = 3 },
-  fn = function(s)
-    hs.hotkey.bind({ "cmd", "shift" }, "t", nil, function()
-      s:toggleShow()
-    end)
-  end,
-})
+-- Install:andUse("AClock", {
+--   config = { showDuration = 3 },
+--   fn = function(s)
+--     hs.hotkey.bind({ "cmd", "shift" }, "t", nil, function()
+--       s:toggleShow()
+--     end)
+--   end,
+-- })
 Install:andUse("KSheet", {
   hotkeys = {
     toggle = { { "cmd", "ctrl" }, "/" },

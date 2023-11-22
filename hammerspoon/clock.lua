@@ -17,7 +17,7 @@ local function playSound(name)
 end
 
 function obj:init()
-  for h = 7, 21 do
+  for h = 7, 19 do
     table.insert(
       self.timerHolder,
       hs.timer.doAt(h .. ":00", "1d", function()

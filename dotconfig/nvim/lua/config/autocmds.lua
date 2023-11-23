@@ -192,3 +192,35 @@ vim.api.nvim_create_autocmd("WinLeave", {
     end
   end,
 })
+
+vim.filetype.add({
+  extension = {
+    overlay = "dts",
+    keymap = "dts",
+    conf = "dosini",
+    env = "dotenv",
+  },
+  -- Detect and apply filetypes based on the entire filename
+  filename = {
+    [".env"] = "dotenv",
+    ["env"] = "dotenv",
+    ["tsconfig.json"] = "jsonc",
+  },
+  -- Detect and apply filetypes based on certain patterns of the filenames
+  pattern = {
+    -- INFO: Match filenames like - ".env.example", ".env.local" and so on
+    ["%.env%.[%w_.-]+"] = "dotenv",
+  },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    local commentstrings = {
+      dts = "// %s",
+    }
+    local ft = vim.bo.filetype
+    if commentstrings[ft] then
+      vim.bo.commentstring = commentstrings[ft]
+    end
+  end,
+})

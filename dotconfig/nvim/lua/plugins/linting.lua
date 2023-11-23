@@ -3,6 +3,7 @@ return {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {
+        dotenv = { "dotenv_linter" },
         ruby = { "rubocop" },
         lua = { "selene", "luacheck" },
         markdown = { "markdownlint" },

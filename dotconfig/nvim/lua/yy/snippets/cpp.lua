@@ -43,8 +43,8 @@ fclose(stdout);
       desc = "Remove duplicates, get unique elements",
     },
     [[
-    std::sort(a.begin(), a.end());
-    a.erase(std::unique(a.begin(), a.end()), a.end());
+    std::sort(${1}.begin(), ${1}.end());
+    a.erase(std::unique(${1}.begin(), ${1}.end()), ${1}.end());
     ]]
   ),
   parse(
@@ -53,14 +53,18 @@ fclose(stdout);
       desc = "Get all permutations",
     },
     [[
-      std::sort(a.begin(), a.end());
+      std::sort(${1}.begin(), ${1}.end());
       do {
-        for (auto i : a) {
+        for (auto i : ${1}) {
           cout << i << " ";
         }
         cout << endl;
 
-      } while (std::next_permutation(a.begin(), a.end()));
+      } while (std::next_permutation(${1}.begin(), ${1}.end()));
     ]]
   ),
+  parse({
+    trig = "inf",
+    desc = "the inf constant",
+  }, " #define inf 0x3f3f3f3f"),
 }

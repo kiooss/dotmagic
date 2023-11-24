@@ -74,8 +74,13 @@ return {
     cmd = { "RunCode" },
     keys = { { "<leader>rc", "<cmd>RunCode<cr>", desc = "run code file" } },
     opts = {
-      mode = "term",
+      mode = "float", -- "term",
       term = { size = 40 },
+      float = {
+        border = "double",
+        height = 0.7,
+        width = 0.5,
+      },
       startinsert = true,
       filetype = {
         java = {

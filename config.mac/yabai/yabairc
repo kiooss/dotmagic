@@ -79,6 +79,7 @@ yabai -m rule --add app="^アクティビティモニタ$" manage=off
 # show digital colour meter topmost and on all spaces
 yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
 yabai -m rule --add app="^天天象棋$" manage=off
+yabai -m rule --add app="^Nexitally$" manage=off
 
 # float every app except for belows.
 # yabai -m rule --add app!="^(kitty|Google Chrome)$" manage=off

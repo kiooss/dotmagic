@@ -2,6 +2,7 @@
   "extras": [
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
+    "lazyvim.plugins.extras.editor.navic",
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.tailwind",
@@ -13,7 +14,7 @@
   ],
   "news": {
     "NEWS.md": "2123",
-    "doc/news.txt": "14101"
+    "doc/news.txt": "13995"
   },
   "version": 2
 }

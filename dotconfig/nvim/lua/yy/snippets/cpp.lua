@@ -67,4 +67,42 @@ fclose(stdout);
     trig = "inf",
     desc = "the inf constant",
   }, " #define inf 0x3f3f3f3f"),
+  parse(
+    {
+      trig = "fastread",
+      desc = "fast read and write",
+    },
+    [[
+// fast read and write
+// __int128 about 39 digits
+template <typename T>
+inline T read() {
+  T x = 0;
+  bool flag = 1;
+  char ch = getchar();
+  while (ch < '0' || ch > '9') {
+    if (ch == '-') flag = 0;
+    ch = getchar();
+  }
+  while (ch >= '0' && ch <= '9') {
+    x = (x << 1) + (x << 3) + ch - '0';
+    ch = getchar();
+  }
+
+  return flag ? x : ~(x - 1);
+}
+
+template <typename T>
+inline void write(T x) {
+  if (x < 0) {
+    putchar('-');
+    write(~(x - 1));
+    return;
+  }
+
+  if (x > 9) write(x / 10);
+  putchar(x % 10 + '0');
+}
+  ]]
+  ),
 }

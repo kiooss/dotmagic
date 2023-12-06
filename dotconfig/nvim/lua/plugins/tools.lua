@@ -98,9 +98,14 @@ return {
         ruby = "ruby $file",
         c = "gcc --std=c11 -g -Wall $file && $dir/a.out",
         -- cpp = "g++ --std=c++14 -g -Wall $fileName && $dir/a.out",
+        -- cpp = {
+        --   "cd $dir &&",
+        --   "g++ --std=c++14 -g -Wall -Wextra -O2 $fileName -o $fileNameWithoutExt &&",
+        --   "$dir/$fileNameWithoutExt",
+        -- },
         cpp = {
           "cd $dir &&",
-          "g++ --std=c++14 -g -Wall -Wextra -O2 $fileName -o $fileNameWithoutExt &&",
+          "clang++ --std=c++14 -g -Wall -Wextra $fileName -o $fileNameWithoutExt &&",
           "$dir/$fileNameWithoutExt",
         },
       },

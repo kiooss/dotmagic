@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # default user and email
-name="Yang Yang"
+name="Michael Yang"
 email=kiooss@gmail.com
 
 PROJECT_TYPE="$1"

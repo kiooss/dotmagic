@@ -72,7 +72,10 @@ return {
   {
     "CRAG666/code_runner.nvim",
     cmd = { "RunCode" },
-    keys = { { "<leader>rc", "<cmd>RunCode<cr>", desc = "run code file" } },
+    keys = {
+      { "<leader>rc", "<cmd>RunCode<cr>", desc = "Run code" },
+      { "<F5>", "<cmd>RunCode<cr>", desc = "Run code" },
+    },
     opts = {
       mode = "float", -- "term",
       term = { size = 40 },
@@ -100,12 +103,12 @@ return {
         -- cpp = "g++ --std=c++14 -g -Wall $fileName && $dir/a.out",
         -- cpp = {
         --   "cd $dir &&",
-        --   "g++ --std=c++14 -g -Wall -Wextra -O2 $fileName -o $fileNameWithoutExt &&",
+        --   "g++ --std=c++14 -O0 -g -Wall -Wextra $fileName -o $fileNameWithoutExt &&",
         --   "$dir/$fileNameWithoutExt",
         -- },
         cpp = {
           "cd $dir &&",
-          "clang++ --std=c++14 -g -Wall -Wextra $fileName -o $fileNameWithoutExt &&",
+          "clang++ --std=c++14 -O0 -g -Wall -Wextra -fsanitize=undefined $fileName -o $fileNameWithoutExt &&",
           "$dir/$fileNameWithoutExt",
         },
       },

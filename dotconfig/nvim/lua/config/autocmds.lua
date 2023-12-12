@@ -197,7 +197,7 @@ vim.filetype.add({
   extension = {
     overlay = "dts",
     keymap = "dts",
-    conf = "dosini",
+    -- conf = "dosini",
     env = "dotenv",
   },
   -- Detect and apply filetypes based on the entire filename

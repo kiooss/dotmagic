@@ -1673,7 +1673,7 @@
   function prompt_proxy_state() {
     if [[ -z "$all_proxy" ]]; then
     else
-      p10k segment -b 17 -f 15 -i '' -t '%Bon%b'
+      p10k segment -b 17 -f 15 -i '󰄛' -t '%Bon%b'
     fi
   }
 

@@ -10,11 +10,11 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # exa is a better ls tool
-if which exa >/dev/null 2>&1; then
-  alias ls='exa --icons'
-  alias ll='exa -lag --git --icons'
-  alias la='exa -laag --git --icons'
-  alias l='exa -l --git --icons'
+if which eza >/dev/null 2>&1; then
+  alias ls='eza --icons'
+  alias ll='eza -lag --git --icons'
+  alias la='eza -laag --git --icons'
+  alias l='eza -l --git --icons'
 else
   alias l="ls -CF"
   alias la="ls -AF"

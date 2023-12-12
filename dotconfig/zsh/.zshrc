@@ -201,6 +201,7 @@ if [[ "$OSTYPE" = darwin* ]]; then
     $plugins
     # adb
     # gradle
+    brew
     pass
     # vagrant-prompt
   )
@@ -309,17 +310,6 @@ _fzf_comprun() {
   esac
 }
 
-# }}}
-
-# phpbrew {{{
-if [[ -e ~/.phpbrew/bashrc ]]; then
-  export PHPBREW_RC_ENABLE=1
-  source ~/.phpbrew/bashrc
-  # export PATH="$HOME/.phpbrew/bin:$PATH"
-  # generation by `phpbrew zsh`
-  # phpbrew zsh --bind phpbrew --program phpbrew > ~/.phpbrew_completion.sh
-  source ~/.phpbrew_completion.sh
-fi
 # }}}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

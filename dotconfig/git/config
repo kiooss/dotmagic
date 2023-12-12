@@ -238,3 +238,5 @@
 	newHighlight = green bold 22
 [safe]
 	directory = /home/yang/.memos
+[user]
+	useConfigOnly = true

@@ -15,9 +15,9 @@
 # Most ${ENV_VAR} variables should be saved here.
 # It is loaded before .zshrc
 
-export ZDOTDIR=$HOME/.config/zsh/
+export ZDOTDIR=$HOME/.config/zsh
 
-export XDG_CONFIG_HOME=$HOME/.config/
+export XDG_CONFIG_HOME=$HOME/.config
 
 export NO_PROXY=localhost,127.0.0.1,::1
 

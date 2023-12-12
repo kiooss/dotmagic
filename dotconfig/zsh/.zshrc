@@ -232,13 +232,7 @@ fi
 # }}}
 
 # fpath {{{
-# add all my own plugin dir to fpath.
-for plugin ($my_plugins); do
-  fpath=($ZDOTDIR/plugins/$plugin $fpath)
-done
-
-fpath+=$HOME/.dasht/etc/zsh/completions/
-
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 # autoload function in functions dir
 fpath=($ZDOTDIR/functions $fpath)
 # zsh-completions
@@ -267,13 +261,7 @@ fi
 # aws command completion
 # source $HOME/.local/bin/aws_zsh_completer.sh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
-
-if [[ -d "$HOME/.nix-profile/" ]]; then
-  source $HOME/.nix-profile/etc/profile.d/nix.sh
-fi
 
 # Set up hub wrapper for git, if it is available; https://github.com/github/hub
 if (( $+commands[hub] )); then

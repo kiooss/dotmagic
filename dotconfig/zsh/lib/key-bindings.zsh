@@ -22,7 +22,7 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey '^Q' push-line-or-edit
 
 if (( $+commands[mycli] )); then
-  bindkey -s '\em' '^Umycli -u root -proot --port=3307^M'
+  bindkey -s '\em' '^Umycli -u root -proot --port=3306^M'
 fi
 
 if (( $+commands[tn] )); then

@@ -18,18 +18,18 @@ return {
           prepend_args = { "-i", "2", "-ci" },
         },
         dprint = {
-          condition = function(ctx)
+          condition = function(self, ctx)
             return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
           end,
         },
         rubocop = {
           prepend_args = { "--server" },
-          condition = function(ctx)
+          condition = function(self, ctx)
             return vim.fs.find({ ".rubocop.yml" }, { path = ctx.filename, upward = true })[1]
           end,
         },
         htmlbeautifier = {
-          condition = function(ctx)
+          condition = function(self, ctx)
             local full_name = vim.api.nvim_buf_get_name(0)
             return not string.match(full_name, ".*%.text%.erb$")
           end,

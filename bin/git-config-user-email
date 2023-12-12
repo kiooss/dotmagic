@@ -7,22 +7,12 @@ email=kiooss@gmail.com
 PROJECT_TYPE="$1"
 
 if [[ $PROJECT_TYPE == 'work' ]]; then
-  if [[ -z $WORK_EMAIL ]]; then
-    echo "Please set your WORK_EMAIL env first."
+  if [[ -z $WORK_EMAIL || -z $WORK_NAME ]]; then
+    echo "Please set your WORK_EMAIL && WORK_NAME env first."
     exit
   fi
+  name="$WORK_NAME"
   email=$WORK_EMAIL
-else
-  remote=$(git remote -v | awk '/\(push\)$/ {print $2}' | cut -d ':' -f 1)
-
-  # work email
-  if [[ $remote == 'git' ]]; then
-    if [[ -z $WORK_EMAIL ]]; then
-      echo "Please set your WORK_EMAIL env first."
-      exit
-    fi
-    email=$WORK_EMAIL
-  fi
 fi
 
 echo "Configuring user.name as $name & user.email as $email"

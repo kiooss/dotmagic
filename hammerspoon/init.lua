@@ -22,7 +22,7 @@ end
 local util = require("util")
 local hyper = require("hyper")
 local wm = require("wm")
-local localConfig = require("local_config")
+-- local localConfig = require("local_config")
 local ime = require("ime")
 local urlBookmarks = require("url_bookmarks")
 local weather = require("weather")
@@ -38,8 +38,8 @@ local watcher = require("watcher")
 local clippy = require("clippy")
 clippy:init():start()
 
-local brewWatcher = require("brew_watcher")
-brewWatcher:init()
+-- local brewWatcher = require("brew_watcher")
+-- brewWatcher:init()
 
 -- local privateTask = require("private")
 -- privateTask:init()
@@ -48,7 +48,7 @@ local partial = hs.fnutils.partial
 local switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter({})) -- include minimized/hidden windows, current Space only
 
 local function yabai(...)
-  util.run("/usr/local/bin/yabai", ...)
+  util.run("/opt/homebrew/bin/yabai", ...)
 end
 
 local cmdMappings = {
@@ -260,9 +260,9 @@ end
 --   openUrl("https://github.com")
 -- end)
 
-hs.hotkey.bind({ "cmd" }, "\\", function()
-  urlBookmarks:show()
-end)
+-- hs.hotkey.bind({ "cmd" }, "\\", function()
+--   urlBookmarks:show()
+-- end)
 
 -- loadSpoon
 hs.loadSpoon("SpoonInstall")
@@ -311,8 +311,8 @@ Install:andUse("Emojis", {
 -- })
 
 ime:init()
-urlBookmarks:init()
-weather:init(localConfig.weatherApiKey)
+-- urlBookmarks:init()
+-- weather:init(localConfig.weatherApiKey)
 audioDevice:init()
 clipboard:init()
 clock:init()
@@ -321,7 +321,7 @@ vpnWatcher:init(function()
 end, function()
   util.say("vpn disconnected, my boss!")
 end)
-caffeine:init()
+-- caffeine:init()
 cheatsheet:init({
   hyperMappings = hyperMappings,
   cmdShiftMappings = cmdShiftMappings,

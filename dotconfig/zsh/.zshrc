@@ -231,6 +231,7 @@ fpath=($DOTFILES/vendor/zsh-completions/src $fpath)
 autoload -U $ZDOTDIR/functions/*(:t)
 # }}}
 
+source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 

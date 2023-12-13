@@ -60,21 +60,12 @@ export PATH="$DOTFILES/bin:$PATH"
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 [[ -d "$HOME/dev/flutter/bin" ]] && export PATH="$HOME/dev/flutter/bin:$PATH"
-# [[ -d "$HOME/venv/py3/bin/" ]] && export PATH="$HOME/venv/py3/bin/:$PATH"
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
 
 # Add android tools
 if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
   export ANDROID_HOME="/Applications/adt-bundle-mac-x86_64/sdk"
   export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin
 fi
-
-export PATH=$PATH:$HOME/.dasht/bin
-export MANPATH=$HOME/.dasht/man:$MANPATH
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 
 if [[ -d $HOME/.symfony/bin ]]; then
   export PATH=$HOME/.symfony/bin:$PATH

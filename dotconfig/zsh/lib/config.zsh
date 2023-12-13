@@ -9,10 +9,6 @@ setopt LOCAL_TRAPS
 setopt PROMPT_SUBST
 setopt nonomatch
 
-
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
 #In the line editor, the number of filenames to list without asking first.
 #If set to zero, the shell asks only if the listing would scroll off the screen.
 LISTMAX=0
@@ -20,10 +16,7 @@ LISTMAX=0
 REPORTTIME=10
 
 # history
-setopt HIST_VERIFY
-setopt EXTENDED_HISTORY
 setopt HIST_REDUCE_BLANKS
-setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt INC_APPEND_HISTORY SHARE_HISTORY
 setopt APPEND_HISTORY

@@ -10,6 +10,7 @@ hammerspoon/private.lua
 /dotconfig/zsh/.zcompdump*
 /dotconfig/zsh/.zsh_sessions
 /dotconfig/zsh/.zsh_history
+/dotconfig/zsh/.zshrc.local
 /dotconfig/nvim/.luarc.json
 /dotconfig/nvim/lazy-lock.json
 /dotconfig/lazygit/state.yml

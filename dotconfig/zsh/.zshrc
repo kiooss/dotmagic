@@ -45,7 +45,7 @@ typeset -U path cdpath fpath manpath
 [[ -d ~/workspace ]] && export CODE_DIR=~/workspace
 [[ -d ~/.cache ]] && export CACHE_DIR=~/.cache
 
-[[ -f "$HOME/.env.local" ]] && source "$HOME/.env.local"
+[[ -f "$ZDOTDIR/.zshrc.local" ]] && source "$ZDOTDIR/.zshrc.local"
 
 [[ "$OSTYPE" = darwin* ]] && export SUDO_ASKPASS="$DOTFILES/bin/macos_sudo_askpass.sh"
 # }}}
@@ -260,8 +260,6 @@ fi
 
 # aws command completion
 # source $HOME/.local/bin/aws_zsh_completer.sh
-
-[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
 # Set up hub wrapper for git, if it is available; https://github.com/github/hub
 if (( $+commands[hub] )); then

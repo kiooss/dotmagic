@@ -74,6 +74,8 @@ fi
 if [[ -d "$HOME/dev/flutter/.pub-cache/bin" ]]; then
   export PATH="$PATH":"$HOME/dev/flutter/.pub-cache/bin"
 fi
+
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # }}}
 
 # EDITOR ENV {{{

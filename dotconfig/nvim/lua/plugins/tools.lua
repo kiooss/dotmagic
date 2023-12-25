@@ -108,7 +108,7 @@ return {
         -- },
         cpp = {
           "cd $dir &&",
-          "clang++ --std=c++14 -O0 -g -Wall -Wextra -fsanitize=undefined $fileName -o $fileNameWithoutExt &&",
+          "clang++ -I/usr/local/include --std=c++14 -O0 -g -Wall -Wextra -fsanitize=undefined $fileName -o $fileNameWithoutExt &&",
           "$dir/$fileNameWithoutExt",
         },
       },

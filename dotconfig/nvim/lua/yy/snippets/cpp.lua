@@ -123,4 +123,17 @@ long long binpow(long long a, long long b, long long m) {
 }
   ]]
   ),
+  parse(
+    {
+      trig = "forfor",
+      desc = "forfor",
+    },
+    [[
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      $1
+    }
+  }
+  ]]
+  ),
 }

@@ -21,6 +21,7 @@ bindkey -M emacs '^N' history-substring-search-down
 # zsh-autocomplete
 bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
 bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+bindkey -M menuselect '\r' .accept-line
 
 
 bindkey '^Q' push-line-or-edit

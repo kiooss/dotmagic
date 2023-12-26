@@ -12,9 +12,9 @@ alias .....="cd ../../../.."
 # exa is a better ls tool
 if which eza >/dev/null 2>&1; then
   alias ls='eza --icons'
-  alias ll='eza -lag --git --icons'
-  alias la='eza -laag --git --icons'
-  alias l='eza -l --git --icons'
+  alias ll='eza -lag --git --icons --time-style=long-iso'
+  alias la='eza -laag --git --icons --time-style=long-iso'
+  alias l='eza -l --git --icons --time-style=long-iso'
 else
   alias l="ls -CF"
   alias la="ls -AF"

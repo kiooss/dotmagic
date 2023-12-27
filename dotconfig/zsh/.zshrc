@@ -230,6 +230,8 @@ fpath=($ZDOTDIR/functions $fpath)
 # zsh-completions
 fpath=($DOTFILES/vendor/zsh-completions/src $fpath)
 autoload -U $ZDOTDIR/functions/*(:t)
+
+autoload -Uz cdr
 # }}}
 
 source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh

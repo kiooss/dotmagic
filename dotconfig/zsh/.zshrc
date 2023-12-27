@@ -56,7 +56,6 @@ export PATH=/usr/local/sbin:$PATH
 # adding path directory for custom scripts
 export PATH="$DOTFILES/bin:$PATH"
 # check for custom bin directory and add to path
-[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 [[ -d "$HOME/dev/flutter/bin" ]] && export PATH="$HOME/dev/flutter/bin:$PATH"
@@ -335,6 +334,9 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
 fi
+
+# home bin
+[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
 
 ## https://wiki.archlinux.org/title/zsh#Persistent_rehash {{{
 if type pacman &>/dev/null; then

@@ -41,6 +41,7 @@ return {
   -- },
   {
     "wincent/vim-clipper",
+    enabled = false,
     lazy = false,
     config = function()
       vim.g.ClipperAddress = "~/.clipper.sock"
@@ -107,9 +108,9 @@ return {
         --   "$dir/$fileNameWithoutExt",
         -- },
         cpp = {
-          "cd $dir &&",
-          "clang++ -I/usr/local/include --std=c++14 -O0 -g -Wall -Wextra -fsanitize=undefined $fileName -o $fileNameWithoutExt &&",
-          "$dir/$fileNameWithoutExt",
+          "cd $dir && mkdir -p build &&",
+          "clang++ -I/usr/local/include --std=c++14 -O0 -g -Wall -Wextra -fsanitize=undefined $fileName -o build/$fileNameWithoutExt &&",
+          "$dir/build/$fileNameWithoutExt",
         },
       },
     },

@@ -23,6 +23,7 @@ return {
       luasnip.config.setup(opts)
       luasnip.filetype_extend("all", { "_" })
       luasnip.filetype_extend("ruby", { "rails" })
+      luasnip.filetype_extend("eruby", { "html" })
 
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/yy/snippets" })
 

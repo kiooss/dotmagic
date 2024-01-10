@@ -31,12 +31,18 @@ function obj:init()
     if choice then
       if choice.action == "clear" then
         self:clearHistory()
+      elseif choice.action == "pin" then
+        self:pinHistory()
+      elseif choice.action == "clear_pin" then
+        self:clearPin()
       end
     end
   end)
   self.actionChooser:placeholderText("Clipboard history action")
   self.actionChooser:choices({
     { text = "Clear all histories", action = "clear" },
+    { text = "Pin recently copied", action = "pin" },
+    { text = "Clear all pin", action = "clear_pin" },
   })
 end
 
@@ -57,6 +63,7 @@ function obj:initDatabase()
     CREATE TABLE IF NOT EXISTS history (
       id INTEGER PRIMARY KEY,
       text TEXT UNIQUE,
+      mark INTEGER DEFAULT 0,
       app_bundle_id TEXT,
       copy_count INTEGER DEFAULT 0,
       paste_count INTEGER DEFAULT 0,
@@ -76,6 +83,24 @@ function obj:clearHistory()
   local sql = "DELETE FROM history"
   if db:exec(sql) == hs.sqlite3.OK then
     hs.alert.show("All clipboard history deleted!")
+  end
+  db:close()
+end
+
+function obj:pinHistory()
+  local db = self:db()
+  local sql = "UPDATE history SET mark = 1 WHERE mark = 0 order by last_copied_at desc limit 1"
+  if db:exec(sql) == hs.sqlite3.OK then
+    hs.alert.show("Latest clipboard history pinned!")
+  end
+  db:close()
+end
+
+function obj:clearPin()
+  local db = self:db()
+  local sql = "UPDATE history SET mark = 0 WHERE mark = 1"
+  if db:exec(sql) == hs.sqlite3.OK then
+    hs.alert.show("All pin mark cleared!")
   end
   db:close()
 end
@@ -145,7 +170,7 @@ end
 
 function obj:getChoices()
   local db = self:db()
-  local sql = "select * from history order by last_copied_at desc limit 100"
+  local sql = "select * from history order by mark desc, last_copied_at desc limit 100"
   local stmt = db:prepare(sql)
   stmt:bind_values()
 
@@ -158,7 +183,7 @@ function obj:getChoices()
     local subText =
       string.format("From: %s Copy count: %d Length: %d", row.app_bundle_id, row.copy_count, string.len(row.text))
     choices[index] = {
-      ["text"] = text,
+      ["text"] = row.mark == 1 and "📌 " .. text or text,
       ["subText"] = subText,
       ["raw"] = row.text,
       ["id"] = row.id,

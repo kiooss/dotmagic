@@ -234,7 +234,10 @@ autoload -U $ZDOTDIR/functions/*(:t)
 autoload -Uz cdr
 # }}}
 
-source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+# bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 

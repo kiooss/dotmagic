@@ -18,10 +18,6 @@ bindkey -M emacs '^N' history-substring-search-down
 # bindkey '^[[5D' beginning-of-line
 # bindkey '^[[5C' end-of-line
 
-# zsh-autocomplete
-bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-
 
 bindkey '^Q' push-line-or-edit
 

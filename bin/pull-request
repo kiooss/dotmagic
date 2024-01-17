@@ -50,7 +50,13 @@ pull_request_staging() {
   local pr_title
 
   if [[ -z $project ]]; then
-    target_branch="staging"
+    if git show-ref --quiet refs/heads/staging; then
+      target_branch="staging"
+    else
+      echo "!!! No staging branch."
+      exit 1
+    fi
+
     diff=$(get_diff "$target_branch")
     pr_label="staging-release"
     pr_title="ステージング反映"
@@ -74,8 +80,11 @@ pull_request_production() {
   if [[ -z $project ]]; then
     if git show-ref --quiet refs/heads/main; then
       target_branch="main"
-    else
+    elif git show-ref --quiet refs/heads/master; then
       target_branch="master"
+    else
+      echo "!!! No main or master branch."
+      exit 1
     fi
 
     diff=$(get_diff "$target_branch")

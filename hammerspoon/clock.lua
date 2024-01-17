@@ -4,7 +4,10 @@ local util = require("util")
 obj.timerHolder = {}
 
 local function playSound(name)
-  if hs.audiodevice.defaultOutputDevice():name() == "外部ヘッドフォン" then
+  if
+    hs.audiodevice.defaultOutputDevice():name() == "外部ヘッドフォン"
+    or hs.audiodevice.defaultOutputDevice():name() == "外置耳机"
+  then
     return
   end
 

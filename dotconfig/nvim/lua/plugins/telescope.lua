@@ -15,7 +15,7 @@ return {
       desc = "Searches string",
     },
     {
-      "<leader>fw",
+      "<leader>sv",
       function()
         require("telescope.builtin").live_grep({ search_dirs = { "~/vimwiki/" } })
       end,

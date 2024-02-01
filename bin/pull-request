@@ -118,17 +118,21 @@ pull_request() {
 
   echo "=== Pull request start ==="
   echo -e "Target branch: ${RED}${ITALIC}$target_branch${NC}\n"
-  if [[ -n $diff ]]; then
-    # hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title" -m "$diff"
-    # gh pr create --base "$target_branch" --head develop \
-    #   --label "$pr_label" --title "$pr_title" --body "$diff"
-    gh pr create --base "$target_branch" --head develop \
-      --label "$pr_label" --title "$pr_title"
-  else
-    # hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title"
-    gh pr create --base "$target_branch" --head develop \
-      --label "$pr_label" --title "$pr_title"
-  fi
+
+  gh pr create --base "$target_branch" --head develop \
+    --label "$pr_label" --title "$pr_title" --fill
+
+  # if [[ -n $diff ]]; then
+  #   # hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title" -m "$diff"
+  #   # gh pr create --base "$target_branch" --head develop \
+  #   #   --label "$pr_label" --title "$pr_title" --body "$diff"
+  #   gh pr create --base "$target_branch" --head develop \
+  #     --label "$pr_label" --title "$pr_title"
+  # else
+  #   # hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title"
+  #   gh pr create --base "$target_branch" --head develop \
+  #     --label "$pr_label" --title "$pr_title"
+  # fi
   echo "=== Pull request end ==="
 }
 

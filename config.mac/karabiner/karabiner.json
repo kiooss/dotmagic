@@ -221,6 +221,25 @@
               },
               {
                 "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "mandatory": [
+                      "right_shift"
+                    ],
+                    "optional": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open http://localhost:1080/"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
                   "key_code": "p",
                   "modifiers": {
                     "mandatory": [

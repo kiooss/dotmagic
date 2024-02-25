@@ -1,6 +1,6 @@
 local M = {}
 
-local margin = 12
+local margin = 6
 
 M.addMargin = function(frame)
   frame.x = frame.x + margin
@@ -28,18 +28,18 @@ M.rightHalf = function(winFrame, screenFrame)
 end
 
 M.topHalf = function(winFrame, screenFrame)
-  winFrame.x = screenFrame.x
-  winFrame.y = screenFrame.y
-  winFrame.w = screenFrame.w
-  winFrame.h = screenFrame.h / 2
+  winFrame.x = screenFrame.x + margin
+  winFrame.y = screenFrame.y + margin
+  winFrame.w = screenFrame.w - margin * 2
+  winFrame.h = screenFrame.h / 2 - margin * 2
   return winFrame
 end
 
 M.bottomHalf = function(winFrame, screenFrame)
-  winFrame.x = screenFrame.x
-  winFrame.y = screenFrame.y + screenFrame.h / 2
-  winFrame.w = screenFrame.w
-  winFrame.h = screenFrame.h / 2
+  winFrame.x = screenFrame.x + margin
+  winFrame.y = screenFrame.y + screenFrame.h / 2 + margin * 0.5
+  winFrame.w = screenFrame.w - margin * 2
+  winFrame.h = screenFrame.h / 2 - margin * 1.5
   return winFrame
 end
 

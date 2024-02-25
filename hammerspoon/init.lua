@@ -193,6 +193,10 @@ local cmdShiftMappings = {
       hs.window.focusedWindow():focusWindowNorth()
     end,
   },
+  { "left", "Move window to left half", partial(wm.resize, "leftHalf") },
+  { "right", "Move window to right half", partial(wm.resize, "rightHalf") },
+  { "up", "Move window to top half", partial(wm.resize, "topHalf") },
+  { "down", "Move window to bottom half", partial(wm.resize, "bottomHalf") },
   {
     "p",
     "Switch to pinyin",

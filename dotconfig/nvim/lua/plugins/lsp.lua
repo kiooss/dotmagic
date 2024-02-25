@@ -74,12 +74,12 @@ return {
             },
           },
         },
-        -- solargraph = {
-        --   mason = false, -- set to false if you don't want this server to be installed with mason
-        -- },
-        ruby_ls = {
-          mason = false,
+        solargraph = {
+          mason = false, -- set to false if you don't want this server to be installed with mason
         },
+        -- ruby_ls = {
+        --   mason = false,
+        -- },
         vimls = {},
         vuels = {},
         -- tailwindcss = {},

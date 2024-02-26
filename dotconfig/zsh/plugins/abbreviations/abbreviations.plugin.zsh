@@ -9,6 +9,9 @@ abbreviations=(
     "tf"     "tail -f"
     "gc"     "git commit"
     "gl"     "git ls-tree --name-only -r HEAD"
+    "ber"    "bundle exec rake"
+    "RES"     "RAILS_ENV=staging bundle exec rails"
+    "REP"     "RAILS_ENV=production bundle exec rails"
 )
 
 magic-abbrev-expand() {

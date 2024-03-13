@@ -30,8 +30,14 @@ main() {
   case "$target" in
     "staging") pull_request_staging "$project" ;;
     "production") pull_request_production "$project" ;;
+    "init") init ;;
     *) echo "Wrong deploy target." ;;
   esac
+}
+
+init() {
+  gh label create staging-release -f -d "Staging release" -c "#0052CC"
+  gh label create production-release -f -d "Production release" -c "#B60205"
 }
 
 current_branch() {

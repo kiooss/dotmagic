@@ -48,19 +48,20 @@ function obj:show()
 end
 
 function obj:switch()
-  local uid_1 = "410C85C2-0000-0000-0E20-0104B53C2278"
-  local uid_2 = "BuiltInHeadphoneOutputDevice"
-  local next_uid
+  local name_1 = "PHL 27E1N8900"
+  local name_2 = "外置耳机"
+  local next_name
   util.d(hs.audiodevice.current())
   local current = hs.audiodevice.current()["device"]
-  util.d(current:uid())
-  if current:uid() == uid_1 then
-    next_uid = uid_2
+  util.d(current:name())
+  if current:name() == name_1 then
+    next_name = name_2
   else
-    next_uid = uid_1
+    next_name = name_1
   end
+  util.d(next_name)
 
-  if hs.audiodevice.findDeviceByUID(next_uid):setDefaultOutputDevice() then
+  if hs.audiodevice.findDeviceByName(next_name):setDefaultOutputDevice() then
     hs.alert.show("Audio output switched to: " .. hs.audiodevice.current()["device"]:name())
   end
 end

@@ -1,0 +1,19 @@
+{
+  "Say hello to the world": {
+    "prefix": [
+      "hw",
+      "hello"
+    ],
+    "body": "Hello, ${1:world}!$0"
+  },
+  "Create database with user": {
+    "prefix": "create_db_and_user",
+    "body": [
+      "CREATE DATABASE ${1:dbname};",
+      "CREATE USER '${1:dbname}_user'@'%' IDENTIFIED BY 'password';",
+      "GRANT ALL PRIVILEGES ON `${1:dbname}`.* TO '${1:dbname}_user'@'%';",
+      "SHOW GRANTS for ${1:dbname}_user;",
+      "SHOW GRANTS for '${1:dbname}_user'@'%';"
+    ]
+  }
+}

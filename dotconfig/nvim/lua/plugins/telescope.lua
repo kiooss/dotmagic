@@ -1,10 +1,10 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    { "nvim-telescope/telescope-file-browser.nvim" },
+    -- { "nvim-telescope/telescope-file-browser.nvim" },
     { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "nvim-telescope/telescope-symbols.nvim" },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   keys = {
     {
@@ -59,18 +59,18 @@ return {
         prompt_prefix = " ",
         selection_caret = " ",
         winblend = borderless and 0 or 10,
-        mappings = {
-          i = {
-            ["<C-u>"] = false, -- Mapping <C-u> to clear prompt
-            ["<c-t>"] = trouble.open_with_trouble,
-            ["<c-j>"] = actions.move_selection_next,
-            ["<c-k>"] = actions.move_selection_previous,
-            ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-            ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
-            ["<esc>"] = actions.close,
-            ["<C-h>"] = actions.which_key,
-          },
-        },
+        -- mappings = {
+        --   i = {
+        --     ["<C-u>"] = false, -- Mapping <C-u> to clear prompt
+        --     ["<c-t>"] = trouble.open_with_trouble,
+        --     ["<c-j>"] = actions.move_selection_next,
+        --     ["<c-k>"] = actions.move_selection_previous,
+        --     ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+        --     ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+        --     ["<esc>"] = actions.close,
+        --     ["<C-h>"] = actions.which_key,
+        --   },
+        -- },
       },
       pickers = {
         buffers = {
@@ -121,7 +121,7 @@ return {
     local telescope = require("telescope")
     telescope.setup(opts)
     telescope.load_extension("fzf")
-    telescope.load_extension("file_browser")
+    -- telescope.load_extension("file_browser")
     telescope.load_extension("live_grep_args")
   end,
 }

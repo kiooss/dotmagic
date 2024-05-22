@@ -1,0 +1,22 @@
+{
+  "Export csv": {
+    "prefix": "expcsv",
+    "body": [
+      "require 'csv'",
+      "output_file_path = Rails.root.join('')",
+      "csv = File.open(output_file_path, 'w')",
+      "csv.flock(File: :LOCK_EX)",
+      "bom = \"\\uFEFF\"",
+      "csv.print(bom.dup)",
+      "header = %w[]",
+      "csv.puts(header.to_csv(force_quotes: true))",
+      "_scope_.find_each do |obj|",
+      "  csv_column_values = []",
+      "  csv.puts(csv_column_values.to_csv(force_quotes: true))",
+      "end",
+      "",
+      "csv.flock(File: :LOCK_UN)",
+      "csv.close"
+    ]
+  }
+}

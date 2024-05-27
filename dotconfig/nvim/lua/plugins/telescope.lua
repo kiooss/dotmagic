@@ -49,8 +49,8 @@ return {
   },
   opts = function()
     local actions = require("telescope.actions")
-    local trouble = require("trouble.providers.telescope")
-    local borderless = true
+    local open_with_trouble = require("trouble.sources.telescope").open
+
     local lga_actions = require("telescope-live-grep-args.actions")
 
     return {
@@ -58,19 +58,22 @@ return {
         -- sorting_strategy = "ascending",
         prompt_prefix = " ",
         selection_caret = " ",
-        winblend = borderless and 0 or 10,
-        -- mappings = {
-        --   i = {
-        --     ["<C-u>"] = false, -- Mapping <C-u> to clear prompt
-        --     ["<c-t>"] = trouble.open_with_trouble,
-        --     ["<c-j>"] = actions.move_selection_next,
-        --     ["<c-k>"] = actions.move_selection_previous,
-        --     ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-        --     ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
-        --     ["<esc>"] = actions.close,
-        --     ["<C-h>"] = actions.which_key,
-        --   },
-        -- },
+        winblend = 0,
+        mappings = {
+          i = {
+            ["<C-u>"] = false, -- Mapping <C-u> to clear prompt
+            ["<c-t>"] = open_with_trouble,
+            ["<c-j>"] = actions.move_selection_next,
+            ["<c-k>"] = actions.move_selection_previous,
+            ["<C-Down>"] = actions.cycle_history_next,
+            ["<C-Up>"] = actions.cycle_history_prev,
+            ["<esc>"] = actions.close,
+            ["<C-h>"] = actions.which_key,
+          },
+          n = {
+            ["<c-t>"] = open_with_trouble,
+          },
+        },
       },
       pickers = {
         buffers = {

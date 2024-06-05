@@ -1,18 +1,4 @@
 return {
-  -- neodev
-  {
-    "folke/neodev.nvim",
-    opts = {
-      debug = true,
-      experimental = {
-        pathStrict = true,
-      },
-      library = {
-        runtime = "~/projects/neovim/runtime/",
-      },
-    },
-  },
-
   -- cmdline tools and lsp servers
   {
     "williamboman/mason.nvim",
@@ -34,7 +20,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       format = { timeout_ms = 60000 },
-      inlay_hints = { enabled = true },
+      diagnostics = { virtual_text = { prefix = "icons" } },
       capabilities = {
         workspace = {
           didChangeWatchedFiles = {
@@ -42,6 +28,7 @@ return {
           },
         },
       },
+      ---@type lspconfig.options
       servers = {
         bashls = {},
         clangd = {
@@ -56,17 +43,6 @@ return {
         html = {},
         intelephense = {},
         pyright = {},
-        -- rust_analyzer = {
-        --   settings = {
-        --     ["rust-analyzer"] = {
-        --       cargo = { allFeatures = true },
-        --       checkOnSave = {
-        --         command = "clippy",
-        --         extraArgs = { "--no-deps" },
-        --       },
-        --     },
-        --   },
-        -- },
         yamlls = {
           capabilities = {
             textDocument = {

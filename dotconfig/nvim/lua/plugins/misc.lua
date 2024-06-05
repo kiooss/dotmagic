@@ -1,4 +1,17 @@
 return {
+  { "justinsgithub/wezterm-types", lazy = true },
+  {
+    "folke/lazydev.nvim",
+    -- ft = "lua",
+    opts = {
+      runtime = "~/projects/neovim/runtime",
+      debug = true,
+      library = {
+        wezterm = "wezterm-types",
+      },
+      -- enabled = true,
+    },
+  },
   -- { "editorconfig/editorconfig-vim", event = "VeryLazy" },
   { "rhysd/committia.vim", lazy = false },
 

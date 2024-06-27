@@ -74,7 +74,9 @@ if [[ -d "$HOME/dev/flutter/.pub-cache/bin" ]]; then
   export PATH="$PATH":"$HOME/dev/flutter/.pub-cache/bin"
 fi
 
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+if [[ -d "/opt/homebrew/opt/llvm/bin" ]]; then
+  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+fi
 # }}}
 
 # EDITOR ENV {{{
@@ -203,6 +205,7 @@ if [[ "$OSTYPE" = darwin* ]]; then
     aliases-osx
     util-functions-osx
   )
+  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 else
   # plugin used in my dev machine.
   plugins=(
@@ -224,7 +227,6 @@ fi
 # }}}
 
 # fpath {{{
-fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 # autoload function in functions dir
 fpath=($ZDOTDIR/functions $fpath)
 # zsh-completions

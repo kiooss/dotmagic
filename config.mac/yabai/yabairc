@@ -23,10 +23,7 @@ yabai -m config \
   window_origin_display default \
   window_placement second_child \
   window_zoom_persist on \
-  window_topmost on \
   window_shadow off \
-  window_animation_duration 0.0 \
-  window_animation_frame_rate 120 \
   window_opacity_duration 0.0 \
   active_window_opacity 1.0 \
   normal_window_opacity 0.90 \

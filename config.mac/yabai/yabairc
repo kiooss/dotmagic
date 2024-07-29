@@ -58,25 +58,11 @@ yabai -m config \
 # yabai -m config window_gap 06
 
 # Rules
-yabai -m rule --add app="^Calendar$" manage=off
-yabai -m rule --add app="^Dictionary$" manage=off
-yabai -m rule --add app="^Disk Utility$" manage=off
-yabai -m rule --add app="^Postlab$" manage=off
-yabai -m rule --add app="^Simulator$" manage=off
-yabai -m rule --add app="^System Preferences$" manage=off
-yabai -m rule --add app="^システム環境設定$" manage=off
-yabai -m rule --add app="^Electron$" manage=off
-yabai -m rule --add app="^Parallels Desktop$" manage=off
-yabai -m rule --add app="^FortiClient$" manage=off
-yabai -m rule --add app="^TencentMeeting$" manage=off
-yabai -m rule --add app="^zoom.us$" manage=off
-yabai -m rule --add app="^Infuse$" manage=off
-yabai -m rule --add app="^Karabiner.*$" manage=off
-yabai -m rule --add app="^アクティビティモニタ$" manage=off
+yabai -m rule --add app="FortiClient" manage=off
 # show digital colour meter topmost and on all spaces
-yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
-yabai -m rule --add app="^天天象棋$" manage=off
-yabai -m rule --add app="^Nexitally$" manage=off
+# yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
+yabai -m rule --add app="天天象棋" manage=off
+yabai -m rule --add app="Nexitally" manage=off
 
 # float every app except for belows.
 # yabai -m rule --add app!="^(kitty|Google Chrome)$" manage=off

@@ -65,11 +65,11 @@ return {
   --   opts = { snippet_engine = "luasnip" },
   -- },
 
-  {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    config = true,
-  },
+  -- {
+  --   "smjonas/inc-rename.nvim",
+  --   cmd = "IncRename",
+  --   config = true,
+  -- },
 
   {
     "ThePrimeagen/refactoring.nvim",

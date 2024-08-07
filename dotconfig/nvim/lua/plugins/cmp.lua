@@ -10,26 +10,48 @@ end
 
 return {
   "hrsh7th/nvim-cmp",
-  -- ft = "gitcommit",
-  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    "hrsh7th/cmp-emoji",
     "hrsh7th/cmp-cmdline",
     "dmitmel/cmp-cmdline-history",
     "octaltree/cmp-look",
   },
   ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
+    table.insert(
+      opts.sources,
+      { name = "look", keyword_length = 3, option = { convert_case = true, loud = true }, group_index = 0 }
+    )
+
     local cmp = require("cmp")
     -- local luasnip = require("luasnip")
-    local sources = {
-      { name = "nvim_lua" },
-      { name = "treesitter" },
-      { name = "tmux" },
-      { name = "emoji" },
-      { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
-    }
-    opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
+    -- local sources = {
+    --   { name = "nvim_lua" },
+    --   { name = "treesitter" },
+    --   { name = "tmux" },
+    --   { name = "emoji" },
+    --   { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
+    -- }
+    -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
+
+    -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline("/", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "buffer" },
+      }),
+    })
+
+    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        -- { name = 'cmdline_history', keyword_length = 3 },
+        { name = "cmdline" },
+      }),
+    })
+
     opts.mapping = cmp.mapping.preset.insert({
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -108,47 +130,47 @@ return {
       -- }),
     })
   end,
-  config = function(_, opts)
-    local cmp = require("cmp")
-    cmp.setup(opts)
-
-    cmp.setup.filetype("gitcommit", {
-      sources = cmp.config.sources({
-        { name = "luasnip" },
-        {
-          name = "buffer",
-          option = {
-            -- Options go into this table
-            get_bufnrs = function()
-              local bufs = {}
-              for _, win in ipairs(vim.api.nvim_list_wins()) do
-                bufs[vim.api.nvim_win_get_buf(win)] = true
-              end
-              return vim.tbl_keys(bufs)
-            end,
-          },
-        },
-        -- { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
-      }),
-    })
-
-    -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline("/", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "buffer" },
-      }),
-    })
-
-    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "path" },
-      }, {
-        -- { name = 'cmdline_history', keyword_length = 3 },
-        { name = "cmdline" },
-      }),
-    })
-  end,
+  -- config = function(_, opts)
+  --   local cmp = require("cmp")
+  --   cmp.setup(opts)
+  --
+  --   cmp.setup.filetype("gitcommit", {
+  --     sources = cmp.config.sources({
+  --       { name = "luasnip" },
+  --       {
+  --         name = "buffer",
+  --         option = {
+  --           -- Options go into this table
+  --           get_bufnrs = function()
+  --             local bufs = {}
+  --             for _, win in ipairs(vim.api.nvim_list_wins()) do
+  --               bufs[vim.api.nvim_win_get_buf(win)] = true
+  --             end
+  --             return vim.tbl_keys(bufs)
+  --           end,
+  --         },
+  --       },
+  --       -- { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
+  --     }),
+  --   })
+  --
+  --   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  --   cmp.setup.cmdline("/", {
+  --     mapping = cmp.mapping.preset.cmdline(),
+  --     sources = cmp.config.sources({
+  --       { name = "buffer" },
+  --     }),
+  --   })
+  --
+  --   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  --   cmp.setup.cmdline(":", {
+  --     mapping = cmp.mapping.preset.cmdline(),
+  --     sources = cmp.config.sources({
+  --       { name = "path" },
+  --     }, {
+  --       -- { name = 'cmdline_history', keyword_length = 3 },
+  --       { name = "cmdline" },
+  --     }),
+  --   })
+  -- end,
 }

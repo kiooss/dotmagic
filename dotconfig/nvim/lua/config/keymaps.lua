@@ -23,6 +23,7 @@ vim.keymap.set("n", "Q", "q") -- disable Ex mode
 vim.keymap.set("n", "g;", "g;zvzz")
 vim.keymap.set("n", "g,", "g,zvzz")
 vim.keymap.set("n", "<C-o>", "<c-o>zvzz")
+vim.keymap.set("n", "q", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
 
 vim.keymap.set("i", "jk", "<esc>")
 vim.keymap.set("i", "j<space>", "j")

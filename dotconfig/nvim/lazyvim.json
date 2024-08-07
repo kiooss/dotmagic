@@ -10,13 +10,12 @@
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
-    "lazyvim.plugins.extras.ui.alpha",
     "lazyvim.plugins.extras.ui.mini-animate",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "news": {
     "NEWS.md": "6520",
-    "doc/news.txt": "24447"
+    "doc/news.txt": "24450"
   },
   "version": 6
 }

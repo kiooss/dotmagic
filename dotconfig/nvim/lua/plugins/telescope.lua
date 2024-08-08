@@ -1,130 +1,90 @@
 return {
-  "nvim-telescope/telescope.nvim",
-  dependencies = {
-    -- { "nvim-telescope/telescope-file-browser.nvim" },
-    { "nvim-telescope/telescope-live-grep-args.nvim" },
-    { "nvim-telescope/telescope-symbols.nvim" },
-    -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-  },
-  keys = {
-    {
-      "<leader>/",
-      function()
-        require("telescope").extensions.live_grep_args.live_grep_args()
-      end,
-      desc = "Searches string",
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+      },
+      { "nvim-telescope/telescope-symbols.nvim" },
     },
-    {
-      "<leader>sv",
-      function()
-        require("telescope.builtin").live_grep({ search_dirs = { "~/vimwiki/" } })
-      end,
-      desc = "Searches wiki",
+    keys = {
+      {
+        "<leader>/",
+        function()
+          require("telescope").extensions.live_grep_args.live_grep_args()
+        end,
+        desc = "Searches string",
+      },
+      {
+        "<leader>sv",
+        function()
+          require("telescope.builtin").live_grep({ search_dirs = { "~/vimwiki/" } })
+        end,
+        desc = "Searches wiki",
+      },
+      {
+        "<leader>*",
+        function()
+          require("telescope.builtin").grep_string()
+        end,
+        desc = "Searches string under cursor",
+      },
+      {
+        "<leader>.",
+        function()
+          require("telescope.builtin").resume()
+        end,
+        desc = "Telescope resume",
+      },
+      {
+        "<leader>fp",
+        function()
+          require("telescope.builtin").find_files({
+            cwd = require("lazy.core.config").options.root,
+          })
+        end,
+        desc = "Find Plugin File",
+      },
+      { "<leader>gb", "<cmd>Telescope git_bcommits<CR>", desc = "buffer commits" },
+      { "<M-b>", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
     },
-    {
-      "<leader>*",
-      function()
-        require("telescope.builtin").grep_string()
-      end,
-      desc = "Searches string under cursor",
-    },
-    {
-      "<leader>.",
-      function()
-        require("telescope.builtin").resume()
-      end,
-      desc = "Telescope resume",
-    },
-    {
-      "<leader>fp",
-      function()
-        require("telescope.builtin").find_files({
-          cwd = require("lazy.core.config").options.root,
-        })
-      end,
-      desc = "Find Plugin File",
-    },
-    { "<leader>gb", "<cmd>Telescope git_bcommits<CR>", desc = "buffer commits" },
-    { "<M-b>", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
-  },
-  opts = function()
-    local actions = require("telescope.actions")
-    local open_with_trouble = require("trouble.sources.telescope").open
+    opts = function(_, opts)
+      local actions = require("telescope.actions")
+      local open_with_trouble = require("trouble.sources.telescope").open
 
-    local lga_actions = require("telescope-live-grep-args.actions")
+      local lga_actions = require("telescope-live-grep-args.actions")
 
-    return {
-      defaults = {
-        -- sorting_strategy = "ascending",
-        prompt_prefix = " ",
-        selection_caret = " ",
+      opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
         winblend = 0,
+        -- layout_strategy = "horizontal",
+        -- layout_config = {
+        --   horizontal = {
+        --     prompt_position = "top",
+        --     preview_width = 0.5,
+        --   },
+        --   width = 0.8,
+        --   height = 0.8,
+        --   preview_cutoff = 120,
+        -- },
+        -- sorting_strategy = "ascending",
         mappings = {
           i = {
             ["<C-u>"] = false, -- Mapping <C-u> to clear prompt
             ["<c-t>"] = open_with_trouble,
             ["<c-j>"] = actions.move_selection_next,
             ["<c-k>"] = actions.move_selection_previous,
-            ["<C-Down>"] = actions.cycle_history_next,
-            ["<C-Up>"] = actions.cycle_history_prev,
+            -- ["<C-Down>"] = actions.cycle_history_next,
+            -- ["<C-Up>"] = actions.cycle_history_prev,
             ["<esc>"] = actions.close,
             ["<C-h>"] = actions.which_key,
+            ["<C-q>"] = lga_actions.quote_prompt({ postfix = " -t " }),
+            ["<C-y>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
           },
           n = {
             ["<c-t>"] = open_with_trouble,
           },
         },
-      },
-      pickers = {
-        buffers = {
-          prompt_prefix = "﬘ ",
-        },
-        commands = {
-          prompt_prefix = " ",
-        },
-        git_files = {
-          show_untracked = true,
-        },
-        find_files = {
-          prompt_prefix = " ",
-          find_command = { "rg", "--files", "--hidden" },
-        },
-      },
-      extensions = {
-        -- fzy_native = { override_generic_sorter = false, override_file_sorter = true },
-        fzf = {
-          fuzzy = true, -- false will only do exact matching
-          override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true, -- override the file sorter
-          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-          -- the default case_mode is "smart_case"
-        },
-        -- frecency = {
-        --   show_scores = true,
-        --   default_workspace = "CWD",
-        -- },
-        live_grep_args = {
-          auto_quoting = true, -- enable/disable auto-quoting
-          -- define mappings, e.g.
-          mappings = { -- extend mappings
-            i = {
-              ["<C-q>"] = lga_actions.quote_prompt(),
-              ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-            },
-          },
-          -- ... also accepts theme settings, for example:
-          -- theme = "dropdown", -- use dropdown theme
-          -- theme = { }, -- use own theme spec
-          -- layout_config = { mirror=true }, -- mirror preview pane
-        },
-      },
-    }
-  end,
-  config = function(_, opts)
-    local telescope = require("telescope")
-    telescope.setup(opts)
-    telescope.load_extension("fzf")
-    -- telescope.load_extension("file_browser")
-    telescope.load_extension("live_grep_args")
-  end,
+      })
+    end,
+  },
 }

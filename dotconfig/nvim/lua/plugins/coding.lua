@@ -90,20 +90,28 @@ return {
           select = true,
         }),
         ["<Tab>"] = function(fallback)
-          if not cmp.select_next_item() then
-            if vim.bo.buftype ~= "prompt" and has_words_before() then
-              cmp.complete()
-            else
-              fallback()
+          if vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(1)
+          else
+            if not cmp.select_next_item() then
+              if vim.bo.buftype ~= "prompt" and has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
             end
           end
         end,
         ["<S-Tab>"] = function(fallback)
-          if not cmp.select_prev_item() then
-            if vim.bo.buftype ~= "prompt" and has_words_before() then
-              cmp.complete()
-            else
-              fallback()
+          if vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(-1)
+          else
+            if not cmp.select_prev_item() then
+              if vim.bo.buftype ~= "prompt" and has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
             end
           end
         end,

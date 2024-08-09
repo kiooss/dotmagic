@@ -46,6 +46,7 @@ return {
         desc = "Find Plugin File",
       },
       { "<leader>gb", "<cmd>Telescope git_bcommits<CR>", desc = "buffer commits" },
+      { "<leader>tt", "<cmd>Telescope filetypes<cr>", desc = "Filetypes List" },
       { "<M-b>", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
     },
     opts = function(_, opts)

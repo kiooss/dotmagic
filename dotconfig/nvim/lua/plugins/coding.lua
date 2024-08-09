@@ -198,7 +198,7 @@ return {
   {
     "garymjr/nvim-snippets",
     opts = {
-      extended_filetypes = { ruby = { "rails" }, eruby = { "html" }, all = { "_" } },
+      extended_filetypes = { ruby = { "rails" }, eruby = { "html" }, all = { "_" }, sh = { "shelldoc" } },
     },
   },
 

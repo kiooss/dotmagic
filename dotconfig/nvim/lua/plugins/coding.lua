@@ -306,7 +306,7 @@ return {
   --
   -- {
   --   "github/copilot.vim",
-  --   enabled = false,
+  --   enabled = false,Exafunction/codeium.vim
   --   event = "VeryLazy",
   --   init = function()
   --     vim.g.copilot_no_tab_map = 1
@@ -316,23 +316,18 @@ return {
   --     vim.keymap.set("i", "<c-j>", 'copilot#Accept("<CR>")', { expr = true })
   --   end,
   -- },
-  {
-    "Exafunction/codeium.vim",
-    event = "VeryLazy",
-    config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set("i", "<C-j>", function()
-        return vim.fn["codeium#Accept"]()
-      end, { expr = true })
-      vim.keymap.set("i", "<c-;>", function()
-        return vim.fn["codeium#CycleCompletions"](1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-,>", function()
-        return vim.fn["codeium#CycleCompletions"](-1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-x>", function()
-        return vim.fn["codeium#Clear"]()
-      end, { expr = true })
-    end,
-  },
+  -- {
+  --   "Exafunction/codeium.vim",
+  --   event = "InsertEnter",
+  --   enabled = false,
+  --   config = function()
+  --     -- Change '<C-g>' here to any keycode you like.
+  --     vim.keymap.set("i", "<C-j>", function()
+  --       return vim.fn["codeium#Accept"]()
+  --     end, { expr = true })
+  --     vim.keymap.set("i", "<c-x>", function()
+  --       return vim.fn["codeium#Clear"]()
+  --     end, { expr = true })
+  --   end,
+  -- },
 }

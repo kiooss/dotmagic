@@ -33,6 +33,7 @@ return {
           hl.TelescopePreviewTitle = { bg = c.bg_dark, fg = c.bg_dark }
           hl.TelescopeResultsTitle = { bg = c.bg_dark, fg = c.bg_dark }
           hl.CodeiumSuggestion = { fg = c.terminal_black, bold = true, italic = true }
+          hl.CmpGhostText = { fg = "#eb650c", italic = true }
         end,
       }
     end,

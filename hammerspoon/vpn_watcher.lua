@@ -2,28 +2,26 @@ local obj = {}
 
 obj.vpnConnected = false
 
-function obj:init(fnConnected, fnUnconnected)
-  obj.vpnConnected = hs.fnutils.contains(hs.network.interfaces(), "ppp0")
-  self.timer = hs.timer.doEvery(5, function()
-    self:checkVpnConnected(fnConnected, fnUnconnected)
-  end)
-end
+function obj:init(localIp, fnConnected, fnUnconnected)
+  self.menubar = hs.menubar.new()
+  self.menubar:setTitle("󰖂")
 
-function obj:checkVpnConnected(fnConnected, fnUnconnected)
-  local isVpnConnected = hs.fnutils.contains(hs.network.interfaces(), "ppp0")
-
-  if isVpnConnected and not obj.vpnConnected then
-    obj.vpnConnected = true
-    print("vpn Connected")
-    fnConnected()
-    return
-  end
-
-  if not isVpnConnected and obj.vpnConnected then
-    print("vpn not Connected")
-    obj.vpnConnected = false
-    fnUnconnected()
-  end
+  hs.network.reachability
+    .forAddress(localIp)
+    :setCallback(function(_, flags)
+      -- note that because having an internet connection at all will show the remote network
+      -- as "reachable", we instead look at whether or not our specific address is "local" instead
+      if (flags & hs.network.reachability.flags.isLocalAddress) > 0 then
+        -- VPN tunnel is up
+        self.menubar:setTitle("󰖂 🔐🈲🈲🈲🈲🈲🈲🈲🈲")
+        fnConnected()
+      else
+        -- VPN tunnel is down
+        fnUnconnected()
+        self.menubar:setTitle("󰖂")
+      end
+    end)
+    :start()
 end
 
 return obj

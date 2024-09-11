@@ -25,7 +25,7 @@ local wm = require("wm")
 local localConfig = require("local_config")
 local ime = require("ime")
 local urlBookmarks = require("url_bookmarks")
-local weather = require("weather")
+-- local weather = require("weather")
 local audioDevice = require("audio_device")
 local clipboard = require("clipboard")
 -- local clock = require("clock")
@@ -107,7 +107,7 @@ end
 local hyperMappings = {
   { "f1", "Launch apps", wm.launchApps },
   { "f2", "Move window to space", wm.moveWindowToSpace },
-  { "f3", "Broadcast current weather", partial(weather.sayCurrentWeather, weather) },
+  -- { "f3", "Broadcast current weather", partial(weather.sayCurrentWeather, weather) },
   { "left", "Move window to left half", partial(wm.resize, "leftHalf") },
   { "right", "Move window to right half", partial(wm.resize, "rightHalf") },
   { "up", "Move window to top half", partial(wm.resize, "topHalf") },
@@ -316,7 +316,7 @@ Install:andUse("Emojis", {
 
 ime:init()
 -- urlBookmarks:init()
--- weather:init(localConfig.weatherApiKey)
+-- weather:init(localConfig.weather.apiKey)
 audioDevice:init()
 clipboard:init()
 -- clock:init()

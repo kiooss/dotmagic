@@ -9,7 +9,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_STYLES[cursor]='bold'
 
-ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#55e1e6,bold'
 ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta,bold'
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'

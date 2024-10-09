@@ -9,6 +9,9 @@ return {
         markdown = { "markdownlint" },
       },
       linters = {
+        dotenv_linter = {
+          args = { "--skip", "UnorderedKey" },
+        },
         rubocop = {
           condition = function(ctx)
             return vim.fs.find({ ".rubocop.yml" }, { path = ctx.filename, upward = true })[1]

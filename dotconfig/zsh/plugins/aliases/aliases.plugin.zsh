@@ -83,3 +83,5 @@ alias mux="tmuxinator"
 alias dl="youtube-dl -f best"
 
 alias cats='highlight -O ansi --force'
+
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'

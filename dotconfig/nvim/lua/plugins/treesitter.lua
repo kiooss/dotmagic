@@ -99,4 +99,25 @@ return {
       { "windwp/nvim-ts-autotag", opts = {} },
     },
   },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      { "EmranMR/tree-sitter-blade" },
+    },
+    opts = function(_, opts)
+      ---@diagnostic disable-next-line: inject-field
+      require("nvim-treesitter.parsers").get_parser_configs().blade = {
+        install_info = {
+          url = "https://github.com/EmranMR/tree-sitter-blade",
+          files = { "src/parser.c" },
+          branch = "main",
+        },
+        filetype = "blade",
+      }
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "blade" })
+      end
+    end,
+  },
 }

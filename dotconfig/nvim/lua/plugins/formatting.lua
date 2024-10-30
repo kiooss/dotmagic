@@ -22,6 +22,8 @@ return {
         ["typescriptreact"] = { "dprint" },
         ["ruby"] = { "rubocop" },
         ["eruby"] = { "htmlbeautifier" },
+        php = { "pint" },
+        blade = { "blade-formatter" },
       },
       formatters = {
         shfmt = {

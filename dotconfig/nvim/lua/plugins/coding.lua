@@ -340,6 +340,7 @@ return {
   { -- lazy
     "ccaglak/namespace.nvim",
     keys = {
+      { "<leader>ci", "<cmd>Php class<cr>", "PHP import namespace" },
       { "<leader>la", "<cmd>Php classes<cr>" },
       { "<leader>lc", "<cmd>Php class<cr>" },
       { "<leader>ln", "<cmd>Php namespace<cr>" },

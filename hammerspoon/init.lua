@@ -53,7 +53,8 @@ end
 
 local cmdMappings = {
   { "f9", "Action Chooser", partial(clipboard.showActionChooser, clipboard) },
-  { "f12", "Audio Device Chooser", partial(audioDevice.show, audioDevice) },
+  { "up", "Audio Device Chooser", partial(audioDevice.show, audioDevice) },
+  { "down", "Audio Device Switch", partial(audioDevice.switch, audioDevice) },
 }
 
 for _, v in ipairs(cmdMappings) do

@@ -220,6 +220,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     local commentstrings = {
       dts = "// %s",
+      dotenv = "# %s",
     }
     local ft = vim.bo.filetype
     if commentstrings[ft] then

@@ -1,6 +1,27 @@
 return {
   {
+    "saghen/blink.cmp",
+    opts = {
+      keymap = {
+        preset = "enter",
+        ["<Tab>"] = {
+          "select_next",
+          "snippet_forward",
+          "fallback",
+        },
+
+        ["<S-Tab>"] = {
+          "select_prev",
+          "snippet_backward",
+          "fallback",
+        },
+      },
+    },
+  },
+
+  {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     dependencies = {
       "hrsh7th/cmp-cmdline",
       "dmitmel/cmp-cmdline-history",
@@ -280,35 +301,35 @@ return {
   },
 
   -- copilot
-  {
-    "zbirenbaum/copilot.lua",
-    enabled = false,
-    event = "VeryLazy",
-    opts = {
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 75,
-        keymap = {
-          accept = "<C-j>",
-          accept_word = false,
-          accept_line = false,
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        },
-      },
-      filetypes = {
-        sh = function()
-          if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
-            -- disable for .env files
-            return false
-          end
-          return true
-        end,
-      },
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   enabled = false,
+  --   event = "VeryLazy",
+  --   opts = {
+  --     suggestion = {
+  --       enabled = true,
+  --       auto_trigger = true,
+  --       debounce = 75,
+  --       keymap = {
+  --         accept = "<C-j>",
+  --         accept_word = false,
+  --         accept_line = false,
+  --         next = "<M-]>",
+  --         prev = "<M-[>",
+  --         dismiss = "<C-]>",
+  --       },
+  --     },
+  --     filetypes = {
+  --       sh = function()
+  --         if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
+  --           -- disable for .env files
+  --           return false
+  --         end
+  --         return true
+  --       end,
+  --     },
+  --   },
+  -- },
   --
   -- {
   --   "github/copilot.vim",

@@ -213,6 +213,7 @@ vim.filetype.add({
     -- INFO: Match filenames like - ".env.example", ".env.local" and so on
     ["%.env%.[%w_.-]+"] = "dotenv",
     [".*%.blade%.php"] = "blade",
+    [os.getenv("HOME") .. "/%.ssh/conf%.d/.*"] = "sshconfig",
   },
 })
 

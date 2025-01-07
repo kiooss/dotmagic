@@ -58,4 +58,23 @@ return {
       },
     },
   },
+
+  {
+    "ibhagwan/fzf-lua",
+    optional = true,
+    keys = {
+      {
+        "<leader>sv",
+        function()
+          local dirs = { "~/vimwiki/" }
+          require("fzf-lua").live_grep({
+            filespec = "-- " .. table.concat(vim.tbl_values(dirs), " "),
+            search = "",
+            formatter = "path.filename_first",
+          })
+        end,
+        desc = "Search Wiki",
+      },
+    },
+  },
 }

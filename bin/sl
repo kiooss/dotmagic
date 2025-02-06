@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ "$TMUX" = "" ]; then
+  echo 'Not in tmux'
+  exit 1
+fi
+
+if [ -f artisan ]; then
+  tmux rename-window 'Laravel DEV'
+  # tmux split-window -h
+  # tmux split-window
+  tmux send-keys -t =.1 "sail up" ENTER
+
+  tmux split-window -h
+  tmux send-keys -t =.2 "sleep 5 && sail artisan queue:work" ENTER
+
+  tmux split-window -v
+  tmux send-keys -t =.3 "sleep 5 && sail npm run dev" ENTER
+
+  exit 0
+fi

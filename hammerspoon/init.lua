@@ -274,7 +274,7 @@ hs.loadSpoon("SpoonInstall")
 local Install = spoon.SpoonInstall
 
 Install:andUse("ReloadConfiguration", { start = true })
--- Install:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
+Install:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
 -- Install:andUse("AClock", {
 --   config = { showDuration = 3 },
 --   fn = function(s)

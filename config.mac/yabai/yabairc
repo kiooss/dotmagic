@@ -14,7 +14,7 @@
 # sudo yabai --load-sa
 # yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-PADDING=2
+PADDING=6
 
 # global settings
 yabai -m config \

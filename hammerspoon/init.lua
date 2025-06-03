@@ -29,7 +29,7 @@ local urlBookmarks = require("url_bookmarks")
 local audioDevice = require("audio_device")
 local clipboard = require("clipboard")
 -- local clock = require("clock")
-local vpnWatcher = require("vpn_watcher")
+-- local vpnWatcher = require("vpn_watcher")
 local cheatsheet = require("cheatsheet")
 local caffeine = require("caffeine")
 require("application_watcher")
@@ -198,13 +198,13 @@ local cmdShiftMappings = {
   { "right", "Move window to right half", partial(wm.resize, "rightHalf") },
   { "up", "Move window to top half", partial(wm.resize, "topHalf") },
   { "down", "Move window to bottom half", partial(wm.resize, "bottomHalf") },
-  {
-    "p",
-    "Switch to pinyin",
-    function()
-      hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
-    end,
-  },
+  -- {
+  --   "p",
+  --   "Switch to pinyin",
+  --   function()
+  --     hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
+  --   end,
+  -- },
   { "v", "Show clipboard history", partial(clipboard.show, clipboard) },
 }
 
@@ -321,11 +321,11 @@ ime:init()
 audioDevice:init()
 clipboard:init()
 -- clock:init()
-vpnWatcher:init(localConfig.vpn_watcher.localIp, function()
-  util.say("Connected")
-end, function()
-  util.say("Disconnected")
-end)
+-- vpnWatcher:init(localConfig.vpn_watcher.localIp, function()
+--   util.say("Connected")
+-- end, function()
+--   util.say("Disconnected")
+-- end)
 -- caffeine:init()
 cheatsheet:init({
   hyperMappings = hyperMappings,

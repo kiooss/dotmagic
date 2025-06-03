@@ -57,7 +57,7 @@ return {
         --   mason = false,
         -- },
         vimls = {},
-        vuels = {},
+        -- vuels = {}, -- should use Volar for vue3
         -- tailwindcss = {},
         lua_ls = {
           -- enabled = false,

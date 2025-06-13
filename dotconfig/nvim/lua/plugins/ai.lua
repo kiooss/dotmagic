@@ -17,7 +17,7 @@ return {
       --   max_tokens = 4096,
       -- },
       provider = "deepseek",
-      vendors = {
+      providers = {
         deepseek = {
           __inherited_from = "openai",
           -- api_key_name = "cmd:bw get notes anthropic-api-key",

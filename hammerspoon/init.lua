@@ -52,7 +52,7 @@ local function yabai(...)
 end
 
 local cmdMappings = {
-  { "f9", "Action Chooser", partial(clipboard.showActionChooser, clipboard) },
+  { "right", "Action Chooser", partial(clipboard.showActionChooser, clipboard) },
   { "up", "Audio Device Chooser", partial(audioDevice.show, audioDevice) },
   { "down", "Audio Device Switch", partial(audioDevice.switch, audioDevice) },
 }

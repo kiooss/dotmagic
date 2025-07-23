@@ -27,6 +27,11 @@ function obj:init()
   end)
   self.chooser:placeholderText("Search clipboard history")
 
+  self.chooser:rightClickCallback(function(index)
+    self:tooglePin(index)
+    self.chooser:choices(self:getChoices())
+  end)
+
   self.actionChooser = hs.chooser.new(function(choice)
     if choice then
       if choice.action == "clear" then
@@ -93,6 +98,24 @@ function obj:pinHistory()
   if db:exec(sql) == hs.sqlite3.OK then
     hs.alert.show("Latest clipboard history pinned!")
   end
+  db:close()
+end
+
+function obj:tooglePin(index)
+  local db = self:db()
+  local text = self.chooser:selectedRowContents(index).raw
+
+  util.d(text)
+  local sql = "update history set mark = 1 - mark where text = ?"
+  local stmt = db:prepare(sql)
+  stmt:bind_values(text)
+
+  -- Check the result
+  if stmt:step() ~= hs.sqlite3.DONE then
+    hs.alert.show("Update clipboard database failed!")
+  end
+
+  stmt:finalize()
   db:close()
 end
 

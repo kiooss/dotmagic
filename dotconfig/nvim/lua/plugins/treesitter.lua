@@ -24,6 +24,7 @@ return {
     opts = {
       ensure_installed = {
         "bash",
+        "blade",
         "c",
         "cmake",
         "cpp",
@@ -107,17 +108,17 @@ return {
     },
     opts = function(_, opts)
       ---@diagnostic disable-next-line: inject-field
-      require("nvim-treesitter.parsers").get_parser_configs().blade = {
-        install_info = {
-          url = "https://github.com/EmranMR/tree-sitter-blade",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-        filetype = "blade",
-      }
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "blade" })
-      end
+      -- require("nvim-treesitter.parsers").get_parser_configs().blade = {
+      --   install_info = {
+      --     url = "https://github.com/EmranMR/tree-sitter-blade",
+      --     files = { "src/parser.c" },
+      --     branch = "main",
+      --   },
+      --   filetype = "blade",
+      -- }
+      -- if type(opts.ensure_installed) == "table" then
+      --   vim.list_extend(opts.ensure_installed, { "blade" })
+      -- end
     end,
   },
 }

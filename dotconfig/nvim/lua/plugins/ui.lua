@@ -96,7 +96,7 @@ return {
   },
 
   {
-    "echasnovski/mini.hipatterns",
+    "nvim-mini/mini.hipatterns",
     opts = function(_, opts)
       vim.list_extend(opts.tailwind.ft, {
         "eruby",

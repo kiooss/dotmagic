@@ -59,3 +59,5 @@ zstyle ':completion:*' squeeze-shlashes 'yes'
 zstyle ':completion::complete:*' '\\'
 
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+
+zstyle ':completion:*:*:scp:*' file-sort modification

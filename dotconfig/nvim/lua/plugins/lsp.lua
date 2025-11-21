@@ -21,13 +21,6 @@ return {
     opts = {
       format = { timeout_ms = 60000 },
       diagnostics = { virtual_text = { prefix = "icons" } },
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = false,
-          },
-        },
-      },
       ---@type lspconfig.options
       servers = {
         bashls = {},

@@ -32,20 +32,20 @@ return {
 
   { "tjdevries/cyclist.vim", lazy = false },
 
-  -- add folding range to capabilities
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
-    },
-  },
+  -- -- add folding range to capabilities
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     capabilities = {
+  --       textDocument = {
+  --         foldingRange = {
+  --           dynamicRegistration = false,
+  --           lineFoldingOnly = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 
   {
     "rasulomaroff/reactive.nvim",

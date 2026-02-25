@@ -272,7 +272,8 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="--height 100% --reverse --border --history=$HOME/.fzf_history"
 export FZF_CTRL_R_OPTS="--preview-window up:3 --preview 'echo {}'"
 export FZF_CTRL_T_OPTS="--preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500'"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 _fzf_complete_ssh() {
   _fzf_complete +m -- "$@" < <(

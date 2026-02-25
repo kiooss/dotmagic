@@ -22,7 +22,6 @@ return {
   },
 
   -- additional text objects
-  { "wellle/targets.vim", event = "VeryLazy" },
   { "kana/vim-textobj-user", lazy = false, priority = 99 },
   { "kana/vim-textobj-entire", event = "VeryLazy" },
   { "kana/vim-textobj-function", event = "VeryLazy" },

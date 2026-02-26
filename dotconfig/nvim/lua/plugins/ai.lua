@@ -4,7 +4,9 @@ return {
     event = "VeryLazy",
     lazy = false,
     enabled = true,
-    version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
     opts = {
       -- add any opts here
       -- for example
@@ -17,6 +19,7 @@ return {
       --   max_tokens = 4096,
       -- },
       provider = "deepseek",
+      -- provider = "gemini-cli",
       providers = {
         deepseek = {
           __inherited_from = "openai",
@@ -26,7 +29,19 @@ return {
           model = "deepseek-chat",
           max_tokens = 8192,
         },
+        gemini = {},
       },
+      acp_providers = {
+        ["gemini-cli"] = {
+          command = "gemini",
+          args = { "--experimental-acp" },
+          env = {
+            NODE_NO_WARNINGS = "1",
+            GEMINI_API_KEY = os.getenv("AVANTE_GEMINI_API_KEY"),
+          },
+        },
+      },
+
       -- provider = "deepseek",
       -- vendors = {
       --   deepseek = {

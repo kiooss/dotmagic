@@ -45,7 +45,7 @@ typeset -U path cdpath fpath manpath
 [[ -d ~/workspace ]] && export CODE_DIR=~/workspace
 [[ -d ~/.cache ]] && export CACHE_DIR=~/.cache
 
-[[ -f "$ZDOTDIR/.zshrc.local" ]] && source "$ZDOTDIR/.zshrc.local"
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
 [[ "$OSTYPE" = darwin* ]] && export SUDO_ASKPASS="$DOTFILES/bin/macos_sudo_askpass.sh"
 # }}}

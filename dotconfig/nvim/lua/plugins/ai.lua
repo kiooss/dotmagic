@@ -18,8 +18,9 @@ return {
       --   temperature = 0, -- adjust if needed
       --   max_tokens = 4096,
       -- },
-      provider = "deepseek",
-      -- provider = "gemini-cli",
+      -- provider = "deepseek",
+      provider = "gemini-cli",
+      -- provider = "gemini",
       providers = {
         deepseek = {
           __inherited_from = "openai",
@@ -29,19 +30,18 @@ return {
           model = "deepseek-chat",
           max_tokens = 8192,
         },
-        gemini = {},
       },
-      acp_providers = {
-        ["gemini-cli"] = {
-          command = "gemini",
-          args = { "--experimental-acp" },
-          env = {
-            NODE_NO_WARNINGS = "1",
-            GEMINI_API_KEY = os.getenv("AVANTE_GEMINI_API_KEY"),
-          },
-        },
-      },
-
+      -- acp_providers = {
+      --   ["gemini-cli"] = {
+      --     command = "gemini",
+      --     args = { "--experimental-acp" },
+      --     env = {
+      --       NODE_NO_WARNINGS = "1",
+      --       GEMINI_API_KEY = os.getenv("AVANTE_GEMINI_API_KEY"),
+      --     },
+      --   },
+      -- },
+      --
       -- provider = "deepseek",
       -- vendors = {
       --   deepseek = {

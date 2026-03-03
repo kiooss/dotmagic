@@ -11,6 +11,7 @@ return {
         "shellcheck",
         "shellharden",
         "shfmt",
+        "blade-formatter",
       })
     end,
   },

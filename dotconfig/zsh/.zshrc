@@ -77,6 +77,8 @@ fi
 if [[ -d "/opt/homebrew/opt/llvm/bin" ]]; then
   export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
 # EDITOR ENV {{{

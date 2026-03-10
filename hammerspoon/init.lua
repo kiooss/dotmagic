@@ -62,9 +62,9 @@ for _, v in ipairs(cmdMappings) do
 end
 
 hs.hotkey.bind({ "alt" }, "tab", hs.hints.windowHints)
-hs.hotkey.bind({ "alt" }, "\\", "yabai focus recent", function()
-  yabai("-m", "window", "--focus", "recent")
-end)
+-- hs.hotkey.bind({ "alt" }, "\\", "yabai focus recent", function()
+--   yabai("-m", "window", "--focus", "recent")
+-- end)
 
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
@@ -93,9 +93,9 @@ local hyperCmdMappings = {
   s = function()
     hs.caffeinate.systemSleep()
   end,
-  y = function()
-    yabai("--restart-service")
-  end,
+  -- y = function()
+  --   yabai("--restart-service")
+  -- end,
   z = function()
     util.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
   end,
@@ -130,41 +130,41 @@ end
 
 -- cmd + shift bindings
 local cmdShiftMappings = {
-  {
-    "=",
-    "Balance out all windows",
-    function()
-      yabai("-m", "space", "--balance")
-    end,
-  },
-  {
-    "\\",
-    "Rotate the window tree clock-wise",
-    function()
-      yabai("-m", "space", "--rotate", "90")
-    end,
-  },
-  {
-    "delete", -- backspace
-    "Yabai toggle space padding",
-    function()
-      yabai("-m", "space", "--toggle", "padding")
-    end,
-  },
-  {
-    "return",
-    "Zoom fullscreen",
-    function()
-      yabai("-m", "window", "--toggle", "zoom-fullscreen")
-    end,
-  },
-  {
-    "f",
-    "Toggle whether the focused window should be tiled",
-    function()
-      yabai("-m", "window", "--toggle", "float")
-    end,
-  },
+  -- {
+  --   "=",
+  --   "Balance out all windows",
+  --   function()
+  --     yabai("-m", "space", "--balance")
+  --   end,
+  -- },
+  -- {
+  --   "\\",
+  --   "Rotate the window tree clock-wise",
+  --   function()
+  --     yabai("-m", "space", "--rotate", "90")
+  --   end,
+  -- },
+  -- {
+  --   "delete", -- backspace
+  --   "Yabai toggle space padding",
+  --   function()
+  --     yabai("-m", "space", "--toggle", "padding")
+  --   end,
+  -- },
+  -- {
+  --   "return",
+  --   "Zoom fullscreen",
+  --   function()
+  --     yabai("-m", "window", "--toggle", "zoom-fullscreen")
+  --   end,
+  -- },
+  -- {
+  --   "f",
+  --   "Toggle whether the focused window should be tiled",
+  --   function()
+  --     yabai("-m", "window", "--toggle", "float")
+  --   end,
+  -- },
   { ";", "Move to next screen", wm.moveToNextScreen },
   {
     "h",
@@ -212,7 +212,7 @@ for _, v in ipairs(cmdShiftMappings) do
   hs.hotkey.bind({ "cmd", "shift" }, table.unpack(v))
 end
 
-hs.hotkey.bind({}, "f6", "Swap with window under cursor", partial(yabai, "-m", "window", "--swap", "mouse"))
+-- hs.hotkey.bind({}, "f6", "Swap with window under cursor", partial(yabai, "-m", "window", "--swap", "mouse"))
 
 -- app laucher
 local appMappings = {
@@ -283,16 +283,16 @@ Install:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
 --     end)
 --   end,
 -- })
-Install:andUse("KSheet", {
-  hotkeys = {
-    toggle = { { "cmd", "ctrl" }, "/" },
-  },
-})
-Install:andUse("Emojis", {
-  hotkeys = {
-    toggle = { { "cmd", "ctrl" }, "e" },
-  },
-})
+-- Install:andUse("KSheet", {
+--   hotkeys = {
+--     toggle = { { "cmd", "ctrl" }, "/" },
+--   },
+-- })
+-- Install:andUse("Emojis", {
+--   hotkeys = {
+--     toggle = { { "cmd", "ctrl" }, "e" },
+--   },
+-- })
 -- Install:andUse("DeepLTranslate", {
 --   disable = true,
 --   config = {

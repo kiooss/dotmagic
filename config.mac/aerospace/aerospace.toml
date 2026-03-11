@@ -140,7 +140,7 @@ on-mode-changed = []
     alt-9 = 'workspace 9'
 
     # alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-    # alt-b = 'workspace B'
+    alt-b = 'workspace B'
     # alt-c = 'workspace C'
     # alt-d = 'workspace D'
     # alt-e = 'workspace E'
@@ -153,8 +153,8 @@ on-mode-changed = []
     # alt-p = 'workspace P'
     # alt-q = 'workspace Q'
     # alt-r = 'workspace R'
-    # alt-s = 'workspace S'
-    # alt-t = 'workspace T'
+    alt-s = 'workspace S'
+    alt-t = 'workspace T'
     # alt-u = 'workspace U'
     # alt-v = 'workspace V'
     # alt-w = 'workspace W'
@@ -174,7 +174,7 @@ on-mode-changed = []
     alt-shift-9 = 'move-node-to-workspace 9'
     alt-shift-0 = 'move-node-to-workspace 10'
     # alt-shift-a = 'move-node-to-workspace A'
-    # alt-shift-b = 'move-node-to-workspace B'
+    alt-shift-b = 'move-node-to-workspace B'
     # alt-shift-c = 'move-node-to-workspace C'
     # alt-shift-d = 'move-node-to-workspace D'
     # alt-shift-e = 'move-node-to-workspace E'
@@ -187,8 +187,8 @@ on-mode-changed = []
     # alt-shift-p = 'move-node-to-workspace P'
     # alt-shift-q = 'move-node-to-workspace Q'
     # alt-shift-r = 'move-node-to-workspace R'
-    # alt-shift-s = 'move-node-to-workspace S'
-    # alt-shift-t = 'move-node-to-workspace T'
+    alt-shift-s = 'move-node-to-workspace S'
+    alt-shift-t = 'move-node-to-workspace T'
     # alt-shift-u = 'move-node-to-workspace U'
     # alt-shift-v = 'move-node-to-workspace V'
     # alt-shift-w = 'move-node-to-workspace W'
@@ -229,15 +229,15 @@ on-mode-changed = []
 # ブラウザを WS 1 へ移動
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace B'
 
 
 # ターミナル（Kitty や iTerm2）を WS 2 へ移動
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace T'
 
 # Slack や LINE などのチャットツールを WS 3 へ移動
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace S'

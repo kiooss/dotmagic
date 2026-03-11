@@ -179,12 +179,12 @@ done
 # my own zsh plugins
 my_plugins=(
   abbreviations
-  add-http-proxy
+  # add-http-proxy
   aliases
   auto-ls-after-cd
   # fix-ssh-agent
-  insert-datestamp
-  proxy
+  # insert-datestamp
+  # proxy
   mysql
   # thirsty
   # todotxt

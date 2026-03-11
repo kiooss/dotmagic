@@ -61,11 +61,6 @@ for _, v in ipairs(cmdMappings) do
   hs.hotkey.bind({ "cmd" }, table.unpack(v))
 end
 
-hs.hotkey.bind({ "alt" }, "tab", hs.hints.windowHints)
--- hs.hotkey.bind({ "alt" }, "\\", "yabai focus recent", function()
---   yabai("-m", "window", "--focus", "recent")
--- end)
-
 local hyperCmdMappings = {
   a = wm.showAllVisibleWindows,
   c = hs.toggleConsole,

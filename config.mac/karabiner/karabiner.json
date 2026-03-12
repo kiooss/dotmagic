@@ -6,6 +6,7 @@
                 "rules": [
                     {
                         "description": "Space to Left Alt if held, Space if tapped",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {

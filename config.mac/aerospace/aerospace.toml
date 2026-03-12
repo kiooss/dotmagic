@@ -241,15 +241,15 @@ on-mode-changed = []
 # ブラウザを WS 1 へ移動
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace B'
+run = ['move-node-to-workspace B', 'workspace B']
 
 
 # ターミナル（Kitty や iTerm2）を WS 2 へ移動
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace T'
+run = ['move-node-to-workspace T', 'workspace T']
 
 # Slack や LINE などのチャットツールを WS 3 へ移動
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace S'
+run = ['move-node-to-workspace S', 'workspace S']

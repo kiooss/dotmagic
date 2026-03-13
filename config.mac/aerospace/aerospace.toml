@@ -217,6 +217,9 @@ on-mode-changed = []
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
 
+    # Alt + Shift + P でパススルーモードに切り替え
+    alt-shift-p = 'mode passthrough'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -233,6 +236,10 @@ on-mode-changed = []
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
 
+[mode.passthrough.binding]
+    # Alt + Shift + P で通常モードに戻る
+    alt-shift-p = 'mode main'
+    # それ以外のキーはすべてOSにパススルーされる
 
 # ==========================================================
 # Application Auto-Assignment

@@ -219,6 +219,7 @@ on-mode-changed = []
 
     # Alt + Shift + P でパススルーモードに切り替え
     alt-shift-p = 'mode passthrough'
+    alt-shift-backspace = 'close-all-windows-but-current'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

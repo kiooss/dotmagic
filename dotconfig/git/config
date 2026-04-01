@@ -15,7 +15,6 @@
 	user = kiooss
 
 [core]
-	excludesfile = ~/.config/git/.gitignore_global
 	attributesfile = ~/.config/git/.gitattributes
 	quotepath = false
 	pager = delta

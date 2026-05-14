@@ -66,3 +66,6 @@ pyrightconfig.json
 
 .ignore
 .luarc.json
+
+# superpowers skill workspace
+.superpowers/

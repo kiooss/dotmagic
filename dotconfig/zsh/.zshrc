@@ -79,6 +79,11 @@ if [[ -d "/opt/homebrew/opt/llvm/bin" ]]; then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
+
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # }}}
 
 # EDITOR ENV {{{
@@ -184,7 +189,7 @@ my_plugins=(
   auto-ls-after-cd
   # fix-ssh-agent
   # insert-datestamp
-  # proxy
+  proxy
   mysql
   # thirsty
   # todotxt
@@ -429,3 +434,6 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
   exec 2>&3 3>&-
 fi
 # }}}
+
+# bun completions
+[ -s "/Users/yang/.bun/_bun" ] && source "/Users/yang/.bun/_bun"

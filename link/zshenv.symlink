@@ -26,3 +26,4 @@ if [[ -f "$HOME/.cargo/env" ]] then
 fi
 
 export Flutter_ROOT=$HOME/dev/flutter
+. "$HOME/.cargo/env"

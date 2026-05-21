@@ -87,3 +87,5 @@ alias cats='highlight -O ansi --force'
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 alias dep='vendor/bin/dep'
+
+alias claude-bedrock='AWS_PROFILE=claude-bedrock CLAUDE_CODE_USE_BEDROCK=1 claude'

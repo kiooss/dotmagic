@@ -437,3 +437,19 @@ fi
 
 # bun completions
 [ -s "/Users/yang/.bun/_bun" ] && source "/Users/yang/.bun/_bun"
+
+
+cc-bedrock() {
+  export CLAUDE_CODE_USE_BEDROCK=1 AWS_PROFILE=claude-bedrock;
+  export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-7'
+  export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-6'
+  export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+  claude "$@"
+}
+
+cc-pro()     {
+  unset CLAUDE_CODE_USE_BEDROCK AWS_PROFILE;
+  unset ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL;
+  claude "$@"
+}
+

@@ -1,6 +1,7 @@
 local obj = {}
 
 local function generateHyperMappings(mappings)
+  if not mappings then return "" end
   local html = "<h2>Hyper Mappings</h2><table><tr><th>Key</th><th>Desc</th></tr>"
 
   for _, v in ipairs(mappings) do
@@ -25,6 +26,7 @@ local function generateCmdShiftMappings(mappings)
 end
 
 local function generateAppMappings(mappings)
+  if not mappings then return "" end
   local html = "<h2>Lauch App Mappings</h2><table><tr><th>Key</th><th>Desc</th></tr>"
 
   for _, v in ipairs(mappings) do

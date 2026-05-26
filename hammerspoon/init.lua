@@ -20,7 +20,8 @@ else
 end
 
 local util = require("util")
-local hyper = require("hyper")
+-- Hyper modal moved to AeroSpace (Karabiner: Right Ctrl → cmd+alt+ctrl)
+-- local hyper = require("hyper")
 local wm = require("wm")
 local localConfig = require("local_config")
 local ime = require("ime")
@@ -61,67 +62,9 @@ for _, v in ipairs(cmdMappings) do
   hs.hotkey.bind({ "cmd" }, table.unpack(v))
 end
 
-local hyperCmdMappings = {
-  a = wm.showAllVisibleWindows,
-  c = hs.toggleConsole,
-  d = function() -- d for debug
-    hs.alert.show("FocusedWindow: " .. wm.getCurrentAppName())
-    hs.alert.show("FrontMostApp: " .. hs.application.frontmostApplication():name())
-    -- local frontmostApplication = hs.application.frontmostApplication()
-    -- A list of hs.window objects representing all visible windows, ordered from front to back
-    local allWindows = hs.window.orderedWindows()
+-- hyperCmdMappings removed; Hyper key moved to AeroSpace.
 
-    util.d("=== ordered windows ===")
-    for index, window in ipairs(allWindows) do
-      util.d(index .. ": Application: " .. window:application():name())
-      util.d(window)
-    end
-    util.d(hs.spaces.allSpaces())
-  end,
-  q = function()
-    hs.notify.withdrawAll()
-  end,
-  r = function()
-    hs.reload()
-    -- require("test")
-  end,
-  s = function()
-    hs.caffeinate.systemSleep()
-  end,
-  -- y = function()
-  --   yabai("--restart-service")
-  -- end,
-  z = function()
-    util.execute("~/.dotfiles/bin/x -d ~/workspace/osascript -a")
-  end,
-}
-
-for key, item in pairs(hyperCmdMappings) do
-  hyper:bind({ "cmd" }, key, item)
-end
-
-local hyperMappings = {
-  { "f1", "Launch apps", wm.launchApps },
-  { "f2", "Move window to space", wm.moveWindowToSpace },
-  -- { "f3", "Broadcast current weather", partial(weather.sayCurrentWeather, weather) },
-  { "left", "Move window to left half", partial(wm.resize, "leftHalf") },
-  { "right", "Move window to right half", partial(wm.resize, "rightHalf") },
-  { "up", "Move window to top half", partial(wm.resize, "topHalf") },
-  { "down", "Move window to bottom half", partial(wm.resize, "bottomHalf") },
-  { "return", "Maximize window with margin", wm.maximizeWindowWithMargin },
-  { "space", "Maximize all window with margin", wm.maximizeAllWindowWithMargin },
-  { "tab", "Switch To Next Window", partial(switcher.next, switcher) },
-  -- { "1", "Launch apps", partial(wm.switchWindow, 1) },
-  -- { "2", "Launch apps", partial(wm.switchWindow, 2) },
-  -- { "3", "Launch apps", partial(wm.switchWindow, 3) },
-  { "/", "Show cheatsheet", partial(cheatsheet.toggle, cheatsheet) },
-  { "pageup", "Volume up", util.volumeUp }, -- only native devices
-  { "pagedown", "Volume down", util.volumeDown },
-}
-
-for _, v in ipairs(hyperMappings) do
-  hyper:bind({}, table.unpack(v))
-end
+-- hyperMappings removed; Hyper key moved to AeroSpace.
 
 -- cmd + shift bindings
 local cmdShiftMappings = {
@@ -209,28 +152,7 @@ end
 
 -- hs.hotkey.bind({}, "f6", "Swap with window under cursor", partial(yabai, "-m", "window", "--swap", "mouse"))
 
--- app laucher
-local appMappings = {
-  { "b", "Safari" },
-  { "c", "Calendar" },
-  { "e", "Microsoft Edge" },
-  { "f", "Finder" },
-  { "g", "Google Chrome" },
-  { "m", "Microsoft Edge" },
-  { "p", "Microsoft PowerPoint" },
-  { "s", "Slack" },
-  { "t", "kitty" },
-  { "v", "FortiClient" },
-  { "w", "WeChat" },
-  { "x", "Microsoft Excel" },
-  { ",", "System Preferences" },
-}
-
-for _, v in ipairs(appMappings) do
-  hyper.bindApp({}, table.unpack(v))
-end
-
--- hyper.bindApp({}, ",", "System Preferences")
+-- App launchers moved to AeroSpace (cmd-alt-ctrl-<letter> exec-and-forget).
 -- open url
 local function openUrl(url, withClipboardContents)
   local hsHttp = require("hs.http")
@@ -323,9 +245,7 @@ clipboard:init()
 -- end)
 -- caffeine:init()
 cheatsheet:init({
-  hyperMappings = hyperMappings,
   cmdShiftMappings = cmdShiftMappings,
-  appMappings = appMappings,
 })
 -- watcher:init()
 -- event:init()

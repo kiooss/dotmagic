@@ -462,3 +462,30 @@ cc-pro()     {
   claude "$@"
 }
 
+# Public IP geolocation on startup {{{
+# Prints a cached one-line summary instantly, then refreshes the cache in the
+# background so the prompt is never blocked on the network (matters under p10k
+# instant prompt). Source: ipinfo.io. Manual refresh: `ipgeo`.
+_ipinfo_cache="${XDG_CACHE_HOME:-$HOME/.cache}/ipinfo.json"
+
+_ipinfo_refresh() {
+  curl -fsS --max-time 5 "https://ipinfo.io/json" -o "$_ipinfo_cache.tmp" \
+    && mv "$_ipinfo_cache.tmp" "$_ipinfo_cache" \
+    || rm -f "$_ipinfo_cache.tmp"
+}
+
+_ipinfo_show() {
+  [[ -f "$_ipinfo_cache" ]] || return 0
+  jq -r '"🌐 \(.ip)  \(.city), \(.region), \(.country)  (\(.org))"' \
+    "$_ipinfo_cache" 2>/dev/null
+}
+
+ipgeo() { _ipinfo_refresh && _ipinfo_show; }
+
+# Show cached value now, refresh for next time (only in interactive shells).
+if [[ -o interactive ]]; then
+  _ipinfo_show
+  ( _ipinfo_refresh & ) >/dev/null 2>&1
+fi
+# }}}
+

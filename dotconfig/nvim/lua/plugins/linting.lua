@@ -6,7 +6,7 @@ return {
         dotenv = { "dotenv_linter" },
         ruby = { "rubocop" },
         lua = { "selene", "luacheck" },
-        -- markdown = { "markdownlint" },
+        markdown = {},
       },
       linters = {
         dotenv_linter = {

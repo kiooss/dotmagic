@@ -231,6 +231,7 @@ on-mode-changed = []
     # Alt + Shift + P でパススルーモードに切り替え
     cmd-alt-ctrl-shift-p = 'mode passthrough'
     cmd-alt-ctrl-shift-backspace = 'close-all-windows-but-current'
+    cmd-alt-ctrl-shift-esc = 'close-all-windows-but-current'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

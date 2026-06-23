@@ -439,16 +439,25 @@ fi
 [ -s "/Users/yang/.bun/_bun" ] && source "/Users/yang/.bun/_bun"
 
 
+export CLAUDE_CODE_ENABLE_AUTO_MODE=1
+
 cc-bedrock() {
   export CLAUDE_CODE_USE_BEDROCK=1 AWS_PROFILE=claude-bedrock;
-  export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-7'
-  export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-6'
-  export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+
+  # export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-7'
+  # export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-6'
+  # export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+
+  export AWS_REGION=ap-northeast-1
+  export ANTHROPIC_DEFAULT_OPUS_MODEL='jp.anthropic.claude-opus-4-8'
+  export ANTHROPIC_DEFAULT_SONNET_MODEL='jp.anthropic.claude-sonnet-4-6'
+  export ANTHROPIC_DEFAULT_HAIKU_MODEL='jp.anthropic.claude-haiku-4-5-20251001-v1:0'
+
   claude "$@"
 }
 
 cc-pro()     {
-  unset CLAUDE_CODE_USE_BEDROCK AWS_PROFILE;
+  unset CLAUDE_CODE_USE_BEDROCK AWS_PROFILE AWS_REGION;
   unset ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL;
   claude "$@"
 }

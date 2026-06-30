@@ -19,7 +19,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 0
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -163,15 +163,15 @@ on-mode-changed = []
     # cmd-alt-ctrl-z = 'workspace Z'
 
     # App launchers (migrated from Hammerspoon hyper modal)
-    cmd-alt-ctrl-c     = 'exec-and-forget open -a "Calendar"'
-    cmd-alt-ctrl-e     = 'exec-and-forget open -a "Microsoft Edge"'
-    cmd-alt-ctrl-f     = 'exec-and-forget open -a "Finder"'
-    cmd-alt-ctrl-g     = 'exec-and-forget open -a "Google Chrome"'
-    cmd-alt-ctrl-p     = 'exec-and-forget open -a "Microsoft PowerPoint"'
-    cmd-alt-ctrl-v     = 'exec-and-forget open -a "FortiClient"'
-    cmd-alt-ctrl-w     = 'exec-and-forget open -a "WeChat"'
-    cmd-alt-ctrl-x     = 'exec-and-forget open -a "Microsoft Excel"'
-    cmd-alt-ctrl-period = 'exec-and-forget open -a "System Settings"'
+    # cmd-alt-ctrl-c     = 'exec-and-forget open -a "Calendar"'
+    # cmd-alt-ctrl-e     = 'exec-and-forget open -a "Microsoft Edge"'
+    # cmd-alt-ctrl-f     = 'exec-and-forget open -a "Finder"'
+    # cmd-alt-ctrl-g     = 'exec-and-forget open -a "Google Chrome"'
+    # cmd-alt-ctrl-p     = 'exec-and-forget open -a "Microsoft PowerPoint"'
+    # cmd-alt-ctrl-v     = 'exec-and-forget open -a "FortiClient"'
+    # cmd-alt-ctrl-w     = 'exec-and-forget open -a "WeChat"'
+    # cmd-alt-ctrl-x     = 'exec-and-forget open -a "Microsoft Excel"'
+    # cmd-alt-ctrl-period = 'exec-and-forget open -a "System Settings"'
 
     cmd-alt-ctrl-0 = 'move-node-to-workspace 10'
 

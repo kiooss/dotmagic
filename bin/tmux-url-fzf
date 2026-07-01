@@ -29,12 +29,9 @@ urls="$(
 )"
 
 if [ -z "$urls" ]; then
-  # Bordered notice matching the fzf theme (magenta, rounded).
-  m=$'\033[35m'; d=$'\033[2m'; r=$'\033[0m'
-  printf '%s╭─ url ──────────────╮%s\n' "$m" "$r"
-  printf '%s│%s  no URLs on pane   %s│%s\n' "$m" "$r" "$m" "$r"
-  printf '%s╰────────────────────╯%s\n' "$m" "$r"
-  printf '  %spress any key%s\n' "$d" "$r"
+  # The popup itself is bordered (-b rounded); just print the notice.
+  d=$'\033[2m'; r=$'\033[0m'
+  printf 'no URLs on this pane\n%spress any key%s\n' "$d" "$r"
   # -E closes the popup on exit; pause so the message is readable.
   read -rn1 -s
   exit 0
@@ -44,11 +41,9 @@ selected="$(printf '%s\n' "$urls" \
   | fzf --multi \
         --prompt='url> ' \
         --pointer='▶' \
-        --border=rounded \
-        --border-label=' url ' \
         --header='enter:open  tab:multi  esc:cancel' \
         --info=inline \
-        --color='border:magenta,label:magenta,prompt:magenta,pointer:magenta,header:8' \
+        --color='prompt:magenta,pointer:magenta,header:8' \
         --preview='echo {}' \
         --preview-window='down,1,border-top,wrap')" || exit 0
 

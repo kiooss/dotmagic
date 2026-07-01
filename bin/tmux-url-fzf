@@ -3,7 +3,10 @@
 # Usage: tmux-url-fzf <pane_id>
 set -uo pipefail
 
-pane="${1:?pane id required}"
+# Resolve the source pane. display-popup does NOT format-expand its command
+# argument, so a binding can't pass #{pane_id}; from inside the popup the
+# active pane still resolves to the launching pane, so query it directly.
+pane="${1:-$(tmux display-message -p '#{pane_id}')}"
 
 # Resolve the browser opener once.
 case "$(uname)" in

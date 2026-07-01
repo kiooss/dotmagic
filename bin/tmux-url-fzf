@@ -36,8 +36,16 @@ if [ -z "$urls" ]; then
 fi
 
 selected="$(printf '%s\n' "$urls" \
-  | fzf --multi --prompt='url> ' \
-        --preview='echo {}' --preview-window=down:3:wrap)" || exit 0
+  | fzf --multi \
+        --prompt='url> ' \
+        --pointer='▶' \
+        --border=rounded \
+        --border-label=' url ' \
+        --header='enter:open  tab:multi  esc:cancel' \
+        --info=inline \
+        --color='border:magenta,label:magenta,prompt:magenta,pointer:magenta,header:8' \
+        --preview='echo {}' \
+        --preview-window='down,1,border-top,wrap')" || exit 0
 
 [ -z "$selected" ] && exit 0
 

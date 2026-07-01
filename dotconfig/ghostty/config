@@ -27,8 +27,8 @@ font-size = 14
 
 # calt = contextual alternates (texture healing), liga = ligatures,
 # ss01-ss09 = Monaspace stylistic sets.
-# font-feature = calt
-# font-feature = liga
+font-feature = calt
+font-feature = liga
 # font-feature = ss01
 # font-feature = ss02
 # font-feature = ss03
@@ -51,20 +51,30 @@ font-thicken = true
 # ── Window ───────────────────────────────────────────────────────────────
 # window-width = 1920
 # window-height = 1200
-# window-padding-x = 8
-# window-padding-y = 6
-# window-padding-balance = true
+window-padding-x = 8
+window-padding-y = 6
+window-padding-balance = true
 # Hide the titlebar but keep native tabs (kitty: hide_window_decorations titlebar-only)
 # window-decoration = auto
 # macos-titlebar-style = tabs
 # window-inherit-working-directory = true
 # window-inherit-font-size = true
 
+# ── Appearance ───────────────────────────────────────────────────────────
+# Frosted-glass background; blur only takes effect while translucent.
+background-opacity = 0.95
+background-blur = 20
+# Dim the non-focused split so the active one stands out.
+unfocused-split-opacity = 0.7
+
 # ── macOS ────────────────────────────────────────────────────────────────
 macos-option-as-alt = true
 # window-colorspace = display-p3
 # quit-after-last-window-closed = true
 mouse-hide-while-typing = true
+# Quick-terminal drops down from the top; snappy animation.
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.1
 
 # ── Behavior ─────────────────────────────────────────────────────────────
 # copy-on-select = clipboard
@@ -91,3 +101,20 @@ keybind = super+left_bracket=previous_tab
 
 # shift+enter -> CSI u (kitty: map shift+enter send_text all \x1b[13;2u)
 keybind = shift+enter=text:\x1b[13;2u
+
+# Splits (native, independent of tmux)
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+keybind = super+alt+left=goto_split:left
+keybind = super+alt+right=goto_split:right
+keybind = super+alt+up=goto_split:up
+keybind = super+alt+down=goto_split:down
+keybind = super+shift+enter=toggle_split_zoom
+
+# Quake-style drop-down terminal, summonable from any app.
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+# Chord prefix (tmux-like): press super+s, then the next key.
+keybind = super+s>r=reload_config
+keybind = super+s>1=goto_tab:1
+keybind = super+s>2=goto_tab:2

@@ -6,10 +6,11 @@
 # ── Theme ────────────────────────────────────────────────────────────────
 # Matches the kitty tokyonight_storm setup. `theme` can differ light/dark:
 #   theme = light:TokyoNight Day,dark:TokyoNight Storm
-theme = TokyoNight Storm
+# theme = TokyoNight Storm
 # cursor-color = 4fd6be
 # background-opacity = 0.9
 # background-blur = 20
+config-file = ?auto/theme.ghostty
 
 # ── Font ─────────────────────────────────────────────────────────────────
 # Monaspace Neon + all the texture-healing / ligature stylistic sets that
@@ -17,6 +18,8 @@ theme = TokyoNight Storm
 # automatically, so only the base family is named.
 # font-family = Monaspace Neon Var
 # font-size = 12
+font-family = "JetBrains Mono"
+font-size = 12
 
 # calt = contextual alternates (texture healing), liga = ligatures,
 # ss01-ss09 = Monaspace stylistic sets.

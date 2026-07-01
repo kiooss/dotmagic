@@ -55,7 +55,7 @@ font-size = 12
 # window-inherit-font-size = true
 
 # ── macOS ────────────────────────────────────────────────────────────────
-# macos-option-as-alt = true
+macos-option-as-alt = true
 # window-colorspace = display-p3
 # quit-after-last-window-closed = true
 # mouse-hide-while-typing = true

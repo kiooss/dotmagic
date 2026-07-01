@@ -18,8 +18,12 @@ config-file = ?auto/theme.ghostty
 # automatically, so only the base family is named.
 # font-family = Monaspace Neon Var
 # font-size = 12
-font-family = "JetBrains Mono"
-font-size = 12
+# font-family = "JetBrains Mono"
+# font-family = "Monaspace Argon Var"
+# font-family = "PlemolJP"
+font-family = "UDEV Gothic NF"
+# font-family = "Moralerspace Neon"
+font-size = 14
 
 # calt = contextual alternates (texture healing), liga = ligatures,
 # ss01-ss09 = Monaspace stylistic sets.
@@ -37,7 +41,9 @@ font-size = 12
 
 # Ghostty ships Nerd Font symbols built-in, so no symbol_map is needed.
 # Slightly thicken glyphs on the Retina display (kitty had no equivalent).
-# font-thicken = true
+
+font-thicken = true
+
 # Note: Ghostty has no direct analog to kitty's `modify_font baseline -2`;
 # use `adjust-cell-height` / `adjust-font-baseline` if vertical tweaking is
 # needed later.
@@ -58,7 +64,7 @@ font-size = 12
 macos-option-as-alt = true
 # window-colorspace = display-p3
 # quit-after-last-window-closed = true
-# mouse-hide-while-typing = true
+mouse-hide-while-typing = true
 
 # ── Behavior ─────────────────────────────────────────────────────────────
 # copy-on-select = clipboard

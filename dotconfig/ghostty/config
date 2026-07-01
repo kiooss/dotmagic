@@ -54,11 +54,12 @@ font-thicken = true
 window-padding-x = 8
 window-padding-y = 6
 window-padding-balance = true
-# Hide the titlebar but keep native tabs (kitty: hide_window_decorations titlebar-only)
-# window-decoration = auto
-# macos-titlebar-style = tabs
+# Native tab bar in the titlebar — clearest way to see many Claude sessions.
+macos-titlebar-style = tabs
 # window-inherit-working-directory = true
 # window-inherit-font-size = true
+# Restore window/tab/split layout on relaunch (does not restore processes).
+window-save-state = always
 
 # ── Appearance ───────────────────────────────────────────────────────────
 # Frosted-glass background; blur only takes effect while translucent.
@@ -66,27 +67,38 @@ background-opacity = 0.95
 background-blur = 20
 # Dim the non-focused split so the active one stands out.
 unfocused-split-opacity = 0.7
+# Wider gamut for richer TokyoNight colors.
+window-colorspace = display-p3
+# Force a minimum fg/bg contrast so dim text never melts into the background.
+minimum-contrast = 1.1
 
 # ── macOS ────────────────────────────────────────────────────────────────
 macos-option-as-alt = true
-# window-colorspace = display-p3
 # quit-after-last-window-closed = true
 mouse-hide-while-typing = true
+# Distraction-free fullscreen for pairing with Claude.
+macos-non-native-fullscreen = true
 # Quick-terminal drops down from the top; snappy animation.
 quick-terminal-position = top
 quick-terminal-animation-duration = 0.1
+# Keep the drop-down Claude session alive when it loses focus; show on the
+# screen the mouse is on.
+quick-terminal-autohide = false
+quick-terminal-screen = mouse
 
 # ── Behavior ─────────────────────────────────────────────────────────────
-# copy-on-select = clipboard
-# scrollback-limit = 10000000
-# shell-integration = detect
-# shell-integration-features = cursor,sudo,title
+# Mouse-select copies straight to the clipboard (grab Claude's commands fast).
+copy-on-select = clipboard
+scrollback-limit = 10000000
+# Shell integration: title updates, prompt-jumping, smart cursor, sudo.
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
 # Audible bell off; keep it subtle.
 # link-url = true is the default (cmd+click opens URLs)
 
 # ── Cursor ───────────────────────────────────────────────────────────────
-# cursor-style = block
-# cursor-style-blink = false
+cursor-style = bar
+cursor-style-blink = true
 
 # ── Keybinds ─────────────────────────────────────────────────────────────
 # Ghostty uses `super` for cmd. These mirror the kitty_mod=cmd bindings.
@@ -118,3 +130,11 @@ keybind = global:cmd+grave_accent=toggle_quick_terminal
 keybind = super+s>r=reload_config
 keybind = super+s>1=goto_tab:1
 keybind = super+s>2=goto_tab:2
+
+# Clear the screen/scrollback.
+keybind = super+k=clear_screen
+
+# Jump between shell prompts (needs shell-integration) — fast nav across a
+# long Claude session's command boundaries.
+keybind = super+up=jump_to_prompt:-1
+keybind = super+down=jump_to_prompt:1

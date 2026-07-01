@@ -1,0 +1,84 @@
+# Ghostty configuration
+# docs: https://ghostty.org/docs/config
+# reload: cmd+shift+, (reload_config) / show this file: cmd+, opens it
+# validate: ghostty +validate-config
+
+# ── Theme ────────────────────────────────────────────────────────────────
+# Matches the kitty tokyonight_storm setup. `theme` can differ light/dark:
+#   theme = light:TokyoNight Day,dark:TokyoNight Storm
+theme = TokyoNight Storm
+# cursor-color = 4fd6be
+# background-opacity = 0.9
+# background-blur = 20
+
+# ── Font ─────────────────────────────────────────────────────────────────
+# Monaspace Neon + all the texture-healing / ligature stylistic sets that
+# were enabled in kitty. Ghostty pulls bold/italic faces from the family
+# automatically, so only the base family is named.
+# font-family = Monaspace Neon Var
+# font-size = 12
+
+# calt = contextual alternates (texture healing), liga = ligatures,
+# ss01-ss09 = Monaspace stylistic sets.
+# font-feature = calt
+# font-feature = liga
+# font-feature = ss01
+# font-feature = ss02
+# font-feature = ss03
+# font-feature = ss04
+# font-feature = ss05
+# font-feature = ss06
+# font-feature = ss07
+# font-feature = ss08
+# font-feature = ss09
+
+# Ghostty ships Nerd Font symbols built-in, so no symbol_map is needed.
+# Slightly thicken glyphs on the Retina display (kitty had no equivalent).
+# font-thicken = true
+# Note: Ghostty has no direct analog to kitty's `modify_font baseline -2`;
+# use `adjust-cell-height` / `adjust-font-baseline` if vertical tweaking is
+# needed later.
+
+# ── Window ───────────────────────────────────────────────────────────────
+# window-width = 1920
+# window-height = 1200
+# window-padding-x = 8
+# window-padding-y = 6
+# window-padding-balance = true
+# Hide the titlebar but keep native tabs (kitty: hide_window_decorations titlebar-only)
+# window-decoration = auto
+# macos-titlebar-style = tabs
+# window-inherit-working-directory = true
+# window-inherit-font-size = true
+
+# ── macOS ────────────────────────────────────────────────────────────────
+# macos-option-as-alt = true
+# window-colorspace = display-p3
+# quit-after-last-window-closed = true
+# mouse-hide-while-typing = true
+
+# ── Behavior ─────────────────────────────────────────────────────────────
+# copy-on-select = clipboard
+# scrollback-limit = 10000000
+# shell-integration = detect
+# shell-integration-features = cursor,sudo,title
+# Audible bell off; keep it subtle.
+# link-url = true is the default (cmd+click opens URLs)
+
+# ── Cursor ───────────────────────────────────────────────────────────────
+# cursor-style = block
+# cursor-style-blink = false
+
+# ── Keybinds ─────────────────────────────────────────────────────────────
+# Ghostty uses `super` for cmd. These mirror the kitty_mod=cmd bindings.
+keybind = super+shift+comma=reload_config
+keybind = super+equal=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+zero=reset_font_size
+
+# Tabs (kitty had cmd+]/cmd+[ and cmd+1..9)
+keybind = super+right_bracket=next_tab
+keybind = super+left_bracket=previous_tab
+
+# shift+enter -> CSI u (kitty: map shift+enter send_text all \x1b[13;2u)
+keybind = shift+enter=text:\x1b[13;2u

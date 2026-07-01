@@ -56,6 +56,8 @@ window-padding-y = 6
 window-padding-balance = true
 # Native tab bar in the titlebar — clearest way to see many Claude sessions.
 macos-titlebar-style = tabs
+# Note: window-subtitle is GTK/Linux-only; on macOS the title is driven by
+# shell-integration (or a manual precmd hook) instead.
 # window-inherit-working-directory = true
 # window-inherit-font-size = true
 # Restore window/tab/split layout on relaunch (does not restore processes).

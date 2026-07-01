@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Pick a URL from a tmux pane's visible content with fzf and open it.
+# Usage: tmux-url-fzf <pane_id>
+set -uo pipefail
+
+pane="${1:?pane id required}"
+
+# Resolve the browser opener once.
+case "$(uname)" in
+  Darwin) opener="open" ;;
+  *)      opener="xdg-open" ;;
+esac
+
+# Capture the visible pane (-J joins wrapped lines so split URLs survive),
+# pull out URLs, promote bare www. hosts, strip trailing punctuation,
+# reverse to most-recent-first, and dedup preserving order.
+urls="$(
+  tmux capture-pane -p -J -t "$pane" \
+    | grep -oE '(https?://|www\.)[^[:space:]]+' \
+    | sed -E 's#^www\.#https://www.#' \
+    | sed -E 's#[],.;:!?"'"'"'>)}]+$##' \
+    | awk 'NF' \
+    | tail -r \
+    | awk '!seen[$0]++'
+)"
+
+if [ -z "$urls" ]; then
+  echo "no URLs"
+  exit 0
+fi
+
+selected="$(printf '%s\n' "$urls" \
+  | fzf --multi --prompt='url> ' \
+        --preview='echo {}' --preview-window=down:3:wrap)" || exit 0
+
+[ -z "$selected" ] && exit 0
+
+while IFS= read -r url; do
+  [ -n "$url" ] && "$opener" "$url"
+done <<< "$selected"

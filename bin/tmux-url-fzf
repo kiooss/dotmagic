@@ -29,7 +29,12 @@ urls="$(
 )"
 
 if [ -z "$urls" ]; then
-  echo "no URLs"
+  # Bordered notice matching the fzf theme (magenta, rounded).
+  m=$'\033[35m'; d=$'\033[2m'; r=$'\033[0m'
+  printf '%s╭─ url ──────────────╮%s\n' "$m" "$r"
+  printf '%s│%s  no URLs on pane   %s│%s\n' "$m" "$r" "$m" "$r"
+  printf '%s╰────────────────────╯%s\n' "$m" "$r"
+  printf '  %spress any key%s\n' "$d" "$r"
   # -E closes the popup on exit; pause so the message is readable.
   read -rn1 -s
   exit 0

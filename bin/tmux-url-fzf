@@ -26,6 +26,8 @@ urls="$(
 
 if [ -z "$urls" ]; then
   echo "no URLs"
+  # -E closes the popup on exit; pause so the message is readable.
+  read -rn1 -s
   exit 0
 fi
 

@@ -20,6 +20,7 @@ esac
 urls="$(
   tmux capture-pane -p -J -t "$pane" \
     | grep -oE '(https?://|www\.)[^[:space:]]+' \
+    | sed -E 's#\\.*##' \
     | sed -E 's#^www\.#https://www.#' \
     | sed -E 's#[],.;:!?"'"'"'>)}]+$##' \
     | awk 'NF' \

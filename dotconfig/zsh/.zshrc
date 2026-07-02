@@ -489,3 +489,23 @@ if [[ -o interactive ]]; then
 fi
 # }}}
 
+# Geek terminal title: "~/cwd  🌿 branch" {{{
+# tmux's set-titles-string can't expand a nested #{pane_current_path} inside
+# #(...), so instead each pane sets its own title here and tmux forwards it
+# (as #T). Disable oh-my-zsh's command-name auto-title so it doesn't fight us.
+DISABLE_AUTO_TITLE="true"
+
+_geek_title() {
+  local dir="${PWD/#$HOME/~}"
+  local branch
+  branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
+  local title="$dir"
+  [[ -n "$branch" ]] && title+="  🌿 $branch"
+  # OSC 2 sets the title. Inside tmux this becomes the pane title (#T), which
+  # set-titles-string forwards to the outer terminal; outside tmux it sets the
+  # window title directly.
+  print -Pn "\e]2;${title}\a"
+}
+precmd_functions+=(_geek_title)
+# }}}
+

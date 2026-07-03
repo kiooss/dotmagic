@@ -19,7 +19,7 @@ esac
 # reverse to most-recent-first, and dedup preserving order.
 urls="$(
   tmux capture-pane -p -J -t "$pane" \
-    | grep -oE '(https?://|www\.)[^[:space:]]+' \
+    | grep -oE "(https?://|www\.)[A-Za-z0-9._~:/?#@!\$&'()*+,;=%-]*[A-Za-z0-9/]" \
     | sed -E 's#\\.*##' \
     | sed -E 's#^www\.#https://www.#' \
     | sed -E 's#[],.;:!?"'"'"'>)}]+$##' \

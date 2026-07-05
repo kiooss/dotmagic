@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Open the default terminal app.
+# Change the default by editing DEFAULT below, or by writing an app name
+# (e.g. "kitty") to ~/.config/default-terminal to override without editing this.
+
+DEFAULT="Ghostty"
+
+app="$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/default-terminal" 2>/dev/null | xargs)"
+app="${app:-$DEFAULT}"
+
+open -a "$app"

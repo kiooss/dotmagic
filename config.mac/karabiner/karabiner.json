@@ -358,7 +358,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open '/Applications/kitty.app'"
+                    "shell_command": "~/.dotfiles/bin/term"
                   }
                 ],
                 "type": "basic"

@@ -194,6 +194,25 @@
               },
               {
                 "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "mandatory": [
+                      "right_shift"
+                    ],
+                    "optional": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open '/Applications/Codex.app'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
                   "key_code": "d",
                   "modifiers": {
                     "mandatory": [

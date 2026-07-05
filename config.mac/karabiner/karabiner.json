@@ -365,6 +365,25 @@
               },
               {
                 "from": {
+                  "key_code": "v",
+                  "modifiers": {
+                    "mandatory": [
+                      "right_shift"
+                    ],
+                    "optional": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open '/Applications/FortiClient.app'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
                   "key_code": "w",
                   "modifiers": {
                     "mandatory": [

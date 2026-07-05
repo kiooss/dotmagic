@@ -7,3 +7,10 @@ indent_size = 2
 [*.snippets]
 indent_style = tab
 indent_size = 4
+
+# Karabiner-Elements rewrites karabiner.json with 2-space indent; keep edits matching
+# so diffs stay minimal (see CLAUDE.md: edit via Python/jq, not freehand).
+[config.mac/karabiner/karabiner.json]
+indent_style = space
+indent_size = 2
+insert_final_newline = true

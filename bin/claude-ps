@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# List the interactive Claude Code sessions running on this machine.
+#
+# Ground truth is the process table, not tmux/hooks: an interactive TUI renames
+# its comm to a bare "claude" (no path). Claude Code's daemon/background helpers
+# (`claude daemon run`, `--bg-pty-host`, `--resume`, ClaudeCode.app, SDK workers
+# launched by bun/node) keep their exec path in comm, e.g.
+# "/Users/.../claude" or ".../ClaudeCode.app/.../claude" — so an EXACT comm
+# match on "claude" keeps only real sessions and drops every helper.
+# (pgrep -x matches comm's basename, which wrongly catches those helpers too;
+# hence the explicit `ps comm=` compare below instead.)
+#
+# Usage: claude-ps [-c|--count]
+#   (no args)    one line per session: PID and project (cwd basename)
+#   -c, --count  print just the number of sessions
+
+set -euo pipefail
+
+# All interactive sessions: comm is exactly "claude", no leading path.
+pids=$(ps -axo pid=,comm= | awk '$2=="claude"{print $1}')
+
+if [[ "${1:-}" == "-c" || "${1:-}" == "--count" ]]; then
+  printf '%s\n' "$pids" | grep -c . || true
+  exit 0
+fi
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//'
+  exit 0
+fi
+
+[[ -z "$pids" ]] && exit 0
+
+for pid in $pids; do
+  # lsof gives the cwd without depending on tmux or the launching shell.
+  cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p')
+  printf '%-7s %s\n' "$pid" "$(basename "${cwd:-?}")"
+done

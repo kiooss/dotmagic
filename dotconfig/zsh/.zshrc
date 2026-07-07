@@ -441,26 +441,20 @@ fi
 
 export CLAUDE_CODE_ENABLE_AUTO_MODE=1
 
+# Bedrock 起動。変数は claude プロセスにだけ渡し、シェルには残さない
+# （export だと一度実行したシェルで claude がずっと Bedrock 課金になる）
 cc-bedrock() {
-  export CLAUDE_CODE_USE_BEDROCK=1 AWS_PROFILE=claude-bedrock;
-
-  # export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-7'
-  # export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-6'
-  # export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
-
-  export AWS_REGION=ap-northeast-1
-  export ANTHROPIC_DEFAULT_OPUS_MODEL='jp.anthropic.claude-opus-4-8'
-  export ANTHROPIC_DEFAULT_SONNET_MODEL='jp.anthropic.claude-sonnet-4-6'
-  export ANTHROPIC_DEFAULT_HAIKU_MODEL='jp.anthropic.claude-haiku-4-5-20251001-v1:0'
-
+  AWS_PROFILE=claude-bedrock \
+  CLAUDE_CODE_USE_BEDROCK=1 \
+  AWS_REGION=ap-northeast-1 \
+  ANTHROPIC_DEFAULT_OPUS_MODEL='jp.anthropic.claude-opus-4-8' \
+  ANTHROPIC_DEFAULT_SONNET_MODEL='jp.anthropic.claude-sonnet-4-6' \
+  ANTHROPIC_DEFAULT_HAIKU_MODEL='jp.anthropic.claude-haiku-4-5-20251001-v1:0' \
   claude "$@"
 }
 
-cc-pro()     {
-  unset CLAUDE_CODE_USE_BEDROCK AWS_PROFILE AWS_REGION;
-  unset ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL;
-  claude "$@"
-}
+# 素の claude = Pro。cc-bedrock が変数を漏らさないので unset は不要
+cc-pro() { claude "$@"; }
 
 # Public IP geolocation on startup {{{
 # Prints a cached one-line summary instantly, then refreshes the cache in the

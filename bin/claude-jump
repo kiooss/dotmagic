@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# Jump to the tmux pane running an interactive Claude Code session, chosen from
+# an fzf list. Meant to be bound to a tmux key via display-popup, e.g.
+#
+#   bind C display-popup -E -w 60% -h 40% "claude-jump"
+#
+# Detection mirrors claude-ps: an interactive Claude TUI renames its comm to a
+# bare "claude" (no path), while daemons/helpers keep their exec path — so an
+# EXACT comm match keeps only real sessions. Each session pid is then walked up
+# its parent chain until a pid matches a tmux pane_pid, which is the pane the
+# TUI lives in.
+#
+# Written for bash 3.2 (macOS system bash): no associative arrays.
+#
+# Usage: claude-jump [--list]
+#   (no args)  fzf picker in the current tmux client; jumps on selection
+#   --list     print the candidate panes and exit (no picker)
+
+set -euo pipefail
+
+command -v tmux >/dev/null || { echo "tmux not found"; exit 1; }
+
+# One snapshot of every pane: "pane_pid<TAB>session:win.pane<TAB>path".
+panes=$(tmux list-panes -a -F '#{pane_pid}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}')
+
+# Interactive Claude sessions: comm is exactly "claude" (see claude-ps).
+pids=$(ps -axo pid=,comm= | awk '$2=="claude"{print $1}')
+[[ -z "$pids" ]] && { echo "no interactive claude sessions running"; sleep 1; exit 0; }
+
+# For each session pid, climb parents until one matches a pane_pid.
+rows=""
+for pid in $pids; do
+  p=$pid
+  while [[ -n "$p" && "$p" != "1" ]]; do
+    line=$(printf '%s\n' "$panes" | awk -F'\t' -v pp="$p" '$1==pp{print;exit}')
+    if [[ -n "$line" ]]; then
+      target=$(printf '%s' "$line" | cut -f2)
+      proj=$(basename "$(printf '%s' "$line" | cut -f3)")
+      rows="${rows}${target}	${proj}
+"
+      break
+    fi
+    p=$(ps -o ppid= -p "$p" 2>/dev/null | tr -d ' ')
+  done
+done
+
+rows=$(printf '%s' "$rows" | sed '/^$/d' | sort -u)
+[[ -z "$rows" ]] && { echo "claude running but not in any tmux pane"; sleep 1; exit 0; }
+
+if [[ "${1:-}" == "--list" ]]; then
+  printf '%s\n' "$rows" | column -t -s '	'
+  exit 0
+fi
+
+# Single match: jump straight there, no menu.
+if [[ $(printf '%s\n' "$rows" | wc -l | tr -d ' ') -eq 1 ]]; then
+  target=$(printf '%s' "$rows" | cut -f1)
+else
+  choice=$(printf '%s\n' "$rows" \
+    | column -t -s '	' \
+    | fzf --prompt='claude ❯ ' --height=100% --reverse \
+          --header='jump to claude session') || exit 0
+  target=$(printf '%s' "$choice" | awk '{print $1}')
+fi
+
+[[ -z "$target" ]] && exit 0
+session=${target%%:*}
+tmux switch-client -t "$session" \; select-window -t "$target" \; select-pane -t "$target"

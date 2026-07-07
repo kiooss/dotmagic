@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# aerospace-sort — move every open window to its designated workspace.
+#
+# Bound to F8 in config.mac/aerospace/aerospace.toml. This is the single
+# source of truth for the app -> workspace mapping; on-window-detected rules
+# in the toml mirror a subset of it for auto-placing freshly opened windows.
+#
+# macOS system bash is 3.2 (no `declare -A`), so the mapping is a case stmt.
+# Unmapped apps are left wherever they are.
+
+set -euo pipefail
+
+AEROSPACE=/opt/homebrew/bin/aerospace
+
+# app-bundle-id -> workspace. Keep in sync with on-window-detected in the toml.
+workspace_for() {
+    case "$1" in
+        com.google.Chrome|com.microsoft.edgemac)                         echo B ;;
+        com.mitchellh.ghostty|net.kovidgoyal.kitty|com.googlecode.iterm2) echo T ;;
+        com.tinyspeck.slackmacgap|com.tencent.xinWeChat|jp.naver.line.mac) echo S ;;
+        com.apple.mail|com.microsoft.Outlook)                            echo M ;;
+        com.microsoft.Excel|com.microsoft.Powerpoint|com.microsoft.Word) echo O ;;
+        com.fortinet.FortiClient)                                        echo V ;;
+        com.openai.codex)                                                echo C ;;
+        *)                                                               echo "" ;;
+    esac
+}
+
+"$AEROSPACE" list-windows --all --format '%{window-id}|%{app-bundle-id}' \
+    | while IFS='|' read -r window_id bundle_id; do
+        ws=$(workspace_for "$bundle_id")
+        [ -z "$ws" ] && continue
+        "$AEROSPACE" move-node-to-workspace --window-id "$window_id" "$ws"
+    done

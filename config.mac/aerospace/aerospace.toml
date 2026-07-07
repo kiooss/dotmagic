@@ -233,6 +233,10 @@ on-mode-changed = []
     cmd-alt-ctrl-shift-backspace = 'close-all-windows-but-current'
     cmd-alt-ctrl-shift-esc = 'close-all-windows-but-current'
 
+    # F8: re-sort every open window to its designated workspace.
+    # Mapping lives in bin/aerospace-sort (single source of truth).
+    f8 = 'exec-and-forget /Users/yang/.dotfiles/bin/aerospace-sort'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -258,18 +262,25 @@ on-mode-changed = []
 # Application Auto-Assignment
 # ==========================================================
 
-# ブラウザを WS 1 へ移動
+# NOTE: これらのルールは新規ウィンドウ検出時の自動振り分け。
+# 全ウィンドウの一括再整列は F8 (bin/aerospace-sort) が担当し、
+# app-id -> workspace の対応表はそのスクリプトが唯一の情報源。
+
+# ブラウザ -> B
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = ['move-node-to-workspace B', 'workspace B']
 
+# ターミナル -> T
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['move-node-to-workspace T', 'workspace T']
 
-# ターミナル（Kitty や iTerm2）を WS 2 へ移動
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
 run = ['move-node-to-workspace T', 'workspace T']
 
-# Slack や LINE などのチャットツールを WS 3 へ移動
+# チャット -> S
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = ['move-node-to-workspace S', 'workspace S']

@@ -29,7 +29,7 @@ After editing a tool's config, reload that tool — do not assume a shell restar
 | Tool | Reload command |
 |---|---|
 | AeroSpace (`config.mac/aerospace/aerospace.toml`) | `aerospace reload-config` (exits non-zero on TOML/binding errors — use as a validator) |
-| Karabiner-Elements (`config.mac/karabiner/karabiner.json`) | Auto-reloads on file change. JSON is sensitive — edit via Python/jq, not freehand. |
+| Karabiner-Elements (`config.mac/karabiner/karabiner.json`) | Auto-reloads on file change. JSON is sensitive — edit via Python/jq, not freehand. When rewriting the whole file, dump with `json.dump(d, f, indent=2, ensure_ascii=False)` + a trailing `\n` — the file is 2-space-indented with literal (non-escaped) unicode, so `indent=4` or default `ensure_ascii=True` reformats every line and produces a multi-thousand-line diff for a one-line change. |
 | Hammerspoon (`hammerspoon/*.lua`) | Menubar → Reload Config. IPC (`hs -c …`) is usually **disabled**, so remote reload from a shell returns exit 69 — ignore. |
 | tmux (`dotconfig/tmux/`) | `tmux source-file ~/.config/tmux/tmux.conf` or `prefix-r` if bound. |
 | Neovim (`dotconfig/nvim/`) | Restart nvim; plugin changes need `:Lazy sync`. |

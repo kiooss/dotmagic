@@ -334,6 +334,16 @@ function sort_mem_usage() {
   ps -o pid,user,%mem,command ax | sort -b -k3 -r | less
 }
 
+# Launch a Chrome that ignores the system proxy (direct connection), in its own
+# profile so it runs alongside the normal (proxied) Chrome. The separate
+# --user-data-dir is required: without it Chrome reuses the running instance and
+# silently drops --no-proxy-server. Optional args are passed as URLs to open.
+function chrome-direct() {
+  open -na "Google Chrome" --args \
+    --no-proxy-server \
+    --user-data-dir="$HOME/.chrome-direct" "$@"
+}
+
 # aws-ip-to-ssh-config() {
 #   profile="$1"
 #   aws ec2 describe-instances --profile "$profile" \

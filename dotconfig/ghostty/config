@@ -66,7 +66,8 @@ window-save-state = always
 
 # ── Appearance ───────────────────────────────────────────────────────────
 # Frosted-glass background; blur only takes effect while translucent.
-background-opacity = 0.92
+# background-opacity = 0.92
+background-opacity = 0.6
 background-blur = 20
 # Drop shadow lifts the window off whatever's behind it.
 macos-window-shadow = true

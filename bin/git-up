@@ -29,15 +29,55 @@ git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
 # (Empty when on a detached HEAD.)
 current=$(git symbolic-ref --quiet --short HEAD || true)
 
-echo "⤵️  Fetching all remotes…"
-git fetch --all --prune
-
 # ANSI helpers (only when stdout is a tty).
 if [ -t 1 ]; then
   g=$'\033[32m'; y=$'\033[33m'; d=$'\033[90m'; r=$'\033[0m'
 else
   g=""; y=""; d=""; r=""
 fi
+
+# Fetch all remotes. On a tty, run it in the background and animate a spinner so
+# there's some motion during a quiet (nothing-to-print) fetch; git's own
+# progress is redirected to a temp file and only shown if the fetch FAILS, so
+# errors are never swallowed. On a non-tty (pipe/script) just run it plainly.
+fetch_all() {
+  if [ ! -t 1 ]; then
+    git fetch --all --prune
+    return
+  fi
+
+  local out i rc
+  out=$(mktemp)
+  # --quiet keeps git's own progress off the file; we only want error text there.
+  ( git fetch --all --prune --quiet >"$out" 2>&1 ) &
+  local pid=$!
+
+  # Frames as an array so each glyph stays intact regardless of locale.
+  local frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+  i=0
+  # tput civis/cnorm hide/show the cursor; ignore if unsupported.
+  tput civis 2>/dev/null || true
+  while kill -0 "$pid" 2>/dev/null; do
+    printf '\r%s%s%s Fetching all remotes…' "$g" "${frames[i++%${#frames[@]}]}" "$r"
+    sleep 0.08
+  done
+  tput cnorm 2>/dev/null || true
+
+  # Capture the exit status without tripping `set -e` on a failed fetch.
+  rc=0; wait "$pid" || rc=$?
+  printf '\r\033[K'   # erase the spinner line
+  if [ "$rc" -ne 0 ]; then
+    printf '%s✗ fetch failed%s\n' "$y" "$r" >&2
+    cat "$out" >&2
+    rm -f "$out"
+    exit "$rc"
+  fi
+  cat "$out"          # replay any non-error output git still produced
+  rm -f "$out"
+  printf '%s⤵️  fetched all remotes%s\n' "$d" "$r"
+}
+
+fetch_all
 
 # Branches checked out in ANY worktree (including this one) — newline-separated.
 # We must not move these refs from here: a linked worktree's HEAD would point at

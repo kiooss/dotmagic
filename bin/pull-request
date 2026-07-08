@@ -69,6 +69,11 @@ create_release_pr() {
   validate_env "$base"
   head=$(git symbolic-ref --short HEAD)
 
+  # gh compares refs on the remote, so head must be pushed to origin first.
+  # Catch it here with a clear message instead of gh's late, cryptic error.
+  git ls-remote --exit-code --heads origin "$head" >/dev/null 2>&1 \
+    || die "Current branch '$head' is not on origin. Push it first: git push -u origin $head"
+
   echo -e "${BOLD}${ITALIC}${GREEN}git up${NC}\n"
   git up || echo -e "${RED}git up failed; continuing.${NC}"
 

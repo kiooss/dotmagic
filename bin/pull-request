@@ -1,145 +1,65 @@
 #!/usr/bin/env bash
+#
+# pull-request — create staging / production release PRs.
+#
+#   pull-request staging      current branch -> staging branch, labeled
+#   pull-request production   current branch -> production branch, labeled
+#   pull-request init         create the two release labels (run once per repo)
+#
+# Branch and label names are configurable per-repo via git config
+# (pull-request.stagingBranch / .prodBranch / .stagingLabel / .prodLabel);
+# defaults are staging / production / staging-release / production-release.
+#
+# head is always the current branch. PR body is filled by `gh pr create --fill`.
 
-set -e
-# set -ex
-
-if [[ -z $REF_BASE_URL ]]; then
-  echo "REF_BASE_URL is not set."
-  exit 1
-fi
+set -euo pipefail
 
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/lib/colors.sh"
 
+usage() {
+  cat >&2 <<'EOF'
+pull-request — create staging / production release PRs
+
+Usage:
+  pull-request staging       PR from current branch into the staging branch
+  pull-request production    PR from current branch into the production branch
+  pull-request init          create the staging/production release labels
+
+Config (per-repo git config, with defaults):
+  pull-request.stagingBranch  (staging)
+  pull-request.prodBranch     (production)
+  pull-request.stagingLabel   (staging-release)
+  pull-request.prodLabel      (production-release)
+EOF
+}
+
+# cfg <key> <default> — repo config value or default.
+cfg() {
+  local val
+  val=$(git config --get "pull-request.$1" || true)
+  echo "${val:-$2}"
+}
+
+die() {
+  echo -e "${RED}$1${NC}" >&2
+  exit 1
+}
+
+cmd_staging() { :; }     # Task 3
+cmd_production() { :; }  # Task 3
+cmd_init() { :; }        # Task 4
+
 main() {
-  local target=$1
-  local current_branch
-  local project
-  current_branch=$(current_branch)
-  # git pull --rebase --autostash
-  echo -e "${BOLD}${ITALIC}${GREEN}git up${NC}\n"
-  git up
-
-  if [[ $current_branch =~ (.*)-develop$ ]]; then
-    project=${current_branch/-develop/}
-  fi
-
-  echo -e "${BOLD}${ITALIC}${BLUE}Project: ${project}${NC}\n"
-
-  case "$target" in
-    "staging") pull_request_staging "$project" ;;
-    "production") pull_request_production "$project" ;;
-    "init") init ;;
-    *) echo "Wrong deploy target." ;;
+  local sub="${1:-}"
+  [[ $# -gt 0 ]] && shift
+  case "$sub" in
+    staging)    cmd_staging "$@" ;;
+    production) cmd_production "$@" ;;
+    init)       cmd_init "$@" ;;
+    *)          usage; exit 1 ;;
   esac
-}
-
-init() {
-  gh label create staging-release -f -d "Staging release" -c "#0052CC"
-  gh label create production-release -f -d "Production release" -c "#B60205"
-}
-
-current_branch() {
-  git symbolic-ref --short HEAD
-}
-
-get_diff() {
-  git log --oneline --no-decorate --no-merges --perl-regexp --author="$PULL_REQUEST_AUTHOR_PATTERN" "$1".. | grep -aEo '#[0-9]+' | sort | uniq | sed -e "s|#|$REF_BASE_URL|"
-}
-
-pull_request_staging() {
-  local project=$1
-  local diff
-  local target_branch
-  local pr_label
-  local pr_title
-
-  if [[ -z $project ]]; then
-    if git show-ref --quiet refs/heads/staging; then
-      target_branch="staging"
-    else
-      echo "!!! No staging branch."
-      exit 1
-    fi
-
-    diff=$(get_diff "$target_branch")
-    pr_label="staging-release"
-    pr_title="Staging Release"
-  else
-    target_branch="${project}-staging"
-    diff=$(get_diff "$target_branch")
-    pr_label="staging-release,${project}"
-    pr_title="${project}-ステージング反映"
-  fi
-
-  pull_request "$diff" "$target_branch" "$pr_label" "$pr_title"
-}
-
-pull_request_production() {
-  local project=$1
-  local diff
-  local target_branch
-  local pr_label
-  local pr_title
-
-  if [[ -z $project ]]; then
-    if git show-ref --quiet refs/heads/main; then
-      target_branch="main"
-    elif git show-ref --quiet refs/heads/master; then
-      target_branch="master"
-    else
-      echo "!!! No main or master branch."
-      exit 1
-    fi
-
-    diff=$(get_diff "$target_branch")
-    pr_label="production-release"
-    pr_title="Production Release"
-  else
-    target_branch="${project}-master"
-    diff=$(get_diff "$target_branch")
-    pr_label="production-release,${project}"
-    pr_title="${project}-本番反映"
-  fi
-
-  pull_request "$diff" "$target_branch" "$pr_label" "$pr_title"
-}
-
-pull_request() {
-  local diff=$1
-  local target_branch=$2
-  local pr_label=$3
-  local pr_title=$4
-  if [[ -n $diff ]]; then
-    echo -e "${CYAN}=== These tickets are include ===${NC}"
-    echo "$diff"
-    echo -e "${CYAN}=== end ===${NC}"
-  else
-    echo "No diff tickets."
-  fi
-  if [[ -n "${DIFF_ONLY}" ]]; then
-    return 1
-  fi
-
-  echo "=== Pull request start ==="
-  echo -e "Target branch: ${RED}${ITALIC}$target_branch${NC}\n"
-
-  gh pr create --base "$target_branch" --head develop \
-    --label "$pr_label" --title "$pr_title" --fill
-
-  # if [[ -n $diff ]]; then
-  #   # hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title" -m "$diff"
-  #   # gh pr create --base "$target_branch" --head develop \
-  #   #   --label "$pr_label" --title "$pr_title" --body "$diff"
-  #   gh pr create --base "$target_branch" --head develop \
-  #     --label "$pr_label" --title "$pr_title"
-  # else
-  #   # hub pull-request -b "$target_branch" -l "$pr_label" -m "$pr_title"
-  #   gh pr create --base "$target_branch" --head develop \
-  #     --label "$pr_label" --title "$pr_title"
-  # fi
-  echo "=== Pull request end ==="
 }
 
 main "$@"

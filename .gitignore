@@ -3,6 +3,10 @@ npm-debug.log
 
 node_modules/
 
+# brew bundle writes this on install; it pins machine/OS-specific versions and
+# is regenerated each run. Brewfile is the source of truth, so don't track it.
+/Brewfile.lock.json
+
 hammerspoon/local_config.lua
 hammerspoon/private.lua
 

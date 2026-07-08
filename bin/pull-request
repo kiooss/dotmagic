@@ -88,7 +88,11 @@ cmd_staging() {
 cmd_production() {
   create_release_pr "$(cfg prodBranch production)" "$(cfg prodLabel production-release)"
 }
-cmd_init() { :; }        # Task 4
+cmd_init() {
+  command -v gh >/dev/null 2>&1 || die "gh CLI not found. Install it: brew install gh"
+  gh label create "$(cfg stagingLabel staging-release)" -f -d "Staging release" -c "#0052CC"
+  gh label create "$(cfg prodLabel production-release)" -f -d "Production release" -c "#B60205"
+}
 
 main() {
   local sub="${1:-}"

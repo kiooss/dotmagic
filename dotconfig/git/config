@@ -136,14 +136,11 @@
 	notinmaster = log --no-merges --pretty='%C(yellow)%h%d %Creset%an %Cgreen%ar:%Creset %s' --graph master..
 	notin = log --no-merges --pretty='%C(yellow)%h%d %Creset%an %Cgreen%ar:%Creset %s' --graph
 	out = "!git fetch; git cherry origin/HEAD -v"
-	#dp = diff --stat origin/master HEAD
-	dp = "!DIFF_PREVIEW1=$(git diff --stat origin/master HEAD);"
-	delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
+	dp = diff --stat origin/master HEAD
+	delete-merged-branches = "!f() { DEFAULT=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@'); DEFAULT=${DEFAULT:-main}; git checkout --quiet \"$DEFAULT\" && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 	diff-ignore-space = diff --ignore-space-at-eol -b -w --ignore-blank-lines
 	# order files by number of commits, ascending
 	churn = "!f() { git log --all -M -C --name-only --format='format:' \"$@\" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print \"count\tfile\"} {print $1 \"\t\" $2}' | sort -g; }; f"
-	# show all deleted files in the repo
-	deleted = "!git log --diff-filter=D --summary | grep delete"
 	# current branch
 	cbr = rev-parse --abbrev-ref HEAD
 	# show number of commits per contributer, sorted
@@ -169,7 +166,6 @@
 	submodule-init = submodule update --init --recursive
 	submodule-update = "!git submodule sync && git pull --recurse-submodules && git submodule update --remote"
 	personal = "!git config user.name 'Yang Yang' && git config user.email 'kiooss@gmail.com'"
-	sync-submodules = "!git submodule sync && git pull --recurse-submodules && git submodule update --remote"
 	# show the log with deleted files
 	# git deleted                         # find a deleted file and its commit
 	# git checkout <commit>~1 <filename>  # restore the deleted file
@@ -234,7 +230,7 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
-[safe]
-	directory = /home/yang/.memos
+# Machine-specific safe.directory entries belong in .secret_gitconfig
+# (the per-machine include above), not in this cross-platform config.
 [user]
 	useConfigOnly = true

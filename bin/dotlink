@@ -14,7 +14,7 @@ Usage:
 EOF
 }
 
-# Ported verbatim from install/link.sh — uses global $force.
+# Ported from the original link.sh symlink logic — uses global $force.
 link_config() {
   config="$1"
   link_name="$2"

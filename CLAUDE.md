@@ -4,18 +4,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Personal dotfiles ("DOTMAGIC", `kiooss/dotmagic`) for macOS and Ubuntu. Editor is Neovim, shell is zsh + oh-my-zsh, multiplexer is tmux. There is no build/test step — the "deploy" is a symlink farm into `$HOME` plus a Homebrew/apt install pass.
+Personal dotfiles ("DOTMAGIC", `kiooss/dotmagic`) for macOS. Editor is Neovim, shell is zsh + oh-my-zsh, multiplexer is tmux. There is no build/test step — the "deploy" is a symlink farm into `$HOME` (via `bin/dotlink sync`) plus a `brew bundle` install pass.
 
 ## Top-level layout (only the non-obvious bits)
 
-- `bin/dotmagic` — single entrypoint script. It pulls latest, syncs submodules, optionally runs the per-OS installer, and then runs `bin/dotlink sync`. Run it bare from anywhere on PATH to upgrade an existing checkout.
+- Setup is manual (no bootstrap script): clone, `git submodule update --init --recursive`, `brew bundle --file=Brewfile`, then `bin/dotlink sync`. Update with `git pull --rebase --autostash` (the `upgrade_dotfiles` zsh function wraps this).
 - `bin/dotlink` — the symlink engine (subcommands: sync / add / unlink). It scans three roots and links into `$HOME`:
   - `link/*.symlink` → `~/.<basename-without-symlink>` (e.g. `link/zshenv.symlink` → `~/.zshenv`)
   - `dotconfig/<name>/` → `~/.config/<name>/` (cross-platform XDG configs)
   - `config.mac/<name>/` → `~/.config/<name>/` (macOS-only, skipped on Linux)
   Pass `--force` to back up existing real files into `~/.backup/` before relinking. Without `--force`, existing non-symlink files are skipped with a warning. `dotlink add <tool> [--mac]` adopts an existing `~/.config/<tool>/` into `dotconfig/` (or `config.mac/` with `--mac`); `dotlink unlink <tool>` reverses it.
-- `install/init/{brew,ubuntu,common}.sh` — OS-specific package install, sourced from `bin/dotmagic` based on `uname`.
-- `Brewfile` — declarative Homebrew bundle (taps + brews + casks). Apply with `brew bundle --file=Brewfile`.
+- `Brewfile` — declarative Homebrew bundle (taps + brews + casks), the single source of truth for packages. Apply with `brew bundle --file=Brewfile`.
 - `zsh/omz_custom/` — oh-my-zsh customizations (plugins + powerlevel10k theme are git submodules).
 - `vendor/` — third-party code pulled as git submodules (see `.gitmodules`).
 - `hammerspoon/` — Hammerspoon Lua config; linked to `~/.hammerspoon/` separately by the user (not handled by `dotlink sync`).
@@ -51,7 +50,7 @@ When adding an AeroSpace binding, search for the key first — `cmd-alt-ctrl-com
 ## Git workflow notes
 
 - Commit messages in this repo are intentionally terse and lowercase (`update.`, `install cargo.`, `disable markdownlint.`). Match that style — don't write multi-paragraph commits unless the change really warrants it.
-- The repo has **submodules**. `bin/dotmagic` initializes them; if you clone manually, run `git submodule update --init --recursive`.
+- The repo has **submodules**. After cloning, run `git submodule update --init --recursive`.
 - Several config files are gitignored because they hold local secrets/state — `hammerspoon/local_config.lua`, `hammerspoon/private.lua`, `dotconfig/zsh/.zshrc.local`, `config.mac/karabiner/.env`. Do not commit examples that overwrite these.
 
 ## What this repo is *not*

@@ -1,5 +1,6 @@
 function upgrade_dotfiles() {
-  env DOTFILES=$DOTFILES bash $DOTFILES/install/upgrade.sh
+  git -C "$DOTFILES" pull --rebase --autostash origin master &&
+    git -C "$DOTFILES" submodule update --init --recursive
 }
 
 function link_dotfiles() {

@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+DOTFILES="$HOME/.dotfiles"
+BACKUP_DIR="$HOME/.backup"
+
+usage() {
+  cat >&2 <<'EOF'
+dotlink — dotfiles link manager
+
+Usage:
+  dotlink sync [--force]      Link all dotfiles into $HOME and ~/.config
+  dotlink add <tool> [--mac]  Adopt ~/.config/<tool>/ into dotfiles (default: dotconfig/, --mac: config.mac/)
+  dotlink unlink <tool>       Remove <tool> from dotfiles, moving it back to ~/.config/<tool>/
+EOF
+}
+
+# Ported verbatim from install/link.sh — uses global $force.
+link_config() {
+  config="$1"
+  link_name="$2"
+  echo "-> config: $config link_name: $link_name"
+  if [ -e "$link_name" ]; then
+    if ! [ "$link_name" -ef "$config" ]; then
+      if [ "$force" = "force" ]; then
+        echo "❗️${link_name} already exists, backup it and do link staff."
+        mv "$link_name" "$BACKUP_DIR/"
+        ln -sf "$config" "$link_name"
+        echo "✅ Linked $config to $link_name"
+      else
+        echo "⚠️  ${link_name} already exists, skip."
+      fi
+    else
+      echo "🔗 ${link_name} already linked."
+    fi
+  else
+    ln -sf "$config" "$link_name"
+    echo "✅ Linked $config to $link_name"
+  fi
+}
+
+cmd_sync() { :; }    # implemented in Task 2
+cmd_add() { :; }     # implemented in Task 3
+cmd_unlink() { :; }  # implemented in Task 4
+
+main() {
+  subcommand="$1"
+  shift 2>/dev/null
+  case "$subcommand" in
+    sync)   cmd_sync "$@" ;;
+    add)    cmd_add "$@" ;;
+    unlink) cmd_unlink "$@" ;;
+    *)      usage; exit 1 ;;
+  esac
+}
+
+main "$@"

@@ -30,9 +30,10 @@
 1. `dest` = `--mac` なら `config.mac/<tool>`、それ以外 `dotconfig/<tool>`。
 2. `~/.config/<tool>` が既に dotfiles 内実体へのリンク → 「既に管理済み」と表示してスキップ(冪等)。
 3. `~/.config/<tool>` が存在しない → エラー終了(取り込む実体がない)。
-4. `dest` が既に存在(別マシンで取り込み済み)→ ローカルの `~/.config/<tool>` を `~/.backup/` へ退避。
-5. それ以外 → `~/.config/<tool>` を `dest` へ move。
-6. `~/.config/<tool>` → `dest` へシンボリックリンクを張る。
+4. `~/.config/<tool>` がディレクトリでない(通常ファイル等)→ エラー終了。`unlink` は実体を `-d` で探すため、ファイルを取り込むと戻せなくなる。
+5. `dest` が既に存在(別マシンで取り込み済み)→ ローカルの `~/.config/<tool>` を `~/.backup/` へ退避。
+6. それ以外 → `~/.config/<tool>` を `dest` へ move。
+7. `~/.config/<tool>` → `dest` へシンボリックリンクを張る。
 
 ## `unlink <tool>` フロー
 

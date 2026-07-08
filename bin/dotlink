@@ -100,6 +100,12 @@ cmd_add() {
     echo "❌ ~/.config/$tool does not exist, nothing to adopt."; exit 1
   fi
 
+  # add/unlink only handle directories; unlink locates the source with -d,
+  # so adopting a plain file would leave it unrecoverable.
+  if [ ! -d "$src" ]; then
+    echo "❌ ~/.config/$tool is not a directory; dotlink only adopts directories."; exit 1
+  fi
+
   [ ! -d "$BACKUP_DIR" ] && mkdir -p "$BACKUP_DIR"
 
   if [ -e "$dest" ]; then

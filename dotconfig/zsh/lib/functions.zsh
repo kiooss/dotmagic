@@ -3,5 +3,5 @@ function upgrade_dotfiles() {
 }
 
 function link_dotfiles() {
-  env DOTFILES=$DOTFILES bash $DOTFILES/install/link.sh $@
+  env DOTFILES=$DOTFILES bash $DOTFILES/bin/dotlink sync $@
 }

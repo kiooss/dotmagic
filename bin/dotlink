@@ -105,10 +105,10 @@ cmd_add() {
   if [ -e "$dest" ]; then
     # dotfiles already has this tool (adopted on another machine).
     echo "❗️$dest already exists in dotfiles, backing up local ~/.config/$tool."
-    mv "$src" "$BACKUP_DIR/"
+    mv "$src" "$BACKUP_DIR/" || { echo "❌ backup move failed, ~/.config/$tool left in place."; exit 1; }
   else
     echo "📦 Moving ~/.config/$tool into $subdir/$tool."
-    mv "$src" "$dest"
+    mv "$src" "$dest" || { echo "❌ move failed, ~/.config/$tool left in place."; exit 1; }
   fi
 
   ln -sf "$dest" "$src"
@@ -140,7 +140,7 @@ cmd_unlink() {
     exit 1
   fi
 
-  mv "$real" "$src"
+  mv "$real" "$src" || { echo "❌ move failed; dotfiles dir is still at $real."; exit 1; }
   echo "✅ Unlinked $tool → moved back to ~/.config/$tool."
   echo "   Note: run 'git rm -r --cached' / commit in $DOTFILES to drop it from git."
 }

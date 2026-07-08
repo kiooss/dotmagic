@@ -81,8 +81,13 @@ create_release_pr() {
   echo -e "${CYAN}=== done ===${NC}"
 }
 
-cmd_staging() { :; }     # Task 3
-cmd_production() { :; }  # Task 3
+cmd_staging() {
+  create_release_pr "$(cfg stagingBranch staging)" "$(cfg stagingLabel staging-release)"
+}
+
+cmd_production() {
+  create_release_pr "$(cfg prodBranch production)" "$(cfg prodLabel production-release)"
+}
 cmd_init() { :; }        # Task 4
 
 main() {

@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+#
+# git up — Ruby-free replacement for aanand/git-up (https://github.com/aanand/git-up).
+#
+# Fetches all remotes (pruning deleted upstreams), then brings every local
+# branch that tracks an upstream up to date:
+#   - the CURRENT branch is rebased onto its upstream (with autostash, so a
+#     dirty work tree is preserved), matching git-up's default rebase behavior
+#   - every OTHER tracking branch is fast-forwarded only; if it has diverged
+#     (would need a rebase/merge) it is left untouched and reported, exactly
+#     like git-up which never rewrites a branch you're not on
+#
+# Written for bash 3.2 (macOS system bash): no associative arrays.
+#
+# Invoked as `git up` because git resolves `git-up` on PATH as a subcommand.
+
+set -euo pipefail
+
+command -v git >/dev/null || { echo "git not found" >&2; exit 1; }
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
+  echo "not a git repository" >&2; exit 1
+}
+
+# Remember where we started so we can return and know which branch to rebase.
+# (Empty when on a detached HEAD.)
+current=$(git symbolic-ref --quiet --short HEAD || true)
+
+echo "⤵️  Fetching all remotes…"
+git fetch --all --prune
+
+# ANSI helpers (only when stdout is a tty).
+if [ -t 1 ]; then
+  g=$'\033[32m'; y=$'\033[33m'; d=$'\033[90m'; r=$'\033[0m'
+else
+  g=""; y=""; d=""; r=""
+fi
+
+rc=0
+
+# Walk every local branch.
+while IFS= read -r branch; do
+  # Upstream tracking ref, e.g. origin/main. Skip branches with no upstream.
+  upstream=$(git rev-parse --abbrev-ref --symbolic-full-name "${branch}@{upstream}" 2>/dev/null || true)
+  [ -z "$upstream" ] && { printf '%s⏭  %s (no upstream)%s\n' "$d" "$branch" "$r"; continue; }
+
+  local_sha=$(git rev-parse "$branch")
+  remote_sha=$(git rev-parse "$upstream")
+
+  # Already up to date.
+  if [ "$local_sha" = "$remote_sha" ]; then
+    printf '%s✓  %s = %s%s\n' "$d" "$branch" "$upstream" "$r"
+    continue
+  fi
+
+  # merge-base tells us the relationship without moving anything.
+  base=$(git merge-base "$branch" "$upstream")
+
+  if [ "$base" = "$remote_sha" ]; then
+    # Upstream is behind local (local has unpushed commits ahead) — nothing to pull.
+    printf '%s↑  %s is ahead of %s%s\n' "$y" "$branch" "$upstream" "$r"
+    continue
+  fi
+
+  if [ "$branch" = "$current" ]; then
+    # Current branch: rebase (autostash keeps a dirty tree safe).
+    printf '%s↻  rebasing %s onto %s%s\n' "$g" "$branch" "$upstream" "$r"
+    git rebase --autostash "$upstream"
+  elif [ "$base" = "$local_sha" ]; then
+    # Other branch, strictly behind → fast-forward the ref without checkout.
+    printf '%s⇒  fast-forwarding %s to %s%s\n' "$g" "$branch" "$upstream" "$r"
+    git update-ref "refs/heads/$branch" "$remote_sha"
+  else
+    # Other branch, diverged → git-up leaves these alone.
+    printf '%s⚠  %s has diverged from %s; skipped (check out and rebase manually)%s\n' \
+      "$y" "$branch" "$upstream" "$r"
+    rc=1
+  fi
+done < <(git for-each-ref --format='%(refname:short)' refs/heads/)
+
+exit "$rc"

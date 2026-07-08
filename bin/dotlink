@@ -69,7 +69,51 @@ cmd_sync() {
 
   printf "\n✨ done.\n"
 }
-cmd_add() { :; }     # implemented in Task 3
+cmd_add() {
+  tool=""
+  subdir="dotconfig"
+  for arg in "$@"; do
+    case "$arg" in
+      --mac) subdir="config.mac" ;;
+      -*)    echo "⚠️  unknown flag: $arg"; usage; exit 1 ;;
+      *)     tool="$arg" ;;
+    esac
+  done
+
+  if [ -z "$tool" ]; then
+    echo "⚠️  add: missing <tool>."; usage; exit 1
+  fi
+
+  src="$HOME/.config/$tool"
+  dest="$DOTFILES/$subdir/$tool"
+
+  # Already managed by dotfiles → idempotent skip.
+  # -ef is true only when both paths exist and share an inode, so a
+  # symlink src pointing into either root matches without extra guards.
+  if [ "$src" -ef "$DOTFILES/dotconfig/$tool" ] || [ "$src" -ef "$DOTFILES/config.mac/$tool" ]; then
+    echo "🔗 ~/.config/$tool is already managed by dotfiles, skip."
+    return 0
+  fi
+
+  # Nothing to adopt.
+  if [ ! -e "$src" ]; then
+    echo "❌ ~/.config/$tool does not exist, nothing to adopt."; exit 1
+  fi
+
+  [ ! -d "$BACKUP_DIR" ] && mkdir -p "$BACKUP_DIR"
+
+  if [ -e "$dest" ]; then
+    # dotfiles already has this tool (adopted on another machine).
+    echo "❗️$dest already exists in dotfiles, backing up local ~/.config/$tool."
+    mv "$src" "$BACKUP_DIR/"
+  else
+    echo "📦 Moving ~/.config/$tool into $subdir/$tool."
+    mv "$src" "$dest"
+  fi
+
+  ln -sf "$dest" "$src"
+  echo "✅ Adopted ~/.config/$tool → $subdir/$tool."
+}
 cmd_unlink() { :; }  # implemented in Task 4
 
 main() {

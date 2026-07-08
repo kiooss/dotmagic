@@ -13,7 +13,7 @@ Personal dotfiles ("DOTMAGIC", `kiooss/dotmagic`) for macOS and Ubuntu. Editor i
   - `link/*.symlink` → `~/.<basename-without-symlink>` (e.g. `link/zshenv.symlink` → `~/.zshenv`)
   - `dotconfig/<name>/` → `~/.config/<name>/` (cross-platform XDG configs)
   - `config.mac/<name>/` → `~/.config/<name>/` (macOS-only, skipped on Linux)
-  Pass `force` to back up existing real files into `~/.backup/` before relinking. Without `force`, existing non-symlink files are skipped with a warning. `dotlink add <tool> [--mac]` adopts an existing `~/.config/<tool>/` into `dotconfig/` (or `config.mac/` with `--mac`); `dotlink unlink <tool>` reverses it.
+  Pass `--force` to back up existing real files into `~/.backup/` before relinking. Without `--force`, existing non-symlink files are skipped with a warning. `dotlink add <tool> [--mac]` adopts an existing `~/.config/<tool>/` into `dotconfig/` (or `config.mac/` with `--mac`); `dotlink unlink <tool>` reverses it.
 - `install/init/{brew,ubuntu,common}.sh` — OS-specific package install, sourced from `bin/dotmagic` based on `uname`.
 - `Brewfile` — declarative Homebrew bundle (taps + brews + casks). Apply with `brew bundle --file=Brewfile`.
 - `zsh/omz_custom/` — oh-my-zsh customizations (plugins + powerlevel10k theme are git submodules).

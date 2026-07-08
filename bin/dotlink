@@ -38,7 +38,37 @@ link_config() {
   fi
 }
 
-cmd_sync() { :; }    # implemented in Task 2
+cmd_sync() {
+  force=""
+  if [ "$1" = "--force" ]; then
+    force="force"
+    echo "!!!Run in force mode, be careful."
+  fi
+
+  [ ! -d "$BACKUP_DIR" ] && mkdir -p "$BACKUP_DIR"
+
+  printf "\n👉 Linking files into home directory.\n"
+  find -H "$DOTFILES/link" -maxdepth 3 -name '*.symlink' -print0 | while read -r -d $'\0' config; do
+    link_name="$HOME/.$(basename "$config" '.symlink')"
+    link_config "$config" "$link_name"
+  done
+
+  printf "\n👉 Linking files into ~/.config directory.\n"
+  find -H "$DOTFILES/dotconfig" -maxdepth 1 -mindepth 1 -type d -print0 | while read -r -d $'\0' config; do
+    link_name="$HOME/.config/$(basename "$config")"
+    link_config "$config" "$link_name"
+  done
+
+  if [ "$(uname -s)" = "Darwin" ]; then
+    printf "\n👉 Linking mac specific config into ~/.config directory.\n"
+    find -H "$DOTFILES/config.mac" -maxdepth 1 -mindepth 1 -type d -print0 | while read -r -d $'\0' config; do
+      link_name="$HOME/.config/$(basename "$config")"
+      link_config "$config" "$link_name"
+    done
+  fi
+
+  printf "\n✨ done.\n"
+}
 cmd_add() { :; }     # implemented in Task 3
 cmd_unlink() { :; }  # implemented in Task 4
 

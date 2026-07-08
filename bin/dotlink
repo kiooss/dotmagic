@@ -114,7 +114,36 @@ cmd_add() {
   ln -sf "$dest" "$src"
   echo "✅ Adopted ~/.config/$tool → $subdir/$tool."
 }
-cmd_unlink() { :; }  # implemented in Task 4
+cmd_unlink() {
+  tool="$1"
+  if [ -z "$tool" ]; then
+    echo "⚠️  unlink: missing <tool>."; usage; exit 1
+  fi
+
+  src="$HOME/.config/$tool"
+
+  # Find the real directory inside dotfiles.
+  if [ -d "$DOTFILES/dotconfig/$tool" ]; then
+    real="$DOTFILES/dotconfig/$tool"
+  elif [ -d "$DOTFILES/config.mac/$tool" ]; then
+    real="$DOTFILES/config.mac/$tool"
+  else
+    echo "❌ $tool is not managed by dotfiles (no dotconfig/$tool or config.mac/$tool)."; exit 1
+  fi
+
+  # Remove the symlink if present.
+  if [ -L "$src" ]; then
+    rm "$src"
+  elif [ -e "$src" ]; then
+    echo "⚠️  ~/.config/$tool exists but is not a symlink; leaving it in place."
+    echo "    Resolve manually, then rerun unlink."
+    exit 1
+  fi
+
+  mv "$real" "$src"
+  echo "✅ Unlinked $tool → moved back to ~/.config/$tool."
+  echo "   Note: run 'git rm -r --cached' / commit in $DOTFILES to drop it from git."
+}
 
 main() {
   subcommand="$1"

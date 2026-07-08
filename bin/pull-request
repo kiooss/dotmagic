@@ -43,8 +43,42 @@ cfg() {
 }
 
 die() {
-  echo -e "${RED}$1${NC}" >&2
+  echo "${RED}$1${NC}" >&2
   exit 1
+}
+
+validate_env() {
+  local base=$1
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 \
+    || die "Not inside a git repository."
+  command -v gh >/dev/null 2>&1 \
+    || die "gh CLI not found. Install it: brew install gh"
+  git symbolic-ref --quiet HEAD >/dev/null 2>&1 \
+    || die "Detached HEAD — check out a branch before creating a PR."
+  # base must exist locally or as a remote-tracking branch.
+  if ! git show-ref --verify --quiet "refs/heads/$base" \
+    && ! git ls-remote --exit-code --heads origin "$base" >/dev/null 2>&1; then
+    die "Base branch '$base' not found locally or on origin."
+  fi
+}
+
+create_release_pr() {
+  local base=$1
+  local label=$2
+  local head
+  validate_env "$base"
+  head=$(git symbolic-ref --short HEAD)
+
+  echo -e "${BOLD}${ITALIC}${GREEN}git up${NC}\n"
+  git up || echo -e "${RED}git up failed; continuing.${NC}"
+
+  echo -e "${CYAN}=== Creating release PR ===${NC}"
+  echo -e "  head:  ${ITALIC}${head}${NC}"
+  echo -e "  base:  ${RED}${ITALIC}${base}${NC}"
+  echo -e "  label: ${ITALIC}${label}${NC}\n"
+
+  gh pr create --base "$base" --head "$head" --label "$label" --fill
+  echo -e "${CYAN}=== done ===${NC}"
 }
 
 cmd_staging() { :; }     # Task 3

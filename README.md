@@ -8,61 +8,45 @@
 |_|\_\_|\___/ \___/|___/___/  \__,_|\___/ \__|_| |_|_|\___||___/
 ```
 
-> Manage my dotfiles (for personal use).
+> My personal dotfiles for macOS and Ubuntu.
 
-Basicly tested on OSX / Ubuntu, but some configuration like
-(**vim**/**zsh**/**tmux**) should be able to migrate to other os distribution easily.
+Editor is [Neovim](https://neovim.io), shell is zsh + [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh),
+multiplexer is [tmux](https://github.com/tmux/tmux). Terminal is [Ghostty](https://ghostty.org)
+or [kitty](https://sw.kovidgoyal.net/kitty/).
 
-I use vim as my editor, zsh as my shell, and tmux as my terminal multiplexer.
-
-## The Purpose
-
-**Automate All The Things!**
-
-When I am in a new machine, I'd like to build my enviroment from zero over just
-copy from existed enviroment (which may cause a lot of wired problems).
+There is no build step — deploy is a symlink farm into `$HOME` plus a
+Homebrew/apt install pass.
 
 ## Install
 
-Install is quite easy, just follow the steps below.
-
-Via git
+Via git:
 
 ```sh
 git clone https://github.com/kiooss/dotmagic.git ~/.dotfiles
 bash ~/.dotfiles/bin/dotmagic
 ```
 
-Via curl
+Via curl:
 
 ```sh
-curl -fsSL https://raw.github.com/kiooss/dotmagic/master/bin/dotmagic | bash
+curl -fsSL https://raw.githubusercontent.com/kiooss/dotmagic/master/bin/dotmagic | bash
 ```
+
+`bin/dotmagic` pulls the latest, syncs submodules, optionally runs the per-OS
+installer, and links everything into place.
 
 ## Upgrade
 
-You just need to run:
+Run `dotmagic` from anywhere on `PATH` to update an existing checkout.
 
-```sh
-dotmagic
-```
+## Linking
 
-## Vim
+`bin/dotlink` is the symlink engine:
 
-Now on neovim 0.5.
-Note: the configuration is always WIP state.
-
-## Zsh
-
-https://github.com/robbyrussell/oh-my-zsh
-My own config plus [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh).
-Oh-my-zsh is optional, but it does a lot things for me and worked well, so I add
-it to my config.
-
-## Tmux
-
-Tmux is awesome, it saves me a lot of time since I decided to use it.
+- `dotlink sync [--force]` — link all configs into `$HOME` and `~/.config`
+- `dotlink add <tool> [--mac]` — adopt an existing `~/.config/<tool>/` into the repo
+- `dotlink unlink <tool>` — move it back out
 
 ## License
 
-[MIT](license)
+[MIT](LICENSE)

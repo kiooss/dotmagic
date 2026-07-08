@@ -52,16 +52,14 @@ if [[ "${1:-}" == "--list" ]]; then
   exit 0
 fi
 
-# Single match: jump straight there, no menu.
-if [[ $(printf '%s\n' "$rows" | wc -l | tr -d ' ') -eq 1 ]]; then
-  target=$(printf '%s' "$rows" | cut -f1)
-else
-  choice=$(printf '%s\n' "$rows" \
-    | column -t -s '	' \
-    | fzf --prompt='claude ❯ ' --height=100% --reverse \
-          --header='jump to claude session') || exit 0
-  target=$(printf '%s' "$choice" | awk '{print $1}')
-fi
+# Always show the picker — never auto-jump, even for a single session (the
+# lone session is usually the current pane, so a silent jump is a no-op at
+# best). --no-select-1 keeps fzf from auto-accepting a single candidate.
+choice=$(printf '%s\n' "$rows" \
+  | column -t -s '	' \
+  | fzf --prompt='claude ❯ ' --height=100% --reverse --no-select-1 \
+        --header='jump to claude session') || exit 0
+target=$(printf '%s' "$choice" | awk '{print $1}')
 
 [[ -z "$target" ]] && exit 0
 session=${target%%:*}

@@ -3,7 +3,11 @@
 
 _pull-request() {
   local stages
-  stages=(staging production)
+  stages=(
+    'staging:PR from current branch into the staging branch'
+    'production:PR from current branch into the production branch'
+    'init:create the staging/production release labels'
+  )
 
   _describe -t stages "Target Stages" stages
 

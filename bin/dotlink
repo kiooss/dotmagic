@@ -1,0 +1,165 @@
+#!/usr/bin/env bash
+
+DOTFILES="$HOME/.dotfiles"
+BACKUP_DIR="$HOME/.backup"
+
+usage() {
+  cat >&2 <<'EOF'
+dotlink — dotfiles link manager
+
+Usage:
+  dotlink sync [--force]      Link all dotfiles into $HOME and ~/.config
+  dotlink add <tool> [--mac]  Adopt ~/.config/<tool>/ into dotfiles (default: dotconfig/, --mac: config.mac/)
+  dotlink unlink <tool>       Remove <tool> from dotfiles, moving it back to ~/.config/<tool>/
+EOF
+}
+
+# Ported verbatim from install/link.sh — uses global $force.
+link_config() {
+  config="$1"
+  link_name="$2"
+  echo "-> config: $config link_name: $link_name"
+  if [ -e "$link_name" ]; then
+    if ! [ "$link_name" -ef "$config" ]; then
+      if [ "$force" = "force" ]; then
+        echo "❗️${link_name} already exists, backup it and do link staff."
+        mv "$link_name" "$BACKUP_DIR/"
+        ln -sf "$config" "$link_name"
+        echo "✅ Linked $config to $link_name"
+      else
+        echo "⚠️  ${link_name} already exists, skip."
+      fi
+    else
+      echo "🔗 ${link_name} already linked."
+    fi
+  else
+    ln -sf "$config" "$link_name"
+    echo "✅ Linked $config to $link_name"
+  fi
+}
+
+cmd_sync() {
+  force=""
+  if [ "$1" = "--force" ]; then
+    force="force"
+    echo "!!!Run in force mode, be careful."
+  fi
+
+  [ ! -d "$BACKUP_DIR" ] && mkdir -p "$BACKUP_DIR"
+
+  printf "\n👉 Linking files into home directory.\n"
+  find -H "$DOTFILES/link" -maxdepth 3 -name '*.symlink' -print0 | while read -r -d $'\0' config; do
+    link_name="$HOME/.$(basename "$config" '.symlink')"
+    link_config "$config" "$link_name"
+  done
+
+  printf "\n👉 Linking files into ~/.config directory.\n"
+  find -H "$DOTFILES/dotconfig" -maxdepth 1 -mindepth 1 -type d -print0 | while read -r -d $'\0' config; do
+    link_name="$HOME/.config/$(basename "$config")"
+    link_config "$config" "$link_name"
+  done
+
+  if [ "$(uname -s)" = "Darwin" ]; then
+    printf "\n👉 Linking mac specific config into ~/.config directory.\n"
+    find -H "$DOTFILES/config.mac" -maxdepth 1 -mindepth 1 -type d -print0 | while read -r -d $'\0' config; do
+      link_name="$HOME/.config/$(basename "$config")"
+      link_config "$config" "$link_name"
+    done
+  fi
+
+  printf "\n✨ done.\n"
+}
+cmd_add() {
+  tool=""
+  subdir="dotconfig"
+  for arg in "$@"; do
+    case "$arg" in
+      --mac) subdir="config.mac" ;;
+      -*)    echo "⚠️  unknown flag: $arg"; usage; exit 1 ;;
+      *)     tool="$arg" ;;
+    esac
+  done
+
+  if [ -z "$tool" ]; then
+    echo "⚠️  add: missing <tool>."; usage; exit 1
+  fi
+
+  src="$HOME/.config/$tool"
+  dest="$DOTFILES/$subdir/$tool"
+
+  # Already managed by dotfiles → idempotent skip.
+  # -ef is true only when both paths exist and share an inode, so a
+  # symlink src pointing into either root matches without extra guards.
+  if [ "$src" -ef "$DOTFILES/dotconfig/$tool" ] || [ "$src" -ef "$DOTFILES/config.mac/$tool" ]; then
+    echo "🔗 ~/.config/$tool is already managed by dotfiles, skip."
+    return 0
+  fi
+
+  # Nothing to adopt.
+  if [ ! -e "$src" ]; then
+    echo "❌ ~/.config/$tool does not exist, nothing to adopt."; exit 1
+  fi
+
+  # add/unlink only handle directories; unlink locates the source with -d,
+  # so adopting a plain file would leave it unrecoverable.
+  if [ ! -d "$src" ]; then
+    echo "❌ ~/.config/$tool is not a directory; dotlink only adopts directories."; exit 1
+  fi
+
+  [ ! -d "$BACKUP_DIR" ] && mkdir -p "$BACKUP_DIR"
+
+  if [ -e "$dest" ]; then
+    # dotfiles already has this tool (adopted on another machine).
+    echo "❗️$dest already exists in dotfiles, backing up local ~/.config/$tool."
+    mv "$src" "$BACKUP_DIR/" || { echo "❌ backup move failed, ~/.config/$tool left in place."; exit 1; }
+  else
+    echo "📦 Moving ~/.config/$tool into $subdir/$tool."
+    mv "$src" "$dest" || { echo "❌ move failed, ~/.config/$tool left in place."; exit 1; }
+  fi
+
+  ln -sf "$dest" "$src"
+  echo "✅ Adopted ~/.config/$tool → $subdir/$tool."
+}
+cmd_unlink() {
+  tool="$1"
+  if [ -z "$tool" ]; then
+    echo "⚠️  unlink: missing <tool>."; usage; exit 1
+  fi
+
+  src="$HOME/.config/$tool"
+
+  # Find the real directory inside dotfiles.
+  if [ -d "$DOTFILES/dotconfig/$tool" ]; then
+    real="$DOTFILES/dotconfig/$tool"
+  elif [ -d "$DOTFILES/config.mac/$tool" ]; then
+    real="$DOTFILES/config.mac/$tool"
+  else
+    echo "❌ $tool is not managed by dotfiles (no dotconfig/$tool or config.mac/$tool)."; exit 1
+  fi
+
+  # Remove the symlink if present.
+  if [ -L "$src" ]; then
+    rm "$src"
+  elif [ -e "$src" ]; then
+    echo "⚠️  ~/.config/$tool exists but is not a symlink; leaving it in place."
+    echo "    Resolve manually, then rerun unlink."
+    exit 1
+  fi
+
+  mv "$real" "$src" || { echo "❌ move failed; dotfiles dir is still at $real."; exit 1; }
+  echo "✅ Unlinked $tool → moved back to ~/.config/$tool."
+  echo "   Note: run 'git rm -r --cached' / commit in $DOTFILES to drop it from git."
+}
+
+main() {
+  subcommand="$1"
+  shift 2>/dev/null
+  case "$subcommand" in
+    sync)   cmd_sync "$@" ;;
+    add)    cmd_add "$@" ;;
+    unlink) cmd_unlink "$@" ;;
+    *)      usage; exit 1 ;;
+  esac
+}
+
+main "$@"

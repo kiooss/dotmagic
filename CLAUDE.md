@@ -8,21 +8,21 @@ Personal dotfiles ("DOTMAGIC", `kiooss/dotmagic`) for macOS and Ubuntu. Editor i
 
 ## Top-level layout (only the non-obvious bits)
 
-- `bin/dotmagic` — single entrypoint script. It pulls latest, syncs submodules, optionally runs the per-OS installer, and then sources `install/link.sh`. Run it bare from anywhere on PATH to upgrade an existing checkout.
-- `install/link.sh` — the symlink engine. It scans three roots and links into `$HOME`:
+- `bin/dotmagic` — single entrypoint script. It pulls latest, syncs submodules, optionally runs the per-OS installer, and then runs `bin/dotlink sync`. Run it bare from anywhere on PATH to upgrade an existing checkout.
+- `bin/dotlink` — the symlink engine (subcommands: sync / add / unlink). It scans three roots and links into `$HOME`:
   - `link/*.symlink` → `~/.<basename-without-symlink>` (e.g. `link/zshenv.symlink` → `~/.zshenv`)
   - `dotconfig/<name>/` → `~/.config/<name>/` (cross-platform XDG configs)
   - `config.mac/<name>/` → `~/.config/<name>/` (macOS-only, skipped on Linux)
-  Pass `force` to back up existing real files into `~/.backup/` before relinking. Without `force`, existing non-symlink files are skipped with a warning.
+  Pass `--force` to back up existing real files into `~/.backup/` before relinking. Without `--force`, existing non-symlink files are skipped with a warning. `dotlink add <tool> [--mac]` adopts an existing `~/.config/<tool>/` into `dotconfig/` (or `config.mac/` with `--mac`); `dotlink unlink <tool>` reverses it.
 - `install/init/{brew,ubuntu,common}.sh` — OS-specific package install, sourced from `bin/dotmagic` based on `uname`.
 - `Brewfile` — declarative Homebrew bundle (taps + brews + casks). Apply with `brew bundle --file=Brewfile`.
 - `zsh/omz_custom/` — oh-my-zsh customizations (plugins + powerlevel10k theme are git submodules).
 - `vendor/` — third-party code pulled as git submodules (see `.gitmodules`).
-- `hammerspoon/` — Hammerspoon Lua config; linked to `~/.hammerspoon/` separately by the user (not handled by `link.sh`).
+- `hammerspoon/` — Hammerspoon Lua config; linked to `~/.hammerspoon/` separately by the user (not handled by `dotlink sync`).
 
 ## Working with symlinked configs
 
-Files under `dotconfig/`, `config.mac/`, and `link/` are **hardlinked or symlinked** into `$HOME` after `link.sh` runs. Editing the repo file edits the live config in-place — there is no copy step. To verify a file is actually live: `stat -f '%i' <repo-path> <home-path>` and compare inodes, or `readlink ~/.config/<name>`.
+Files under `dotconfig/`, `config.mac/`, and `link/` are **hardlinked or symlinked** into `$HOME` after `dotlink sync` runs. Editing the repo file edits the live config in-place — there is no copy step. To verify a file is actually live: `stat -f '%i' <repo-path> <home-path>` and compare inodes, or `readlink ~/.config/<name>`.
 
 After editing a tool's config, reload that tool — do not assume a shell restart picks it up:
 

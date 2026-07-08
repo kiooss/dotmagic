@@ -89,7 +89,7 @@ main() {
     esac
   done
 
-  source $DOTFILES/install/link.sh
+  "$DOTFILES/bin/dotlink" sync
 
   e_header "Welcome to the kiooss dotfiles world!"
   big_title

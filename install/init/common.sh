@@ -33,7 +33,6 @@ bundler
 awesome_print
 pry
 lolcat
-git-up
 EOT
 fi
 

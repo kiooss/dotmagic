@@ -1,0 +1,32 @@
+# Color E-Ink — a paper-first theme evoking a Kaleido/Gallery color e-ink screen.
+# Warm off-white "paper", charcoal ink, and a muted, desaturated color gamut
+# (color e-ink can't render saturated hues — they read as washed pigments).
+
+background = DAD6C8
+foreground = 3A382F
+
+cursor-color = 2E2C25
+cursor-text = DAD6C8
+
+# Pencil-highlight selection: a touch darker than the paper, ink stays legible.
+selection-background = BFB79E
+selection-foreground = 2E2C25
+
+# Muted pigment ramp. 0/8 are ink greys, 7/15 climb toward the paper tone so
+# programs printing "white" stay visible on a light page.
+palette = 0=#4a4740
+palette = 1=#a5544a
+palette = 2=#6e7a52
+palette = 3=#b08a3e
+palette = 4=#4a6c8c
+palette = 5=#8a5a78
+palette = 6=#4e7e7a
+palette = 7=#9b9787
+palette = 8=#6e6a5e
+palette = 9=#b8685c
+palette = 10=#7e8c5e
+palette = 11=#c89a4c
+palette = 12=#5e80a0
+palette = 13=#9e6c8a
+palette = 14=#5e908a
+palette = 15=#c4c0b0

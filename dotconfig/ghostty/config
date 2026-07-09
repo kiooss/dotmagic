@@ -65,19 +65,18 @@ macos-titlebar-style = transparent
 window-save-state = always
 
 # ── Appearance ───────────────────────────────────────────────────────────
-# Frosted-glass background; blur only takes effect while translucent.
-# background-opacity = 0.92
-background-opacity = 0.6
-background-blur = 20
+# Color e-ink is an opaque printed page — no glass, no blur.
+background-opacity = 1.0
+# background-blur = 20
 # Drop shadow lifts the window off whatever's behind it.
 macos-window-shadow = true
-# Dim the non-focused split hard so the active one clearly stands out.
-unfocused-split-opacity = 0.55
+# Dim the non-focused split so the active one clearly stands out.
+unfocused-split-opacity = 0.7
 # Tint the divider between splits so the boundary reads without a hard line.
-split-divider-color = 3b4261
-# Wider gamut for richer TokyoNight colors.
+split-divider-color = bfb79e
+# Wider gamut for richer colors.
 window-colorspace = display-p3
-# Force a minimum fg/bg contrast so dim text never melts into the background.
+# Force a minimum fg/bg contrast so dim text never melts into the paper.
 minimum-contrast = 1.1
 
 # ── macOS ────────────────────────────────────────────────────────────────

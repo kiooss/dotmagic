@@ -45,7 +45,7 @@ Three layers cooperate, in this order:
 2. **AeroSpace** (`config.mac/aerospace/aerospace.toml`) — owns all `cmd-alt-ctrl-<key>` bindings (workspace switch, focus, move, app launch via `exec-and-forget`). `cmd-alt-ctrl-shift-<key>` is the "with shift" variant.
 3. **Hammerspoon** (`hammerspoon/init.lua`) — handles non-Hyper bindings only (cmd+arrows for clipboard/audio, cmd+shift+letters for focus/clipboard, etc.). The old `hyper.lua` modal is no longer wired in but the file remains for re-enabling.
 
-When adding an AeroSpace binding, search for the key first — `cmd-alt-ctrl-comma` already means `layout accordion`, for example. App launchers live under the workspace bindings as a labeled block.
+When adding an AeroSpace binding, search for the key first — `cmd-alt-ctrl-comma` already means `layout accordion`, for example. Live app launchers are the right-shift+letter rules in Karabiner (layer 1); the AeroSpace `exec-and-forget` launcher block exists but is commented out.
 
 ## Git workflow notes
 

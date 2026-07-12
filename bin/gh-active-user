@@ -1,0 +1,27 @@
+#!/bin/sh
+# gh-active-user — print the gh CLI's active GitHub account.
+#
+# Reads gh's own state file (hosts.yml) directly: `gh auth status` forks gh
+# (~100ms) and `gh api user` hits the network, both too heavy for a tmux
+# status-interval, while `gh auth switch` rewrites hosts.yml immediately so
+# a plain file read is always current.
+#
+#   -c   prefix a tmux #[fg=...] style picked deterministically by hashing
+#        the username, so each account keeps a stable, distinct colour
+#        without any account name appearing in this repo.
+
+hosts="${GH_CONFIG_DIR:-$HOME/.config/gh}/hosts.yml"
+[ -r "$hosts" ] || exit 0
+
+user=$(awk '$1 == "user:" { print $2; exit }' "$hosts")
+[ -n "$user" ] || exit 0
+
+if [ "$1" = "-c" ]; then
+  # catppuccin mocha accents: green blue yellow red mauve teal
+  palette='#a6e3a1 #89b4fa #f9e2af #f38ba8 #cba6f7 #94e2d5'
+  idx=$(( $(printf %s "$user" | cksum | cut -d' ' -f1) % 6 + 1 ))
+  color=$(printf %s "$palette" | cut -d' ' -f"$idx")
+  printf '#[fg=%s,bold]%s' "$color" "$user"
+else
+  printf '%s' "$user"
+fi

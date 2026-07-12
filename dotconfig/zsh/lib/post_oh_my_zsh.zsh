@@ -55,8 +55,7 @@ zstyle ':completion:*' select-prompt '%SSelect:  lines: %L  matches: %M  [%p]'
 
 #路径补全
 zstyle ':completion:*' expand 'yes'
-zstyle ':completion:*' squeeze-shlashes 'yes'
-zstyle ':completion::complete:*' '\\'
+zstyle ':completion:*' squeeze-slashes 'yes'
 
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 

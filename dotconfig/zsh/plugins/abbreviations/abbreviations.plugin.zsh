@@ -14,11 +14,10 @@ abbreviations=(
     "REP"     "RAILS_ENV=production bundle exec rails"
 )
 
+# pure zsh — the old sed version forked two processes per space keypress.
 magic-abbrev-expand() {
-     local left prefix
-     left=$(echo -nE "$LBUFFER" | sed -e "s/[_a-zA-Z0-9]*$//")
-     prefix=$(echo -nE "$LBUFFER" | sed -e "s/.*[^_a-zA-Z0-9]\([_a-zA-Z0-9]*\)$/\1/")
-     LBUFFER=$left${abbreviations[$prefix]:-$prefix}" "
+    local prefix=${LBUFFER##*[^_a-zA-Z0-9]}
+    LBUFFER=${LBUFFER%$prefix}${abbreviations[$prefix]:-$prefix}" "
 }
 
 no-magic-abbrev-expand() {

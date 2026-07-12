@@ -19,8 +19,7 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
   zmodload zsh/zprof # Output load-time statistics
   # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
   PS4=$'%D{%M%S%.} %N:%i> '
-  # exec 3>&2 2>"${XDG_CACHE_HOME:-$HOME/tmp}/zsh_statup.$$"
-  exec 3>&2 2>"/tmp/zsh_statup.$$"
+  exec 3>&2 2>"${XDG_CACHE_HOME:-$HOME/.cache}/zsh_startup.$$"
   setopt xtrace prompt_subst
 fi
 # }}}
@@ -51,39 +50,21 @@ typeset -U path cdpath fpath manpath
 # }}}
 
 # PATH config {{{
-# export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-# adding path directory for custom scripts
-export PATH="$DOTFILES/bin:$PATH"
-# check for custom bin directory and add to path
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
-[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
-[[ -d "$HOME/dev/flutter/bin" ]] && export PATH="$HOME/dev/flutter/bin:$PATH"
-
-# Add android tools
-if [[ -d /Applications/adt-bundle-mac-x86_64 ]]; then
-  export ANDROID_HOME="/Applications/adt-bundle-mac-x86_64/sdk"
-  export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin
-fi
-
-if [[ -d $HOME/.symfony/bin ]]; then
-  export PATH=$HOME/.symfony/bin:$PATH
-fi
-
-if [[ -d "$HOME/dev/flutter/.pub-cache/bin" ]]; then
-  export PATH="$PATH":"$HOME/dev/flutter/.pub-cache/bin"
-fi
-
-if [[ -d "/opt/homebrew/opt/llvm/bin" ]]; then
-  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-fi
-
-export PATH="$HOME/.local/bin:$PATH"
-
-
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
+# single place for PATH; typeset -U path dedups, (N-/) drops missing dirs.
+path=(
+  $DOTFILES/bin
+  $HOME/{bin,.local/bin}
+  $HOME/.cargo/bin
+  $BUN_INSTALL/bin
+  $HOME/dev/flutter/bin
+  $HOME/dev/flutter/.pub-cache/bin
+  /opt/homebrew/opt/llvm/bin
+  /usr/local/sbin
+  $path
+)
+path=($^path(N-/))
 # }}}
 
 # EDITOR ENV {{{
@@ -117,14 +98,13 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
 
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Auto-title disabled: each pane sets its own title via _geek_title (precmd)
+# further down, and omz's command-name auto-title would fight it.
+DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
+# Command auto-correction is configured explicitly in lib/config.zsh
+# (setopt CORRECT, unsetopt CORRECT_ALL) — omz's ENABLE_CORRECTION would turn
+# CORRECT_ALL back on, so don't use it.
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -212,7 +192,8 @@ if [[ "$OSTYPE" = darwin* ]]; then
     aliases-osx
     util-functions-osx
   )
-  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+  # .zprofile already ran brew shellenv — don't fork brew again here.
+  fpath=(${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh/site-functions $fpath)
 else
   # plugin used in my dev machine.
   plugins=(
@@ -261,17 +242,18 @@ for plugin ($my_plugins); do
 done
 unset plugin
 
-if hash rbenv 2>/dev/null; then
-  eval "$(rbenv init -)"
+# rbenv: shims on PATH now, full init deferred to first `rbenv` call.
+if [[ -d "$HOME/.rbenv/shims" ]]; then
+  path=($HOME/.rbenv/shims $path)
+  rbenv() {
+    unfunction rbenv
+    eval "$(command rbenv init -)"
+    rbenv "$@"
+  }
 fi
 
 # aws command completion
 # source $HOME/.local/bin/aws_zsh_completer.sh
-
-# Set up hub wrapper for git, if it is available; https://github.com/github/hub
-if (( $+commands[hub] )); then
-  alias git=hub
-fi
 # }}}
 
 # FZF {{{
@@ -279,8 +261,7 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="--height 100% --reverse --border --history=$HOME/.fzf_history"
 export FZF_CTRL_R_OPTS="--preview-window up:3 --preview 'echo {}'"
 export FZF_CTRL_T_OPTS="--preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500'"
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(fzf --zsh)
+(( $+commands[fzf] )) && source <(fzf --zsh)
 
 _fzf_complete_ssh() {
   _fzf_complete +m -- "$@" < <(
@@ -311,51 +292,90 @@ _fzf_comprun() {
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
+# pyenv: shims on PATH now, full init (incl. virtualenv) deferred to first use.
+# Deferring means virtualenv auto-activation starts after the first pyenv call.
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
+if [[ -d "$PYENV_ROOT" ]]; then
+  path=($PYENV_ROOT/{bin,shims}(N-/) $path)
+  pyenv() {
+    unfunction pyenv
+    eval "$(command pyenv init -)"
+    eval "$(command pyenv virtualenv-init -)"
+    pyenv "$@"
+  }
 fi
 
+# NVM: lazy-loaded. The default version's bin dir goes straight on PATH (plain
+# file read, no nvm.sh sourcing — that alone costs hundreds of ms); the real
+# nvm loads on the first `nvm` call or the first .nvmrc encountered.
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if command -v nvm >/dev/null 2>&1; then
-  nvm use default >/dev/null
-fi
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  # resolve the default alias chain (e.g. default -> lts/* -> lts/jod -> vX.Y.Z)
+  () {
+    local ver
+    local -i i
+    [[ -f "$NVM_DIR/alias/default" ]] && ver="$(<$NVM_DIR/alias/default)"
+    for i in {1..8}; do
+      [[ -n "$ver" && -f "$NVM_DIR/alias/$ver" ]] || break
+      ver="$(<$NVM_DIR/alias/$ver)"
+    done
+    [[ "$ver" == "system" ]] && return       # default=system: leave PATH alone
+    [[ "$ver" == (node|stable) ]] && ver=""  # means "newest installed"
+    local -a dirs
+    if [[ -n "$ver" ]]; then
+      # a concrete version: match it or add nothing (no silent wrong version)
+      dirs=($NVM_DIR/versions/node/v${ver#v}*/bin(Nn))
+    else
+      dirs=($NVM_DIR/versions/node/*/bin(Nn))
+    fi
+    (( $#dirs )) && path=($dirs[-1] $path)
+  }
 
-# place this after nvm initialization!
-autoload -U add-zsh-hook
+  _load_nvm() {
+    unfunction nvm 2>/dev/null
+    source "$NVM_DIR/nvm.sh"
+    [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+  }
 
-if [ -s "$NVM_DIR/nvm.sh" ]; then
+  nvm() {
+    _load_nvm
+    nvm "$@"
+  }
+
+  # .nvmrc auto-switch: cheap upward file search — nvm itself is only loaded
+  # when an .nvmrc is actually found.
+  _nvmrc_dir() {  # print the nearest ancestor of $1 containing .nvmrc
+    local dir=$1
+    while [[ -n "$dir" ]]; do
+      [[ -f "$dir/.nvmrc" ]] && { print -r -- "$dir"; return 0 }
+      dir=${dir%/*}
+    done
+    return 1
+  }
+
+  autoload -U add-zsh-hook
   load-nvmrc() {
-    local nvmrc_path
-    nvmrc_path="$(nvm_find_nvmrc)"
-
-    if [ -n "$nvmrc_path" ]; then
-      local nvmrc_node_version
-      nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-      if [ "$nvmrc_node_version" = "N/A" ]; then
+    local nvmrc_dir
+    if nvmrc_dir=$(_nvmrc_dir "$PWD"); then
+      (( $+functions[nvm_find_nvmrc] )) || _load_nvm
+      local want=$(nvm version "$(<$nvmrc_dir/.nvmrc)")
+      if [[ "$want" == "N/A" ]]; then
         nvm install
-      elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      elif [[ "$want" != "$(nvm version)" ]]; then
         nvm use
       fi
-    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    # revert to default only when leaving an .nvmrc dir (not on every cd, so a
+    # manual `nvm use` elsewhere survives), and only if nvm is loaded at all
+    elif (( $+functions[nvm_find_nvmrc] )) && _nvmrc_dir "$OLDPWD" >/dev/null &&
+        [[ "$(nvm version)" != "$(nvm version default)" ]]; then
       echo "Reverting to nvm default version"
       nvm use default
     fi
   }
-
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
 fi
-
-# home bin
-[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
 
 ## https://wiki.archlinux.org/title/zsh#Persistent_rehash {{{
 if type pacman &>/dev/null; then
@@ -383,38 +403,40 @@ fi
 # Installation: pm2 completion >> ~/.bashrc  (or ~/.zshrc)
 #
 
-COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
-COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
-export COMP_WORDBREAKS
+if (( $+commands[pm2] )); then
+  COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+  COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+  export COMP_WORDBREAKS
 
-if type complete &>/dev/null; then
-  _pm2_completion () {
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           pm2 completion -- "${COMP_WORDS[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -o default -F _pm2_completion pm2
-elif type compctl &>/dev/null; then
-  _pm2_completion () {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       pm2 completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K _pm2_completion + -f + pm2
+  if type complete &>/dev/null; then
+    _pm2_completion () {
+      local si="$IFS"
+      IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                             COMP_LINE="$COMP_LINE" \
+                             COMP_POINT="$COMP_POINT" \
+                             pm2 completion -- "${COMP_WORDS[@]}" \
+                             2>/dev/null)) || return $?
+      IFS="$si"
+    }
+    complete -o default -F _pm2_completion pm2
+  elif type compctl &>/dev/null; then
+    _pm2_completion () {
+      local cword line point words si
+      read -Ac words
+      read -cn cword
+      let cword-=1
+      read -l line
+      read -ln point
+      si="$IFS"
+      IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                         COMP_LINE="$line" \
+                         COMP_POINT="$point" \
+                         pm2 completion -- "${words[@]}" \
+                         2>/dev/null)) || return $?
+      IFS="$si"
+    }
+    compctl -K _pm2_completion + -f + pm2
+  fi
 fi
 ###-end-pm2-completion-###
 #}}}
@@ -486,9 +508,8 @@ fi
 # Geek terminal title: "~/cwd  🌿 branch" {{{
 # tmux's set-titles-string can't expand a nested #{pane_current_path} inside
 # #(...), so instead each pane sets its own title here and tmux forwards it
-# (as #T). Disable oh-my-zsh's command-name auto-title so it doesn't fight us.
-DISABLE_AUTO_TITLE="true"
-
+# (as #T). DISABLE_AUTO_TITLE (set in the omz config section above) keeps
+# oh-my-zsh's command-name auto-title from fighting us.
 _geek_title() {
   local dir="${PWD/#$HOME/~}"
   local branch

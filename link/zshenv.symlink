@@ -25,4 +25,4 @@ if [[ -f "$HOME/.cargo/env" ]]; then
   source "$HOME/.cargo/env"
 fi
 
-export FLUTTER_ROOT=$HOME/dev/flutter
+[[ -d "$HOME/dev/flutter" ]] && export FLUTTER_ROOT=$HOME/dev/flutter

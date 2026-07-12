@@ -25,7 +25,7 @@ function proxy-state() {
   fi
 }
 
-if [[ -f ~/.cache/proxy_state && `cat ~/.cache/proxy_state` == 'on' ]]; then
+if [[ -f ~/.cache/proxy_state && "$(<~/.cache/proxy_state)" == 'on' ]]; then
   proxy-on
 fi
 

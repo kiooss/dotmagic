@@ -311,14 +311,24 @@ fi
 export NVM_DIR="$HOME/.config/nvm"
 
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
-  # resolve the default alias one level; fall back to the newest installed.
+  # resolve the default alias chain (e.g. default -> lts/* -> lts/jod -> vX.Y.Z)
   () {
     local ver
+    local -i i
     [[ -f "$NVM_DIR/alias/default" ]] && ver="$(<$NVM_DIR/alias/default)"
-    [[ -n "$ver" && -f "$NVM_DIR/alias/$ver" ]] && ver="$(<$NVM_DIR/alias/$ver)"
+    for i in {1..8}; do
+      [[ -n "$ver" && -f "$NVM_DIR/alias/$ver" ]] || break
+      ver="$(<$NVM_DIR/alias/$ver)"
+    done
+    [[ "$ver" == "system" ]] && return       # default=system: leave PATH alone
+    [[ "$ver" == (node|stable) ]] && ver=""  # means "newest installed"
     local -a dirs
-    dirs=($NVM_DIR/versions/node/v${ver#v}*/bin(Nn))
-    (( $#dirs )) || dirs=($NVM_DIR/versions/node/*/bin(Nn))
+    if [[ -n "$ver" ]]; then
+      # a concrete version: match it or add nothing (no silent wrong version)
+      dirs=($NVM_DIR/versions/node/v${ver#v}*/bin(Nn))
+    else
+      dirs=($NVM_DIR/versions/node/*/bin(Nn))
+    fi
     (( $#dirs )) && path=($dirs[-1] $path)
   }
 
@@ -335,24 +345,30 @@ if [[ -s "$NVM_DIR/nvm.sh" ]]; then
 
   # .nvmrc auto-switch: cheap upward file search — nvm itself is only loaded
   # when an .nvmrc is actually found.
-  autoload -U add-zsh-hook
-  load-nvmrc() {
-    local dir=$PWD
+  _nvmrc_dir() {  # print the nearest ancestor of $1 containing .nvmrc
+    local dir=$1
     while [[ -n "$dir" ]]; do
-      if [[ -f "$dir/.nvmrc" ]]; then
-        (( $+functions[nvm_find_nvmrc] )) || _load_nvm
-        local want=$(nvm version "$(<$dir/.nvmrc)")
-        if [[ "$want" == "N/A" ]]; then
-          nvm install
-        elif [[ "$want" != "$(nvm version)" ]]; then
-          nvm use
-        fi
-        return
-      fi
+      [[ -f "$dir/.nvmrc" ]] && { print -r -- "$dir"; return 0 }
       dir=${dir%/*}
     done
-    # no .nvmrc here: revert only if nvm is loaded and we're off the default
-    if (( $+functions[nvm_find_nvmrc] )) && [[ "$(nvm version)" != "$(nvm version default)" ]]; then
+    return 1
+  }
+
+  autoload -U add-zsh-hook
+  load-nvmrc() {
+    local nvmrc_dir
+    if nvmrc_dir=$(_nvmrc_dir "$PWD"); then
+      (( $+functions[nvm_find_nvmrc] )) || _load_nvm
+      local want=$(nvm version "$(<$nvmrc_dir/.nvmrc)")
+      if [[ "$want" == "N/A" ]]; then
+        nvm install
+      elif [[ "$want" != "$(nvm version)" ]]; then
+        nvm use
+      fi
+    # revert to default only when leaving an .nvmrc dir (not on every cd, so a
+    # manual `nvm use` elsewhere survives), and only if nvm is loaded at all
+    elif (( $+functions[nvm_find_nvmrc] )) && _nvmrc_dir "$OLDPWD" >/dev/null &&
+        [[ "$(nvm version)" != "$(nvm version default)" ]]; then
       echo "Reverting to nvm default version"
       nvm use default
     fi

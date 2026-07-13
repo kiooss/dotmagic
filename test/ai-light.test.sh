@@ -65,6 +65,49 @@ fresh
 check 'status lists the source' 'source a working normal 60' \
   "$("$ai_light" status | grep '^source ')"
 
+# --- arbitration ---------------------------------------------------------
+
+fresh
+check 'no sources means off' 'off' "$(winner)"
+
+fresh
+"$ai_light" set thinking --source a
+check 'a single source wins' 'thinking' "$(winner)"
+
+fresh
+"$ai_light" set working --source a
+"$ai_light" set waiting --source b
+check 'higher urgency wins within a tier' 'waiting' "$(winner)"
+
+fresh
+"$ai_light" set thinking --source a
+"$ai_light" set error --source b
+check 'error outranks everything in its tier' 'error' "$(winner)"
+
+fresh
+"$ai_light" set waiting --source a
+"$ai_light" set working --source b --priority alert
+check 'alert beats a more urgent normal claim' 'working' "$(winner)"
+
+fresh
+"$ai_light" set working --source a --priority alert
+"$ai_light" set thinking --source b --priority alert
+check 'urgency still decides inside the alert tier' 'working' "$(winner)"
+
+fresh
+printf 'working 60 normal %s\n' "$(($(date +%s) - 61))" >"$AI_LIGHT_DIR/stale"
+check 'expired claims are ignored' 'off' "$(winner)"
+
+fresh
+printf 'working 60 normal %s\n' "$(($(date +%s) - 61))" >"$AI_LIGHT_DIR/stale"
+"$ai_light" set thinking --source live
+check 'an expired claim cannot mask a live one' 'thinking' "$(winner)"
+
+fresh
+"$ai_light" set working --source a
+"$ai_light" set off --source a
+check 'off retires the source' 'off' "$(winner)"
+
 # --- summary -------------------------------------------------------------
 
 if [ "$fails" -gt 0 ]; then

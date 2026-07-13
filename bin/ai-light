@@ -46,6 +46,56 @@ valid_state() {
   esac
 }
 
+# Rank helpers. Higher number wins. Printed rather than returned because sh
+# exit codes are a terrible place to put data.
+urgency() {
+  case "$1" in
+    error) echo 5 ;;
+    waiting) echo 4 ;;
+    working) echo 3 ;;
+    thinking) echo 2 ;;
+    ready) echo 1 ;;
+    *) echo 0 ;;
+  esac
+}
+
+tier() {
+  case "$1" in
+    alert) echo 2 ;;
+    *) echo 1 ;;
+  esac
+}
+
+# The winning state across all live claims: highest tier, then highest urgency.
+# Expired claims are skipped, which is how a killed session releases the light.
+#
+# No recency tiebreak is needed: urgency is a pure function of the state, so two
+# claims that tie on urgency hold the same state and yield the same winner.
+compute_winner() {
+  now=$(date +%s)
+  best=off
+  best_tier=0
+  best_urgency=0
+
+  for f in "$dir"/*; do
+    [ -f "$f" ] || continue
+    case "${f##*/}" in .*) continue ;; esac
+    read -r st ttl prio mt <"$f" || continue
+    [ $((now - mt)) -gt "$ttl" ] && continue
+
+    t=$(tier "$prio")
+    u=$(urgency "$st")
+    if [ "$t" -gt "$best_tier" ] ||
+      { [ "$t" -eq "$best_tier" ] && [ "$u" -gt "$best_urgency" ]; }; then
+      best="$st"
+      best_tier="$t"
+      best_urgency="$u"
+    fi
+  done
+
+  printf '%s\n' "$best"
+}
+
 cmd_set() {
   [ $# -ge 1 ] || usage
   state="$1"
@@ -109,7 +159,7 @@ cmd_status() {
     [ $((now - mt)) -gt "$ttl" ] && continue
     printf 'source %s %s %s %s\n' "${f##*/}" "$st" "$prio" "$ttl"
   done
-  printf 'winner: off\n'
+  printf 'winner: %s\n' "$(compute_winner)"
 }
 
 [ $# -ge 1 ] || usage

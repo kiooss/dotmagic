@@ -68,7 +68,9 @@ One file per source: `/tmp/ai-light/<source>`, holding a single line
 
 1. Read every source file; discard any where `now - mtime > ttl`.
 2. Winner = highest priority tier, then highest state urgency
-   (`error > waiting > working > thinking > ready`), then most recently written.
+   (`error > waiting > working > thinking > ready`). No recency tiebreak is
+   needed: urgency is a pure function of the state, so two sources that tie on
+   urgency hold the *same* state and therefore yield the same winner either way.
 3. No live sources → `off`.
 4. If the winner equals the value in `/tmp/ai-light/.last`, **send nothing**.
 

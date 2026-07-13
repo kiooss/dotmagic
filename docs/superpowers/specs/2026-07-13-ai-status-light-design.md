@@ -74,6 +74,24 @@ One file per source: `/tmp/ai-light/<source>`, holding a single line
 3. No live sources → `off`.
 4. If the winner equals the value in `/tmp/ai-light/.last`, **send nothing**.
 
+Steps 1–4 run under a `mkdir`-based lock on the state dir, covering the whole
+claim-write → compute → push → record sequence. Unsynchronised, two hooks firing
+at once interleave: the loser's stale winner reaches the device *after* the
+winner's, and both racing to write `.last` can shred it into a value that is not
+a state at all. (`flock(1)` does not exist on macOS; `mkdir` is atomic and does.)
+
+### What TTL does and does not do
+
+Expiry is evaluated **lazily, on the next invocation**. There is no timer and no
+daemon. So a stale claim stops masking other sources as soon as anything calls
+in again — but it cannot turn the light off by itself. If the only claimant dies
+and nothing else ever calls, the device keeps showing that last state
+indefinitely.
+
+This is a deliberate limitation, chosen over the alternatives (a detached
+one-shot timer per claim, or a launchd agent polling every 30s) because neither
+was worth the machinery. **Callers that care must `clear` on the way out.**
+
 Step 4 is what makes the high-frequency Claude hook affordable: ten consecutive
 `Bash` tool calls produce one HTTP request, and nine pure-local file reads. The
 light is never spammed and the hook is never slowed.
@@ -94,6 +112,15 @@ unmemorable three months later.
 Fire-and-forget with a short timeout, errors swallowed, never fails the caller.
 An unplugged light must not break a hook or a build. (Same discipline as the
 proven `agentpet.sh`.)
+
+`--fail` is load-bearing: without it curl exits 0 on a 4xx/5xx response body, so
+an update the device *rejected* would be recorded in `.last` as applied and never
+retried.
+
+`--ttl` must be a positive integer, enforced as a usage error. A non-numeric ttl
+otherwise writes a claim that every later arithmetic comparison chokes on — and
+since the comparison errors rather than returning true, such a claim is treated
+as live forever, letting one `alert` mask every other source permanently.
 
 ### Host configuration
 
@@ -117,9 +144,14 @@ idle notification would raise `waiting`, which outranks `working`, and one idle
 session would mask a genuinely busy one.
 
 Using `session_id` as the source name gives concurrent sessions independent
-claims for free, and TTL expiry means a killed session drops out of the
-arbitration on its own after 60s — the light recovers without anyone sending a
-terminal state.
+claims for free, and TTL expiry means a dead session stops masking the live ones
+as soon as any of them calls in.
+
+A `SessionEnd` hook runs `ai-light clear --source <session_id>`, which is what
+honours the "callers must clear on the way out" contract above. It covers every
+graceful exit. A hard-killed session (`kill -9`, a closed terminal) still strands
+its claim, and with no other session running the light will hold that state —
+accepted, per the TTL note above.
 
 The Claude-specific knowledge (stdin JSON shape, event→state mapping) lives
 entirely in this wrapper. `bin/ai-light` stays generic.

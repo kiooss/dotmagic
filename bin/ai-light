@@ -6,9 +6,11 @@
 # It knows nothing about Claude Code (see ~/.claude/hooks/ai-light.sh for that).
 #
 # Each source holds a claim (a one-line file) that expires after --ttl seconds.
-# Expiry is what keeps the light honest: a session that is killed never sends a
-# terminal state, and a physical light stuck in the wrong state is worse than a
-# dark one.
+# Expiry is evaluated lazily, on the next invocation — there is no timer and no
+# daemon. So a stale claim stops *masking other sources* as soon as anything
+# calls this script again, but it cannot turn the light off by itself: if the
+# only claimant dies and nothing else ever calls in, the device keeps showing
+# that last state. Callers that care must `clear` on the way out.
 #
 # Never fails its caller: it runs inside Claude Code hooks and build pipelines,
 # where a non-zero exit would be actively harmful. Usage errors are the one
@@ -19,6 +21,7 @@ set -u
 host="${AI_LIGHT_HOST:-192.168.2.24}"
 dir="${AI_LIGHT_DIR:-${TMPDIR:-/tmp}/ai-light}"
 last="$dir/.last"
+lockdir="$dir/.lock"
 
 usage() {
   cat >&2 <<'EOF'
@@ -45,6 +48,37 @@ valid_state() {
     ready | thinking | working | waiting | error | off) return 0 ;;
     *) return 1 ;;
   esac
+}
+
+# Run a function with the state dir locked. `mkdir` is atomic on POSIX, which is
+# all we need — and unlike flock(1) it actually exists on macOS.
+#
+# Without this, two hooks firing at once interleave their compute/push/record
+# steps: the loser's stale winner lands on the device *after* the winner's, and
+# both racing to write `.last` can shred it into a value that is not a state at
+# all (observed: "errorng").
+#
+# A wedged holder is stolen from after ~1s rather than blocking: this runs
+# inside hooks, where hanging is worse than a duplicate request.
+with_lock() {
+  mkdir -p "$dir" 2>/dev/null || return 0
+
+  i=0
+  until mkdir "$lockdir" 2>/dev/null; do
+    i=$((i + 1))
+    if [ "$i" -gt 20 ]; then
+      rm -rf "$lockdir" 2>/dev/null
+      mkdir "$lockdir" 2>/dev/null || return 0
+      break
+    fi
+    sleep 0.05
+  done
+  trap 'rm -rf "$lockdir" 2>/dev/null' EXIT HUP INT TERM
+
+  "$1"
+
+  rm -rf "$lockdir" 2>/dev/null
+  trap - EXIT HUP INT TERM
 }
 
 # Rank helpers. Higher number wins. Printed rather than returned because sh
@@ -102,15 +136,20 @@ compute_winner() {
 # would be hammered and the hook would pay a round-trip each time.
 #
 # Short timeout, output discarded, never returns non-zero: an unplugged light
-# must not break a build or a hook. `.last` is written only on success, so a
-# request that failed is retried on the next call instead of being lost.
+# must not break a build or a hook. `.last` records what the device was last
+# known to accept, and is written only when it really did accept — `--fail` is
+# what makes that true, since curl exits 0 on a 4xx/5xx body otherwise, and a
+# rejected update would then be remembered as applied and never retried.
+#
+# Callers must hold the lock: this reads and writes `.last`.
 push() {
   new=$(compute_winner)
   old=$(cat "$last" 2>/dev/null) || old=
   [ "$new" = "$old" ] && return 0
 
-  if curl -s --max-time 1 "http://$host/state?value=$new" >/dev/null 2>&1; then
-    printf '%s' "$new" >"$last" 2>/dev/null || true
+  if curl -s --fail --max-time 1 "http://$host/state?value=$new" >/dev/null 2>&1; then
+    tmp="$dir/.last.$$"
+    printf '%s' "$new" >"$tmp" 2>/dev/null && mv -f "$tmp" "$last" 2>/dev/null
   fi
   return 0
 }
@@ -143,9 +182,20 @@ cmd_set() {
   done
   case "$priority" in normal | alert) ;; *) usage ;; esac
 
-  source=$(sanitize "$source")
-  mkdir -p "$dir" 2>/dev/null || return 0
+  # A non-numeric ttl used to sail through and write a claim that every later
+  # `[ ... -gt ... ]` choked on — and since the comparison errored rather than
+  # returning true, the claim was treated as live *forever*. An `alert` one
+  # could then mask every other source until the state dir was wiped by hand.
+  case "$ttl" in
+    '' | *[!0-9]*) usage ;;
+  esac
+  [ "$ttl" -gt 0 ] || usage
 
+  source=$(sanitize "$source")
+  with_lock apply_set
+}
+
+apply_set() {
   if [ "$state" = off ]; then
     rm -f "$dir/$source"
   else
@@ -169,7 +219,12 @@ cmd_clear() {
       *) usage ;;
     esac
   done
-  rm -f "$dir/$(sanitize "$source")"
+  source=$(sanitize "$source")
+  with_lock apply_clear
+}
+
+apply_clear() {
+  rm -f "$dir/$source"
   push
 }
 

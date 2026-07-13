@@ -1,0 +1,124 @@
+#!/bin/sh
+# ai-light — drive the LAN AI status light.
+#
+# A general ambient status indicator: any tool can push a state, and this
+# script arbitrates between concurrent sources before touching the device.
+# It knows nothing about Claude Code (see ~/.claude/hooks/ai-light.sh for that).
+#
+# Each source holds a claim (a one-line file) that expires after --ttl seconds.
+# Expiry is what keeps the light honest: a session that is killed never sends a
+# terminal state, and a physical light stuck in the wrong state is worse than a
+# dark one.
+#
+# Never fails its caller: it runs inside Claude Code hooks and build pipelines,
+# where a non-zero exit would be actively harmful. Usage errors are the one
+# exception (exit 2) — those are bugs in the caller, not runtime conditions.
+
+set -u
+
+host="${AI_LIGHT_HOST:-192.168.2.24}"
+dir="${AI_LIGHT_DIR:-${TMPDIR:-/tmp}/ai-light}"
+
+usage() {
+  cat >&2 <<'EOF'
+usage: ai-light set <state> [--source NAME] [--ttl SECONDS] [--priority normal|alert]
+       ai-light clear [--source NAME]
+       ai-light status
+
+  <state>      ready thinking working waiting error off   (off retires the source)
+  --source     who is speaking. default: default
+  --ttl        seconds the claim stays valid. default: 60
+  --priority   alert beats normal. default: normal
+EOF
+  exit 2
+}
+
+# Sources are used as filenames and arrive from callers (a Claude session_id, a
+# script's name); keep them to a safe charset rather than trusting them.
+sanitize() {
+  printf %s "$1" | tr -c 'A-Za-z0-9_-' '_'
+}
+
+valid_state() {
+  case "$1" in
+    ready | thinking | working | waiting | error | off) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+cmd_set() {
+  [ $# -ge 1 ] || usage
+  state="$1"
+  shift
+  valid_state "$state" || usage
+
+  source=default
+  ttl=60
+  priority=normal
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --source)
+        source="${2:-}"
+        shift 2 || usage
+        ;;
+      --ttl)
+        ttl="${2:-}"
+        shift 2 || usage
+        ;;
+      --priority)
+        priority="${2:-}"
+        shift 2 || usage
+        ;;
+      *) usage ;;
+    esac
+  done
+  case "$priority" in normal | alert) ;; *) usage ;; esac
+
+  source=$(sanitize "$source")
+  mkdir -p "$dir" 2>/dev/null || return 0
+
+  if [ "$state" = off ]; then
+    rm -f "$dir/$source"
+  else
+    # Write-then-rename: a concurrent reader never sees a half-written claim.
+    tmp="$dir/.tmp.$$"
+    printf '%s %s %s %s\n' "$state" "$ttl" "$priority" "$(date +%s)" >"$tmp" &&
+      mv -f "$tmp" "$dir/$source"
+  fi
+}
+
+cmd_clear() {
+  source=default
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --source)
+        source="${2:-}"
+        shift 2 || usage
+        ;;
+      *) usage ;;
+    esac
+  done
+  rm -f "$dir/$(sanitize "$source")"
+}
+
+cmd_status() {
+  now=$(date +%s)
+  for f in "$dir"/*; do
+    [ -f "$f" ] || continue
+    read -r st ttl prio mt <"$f" || continue
+    [ $((now - mt)) -gt "$ttl" ] && continue
+    printf 'source %s %s %s %s\n' "${f##*/}" "$st" "$prio" "$ttl"
+  done
+  printf 'winner: off\n'
+}
+
+[ $# -ge 1 ] || usage
+subcommand="$1"
+shift
+case "$subcommand" in
+  set) cmd_set "$@" ;;
+  clear) cmd_clear "$@" ;;
+  status) cmd_status "$@" ;;
+  *) usage ;;
+esac
+exit 0

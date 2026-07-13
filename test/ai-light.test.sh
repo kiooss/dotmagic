@@ -25,6 +25,28 @@ fresh() { # start a test with an empty state dir
 
 winner() { "$ai_light" status | sed -n 's/^winner: //p'; }
 
+# A fake curl on PATH: logs each invocation's URL, and fails when
+# CURL_SHOULD_FAIL is set, so we can test the retry behaviour.
+stub_curl() {
+  stubdir=$(mktemp -d)
+  cat >"$stubdir/curl" <<'STUB'
+#!/bin/sh
+for arg in "$@"; do
+  case "$arg" in http*) printf '%s\n' "$arg" >>"$CURL_LOG" ;; esac
+done
+[ -n "${CURL_SHOULD_FAIL:-}" ] && exit 7
+exit 0
+STUB
+  chmod +x "$stubdir/curl"
+  PATH="$stubdir:$PATH"
+  export PATH
+  CURL_LOG=$(mktemp)
+  export CURL_LOG
+  unset CURL_SHOULD_FAIL
+}
+
+requests() { wc -l <"$CURL_LOG" | tr -d ' '; }
+
 # --- state store ---------------------------------------------------------
 
 fresh
@@ -107,6 +129,47 @@ fresh
 "$ai_light" set working --source a
 "$ai_light" set off --source a
 check 'off retires the source' 'off' "$(winner)"
+
+# --- transport -----------------------------------------------------------
+
+fresh
+stub_curl
+"$ai_light" set working --source a
+check 'a new winner is pushed to the light' \
+  'http://192.168.2.24/state?value=working' "$(cat "$CURL_LOG")"
+
+fresh
+stub_curl
+AI_LIGHT_HOST=10.0.0.9 "$ai_light" set ready --source a
+check 'AI_LIGHT_HOST overrides the device address' \
+  'http://10.0.0.9/state?value=ready' "$(cat "$CURL_LOG")"
+
+fresh
+stub_curl
+"$ai_light" set working --source a
+"$ai_light" set working --source a
+"$ai_light" set working --source b
+check 'an unchanged winner is not re-pushed' '1' "$(requests)"
+
+fresh
+stub_curl
+"$ai_light" set working --source a
+"$ai_light" set error --source b
+check 'a changed winner is pushed again' '2' "$(requests)"
+
+fresh
+stub_curl
+"$ai_light" set working --source a
+"$ai_light" clear --source a
+check 'clearing the last source pushes off' \
+  'http://192.168.2.24/state?value=off' "$(sed -n 2p "$CURL_LOG")"
+
+fresh
+stub_curl
+CURL_SHOULD_FAIL=1 "$ai_light" set working --source a
+check 'a failed push exits 0 anyway' '0' "$?"
+"$ai_light" set working --source a
+check 'a failed push is retried on the next call' '2' "$(requests)"
 
 # --- summary -------------------------------------------------------------
 

@@ -18,6 +18,7 @@ set -u
 
 host="${AI_LIGHT_HOST:-192.168.2.24}"
 dir="${AI_LIGHT_DIR:-${TMPDIR:-/tmp}/ai-light}"
+last="$dir/.last"
 
 usage() {
   cat >&2 <<'EOF'
@@ -96,6 +97,24 @@ compute_winner() {
   printf '%s\n' "$best"
 }
 
+# Send the current winner to the device — but only if it changed. Claude's
+# PreToolUse hook fires on every single tool call; without this check the light
+# would be hammered and the hook would pay a round-trip each time.
+#
+# Short timeout, output discarded, never returns non-zero: an unplugged light
+# must not break a build or a hook. `.last` is written only on success, so a
+# request that failed is retried on the next call instead of being lost.
+push() {
+  new=$(compute_winner)
+  old=$(cat "$last" 2>/dev/null) || old=
+  [ "$new" = "$old" ] && return 0
+
+  if curl -s --max-time 1 "http://$host/state?value=$new" >/dev/null 2>&1; then
+    printf '%s' "$new" >"$last" 2>/dev/null || true
+  fi
+  return 0
+}
+
 cmd_set() {
   [ $# -ge 1 ] || usage
   state="$1"
@@ -135,6 +154,8 @@ cmd_set() {
     printf '%s %s %s %s\n' "$state" "$ttl" "$priority" "$(date +%s)" >"$tmp" &&
       mv -f "$tmp" "$dir/$source"
   fi
+
+  push
 }
 
 cmd_clear() {
@@ -149,6 +170,7 @@ cmd_clear() {
     esac
   done
   rm -f "$dir/$(sanitize "$source")"
+  push
 }
 
 cmd_status() {

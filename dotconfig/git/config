@@ -138,8 +138,8 @@
 	out = "!git fetch; git cherry origin/HEAD -v"
 	dp = diff --stat origin/master HEAD
 	delete-merged-branches = "!f() { DEFAULT=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@'); DEFAULT=${DEFAULT:-main}; git checkout --quiet \"$DEFAULT\" && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
-	# delete local branches that are merged into the default branch AND have no upstream (gone/never-pushed)
-	prune-gone = "!f() { DEFAULT=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@'); DEFAULT=${DEFAULT:-master}; git branch --merged \"$DEFAULT\" | sed 's/^[* ] //' | grep -vx \"$DEFAULT\" | while read -r b; do git rev-parse --abbrev-ref \"$b@{upstream}\" >/dev/null 2>&1 || git branch -d \"$b\"; done; }; f"
+	# delete local branches merged into the default branch that have no upstream; skips worktree-checked-out branches
+	prune-gone = "!f() { DEFAULT=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@'); DEFAULT=${DEFAULT:-master}; git for-each-ref --merged \"$DEFAULT\" --format='%(refname:short)|%(upstream)|%(worktreepath)' refs/heads/ | while IFS='|' read -r b up wt; do [ \"$b\" = \"$DEFAULT\" ] && continue; [ -n \"$up\" ] && continue; [ -n \"$wt\" ] && continue; git branch -d \"$b\"; done; }; f"
 	diff-ignore-space = diff --ignore-space-at-eol -b -w --ignore-blank-lines
 	# order files by number of commits, ascending
 	churn = "!f() { git log --all -M -C --name-only --format='format:' \"$@\" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print \"count\tfile\"} {print $1 \"\t\" $2}' | sort -g; }; f"

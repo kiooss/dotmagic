@@ -1,0 +1,27 @@
+# zsh startup orders {{{
+# /etc/zshenv
+# ~/.zshenv
+# /etc/zprofile
+# ~/.zprofile
+# /etc/zshrc
+# ~/.zshrc
+# /etc/zlogin
+# ~/.zlogin
+# }}}
+
+# export TZ="/usr/share/zoneinfo/Asia/Tokyo"
+
+# .zshenv is always sourced.
+# Most ${ENV_VAR} variables should be saved here.
+# It is loaded before .zshrc
+
+export XDG_CONFIG_HOME=$HOME/.config
+
+# export NO_PROXY=localhost,127.0.0.1,::1
+export NO_PROXY="localhost,127.0.0.1,::1,.local,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
+
+if [[ -f "$HOME/.cargo/env" ]]; then
+  source "$HOME/.cargo/env"
+fi
+
+[[ -d "$HOME/dev/flutter" ]] && export FLUTTER_ROOT=$HOME/dev/flutter

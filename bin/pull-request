@@ -10,7 +10,9 @@
 # (pull-request.stagingBranch / .prodBranch / .stagingLabel / .prodLabel);
 # defaults are staging / production / staging-release / production-release.
 #
-# head is always the current branch. PR body is filled by `gh pr create --fill`.
+# head is always the current branch. The title is an explicit
+# "<Env> Release <date>" (e.g. "🚀 [STAGING] Release 2026-07-24");
+# the body is filled by `gh pr create --fill`.
 
 set -euo pipefail
 
@@ -62,11 +64,13 @@ validate_env() {
 }
 
 create_release_pr() {
-  local base=$1
-  local label=$2
-  local head
+  local env=$1
+  local base=$2
+  local label=$3
+  local head title
   validate_env "$base"
   head=$(git symbolic-ref --short HEAD)
+  title="$env Release $(date +%Y-%m-%d)"
 
   # gh compares refs on the remote, so head must exist on origin.
   # Catch it here with a clear message instead of gh's late, cryptic error.
@@ -86,11 +90,12 @@ create_release_pr() {
   fi
 
   echo -e "${CYAN}=== Creating release PR ===${NC}"
+  echo -e "  title: ${ITALIC}${title}${NC}"
   echo -e "  head:  ${ITALIC}${head}${NC}"
   echo -e "  base:  ${RED}${ITALIC}${base}${NC}"
   echo -e "  label: ${ITALIC}${label}${NC}\n"
 
-  gh pr create --base "$base" --head "$head" --label "$label" --fill
+  gh pr create --base "$base" --head "$head" --label "$label" --title "$title" --fill
   echo -e "${CYAN}=== done ===${NC}"
 }
 
@@ -104,12 +109,12 @@ no_extra_args() {
 
 cmd_staging() {
   no_extra_args staging "$@"
-  create_release_pr "$(cfg stagingBranch staging)" "$(cfg stagingLabel staging-release)"
+  create_release_pr "🚀 [STAGING]" "$(cfg stagingBranch staging)" "$(cfg stagingLabel staging-release)"
 }
 
 cmd_production() {
   no_extra_args production "$@"
-  create_release_pr "$(cfg prodBranch production)" "$(cfg prodLabel production-release)"
+  create_release_pr "🔥 [PRODUCTION]" "$(cfg prodBranch production)" "$(cfg prodLabel production-release)"
 }
 cmd_init() {
   no_extra_args init "$@"

@@ -49,18 +49,15 @@ die() {
   exit 1
 }
 
+# Cheap local/tool preconditions only — no network. Base/head existence on
+# origin is checked after `git up` against the refs it just fetched.
 validate_env() {
-  local base=$1
   git rev-parse --is-inside-work-tree >/dev/null 2>&1 \
     || die "Not inside a git repository."
   command -v gh >/dev/null 2>&1 \
     || die "gh CLI not found. Install it: brew install gh"
   git symbolic-ref --quiet HEAD >/dev/null 2>&1 \
     || die "Detached HEAD — check out a branch before creating a PR."
-  # gh opens the PR against the base ref ON origin, so a local-only branch is
-  # not enough — require the base to exist on origin.
-  git ls-remote --exit-code --heads origin "$base" >/dev/null 2>&1 \
-    || die "Base branch '$base' not found on origin."
 }
 
 create_release_pr() {
@@ -68,23 +65,28 @@ create_release_pr() {
   local base=$2
   local label=$3
   local head title
-  validate_env "$base"
+  validate_env
   head=$(git symbolic-ref --short HEAD)
   title="$env Release $(date +%Y-%m-%d)"
 
-  # gh compares refs on the remote, so head must exist on origin.
-  # Catch it here with a clear message instead of gh's late, cryptic error.
-  git ls-remote --exit-code --heads origin "$head" >/dev/null 2>&1 \
-    || die "Current branch '$head' is not on origin. Push it first: git push -u origin $head"
-
+  # git up fetches origin (with --prune), so every origin-existence check below
+  # reads the freshly-updated refs/remotes/origin/* locally — no extra network.
   echo -e "${BOLD}${ITALIC}${GREEN}git up${NC}\n"
   git up || echo -e "${RED}git up failed; continuing.${NC}"
 
+  # gh compares refs on the remote, so base and head must exist on origin.
+  # After the fetch above, a missing remote-tracking ref means the branch is
+  # not on origin — catch it with a clear message instead of gh's late error.
+  git rev-parse --verify --quiet "refs/remotes/origin/$base" >/dev/null \
+    || die "Base branch '$base' not found on origin."
+  local remote_sha
+  remote_sha=$(git rev-parse --verify --quiet "refs/remotes/origin/$head") \
+    || die "Current branch '$head' is not on origin. Push it first: git push -u origin $head"
+
   # After git up (which may rebase/advance HEAD), the local tip must match what
   # is on origin — otherwise the PR silently omits unpushed local commits.
-  local local_sha remote_sha
+  local local_sha
   local_sha=$(git rev-parse HEAD)
-  remote_sha=$(git rev-parse "refs/remotes/origin/$head" 2>/dev/null || git ls-remote origin "refs/heads/$head" | cut -f1)
   if [[ "$local_sha" != "$remote_sha" ]]; then
     die "Local '$head' ($(git rev-parse --short HEAD)) differs from origin/$head. Push first: git push origin $head"
   fi

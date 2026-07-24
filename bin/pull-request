@@ -8,7 +8,7 @@
 #
 # Branch and label names are configurable per-repo via git config
 # (pull-request.stagingBranch / .prodBranch / .stagingLabel / .prodLabel);
-# defaults are staging / production / staging-release / production-release.
+# defaults are staging / main / staging-release / production-release.
 #
 # head is always the current branch. The title is an explicit
 # "<Env> Release <date>" (e.g. "🚀 [STAGING] Release 2026-07-24");
@@ -31,7 +31,7 @@ Usage:
 
 Config (per-repo git config, with defaults):
   pull-request.stagingBranch  (staging)
-  pull-request.prodBranch     (production)
+  pull-request.prodBranch     (main)
   pull-request.stagingLabel   (staging-release)
   pull-request.prodLabel      (production-release)
 EOF
@@ -114,7 +114,7 @@ cmd_staging() {
 
 cmd_production() {
   no_extra_args production "$@"
-  create_release_pr "🔥 [PRODUCTION]" "$(cfg prodBranch production)" "$(cfg prodLabel production-release)"
+  create_release_pr "🔥 [PRODUCTION]" "$(cfg prodBranch main)" "$(cfg prodLabel production-release)"
 }
 cmd_init() {
   no_extra_args init "$@"

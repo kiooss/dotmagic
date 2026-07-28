@@ -18,9 +18,12 @@
 
 set -u
 
-host="${AI_LIGHT_HOST:-192.168.2.24}"
+# One or more devices, space- or comma-separated. The winner is mirrored to
+# every host; each keeps its own `.last` so an offline device self-heals on the
+# next call rather than being remembered as up to date. The old single-host
+# AI_LIGHT_HOST is honored as a fallback.
+hosts="${AI_LIGHT_HOSTS:-${AI_LIGHT_HOST:-192.168.2.24}}"
 dir="${AI_LIGHT_DIR:-${TMPDIR:-/tmp}/ai-light}"
-last="$dir/.last"
 lockdir="$dir/.lock"
 
 usage() {
@@ -131,26 +134,36 @@ compute_winner() {
   printf '%s\n' "$best"
 }
 
-# Send the current winner to the device — but only if it changed. Claude's
-# PreToolUse hook fires on every single tool call; without this check the light
-# would be hammered and the hook would pay a round-trip each time.
+# Send the current winner to each device — but only to those whose state
+# changed. Claude's PreToolUse hook fires on every single tool call; without
+# this check the lights would be hammered and the hook would pay a round-trip
+# each time.
 #
 # Short timeout, output discarded, never returns non-zero: an unplugged light
-# must not break a build or a hook. `.last` records what the device was last
-# known to accept, and is written only when it really did accept — `--fail` is
-# what makes that true, since curl exits 0 on a 4xx/5xx body otherwise, and a
-# rejected update would then be remembered as applied and never retried.
+# must not break a build or a hook. Each host gets its own `.last.<host>` file
+# recording what it was last known to accept, written only when it really did
+# accept — `--fail` is what makes that true, since curl exits 0 on a 4xx/5xx
+# body otherwise, and a rejected update would then be remembered as applied and
+# never retried. Per-host bookkeeping also means a device that was offline for
+# one push is retried on the next call instead of being stranded on a stale
+# state because a *different* device already advanced the shared record.
 #
-# Callers must hold the lock: this reads and writes `.last`.
+# Callers must hold the lock: this reads and writes the `.last.<host>` files.
 push() {
   new=$(compute_winner)
-  old=$(cat "$last" 2>/dev/null) || old=
-  [ "$new" = "$old" ] && return 0
 
-  if curl -s --fail --max-time 1 "http://$host/state?value=$new" >/dev/null 2>&1; then
-    tmp="$dir/.last.$$"
-    printf '%s' "$new" >"$tmp" 2>/dev/null && mv -f "$tmp" "$last" 2>/dev/null
-  fi
+  for h in $(printf '%s' "$hosts" | tr ',' ' '); do
+    hkey=$(sanitize "$h")
+    hlast="$dir/.last.$hkey"
+    old=$(cat "$hlast" 2>/dev/null) || old=
+    [ "$new" = "$old" ] && continue
+
+    if curl -s --fail --max-time 1 "http://$h/state?value=$new" >/dev/null 2>&1; then
+      tmp="$dir/.last.$hkey.$$"
+      printf '%s' "$new" >"$tmp" 2>/dev/null && mv -f "$tmp" "$hlast" 2>/dev/null
+    fi
+    # No write on failure → next invocation retries this host, self-healing it.
+  done
   return 0
 }
 

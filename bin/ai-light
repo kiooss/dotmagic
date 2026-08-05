@@ -29,6 +29,7 @@ lockdir="$dir/.lock"
 usage() {
   cat >&2 <<'EOF'
 usage: ai-light set <state> [--source NAME] [--ttl SECONDS] [--priority normal|alert]
+                           [--project NAME]
        ai-light clear [--source NAME]
        ai-light status
 
@@ -36,6 +37,7 @@ usage: ai-light set <state> [--source NAME] [--ttl SECONDS] [--priority normal|a
   --source     who is speaking. default: default
   --ttl        seconds the claim stays valid. default: 60
   --priority   alert beats normal. default: normal
+  --project    label shown alongside the state. default: none
 EOF
   exit 2
 }
@@ -44,6 +46,14 @@ EOF
 # script's name); keep them to a safe charset rather than trusting them.
 sanitize() {
   printf %s "$1" | tr -c 'A-Za-z0-9_-' '_'
+}
+
+# Projects are not filenames, so a dot is safe here — and worth allowing, since
+# these are usually directory basenames and plenty of those start with one
+# (~/.dotfiles). Still URL-safe, which is what spares the query string an
+# encoding pass.
+sanitize_project() {
+  printf %s "$1" | tr -c 'A-Za-z0-9_.-' '_'
 }
 
 valid_state() {
@@ -108,33 +118,43 @@ tier() {
 # Expired claims are skipped, which is how a killed session releases the light.
 #
 # No recency tiebreak is needed: urgency is a pure function of the state, so two
-# claims that tie on urgency hold the same state and yield the same winner.
+# claims that tie on urgency hold the same state and yield the same winner. The
+# project is *not* part of the ranking — it is a label carried along by whichever
+# claim won, so two sources at the same urgency can still yield different labels.
+# That tie is broken arbitrarily (directory order), same as it always was.
+#
+# Prints "<state> <project>", with `-` for a claim that named no project.
 compute_winner() {
   now=$(date +%s)
   best=off
+  best_project=-
   best_tier=0
   best_urgency=0
 
   for f in "$dir"/*; do
     [ -f "$f" ] || continue
     case "${f##*/}" in .*) continue ;; esac
-    read -r st ttl prio mt <"$f" || continue
+    # Claims written before --project existed have only four fields; proj then
+    # reads empty and is normalized back to the `-` placeholder.
+    read -r st ttl prio mt proj <"$f" || continue
     [ $((now - mt)) -gt "$ttl" ] && continue
+    [ -n "$proj" ] || proj=-
 
     t=$(tier "$prio")
     u=$(urgency "$st")
     if [ "$t" -gt "$best_tier" ] ||
       { [ "$t" -eq "$best_tier" ] && [ "$u" -gt "$best_urgency" ]; }; then
       best="$st"
+      best_project="$proj"
       best_tier="$t"
       best_urgency="$u"
     fi
   done
 
-  printf '%s\n' "$best"
+  printf '%s %s\n' "$best" "$best_project"
 }
 
-# Send the current winner to each device — but only to those whose state
+# Send the current winner to each device — but only to those whose payload
 # changed. Claude's PreToolUse hook fires on every single tool call; without
 # this check the lights would be hammered and the hook would pay a round-trip
 # each time.
@@ -148,9 +168,18 @@ compute_winner() {
 # one push is retried on the next call instead of being stranded on a stale
 # state because a *different* device already advanced the shared record.
 #
+# The recorded value is the whole payload, state *and* project, so a run that
+# only changes project still reaches the device.
+#
 # Callers must hold the lock: this reads and writes the `.last.<host>` files.
 push() {
   new=$(compute_winner)
+  state_value=${new%% *}
+  project_value=${new#* }
+  [ "$project_value" = - ] && project_value=
+
+  url_query="value=$state_value"
+  [ -n "$project_value" ] && url_query="$url_query&project=$project_value"
 
   for h in $(printf '%s' "$hosts" | tr ',' ' '); do
     hkey=$(sanitize "$h")
@@ -158,7 +187,7 @@ push() {
     old=$(cat "$hlast" 2>/dev/null) || old=
     [ "$new" = "$old" ] && continue
 
-    if curl -s --fail --max-time 1 "http://$h/state?value=$new" >/dev/null 2>&1; then
+    if curl -s --fail --max-time 1 "http://$h/state?$url_query" >/dev/null 2>&1; then
       tmp="$dir/.last.$hkey.$$"
       printf '%s' "$new" >"$tmp" 2>/dev/null && mv -f "$tmp" "$hlast" 2>/dev/null
     fi
@@ -176,6 +205,7 @@ cmd_set() {
   source=default
   ttl=60
   priority=normal
+  project=
   while [ $# -gt 0 ]; do
     case "$1" in
       --source)
@@ -188,6 +218,10 @@ cmd_set() {
         ;;
       --priority)
         priority="${2:-}"
+        shift 2 || usage
+        ;;
+      --project)
+        project="${2:-}"
         shift 2 || usage
         ;;
       *) usage ;;
@@ -205,6 +239,13 @@ cmd_set() {
   [ "$ttl" -gt 0 ] || usage
 
   source=$(sanitize "$source")
+  # `-` stands in for "no project", so the field is never empty and the claim is
+  # always five whitespace-separated words for `read` to split.
+  if [ -n "$project" ]; then
+    project=$(sanitize_project "$project")
+  else
+    project=-
+  fi
   with_lock apply_set
 }
 
@@ -214,7 +255,7 @@ apply_set() {
   else
     # Write-then-rename: a concurrent reader never sees a half-written claim.
     tmp="$dir/.tmp.$$"
-    printf '%s %s %s %s\n' "$state" "$ttl" "$priority" "$(date +%s)" >"$tmp" &&
+    printf '%s %s %s %s %s\n' "$state" "$ttl" "$priority" "$(date +%s)" "$project" >"$tmp" &&
       mv -f "$tmp" "$dir/$source"
   fi
 
@@ -245,9 +286,10 @@ cmd_status() {
   now=$(date +%s)
   for f in "$dir"/*; do
     [ -f "$f" ] || continue
-    read -r st ttl prio mt <"$f" || continue
+    read -r st ttl prio mt proj <"$f" || continue
     [ $((now - mt)) -gt "$ttl" ] && continue
-    printf 'source %s %s %s %s\n' "${f##*/}" "$st" "$prio" "$ttl"
+    [ -n "$proj" ] || proj=-
+    printf 'source %s %s %s %s %s\n' "${f##*/}" "$st" "$prio" "$ttl" "$proj"
   done
   printf 'winner: %s\n' "$(compute_winner)"
 }

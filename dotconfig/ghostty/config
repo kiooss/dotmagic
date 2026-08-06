@@ -8,8 +8,6 @@
 #   theme = light:TokyoNight Day,dark:TokyoNight Storm
 # theme = TokyoNight Storm
 # cursor-color = 4fd6be
-# background-opacity = 0.9
-# background-blur = 20
 config-file = ?auto/theme.ghostty
 
 # ── Font ─────────────────────────────────────────────────────────────────
@@ -65,10 +63,12 @@ macos-titlebar-style = transparent
 window-save-state = always
 
 # ── Appearance ───────────────────────────────────────────────────────────
-# Frosted-glass background; blur only takes effect while translucent.
-# background-opacity = 0.92
-background-opacity = 0.6
-background-blur = 20
+# Fully opaque background.
+background-opacity = 1
+# Frosted-glass alternative — comment out the line above and uncomment these
+# two to switch back (blur only takes effect while translucent).
+# background-opacity = 0.6
+# background-blur = 20
 # Drop shadow lifts the window off whatever's behind it.
 macos-window-shadow = true
 # Dim the non-focused split hard so the active one clearly stands out.

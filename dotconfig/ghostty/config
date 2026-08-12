@@ -64,11 +64,11 @@ window-save-state = always
 
 # ── Appearance ───────────────────────────────────────────────────────────
 # Fully opaque background.
-background-opacity = 1
+# background-opacity = 1
 # Frosted-glass alternative — comment out the line above and uncomment these
 # two to switch back (blur only takes effect while translucent).
-# background-opacity = 0.6
-# background-blur = 20
+background-opacity = 0.8
+background-blur = 20
 # Drop shadow lifts the window off whatever's behind it.
 macos-window-shadow = true
 # Dim the non-focused split hard so the active one clearly stands out.

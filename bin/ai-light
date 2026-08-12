@@ -29,7 +29,7 @@ lockdir="$dir/.lock"
 usage() {
   cat >&2 <<'EOF'
 usage: ai-light set <state> [--source NAME] [--ttl SECONDS] [--priority normal|alert]
-                           [--project NAME]
+                           [--project NAME] [--tool NAME] [--detail TEXT]
        ai-light clear [--source NAME]
        ai-light status
 
@@ -38,6 +38,8 @@ usage: ai-light set <state> [--source NAME] [--ttl SECONDS] [--priority normal|a
   --ttl        seconds the claim stays valid. default: 60
   --priority   alert beats normal. default: normal
   --project    label shown alongside the state. default: none
+  --tool       what is being run right now, one word. default: none
+  --detail     what it is being run on, free text. default: none
 EOF
   exit 2
 }
@@ -54,6 +56,72 @@ sanitize() {
 # encoding pass.
 sanitize_project() {
   printf %s "$1" | tr -c 'A-Za-z0-9_.-' '_'
+}
+
+# `tool` sits mid-line in the claim file, so it has to stay one word. Same
+# charset as a project name for the same reason.
+#
+# 23 bytes is the device's limit for this field, and the two must agree: the
+# device rejects an over-long tool by failing the whole request, so cutting here
+# to anything longer would turn a long tool name into a dropped state push
+# rather than a shortened label. It was 15 until MCP method names turned up --
+# browser_navigate is 16, codegraph_context 17, resolve-library-id 18 -- and 15
+# silently mangled every one of them.
+sanitize_tool() {
+  printf %s "$1" | LC_ALL=C tr -c 'A-Za-z0-9_.-' '_' | LC_ALL=C cut -c1-23
+}
+
+# `detail` is free text — a shell command, a path, a search pattern — so unlike
+# the fields above it keeps its spaces and punctuation and is percent-encoded at
+# push time instead. Two hard limits, both of them the device's:
+#
+#   * printable ASCII only. The display font holds 0x20-0x7E and nothing else,
+#     so the device rejects the whole request over one multi-byte character —
+#     which would take the state update down with it, not just the label. A
+#     Chinese search pattern is an ordinary thing to grep for, so this is a
+#     routine case, not a hypothetical one. Dropping bytes rather than
+#     transliterating keeps this side dependency-free.
+#   * 63 bytes, the width of the console's command row. Truncated here so the
+#     claim file cannot hold something the device would refuse.
+#
+# Control characters go first and unconditionally: a newline would split one
+# claim into two lines and desynchronise every positional read below.
+#
+# LC_ALL=C is what makes the byte ranges mean bytes. Under a UTF-8 locale BSD tr
+# matches characters instead, `\177-\377` then fails to cover a multi-byte
+# codepoint, and the high bytes sail through to be pushed at the device — which
+# is exactly what happened before this was pinned.
+sanitize_detail() {
+  printf %s "$1" | LC_ALL=C tr -d '\000-\037\177-\377' | LC_ALL=C cut -c1-63
+}
+
+# Percent-encode a query value. Space becomes `+`, which the device's
+# form_url_decode() reverses; everything outside the unreserved set is escaped,
+# because `detail` routinely carries the characters that would otherwise split
+# the query (`&`, `=`) or that curl rejects outright (`|`, quotes, braces) — a
+# piped shell command hits both groups at once.
+#
+# One awk pass rather than a shell loop over 63 bytes, and only on the path that
+# actually reaches the device: push() skips unchanged payloads before getting
+# here. LC_ALL=C so the byte table is not read as multi-byte.
+urlencode() {
+  printf %s "$1" | LC_ALL=C awk '
+    BEGIN {
+      RS = "^$"
+      for (i = 32; i < 127; i++) code[sprintf("%c", i)] = i
+    }
+    {
+      for (i = 1; i <= length($0); i++) {
+        c = substr($0, i, 1)
+        if (c ~ /[A-Za-z0-9._~-]/) printf "%s", c
+        else if (c == " ") printf "+"
+        # Anything not in the table is outside printable ASCII and so cannot
+        # have survived sanitize_detail. Dropped rather than encoded, because
+        # an absent entry reads as 0 and would emit a literal %00 — an escape
+        # the device rejects, taking the state update down with the label.
+        else if (c in code) printf "%%%02X", code[c]
+      }
+    }'
 }
 
 valid_state() {
@@ -119,26 +187,35 @@ tier() {
 #
 # No recency tiebreak is needed: urgency is a pure function of the state, so two
 # claims that tie on urgency hold the same state and yield the same winner. The
-# project is *not* part of the ranking — it is a label carried along by whichever
-# claim won, so two sources at the same urgency can still yield different labels.
-# That tie is broken arbitrarily (directory order), same as it always was.
+# labels — project, tool, detail — are *not* part of the ranking; they are
+# carried along by whichever claim won, so two sources at the same urgency can
+# still yield different labels. That tie is broken arbitrarily (directory
+# order), same as it always was.
 #
-# Prints "<state> <project>", with `-` for a claim that named no project.
+# Sets best/best_project/best_tool/best_detail rather than printing them:
+# `detail` is free text with spaces in it, so the winner no longer fits in a
+# whitespace-separated line the caller can split. Every caller already runs in
+# this shell, so globals cost nothing that the old printf was buying.
 compute_winner() {
   now=$(date +%s)
   best=off
   best_project=-
+  best_tool=-
+  best_detail=
   best_tier=0
   best_urgency=0
 
   for f in "$dir"/*; do
     [ -f "$f" ] || continue
     case "${f##*/}" in .*) continue ;; esac
-    # Claims written before --project existed have only four fields; proj then
-    # reads empty and is normalized back to the `-` placeholder.
-    read -r st ttl prio mt proj <"$f" || continue
+    # Claims written before these fields existed are short: `read` leaves the
+    # missing tail empty and the placeholders below put it back. `detail` is
+    # last precisely because it is the one field that may contain spaces —
+    # `read` hands the whole remainder of the line to it.
+    read -r st ttl prio mt proj tool detail <"$f" || continue
     [ $((now - mt)) -gt "$ttl" ] && continue
     [ -n "$proj" ] || proj=-
+    [ -n "$tool" ] || tool=-
 
     t=$(tier "$prio")
     u=$(urgency "$st")
@@ -146,12 +223,12 @@ compute_winner() {
       { [ "$t" -eq "$best_tier" ] && [ "$u" -gt "$best_urgency" ]; }; then
       best="$st"
       best_project="$proj"
+      best_tool="$tool"
+      best_detail="$detail"
       best_tier="$t"
       best_urgency="$u"
     fi
   done
-
-  printf '%s %s\n' "$best" "$best_project"
 }
 
 # Send the current winner to each device — but only to those whose payload
@@ -168,18 +245,23 @@ compute_winner() {
 # one push is retried on the next call instead of being stranded on a stale
 # state because a *different* device already advanced the shared record.
 #
-# The recorded value is the whole payload, state *and* project, so a run that
-# only changes project still reaches the device.
+# The recorded value is the whole payload — state, project, tool and detail — so
+# a run that only changes what Claude is doing still reaches the device.
+#
+# Note what that costs: PreToolUse fires per tool call, and `detail` changes on
+# nearly every one, so the dedupe below no longer absorbs the bulk of them. This
+# is the intended trade (a stale detail is worse than no detail) but it does mean
+# roughly one LAN round-trip per tool call instead of one per state change.
 #
 # Callers must hold the lock: this reads and writes the `.last.<host>` files.
 push() {
-  new=$(compute_winner)
-  state_value=${new%% *}
-  project_value=${new#* }
-  [ "$project_value" = - ] && project_value=
+  compute_winner
+  new="$best $best_project $best_tool $best_detail"
 
-  url_query="value=$state_value"
-  [ -n "$project_value" ] && url_query="$url_query&project=$project_value"
+  url_query="value=$best"
+  [ "$best_project" = - ] || url_query="$url_query&project=$best_project"
+  [ "$best_tool" = - ] || url_query="$url_query&tool=$(urlencode "$best_tool")"
+  [ -z "$best_detail" ] || url_query="$url_query&detail=$(urlencode "$best_detail")"
 
   for h in $(printf '%s' "$hosts" | tr ',' ' '); do
     hkey=$(sanitize "$h")
@@ -206,6 +288,8 @@ cmd_set() {
   ttl=60
   priority=normal
   project=
+  tool=
+  detail=
   while [ $# -gt 0 ]; do
     case "$1" in
       --source)
@@ -224,6 +308,14 @@ cmd_set() {
         project="${2:-}"
         shift 2 || usage
         ;;
+      --tool)
+        tool="${2:-}"
+        shift 2 || usage
+        ;;
+      --detail)
+        detail="${2:-}"
+        shift 2 || usage
+        ;;
       *) usage ;;
     esac
   done
@@ -239,13 +331,21 @@ cmd_set() {
   [ "$ttl" -gt 0 ] || usage
 
   source=$(sanitize "$source")
-  # `-` stands in for "no project", so the field is never empty and the claim is
-  # always five whitespace-separated words for `read` to split.
+  # `-` stands in for "not set", so the leading fields are never empty and the
+  # claim always has six whitespace-separated words for `read` to split before
+  # the free-text remainder. `detail` needs no placeholder: it is last, so an
+  # empty one cannot shift anything.
   if [ -n "$project" ]; then
     project=$(sanitize_project "$project")
   else
     project=-
   fi
+  if [ -n "$tool" ]; then
+    tool=$(sanitize_tool "$tool")
+  else
+    tool=-
+  fi
+  detail=$(sanitize_detail "$detail")
   with_lock apply_set
 }
 
@@ -255,7 +355,8 @@ apply_set() {
   else
     # Write-then-rename: a concurrent reader never sees a half-written claim.
     tmp="$dir/.tmp.$$"
-    printf '%s %s %s %s %s\n' "$state" "$ttl" "$priority" "$(date +%s)" "$project" >"$tmp" &&
+    printf '%s %s %s %s %s %s %s\n' "$state" "$ttl" "$priority" "$(date +%s)" \
+      "$project" "$tool" "$detail" >"$tmp" &&
       mv -f "$tmp" "$dir/$source"
   fi
 
@@ -286,12 +387,16 @@ cmd_status() {
   now=$(date +%s)
   for f in "$dir"/*; do
     [ -f "$f" ] || continue
-    read -r st ttl prio mt proj <"$f" || continue
+    read -r st ttl prio mt proj tool detail <"$f" || continue
     [ $((now - mt)) -gt "$ttl" ] && continue
     [ -n "$proj" ] || proj=-
-    printf 'source %s %s %s %s %s\n' "${f##*/}" "$st" "$prio" "$ttl" "$proj"
+    [ -n "$tool" ] || tool=-
+    printf 'source %s %s %s %s %s %s %s\n' "${f##*/}" "$st" "$prio" "$ttl" \
+      "$proj" "$tool" "${detail:--}"
   done
-  printf 'winner: %s\n' "$(compute_winner)"
+  compute_winner
+  printf 'winner: %s %s %s %s\n' "$best" "$best_project" "$best_tool" \
+    "${best_detail:--}"
 }
 
 [ $# -ge 1 ] || usage

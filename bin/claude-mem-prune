@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# claude-mem-prune — delete claude-mem's old daily log files.
+#
+# claude-mem has no log retention of its own (no rotation, no max size), so
+# ~/.claude-mem/logs grows forever — it reached 107MB/82 files before this
+# script existed, with single days over 27MB. Only the logs are touched;
+# the observation DB (claude-mem.db) and the chroma index are left alone.
+#
+# Cutoff is taken from the FILENAME date (logs are claude-mem-YYYY-MM-DD.log),
+# not mtime: old files get their mtime bumped by the worker reopening them,
+# so `find -mtime` keeps files that are months stale.
+#
+# Usage: claude-mem-prune [--days N] [--dry-run]
+#   --days N     keep the last N days (default 30)
+#   --dry-run    list what would go, delete nothing
+#   -h, --help   this text
+
+set -euo pipefail
+
+days=30
+dry_run=false
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --days)    days="${2:?--days needs a number}" ; shift 2 ;;
+        --dry-run) dry_run=true ; shift ;;
+        -h|--help) sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//' ; exit 0 ;;
+        *)         echo "claude-mem-prune: unknown option $1" >&2 ; exit 2 ;;
+    esac
+done
+
+settings="$HOME/.claude-mem/settings.json"
+data_dir=$(sed -n 's/.*"CLAUDE_MEM_DATA_DIR" *: *"\([^"]*\)".*/\1/p' "$settings" 2>/dev/null | head -1)
+logs="${data_dir:-$HOME/.claude-mem}/logs"
+
+[ -d "$logs" ] || { echo "claude-mem-prune: no logs dir at $logs" >&2; exit 1; }
+
+# BSD date; cutoff is exclusive (files dated before it are removed).
+cutoff=$(date -v-"${days}"d +%Y-%m-%d)
+
+before=$(du -sk "$logs" | cut -f1)
+removed=0
+
+for f in "$logs"/claude-mem-*.log; do
+    [ -e "$f" ] || continue
+    stamp=${f##*/claude-mem-}
+    stamp=${stamp%.log}
+    # Skip anything that isn't a plain YYYY-MM-DD stamp.
+    case "$stamp" in
+        [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;;
+        *) continue ;;
+    esac
+    # String compare is a date compare for zero-padded ISO stamps.
+    [[ "$stamp" < "$cutoff" ]] || continue
+
+    if $dry_run; then
+        printf '  would remove %7s  %s\n' "$(du -h "$f" | cut -f1)" "${f##*/}"
+    else
+        rm -f "$f"
+    fi
+    removed=$((removed + 1))
+done
+
+if $dry_run; then
+    echo "claude-mem-prune: $removed file(s) older than $cutoff, none deleted (--dry-run)"
+    exit 0
+fi
+
+after=$(du -sk "$logs" | cut -f1)
+echo "claude-mem-prune: removed $removed file(s) older than $cutoff, freed $(( (before - after) / 1024 ))MB"
+echo "claude-mem-prune: $logs is now $(du -sh "$logs" | cut -f1)"

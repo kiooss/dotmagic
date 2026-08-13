@@ -92,7 +92,7 @@ sanitize_tool() {
 # codepoint, and the high bytes sail through to be pushed at the device — which
 # is exactly what happened before this was pinned.
 sanitize_detail() {
-  printf %s "$1" | LC_ALL=C tr -d '\000-\037\177-\377' | LC_ALL=C cut -c1-63
+  printf %s "$1" | LC_ALL=C tr -d '\000-\037\177-\377' | LC_ALL=C cut -c1-100
 }
 
 # Percent-encode a query value. Space becomes `+`, which the device's

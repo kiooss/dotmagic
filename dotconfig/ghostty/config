@@ -84,8 +84,9 @@ minimum-contrast = 1.1
 macos-option-as-alt = true
 # quit-after-last-window-closed = true
 mouse-hide-while-typing = true
-# Distraction-free fullscreen for pairing with Claude.
-macos-non-native-fullscreen = true
+# No macos-non-native-fullscreen: it drops the titlebar and pins the window to
+# the full screen size, which AeroSpace then offsets by the gap — the bottom of
+# the window ends up off-screen. AeroSpace already tiles to fill the screen.
 # Quick-terminal drops down from the top; snappy animation.
 quick-terminal-position = top
 quick-terminal-animation-duration = 0.1
@@ -130,6 +131,11 @@ keybind = super+alt+right=goto_split:right
 keybind = super+alt+up=goto_split:up
 keybind = super+alt+down=goto_split:down
 keybind = super+shift+enter=toggle_split_zoom
+
+# Ghostty binds cmd+enter to toggle_fullscreen by default — far too easy to hit
+# by reflex (it submits in Claude's web UI), and fullscreen fights AeroSpace's
+# tiling. cmd+ctrl+f still works when fullscreen is actually wanted.
+keybind = super+enter=unbind
 
 # Quake-style drop-down terminal, summonable from any app.
 keybind = global:cmd+grave_accent=toggle_quick_terminal

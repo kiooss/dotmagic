@@ -10,7 +10,7 @@ config-version = 2
 after-startup-command = []
 
 # Start AeroSpace at login
-start-at-login = true
+start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -286,3 +286,8 @@ run = ['move-node-to-workspace T', 'workspace T']
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = ['move-node-to-workspace S', 'workspace S']
+
+# ゲーム -> フローティング
+[[on-window-detected]]
+if.app-id = 'com.libretro.dist.RetroArch'
+run = ['layout floating']

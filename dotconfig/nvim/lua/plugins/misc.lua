@@ -4,8 +4,6 @@ return {
     "folke/lazydev.nvim",
     -- ft = "lua",
     opts = {
-      runtime = "~/projects/neovim/runtime",
-      debug = true,
       library = {
         wezterm = "wezterm-types",
       },

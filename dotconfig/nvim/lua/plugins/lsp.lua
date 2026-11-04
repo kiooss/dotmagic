@@ -42,7 +42,6 @@ return {
           },
         },
         dockerls = {},
-        tsserver = {},
         eslint = {},
         html = {},
         intelephense = {},

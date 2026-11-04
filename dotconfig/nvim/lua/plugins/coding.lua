@@ -18,6 +18,16 @@ return {
       },
       sources = {
         providers = {
+          snippets = {
+            opts = {
+              extended_filetypes = {
+                ruby = { "rails" },
+                eruby = { "html" },
+                sh = { "shelldoc" },
+                blade = { "html" },
+              },
+            },
+          },
           buffer = {
             opts = {
               get_bufnrs = function()
@@ -235,19 +245,6 @@ return {
   --   end,
   -- },
   --
-  {
-    "garymjr/nvim-snippets",
-    opts = {
-      extended_filetypes = {
-        ruby = { "rails" },
-        eruby = { "html" },
-        all = { "_" },
-        sh = { "shelldoc" },
-        blade = { "html" },
-      },
-    },
-  },
-
   -- {
   --   "danymat/neogen",
   --   keys = {

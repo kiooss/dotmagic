@@ -14,7 +14,7 @@ return {
         function()
           require("dap").step_out()
         end,
-        desc = "Step Over",
+        desc = "Step Out",
       },
     },
   },

@@ -35,22 +35,6 @@ return {
   },
 
   {
-    "Wansmer/treesj",
-    enabled = false,
-    keys = {
-      { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
-    },
-    opts = { use_default_keymaps = false, max_join_length = 150 },
-  },
-
-  {
-    "mhinz/vim-sayonara",
-    enabled = false,
-    cmd = { "Sayonara" },
-    keys = { { "q", "<cmd>Sayonara<CR>", desc = "Sayonara" } },
-  },
-
-  {
     "vimwiki/vimwiki",
     cmd = "VimwikiIndex",
     keys = { { "<leader>W", "<cmd>VimwikiIndex<CR>", desc = "VimWiki" } },
@@ -86,13 +70,6 @@ return {
   {
     "fladson/vim-kitty",
     lazy = false,
-  },
-
-  {
-    "beauwilliams/focus.nvim",
-    enabled = false,
-    lazy = false,
-    config = true,
   },
 
   {

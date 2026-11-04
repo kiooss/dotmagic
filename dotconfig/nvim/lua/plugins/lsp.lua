@@ -20,7 +20,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      format = { timeout_ms = 60000 },
+      format = { timeout_ms = 10000 }, -- LSP-only formatting (no conform formatter for the ft); blocks the UI while it runs
       diagnostics = { virtual_text = { prefix = "icons" } },
       ---@type lspconfig.options
       servers = {

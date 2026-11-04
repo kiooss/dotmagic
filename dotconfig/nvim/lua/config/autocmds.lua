@@ -2,11 +2,6 @@
 -- auto-create parent dirs on save. Only additions / overrides live here.
 local group = vim.api.nvim_create_augroup("kiooss", { clear = true })
 
-vim.api.nvim_create_autocmd("VimLeave", {
-  command = "wshada!",
-  group = group,
-})
-
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*.log",
   command = "normal! G",
@@ -51,12 +46,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     vim.api.nvim_set_hl(0, "MatchParen", { bold = true, reverse = true })
   end,
-  group = group,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "dashboard" },
-  command = "set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2",
   group = group,
 })
 

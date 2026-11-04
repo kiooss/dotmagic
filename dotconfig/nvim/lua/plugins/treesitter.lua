@@ -1,6 +1,4 @@
 return {
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
-
   {
     "mfussenegger/nvim-treehopper",
     keys = { { "m", mode = { "o", "x" } } },

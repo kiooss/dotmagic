@@ -9,7 +9,7 @@ return {
       return {
         style = "moon",
         -- style = "storm",
-        transparent = true,
+        transparent = false,
         lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold
         sidebars = {
           "qf",

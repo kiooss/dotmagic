@@ -1,6 +1,4 @@
 return {
-  { "rcarriga/nvim-notify" },
-
   -- floating winbar
   {
     "b0o/incline.nvim",
@@ -96,6 +94,9 @@ return {
       vim.list_extend(opts.tailwind.ft, {
         "eruby",
       })
+      -- hex colors are already painted by nvim-colorizer (which also does rgb()/hsl());
+      -- keep hipatterns for tailwind classes only
+      opts.highlighters.hex_color = nil
     end,
   },
 }

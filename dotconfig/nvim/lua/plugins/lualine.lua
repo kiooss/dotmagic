@@ -24,6 +24,6 @@ return {
         return " " .. os.date("%R")
       end,
     }
-    opts.extensions = { "nvim-tree", "lazy", "trouble", "symbols-outline" }
+    opts.extensions = { "nvim-tree", "lazy", "trouble" }
   end,
 }

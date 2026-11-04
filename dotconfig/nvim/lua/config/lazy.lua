@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", lazypath })
   vim.fn.system({ "git", "-C", lazypath, "checkout", "tags/stable" }) -- last stable release
 end
@@ -19,14 +19,6 @@ return function(opts)
           },
         },
       },
-      -- { import = "lazyvim.plugins.extras.lang.typescript" },
-      -- { import = "lazyvim.plugins.extras.linting.eslint" },
-      -- { import = "lazyvim.plugins.extras.formatting.prettier" },
-      -- { import = "lazyvim.plugins.extras.coding.copilot" },
-      -- { import = "lazyvim.plugins.extras.lang.json" },
-      -- { import = "lazyvim.plugins.extras.lang.tailwind" },
-      -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-      -- { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
       { import = "plugins" },
     },
     defaults = { lazy = true },

@@ -4,7 +4,7 @@ local opt = vim.opt
 opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
 opt.breakat = [[\ \	;:,!?]]
 opt.breakindentopt = "shift:2,min:20"
-opt.diffopt = "filler,iwhite,internal,algorithm:patience"
+opt.diffopt:append({ "iwhite", "algorithm:patience" }) -- keep 0.12 defaults (linematch, inline:char, ...)
 opt.fileencodings = "ucs-bom,utf-8,euc-jp,cp932,latin1"
 opt.fileformat = "unix"
 opt.fileformats = "unix,mac,dos"
@@ -37,11 +37,9 @@ opt.wrap = true
 vim.o.wildignore =
   ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
 
-if vim.fn.has("nvim-0.8") == 1 then
-  vim.opt.backup = true
-  vim.opt.cmdheight = 0
-  vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
-end
+opt.backup = true
+opt.cmdheight = 0
+opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true

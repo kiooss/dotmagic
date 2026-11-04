@@ -2,8 +2,6 @@ return {
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    lazy = false,
-    enabled = true,
     version = false, -- Never set this value to "*"! Never!
     ---@module 'avante'
     ---@type avante.Config
@@ -60,13 +58,10 @@ return {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       { "ColinKennedy/mega.cmdparse", dependencies = { "ColinKennedy/mega.logging" } },
-      --- The below dependencies are optional,
-      "nvim-mini/mini.pick", -- for file_selector provider mini.pick
-      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua", -- for file_selector provider fzf
-      "stevearc/dressing.nvim", -- for input provider dressing
-      "folke/snacks.nvim", -- for input provider snacks
+      --- The below dependencies are optional.
+      -- selector/input default to "native", i.e. vim.ui.select (LazyVim's picker, fzf-lua here)
+      -- and vim.ui.input (Snacks), so the mini.pick / telescope / dressing providers aren't needed.
+      "folke/snacks.nvim",
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       "zbirenbaum/copilot.lua", -- for providers='copilot'
       {

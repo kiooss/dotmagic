@@ -63,14 +63,6 @@ return {
     config = true,
   },
   {
-    "jackMort/ChatGPT.nvim",
-    cmd = { "ChatGPTActAs", "ChatGPT", "ChatGPTEditWithInstructions" },
-    opts = {},
-  },
-
-  { "akinsho/toggleterm.nvim", version = "*", cmd = { "ToggleTerm", "TermExec" }, config = true },
-
-  {
     "CRAG666/code_runner.nvim",
     cmd = { "RunCode" },
     keys = {

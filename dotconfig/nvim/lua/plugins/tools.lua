@@ -153,20 +153,21 @@ return {
         },
         -- Iron doesn't set keymaps by default anymore.
         -- You can set them here or manually add keymaps to the functions in iron.core
+        -- under <leader>i so they don't clobber LazyVim's <leader>s (search) / <leader>c (code) maps
         keymaps = {
-          send_motion = "<space>sc",
-          visual_send = "<space>sc",
-          send_file = "<space>sf",
-          send_line = "<space>sl",
-          send_until_cursor = "<space>su",
-          send_mark = "<space>sm",
-          mark_motion = "<space>mc",
-          mark_visual = "<space>mc",
-          remove_mark = "<space>md",
-          cr = "<space>s<cr>",
-          interrupt = "<space>s<space>",
-          exit = "<space>sq",
-          clear = "<space>cl",
+          send_motion = "<leader>ic",
+          visual_send = "<leader>ic",
+          send_file = "<leader>if",
+          send_line = "<leader>il",
+          send_until_cursor = "<leader>iu",
+          send_mark = "<leader>im",
+          mark_motion = "<leader>ik",
+          mark_visual = "<leader>ik",
+          remove_mark = "<leader>id",
+          cr = "<leader>i<cr>",
+          interrupt = "<leader>i<space>",
+          exit = "<leader>iq",
+          clear = "<leader>ix",
         },
         -- If the highlight is on, you can change how it looks
         -- For the available options, check nvim_set_hl

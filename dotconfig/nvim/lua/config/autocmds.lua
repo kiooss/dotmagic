@@ -65,12 +65,6 @@ vim.api.nvim_create_autocmd("FocusGained", {
   group = group,
 })
 
-vim.api.nvim_create_autocmd("VimResized", {
-  desc = "Equalize window dimensions when resizing vim window",
-  command = "tabdo wincmd =",
-  group = group,
-})
-
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*.log",
   command = "normal! G",
@@ -78,7 +72,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  command = [[%s/\s\+$//e]],
+  desc = "Strip trailing whitespace, keeping the cursor in place",
+  callback = function(ev)
+    -- trailing spaces are meaningful there (markdown hard breaks, patch context)
+    if vim.bo[ev.buf].binary or vim.tbl_contains({ "markdown", "diff" }, vim.bo[ev.buf].filetype) then
+      return
+    end
+    local view = vim.fn.winsaveview()
+    vim.cmd([[keeppatterns %s/\s\+$//e]])
+    vim.fn.winrestview(view)
+  end,
   group = group,
 })
 

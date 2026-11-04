@@ -14,8 +14,8 @@ return {
     },
     opts = {
       formatters_by_ft = {
-        ["markdown"] = { { "prettierd", "prettier" } },
-        ["markdown.mdx"] = { { "prettierd", "prettier" } },
+        ["markdown"] = { "prettierd", "prettier", stop_after_first = true },
+        ["markdown.mdx"] = { "prettierd", "prettier", stop_after_first = true },
         ["javascript"] = { "dprint" },
         ["javascriptreact"] = { "dprint" },
         ["typescript"] = { "dprint" },

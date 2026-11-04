@@ -22,10 +22,8 @@ return {
   },
 
   -- additional text objects
+  -- (af/ae/ab come from LazyVim's treesitter-aware mini.ai: f = function, g = entire buffer, b = brackets)
   { "kana/vim-textobj-user", lazy = false, priority = 99 },
-  { "kana/vim-textobj-entire", event = "VeryLazy" },
-  { "kana/vim-textobj-function", event = "VeryLazy" },
-  { "rhysd/vim-textobj-anyblock", event = "VeryLazy" },
   { "nelstrom/vim-textobj-rubyblock", event = "VeryLazy" },
   { "thalesmello/vim-textobj-methodcall", event = "VeryLazy" },
 

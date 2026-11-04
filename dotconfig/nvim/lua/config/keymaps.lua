@@ -33,7 +33,9 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- run lua
-vim.keymap.set("n", "<leader>cR", util.runlua, { desc = "Run Lua" })
+-- not <leader>cR: LazyVim maps that buffer-locally to Rename File whenever an LSP attaches
+-- (lua_ls included), which shadowed Run Lua in exactly the buffers it's meant for
+vim.keymap.set("n", "<leader>cx", util.runlua, { desc = "Run Lua" })
 
 if require("lazyvim.util").has("bufferline.nvim") then
   for i = 1, 9 do

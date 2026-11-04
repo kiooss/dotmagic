@@ -95,12 +95,13 @@ return {
 
   { -- lazy
     "ccaglak/namespace.nvim",
+    -- php buffers only, and off <leader>l so it doesn't make LazyVim's <leader>l (Lazy) wait for timeoutlen
     keys = {
-      { "<leader>ci", "<cmd>Php class<cr>", desc = "PHP import namespace" },
-      { "<leader>la", "<cmd>Php classes<cr>" },
-      { "<leader>lc", "<cmd>Php class<cr>" },
-      { "<leader>ln", "<cmd>Php namespace<cr>" },
-      { "<leader>ls", "<cmd>Php sort<cr>" },
+      { "<leader>ci", "<cmd>Php class<cr>", desc = "PHP import namespace", ft = "php" },
+      { "<leader>cna", "<cmd>Php classes<cr>", desc = "PHP import all classes", ft = "php" },
+      { "<leader>cnc", "<cmd>Php class<cr>", desc = "PHP import class", ft = "php" },
+      { "<leader>cnn", "<cmd>Php namespace<cr>", desc = "PHP generate namespace", ft = "php" },
+      { "<leader>cns", "<cmd>Php sort<cr>", desc = "PHP sort imports", ft = "php" },
     },
     dependencies = {
       "ccaglak/phptools.nvim", -- optional

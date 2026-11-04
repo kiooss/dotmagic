@@ -102,6 +102,8 @@ brew "ripgrep"
 brew "rtk"
 # Terminal multiplexer
 brew "tmux"
+# Parser generator tool (nvim-treesitter main branch needs it to build parsers)
+brew "tree-sitter-cli"
 # Internet file retriever
 brew "wget"
 # Generate your Xcode project from a spec file and your folder structure

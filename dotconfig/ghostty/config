@@ -20,6 +20,13 @@ config-file = ?auto/theme.ghostty
 # font-family = "Monaspace Argon Var"
 # font-family = "PlemolJP"
 font-family = "UDEV Gothic NF"
+# Explicit fallback chain for the glyphs UDEV Gothic lacks (Claude Code's
+# spinner ✢✳✻✽ → Menlo, ⏺⏵⏸⏱⧉ → STIX Two Math). Pinning the order keeps
+# faces at fixed indices; dynamic fallback hit ghostty#15018 (1.4.0, macOS),
+# drawing fallback glyphs from the wrong face (✢ showed as "B").
+# Recovery if it recurs: cmd+= then cmd+0.
+font-family = "Menlo"
+font-family = "STIX Two Math"
 # font-family = "Moralerspace Neon"
 font-size = 14
 

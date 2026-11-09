@@ -74,6 +74,8 @@ brew "mysql@8.0"
 brew "neovim"
 # Network Kanji code conversion Filter (NKF)
 brew "nkf"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
 # Development kit for the Java programming language

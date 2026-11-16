@@ -69,3 +69,5 @@ pyrightconfig.json
 
 # superpowers skill workspace
 .superpowers/
+
+.playwright-mcp/

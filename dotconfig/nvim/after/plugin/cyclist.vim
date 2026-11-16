@@ -6,7 +6,7 @@ endif
 
 " 普段使い: 改行・タブ・行末空白・nbsp
 call cyclist#add_listchar_option_set('default', {
-        \ 'eol': '¬',
+        \ 'eol': '↲',
         \ 'tab': '→ ',
         \ 'trail': '·',
         \ 'nbsp': '␣',
@@ -16,7 +16,7 @@ call cyclist#add_listchar_option_set('default', {
 
 " 確認用: 全スペースと改行も表示
 call cyclist#add_listchar_option_set('busy', {
-        \ 'eol': '¬',
+        \ 'eol': '↲',
         \ 'tab': '→ ',
         \ 'space': '·',
         \ 'trail': '•',

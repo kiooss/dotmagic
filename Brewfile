@@ -178,8 +178,6 @@ cask "stats"
 cask "telegram"
 # Desktop client for Telegram messenger
 cask "telegram-desktop"
-# Keyboard configurator
-cask "via"
 # Video communication and virtual meeting platform
 cask "zoom"
 uv "claude-monitor"

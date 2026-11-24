@@ -10,6 +10,8 @@ tap "shivammathur/php"
 brew "webp"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
+# Terminal monitor for AI coding agent sessions
+brew "abtop"
 # Download with resuming and segmented downloading
 brew "aria2"
 # Interpreted, interactive, object-oriented programming language

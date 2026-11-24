@@ -166,8 +166,6 @@ cask "monitorcontrol"
 cask "ngrok"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Desktop virtualization software
-cask "parallels"
 # Toolbox companion for QMK Firmware
 cask "qmk-toolbox"
 # Instant messaging tool

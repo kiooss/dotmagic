@@ -1,0 +1,408 @@
+#!/usr/bin/env bash
+#
+# git tidy — delete local branches whose remote branch is gone, showing why
+# each one is safe (or not) and asking first.
+#
+# Everything is judged against a freshly fetched origin: if `git fetch --prune
+# origin` fails, nothing is deleted. Cached refs can be wrong in the dangerous
+# direction (after a force-push, a stale origin/<default> still "contains"
+# commits the server dropped), so --no-fetch is an explicit opt-in to them.
+#
+# Only branches whose upstream is on origin and gone (remote branch deleted,
+# typically when its PR was merged) are candidates, and never one checked out
+# in a worktree. Upstreams on other remotes were not refreshed, so their
+# "gone" is not trusted. Candidates are grouped by how sure we are that their
+# work is in origin/<default>:
+#
+#   merged     the tip is contained in origin/<default>: no commit is lost.
+#              -y/--yes deletes these without asking.
+#   landed     the commits differ but the changes are in origin/<default>:
+#              squash-merged (the branch's combined diff matches one commit
+#              by verbatim patch-id) or rebase-merged (merging it would
+#              change nothing).
+#   unmerged   no trace found in origin/<default>: deleting loses commits.
+#
+# landed always asks, even with --yes; unmerged asks branch by branch.
+# Right before each delete the branch is re-checked (upstream still gone, not
+# checked out, still contained for merged), and the delete itself is atomic
+# on the listed sha: a branch that moved meanwhile is skipped, not deleted.
+# A deleted tip stays recoverable until gc via the printed restore command.
+#
+# Branches with NO upstream are never candidates, even when merged: nothing
+# says they are finished, and a branch just created off the default branch
+# (no commits yet) looks exactly like a merged one. Those, and other branches
+# that look stale, are listed as "kept" with the reason.
+#
+# Written for bash 3.2 (macOS system bash): no associative arrays, and no
+# "${arr[@]}" expansion of possibly-empty arrays under set -u.
+#
+# Invoked as `git tidy` because git resolves `git-tidy` on PATH as a subcommand.
+#
+# Usage: git tidy [-y|--yes] [-n|--dry-run] [--no-fetch]
+#   -y, --yes      delete merged branches without asking (the rest still ask)
+#   -n, --dry-run  list candidates and reasons, delete nothing
+#   --no-fetch     skip `git fetch --prune origin` and trust cached remote refs
+#   -h, --help     this text
+
+set -euo pipefail
+
+prog=git-tidy
+yes=false
+dry_run=false
+fetch=true
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -y|--yes)     yes=true ;;
+    -n|--dry-run) dry_run=true ;;
+    --no-fetch)   fetch=false ;;
+    -h|--help)    awk 'NR > 2 && !/^#/ { exit } NR > 2 { sub(/^# ?/, ""); print }' "$0"; exit 0 ;;
+    *)            echo "$prog: unknown option $1 (see --help)" >&2; exit 2 ;;
+  esac
+  shift
+done
+
+if [ -t 1 ]; then
+  bold=$'\033[1m' dim=$'\033[2m' red=$'\033[31m' green=$'\033[32m' yellow=$'\033[33m' reset=$'\033[0m'
+else
+  bold='' dim='' red='' green='' yellow='' reset=''
+fi
+
+# Spinner on stderr while fetching and checking branches, only when stderr is
+# a terminal. A background subshell redraws it every 0.1s; it reads the status
+# text from a file, since it can't see this shell's variables change.
+spin_pid='' spin_file=''
+spin_start() {
+  if [ ! -t 2 ] || [ -n "$spin_pid" ]; then return 0; fi
+  [ -n "$spin_file" ] || spin_file=$(mktemp -t git-tidy)
+  local cols
+  cols=$(tput cols 2>/dev/null || echo 80)
+  printf '\033[?25l' >&2   # hide the cursor
+  (
+    trap 'exit 0' TERM     # exit normally, so bash prints no "Terminated"
+    frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏) i=0 msg='' line=''
+    while :; do
+      if read -r line < "$spin_file" 2>/dev/null || [ -n "$line" ]; then msg=$line; fi
+      printf '\r\033[K%s %s' "${frames[$i]}" "${msg:0:$((cols - 3))}" >&2
+      i=$(( (i + 1) % 10 ))
+      sleep 0.1
+    done
+  ) &
+  spin_pid=$!
+}
+spin_status() {
+  if [ -n "$spin_pid" ]; then printf '%s\n' "$1" > "$spin_file"; fi
+}
+spin_stop() {
+  if [ -n "$spin_pid" ]; then
+    kill "$spin_pid" 2>/dev/null || true
+    wait "$spin_pid" 2>/dev/null || true
+    spin_pid=''
+    printf '\r\033[K\033[?25h' >&2   # clear the line, show the cursor
+  fi
+}
+trap 'spin_stop; rm -f "$spin_file"' EXIT
+trap 'exit 130' INT TERM
+
+die() { spin_stop; echo "$prog: $*" >&2; exit 1; }
+
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "not a git repository"
+git remote get-url origin >/dev/null 2>&1 || die "no 'origin' remote"
+
+spin_start
+if $fetch; then
+  spin_status "fetching origin…"
+  # A failed fetch aborts: stale refs can make dropped commits look merged.
+  # Its stderr is captured so it can be printed without the spinner in the way.
+  if ! fetch_err=$(git fetch --prune --quiet origin 2>&1); then
+    spin_stop
+    [ -z "$fetch_err" ] || printf '%s\n' "$fetch_err" >&2
+    die "fetch failed, nothing deleted (--no-fetch trusts cached remote refs instead)"
+  fi
+fi
+
+default=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)
+default=${default#origin/}
+if [ -z "$default" ]; then
+  for c in main master; do
+    if git show-ref --verify --quiet "refs/remotes/origin/$c"; then default=$c; break; fi
+  done
+fi
+[ -n "$default" ] || die "can't tell the default branch; run: git remote set-head origin --auto"
+# $target is for display only. Every git command gets the fully qualified
+# $target_ref: a short "origin/main" loses to a tag or local branch of that name.
+target="origin/$default"
+target_ref="refs/remotes/origin/$default"
+git show-ref --verify --quiet "$target_ref" || die "$target does not exist"
+
+here=$(git rev-parse --show-toplevel)
+
+# Where a contained <tip> entered $target: the oldest first-parent commit of
+# $target that descends from it. If that commit's first parent IS the tip, the
+# tip lies on the mainline itself (fast-forward, or never had its own commit).
+merged_how() {
+  local tip=$1 m
+  m=$(git rev-list --first-parent --ancestry-path "$tip..$target_ref" | tail -1)
+  if [ -z "$m" ]; then
+    echo "points at $target itself"
+  elif [ "$(git rev-parse "$m^1")" = "$tip" ]; then
+    echo "sits on $target's mainline (fast-forwarded, or has no commits of its own)"
+  else
+    echo "merged into $target by $(git log -1 --format='%h %s (%cr)' "$m")"
+  fi
+}
+
+# Whether a NOT-contained <tip>'s changes landed in $target some other way.
+# Prints "landed|<reason>" or "unmerged|<reason>". Diffs come from plumbing
+# (diff-tree) on both sides, so porcelain config (diff.mnemonicPrefix,
+# textconv, color) cannot make identical changes hash differently.
+landed_how() {
+  local tip=$1 mb pid since m tree
+  if mb=$(git merge-base "$tip" "$target_ref"); then
+    # Squash merge: the branch's combined diff, as one patch, equals a commit
+    # in $target (patch-id ignores line numbers, so later shifts don't matter).
+    # --verbatim keeps whitespace: by default "two words" and "twowords"
+    # hash the same, which would call a different change squash-merged.
+    # That commit lands after the branch's last commit; 1 day slack for skew.
+    pid=$(git diff-tree -p "$mb" "$tip" | git patch-id --verbatim | cut -d' ' -f1)
+    if [ -n "$pid" ]; then
+      since=$(( $(git log -1 --format=%ct "$tip") - 86400 ))
+      m=$(git rev-list --no-merges --since="@$since" "$mb..$target_ref" \
+          | git diff-tree --stdin -p | git patch-id --verbatim \
+          | awk -v p="$pid" '$1 == p && !f { print $2; f = 1 }' || true)
+      if [ -n "$m" ]; then
+        echo "landed|squash-merged as $(git log -1 --format='%h %s (%cr)' "$m")"
+        return 0
+      fi
+    fi
+  fi
+  # Rebase merge, or a squash edited while merging: if merging the branch into
+  # $target yields $target's own tree, every change of the branch is in there.
+  if tree=$(git merge-tree --write-tree --no-messages "$target_ref" "$tip" 2>/dev/null) \
+     && [ "$tree" = "$(git rev-parse "$target_ref^{tree}")" ]; then
+    echo "landed|its changes are already in $target (merging it would change nothing)"
+    return 0
+  fi
+  echo "unmerged|$(git rev-list --count "$target_ref..$tip") commit(s) not found in $target — deleting loses them"
+}
+
+# shq <word>: shell-quote for a command the user may copy-paste. Branch names
+# may legally contain ' $ ( ) ` ; & | and more.
+shq() { printf '%q' "$1"; }
+
+# Candidates, as parallel arrays (bash 3.2 has no associative arrays).
+cand_group=() cand_name=() cand_sha=() cand_info=() cand_up=() cand_upref=() cand_why=()
+kept_name=() kept_why=()
+n_merged=0 n_landed=0 n_unmerged=0
+
+# \037 (unit separator) as field separator: unlike tab it is not IFS whitespace,
+# so empty fields (no upstream, no worktree) are preserved by `read`.
+sep=$'\037'
+refs=$(git for-each-ref \
+  --format="%(refname:lstrip=2)%1f%(upstream)%1f%(upstream:short)%1f%(upstream:remotename)%1f%(upstream:track)%1f%(worktreepath)" \
+  refs/heads/)
+total=$(printf '%s\n' "$refs" | grep -c . || true)
+k=0
+while IFS=$sep read -r b up up_short up_remote track wt; do
+  [ -n "$b" ] || continue
+  k=$((k + 1))
+  spin_status "checking $k/$total: $b"
+  [ "$b" = "$default" ] && continue
+  tip=$(git rev-parse "refs/heads/$b")
+  merged=false
+  git merge-base --is-ancestor "$tip" "$target_ref" && merged=true
+
+  # gone-other: gone, but on a remote that was not fetched (or a local
+  # upstream), so the "gone" may just be stale.
+  if [ -z "$up" ]; then upstream=none
+  elif [ "$track" != "[gone]" ]; then upstream=live
+  elif [ "$up_remote" = origin ]; then upstream=gone
+  else upstream=gone-other
+  fi
+
+  if [ "$upstream" = gone ] && [ -z "$wt" ]; then
+    if $merged; then
+      g=merged why=$(merged_how "$tip")
+    else
+      r=$(landed_how "$tip")
+      g=${r%%|*} why=${r#*|}
+    fi
+    case "$g" in
+      merged)   n_merged=$((n_merged + 1)) ;;
+      landed)   n_landed=$((n_landed + 1)) ;;
+      unmerged) n_unmerged=$((n_unmerged + 1)) ;;
+    esac
+    cand_group+=("$g")
+    cand_name+=("$b")
+    cand_sha+=("$tip")
+    cand_info+=("$(git log -1 --format='%h %s (%cr)' "$tip")")
+    cand_up+=("$up_short")
+    cand_upref+=("$up")
+    cand_why+=("$why")
+    continue
+  fi
+
+  # Not a candidate. Report it only if it looks stale; active work stays quiet.
+  if [ "$upstream" = gone ]; then
+    kept_name+=("$b")
+    if [ "$wt" = "$here" ]; then
+      kept_why+=("remote branch $up_short was deleted, but it is the current branch here — switch away first")
+    else
+      kept_why+=("remote branch $up_short was deleted, but it is checked out in worktree $wt — remove the worktree first")
+    fi
+  elif [ "$upstream" = gone-other ]; then
+    kept_name+=("$b")
+    kept_why+=("upstream $up_short looks gone, but it is not on origin, which is the only remote fetched — check: git fetch --prune ${up_remote:-<remote>}")
+  elif $merged && [ "$upstream" = none ] && [ -z "$wt" ]; then
+    kept_name+=("$b")
+    kept_why+=("no upstream, so nothing says it is finished (its commits are in $target) — if done: git branch -D $(shq "$b")")
+  elif $merged && [ "$upstream" = live ] && [ "$up_short" != "$target" ]; then
+    kept_name+=("$b")
+    kept_why+=("merged, but $up_short still exists on the remote")
+  fi
+done <<< "$refs"
+spin_stop
+
+ncand=${#cand_name[@]}
+nkept=${#kept_name[@]}
+
+# show_group <group> <count> <mark> <title>
+show_group() {
+  local g=$1 n=$2 mark=$3 title=$4 i=0 k=0
+  if [ "$n" -eq 0 ]; then return 0; fi
+  echo
+  echo "${bold}$title${reset}"
+  while [ $i -lt "$ncand" ]; do
+    if [ "${cand_group[$i]}" = "$g" ]; then
+      k=$((k + 1))
+      echo
+      printf '  %s%2d. %s%s  %s%s%s\n' "$bold" "$k" "${cand_name[$i]}" "$reset" "$dim" "${cand_info[$i]}" "$reset"
+      printf '      %s✓%s remote branch %s was deleted\n' "$green" "$reset" "${cand_up[$i]}"
+      printf '      %s %s\n' "$mark" "${cand_why[$i]}"
+    fi
+    i=$((i + 1))
+  done
+}
+
+if [ "$ncand" -eq 0 ]; then
+  echo "$prog: nothing to delete (checked against $target)"
+else
+  echo "$prog: $ncand branch(es) with a deleted remote branch (checked against $target)"
+  show_group merged   "$n_merged"   "${green}✓${reset}" "Merged — every commit is in $target:"
+  show_group landed   "$n_landed"   "${green}✓${reset}" "Squash/rebase-merged — commits differ, but the changes are in $target:"
+  show_group unmerged "$n_unmerged" "${red}⚠${reset}"   "Not found in $target — deleting loses commits:"
+fi
+
+if [ "$nkept" -gt 0 ]; then
+  echo
+  echo "${bold}Kept${reset} (look stale, but not safe to delete automatically):"
+  w=0 i=0
+  while [ $i -lt "$nkept" ]; do
+    if [ ${#kept_name[$i]} -gt $w ]; then w=${#kept_name[$i]}; fi
+    i=$((i + 1))
+  done
+  i=0
+  while [ $i -lt "$nkept" ]; do
+    printf '  %s%-*s%s  %s\n' "$yellow" "$w" "${kept_name[$i]}" "$reset" "${kept_why[$i]}"
+    i=$((i + 1))
+  done
+fi
+
+[ "$ncand" -eq 0 ] && exit 0
+echo
+
+if $dry_run; then
+  echo "$prog: --dry-run, nothing deleted"
+  exit 0
+fi
+
+deleted=0
+failed=0
+quit=false
+restore=()   # `git branch <name> <sha>` for each deleted branch not contained in $target
+
+skip() { echo "  ${red}skipped${reset} $1: $2" >&2; }
+
+# delete_one <index>: the prompt may have been open for a while, so re-check
+# everything that made the branch a candidate, then delete it ONLY IF it still
+# points at the sha that was checked. `git branch -D` can't take an expected
+# sha, so this does what it does by hand: worktree guard, compare-and-delete
+# of the ref (update-ref -d <ref> <old> is atomic), then the branch's config.
+delete_one() {
+  local i=$1 b=${cand_name[$1]} sha=${cand_sha[$1]} up=${cand_upref[$1]} wt
+  if git show-ref --verify --quiet "$up"; then
+    skip "$b" "its upstream ${cand_up[$i]} exists again"; return 1
+  fi
+  if [ "${cand_group[$i]}" = merged ] && ! git merge-base --is-ancestor "$sha" "$target_ref"; then
+    skip "$b" "no longer contained in $target"; return 1
+  fi
+  wt=$(git for-each-ref --format='%(worktreepath)' "refs/heads/$b")
+  if [ -n "$wt" ]; then
+    skip "$b" "now checked out in worktree $wt"; return 1
+  fi
+  if ! git update-ref -d "refs/heads/$b" "$sha" 2>/dev/null; then
+    skip "$b" "it moved since it was listed"; return 1
+  fi
+  git config --remove-section "branch.$b" 2>/dev/null || true
+  echo "Deleted branch $b (was ${sha:0:12})."
+}
+
+# run_group <group> <all|select>
+run_group() {
+  local g=$1 mode=$2 i=0 ans
+  while [ $i -lt "$ncand" ] && ! $quit; do
+    if [ "${cand_group[$i]}" = "$g" ]; then
+      ans=y
+      if [ "$mode" = select ]; then
+        printf '  delete %s%s%s? [y/N/q] ' "$bold" "${cand_name[$i]}" "$reset"
+        read -r ans || ans=q
+      fi
+      case "$ans" in
+        y|Y)
+          if delete_one "$i"; then
+            deleted=$((deleted + 1))
+            if [ "$g" != merged ]; then restore+=("git branch $(shq "${cand_name[$i]}") ${cand_sha[$i]}"); fi
+          else
+            failed=$((failed + 1))
+          fi ;;
+        q|Q) quit=true ;;
+      esac
+    fi
+    i=$((i + 1))
+  done
+}
+
+# ask_group <group> <count> <label>: one prompt for the whole group.
+ask_group() {
+  local g=$1 n=$2 label=$3 ans
+  if [ "$n" -eq 0 ] || $quit; then return 0; fi
+  printf 'Delete %d %s branch(es)? [y]es, all / [s]elect one by one / [N]o / [q]uit: ' "$n" "$label"
+  read -r ans || { ans=''; quit=true; }
+  case "$ans" in
+    y|Y|yes) run_group "$g" all ;;
+    s|S)     run_group "$g" select ;;
+    q|Q)     quit=true ;;
+  esac
+}
+
+if $yes; then
+  if [ "$n_merged" -gt 0 ]; then run_group merged all; fi
+else
+  ask_group merged "$n_merged" merged
+fi
+ask_group landed "$n_landed" squash/rebase-merged
+if [ "$n_unmerged" -gt 0 ] && ! $quit; then
+  echo "Not found in $target — asking one by one:"
+  run_group unmerged select
+fi
+
+echo "$prog: deleted $deleted of $ncand branch(es)"
+if [ ${#restore[@]} -gt 0 ]; then
+  echo "$prog: their commits are not in $target; to restore (until gc):"
+  i=0
+  while [ $i -lt ${#restore[@]} ]; do
+    echo "  ${restore[$i]}"
+    i=$((i + 1))
+  done
+fi
+[ "$failed" -eq 0 ]

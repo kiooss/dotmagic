@@ -138,10 +138,12 @@
 	out = "!git fetch; git cherry origin/HEAD -v"
 	dp = diff --stat origin/master HEAD
 	delete-merged-branches = "!f() { DEFAULT=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@'); DEFAULT=${DEFAULT:-main}; git checkout --quiet \"$DEFAULT\" && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
-	# fetch --prune origin, then delete local branches merged into origin/<default> whose upstream is gone or unset; skips worktree-checked-out branches.
-	# A failed fetch only warns: stale refs can make it delete fewer branches, never wrong ones.
+	# fetch --prune origin, then delete local branches merged into origin/<default> whose origin upstream is gone; skips worktree-checked-out branches.
+	# Branches with no upstream are kept: nothing says they're finished (a just-created branch looks merged). `git tidy` lists them.
+	# A failed fetch aborts: after a force-push, a stale origin/<default> still "contains" commits the server dropped.
+	# Only origin upstreams count as gone (other remotes weren't fetched); refs/remotes/... is fully qualified so a tag named origin/<default> can't win.
 	# -D is safe: --merged already proved the branch is in origin/<default>; -d would re-check against a possibly stale HEAD.
-	prune-gone = "!f() { git fetch --prune --quiet origin || echo 'prune-gone: fetch failed, using cached remote refs' >&2; DEFAULT=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@'); DEFAULT=${DEFAULT:-master}; git for-each-ref --merged \"origin/$DEFAULT\" --format='%(refname:lstrip=2)|%(upstream)|%(upstream:track)|%(worktreepath)' refs/heads/ | while IFS='|' read -r b up track wt; do [ \"$b\" = \"$DEFAULT\" ] && continue; [ -n \"$wt\" ] && continue; [ -n \"$up\" ] && [ \"$track\" != '[gone]' ] && continue; git branch -D \"$b\"; done; }; f"
+	prune-gone = "!f() { git fetch --prune --quiet origin || { echo 'prune-gone: fetch failed, nothing deleted' >&2; return 1; }; DEFAULT=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@'); DEFAULT=${DEFAULT:-master}; git for-each-ref --merged \"refs/remotes/origin/$DEFAULT\" --format='%(refname:lstrip=2)|%(upstream:remotename)|%(upstream:track)|%(worktreepath)' refs/heads/ | while IFS='|' read -r b rn track wt; do [ \"$b\" = \"$DEFAULT\" ] && continue; [ -n \"$wt\" ] && continue; [ \"$rn\" = origin ] && [ \"$track\" = '[gone]' ] || continue; git branch -D \"$b\"; done; }; f"
 	diff-ignore-space = diff --ignore-space-at-eol -b -w --ignore-blank-lines
 	# order files by number of commits, ascending
 	churn = "!f() { git log --all -M -C --name-only --format='format:' \"$@\" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print \"count\tfile\"} {print $1 \"\t\" $2}' | sort -g; }; f"
